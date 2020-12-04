@@ -65,6 +65,13 @@
       
         <li class="list-item">
           
+            <a href="/project/" class="item-link ">
+            Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
             <a href="/about/" class="item-link ">
             About</a>
           
@@ -99,6 +106,12 @@
         
           <li class="menu-item">
             
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
               <a href="/about/" class="menu-link">About</a>
             
           </li>
@@ -125,7 +138,7 @@
         Accept: 'application/vnd.github.v3.raw'
       },
       type: 'get',
-      url: 'https://api.github.com/users//repos',
+      url: 'https://api.github.com/users/shunhua/repos',
       success: function (data) {
         var repos = data.sort(function(a, b) {
           return (b.stargazers_count - a.stargazers_count)
