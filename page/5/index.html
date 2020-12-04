@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="郑州大学11级,深入后端开发。非专业视觉设计师。此为博客一枚。">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" type="image/ico" href="/assets/img/bsh.ico"/> 
+  
+  <title>
+    
+      shunhua&#39;s blog
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  
+<script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo" style="border-radius: 50%;"></div>
+      <span>shunhua's blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link active">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link ">
+            Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link ">
+            Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link ">
+            About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link mobile-active">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <main class="app-body">
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/09/21/laravel-admin-%E5%AE%9E%E7%8E%B0%E5%AD%97%E6%AE%B5%E6%8E%92%E5%BA%8F/">laravel-admin 实现字段排序</a>
+      </h2>
+      <p class="article-date">September 21, 2017</p>
+      
+        
+  <a href="/tags#laravel-admin" >
+    <span class="tag-code">laravel-admin</span>
+  </a>
+
+  <a href="/tags#字段排序" >
+    <span class="tag-code">字段排序</span>
+  </a>
+
+      
+      
+
+
+      <div class="article-summary">
+        
+          
+
+
+ 排序代码
+
+123456789101112protected function grid()&#123;    return Admin::grid(Member::class, function (Grid $grid) &#123;        $grid-&gt;model( ...
+        
+      </div>
+      <a class="more" style="float:right;" href="/2017/09/21/laravel-admin-%E5%AE%9E%E7%8E%B0%E5%AD%97%E6%AE%B5%E6%8E%92%E5%BA%8F/">Read more</a>
+    </article>
+    <hr style="height:1px;border:none;border-top:1px dashed #0066CC;" />
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/09/21/nginx-%E5%AE%9E%E7%8E%B0%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">nginx 实现负载均衡</a>
+      </h2>
+      <p class="article-date">September 21, 2017</p>
+      
+        
+  <a href="/tags#nginx" >
+    <span class="tag-code">nginx</span>
+  </a>
+
+  <a href="/tags#负载均衡" >
+    <span class="tag-code">负载均衡</span>
+  </a>
+
+      
+      
+
+
+      <div class="article-summary">
+        
+          
+
+
+ nginx支持的四种负载均衡策略
+
+
+ 轮询：将请求依次轮询发给每个服务器。
+ 最少链接：将请求发送给持有最少活动链接的服务器。
+ ip哈希：通过哈希函数决定请求发送给哪个服务器。
+ 权重：服务器的权重越高，处理请求的概率越大。
+
+
+ 1.轮询负载均衡
+
+在nginx.conf配置文 ...
+        
+      </div>
+      <a class="more" style="float:right;" href="/2017/09/21/nginx-%E5%AE%9E%E7%8E%B0%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">Read more</a>
+    </article>
+    <hr style="height:1px;border:none;border-top:1px dashed #0066CC;" />
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/09/21/lnmp%E9%9B%86%E6%88%90%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2laravel5-x%E9%A1%B9%E7%9B%AE/">lnmp集成环境下部署laravel5.x项目</a>
+      </h2>
+      <p class="article-date">September 21, 2017</p>
+      
+        
+  <a href="/tags#lnmp" >
+    <span class="tag-code">lnmp</span>
+  </a>
+
+  <a href="/tags#centos7.3" >
+    <span class="tag-code">centos7.3</span>
+  </a>
+
+  <a href="/tags#laravel" >
+    <span class="tag-code">laravel</span>
+  </a>
+
+      
+      
+
+
+      <div class="article-summary">
+        
+          
+
+一、安装环境
+
+默认lnmp环境已经安装好，若没安装请去安装。安装参考文档路径：&lt;a href=”https://shunhua.github.io/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%8 ...
+        
+      </div>
+      <a class="more" style="float:right;" href="/2017/09/21/lnmp%E9%9B%86%E6%88%90%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2laravel5-x%E9%A1%B9%E7%9B%AE/">Read more</a>
+    </article>
+    <hr style="height:1px;border:none;border-top:1px dashed #0066CC;" />
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/09/15/centos7%E4%B8%8Blnmp-%E6%B7%BB%E5%8A%A0%E3%80%81%E5%88%A0%E9%99%A4%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/">centos7下lnmp 添加、删除虚拟主机</a>
+      </h2>
+      <p class="article-date">September 15, 2017</p>
+      
+        
+  <a href="/tags#lnmp" >
+    <span class="tag-code">lnmp</span>
+  </a>
+
+  <a href="/tags#linux" >
+    <span class="tag-code">linux</span>
+  </a>
+
+  <a href="/tags#centos7.3" >
+    <span class="tag-code">centos7.3</span>
+  </a>
+
+      
+      
+
+
+      <div class="article-summary">
+        
+          
+
+添加网站(虚拟主机
+
+ 执行：lnmp vhost add 出现如下界面：
+
+
+
+ 这里要输入要添加网站的域名，我们已添加www.vpser.net域名为例，如上图提示后输入域名 www.vpser.net 回车后提示：
+
+
+这里询问是否添加更多域名，直接再输入要绑定的域名，这里我们将  ...
+        
+      </div>
+      <a class="more" style="float:right;" href="/2017/09/15/centos7%E4%B8%8Blnmp-%E6%B7%BB%E5%8A%A0%E3%80%81%E5%88%A0%E9%99%A4%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/">Read more</a>
+    </article>
+    <hr style="height:1px;border:none;border-top:1px dashed #0066CC;" />
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E9%9B%86%E6%88%90/">linux centos7.3 lnmp一键安装包集成</a>
+      </h2>
+      <p class="article-date">September 15, 2017</p>
+      
+        
+  <a href="/tags#lnmp" >
+    <span class="tag-code">lnmp</span>
+  </a>
+
+  <a href="/tags#linux" >
+    <span class="tag-code">linux</span>
+  </a>
+
+  <a href="/tags#centos7.3" >
+    <span class="tag-code">centos7.3</span>
+  </a>
+
+      
+      
+
+
+      <div class="article-summary">
+        
+          
+
+一、下载并安装LNMP一键安装包
+安装LNMP稳定版
+
+ wget -c http://soft.vpser.net/lnmp/lnmp1.4.tar.gz &amp;&amp; tar zxf lnmp1.4.tar.gz &amp;&amp; cd lnmp1.4 &amp;&amp ...
+        
+      </div>
+      <a class="more" style="float:right;" href="/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E9%9B%86%E6%88%90/">Read more</a>
+    </article>
+    <hr style="height:1px;border:none;border-top:1px dashed #0066CC;" />
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/09/15/laravel5.5%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8-%E2%80%94%E2%80%94-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E7%AF%87/">laravel5.5快速入门 —— 安装配置篇</a>
+      </h2>
+      <p class="article-date">September 15, 2017</p>
+      
+        
+  <a href="/tags#laravel5.5" >
+    <span class="tag-code">laravel5.5</span>
+  </a>
+
+      
+      
+
+
+      <div class="article-summary">
+        
+          
+
+一、服务器要求
+
+Laravel 框架对PHP版本和扩展有一定要求，不过这些要求 Homestead 都已经满足了，不过如果你没有使用 Homestead 的话（那真是一件很遗憾的事情），有必要了解下这些以便确认自己的环境满足要求：
+
+
+ PHP &gt;= 7.0.0
+ PHP Ope ...
+        
+      </div>
+      <a class="more" style="float:right;" href="/2017/09/15/laravel5.5%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8-%E2%80%94%E2%80%94-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E7%AF%87/">Read more</a>
+    </article>
+    <hr style="height:1px;border:none;border-top:1px dashed #0066CC;" />
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/09/15/Laragon-%E5%9C%A8-Windows-%E4%B8%AD%E6%90%AD%E5%BB%BA-Laravel-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">Laragon 在 Windows 中搭建 Laravel 开发环境</a>
+      </h2>
+      <p class="article-date">September 15, 2017</p>
+      
+        
+  <a href="/tags#Laragon" >
+    <span class="tag-code">Laragon</span>
+  </a>
+
+  <a href="/tags#Laravel" >
+    <span class="tag-code">Laravel</span>
+  </a>
+
+  <a href="/tags#Windows" >
+    <span class="tag-code">Windows</span>
+  </a>
+
+      
+      
+
+
+      <div class="article-summary">
+        
+          
+
+一、简介
+
+之前coder陆续写了三篇介绍 Laravel 开发环境的教程：Homestead、Valet 和 LaraDock，我都是在 Mac 系统中安装使用的，相当流畅，没有任何梗，但是对于那些使用 Windows 的同学来说，Valet 就不说了，Homestead 和 Lara ...
+        
+      </div>
+      <a class="more" style="float:right;" href="/2017/09/15/Laragon-%E5%9C%A8-Windows-%E4%B8%AD%E6%90%AD%E5%BB%BA-Laravel-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">Read more</a>
+    </article>
+    <hr style="height:1px;border:none;border-top:1px dashed #0066CC;" />
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/09/14/CentOS-7-%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/">CentOS 7 搭建SVN服务器</a>
+      </h2>
+      <p class="article-date">September 14, 2017</p>
+      
+        
+  <a href="/tags#CentOS 7" >
+    <span class="tag-code">CentOS 7</span>
+  </a>
+
+  <a href="/tags#svn" >
+    <span class="tag-code">svn</span>
+  </a>
+
+      
+      
+
+
+      <div class="article-summary">
+        
+          <p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CentOS 7 搭建SVN服务器</strong> </p>
+        
+      </div>
+      <a class="more" style="float:right;" href="/2017/09/14/CentOS-7-%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/">Read more</a>
+    </article>
+    <hr style="height:1px;border:none;border-top:1px dashed #0066CC;" />
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/09/14/%E8%BF%81%E7%A7%BB%E5%85%AC%E4%BC%97%E5%8F%B7%E6%95%B0%E6%8D%AE/">laravel下迁移公众号数据</a>
+      </h2>
+      <p class="article-date">September 14, 2017</p>
+      
+        
+  <a href="/tags#php" >
+    <span class="tag-code">php</span>
+  </a>
+
+  <a href="/tags#laravel5.x" >
+    <span class="tag-code">laravel5.x</span>
+  </a>
+
+  <a href="/tags#公众号" >
+    <span class="tag-code">公众号</span>
+  </a>
+
+      
+      
+
+
+      <div class="article-summary">
+        
+          <p><strong>php laravel5.x下迁移公众号数据：</strong> </p>
+        
+      </div>
+      <a class="more" style="float:right;" href="/2017/09/14/%E8%BF%81%E7%A7%BB%E5%85%AC%E4%BC%97%E5%8F%B7%E6%95%B0%E6%8D%AE/">Read more</a>
+    </article>
+    <hr style="height:1px;border:none;border-top:1px dashed #0066CC;" />
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/09/14/php-%E9%80%92%E5%BD%92%E6%8B%BC%E6%8E%A5%E4%B8%80%E6%9D%A1%E7%BA%BF%E4%BC%9A%E5%91%98/">php 递归拼接一条线会员</a>
+      </h2>
+      <p class="article-date">September 14, 2017</p>
+      
+        
+  <a href="/tags#php" >
+    <span class="tag-code">php</span>
+  </a>
+
+  <a href="/tags#递归" >
+    <span class="tag-code">递归</span>
+  </a>
+
+      
+      
+
+
+      <div class="article-summary">
+        
+          <p><strong>php 递归拼接一条线会员：</strong> </p>
+        
+      </div>
+      <a class="more" style="float:right;" href="/2017/09/14/php-%E9%80%92%E5%BD%92%E6%8B%BC%E6%8E%A5%E4%B8%80%E6%9D%A1%E7%BA%BF%E4%BC%9A%E5%91%98/">Read more</a>
+    </article>
+    <hr style="height:1px;border:none;border-top:1px dashed #0066CC;" />
+  
+
+  
+    <div class="guide-pager">
+  
+    <a href="/page/4/"><span class="page-arrow">← </span>Prev</a>
+  
+  
+    <a href="/page/6/">Next<span class="page-arrow"> →</span></a>
+  
+</div>
+  
+</main>
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    <span>友情链接 |  <a href="https://lisonghe.com" target="_blank">风中幻影[李松鹤]</a>&nbsp;&nbsp;|  <a href="https://followzero.github.io" target="_blank">郑州最帅的程序员[张鹏]</a></span>
+  </p>
+
+  <p class="copyright">
+    <br>
+     Copyright © 2017-2020 |<span id="busuanzi_container_site_pv">pv <span id="busuanzi_value_site_pv"></span> 次</span> - <span id="busuanzi_container_site_uv"> uv <span id="busuanzi_value_site_uv"></span> 人</span>| 
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/shunhua">Kobe</a>
+    <br>
+   
+  </p>
+
+</footer>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+<!--page counter part-->
+<script>
+function addCount (Counter) {
+        url=$('.article-date').attr('href').trim();
+    title = $('.article-title').text().trim();
+    var query=new AV.Query(Counter);
+    //use url as unique idnetfication
+    query.equalTo("url",url);
+    query.find({
+        success: function(results){
+            if(results.length>0)
+            {
+                var counter=results[0];
+                counter.fetchWhenSave(true); //get recent result
+                counter.increment("time");
+                counter.save();
+            }
+            else
+            {
+                var newcounter=new Counter();
+                newcounter.set("title",title);
+                newcounter.set("url",url);
+                newcounter.set("time",1);
+                newcounter.save(null,{
+                    success: function(newcounter){
+                    //alert('New object created');
+                    },
+                    error: function(newcounter,error){
+                    alert('Failed to create');
+                    }
+                    });
+            }
+        },
+        error: function(error){
+            //find null is not a error
+            alert('Error:'+error.code+" "+error.message);
+        }
+    });
+}
+$(function(){
+    var Counter=AV.Object.extend("Counter");
+    //only increse visit counting when intering a page
+    if ($('.article-title').length == 1)
+       addCount(Counter);
+    var query=new AV.Query(Counter);
+    query.descending("time");
+    // the sum of popular posts
+    query.limit(10); 
+    query.find({
+        success: function(results){
+                for(var i=0;i<results.length;i++)    
+                {
+                    var counter=results[i];
+                    title=counter.get("title");
+                    url=counter.get("url");
+                    time=counter.get("time");
+                    // add to the popularlist widget
+                    showcontent=title+" ("+time+")";
+                    //notice the "" in href
+                    $('.popularlist').append('<li><a href="'+url+'">'+showcontent+'</a></li>');
+                }
+            },
+        error: function(error){
+            alert("Error:"+error.code+" "+error.message);
+        }
+        }
+    )
+    });
+  </body>
+</html>
