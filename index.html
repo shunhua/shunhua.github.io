@@ -236,14 +236,38 @@ xxx.ibd 数据和索引文件xxx.frm 表结构文件
         <p class="article-summary">
           
             
- &lt;a href=”https://help.aliyun.com/document_detail/86866.html?spm=a2c4g.11186623.6.573.72df68123ova0d&quot;target=&quot;_blank&quot;&gt;[阿里云文档] ...
+ [阿里云文档] 具体流程依据文档 需要：备案域名 / 直播云服务器
+
+开通阿里云直播控制台
+
+
+
+直播控制台-概览配置 推流/播流 域名
+
+生成之后解析对应域名的 CNAME 到推流/播流域名上
+
+PC端 OBS/VLC 测试
+
+地址生成器–&gt;生成的 推流/播流 地址相应在 OBS ...
           
         </p>
       </blockquote>  
       <!-- <div class="article-summary">
         
           
- &lt;a href=”https://help.aliyun.com/document_detail/86866.html?spm=a2c4g.11186623.6.573.72df68123ova0d&quot;target=&quot;_blank&quot;&gt;[阿里云文档] ...
+ [阿里云文档] 具体流程依据文档 需要：备案域名 / 直播云服务器
+
+开通阿里云直播控制台
+
+
+
+直播控制台-概览配置 推流/播流 域名
+
+生成之后解析对应域名的 CNAME 到推流/播流域名上
+
+PC端 OBS/VLC 测试
+
+地址生成器–&gt;生成的 推流/播流 地址相应在 OBS ...
         
       </div> -->
       <a class="more btn" style="float:right;" href="/2019/07/04/Live-%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%B4%E6%92%AD/">阅读全文  »</a>
@@ -329,10 +353,18 @@ app/Events 中就会自动生成一个 UserLogin.php 文件，如下：
           
             
 
- 附上 &lt;a href=”https://github.com/shunhua/laravel-echo&quot;target=&quot;_blank&quot;&gt;[Github] 地址 
+ 附上 [Github] 地址 
  一、项目搭建 a.安装laravel
 
-composer create-proj ...
+composer create-project –prefer-dist laravel/laravel echo
+
+ b.配置mysql 数据库
+
+php artisan migrate
+
+  c.快速认证
+
+ ...
           
         </p>
       </blockquote>  
@@ -340,10 +372,18 @@ composer create-proj ...
         
           
 
- 附上 &lt;a href=”https://github.com/shunhua/laravel-echo&quot;target=&quot;_blank&quot;&gt;[Github] 地址 
+ 附上 [Github] 地址 
  一、项目搭建 a.安装laravel
 
-composer create-proj ...
+composer create-project –prefer-dist laravel/laravel echo
+
+ b.配置mysql 数据库
+
+php artisan migrate
+
+  c.快速认证
+
+ ...
         
       </div> -->
       <a class="more btn" style="float:right;" href="/2019/04/19/Laravel-Redis-%E5%B9%BF%E6%92%AD%E6%B5%8B%E8%AF%95/">阅读全文  »</a>
@@ -447,7 +487,15 @@ composer create-proj ...
 
 一般这种情况都是日志文件太大导致的
 
-mysql二进制文件 参考文档：&lt;a href=”https://baishunhua.com/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/&quot;target=&quot;_b ...
+mysql二进制文件 参考文档：[ MySQL启动错误 ]
+其他日志文件
+
+
+df -h
+
+查看磁盘使用情况
+1du -h --max-depth&#x3D;1 | grep G | sort -n
+以G单位排序查看占用磁盘的文件，然后删除没用的日志 ...
           
         </p>
       </blockquote>  
@@ -457,7 +505,15 @@ mysql二进制文件 参考文档：&lt;a href=”https://baishunhua.com/2017/12
 
 一般这种情况都是日志文件太大导致的
 
-mysql二进制文件 参考文档：&lt;a href=”https://baishunhua.com/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/&quot;target=&quot;_b ...
+mysql二进制文件 参考文档：[ MySQL启动错误 ]
+其他日志文件
+
+
+df -h
+
+查看磁盘使用情况
+1du -h --max-depth&#x3D;1 | grep G | sort -n
+以G单位排序查看占用磁盘的文件，然后删除没用的日志 ...
         
       </div> -->
       <a class="more btn" style="float:right;" href="/2018/11/22/MySQL%E5%87%BA%E7%8E%B01030-Got-error-28-from-storage-engine%E9%94%99%E8%AF%AF/">阅读全文  »</a>
