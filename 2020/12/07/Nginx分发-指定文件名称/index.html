@@ -136,9 +136,14 @@
 <p>一般在我们上传完资源文件之后，为了避免文件名冲突，会将文件名改成毫无意义的一段字符<br>其实，nginx是支持下载时重命名的，让文件名更加友好</p>
 <p>eg: a.com/storage/uploads/2020-12-07-728632757453485.png?n=test</p>
 <blockquote>
-<p>nginx 配置：</p>
+<p>有后缀：</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">location ~* .*\.(txt|jpg|png)(\?.*)?$ &#123; </span><br><span class="line">    if ($request_uri ~* ^.*\&#x2F;(.*)\.(txt|jpg|png)(\?n&#x3D;([^&amp;]+))$) &#123;</span><br><span class="line">        add_header Content-Disposition &quot;attachment;filename&#x3D;$arg_n.$2&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></section>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">location ~* .*\.(txt|jpg|png)(\?.*)?$ &#123; </span><br><span class="line">    if ($request_uri ~* ^.*\&#x2F;(.*)\.(txt|jpg|png)(\?n&#x3D;([^&amp;]+))$) &#123;</span><br><span class="line">        add_header Content-Disposition &quot;attachment;filename&#x3D;$arg_n.$2&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>无后缀：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">location ~* [^&#x2F;]+(?!.*&#x2F;) &#123;</span><br><span class="line">    if ($request_uri ~* [^&#x2F;]+(?!.*&#x2F;)(\?n&#x3D;([^&amp;]+))$) &#123;</span><br><span class="line">        add_header Content-Disposition &quot;attachment;filename&#x3D;$arg_n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></section>
     
       <div class="tags">
         <span>Tags:</span>
