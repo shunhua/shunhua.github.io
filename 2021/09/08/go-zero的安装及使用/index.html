@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="郑州大学11级,深入后端开发。非专业视觉设计师。此为博客一枚。">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" type="image/ico" href="/assets/img/bsh.ico"/> 
+  
+  <title>
+    
+      go-zero的安装及使用 | 久而旧之
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  
+<script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo" style="border-radius: 50%;"></div>
+      <span>久而旧之</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link ">
+            Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link ">
+            Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link ">
+            Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link ">
+            Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link ">
+            About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>go-zero的安装及使用</h2>
+  <p class="post-date">2021-09-08</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><p><strong>go-zero的安装及使用</strong> </p>
+<a id="more"></a>
+<p><img src="/assets/blogImg/go-zero.webp" alt="ico原来的样子"></p>
+<p>一、linux 安装Go</p>
+<ul>
+<li>下载<a href="https://dl.google.com/go/go1.15.1.darwin-amd64.pkg" target="_blank">[ Go for Linux ]</a></li>
+<li>解压压缩包至/usr/local</li>
+</ul>
+<blockquote>
+<p>  $ tar -C /usr/local -xzf go1.15.8.linux-amd64.tar.gz</p>
+</blockquote>
+<ul>
+<li>添加/usr/local/go/bin到环境变量</li>
+</ul>
+<blockquote>
+<pre><code>$ $HOME/.profile
+  export PATH=$PATH:/usr/local/go/bin
+$ source $HOME/.profile</code></pre>
+</blockquote>
+<ul>
+<li>验证安装结果<blockquote>
+<p>  $ go version<br>  go version go1.15.1 linux/amd64</p>
+</blockquote>
+</li>
+</ul>
+<p>二、Go Module</p>
+<ul>
+<li>查看GO111MODULE开启情况<blockquote>
+<p>  $ go env GO111MODULE</p>
+</blockquote>
+</li>
+</ul>
+<p>开启GO111MODULE，如果已开启（即执行go env GO111MODULE结果为on）请跳过</p>
+<blockquote>
+<p>  $ go env -w GO111MODULE=”on”</p>
+</blockquote>
+<ul>
+<li>设置GOPROXY<blockquote>
+<p>  $ go env -w GOPROXY=<a target="_blank" rel="noopener" href="https://goproxy.cn/">https://goproxy.cn</a></p>
+</blockquote>
+</li>
+<li>设置GOMODCACHE<blockquote>
+<p>  $ go env GOMODCACHE<br>如果目录不为空或者/dev/null，请跳过。<br>  go env -w GOMODCACHE=$GOPATH/pkg/mod</p>
+</blockquote>
+</li>
+</ul>
+<p>三、Goctl安装</p>
+<ul>
+<li><p>安装及下载</p>
+<blockquote>
+<p>  GO111MODULE=on GOPROXY=<a target="_blank" rel="noopener" href="https://goproxy.cn/,direct">https://goproxy.cn/,direct</a> go get -u github.com/tal-tech/go-zero/tools/goctl</p>
+</blockquote>
+</li>
+<li><p>安装结果验证</p>
+<blockquote>
+<p>  $ goctl -v</p>
+</blockquote>
+</li>
+</ul>
+<p>protoc &amp; protoc-gen-go安装</p>
+<p>1.protoc</p>
+<ul>
+<li><p>进入<a href="https://github.com/protocolbuffers/protobuf/releases" target="_blank">[ protobuf release ]</a> 页面，选择适合自己操作系统的压缩包文件</p>
+</li>
+<li><p>解压protoc-3.14.0-osx-x86_64.zip并进入protoc-3.14.0-osx-x86_64</p>
+<blockquote>
+<p>  $ cd protoc-3.14.0-osx-x86_64/bin</p>
+</blockquote>
+</li>
+<li><p>将启动的protoc二进制文件移动到被添加到环境变量的任意path下，如$GOPATH/bin，这里不建议直接将其和系统的以下path放在一起</p>
+<blockquote>
+<p>  $ mv protoc $GOPATH/bin</p>
+</blockquote>
+</li>
+<li><p>验证安装结果</p>
+<blockquote>
+<p>  $ protoc –version</p>
+</blockquote>
+</li>
+</ul>
+<p>2.protoc-gen-go</p>
+<ul>
+<li>下载安装protoc-gen-go<blockquote>
+<p>  $ go get -u github.com/golang/protobuf/protoc-gen-go@v1.3.2<br>  go: found github.com/golang/protobuf/protoc-gen-go in github.com/golang/protobuf v1.4.3<br>  go: google.golang.org/protobuf upgrade =&gt; v1.25.0</p>
+</blockquote>
+</li>
+</ul>
+<ol start="3">
+<li>etcd安装 (ZooKeeper区别)</li>
+</ol>
+<ul>
+<li>高一致性 发现服务 配置共享</li>
+<li>后续 使用kq异步队列包 go-queue会接触到(主要是kafka[zookeeper]异步推送消息)</li>
+</ul>
+<p>四、使用goctl(go control)创建服务</p>
+<blockquote>
+<p>goctl api new greet</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── etc</span><br><span class="line">│   └── greet-api.yaml</span><br><span class="line">├── greet.api</span><br><span class="line">├── greet.go</span><br><span class="line">└── internal</span><br><span class="line">    ├── config</span><br><span class="line">    │   └── config.go</span><br><span class="line">    ├── handler</span><br><span class="line">    │   ├── greethandler.go</span><br><span class="line">    │   └── routes.go</span><br><span class="line">    ├── logic</span><br><span class="line">    │   └── greetlogic.go</span><br><span class="line">    ├── svc</span><br><span class="line">    │   └── servicecontext.go</span><br><span class="line">    └── types</span><br><span class="line">        └── types.go</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>api 网关层</p>
+<blockquote>
+<p>goctl api -o blog.api</p>
+</blockquote>
+</li>
+<li><p>rpc 服务</p>
+<blockquote>
+<p>goctl rpc template -o user.proto<br>goctl rpc proto -src user.proto -dir . </p>
+</blockquote>
+</li>
+</ul>
+</section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#golang - go-zero" >
+    <span class="tag-code">golang - go-zero</span>
+  </a>
+
+      </div>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">欢迎点击上方按钮对我打赏，谢谢你给我吃糖果</p>
+    </div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://shunhua.github.io/2021/09/08/go-zero的安装及使用/';
+    var banner = ''
+    if (banner) {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    
+
+    // gitment
+    var gitmentConfig = "shunhua";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "go-zero的安装及使用",
+        owner: "shunhua",
+        repo: "shunhua.github.io",
+        oauth: {
+          client_id: "0f87e490e00ee3fd87ef",
+          client_secret: "4a9d2b148e7971c2201ad12131ce8bf8159ccd2e"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    <br><span id="busuanzi_container_site_pv">浏览量 <span id="busuanzi_value_site_pv"></span></span> | 
+    <span id="busuanzi_container_site_uv"> 访客 <span id="busuanzi_value_site_uv"></span></span>
+    <br>
+    <br>
+     Copyright © 2017-2021 | 
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/shunhua">Kobe&Gianna</a>
+    <br>
+   
+  </p>
+
+</footer>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+<!--page counter part-->
+<script>
+function addCount (Counter) {
+        url=$('.article-date').attr('href').trim();
+    title = $('.article-title').text().trim();
+    var query=new AV.Query(Counter);
+    //use url as unique idnetfication
+    query.equalTo("url",url);
+    query.find({
+        success: function(results){
+            if(results.length>0)
+            {
+                var counter=results[0];
+                counter.fetchWhenSave(true); //get recent result
+                counter.increment("time");
+                counter.save();
+            }
+            else
+            {
+                var newcounter=new Counter();
+                newcounter.set("title",title);
+                newcounter.set("url",url);
+                newcounter.set("time",1);
+                newcounter.save(null,{
+                    success: function(newcounter){
+                    //alert('New object created');
+                    },
+                    error: function(newcounter,error){
+                    alert('Failed to create');
+                    }
+                    });
+            }
+        },
+        error: function(error){
+            //find null is not a error
+            alert('Error:'+error.code+" "+error.message);
+        }
+    });
+}
+$(function(){
+    var Counter=AV.Object.extend("Counter");
+    //only increse visit counting when intering a page
+    if ($('.article-title').length == 1)
+       addCount(Counter);
+    var query=new AV.Query(Counter);
+    query.descending("time");
+    // the sum of popular posts
+    query.limit(10); 
+    query.find({
+        success: function(results){
+                for(var i=0;i<results.length;i++)    
+                {
+                    var counter=results[i];
+                    title=counter.get("title");
+                    url=counter.get("url");
+                    time=counter.get("time");
+                    // add to the popularlist widget
+                    showcontent=title+" ("+time+")";
+                    //notice the "" in href
+                    $('.popularlist').append('<li><a href="'+url+'">'+showcontent+'</a></li>');
+                }
+            },
+        error: function(error){
+            alert("Error:"+error.code+" "+error.message);
+        }
+        }
+    )
+    });
+  </body>
+</html>
