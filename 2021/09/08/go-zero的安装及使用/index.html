@@ -218,19 +218,18 @@
 </blockquote>
 </li>
 </ul>
-<ol start="3">
-<li>etcd安装 (ZooKeeper区别)</li>
-</ol>
+<p>3.etcd安装 (ZooKeeper区别)</p>
 <ul>
 <li>高一致性 发现服务 配置共享</li>
 <li>后续 使用kq异步队列包 go-queue会接触到(主要是kafka[zookeeper]异步推送消息)</li>
 </ul>
 <p>四、使用goctl(go control)创建服务</p>
+<ul>
+<li><p>快速创建服务</p>
 <blockquote>
 <p>goctl api new greet</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── etc</span><br><span class="line">│   └── greet-api.yaml</span><br><span class="line">├── greet.api</span><br><span class="line">├── greet.go</span><br><span class="line">└── internal</span><br><span class="line">    ├── config</span><br><span class="line">    │   └── config.go</span><br><span class="line">    ├── handler</span><br><span class="line">    │   ├── greethandler.go</span><br><span class="line">    │   └── routes.go</span><br><span class="line">    ├── logic</span><br><span class="line">    │   └── greetlogic.go</span><br><span class="line">    ├── svc</span><br><span class="line">    │   └── servicecontext.go</span><br><span class="line">    └── types</span><br><span class="line">        └── types.go</span><br></pre></td></tr></table></figure>
-<ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── etc</span><br><span class="line">│   └── greet-api.yaml</span><br><span class="line">├── greet.api</span><br><span class="line">├── greet.go</span><br><span class="line">└── internal</span><br><span class="line">    ├── config</span><br><span class="line">    │   └── config.go</span><br><span class="line">    ├── handler</span><br><span class="line">    │   ├── greethandler.go</span><br><span class="line">    │   └── routes.go</span><br><span class="line">    ├── logic</span><br><span class="line">    │   └── greetlogic.go</span><br><span class="line">    ├── svc</span><br><span class="line">    │   └── servicecontext.go</span><br><span class="line">    └── types</span><br><span class="line">        └── types.go</span><br></pre></td></tr></table></figure></li>
 <li><p>api 网关层</p>
 <blockquote>
 <p>goctl api -o blog.api</p>
