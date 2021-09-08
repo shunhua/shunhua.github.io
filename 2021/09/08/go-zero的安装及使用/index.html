@@ -157,21 +157,23 @@ $ source $HOME/.profile</code></pre>
 </ul>
 <p>二、Go Module</p>
 <ul>
-<li>查看GO111MODULE开启情况<blockquote>
+<li><p>查看GO111MODULE开启情况</p>
+<blockquote>
 <p>  $ go env GO111MODULE</p>
 </blockquote>
 </li>
-</ul>
-<p>开启GO111MODULE，如果已开启（即执行go env GO111MODULE结果为on）请跳过</p>
+<li><p>开启GO111MODULE，如果已开启（即执行go env GO111MODULE结果为on）请跳过</p>
 <blockquote>
 <p>  $ go env -w GO111MODULE=”on”</p>
 </blockquote>
-<ul>
-<li>设置GOPROXY<blockquote>
+</li>
+<li><p>设置GOPROXY</p>
+<blockquote>
 <p>  $ go env -w GOPROXY=<a target="_blank" rel="noopener" href="https://goproxy.cn/">https://goproxy.cn</a></p>
 </blockquote>
 </li>
-<li>设置GOMODCACHE<blockquote>
+<li><p>设置GOMODCACHE</p>
+<blockquote>
 <p>  $ go env GOMODCACHE<br>如果目录不为空或者/dev/null，请跳过。<br>  go env -w GOMODCACHE=$GOPATH/pkg/mod</p>
 </blockquote>
 </li>
@@ -188,8 +190,9 @@ $ source $HOME/.profile</code></pre>
 <p>  $ goctl -v</p>
 </blockquote>
 </li>
+<li><p>protoc &amp; protoc-gen-go安装</p>
+</li>
 </ul>
-<p>protoc &amp; protoc-gen-go安装</p>
 <p>1.protoc</p>
 <ul>
 <li><p>进入<a href="https://github.com/protocolbuffers/protobuf/releases" target="_blank">[ protobuf release ]</a> 页面，选择适合自己操作系统的压缩包文件</p>
