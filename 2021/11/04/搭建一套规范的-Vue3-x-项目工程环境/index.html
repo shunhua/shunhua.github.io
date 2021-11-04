@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="郑州大学11级,深入后端开发。非专业视觉设计师。此为博客一枚。">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" type="image/ico" href="/assets/img/bsh.ico"/> 
+  
+  <title>
+    
+      搭建一套规范的 Vue3.x 项目工程环境 | 久而旧之
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  
+<script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo" style="border-radius: 50%;"></div>
+      <span>久而旧之</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link ">
+            Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link ">
+            Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link ">
+            Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link ">
+            Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link ">
+            About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>搭建一套规范的 Vue3.x 项目工程环境</h2>
+  <p class="post-date">2021-11-04</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><p><strong>搭建一套规范的 Vue3.x 项目工程环境</strong> </p>
+<a id="more"></a>
+<p>一、使用 Vite 快速初始化项目雏形</p>
+<blockquote>
+<p>npm init @vitejs/app</p>
+</blockquote>
+<ul>
+<li>输入项目名称</li>
+<li>选择模板 vue-ts</li>
+<li>npm install</li>
+<li>npm run dev</li>
+</ul>
+<p>修改 Vite 配置文件 vite.config.ts</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">import &#123; defineConfig &#125; from &#39;vite&#39;</span><br><span class="line">import vue from &#39;@vitejs&#x2F;plugin-vue&#39;</span><br><span class="line">&#x2F;&#x2F; 如果编辑器提示 path 模块找不到，则可以安装一下 @types&#x2F;node -&gt; npm i @types&#x2F;node -D</span><br><span class="line">import &#123; resolve &#125; from &#39;path&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; https:&#x2F;&#x2F;vitejs.dev&#x2F;config&#x2F;</span><br><span class="line">export default defineConfig(&#123;</span><br><span class="line">  plugins: [vue()],</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    alias: &#123;</span><br><span class="line">      &#39;@&#39;: resolve(__dirname, &#39;src&#39;) &#x2F;&#x2F; 设置 &#96;@&#96; 指向 &#96;src&#96; 目录</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  base: &#39;.&#x2F;&#39;, &#x2F;&#x2F; 设置打包路径</span><br><span class="line">  server: &#123;</span><br><span class="line">    port: 4000, &#x2F;&#x2F; 设置服务启动端口号</span><br><span class="line">    open: true, &#x2F;&#x2F; 设置服务启动时是否自动打开浏览器</span><br><span class="line">    cors: true &#x2F;&#x2F; 允许跨域</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 设置代理，根据我们项目实际情况配置</span><br><span class="line">    &#x2F;&#x2F; proxy: &#123;</span><br><span class="line">    &#x2F;&#x2F;   &#39;&#x2F;api&#39;: &#123;</span><br><span class="line">    &#x2F;&#x2F;     target: &#39;http:&#x2F;&#x2F;xxx.xxx.xxx.xxx:8000&#39;,</span><br><span class="line">    &#x2F;&#x2F;     changeOrigin: true,</span><br><span class="line">    &#x2F;&#x2F;     secure: false,</span><br><span class="line">    &#x2F;&#x2F;     rewrite: (path) &#x3D;&gt; path.replace(&#39;&#x2F;api&#x2F;&#39;, &#39;&#x2F;&#39;)</span><br><span class="line">    &#x2F;&#x2F;   &#125;</span><br><span class="line">    &#x2F;&#x2F; &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>规范目录结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">├── publish&#x2F;</span><br><span class="line">└── src&#x2F;</span><br><span class="line">    ├── assets&#x2F;                    &#x2F;&#x2F; 静态资源目录</span><br><span class="line">    ├── common&#x2F;                    &#x2F;&#x2F; 通用类库目录</span><br><span class="line">    ├── components&#x2F;                &#x2F;&#x2F; 公共组件目录</span><br><span class="line">    ├── router&#x2F;                    &#x2F;&#x2F; 路由配置目录</span><br><span class="line">    ├── store&#x2F;                     &#x2F;&#x2F; 状态管理目录</span><br><span class="line">    ├── style&#x2F;                     &#x2F;&#x2F; 通用 CSS 目录</span><br><span class="line">    ├── utils&#x2F;                     &#x2F;&#x2F; 工具函数目录</span><br><span class="line">    ├── views&#x2F;                     &#x2F;&#x2F; 页面组件目录</span><br><span class="line">    ├── App.vue</span><br><span class="line">    ├── main.ts</span><br><span class="line">    ├── shims-vue.d.ts</span><br><span class="line">├── tests&#x2F;                         &#x2F;&#x2F; 单元测试目录</span><br><span class="line">├── index.html</span><br><span class="line">├── tsconfig.json                  &#x2F;&#x2F; TypeScript 配置文件</span><br><span class="line">├── vite.config.ts                 &#x2F;&#x2F; Vite 配置文件</span><br><span class="line">└── package.json</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>二、集成路由工具 Vue Router</p>
+<blockquote>
+<p>npm i vue-router@4</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"> └── src&#x2F;</span><br><span class="line">     ├── router&#x2F;</span><br><span class="line">         ├── index.ts  &#x2F;&#x2F; 路由配置文件</span><br><span class="line">&lt;!-- src&#x2F;router&#x2F;index.ts --&gt;</span><br><span class="line">import &#123;</span><br><span class="line">  createRouter,</span><br><span class="line">  createWebHashHistory,</span><br><span class="line">  RouteRecordRaw</span><br><span class="line">&#125; from &#39;vue-router&#39;</span><br><span class="line">import Home from &#39;@&#x2F;views&#x2F;home.vue&#39;</span><br><span class="line">import Vuex from &#39;@&#x2F;views&#x2F;vuex.vue&#39;</span><br><span class="line"></span><br><span class="line">const routes: Array&lt;RouteRecordRaw&gt; &#x3D; [</span><br><span class="line">  &#123;</span><br><span class="line">    path: &#39;&#x2F;&#39;,</span><br><span class="line">    name: &#39;Home&#39;,</span><br><span class="line">    component: Home</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: &#39;&#x2F;vuex&#39;,</span><br><span class="line">    name: &#39;Vuex&#39;,</span><br><span class="line">    component: Vuex</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: &#39;&#x2F;axios&#39;,</span><br><span class="line">    name: &#39;Axios&#39;,</span><br><span class="line">    component: () &#x3D;&gt; import(&#39;@&#x2F;views&#x2F;axios.vue&#39;) &#x2F;&#x2F; 懒加载组件</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">const router &#x3D; createRouter(&#123;</span><br><span class="line">  history: createWebHashHistory(),</span><br><span class="line">  routes</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">export default router</span><br><span class="line"></span><br><span class="line">&lt;!-- main.ts --&gt;</span><br><span class="line">import &#123; createApp &#125; from &#39;vue&#39;</span><br><span class="line">import App from &#39;.&#x2F;App.vue&#39;</span><br><span class="line"></span><br><span class="line">import router from &#39;.&#x2F;router&#x2F;index&#39;</span><br><span class="line"></span><br><span class="line">createApp(App).use(router).mount(&#39;#app&#39;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>三、集成状态管理工具 Vuex</p>
+<blockquote>
+<p>npm i vuex@next</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">创建 src&#x2F;store&#x2F;index.ts 文件</span><br><span class="line">└── src&#x2F;</span><br><span class="line">    ├── store&#x2F;</span><br><span class="line">        ├── index.ts  &#x2F;&#x2F; store 配置文件</span><br><span class="line">&lt;!-- src&#x2F;store&#x2F;index.ts --&gt;</span><br><span class="line">import &#123; createStore &#125; from &#39;vuex&#39;</span><br><span class="line"></span><br><span class="line">const defaultState &#x3D; &#123;</span><br><span class="line">  count: 0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Create a new store instance.</span><br><span class="line">export default createStore(&#123;</span><br><span class="line">  state() &#123;</span><br><span class="line">    return defaultState</span><br><span class="line">  &#125;,</span><br><span class="line">  mutations: &#123;</span><br><span class="line">    increment(state: typeof defaultState) &#123;</span><br><span class="line">      state.count++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  actions: &#123;</span><br><span class="line">    increment(context) &#123;</span><br><span class="line">      context.commit(&#39;increment&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  getters: &#123;</span><br><span class="line">    double(state: typeof defaultState) &#123;</span><br><span class="line">      return 2 * state.count</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;!-- main.ts --&gt;</span><br><span class="line">import &#123; createApp &#125; from &#39;vue&#39;</span><br><span class="line">import App from &#39;.&#x2F;App.vue&#39;</span><br><span class="line"></span><br><span class="line">import store from &#39;.&#x2F;store&#x2F;index&#39;</span><br><span class="line"></span><br><span class="line">createApp(App).use(store).mount(&#39;#app&#39;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>四、集成 HTTP 工具 Axios</p>
+<blockquote>
+<p>npm i axios</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">src&#x2F;utils&#x2F;axios.ts</span><br><span class="line">└── src&#x2F;</span><br><span class="line">    ├── utils&#x2F;</span><br><span class="line">        ├── axios.ts  &#x2F;&#x2F; Axios 配置文件</span><br><span class="line"></span><br><span class="line">&lt;!-- src&#x2F;utils&#x2F;axios.ts --&gt;</span><br><span class="line">import Axios from &#39;axios&#39;</span><br><span class="line">import &#123; ElMessage &#125; from &#39;element-plus&#39;</span><br><span class="line"></span><br><span class="line">const baseURL &#x3D; &#39;https:&#x2F;&#x2F;xx.xx.com&#39;</span><br><span class="line"></span><br><span class="line">const axios &#x3D; Axios.create(&#123;</span><br><span class="line">  baseURL,</span><br><span class="line">  timeout: 20000 &#x2F;&#x2F; 请求超时 20s</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 前置拦截器（发起请求之前的拦截）</span><br><span class="line">axios.interceptors.request.use(</span><br><span class="line">  (response) &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 根据你的项目实际情况来对 config 做处理</span><br><span class="line">     * 这里对 config 不做任何处理，直接返回</span><br><span class="line">     *&#x2F;</span><br><span class="line">    return response</span><br><span class="line">  &#125;,</span><br><span class="line">  (error) &#x3D;&gt; &#123;</span><br><span class="line">    return Promise.reject(error)</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 后置拦截器（获取到响应时的拦截）</span><br><span class="line">axios.interceptors.response.use(</span><br><span class="line">  (response) &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 根据你的项目实际情况来对 response 和 error 做处理</span><br><span class="line">     * 这里对 response 和 error 不做任何处理，直接返回</span><br><span class="line">     *&#x2F;</span><br><span class="line">    return response</span><br><span class="line">  &#125;,</span><br><span class="line">  (error) &#x3D;&gt; &#123;</span><br><span class="line">    if (error.response &amp;&amp; error.response.data) &#123;</span><br><span class="line">      const code &#x3D; error.response.status</span><br><span class="line">      const msg &#x3D; error.response.data.message</span><br><span class="line">      ElMessage.error(&#96;Code: $&#123;code&#125;, Message: $&#123;msg&#125;&#96;)</span><br><span class="line">      console.error(&#96;[Axios Error]&#96;, error.response)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      ElMessage.error(&#96;$&#123;error&#125;&#96;)</span><br><span class="line">    &#125;</span><br><span class="line">    return Promise.reject(error)</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">export default axios</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>使用 axios</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">  import &#123; defineComponent &#125; from &#39;vue&#39;</span><br><span class="line">  import axios from &#39;..&#x2F;utils&#x2F;axios&#39;</span><br><span class="line"></span><br><span class="line">  export default defineComponent(&#123;</span><br><span class="line">    setup() &#123;</span><br><span class="line">      axios</span><br><span class="line">        .get(&#39;&#x2F;users&#x2F;XPoet&#39;)</span><br><span class="line">        .then((res) &#x3D;&gt; &#123;</span><br><span class="line">          console.log(&#39;res: &#39;, res)</span><br><span class="line">        &#125;)</span><br><span class="line">        .catch((err) &#x3D;&gt; &#123;</span><br><span class="line">          console.log(&#39;err: &#39;, err)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>至此，一个基于 TypeScript + Vite + Vue3 + Vue Router + Vuex + Axios + Stylus/Sass/Less 的前端项目开发环境搭建完毕。</p>
+</section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Vue3" >
+    <span class="tag-code">Vue3</span>
+  </a>
+
+  <a href="/tags#Vite - TypeScript" >
+    <span class="tag-code">Vite - TypeScript</span>
+  </a>
+
+      </div>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">欢迎点击上方按钮对我打赏，谢谢你给我吃糖果</p>
+    </div>
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'http://shunhua.github.io/2021/11/04/搭建一套规范的-Vue3-x-项目工程环境/';
+    var banner = ''
+    if (banner) {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '')
+      // $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    
+
+    // gitment
+    var gitmentConfig = "shunhua";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "搭建一套规范的 Vue3.x 项目工程环境",
+        owner: "shunhua",
+        repo: "shunhua.github.io",
+        oauth: {
+          client_id: "0f87e490e00ee3fd87ef",
+          client_secret: "4a9d2b148e7971c2201ad12131ce8bf8159ccd2e"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    <br><span id="busuanzi_container_site_pv">浏览量 <span id="busuanzi_value_site_pv"></span></span> | 
+    <span id="busuanzi_container_site_uv"> 访客 <span id="busuanzi_value_site_uv"></span></span>
+    <br>
+    <br>
+     Copyright © 2017-2021 | 
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/shunhua">Kobe&Gianna</a>
+    <br>
+   
+  </p>
+
+</footer>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+<!--page counter part-->
+<script>
+function addCount (Counter) {
+        url=$('.article-date').attr('href').trim();
+    title = $('.article-title').text().trim();
+    var query=new AV.Query(Counter);
+    //use url as unique idnetfication
+    query.equalTo("url",url);
+    query.find({
+        success: function(results){
+            if(results.length>0)
+            {
+                var counter=results[0];
+                counter.fetchWhenSave(true); //get recent result
+                counter.increment("time");
+                counter.save();
+            }
+            else
+            {
+                var newcounter=new Counter();
+                newcounter.set("title",title);
+                newcounter.set("url",url);
+                newcounter.set("time",1);
+                newcounter.save(null,{
+                    success: function(newcounter){
+                    //alert('New object created');
+                    },
+                    error: function(newcounter,error){
+                    alert('Failed to create');
+                    }
+                    });
+            }
+        },
+        error: function(error){
+            //find null is not a error
+            alert('Error:'+error.code+" "+error.message);
+        }
+    });
+}
+$(function(){
+    var Counter=AV.Object.extend("Counter");
+    //only increse visit counting when intering a page
+    if ($('.article-title').length == 1)
+       addCount(Counter);
+    var query=new AV.Query(Counter);
+    query.descending("time");
+    // the sum of popular posts
+    query.limit(10); 
+    query.find({
+        success: function(results){
+                for(var i=0;i<results.length;i++)    
+                {
+                    var counter=results[i];
+                    title=counter.get("title");
+                    url=counter.get("url");
+                    time=counter.get("time");
+                    // add to the popularlist widget
+                    showcontent=title+" ("+time+")";
+                    //notice the "" in href
+                    $('.popularlist').append('<li><a href="'+url+'">'+showcontent+'</a></li>');
+                }
+            },
+        error: function(error){
+            alert("Error:"+error.code+" "+error.message);
+        }
+        }
+    )
+    });
+  </body>
+</html>
