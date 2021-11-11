@@ -27,11 +27,8 @@
 <script src="/js/qrious.js"></script>
 <script src="/js/gitment.js"></script>
 
-  <link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
-  <script src="https://jjeejj.github.io/js/gitment.js"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.css"/> -->
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
 
 <meta name="generator" content="Hexo 5.2.0"></head>
 <div class="wechat-share">
@@ -296,31 +293,42 @@ gitment.render('container')
    
 
     // gitment
-    var gitmentConfig = "shunhua";
-    if (gitmentConfig != "undefined") {
-      var gitment = new Gitment({
-        id: "1607326990000",
-        owner: "shunhua",
-        repo: "shunhua.github.io",
-        oauth: {
-          client_id: "34585b006d5d10cc63b3",
-          client_secret: "9609d73cd63aecbb4a52ab3e1f7c634437f57056"
-        },
-        theme: {
-          render(state, instance) {
-            const container = document.createElement('div')
-            container.lang = "en-US"
-            container.className = 'gitment-container gitment-root-container'
-            container.appendChild(instance.renderHeader(state, instance))
-            container.appendChild(instance.renderEditor(state, instance))
-            container.appendChild(instance.renderComments(state, instance))
-            container.appendChild(instance.renderFooter(state, instance))
-            return container;
-          }
-        }
-      })
-      gitment.render(document.getElementById('comments'))
-    }
+    var gitalk = new Gitalk({
+      clientID: "34585b006d5d10cc63b3", //Client ID
+      clientSecret: "9609d73cd63aecbb4a52ab3e1f7c634437f57056", //Client Secret
+      repo: "shunhua.github.io",//仓库名称
+      owner: "shunhua",//仓库拥有者
+      admin: ["shunhua"],
+      id: location.href,      // Ensure uniqueness and length less than 50
+      distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+    gitalk.render('comments')
+
+    // var gitmentConfig = "shunhua";
+    // if (gitmentConfig != "undefined") {
+    //   var gitment = new Gitment({
+    //     id: "1607326990000",
+    //     owner: "shunhua",
+    //     repo: "shunhua.github.io",
+    //     oauth: {
+    //       client_id: "34585b006d5d10cc63b3",
+    //       client_secret: "9609d73cd63aecbb4a52ab3e1f7c634437f57056"
+    //     },
+    //     theme: {
+    //       render(state, instance) {
+    //         const container = document.createElement('div')
+    //         container.lang = "en-US"
+    //         container.className = 'gitment-container gitment-root-container'
+    //         container.appendChild(instance.renderHeader(state, instance))
+    //         container.appendChild(instance.renderEditor(state, instance))
+    //         container.appendChild(instance.renderComments(state, instance))
+    //         container.appendChild(instance.renderFooter(state, instance))
+    //         return container;
+    //       }
+    //     }
+    //   })
+    //   gitment.render(document.getElementById('comments'))
+    // }
   })();
 </script>
 
