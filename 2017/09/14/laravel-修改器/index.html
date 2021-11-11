@@ -151,6 +151,23 @@
     });
     </script>
 
+<div id="container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: 'location.href', // 可选。默认为 location.href
+  owner: 'shunhua',
+  repo: 'shunhua.github.io',
+  oauth: {
+    client_id: '7c50d740caa74967f9d8',
+    client_secret: '420e567ef650aaecb523a8d4f638aa7adaed37e7',
+  },
+})
+gitment.render('container')
+</script>
+
+
     <div id="article-banner">
   <h2>laravel 修改器</h2>
   <p class="post-date">2017-09-14</p>
