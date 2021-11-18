@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="郑州大学11级,深入后端开发。非专业视觉设计师。此为博客一枚。">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" type="image/ico" href="/assets/img/bsh.ico"/> 
+  
+  <title>
+    
+      너 바보 아니야
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  
+<script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo" style="border-radius: 50%;"></div>
+      <span>너 바보 아니야</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link ">
+            Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link ">
+            Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link ">
+            Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link ">
+            Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link ">
+            About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+  <!-- 鼠标特效 -->
+  <script type="text/javascript">
+    var a_idx = 0;
+    jQuery(document).ready(function($) {
+        $("body").click(function(e) {
+    var a = new Array("Kobe", "Bryant", "Gianna", "Natalia", "Bianka", "Mamba", "Vino" ,"Vanessa", "Black Mamba", "Kobe Bean Bryant", "小飞侠", "黑曼巴");
+    var $i = $("<span/>").text(a[a_idx]);
+            a_idx = (a_idx + 1) % a.length;
+    var x = e.pageX,
+            y = e.pageY;
+            $i.css({
+    "z-index": 999999999999999999999999999999999999999999999999999999999999999999999,
+    "top": y - 20,
+    "left": x,
+    "position": "absolute",
+    "font-weight": "bold",
+    "color": "#42b983"
+            });
+            $("body").append($i);
+            $i.animate({
+    "top": y - 180,
+    "opacity": 0
+            },
+            1500,
+    function() {
+                $i.remove();
+            });
+        });
+    });
+    </script>
+<!--动态线条背景-->
+<script type="text/javascript"
+color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script>
+
+    <div id="article-banner">
+  <h2>Archives</h2>
+  <p class="post-date">文章归档</p>
+</div>
+<main class="app-body" id="archives">
+  
+  
+  
+    <section class="time-section">
+  <h1 class="section-year">
+    2021
+  </h1>
+  <div class="section-list">
+    
+    
+      <div class="section-list-item">
+        <a href="/2021/11/18/%E4%BD%BF%E7%94%A8Tailwind-CSS%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE/" class="archive-title">使用Tailwind CSS新建一个项目</a>
+        <p class="archive-date">11-18</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2021/11/04/Etcd%E4%B8%80%E6%96%87/" class="archive-title">Etcd一文</a>
+        <p class="archive-date">11-04</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2021/11/04/%E6%90%AD%E5%BB%BA%E4%B8%80%E5%A5%97%E8%A7%84%E8%8C%83%E7%9A%84-Vue3-x-%E9%A1%B9%E7%9B%AE%E5%B7%A5%E7%A8%8B%E7%8E%AF%E5%A2%83/" class="archive-title">搭建一套规范的 Vue3.x 项目工程环境</a>
+        <p class="archive-date">11-04</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2021/10/19/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E5%8F%8A%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7/" class="archive-title">开源项目及部署工具</a>
+        <p class="archive-date">10-19</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2021/10/14/gin-vue-admin%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/" class="archive-title">gin-vue-admin的安装及使用</a>
+        <p class="archive-date">10-14</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2021/09/28/vue-element-admin%E7%9A%84%E5%AE%89%E8%A3%85-%E4%BD%BF%E7%94%A8/" class="archive-title">vue-element-admin的安装&amp;使用</a>
+        <p class="archive-date">09-28</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2021/09/08/go-zero%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/" class="archive-title">go-zero的安装及使用</a>
+        <p class="archive-date">09-08</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2021/02/01/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85mqtt/" class="archive-title">发布Laravel扩展包mqtt</a>
+        <p class="archive-date">02-01</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2021/01/21/%E7%95%8C%E9%9D%A2%E5%8C%96%E7%AE%A1%E7%90%86%E9%83%A8%E7%BD%B2DNMP/" class="archive-title">界面化管理部署DNMP</a>
+        <p class="archive-date">01-21</p>
+      </div>
+    
+  </div>
+</section>
+  
+    <section class="time-section">
+  <h1 class="section-year">
+    2020
+  </h1>
+  <div class="section-list">
+    
+    
+      <div class="section-list-item">
+        <a href="/2020/12/07/Nginx%E5%88%86%E5%8F%91-%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E5%90%8D%E7%A7%B0/" class="archive-title">Nginx分发-指定文件名称</a>
+        <p class="archive-date">12-07</p>
+      </div>
+    
+  </div>
+</section>
+  
+    <section class="time-section">
+  <h1 class="section-year">
+    2019
+  </h1>
+  <div class="section-list">
+    
+    
+      <div class="section-list-item">
+        <a href="/2019/12/17/mysql%E9%80%9A%E8%BF%87-ibd%E5%92%8C-frm%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E6%95%B0%E6%8D%AE/" class="archive-title">mysql通过.ibd和.frm文件恢复数据</a>
+        <p class="archive-date">12-17</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2019/09/19/Nginx-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" class="archive-title">Nginx 反向代理</a>
+        <p class="archive-date">09-19</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2019/07/04/Live-%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%B4%E6%92%AD/" class="archive-title">Live 阿里云直播</a>
+        <p class="archive-date">07-04</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2019/04/22/Laravel-%E4%BA%8B%E4%BB%B6%E7%B3%BB%E7%BB%9F/" class="archive-title">Laravel 事件系统</a>
+        <p class="archive-date">04-22</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2019/04/19/Laravel-Redis-%E5%B9%BF%E6%92%AD%E6%B5%8B%E8%AF%95/" class="archive-title">Laravel Redis 广播测试</a>
+        <p class="archive-date">04-19</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2019/04/18/Linux%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E9%87%87%E9%9B%86%E8%81%9A%E5%90%88%E6%95%B0%E6%8D%AEapi%E6%96%87%E7%AB%A0/" class="archive-title">Linux定时任务采集聚合数据api文章</a>
+        <p class="archive-date">04-18</p>
+      </div>
+    
+  </div>
+</section>
+  
+    <section class="time-section">
+  <h1 class="section-year">
+    2018
+  </h1>
+  <div class="section-list">
+    
+    
+      <div class="section-list-item">
+        <a href="/2018/12/04/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85larapay/" class="archive-title">发布Laravel扩展包larapay</a>
+        <p class="archive-date">12-04</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/11/22/MySQL%E5%87%BA%E7%8E%B01030-Got-error-28-from-storage-engine%E9%94%99%E8%AF%AF/" class="archive-title">MySQL出现1030-Got error 28 from storage engine错误</a>
+        <p class="archive-date">11-22</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/11/02/Laravel-%E5%92%8C-Vue-%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/" class="archive-title">Laravel 和 Vue 的项目搭建</a>
+        <p class="archive-date">11-02</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/10/30/mysql%E8%87%AA%E5%AE%9A%E4%B9%89%E9%87%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E8%A1%A8ID%E5%80%BC/" class="archive-title">mysql自定义重置数据表ID值</a>
+        <p class="archive-date">10-30</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/10/27/%E5%AE%9E%E7%8E%B0%E5%9C%A8Safari%E4%B8%80%E9%94%AE%E5%A4%8D%E5%88%B6/" class="archive-title">实现在Safari一键复制</a>
+        <p class="archive-date">10-27</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/10/26/Alipay-%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E6%94%AF%E4%BB%98/" class="archive-title">Alipay 开放平台支付</a>
+        <p class="archive-date">10-26</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/09/29/Laravel-yansongda-laravel-pay/" class="archive-title">Laravel yansongda/laravel-pay</a>
+        <p class="archive-date">09-29</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/08/01/%E9%93%B6%E8%81%94%E7%94%B5%E5%AD%90%E6%94%AF%E4%BB%98-chinapay/" class="archive-title">银联电子支付-chinapay</a>
+        <p class="archive-date">08-01</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/" class="archive-title">lnmp tp pathinfo问题</a>
+        <p class="archive-date">07-23</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/04/09/Centos7%E4%B8%8B%E5%9F%BA%E4%BA%8Elaradock%E9%83%A8%E7%BD%B2laravel5-x/" class="archive-title">Centos7下基于laradock部署laravel5.x</a>
+        <p class="archive-date">04-09</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/04/08/CentOS-7-Git%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E5%85%AC%E9%92%A5/" class="archive-title">CentOS 7 Git服务器搭建及配置公钥</a>
+        <p class="archive-date">04-08</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/04/02/%E6%9C%89%E8%B5%9EvantUI-step1/" class="archive-title">有赞vantUI step1</a>
+        <p class="archive-date">04-02</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/03/28/socket-io%E7%9A%84%E4%BD%BF%E7%94%A8/" class="archive-title">socket.io的使用</a>
+        <p class="archive-date">03-28</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/03/21/Centos%E4%B8%8B%E4%B8%A4%E7%A7%8D%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E7%9A%84%E9%85%8D%E7%BD%AE/" class="archive-title">Centos下两种守护进程的配置</a>
+        <p class="archive-date">03-21</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85MySQL5-7/" class="archive-title">CentOS 7 安装MySQL5.7</a>
+        <p class="archive-date">03-21</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/" class="archive-title">CentOS 7 安装 Nginx 1.11.x</a>
+        <p class="archive-date">03-21</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/03/21/Centos%E4%B8%8B%E5%AE%89%E8%A3%85PHP7/" class="archive-title">Centos下安装PHP7</a>
+        <p class="archive-date">03-21</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/03/21/Linux%E4%B8%8B%E5%AE%89%E8%A3%85node-js/" class="archive-title">Linux下安装node.js</a>
+        <p class="archive-date">03-21</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/03/12/PHP-Socket-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" class="archive-title">PHP Socket 基础教程</a>
+        <p class="archive-date">03-12</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/03/09/Linux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/" class="archive-title">Linux安装配置守护进程</a>
+        <p class="archive-date">03-09</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/03/06/linux%E4%B8%8B%E5%AE%89%E8%A3%85redis%E5%8F%8A%E8%AE%A4%E8%AF%81%E5%AF%86%E7%A0%81/" class="archive-title">linux下安装redis及认证密码</a>
+        <p class="archive-date">03-06</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2018/02/24/9%E6%AE%B5PHP%E5%AE%9E%E7%94%A8%E5%8A%9F%E8%83%BD%E7%9A%84%E4%BB%A3%E7%A0%81%E6%8E%A8%E8%8D%90/" class="archive-title">9段PHP实用功能的代码推荐</a>
+        <p class="archive-date">02-24</p>
+      </div>
+    
+  </div>
+</section>
+  
+    <section class="time-section">
+  <h1 class="section-year">
+    2017
+  </h1>
+  <div class="section-list">
+    
+    
+      <div class="section-list-item">
+        <a href="/2017/12/27/%E8%BF%9E%E7%BB%AD%E8%BD%AE%E8%AF%A2%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0-s-m-d/" class="archive-title">连续轮询数组中的元素[s/m/d]</a>
+        <p class="archive-date">12-27</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/12/25/%E5%AF%B9%E6%8E%A5%E9%93%B6%E8%81%94%E6%94%AF%E4%BB%98%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/" class="archive-title">对接银联支付开发文档</a>
+        <p class="archive-date">12-25</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/" class="archive-title">MySQL启动错误</a>
+        <p class="archive-date">12-06</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/12/06/LNMP%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84/" class="archive-title">LNMP一键安装包常用命令及配置文件路径</a>
+        <p class="archive-date">12-06</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/11/21/vim%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="archive-title">vim常用命令</a>
+        <p class="archive-date">11-21</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/11/08/Go-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="archive-title">Go 语言基础</a>
+        <p class="archive-date">11-08</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/11/02/install-program/" class="archive-title">install program</a>
+        <p class="archive-date">11-02</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/09/26/Python-scrapy%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/" class="archive-title">Python scrapy入门教程</a>
+        <p class="archive-date">09-26</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/09/26/PHP-5-3%E3%80%815-4%E3%80%815-5%E3%80%815-6%E3%80%817-%E4%B8%AD%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7/" class="archive-title">PHP 5.3、5.4、5.5、5.6、7 中的新特性</a>
+        <p class="archive-date">09-26</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/09/25/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0NO-2/" class="archive-title">Swift学习笔记NO.2</a>
+        <p class="archive-date">09-25</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/09/25/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0NO-1/" class="archive-title">Swift学习笔记NO.1</a>
+        <p class="archive-date">09-25</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/09/21/laravel-admin-%E5%AE%9E%E7%8E%B0%E5%AD%97%E6%AE%B5%E6%8E%92%E5%BA%8F/" class="archive-title">laravel-admin 实现字段排序</a>
+        <p class="archive-date">09-21</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/09/21/nginx-%E5%AE%9E%E7%8E%B0%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" class="archive-title">nginx 实现负载均衡</a>
+        <p class="archive-date">09-21</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/09/21/lnmp%E9%9B%86%E6%88%90%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2laravel5-x%E9%A1%B9%E7%9B%AE/" class="archive-title">lnmp集成环境下部署laravel5.x项目</a>
+        <p class="archive-date">09-21</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/09/15/centos7%E4%B8%8Blnmp-%E6%B7%BB%E5%8A%A0%E3%80%81%E5%88%A0%E9%99%A4%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/" class="archive-title">centos7下lnmp 添加、删除虚拟主机</a>
+        <p class="archive-date">09-15</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E9%9B%86%E6%88%90/" class="archive-title">linux centos7.3 lnmp一键安装包集成</a>
+        <p class="archive-date">09-15</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/09/15/laravel5.5%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8-%E2%80%94%E2%80%94-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E7%AF%87/" class="archive-title">laravel5.5快速入门 —— 安装配置篇</a>
+        <p class="archive-date">09-15</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/09/15/Laragon-%E5%9C%A8-Windows-%E4%B8%AD%E6%90%AD%E5%BB%BA-Laravel-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="archive-title">Laragon 在 Windows 中搭建 Laravel 开发环境</a>
+        <p class="archive-date">09-15</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/09/14/CentOS-7-%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="archive-title">CentOS 7 搭建SVN服务器</a>
+        <p class="archive-date">09-14</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/09/14/%E8%BF%81%E7%A7%BB%E5%85%AC%E4%BC%97%E5%8F%B7%E6%95%B0%E6%8D%AE/" class="archive-title">laravel下迁移公众号数据</a>
+        <p class="archive-date">09-14</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/09/14/php-%E9%80%92%E5%BD%92%E6%8B%BC%E6%8E%A5%E4%B8%80%E6%9D%A1%E7%BA%BF%E4%BC%9A%E5%91%98/" class="archive-title">php 递归拼接一条线会员</a>
+        <p class="archive-date">09-14</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/09/14/laravel-%E4%BF%AE%E6%94%B9%E5%99%A8/" class="archive-title">laravel 修改器</a>
+        <p class="archive-date">09-14</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/09/14/laravel5-3%E4%BD%BF%E7%94%A8%E9%98%9F%E5%88%97/" class="archive-title">laravel5.3使用队列</a>
+        <p class="archive-date">09-14</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/08/30/laravel-%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E9%A1%B9%E7%9B%AE%E4%BF%AE%E6%94%B9%E5%85%BC%E5%AE%B9web%E7%AB%AF/" class="archive-title">laravel 微信公众号项目修改兼容web端</a>
+        <p class="archive-date">08-30</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/08/25/sublime-text3-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEsvn-%E5%8F%8A%E9%BB%98%E8%AE%A4%E5%BF%AB%E6%8D%B7%E9%94%AE/" class="archive-title">sublime text3 安装配置svn 及默认快捷键</a>
+        <p class="archive-date">08-25</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/08/11/Markdown-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" class="archive-title">Markdown 基本语法</a>
+        <p class="archive-date">08-11</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/08/11/SELinux-%E7%8A%B6%E6%80%81/" class="archive-title">SELinux 状态</a>
+        <p class="archive-date">08-11</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2017/08/11/%E4%BD%BF%E7%94%A8git-%E4%B8%8Egithub%E5%8F%8B%E5%A5%BD%E4%BA%A4%E6%B5%81/" class="archive-title">使用git 与github友好交流</a>
+        <p class="archive-date">08-11</p>
+      </div>
+    
+  </div>
+</section>
+  
+</main>
+
+<script>
+  (function () {
+    var url = 'http://shunhua.github.io/tags/Tailwind-CSS/index.html';
+    $('#article-banner').geopattern(url);
+    $('.header').removeClass('fixed-header');
+  })();
+</script>
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    <br><span id="busuanzi_container_site_pv">浏览量 <span id="busuanzi_value_site_pv"></span></span> | 
+    <span id="busuanzi_container_site_uv"> 访客 <span id="busuanzi_value_site_uv"></span></span>
+    <br>
+    <br>
+     Copyright © 2017-2021 | 
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/shunhua">Kobe</a>
+    <br>
+   
+  </p>
+
+</footer>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+<!--page counter part-->
+<script>
+function addCount (Counter) {
+        url=$('.article-date').attr('href').trim();
+    title = $('.article-title').text().trim();
+    var query=new AV.Query(Counter);
+    //use url as unique idnetfication
+    query.equalTo("url",url);
+    query.find({
+        success: function(results){
+            if(results.length>0)
+            {
+                var counter=results[0];
+                counter.fetchWhenSave(true); //get recent result
+                counter.increment("time");
+                counter.save();
+            }
+            else
+            {
+                var newcounter=new Counter();
+                newcounter.set("title",title);
+                newcounter.set("url",url);
+                newcounter.set("time",1);
+                newcounter.save(null,{
+                    success: function(newcounter){
+                    //alert('New object created');
+                    },
+                    error: function(newcounter,error){
+                    alert('Failed to create');
+                    }
+                    });
+            }
+        },
+        error: function(error){
+            //find null is not a error
+            alert('Error:'+error.code+" "+error.message);
+        }
+    });
+}
+$(function(){
+    var Counter=AV.Object.extend("Counter");
+    //only increse visit counting when intering a page
+    if ($('.article-title').length == 1)
+       addCount(Counter);
+    var query=new AV.Query(Counter);
+    query.descending("time");
+    // the sum of popular posts
+    query.limit(10); 
+    query.find({
+        success: function(results){
+                for(var i=0;i<results.length;i++)    
+                {
+                    var counter=results[i];
+                    title=counter.get("title");
+                    url=counter.get("url");
+                    time=counter.get("time");
+                    // add to the popularlist widget
+                    showcontent=title+" ("+time+")";
+                    //notice the "" in href
+                    $('.popularlist').append('<li><a href="'+url+'">'+showcontent+'</a></li>');
+                }
+            },
+        error: function(error){
+            alert("Error:"+error.code+" "+error.message);
+        }
+        }
+    )
+    });
+
+    
+  </body>
+</html>
