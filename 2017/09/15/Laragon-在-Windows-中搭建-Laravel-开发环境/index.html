@@ -4,9 +4,9 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   <meta name="description" content="郑州大学11级,深入后端开发。非专业视觉设计师。此为博客一枚。">
-  <meta name="keyword" content="">
+  <meta name="keyword" content="hexo-theme, vuejs">
   
-    <link rel="shortcut icon" href="/css/images/logo.png">
+    <link rel="shortcut icon" type="image/ico" href="/assets/img/bsh.ico"/> 
   
   <title>
     
@@ -15,7 +15,7 @@
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
-  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
   
 <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="/css/plugins/gitment.css">
@@ -44,6 +44,41 @@
     </a>
     <ul class="right-list">
       
+        <li class="list-item">
+          
+            <a href="/" class="item-link ">
+            Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link ">
+            Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link ">
+            Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link ">
+            Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link ">
+            About</a>
+          
+        </li>
+      
     </ul>
     <div class="menu">
       <span class="icon-bar"></span>
@@ -52,6 +87,36 @@
     </div>
     <div class="menu-mask">
       <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
         
       </ul>
     </div>
@@ -92,6 +157,11 @@
 color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdnjs.cloudflare.com/ajax/libs/canvas-nest.js/1.0.0/canvas-nest.min.js">
 </script>
 <!--彩带-->
+
+  <!-- 点击切换 -->
+  <!-- <script type="text/javascript" src="/js/ribbon.js"></script> -->
+  <!-- 自动飘动 -->
+  <script type="text/javascript" src="/js/ribbon_flow.js"></script>
 
 <!-- 烟花 -->
 <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
@@ -272,9 +342,7 @@ color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdnjs.cloudflar
     <div id="comments"></div>
 
   </article>
-  <!-- Catalog START -->
   
-  <!-- Catalog END -->
 </main>
 
 <script>
@@ -324,25 +392,25 @@ color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdnjs.cloudflar
 
     // gitment
     var gitalk = new Gitalk({
-      clientID: "", //Client ID
-      clientSecret: "", //Client Secret
-      repo: "",//仓库名称
-      owner: "",//仓库拥有者
-      admin: [""],
+      clientID: "34585b006d5d10cc63b3", //Client ID
+      clientSecret: "9609d73cd63aecbb4a52ab3e1f7c634437f57056", //Client Secret
+      repo: "shunhua.github.io",//仓库名称
+      owner: "shunhua",//仓库拥有者
+      admin: ["shunhua"],
       id: "1505456107000",      // Ensure uniqueness and length less than 50
       distractionFreeMode: false  // Facebook-like distraction free mode
     })
     gitalk.render('comments')
 
-    // var gitmentConfig = "";
+    // var gitmentConfig = "shunhua";
     // if (gitmentConfig != "undefined") {
     //   var gitment = new Gitment({
     //     id: "1505456107000",
-    //     owner: "",
-    //     repo: "",
+    //     owner: "shunhua",
+    //     repo: "shunhua.github.io",
     //     oauth: {
-    //       client_id: "",
-    //       client_secret: ""
+    //       client_id: "34585b006d5d10cc63b3",
+    //       client_secret: "9609d73cd63aecbb4a52ab3e1f7c634437f57056"
     //     },
     //     theme: {
     //       render(state, instance) {
