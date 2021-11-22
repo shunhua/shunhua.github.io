@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="郑州大学11级,深入后端开发。非专业视觉设计师。此为博客一枚。">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" type="image/ico" href="/assets/img/bsh.ico"/> 
+  
+  <title>
+    
+      Swift学习笔记NO.2 | 너 바보 아니야
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  <!-- 
+<script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+ -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo" style="border-radius: 50%;"></div>
+      <span>너 바보 아니야</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link ">
+            Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link ">
+            Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link ">
+            Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link ">
+            Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link ">
+            About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+  <!-- 鼠标特效 -->
+  <script type="text/javascript">
+    var a_idx = 0;
+    jQuery(document).ready(function($) {
+        $("body").click(function(e) {
+    var a = new Array("Kobe", "Bryant", "Gianna", "Natalia", "Bianka", "Mamba", "Vino" ,"Vanessa", "Black Mamba", "Kobe Bean Bryant", "小飞侠", "黑曼巴");
+    var $i = $("<span/>").text(a[a_idx]);
+            a_idx = (a_idx + 1) % a.length;
+    var x = e.pageX,
+            y = e.pageY;
+            $i.css({
+    "z-index": 999999999999999999999999999999999999999999999999999999999999999999999,
+    "top": y - 20,
+    "left": x,
+    "position": "absolute",
+    "font-weight": "bold",
+    "color": "#42b983"
+            });
+            $("body").append($i);
+            $i.animate({
+    "top": y - 180,
+    "opacity": 0
+            },
+            1500,
+    function() {
+                $i.remove();
+            });
+        });
+    });
+    </script>
+<!--动态线条背景-->
+<script type="text/javascript"
+color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdnjs.cloudflare.com/ajax/libs/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script>
+<!--彩带-->
+
+  <!-- 点击切换 -->
+  <!-- <script type="text/javascript" src="/js/ribbon.js"></script> -->
+  <!-- 自动飘动 -->
+  <script type="text/javascript" src="/js/ribbon_flow.js"></script>
+
+<!-- 烟花 -->
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/fireworks.js"></script>
+
+<!--人体时钟背景透明-->
+<!-- <script charset="Shift_JIS" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.js"></script> -->
+
+
+
+
+
+    <div id="article-banner">
+  <h2>Swift学习笔记NO.2</h2>
+  <p class="post-date">2017-09-25</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content">
+      <!-- <p><strong>Swift学习笔记NO.2</strong> </p>
+<a id="more"></a>
+
+<p><strong>Swift 基本语法</strong></p>
+<blockquote>
+<p> 在上一章节中我们已经讲到如何创建 Swift 语言的 “Hello, World!” 程序。现在我们来复习下。<br>如果创建的是 OS X playground 需要引入 Cocoa ：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">var myString &#x3D; &quot;Hello, World!&quot;</span><br><span class="line">print(myString)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 如果我们想创建 iOS playground 则需要引入 UIKit :</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import UIKit</span><br><span class="line">var myString &#x3D; &quot;Hello, World!&quot;</span><br><span class="line">print(myString)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 数据类型</strong></p>
+<blockquote>
+<p> 实例：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; varA 会被推测为 Int 类型 </span><br><span class="line">var varA &#x3D; 42</span><br><span class="line">print(varA)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; varB 会被推测为 Double 类型  </span><br><span class="line">var varB &#x3D; 3.14159</span><br><span class="line">print(varB)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; varC 也会被推测为 Double 类型   </span><br><span class="line">var varC &#x3D; 3 + 0.14159</span><br><span class="line">print(varC)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 执行以上代码，输出结果为：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">42</span><br><span class="line">3.14159</span><br><span class="line">3.14159</span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 变量</strong></p>
+<blockquote>
+<p> 变量声明意思是告诉编译器在内存中的哪个位置上为变量创建多大的存储空间。<br>在使用变量前，你需要使用 var 关键字声明它，如下所示：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">var varA &#x3D; 42</span><br><span class="line">print(varA)</span><br><span class="line"></span><br><span class="line">var varB:Float</span><br><span class="line"></span><br><span class="line">varB &#x3D; 3.14159</span><br><span class="line">print(varB)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 执行以上代码，输出结果为：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">42</span><br><span class="line">3.14159</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 变量输出</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">var name &#x3D; &quot;菜鸟教程&quot;</span><br><span class="line">var site &#x3D; &quot;http:&#x2F;&#x2F;www.runoob.com&quot;</span><br><span class="line"></span><br><span class="line">print(&quot;\(name)的官网地址为：\(site)&quot;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 可选(Optionals)类型</strong></p>
+<blockquote>
+<p> Swift 的可选（Optional）类型，用于处理值缺失的情况。可选表示”那儿有一个值，并且它等于 x “或者”那儿没有值”。<br>Swfit语言定义后缀？作为命名类型Optional的简写，换句话说，以下两种声明是相等的：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var optionalInteger: Int?</span><br><span class="line">var optionalInteger: Optional&lt;Int&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 执行以上代码，输出结果为：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">42</span><br><span class="line">3.14159</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 实例输出</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">var myString:String? &#x3D; nil</span><br><span class="line"></span><br><span class="line">if myString !&#x3D; nil &#123;</span><br><span class="line">    print(myString)</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    print(&quot;字符串为 nil&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 常量</strong></p>
+<blockquote>
+<p> 常量一旦设定，在程序运行时就无法改变其值。<br>常量可以是任何的数据类型如：整型常量，浮点型常量，字符常量或字符串常量。同样也有枚举类型的常量：<br>常量类似于变量，区别在于常量的值一旦设定就不能改变，而变量的值可以随意更改。<br>常量使用关键字 let 来声明，语法如下：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">let constA &#x3D; 42</span><br><span class="line">print(constA)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 执行以上代码，输出结果为：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">42</span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 运算符</strong></p>
+<blockquote>
+<p> 运算符是一个符号，用于告诉编译器执行一个数学或逻辑运算。<br>Swift 提供了以下几种运算符：算术运算符、比较运算符、逻辑运算符、位运算符、赋值运算符、区间运算符、其他运算符</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">var A &#x3D; 10</span><br><span class="line">var B &#x3D; 20</span><br><span class="line"></span><br><span class="line">print(&quot;A + B 结果为：\(A + B)&quot;)</span><br><span class="line">print(&quot;A - B 结果为：\(A - B)&quot;)</span><br><span class="line">print(&quot;A * B 结果为：\(A * B)&quot;)</span><br><span class="line">print(&quot;B &#x2F; A 结果为：\(B &#x2F; A)&quot;)</span><br><span class="line">A +&#x3D; 1   &#x2F;&#x2F; 类似 A++</span><br><span class="line">print(&quot;A +&#x3D; 1 后 A 的值为 \(A)&quot;)</span><br><span class="line">B -&#x3D; 1   &#x2F;&#x2F; 类似 B--</span><br><span class="line">print(&quot;B -&#x3D; 1 后 B 的值为 \(B)&quot;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 执行以上代码，输出结果为：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">A + B 结果为：30</span><br><span class="line">A - B 结果为：-10</span><br><span class="line">A * B 结果为：200</span><br><span class="line">B &#x2F; A 结果为：2</span><br><span class="line">A +&#x3D; 1 后 A 的值为 11</span><br><span class="line">B -&#x3D; 1 后 B 的值为 19</span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 条件语句</strong></p>
+<blockquote>
+<p> 运算符是一个符号，用于告诉编译器执行一个数学或逻辑运算。<br>Swift 提供了以下几种运算符：算术运算符、比较运算符、逻辑运算符、位运算符、赋值运算符、区间运算符、其他运算符</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if boolean_expression &#123;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 循环</strong></p>
+<blockquote>
+<p> Swift for-in 循环用于遍历一个集合里面的所有元素，例如由数字表示的区间、数组中的元素、字符串中的字符。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for index in var &#123;</span><br><span class="line">   循环体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 字符串</strong></p>
+<blockquote>
+<p> 可以通过使用字符串字面量或 String 类的实例来创建一个字符串：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 使用字符串字面量</span><br><span class="line">var stringA &#x3D; &quot;Hello, World!&quot;</span><br><span class="line">print( stringA )</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; String 实例化</span><br><span class="line">var stringB &#x3D; String(&quot;Hello, World!&quot;)</span><br><span class="line">print( stringB )</span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 字符(Character)</strong></p>
+<blockquote>
+<p> Swift 的字符是一个单一的字符字符串字面量，数据类型为 Character</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">let char1: Character &#x3D; &quot;A&quot;</span><br><span class="line">let char2: Character &#x3D; &quot;B&quot;</span><br><span class="line"></span><br><span class="line">print(&quot;char1 的值为 \(char1)&quot;)</span><br><span class="line">print(&quot;char2 的值为 \(char2)&quot;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 数组</strong></p>
+<blockquote>
+<p> 我们可以使用构造语法来创建一个由特定数据类型构成的空数组：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line">var someInts &#x3D; [Int](repeating: 10, count: 3)</span><br><span class="line">var someVar &#x3D; someInts[0]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">var someInts &#x3D; [Int]()</span><br><span class="line"></span><br><span class="line">someInts.append(20)</span><br><span class="line">someInts.append(30)</span><br><span class="line">someInts +&#x3D; [40]</span><br><span class="line"></span><br><span class="line">var someVar &#x3D; someInts[0]</span><br><span class="line"></span><br><span class="line">print( &quot;第一个元素的值 \(someVar)&quot; )</span><br><span class="line">print( &quot;第二个元素的值 \(someInts[1])&quot; )</span><br><span class="line">print( &quot;第三个元素的值 \(someInts[2])&quot; )</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 字典</strong></p>
+<blockquote>
+<p> 我们可以使用构造语法来创建一个由特定数据类型构成的空数组：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">var someDict:[Int:String] &#x3D; [1:&quot;One&quot;, 2:&quot;Two&quot;, 3:&quot;Three&quot;]</span><br><span class="line"></span><br><span class="line">var someVar &#x3D; someDict[1]</span><br><span class="line"></span><br><span class="line">print( &quot;key &#x3D; 1 的值为 \(someVar)&quot; )</span><br><span class="line">print( &quot;key &#x3D; 2 的值为 \(someDict[2])&quot; )</span><br><span class="line">print( &quot;key &#x3D; 3 的值为 \(someDict[3])&quot; )</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 函数</strong></p>
+<blockquote>
+<p> Swift 定义函数使用关键字 func。：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">func runoob(site: String) -&gt; String &#123;</span><br><span class="line">    return (site)</span><br><span class="line">&#125;</span><br><span class="line">print(runoob(site: &quot;www.runoob.com&quot;))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 闭包</strong></p>
+<blockquote>
+<p> 闭包(Closures)是自包含的功能代码块，可以在代码中使用或者用来作为参数传值。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">let divide &#x3D; &#123;(val1: Int, val2: Int) -&gt; Int in </span><br><span class="line">   return val1 &#x2F; val2 </span><br><span class="line">&#125;</span><br><span class="line">let result &#x3D; divide(200, 20)</span><br><span class="line">print (result)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 枚举</strong></p>
+<blockquote>
+<p> 枚举简单的说也是一种数据类型，只不过是这种数据类型只包含自定义的特定数据，它是一组有共同特性的数据的集合</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 定义枚举</span><br><span class="line">enum DaysofaWeek &#123;</span><br><span class="line">    case Sunday</span><br><span class="line">    case Monday</span><br><span class="line">    case TUESDAY</span><br><span class="line">    case WEDNESDAY</span><br><span class="line">    case THURSDAY</span><br><span class="line">    case FRIDAY</span><br><span class="line">    case Saturday</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var weekDay &#x3D; DaysofaWeek.THURSDAY</span><br><span class="line">weekDay &#x3D; .THURSDAY</span><br><span class="line">switch weekDay</span><br><span class="line">&#123;</span><br><span class="line">case .Sunday:</span><br><span class="line">    print(&quot;星期天&quot;)</span><br><span class="line">case .Monday:</span><br><span class="line">    print(&quot;星期一&quot;)</span><br><span class="line">case .TUESDAY:</span><br><span class="line">    print(&quot;星期二&quot;)</span><br><span class="line">case .WEDNESDAY:</span><br><span class="line">    print(&quot;星期三&quot;)</span><br><span class="line">case .THURSDAY:</span><br><span class="line">    print(&quot;星期四&quot;)</span><br><span class="line">case .FRIDAY:</span><br><span class="line">    print(&quot;星期五&quot;)</span><br><span class="line">case .Saturday:</span><br><span class="line">    print(&quot;星期六&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 结构体</strong></p>
+<blockquote>
+<p> Swift 结构体是构建代码所用的一种通用且灵活的构造体</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">struct studentMarks &#123;</span><br><span class="line">   var mark1 &#x3D; 100</span><br><span class="line">   var mark2 &#x3D; 78</span><br><span class="line">   var mark3 &#x3D; 98</span><br><span class="line">&#125;</span><br><span class="line">let marks &#x3D; studentMarks()</span><br><span class="line">print(&quot;Mark1 是 \(marks.mark1)&quot;)</span><br><span class="line">print(&quot;Mark2 是 \(marks.mark2)&quot;)</span><br><span class="line">print(&quot;Mark3 是 \(marks.mark3)&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 类</strong></p>
+<blockquote>
+<p> Swift 类是构建代码所用的一种通用且灵活的构造体。<br>我们可以为类定义属性（常量、变量）和方法。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">class MarksStruct &#123;</span><br><span class="line">   var mark: Int</span><br><span class="line">   init(mark: Int) &#123;</span><br><span class="line">      self.mark &#x3D; mark</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class studentMarks &#123;</span><br><span class="line">   var mark1 &#x3D; 300</span><br><span class="line">   var mark2 &#x3D; 400</span><br><span class="line">   var mark3 &#x3D; 900</span><br><span class="line">&#125;</span><br><span class="line">let marks &#x3D; studentMarks()</span><br><span class="line">print(&quot;Mark1 is \(marks.mark1)&quot;)</span><br><span class="line">print(&quot;Mark2 is \(marks.mark2)&quot;)</span><br><span class="line">print(&quot;Mark3 is \(marks.mark3)&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+ -->
+      <!-- Table of Contents -->
+      <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+      </div>
+    </section>
+    
+      <div class="tags">
+        <span>标签:</span>
+        
+  <a href="/tags#Swift" >
+    <span class="tag-code">Swift</span>
+  </a>
+
+  <a href="/tags#基础语法" >
+    <span class="tag-code">基础语法</span>
+  </a>
+
+      </div>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">欢迎点击上方按钮对我打赏，谢谢你给我吃糖果</p>
+    </div>
+    <div id="comments"></div>
+
+  </article>
+  
+</main>
+
+<script>
+  (function () {
+    var url = 'http://shunhua.github.io/2017/09/25/Swift学习笔记NO-2/';
+    var banner = ''
+    if (banner) {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '')
+      // $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+   
+
+    // gitment
+    var gitalk = new Gitalk({
+      clientID: "34585b006d5d10cc63b3", //Client ID
+      clientSecret: "9609d73cd63aecbb4a52ab3e1f7c634437f57056", //Client Secret
+      repo: "shunhua.github.io",//仓库名称
+      owner: "shunhua",//仓库拥有者
+      admin: ["shunhua"],
+      id: "1506325745000",      // Ensure uniqueness and length less than 50
+      distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+    gitalk.render('comments')
+
+    // var gitmentConfig = "shunhua";
+    // if (gitmentConfig != "undefined") {
+    //   var gitment = new Gitment({
+    //     id: "1506325745000",
+    //     owner: "shunhua",
+    //     repo: "shunhua.github.io",
+    //     oauth: {
+    //       client_id: "34585b006d5d10cc63b3",
+    //       client_secret: "9609d73cd63aecbb4a52ab3e1f7c634437f57056"
+    //     },
+    //     theme: {
+    //       render(state, instance) {
+    //         const container = document.createElement('div')
+    //         container.lang = "en-US"
+    //         container.className = 'gitment-container gitment-root-container'
+    //         container.appendChild(instance.renderHeader(state, instance))
+    //         container.appendChild(instance.renderEditor(state, instance))
+    //         container.appendChild(instance.renderComments(state, instance))
+    //         container.appendChild(instance.renderFooter(state, instance))
+    //         return container;
+    //       }
+    //     }
+    //   })
+    //   gitment.render(document.getElementById('comments'))
+    // }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    <br><span id="busuanzi_container_site_pv">浏览量 <span id="busuanzi_value_site_pv"></span></span> | 
+    <span id="busuanzi_container_site_uv"> 访客 <span id="busuanzi_value_site_uv"></span></span>
+    <br>
+    <br>
+     Copyright © 2017-2021 | 
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/shunhua">Kobe</a>
+    <br>
+   
+  </p>
+
+</footer>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+<!--page counter part-->
+<script>
+function addCount (Counter) {
+        url=$('.article-date').attr('href').trim();
+    title = $('.article-title').text().trim();
+    var query=new AV.Query(Counter);
+    //use url as unique idnetfication
+    query.equalTo("url",url);
+    query.find({
+        success: function(results){
+            if(results.length>0)
+            {
+                var counter=results[0];
+                counter.fetchWhenSave(true); //get recent result
+                counter.increment("time");
+                counter.save();
+            }
+            else
+            {
+                var newcounter=new Counter();
+                newcounter.set("title",title);
+                newcounter.set("url",url);
+                newcounter.set("time",1);
+                newcounter.save(null,{
+                    success: function(newcounter){
+                    //alert('New object created');
+                    },
+                    error: function(newcounter,error){
+                    alert('Failed to create');
+                    }
+                    });
+            }
+        },
+        error: function(error){
+            //find null is not a error
+            alert('Error:'+error.code+" "+error.message);
+        }
+    });
+}
+$(function(){
+    var Counter=AV.Object.extend("Counter");
+    //only increse visit counting when intering a page
+    if ($('.article-title').length == 1)
+       addCount(Counter);
+    var query=new AV.Query(Counter);
+    query.descending("time");
+    // the sum of popular posts
+    query.limit(10); 
+    query.find({
+        success: function(results){
+                for(var i=0;i<results.length;i++)    
+                {
+                    var counter=results[i];
+                    title=counter.get("title");
+                    url=counter.get("url");
+                    time=counter.get("time");
+                    // add to the popularlist widget
+                    showcontent=title+" ("+time+")";
+                    //notice the "" in href
+                    $('.popularlist').append('<li><a href="'+url+'">'+showcontent+'</a></li>');
+                }
+            },
+        error: function(error){
+            alert("Error:"+error.code+" "+error.message);
+        }
+        }
+    )
+    });
+
+    
+
+  </body>
+   
+</html>

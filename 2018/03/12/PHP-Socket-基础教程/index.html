@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="郑州大学11级,深入后端开发。非专业视觉设计师。此为博客一枚。">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" type="image/ico" href="/assets/img/bsh.ico"/> 
+  
+  <title>
+    
+      PHP Socket 基础教程 | 너 바보 아니야
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  <!-- 
+<script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+ -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo" style="border-radius: 50%;"></div>
+      <span>너 바보 아니야</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link ">
+            Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link ">
+            Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link ">
+            Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link ">
+            Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link ">
+            About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+  <!-- 鼠标特效 -->
+  <script type="text/javascript">
+    var a_idx = 0;
+    jQuery(document).ready(function($) {
+        $("body").click(function(e) {
+    var a = new Array("Kobe", "Bryant", "Gianna", "Natalia", "Bianka", "Mamba", "Vino" ,"Vanessa", "Black Mamba", "Kobe Bean Bryant", "小飞侠", "黑曼巴");
+    var $i = $("<span/>").text(a[a_idx]);
+            a_idx = (a_idx + 1) % a.length;
+    var x = e.pageX,
+            y = e.pageY;
+            $i.css({
+    "z-index": 999999999999999999999999999999999999999999999999999999999999999999999,
+    "top": y - 20,
+    "left": x,
+    "position": "absolute",
+    "font-weight": "bold",
+    "color": "#42b983"
+            });
+            $("body").append($i);
+            $i.animate({
+    "top": y - 180,
+    "opacity": 0
+            },
+            1500,
+    function() {
+                $i.remove();
+            });
+        });
+    });
+    </script>
+<!--动态线条背景-->
+<script type="text/javascript"
+color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdnjs.cloudflare.com/ajax/libs/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script>
+<!--彩带-->
+
+  <!-- 点击切换 -->
+  <!-- <script type="text/javascript" src="/js/ribbon.js"></script> -->
+  <!-- 自动飘动 -->
+  <script type="text/javascript" src="/js/ribbon_flow.js"></script>
+
+<!-- 烟花 -->
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/fireworks.js"></script>
+
+<!--人体时钟背景透明-->
+<!-- <script charset="Shift_JIS" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.js"></script> -->
+
+
+
+
+
+    <div id="article-banner">
+  <h2>PHP Socket 基础教程</h2>
+  <p class="post-date">2018-03-12</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content">
+      <!-- <a id="more"></a>
+
+<p><strong>案例：socket通信演示</strong></p>
+<blockquote>
+<p> 服务器端：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">&#x2F;&#x2F;确保在连接客户端时不会超时</span><br><span class="line">set_time_limit(0);</span><br><span class="line"></span><br><span class="line">$ip &#x3D; &#39;127.0.0.1&#39;;</span><br><span class="line">$port &#x3D; 1935;</span><br><span class="line"></span><br><span class="line">&#x2F;*</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket通信整个过程</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket_create</span><br><span class="line"> *    @socket_bind</span><br><span class="line"> *    @socket_listen</span><br><span class="line"> *    @socket_accept</span><br><span class="line"> *    @socket_read</span><br><span class="line"> *    @socket_write</span><br><span class="line"> *    @socket_close</span><br><span class="line"> +--------------------------------</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;*----------------    以下操作都是手册上的    -------------------*&#x2F;</span><br><span class="line">if(($sock &#x3D; socket_create(AF_INET,SOCK_STREAM,SOL_TCP)) &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_create() 失败的原因是:&quot;.socket_strerror($sock).&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(($ret &#x3D; socket_bind($sock,$ip,$port)) &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_bind() 失败的原因是:&quot;.socket_strerror($ret).&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(($ret &#x3D; socket_listen($sock,4)) &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_listen() 失败的原因是:&quot;.socket_strerror($ret).&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$count &#x3D; 0;</span><br><span class="line"></span><br><span class="line">do &#123;</span><br><span class="line">    if (($msgsock &#x3D; socket_accept($sock)) &lt; 0) &#123;</span><br><span class="line">        echo &quot;socket_accept() failed: reason: &quot; . socket_strerror($msgsock) . &quot;\n&quot;;</span><br><span class="line">        break;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        </span><br><span class="line">        &#x2F;&#x2F;发到客户端</span><br><span class="line">        $msg &#x3D;&quot;测试成功！\n&quot;;</span><br><span class="line">        socket_write($msgsock, $msg, strlen($msg));</span><br><span class="line">        </span><br><span class="line">        echo &quot;测试成功了啊\n&quot;;</span><br><span class="line">        $buf &#x3D; socket_read($msgsock,8192);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        $talkback &#x3D; &quot;收到的信息:$buf\n&quot;;</span><br><span class="line">        echo $talkback;</span><br><span class="line">        </span><br><span class="line">        if(++$count &gt;&#x3D; 5)&#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;;</span><br><span class="line">        </span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;echo $buf;</span><br><span class="line">    socket_close($msgsock);</span><br><span class="line"></span><br><span class="line">&#125; while (true);</span><br><span class="line"></span><br><span class="line">socket_close($sock);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p> 客户端：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(E_ALL);</span><br><span class="line">set_time_limit(0);</span><br><span class="line">echo &quot;&lt;h2&gt;TCP&#x2F;IP Connection&lt;&#x2F;h2&gt;\n&quot;;</span><br><span class="line"></span><br><span class="line">$port &#x3D; 1935;</span><br><span class="line">$ip &#x3D; &quot;127.0.0.1&quot;;</span><br><span class="line"></span><br><span class="line">&#x2F;*</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket连接整个过程</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket_create</span><br><span class="line"> *    @socket_connect</span><br><span class="line"> *    @socket_write</span><br><span class="line"> *    @socket_read</span><br><span class="line"> *    @socket_close</span><br><span class="line"> +--------------------------------</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">$socket &#x3D; socket_create(AF_INET, SOCK_STREAM, SOL_TCP);</span><br><span class="line">if ($socket &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_create() failed: reason: &quot; . socket_strerror($socket) . &quot;\n&quot;;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    echo &quot;OK.\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo &quot;试图连接 &#39;$ip&#39; 端口 &#39;$port&#39;...\n&quot;;</span><br><span class="line">$result &#x3D; socket_connect($socket, $ip, $port);</span><br><span class="line">if ($result &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_connect() failed.\nReason: ($result) &quot; . socket_strerror($result) . &quot;\n&quot;;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    echo &quot;连接OK\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$in &#x3D; &quot;Ho\r\n&quot;;</span><br><span class="line">$in .&#x3D; &quot;first blood\r\n&quot;;</span><br><span class="line">$out &#x3D; &#39;&#39;;</span><br><span class="line"></span><br><span class="line">if(!socket_write($socket, $in, strlen($in))) &#123;</span><br><span class="line">    echo &quot;socket_write() failed: reason: &quot; . socket_strerror($socket) . &quot;\n&quot;;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    echo &quot;发送到服务器信息成功！\n&quot;;</span><br><span class="line">    echo &quot;发送的内容为:&lt;font color&#x3D;&#39;red&#39;&gt;$in&lt;&#x2F;font&gt; &lt;br&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">while($out &#x3D; socket_read($socket, 8192)) &#123;</span><br><span class="line">    echo &quot;接收服务器回传信息成功！\n&quot;;</span><br><span class="line">    echo &quot;接受的内容为:&quot;,$out;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">echo &quot;关闭SOCKET...\n&quot;;</span><br><span class="line">socket_close($socket);</span><br><span class="line">echo &quot;关闭OK\n&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>案例：代码详解</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 设置一些基本的变量</span><br><span class="line">$host &#x3D; &quot;192.168.1.99&quot;;</span><br><span class="line">$port &#x3D; 1234;</span><br><span class="line">&#x2F;&#x2F; 设置超时时间</span><br><span class="line">set_time_limit(0);</span><br><span class="line">&#x2F;&#x2F; 创建一个Socket</span><br><span class="line">$socket &#x3D; socket_create(AF_INET, SOCK_STREAM, 0) or die(&quot;Could not createsocket\n&quot;);</span><br><span class="line">&#x2F;&#x2F;绑定Socket到端口</span><br><span class="line">$result &#x3D; socket_bind($socket, $host, $port) or die(&quot;Could not bind tosocket\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 开始监听链接</span><br><span class="line">$result &#x3D; socket_listen($socket, 3) or die(&quot;Could not set up socketlistener\n&quot;);</span><br><span class="line">&#x2F;&#x2F; accept incoming connections</span><br><span class="line">&#x2F;&#x2F; 另一个Socket来处理通信</span><br><span class="line">$spawn &#x3D; socket_accept($socket) or die(&quot;Could not accept incomingconnection\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 获得客户端的输入</span><br><span class="line">$input &#x3D; socket_read($spawn, 1024) or die(&quot;Could not read input\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 清空输入字符串</span><br><span class="line">$input &#x3D; trim($input);</span><br><span class="line">&#x2F;&#x2F;处理客户端输入并返回结果</span><br><span class="line">$output &#x3D; strrev($input) . &quot;\n&quot;;</span><br><span class="line">socket_write($spawn, $output, strlen ($output)) or die(&quot;Could not write</span><br><span class="line">output\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 关闭sockets</span><br><span class="line">socket_close($spawn);</span><br><span class="line">socket_close($socket);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>1.第一步是建立两个变量来保存Socket运行的服务器的IP地址和端口.你可以设置为你自己的服务器和端口(这个端口可以是1到65535之间的数字),前提是这个端口未被使用.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 设置两个变量</span><br><span class="line">$host  &#x3D;  &quot;192.168.1.99&quot; ;</span><br><span class="line">$port  &#x3D;  1234 ; </span><br></pre></td></tr></table></figure>
+<p>2.在服务器端可以使用set_time_out()函数来确保PHP在等待客户端连接时不会超时</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 超时时间</span><br><span class="line">set_time_limit ( 0 ); 4 ; </span><br></pre></td></tr></table></figure>
+<p>3.在前面的基础上,现在该使用socket_creat()函数创建一个Socket了—这个函数返回一个Socket句柄,这个句柄将用在以后所有的函数中.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 创建Socket</span><br><span class="line">$socket  &#x3D;  socket_create ( AF_INET ,  SOCK_STREAM ,  0 ) or die( &quot;Could not create</span><br><span class="line">socket\n&quot; ); </span><br><span class="line">&#x2F;&#x2F;第一个参数”AF_INET”用来指定域名;</span><br><span class="line">&#x2F;&#x2F;第二个参数”SOCK_STREM”告诉函数将创建一个什么类型的Socket(在这个例子中是TCP类型)</span><br><span class="line">因此,如果你想创建一个UDP Socket的话,你可以使用如下的代码:</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 创建 socket</span><br><span class="line">$socket  &#x3D;  socket_create ( AF_INET ,  SOCK_DGRAM ,  0 ) or die( &quot;Could not create</span><br><span class="line">socket\n&quot; ); </span><br></pre></td></tr></table></figure>
+<p>4.一旦创建了一个Socket句柄,下一步就是指定或者绑定它到指定的地址和端口.这可以通过socket_bind()函数来完成.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 绑定 socket to 指定地址和端口</span><br><span class="line">$result  &#x3D;  socket_bind ( $socket ,  $host ,  $port ) or die( &quot;Could not bind to</span><br><span class="line">socket\n&quot; ); </span><br></pre></td></tr></table></figure>
+<p>5.当Socket被创建好并绑定到一个端口后,就可以开始监听外部的连接了.PHP允许你由socket_listen()函数来开始一个监听,同时你可以指定一个数字(在这个例子中就是第二个参数:3)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 开始监听连接</span><br><span class="line">$result  &#x3D;  socket_listen ( $socket ,  3 ) or die( &quot;Could not set up socket</span><br><span class="line">listener\n&quot; ); </span><br></pre></td></tr></table></figure>
+<p>6.到现在,你的服务器除了等待来自客户端的连接请求外基本上什么也没有做.一旦一个客户端的连接被收到,socket_accept()函数便开始起作用了,它接收连接请求并调用另一个子Socket来处理客户端–服务器间的信息.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;接受请求链接</span><br><span class="line">&#x2F;&#x2F; 调用子socket 处理信息</span><br><span class="line">$spawn  &#x3D;  socket_accept ( $socket ) or die( &quot;Could not accept incoming</span><br><span class="line">connection\n&quot; );</span><br><span class="line">&#x2F;&#x2F;这个子socket现在就可以被随后的客户端–服务器通信所用了. </span><br></pre></td></tr></table></figure>
+<p>7.当一个连接被建立后,服务器就会等待客户端发送一些输入信息,这写信息可以由socket_read()函数来获得,并把它赋值给PHP的$input变量.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 读取客户端输入</span><br><span class="line">$input  &#x3D;  socket_read ( $spawn ,  1024 ) or die( &quot;Could not read input\n&quot; ); </span><br><span class="line">&#x2F;&#x2F;socker_read的第而个参数用以指定读入的字节数,你可以通过它来限制从客户端获取数据的大小.</span><br><span class="line">&#x2F;&#x2F;注意:socket_read函数会一直读取壳户端数据,直到遇见\n,\t或者\0字符.PHP脚本把这写字符看做是输入的结束符.</span><br></pre></td></tr></table></figure>
+<p>8.现在服务器必须处理这些由客户端发来是数据(在这个例子中的处理仅仅包含数据的输入和回传到客户端).这部分可以由socket_write()函数来完成(使得由通信socket发回一个数据流到客户端成为可能)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 处理客户端输入并返回数据</span><br><span class="line">$output  &#x3D;  strrev ( $input ) .  &quot;\n&quot; ;</span><br><span class="line">socket_write ( $spawn ,  $output ,  strlen  ( $output )) or die( &quot;Could not write</span><br><span class="line">output\n&quot; ); </span><br></pre></td></tr></table></figure>
+<p>9.一旦输出被返回到客户端,父/子socket都应通过socket_close()函数来终止</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 关闭 sockets</span><br><span class="line">socket_close ( $spawn );</span><br><span class="line">socket_close ( $socket ); </span><br></pre></td></tr></table></figure>
+
+ -->
+      <!-- Table of Contents -->
+      <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+      </div>
+    </section>
+    
+      <div class="tags">
+        <span>标签:</span>
+        
+  <a href="/tags#php" >
+    <span class="tag-code">php</span>
+  </a>
+
+  <a href="/tags#socket" >
+    <span class="tag-code">socket</span>
+  </a>
+
+      </div>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">欢迎点击上方按钮对我打赏，谢谢你给我吃糖果</p>
+    </div>
+    <div id="comments"></div>
+
+  </article>
+  
+</main>
+
+<script>
+  (function () {
+    var url = 'http://shunhua.github.io/2018/03/12/PHP-Socket-基础教程/';
+    var banner = ''
+    if (banner) {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '')
+      // $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+   
+
+    // gitment
+    var gitalk = new Gitalk({
+      clientID: "34585b006d5d10cc63b3", //Client ID
+      clientSecret: "9609d73cd63aecbb4a52ab3e1f7c634437f57056", //Client Secret
+      repo: "shunhua.github.io",//仓库名称
+      owner: "shunhua",//仓库拥有者
+      admin: ["shunhua"],
+      id: "1520828616000",      // Ensure uniqueness and length less than 50
+      distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+    gitalk.render('comments')
+
+    // var gitmentConfig = "shunhua";
+    // if (gitmentConfig != "undefined") {
+    //   var gitment = new Gitment({
+    //     id: "1520828616000",
+    //     owner: "shunhua",
+    //     repo: "shunhua.github.io",
+    //     oauth: {
+    //       client_id: "34585b006d5d10cc63b3",
+    //       client_secret: "9609d73cd63aecbb4a52ab3e1f7c634437f57056"
+    //     },
+    //     theme: {
+    //       render(state, instance) {
+    //         const container = document.createElement('div')
+    //         container.lang = "en-US"
+    //         container.className = 'gitment-container gitment-root-container'
+    //         container.appendChild(instance.renderHeader(state, instance))
+    //         container.appendChild(instance.renderEditor(state, instance))
+    //         container.appendChild(instance.renderComments(state, instance))
+    //         container.appendChild(instance.renderFooter(state, instance))
+    //         return container;
+    //       }
+    //     }
+    //   })
+    //   gitment.render(document.getElementById('comments'))
+    // }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    <br><span id="busuanzi_container_site_pv">浏览量 <span id="busuanzi_value_site_pv"></span></span> | 
+    <span id="busuanzi_container_site_uv"> 访客 <span id="busuanzi_value_site_uv"></span></span>
+    <br>
+    <br>
+     Copyright © 2017-2021 | 
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/shunhua">Kobe</a>
+    <br>
+   
+  </p>
+
+</footer>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+<!--page counter part-->
+<script>
+function addCount (Counter) {
+        url=$('.article-date').attr('href').trim();
+    title = $('.article-title').text().trim();
+    var query=new AV.Query(Counter);
+    //use url as unique idnetfication
+    query.equalTo("url",url);
+    query.find({
+        success: function(results){
+            if(results.length>0)
+            {
+                var counter=results[0];
+                counter.fetchWhenSave(true); //get recent result
+                counter.increment("time");
+                counter.save();
+            }
+            else
+            {
+                var newcounter=new Counter();
+                newcounter.set("title",title);
+                newcounter.set("url",url);
+                newcounter.set("time",1);
+                newcounter.save(null,{
+                    success: function(newcounter){
+                    //alert('New object created');
+                    },
+                    error: function(newcounter,error){
+                    alert('Failed to create');
+                    }
+                    });
+            }
+        },
+        error: function(error){
+            //find null is not a error
+            alert('Error:'+error.code+" "+error.message);
+        }
+    });
+}
+$(function(){
+    var Counter=AV.Object.extend("Counter");
+    //only increse visit counting when intering a page
+    if ($('.article-title').length == 1)
+       addCount(Counter);
+    var query=new AV.Query(Counter);
+    query.descending("time");
+    // the sum of popular posts
+    query.limit(10); 
+    query.find({
+        success: function(results){
+                for(var i=0;i<results.length;i++)    
+                {
+                    var counter=results[i];
+                    title=counter.get("title");
+                    url=counter.get("url");
+                    time=counter.get("time");
+                    // add to the popularlist widget
+                    showcontent=title+" ("+time+")";
+                    //notice the "" in href
+                    $('.popularlist').append('<li><a href="'+url+'">'+showcontent+'</a></li>');
+                }
+            },
+        error: function(error){
+            alert("Error:"+error.code+" "+error.message);
+        }
+        }
+    )
+    });
+
+    
+
+  </body>
+   
+</html>

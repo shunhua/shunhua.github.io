@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="郑州大学11级,深入后端开发。非专业视觉设计师。此为博客一枚。">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" type="image/ico" href="/assets/img/bsh.ico"/> 
+  
+  <title>
+    
+      PHP 5.3、5.4、5.5、5.6、7 中的新特性 | 너 바보 아니야
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  <!-- 
+<script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+ -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo" style="border-radius: 50%;"></div>
+      <span>너 바보 아니야</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link ">
+            Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link ">
+            Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link ">
+            Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link ">
+            Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link ">
+            About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+  <!-- 鼠标特效 -->
+  <script type="text/javascript">
+    var a_idx = 0;
+    jQuery(document).ready(function($) {
+        $("body").click(function(e) {
+    var a = new Array("Kobe", "Bryant", "Gianna", "Natalia", "Bianka", "Mamba", "Vino" ,"Vanessa", "Black Mamba", "Kobe Bean Bryant", "小飞侠", "黑曼巴");
+    var $i = $("<span/>").text(a[a_idx]);
+            a_idx = (a_idx + 1) % a.length;
+    var x = e.pageX,
+            y = e.pageY;
+            $i.css({
+    "z-index": 999999999999999999999999999999999999999999999999999999999999999999999,
+    "top": y - 20,
+    "left": x,
+    "position": "absolute",
+    "font-weight": "bold",
+    "color": "#42b983"
+            });
+            $("body").append($i);
+            $i.animate({
+    "top": y - 180,
+    "opacity": 0
+            },
+            1500,
+    function() {
+                $i.remove();
+            });
+        });
+    });
+    </script>
+<!--动态线条背景-->
+<script type="text/javascript"
+color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdnjs.cloudflare.com/ajax/libs/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script>
+<!--彩带-->
+
+  <!-- 点击切换 -->
+  <!-- <script type="text/javascript" src="/js/ribbon.js"></script> -->
+  <!-- 自动飘动 -->
+  <script type="text/javascript" src="/js/ribbon_flow.js"></script>
+
+<!-- 烟花 -->
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/fireworks.js"></script>
+
+<!--人体时钟背景透明-->
+<!-- <script charset="Shift_JIS" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.js"></script> -->
+
+
+
+
+
+    <div id="article-banner">
+  <h2>PHP 5.3、5.4、5.5、5.6、7 中的新特性</h2>
+  <p class="post-date">2017-09-26</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content">
+      <!-- <p><strong>PHP 5.3、5.4、5.5、5.6、7 中的新特性</strong></p>
+<a id="more"></a>
+
+<blockquote>
+<p> 如果你使用的是基于 composer 和 PSR-4 的框架，这种写法是否能成功的加载类文件？其实是可以的，composer 注册的自动加载方法是在类被调用的时候根据类的命名空间去查找位置，这种写法对其没有影响。</p>
+</blockquote>
+<p><strong>PHP 7</strong></p>
+<blockquote>
+<p> 运算符（NULL 合并运算符）：</p>
+</blockquote>
+<p>把这个放在第一个说是因为我觉得它很有用。用法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$a &#x3D; $_GET[&#39;a&#39;] ?? 1;</span><br><span class="line">&lt;!-- 它相当于 --&gt;</span><br><span class="line">$a &#x3D; isset($_GET[&#39;a&#39;]) ? $_GET[&#39;a&#39;] : 1;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 函数返回值类型声明</p>
+</blockquote>
+<p>官方文档提供的例子（注意 … 的边长参数语法在 PHP 5.6 以上的版本中才有）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function arraysSum(array ...$arrays): array </span><br><span class="line">&#123; </span><br><span class="line">    return array_map(function(array $array): int &#123; </span><br><span class="line">        return array_sum($array); </span><br><span class="line">    &#125;, $arrays); </span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line">print_r(arraysSum([1,2,3], [4,5,6], [7,8,9]));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>从这个例子中可以看出现在函数（包括匿名函数）都可以指定返回值的类型。</p>
+<p>这种声明的写法有些类似于 swift：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">func sayHello(personName: String) -&gt; String &#123; </span><br><span class="line">    let greeting &#x3D; &quot;Hello, &quot; + personName + &quot;!&quot; </span><br><span class="line">    return greeting </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<p>不过这里也有一个特点需要注意。PHP 7 增加了一个 declare 指令：strict_types，既使用严格模式。<br>严格模式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">declare(strict_types&#x3D;1); </span><br><span class="line"> </span><br><span class="line">function foo($a) : int </span><br><span class="line">&#123; </span><br><span class="line">    return $a; </span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line">foo(1.0); </span><br><span class="line"># PHP Fatal error:  Uncaught TypeError: Return value of foo() must be of the type integer, float </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 标量类型声明</p>
+</blockquote>
+<p>PHP 7 中的函数的形参类型声明可以是标量了。在 PHP 5 中只能是类名、接口、array 或者 callable (PHP 5.4，即可以是函数，包括匿名函数)，现在也可以使用 string、int、float和 bool 了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function sumOfInts(int ...$ints) </span><br><span class="line">&#123; </span><br><span class="line">    return array_sum($ints); </span><br><span class="line">&#125; </span><br><span class="line">var_dump(sumOfInts(2, &#39;3&#39;, 4.1)); </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> use 批量声明</p>
+</blockquote>
+<p>PHP 7 中 use 可以在一句话中声明多个类或函数或 const 了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">use some&#x2F;namespace&#x2F;&#123;ClassA, ClassB, ClassC as C&#125;; </span><br><span class="line">use function some&#x2F;namespace&#x2F;&#123;fn_a, fn_b, fn_c&#125;; </span><br><span class="line">use const some&#x2F;namespace&#x2F;&#123;ConstA, ConstB, ConstC&#125;; </span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>PHP 5.6</strong></p>
+<blockquote>
+<p> 可以使用表达式定义常量</p>
+</blockquote>
+<p><a href="https://php.net/manual/zh/migration56.new-features.php" target="_blank">[ https://php.net/manual/zh/migration56.new-features.php ]</a> </p>
+<p>在之前的 PHP 版本中，必须使用静态值来定义常量，声明属性以及指定函数参数默认值。 现在你可以使用包括数值、字符串字面量以及其他常量在内的数值表达式来 定义常量、声明属性以及设置函数参数默认值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">const ONE &#x3D; 1;</span><br><span class="line">const TWO &#x3D; ONE * 2;    &#x2F;&#x2F;定义常量时允许使用之前定义的常量进行计算</span><br><span class="line"></span><br><span class="line">class C &#123;</span><br><span class="line">    const THREE &#x3D; TWO + 1;</span><br><span class="line">    const ONE_THIRD &#x3D; ONE &#x2F; self::THREE;</span><br><span class="line">    const SENTENCE &#x3D; &#39;The value of THREE is &#39;.self::THREE;</span><br><span class="line"></span><br><span class="line">    public function f($a &#x3D; ONE + self::THREE) &#123; &#x2F;&#x2F;允许常量作为函数参数默认值</span><br><span class="line">        return $a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo (new C)-&gt;f().&quot;\n&quot;;</span><br><span class="line">echo C::SENTENCE;</span><br><span class="line">?&gt;; </span><br></pre></td></tr></table></figure>
+<p>可以通过 const 关键字来定义类型为 array 的常量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">const ARR &#x3D; [&#39;a&#39;, &#39;b&#39;];</span><br><span class="line">echo ARR[0];</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 使用 … 运算符定义变长参数函数</p>
+</blockquote>
+<p>现在可以不依赖 func_get_args()， 使用 … 运算符 来实现 变长参数函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function test(...$args)</span><br><span class="line">&#123;</span><br><span class="line">    print_r($args);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test(1,2,3);</span><br><span class="line">&#x2F;&#x2F;输出</span><br><span class="line">Array</span><br><span class="line">(</span><br><span class="line">    [0] &#x3D;&gt; 1</span><br><span class="line">    [1] &#x3D;&gt; 2</span><br><span class="line">    [2] &#x3D;&gt; 3</span><br><span class="line">)</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p> 使用 ** 进行幂运算</p>
+</blockquote>
+<p>加入右连接运算符 ** 来进行幂运算。 同时还支持简写的 星星等 运算符，表示进行幂运算并赋值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">printf(2 ** 3); &#x2F;&#x2F; 8</span><br><span class="line"></span><br><span class="line">$a &#x3D; 2;</span><br><span class="line">$a **&#x3D; 3;</span><br><span class="line">printf($a);  &#x2F;&#x2F; 8</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> use function 以及 use const</p>
+</blockquote>
+<p>use 运算符可以在类中导入外部的函数和常量了。 对应的结构为 use function 和 use const。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">namespace Name\Space &#123;</span><br><span class="line">    const FOO &#x3D; 42;</span><br><span class="line">    function f() &#123; echo __FUNCTION__.&quot;\n&quot;; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">namespace &#123;</span><br><span class="line">    use const Name\Space\FOO;</span><br><span class="line">    use function Name\Space\f;</span><br><span class="line"></span><br><span class="line">    echo FOO.&quot;\n&quot;;</span><br><span class="line">    f();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 加入 hash_equals() 函数，以恒定的时间消耗来进行字符串比较，以避免时序攻击</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$expected  &#x3D; crypt(&#39;12345&#39;, &#39;$2a$07$usesomesillystringforsalt$&#39;);</span><br><span class="line">$incorrect &#x3D; crypt(&#39;1234&#39;,  &#39;$2a$07$usesomesillystringforsalt$&#39;);</span><br><span class="line"></span><br><span class="line">var_dump(hash_equals($expected, $incorrect)); &#x2F;&#x2F; false</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 加入 debugInfo()</p>
+</blockquote>
+<p>当使用 var_dump() 输出对象的时候，可以用来控制要输出的属性和值。返回值必须是个数组。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class C &#123;</span><br><span class="line">    private $prop;</span><br><span class="line"></span><br><span class="line">    public function __construct($val) &#123;</span><br><span class="line">        $this-&gt;prop &#x3D; $val;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function __debugInfo() &#123;</span><br><span class="line">        return array(</span><br><span class="line">                &quot;prop&quot; &#x3D;&gt; $this-&gt;prop</span><br><span class="line">            );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var_dump(new C(42));</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p><strong>PHP 5.5</strong></p>
+<blockquote>
+<p> 新增 Generators</p>
+</blockquote>
+<p>yield关键字用于当函数需要返回一个迭代器的时候，逐个返回值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function number10()</span><br><span class="line">&#123;</span><br><span class="line">    for($i &#x3D; 1; $i &lt;&#x3D; 10; $i +&#x3D; 1)</span><br><span class="line">        yield $i;</span><br><span class="line">&#125;</span><br><span class="line">&lt;!-- 该函数的返回值是一个数组： --&gt;</span><br><span class="line">[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 新增 finally 关键字</p>
+</blockquote>
+<p>yield关键字用于当函数需要返回一个迭代器的时候，逐个返回值。</p>
+<p><img src="/assets/blogImg/php/1.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> foreach 支持 list()</p>
+</blockquote>
+<p>foreach 支持通过 list() 将嵌套数组分离到单独的变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$array &#x3D; [</span><br><span class="line">    [1, 2],</span><br><span class="line">    [3, 4],</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">foreach ($array as list($a, $b)) &#123;</span><br><span class="line">    echo $a.$b\n&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> empty() 支持传入一个任意表达式，而不仅是一个变量</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function always_false() &#123;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if (empty(always_false())) &#123;</span><br><span class="line">    echo &#39;This will be printed.&#39;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 直接通过下标获取访问数组和字符串字面量的元素或字符</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo [1, 2, 3][0]; &#x2F;&#x2F; 1</span><br><span class="line">echo &#39;PHP&#39;[0]; &#x2F;&#x2F; P</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 新的密码哈希 API</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;加密</span><br><span class="line">echo $hash &#x3D; password_hash(&#39;rasmuslerdorf&#39;, PASSWORD_DEFAULT);</span><br><span class="line">&#x2F;&#x2F;输出结果类似于：$2y$10$.vGA1O9wmRjrwAVXD98HNOgsNpDczlqm3Jq7KnEd1rVAGv3Fykk1a</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;验证</span><br><span class="line">if(password_verify(&#39;rasmuslerdorf&#39;,&#39;$2y$10$.vGA1O9wmRjrwAVXD98HNOgsNpDczlqm3Jq7KnEd1rVAGv3Fykk1a&#39;)) &#123; </span><br><span class="line">    echo &quot;密码正确&quot;;</span><br><span class="line">&#125; else &#123;  </span><br><span class="line">    echo &quot;密码错误&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 新增 boolval() 函数</p>
+</blockquote>
+<p>PHP已经实现了strval、intval和floatval的函数。为了达到一致性将添加boolval函数</p>
+<blockquote>
+<p> 新增 array_column() 函数</p>
+</blockquote>
+<p>可用来返回数组中指定的一列。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$records &#x3D; array(</span><br><span class="line">    array(&#39;id&#39; &#x3D;&gt; 2135,&#39;name&#39; &#x3D;&gt; &#39;John&#39;),</span><br><span class="line">    array(&#39;id&#39; &#x3D;&gt; 3245,&#39;name&#39; &#x3D;&gt; &#39;Smith&#39;),</span><br><span class="line">    array(&#39;id&#39; &#x3D;&gt; 5342,&#39;name&#39; &#x3D;&gt; &#39;Peter&#39;)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;从结果集中取出 name 列</span><br><span class="line">$names &#x3D; array_column($records, &#39;name&#39;);</span><br><span class="line">print_r($names);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;从结果集中总取出 name 列，用相应的 id 作为键值</span><br><span class="line">$names &#x3D; array_column($records, &#39;name&#39;, &#39;id&#39;);</span><br><span class="line">print_r($names);</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p><strong>PHP 5.4</strong></p>
+<blockquote>
+<p> 新增 Traits</p>
+</blockquote>
+<p><a href="https://php.net/manual/zh/language.oop5.traits.php" target="_blank">[ https://php.net/manual/zh/language.oop5.traits.php ]</a> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Traits不能被单独实例化，只能被类所包含</span><br><span class="line">trait SayWorld</span><br><span class="line">&#123;</span><br><span class="line">    public function sayHello()</span><br><span class="line">    &#123;</span><br><span class="line">        echo &#39;World!&#39;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class MyHelloWorld</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; 将SayWorld中的成员包含进来</span><br><span class="line">    use SayWorld;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$xxoo &#x3D; new MyHelloWorld();</span><br><span class="line">&#x2F;&#x2F; sayHello() 函数是来自 SayWorld 构件的</span><br><span class="line">$xxoo-&gt;sayHello();</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 新增短数组语法</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 原来的数组写法</span><br><span class="line">$arr &#x3D; array(&quot;key&quot; &#x3D;&gt; &quot;value&quot;, &quot;key2&quot; &#x3D;&gt; &quot;value2&quot;);</span><br><span class="line">$arr &#x3D; array(1,2,3,4);</span><br><span class="line">&#x2F;&#x2F; 简写形式</span><br><span class="line">$arr &#x3D; [&quot;key&quot; &#x3D;&gt; &quot;value&quot;, &quot;key2&quot; &#x3D;&gt; &quot;value2&quot;];</span><br><span class="line">$arr &#x3D; [1,2,3,4];</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 新增支持对函数返回数组的成员访问解析</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print func()[0];</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 无论 php.ini 中是否设置 short_open_tag， 格式总是可用。</p>
+</blockquote>
+<p>这种简写形式被称为 Short Open Tag, 在 PHP5.3 起被默认开启，在 PHP5.4 起总是可用。 使用这种简写形式在 HTML 中嵌入 PHP 变量将会非常方便。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;? ... ?&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 新增二进制直接量</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$bin &#x3D; bindec(&#39;110011&#39;); &#x2F;&#x2F;之前需要这样写</span><br><span class="line">$bin &#x3D; 0b110011;</span><br><span class="line">echo $bin; &#x2F;&#x2F;51</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 让 json 更懂中文</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo json_encode(&quot;中文&quot;, JSON_UNESCAPED_UNICODE);  </span><br><span class="line">&#x2F;&#x2F;&quot;中文&quot; </span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p><strong>PHP 5.3</strong></p>
+<blockquote>
+<p> 支持命名空间</p>
+</blockquote>
+<p><a href="https://php.net/manual/zh/language.namespaces.php" target="_blank">[ https://php.net/manual/zh/language.namespaces.php ]</a> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">namespace my\name; &#x2F;&#x2F; 定义命名空间</span><br><span class="line"></span><br><span class="line">class MyClass &#123;&#125;</span><br><span class="line">const MYCONST &#x3D; 1;</span><br><span class="line"></span><br><span class="line">$a &#x3D; new \my\name\MyClass;</span><br><span class="line">$class &#x3D; __NAMESPACE__.&#39;\MyClass&#39;;</span><br><span class="line">$b &#x3D; new $class;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 增加后期静态绑定</p>
+</blockquote>
+<p><a href="https://php.net/manual/zh/language.oop5.late-static-bindings.php" target="_blank">[ https://php.net/manual/zh/language.oop5.late-static-bindings.php ]</a> </p>
+<p>在PHP中，我们可以在类中通过self关键字或者CLASS来判断或调用当前类。但有一个问题，如果我们是在子类中调用，得到的结果将是父类。因为在继承父类的时候，静态成员就已经被绑定了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class A</span><br><span class="line">&#123;</span><br><span class="line">    static public function callFuncXXOO()</span><br><span class="line">    &#123;</span><br><span class="line">        print self::funcXXOO();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    static public function funcXXOO()</span><br><span class="line">    &#123;</span><br><span class="line">        return &quot;A::funcXXOO()&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class B extends A</span><br><span class="line">&#123;</span><br><span class="line">    static public function funcXXOO()</span><br><span class="line">    &#123;</span><br><span class="line">        return &quot;B::funcXXOO&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$b &#x3D; new B;</span><br><span class="line">$b-&gt;callFuncXXOO();</span><br><span class="line">&lt;!-- A::funcXXOO() --&gt;</span><br></pre></td></tr></table></figure>
+
+<p>PHP 5.3.0中增加了一个static关键字来引用当前类，即实现了延迟静态绑定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class A</span><br><span class="line">&#123;</span><br><span class="line">    static public function callFuncXXOO()</span><br><span class="line">    &#123;</span><br><span class="line">        print static::funcXXOO();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 增加 goto 操作符</p>
+</blockquote>
+<p><a href="https://php.net/manual/zh/control-structures.goto.php" target="_blank">[ https://php.net/manual/zh/control-structures.goto.php ]</a> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">goto test;</span><br><span class="line">echo &#39;1&#39;;</span><br><span class="line"> </span><br><span class="line">test:</span><br><span class="line">echo &#39;2&#39;;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;以上运行时会输出 2 </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 新增两个魔术方法, allStatic 和 invoke</p>
+</blockquote>
+<p><a href="https://php.net/manual/zh/language.oop5.magic.php" target="_blank">[ https://php.net/manual/zh/language.oop5.magic.php ]</a> </p>
+<p>用静态方式中调用一个不可访问方法时，callStatic() 会被调用。<br>当尝试以调用函数的方式调用一个对象时，invoke() 方法会被自动调用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class A</span><br><span class="line">&#123;</span><br><span class="line">    public function __invoke($str)</span><br><span class="line">    &#123;</span><br><span class="line">        print &quot;A::__invoke(): &#123;$str&#125;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$a &#x3D; new A;</span><br><span class="line">$a(&quot;Hello World&quot;);</span><br><span class="line">&lt;!-- A::__invoke(): Hello World --&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 添加 Nowdoc 语法支持</p>
+</blockquote>
+<p><a href="https://php.net/manual/zh/language.types.string.php#language.types.str..." target="_blank">[ https://php.net/manual/zh/language.types.string.php#language.types.str… ]</a> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$str &#x3D; &lt;&lt;&lt;&#39;EOD&#39;</span><br><span class="line">Example of string</span><br><span class="line">spanning multiple lines</span><br><span class="line">using nowdoc syntax.</span><br><span class="line">EOD;</span><br></pre></td></tr></table></figure>
+<p>就象 heredoc 结构类似于双引号字符串，Nowdoc 结构是类似于单引号字符串的。Nowdoc 结构很象 heredoc 结构，但是 nowdoc 中不进行解析操作。</p>
+<blockquote>
+<p> Heredoc 结构中可以用双引号来声明标识符了。</p>
+</blockquote>
+<p><a href="https://php.net/manual/zh/language.types.string.php#language.types.str..." target="_blank">[ https://php.net/manual/zh/language.types.string.php#language.types.str… ]</a> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">echo &lt;&lt;&lt;&quot;FOOBAR&quot;</span><br><span class="line">Hello World!</span><br><span class="line">FOOBAR;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> const 关键字可用来在类定义之外定义常量了</p>
+</blockquote>
+<p><a href="https://php.net/manual/zh/language.constants.syntax.php" target="_blank">[ https://php.net/manual/zh/language.constants.syntax.php ]</a> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">define(&quot;CONSTANT_A&quot;, &quot;Hello world&quot;);</span><br><span class="line">const CONSTANT_B &#x3D; &#39;Hello World&#39;;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 三元运算符可以简写省略中间的部分</p>
+</blockquote>
+<p>表达式 expr1 ?: expr3 ，当 expr1 为 TRUE 时返回 expr1，否则返回 expr3。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"> expr1 ?: expr3</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+ -->
+      <!-- Table of Contents -->
+      <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+      </div>
+    </section>
+    
+      <div class="tags">
+        <span>标签:</span>
+        
+  <a href="/tags#PHP5.3+" >
+    <span class="tag-code">PHP5.3+</span>
+  </a>
+
+  <a href="/tags#新特性" >
+    <span class="tag-code">新特性</span>
+  </a>
+
+      </div>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="alipay-code">
+            <div class="code-image"></div>
+            <b>使用支付宝打赏</b>
+          </span>
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">欢迎点击上方按钮对我打赏，谢谢你给我吃糖果</p>
+    </div>
+    <div id="comments"></div>
+
+  </article>
+  
+</main>
+
+<script>
+  (function () {
+    var url = 'http://shunhua.github.io/2017/09/26/PHP-5-3、5-4、5-5、5-6、7-中的新特性/';
+    var banner = ''
+    if (banner) {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '')
+      // $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+   
+
+    // gitment
+    var gitalk = new Gitalk({
+      clientID: "34585b006d5d10cc63b3", //Client ID
+      clientSecret: "9609d73cd63aecbb4a52ab3e1f7c634437f57056", //Client Secret
+      repo: "shunhua.github.io",//仓库名称
+      owner: "shunhua",//仓库拥有者
+      admin: ["shunhua"],
+      id: "1506398640000",      // Ensure uniqueness and length less than 50
+      distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+    gitalk.render('comments')
+
+    // var gitmentConfig = "shunhua";
+    // if (gitmentConfig != "undefined") {
+    //   var gitment = new Gitment({
+    //     id: "1506398640000",
+    //     owner: "shunhua",
+    //     repo: "shunhua.github.io",
+    //     oauth: {
+    //       client_id: "34585b006d5d10cc63b3",
+    //       client_secret: "9609d73cd63aecbb4a52ab3e1f7c634437f57056"
+    //     },
+    //     theme: {
+    //       render(state, instance) {
+    //         const container = document.createElement('div')
+    //         container.lang = "en-US"
+    //         container.className = 'gitment-container gitment-root-container'
+    //         container.appendChild(instance.renderHeader(state, instance))
+    //         container.appendChild(instance.renderEditor(state, instance))
+    //         container.appendChild(instance.renderComments(state, instance))
+    //         container.appendChild(instance.renderFooter(state, instance))
+    //         return container;
+    //       }
+    //     }
+    //   })
+    //   gitment.render(document.getElementById('comments'))
+    // }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    <br><span id="busuanzi_container_site_pv">浏览量 <span id="busuanzi_value_site_pv"></span></span> | 
+    <span id="busuanzi_container_site_uv"> 访客 <span id="busuanzi_value_site_uv"></span></span>
+    <br>
+    <br>
+     Copyright © 2017-2021 | 
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/shunhua">Kobe</a>
+    <br>
+   
+  </p>
+
+</footer>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+<!--page counter part-->
+<script>
+function addCount (Counter) {
+        url=$('.article-date').attr('href').trim();
+    title = $('.article-title').text().trim();
+    var query=new AV.Query(Counter);
+    //use url as unique idnetfication
+    query.equalTo("url",url);
+    query.find({
+        success: function(results){
+            if(results.length>0)
+            {
+                var counter=results[0];
+                counter.fetchWhenSave(true); //get recent result
+                counter.increment("time");
+                counter.save();
+            }
+            else
+            {
+                var newcounter=new Counter();
+                newcounter.set("title",title);
+                newcounter.set("url",url);
+                newcounter.set("time",1);
+                newcounter.save(null,{
+                    success: function(newcounter){
+                    //alert('New object created');
+                    },
+                    error: function(newcounter,error){
+                    alert('Failed to create');
+                    }
+                    });
+            }
+        },
+        error: function(error){
+            //find null is not a error
+            alert('Error:'+error.code+" "+error.message);
+        }
+    });
+}
+$(function(){
+    var Counter=AV.Object.extend("Counter");
+    //only increse visit counting when intering a page
+    if ($('.article-title').length == 1)
+       addCount(Counter);
+    var query=new AV.Query(Counter);
+    query.descending("time");
+    // the sum of popular posts
+    query.limit(10); 
+    query.find({
+        success: function(results){
+                for(var i=0;i<results.length;i++)    
+                {
+                    var counter=results[i];
+                    title=counter.get("title");
+                    url=counter.get("url");
+                    time=counter.get("time");
+                    // add to the popularlist widget
+                    showcontent=title+" ("+time+")";
+                    //notice the "" in href
+                    $('.popularlist').append('<li><a href="'+url+'">'+showcontent+'</a></li>');
+                }
+            },
+        error: function(error){
+            alert("Error:"+error.code+" "+error.message);
+        }
+        }
+    )
+    });
+
+    
+
+  </body>
+   
+</html>
