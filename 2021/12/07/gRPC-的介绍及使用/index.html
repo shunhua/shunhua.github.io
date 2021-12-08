@@ -188,11 +188,11 @@ color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdnjs.cloudflar
 <a id="more"></a>
 
 
-<p>我们将介绍 Go 语言中最流行的 RPC 框架：gRPC (google RPC)。</p>
+<p>我们将介绍 <code>Go</code> 语言中最流行的 RPC 框架：<code>gRPC (google RPC)</code>。</p>
 <p><strong>gRPC 简介</strong></p>
-<p>RPC 代指远程过程调用（Remote Procedure Call）就是允许程序调用另一个地址空间（通常是共享网络的另一台机器上）的过程或函数，且不需要显式编码这个远程调用的细节 通俗来说就是调用其他进程内的方法，并且获得对应的返回值。</p>
-<p>gRPC是一个现代的、高性能、开源的和语言无关的通用RPC框架，基于HTTP2协议设计，序列化使用PB(Protocol Buffer)，PB是一种语言无关的高性能序列化框架，基于HTTP2+PB保证了的高性能。</p>
-<p>整个 gRPC 调用基本上会包括以下 3 点：</p>
+<p>RPC 代指远程过程调用 <code>(Remote Procedure Call)</code> 就是允许程序调用另一个地址空间（通常是共享网络的另一台机器上）的过程或函数，且不需要显式编码这个远程调用的细节 通俗来说就是调用其他进程内的方法，并且获得对应的返回值。</p>
+<p><code>gRPC</code> 是一个现代的、高性能、开源的和语言无关的通用RPC框架，基于 <code>HTTP2</code> 协议设计，序列化使用PB(Protocol Buffer)，<code>PB</code> 是一种语言无关的高性能序列化框架，基于 <code>HTTP2+PB</code> 保证了的高性能。</p>
+<p>整个 <code>gRPC</code> 调用基本上会包括以下 3 点：</p>
 <ul>
 <li>通讯协议 (HTTP2)</li>
 <li>寻址</li>
@@ -208,17 +208,17 @@ color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdnjs.cloudflar
 </blockquote>
 <p>3.安装相关依赖包</p>
 <ul>
-<li><p>安装 golang 的 proto 工具包</p>
+<li><p>安装 <code>golang</code> 的 <code>proto</code> 工具包</p>
 <blockquote>
 <p>go get -u github.com/golang/protobuf/proto</p>
 </blockquote>
 </li>
-<li><p>安装 goalng 的 proto 编译支持</p>
+<li><p>安装 <code>goalng</code> 的 <code>proto</code> 编译支持</p>
 <blockquote>
 <p>go get -u github.com/golang/protobuf/protoc-gen-go</p>
 </blockquote>
 </li>
-<li><p>安装 gRPC 包</p>
+<li><p>安装 <code>gRPC</code> 包</p>
 <blockquote>
 <p>go get -u google.golang.org/grpc</p>
 </blockquote>
