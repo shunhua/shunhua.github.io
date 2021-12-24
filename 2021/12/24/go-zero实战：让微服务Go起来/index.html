@@ -195,8 +195,8 @@ color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdnjs.cloudflar
 <li><code>Docker</code> 本地开发环境搭建</li>
 <li><code>go-zero api rpc</code> 服务的使用</li>
 <li><code>go-zero api jwt</code> 鉴权</li>
-<li><code>go-zero</code> <code>rpc</code> <code>auth</code> 验证</li>
-<li><code>go-zero</code> <code>model</code> 使用</li>
+<li><code>go-zero rpc auth</code> 验证</li>
+<li><code>go-zero model</code> 使用</li>
 <li><code>go-zero</code> 服务监控</li>
 <li><code>go-zero</code> 链路追踪</li>
 </ul>
@@ -213,6 +213,10 @@ color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdnjs.cloudflar
 <li><a href="https://juejin.cn/post/7044509187027501063" target="_blank">go-zero实战：9 服务监控 Prometheus</a></li>
 <li><a href="https://juejin.cn/post/7044558366445666341" target="_blank">go-zero实战：10 链路追踪 Jaeger</a></li>
 </ul>
+<p>目录结构:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">├── common           # 通用库</span><br><span class="line">├── service          # 服务</span><br><span class="line">│   ├── order</span><br><span class="line">│   │   ├── api      # order api 服务</span><br><span class="line">│   │   ├── model    # order 数据模型</span><br><span class="line">│   │   └── rpc      # order rpc 服务</span><br><span class="line">│   ├── pay</span><br><span class="line">│   │   ├── api      # pay api 服务</span><br><span class="line">│   │   ├── model    # pay 数据模型</span><br><span class="line">│   │   └── rpc      # pay rpc 服务</span><br><span class="line">│   ├── product</span><br><span class="line">│   │   ├── api      # product api 服务</span><br><span class="line">│   │   ├── model    # product 数据模型</span><br><span class="line">│   │   └── rpc      # product rpc 服务</span><br><span class="line">│   └── user</span><br><span class="line">│       ├── api      # user api 服务</span><br><span class="line">│       ├── model    # user 数据模型</span><br><span class="line">│       └── rpc      # user rpc 服务</span><br><span class="line">└── go.mod</span><br></pre></td></tr></table></figure>
+
+
 </section>
     
       <div class="tags">
