@@ -224,7 +224,7 @@ color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdnjs.cloudflar
 <ul>
 <li>sha1 ： 通过 <code>SCRIPT LOAD</code> 生成的 sha1 校验码。</li>
 <li>numkeys： 用于指定键名参数的个数。</li>
-<li>key [key …]： 从 ```EVAL`` 的第三个参数开始算起，表示在脚本中所用到的那些 Redis 键(key)，这些键名参数可以在 Lua 中通过全局变量 KEYS 数组，用 1 为基址的形式访问( KEYS[1] ， KEYS[2] ，以此类推)。</li>
+<li>key [key …]： 从 <code>EVAL</code> 的第三个参数开始算起，表示在脚本中所用到的那些 Redis 键(key)，这些键名参数可以在 Lua 中通过全局变量 KEYS 数组，用 1 为基址的形式访问( KEYS[1] ， KEYS[2] ，以此类推)。</li>
 <li>arg [arg …]： 附加参数，在 Lua 中通过全局变量 ARGV 数组访问，访问的形式和 KEYS 变量类似( ARGV[1] 、 ARGV[2] ，诸如此类)。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; SCRIPT LOAD &quot;return &#39;hello moto&#39;&quot;</span><br><span class="line">&quot;232fd51614574cf0867b83d384a5e898cfd24e5a&quot;</span><br><span class="line"></span><br><span class="line">redis 127.0.0.1:6379&gt; EVALSHA &quot;232fd51614574cf0867b83d384a5e898cfd24e5a&quot; 0</span><br><span class="line">&quot;hello moto&quot;</span><br></pre></td></tr></table></figure>
