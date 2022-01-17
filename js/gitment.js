@@ -1691,6 +1691,7 @@ var ObservableArrayAdministration = function () {
     };
     ObservableArrayAdministration.prototype.spliceItemsIntoValues = function (index, deleteCount, newItems) {
         if (newItems.length < MAX_SPLICE_SIZE) {
+            
             return (_a = this.values).splice.apply(_a, [index, deleteCount].concat(newItems));
         } else {
             var res = this.values.slice(index, index + deleteCount);
