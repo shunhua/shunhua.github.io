@@ -30,7 +30,7 @@
   <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
   <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script> -->
   
-<script src="/js/search.js"></script>
+<script src="/js/local-search.js"></script>
 
   <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
   <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
@@ -44,6 +44,7 @@
       -o-filter: grayscale(100%);
     }
   </style> -->
+
 <meta name="generator" content="Hexo 5.2.0"></head>
 <div class="wechat-share">
   <img src="/css/images/logo.png" />
@@ -94,6 +95,13 @@
           
         </li>
       
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
     </ul>
     <div class="menu">
       <span class="icon-bar"></span>
@@ -136,6 +144,30 @@
       </ul>
     </div>
   </div>
+  
+    <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="搜索..." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+  
 </header>
   <!-- 鼠标特效 -->
   <script type="text/javascript">
