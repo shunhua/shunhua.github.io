@@ -29,6 +29,8 @@
  -->
   <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
   <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script> -->
+  
+<script src="/js/search.js"></script>
 
   <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
   <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
@@ -47,6 +49,10 @@
   <img src="/css/images/logo.png" />
 </div>
 
+<form class="site-search-form">
+  <input type="text" id="local-search-input" class="st-search-input" />
+</form>
+<div id="local-search-result" class="local-search-result-cls"></div>
   <body>
     <header class="header fixed-header">
   <div class="header-container">
@@ -624,7 +630,7 @@ color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdnjs.cloudflar
 
 <script>
   (function () {
-    var url = 'http://shunhua.github.io/tags/linux/index.html';
+    var url = 'http://shunhua.github.io/tags/Linux/index.html';
     $('#article-banner').geopattern(url);
     $('.header').removeClass('fixed-header');
   })();
