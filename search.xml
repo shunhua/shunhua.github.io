@@ -3080,9 +3080,13 @@ class QuotesSpider(scrapy.Spider):
 <p>npm init -y</p>
 </blockquote>
 <p><strong>安装PostCSS</strong><br>新建一个项目目录，然后在根目录运行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm i --save-dev postcss-cli</span><br></pre></td></tr></table></figure>
+
+<p>这会在根目录下生成一个package.json文件。<br>继续运行</p>
 <blockquote>
-<p>npm i –save-dev postcss-cli<br>这会在根目录下生成一个package.json文件。<br>继续运行<br>npx tailwindcss init<br>这会在你的项目根目录创建一个tailwind.config.js文件，将内容修改为以下：</p>
+<p>npx tailwindcss init</p>
 </blockquote>
+<p>这会在你的项目根目录创建一个tailwind.config.js文件，将内容修改为以下：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; tailwind.config.js</span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  purge: [],</span><br><span class="line">  darkMode: false, &#x2F;&#x2F; or &#39;media&#39; or &#39;class&#39;</span><br><span class="line">  theme: &#123;</span><br><span class="line">    extend: &#123;&#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  variants: &#123;&#125;,</span><br><span class="line">  plugins: [],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>创建你的css文件</strong><br>创建一个css文件，位置随意，比如src/style.css,并且将内容修改为如下：</p>
