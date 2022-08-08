@@ -102,39 +102,6 @@
       </tags>
   </entry>
   <entry>
-    <title>CentOS 7 安装 Nginx 1.11.x</title>
-    <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/</url>
-    <content><![CDATA[<p><strong>Centos下安装Nginx</strong> </p>
-<a id="more"></a>
-
-<p>一、准备工作 安装必备工具</p>
-<blockquote>
-<p>yum install -y gcc gcc-c++ autoconf automake<br>yum install -y zlib zlib-devel openssl openssl-devel pcre-devel</p>
-</blockquote>
-<p>不安装这些依赖库，后面编译的时候会报错，当然你的系统已经有这些包可以跳过。<br>pcre：用来作地址重写的功能。<br>zlib：nginx 的gzip模块,传输数据打包，省流量（但消耗资源）。<br>openssl：提供ssl加密协议。</p>
-<p>二、添加nginx用户</p>
-<blockquote>
-<p>/usr/sbin/groupadd -f www<br>/usr/sbin/useradd -g www www</p>
-</blockquote>
-<p>三、nginx文件准备及编译</p>
-<blockquote>
-<p>wget <a href="http://nginx.org/download/nginx-1.11.4.tar.gz">http://nginx.org/download/nginx-1.11.4.tar.gz</a><br>tar -zxvf nginx-1.11.4.tar.gz<br>cd nginx-1.11.4/<br>./configure –user=www –group=www<br>make &amp;&amp; make install</p>
-</blockquote>
-<p>四、开始firewall端口服务</p>
-<blockquote>
-<p>firewall-cmd  –permanent –zone=public –add-service=http<br>firewall-cmd  –reload</p>
-</blockquote>
-<p>常用命令</p>
-<blockquote>
-<p>/usr/local/nginx/sbin/nginx -s reload<br>/usr/local/nginx/sbin/nginx -s stop<br>/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Centos</tag>
-        <tag>Nginx</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CentOS 7 Git服务器搭建及配置公钥</title>
     <url>/2018/04/08/CentOS-7-Git%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E5%85%AC%E9%92%A5/</url>
     <content><![CDATA[<a id="more"></a>
@@ -158,7 +125,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#64;&#x71;&#x71;&#46;&#x63;&#111;&#x6d;">&#x78;&#64;&#x71;&#x71;&#46;&#x63;&#111;&#x6d;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#64;&#x71;&#x71;&#46;&#x63;&#x6f;&#109;">&#120;&#64;&#x71;&#x71;&#46;&#x63;&#x6f;&#109;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -169,7 +136,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#x40;&#113;&#x71;&#46;&#x63;&#x6f;&#109;">&#x62;&#x40;&#113;&#x71;&#46;&#x63;&#x6f;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#98;&#x40;&#113;&#113;&#x2e;&#x63;&#x6f;&#x6d;">&#98;&#x40;&#113;&#113;&#x2e;&#x63;&#x6f;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -398,6 +365,39 @@
         <tag>centos7</tag>
         <tag>laravel5</tag>
         <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS 7 安装 Nginx 1.11.x</title>
+    <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/</url>
+    <content><![CDATA[<p><strong>Centos下安装Nginx</strong> </p>
+<a id="more"></a>
+
+<p>一、准备工作 安装必备工具</p>
+<blockquote>
+<p>yum install -y gcc gcc-c++ autoconf automake<br>yum install -y zlib zlib-devel openssl openssl-devel pcre-devel</p>
+</blockquote>
+<p>不安装这些依赖库，后面编译的时候会报错，当然你的系统已经有这些包可以跳过。<br>pcre：用来作地址重写的功能。<br>zlib：nginx 的gzip模块,传输数据打包，省流量（但消耗资源）。<br>openssl：提供ssl加密协议。</p>
+<p>二、添加nginx用户</p>
+<blockquote>
+<p>/usr/sbin/groupadd -f www<br>/usr/sbin/useradd -g www www</p>
+</blockquote>
+<p>三、nginx文件准备及编译</p>
+<blockquote>
+<p>wget <a href="http://nginx.org/download/nginx-1.11.4.tar.gz">http://nginx.org/download/nginx-1.11.4.tar.gz</a><br>tar -zxvf nginx-1.11.4.tar.gz<br>cd nginx-1.11.4/<br>./configure –user=www –group=www<br>make &amp;&amp; make install</p>
+</blockquote>
+<p>四、开始firewall端口服务</p>
+<blockquote>
+<p>firewall-cmd  –permanent –zone=public –add-service=http<br>firewall-cmd  –reload</p>
+</blockquote>
+<p>常用命令</p>
+<blockquote>
+<p>/usr/local/nginx/sbin/nginx -s reload<br>/usr/local/nginx/sbin/nginx -s stop<br>/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Centos</tag>
+        <tag>Nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -1085,25 +1085,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Linux安装配置守护进程</title>
-    <url>/2018/03/09/Linux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> centos 下安装Supervisor</p>
-</blockquote>
-<p>yum install supervisor</p>
-<blockquote>
-<p> 配置Supervisor</p>
-</blockquote>
-<p>cd /etc/supervisord.d/<br>vim laravel-worker.ini<br>systemctl start supervisord</p>
-]]></content>
-      <tags>
-        <tag>linux</tag>
-        <tag>Supervisor</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux下安装node.js</title>
     <url>/2018/03/21/Linux%E4%B8%8B%E5%AE%89%E8%A3%85node-js/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1155,6 +1136,60 @@ public $queue = &#39;listeners&#39;;</code></pre>
       <tags>
         <tag>Linux</tag>
         <tag>node.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux安装配置守护进程</title>
+    <url>/2018/03/09/Linux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> centos 下安装Supervisor</p>
+</blockquote>
+<p>yum install supervisor</p>
+<blockquote>
+<p> 配置Supervisor</p>
+</blockquote>
+<p>cd /etc/supervisord.d/<br>vim laravel-worker.ini<br>systemctl start supervisord</p>
+]]></content>
+      <tags>
+        <tag>linux</tag>
+        <tag>Supervisor</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux定时任务采集聚合数据api文章</title>
+    <url>/2019/04/18/Linux%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E9%87%87%E9%9B%86%E8%81%9A%E5%90%88%E6%95%B0%E6%8D%AEapi%E6%96%87%E7%AB%A0/</url>
+    <content><![CDATA[<p><strong>Linux定时任务采集文章</strong> </p>
+<a id="more"></a>
+
+<p>一、<a href="https://learnku.com/docs/laravel/5.7/scheduling/1396" target="_blank">[ Artisan 命令调度-任务调度 ]</a></p>
+<p>二、crond服务</p>
+<p>crontab:</p>
+<blockquote>
+<p>crontab -l //列出crontab<br>crontab -e //编辑crontab<br>crontab -r //删除crontab</p>
+</blockquote>
+<p>服务操作：</p>
+<blockquote>
+<p>service crond start //启动服务<br>  service crond stop //关闭服务<br>  service crond restart //重启服务<br>  service crond reload //重新载入配置<br>  service crond status //查看状态</p>
+</blockquote>
+<p>三、创建crontab</p>
+<blockquote>
+<p>crontab -e </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">* * * * * php &#x2F;home&#x2F;wwwroot&#x2F;wwyl.xxxx.xyz&#x2F;wwyl&#x2F;artisan schedule:run &gt;&gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>四、查看crontab状态并启动</p>
+<blockquote>
+<p>service crond status<br>service crond start </p>
+</blockquote>
+<p>五、查看结果</p>
+<p><img src="/assets/blogImg/crontab.png" alt="ico原来的样子"></p>
+]]></content>
+      <tags>
+        <tag>Laravel</tag>
+        <tag>Linux</tag>
+        <tag>crontab</tag>
       </tags>
   </entry>
   <entry>
@@ -1277,41 +1312,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Linux定时任务采集聚合数据api文章</title>
-    <url>/2019/04/18/Linux%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E9%87%87%E9%9B%86%E8%81%9A%E5%90%88%E6%95%B0%E6%8D%AEapi%E6%96%87%E7%AB%A0/</url>
-    <content><![CDATA[<p><strong>Linux定时任务采集文章</strong> </p>
-<a id="more"></a>
-
-<p>一、<a href="https://learnku.com/docs/laravel/5.7/scheduling/1396" target="_blank">[ Artisan 命令调度-任务调度 ]</a></p>
-<p>二、crond服务</p>
-<p>crontab:</p>
-<blockquote>
-<p>crontab -l //列出crontab<br>crontab -e //编辑crontab<br>crontab -r //删除crontab</p>
-</blockquote>
-<p>服务操作：</p>
-<blockquote>
-<p>service crond start //启动服务<br>  service crond stop //关闭服务<br>  service crond restart //重启服务<br>  service crond reload //重新载入配置<br>  service crond status //查看状态</p>
-</blockquote>
-<p>三、创建crontab</p>
-<blockquote>
-<p>crontab -e </p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">* * * * * php &#x2F;home&#x2F;wwwroot&#x2F;wwyl.xxxx.xyz&#x2F;wwyl&#x2F;artisan schedule:run &gt;&gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
-
-<p>四、查看crontab状态并启动</p>
-<blockquote>
-<p>service crond status<br>service crond start </p>
-</blockquote>
-<p>五、查看结果</p>
-<p><img src="/assets/blogImg/crontab.png" alt="ico原来的样子"></p>
-]]></content>
-      <tags>
-        <tag>Laravel</tag>
-        <tag>Linux</tag>
-        <tag>crontab</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MySQL出现1030-Got error 28 from storage engine错误</title>
     <url>/2018/11/22/MySQL%E5%87%BA%E7%8E%B01030-Got-error-28-from-storage-engine%E9%94%99%E8%AF%AF/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1367,22 +1367,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Nginx 反向代理</title>
-    <url>/2019/09/19/Nginx-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><a href="https://baishunhua.com/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/" target="_blank">安装nginx</a></p>
-<blockquote>
-<p>高防服务器上 nginx.conf 配置模板</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server_name  www.xxx.com;</span><br><span class="line">...</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">    proxy_pass http:&#x2F;&#x2F;ip[原服务器ip];</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>nginx</tag>
-        <tag>反向代理</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Nginx分发-指定文件名称</title>
     <url>/2020/12/07/Nginx%E5%88%86%E5%8F%91-%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E5%90%8D%E7%A7%B0/</url>
     <content><![CDATA[<p><strong>Nginx分发-指定文件名称</strong></p>
@@ -1410,6 +1394,22 @@ public $queue = &#39;listeners&#39;;</code></pre>
 ]]></content>
       <tags>
         <tag>nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nginx 反向代理</title>
+    <url>/2019/09/19/Nginx-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><a href="https://baishunhua.com/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/" target="_blank">安装nginx</a></p>
+<blockquote>
+<p>高防服务器上 nginx.conf 配置模板</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server_name  www.xxx.com;</span><br><span class="line">...</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">    proxy_pass http:&#x2F;&#x2F;ip[原服务器ip];</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>nginx</tag>
+        <tag>反向代理</tag>
       </tags>
   </entry>
   <entry>
@@ -2255,7 +2255,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#103;&#x69;&#116;&#64;&#x67;&#x69;&#x74;&#104;&#x75;&#98;&#x2e;&#x63;&#111;&#x6d;">&#103;&#x69;&#116;&#64;&#x67;&#x69;&#x74;&#104;&#x75;&#98;&#x2e;&#x63;&#111;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#103;&#105;&#x74;&#x40;&#103;&#105;&#x74;&#104;&#117;&#x62;&#46;&#x63;&#x6f;&#x6d;">&#103;&#105;&#x74;&#x40;&#103;&#105;&#x74;&#104;&#117;&#x62;&#46;&#x63;&#x6f;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -2381,64 +2381,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>install program</title>
-    <url>/2017/11/02/install-program/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> 安装项目及配置svn</p>
-</blockquote>
-<ul>
-<li>lnmp vhost add</li>
-<li>mkdir -p /home/svn/repos</li>
-<li>svnadmin create /home/svn/repos/</li>
-<li>cd /home/svn/repos/conf</li>
-<li>vi passwd</li>
-<li>vim authz</li>
-<li>vim svnserve.conf</li>
-<li>cd ../hooks/</li>
-<li>cp post-commit.tmpl post-commit</li>
-<li>chmod +x post-commit</li>
-<li>vim post-commit</li>
-<li>cd /home/wwwroot/<a href="http://www.xxxx.cn/">www.xxxx.cn/</a></li>
-<li>svn co svn://127.0.0.1/repos ./</li>
-</ul>
-<blockquote>
-<p> 配置、修改</p>
-</blockquote>
-<ul>
-<li>vim /usr/local/nginx/conf/vhost/<a href="http://www.xxxx.cn.conf/">www.xxxx.cn.conf</a></li>
-<li>/etc/init.d/nginx restart</li>
-<li>vim /home/wwwroot/mnzr.xiazhiweizhi.cn/config/queue.php</li>
-<li>cd /etc/supervisord.d/</li>
-<li>cp laravel-worker-zr.ini laravel-worker-mnzr.ini</li>
-<li>chmod -R 777 bootstrap/cache/ storage/ public/upload/</li>
-<li>chown -R www:www ../mnzr.xiazhiweizhi.cn/</li>
-<li>supervisorctl status</li>
-<li>supervisorctl reread</li>
-<li>supervisorctl update</li>
-<li>supervisorctl restart laravel-worker-xxx:*</li>
-<li>composer require simplesoftwareio/simple-qrcode</li>
-<li>history |grep composer</li>
-<li>composer install</li>
-<li>php artisan storage:link</li>
-<li>php artisan passport:keys</li>
-</ul>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>centos7</tag>
-        <tag>laravel5</tag>
-        <tag>install</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>go-zero的安装及使用</title>
     <url>/2021/09/08/go-zero%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><strong>go-zero的安装及使用</strong> </p>
@@ -2560,15 +2502,49 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>laravel-admin 实现字段排序</title>
-    <url>/2017/09/21/laravel-admin-%E5%AE%9E%E7%8E%B0%E5%AD%97%E6%AE%B5%E6%8E%92%E5%BA%8F/</url>
+    <title>install program</title>
+    <url>/2017/11/02/install-program/</url>
     <content><![CDATA[<a id="more"></a>
 
 <blockquote>
-<p> 排序代码</p>
+<p> 安装项目及配置svn</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">protected function grid()</span><br><span class="line">&#123;</span><br><span class="line">    return Admin::grid(Member::class, function (Grid $grid) &#123;</span><br><span class="line"></span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;id&#39;, &#39;desc&#39;);</span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;balance&#39;, &#39;desc&#39;);</span><br><span class="line"></span><br><span class="line">        $grid-&gt;id(&#39;ID&#39;)-&gt;sortable();</span><br><span class="line"></span><br><span class="line">        $grid-&gt;balance(&#39;余额&#39;)-&gt;sortable();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<ul>
+<li>lnmp vhost add</li>
+<li>mkdir -p /home/svn/repos</li>
+<li>svnadmin create /home/svn/repos/</li>
+<li>cd /home/svn/repos/conf</li>
+<li>vi passwd</li>
+<li>vim authz</li>
+<li>vim svnserve.conf</li>
+<li>cd ../hooks/</li>
+<li>cp post-commit.tmpl post-commit</li>
+<li>chmod +x post-commit</li>
+<li>vim post-commit</li>
+<li>cd /home/wwwroot/<a href="http://www.xxxx.cn/">www.xxxx.cn/</a></li>
+<li>svn co svn://127.0.0.1/repos ./</li>
+</ul>
+<blockquote>
+<p> 配置、修改</p>
+</blockquote>
+<ul>
+<li>vim /usr/local/nginx/conf/vhost/<a href="http://www.xxxx.cn.conf/">www.xxxx.cn.conf</a></li>
+<li>/etc/init.d/nginx restart</li>
+<li>vim /home/wwwroot/mnzr.xiazhiweizhi.cn/config/queue.php</li>
+<li>cd /etc/supervisord.d/</li>
+<li>cp laravel-worker-zr.ini laravel-worker-mnzr.ini</li>
+<li>chmod -R 777 bootstrap/cache/ storage/ public/upload/</li>
+<li>chown -R www:www ../mnzr.xiazhiweizhi.cn/</li>
+<li>supervisorctl status</li>
+<li>supervisorctl reread</li>
+<li>supervisorctl update</li>
+<li>supervisorctl restart laravel-worker-xxx:*</li>
+<li>composer require simplesoftwareio/simple-qrcode</li>
+<li>history |grep composer</li>
+<li>composer install</li>
+<li>php artisan storage:link</li>
+<li>php artisan passport:keys</li>
+</ul>
 <hr>
 <ul>
 <li><strong>Notice</strong></li>
@@ -2578,8 +2554,9 @@ class QuotesSpider(scrapy.Spider):
 </blockquote>
 ]]></content>
       <tags>
-        <tag>laravel-admin</tag>
-        <tag>字段排序</tag>
+        <tag>centos7</tag>
+        <tag>laravel5</tag>
+        <tag>install</tag>
       </tags>
   </entry>
   <entry>
@@ -2610,6 +2587,29 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>laravel5.x</tag>
         <tag>修改器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>laravel-admin 实现字段排序</title>
+    <url>/2017/09/21/laravel-admin-%E5%AE%9E%E7%8E%B0%E5%AD%97%E6%AE%B5%E6%8E%92%E5%BA%8F/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> 排序代码</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">protected function grid()</span><br><span class="line">&#123;</span><br><span class="line">    return Admin::grid(Member::class, function (Grid $grid) &#123;</span><br><span class="line"></span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;id&#39;, &#39;desc&#39;);</span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;balance&#39;, &#39;desc&#39;);</span><br><span class="line"></span><br><span class="line">        $grid-&gt;id(&#39;ID&#39;)-&gt;sortable();</span><br><span class="line"></span><br><span class="line">        $grid-&gt;balance(&#39;余额&#39;)-&gt;sortable();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>laravel-admin</tag>
+        <tag>字段排序</tag>
       </tags>
   </entry>
   <entry>
@@ -2752,70 +2752,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>linux centos7.3 lnmp一键安装包集成</title>
-    <url>/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E9%9B%86%E6%88%90/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>一、下载并安装LNMP一键安装包</strong></p>
-<p>安装LNMP稳定版</p>
-<blockquote>
-<p> wget -c <a href="http://soft.vpser.net/lnmp/lnmp1.4.tar.gz">http://soft.vpser.net/lnmp/lnmp1.4.tar.gz</a> &amp;&amp; tar zxf lnmp1.4.tar.gz &amp;&amp; cd lnmp1.4 &amp;&amp; ./install.sh lnmp：</p>
-</blockquote>
-<p>默认安装lnmp可不写，如需要安装LNMPA或LAMP，将./install.sh 后面的参数替换为lnmpa或lamp即可。如需更改网站和数据库目录先修改安装包目录下的 lnmp.conf 文件。</p>
-<blockquote>
-<p> 运行上述LNMP安装命令后，会出现如下提示：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/1.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 输入对应MySQL或MariaDB版本前面的序号，回车进入下一步.：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/2.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 需要设置MySQL的root密码（不输入直接回车将会设置为root）如果输入有错误需要删除时，可以按住Ctrl再按Backspace键进行删除(个别情况下是只需要Backspace键)。输入后回车进入下一步，如下图所示：：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/3.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 询问是否需要启用MySQL InnoDB，InnoDB引擎默认为开启，一般建议开启，直接回车或输入 y ，如果确定确实不需要该引擎可以输入 n，输入完成，回车进入下一步。注意：选择PHP7等高版本时需要自行确认是否与自己的程序兼容。</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/4.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 输入要选择的PHP版本的序号，回车进入下一步，选择是否安装内存优化：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/5.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 再选择Apache版本</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/6.png" alt="ico原来的样子"></p>
-<p>按提示输入对应版本前面的数字序号，回车。</p>
-<p>提示”Press any key to install…or Press Ctrl+c to cancel”后，按回车键确认开始安装。<br>LNMP脚本就会自动安装编译Nginx、MySQL、PHP、phpMyAdmin、Zend Optimizer这几个软件。</p>
-<p>安装时间可能会几十分钟到几个小时不等，主要是机器的配置网速等原因会造成影响。</p>
-<blockquote>
-<p> 安装完成  如果显示Nginx: OK，MySQL: OK，PHP: OK</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/7.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 并且Nginx、MySQL、PHP都是running，80和3306端口都存在，并提示安装使用的时间及Install lnmp V1.4 completed! enjoy it.的话，说明已经安装成功</p>
-</blockquote>
-<p>安装失败</p>
-<blockquote>
-<p> 安装失败</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/8.png" alt="ico原来的样子"></p>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>linux</tag>
-        <tag>centos7.3</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>linux 常用小技巧</title>
     <url>/2022/01/12/linux-%E5%B8%B8%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/linux.png" alt="linux"></p>
@@ -2885,6 +2821,70 @@ class QuotesSpider(scrapy.Spider):
 ]]></content>
       <tags>
         <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux centos7.3 lnmp一键安装包集成</title>
+    <url>/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E9%9B%86%E6%88%90/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>一、下载并安装LNMP一键安装包</strong></p>
+<p>安装LNMP稳定版</p>
+<blockquote>
+<p> wget -c <a href="http://soft.vpser.net/lnmp/lnmp1.4.tar.gz">http://soft.vpser.net/lnmp/lnmp1.4.tar.gz</a> &amp;&amp; tar zxf lnmp1.4.tar.gz &amp;&amp; cd lnmp1.4 &amp;&amp; ./install.sh lnmp：</p>
+</blockquote>
+<p>默认安装lnmp可不写，如需要安装LNMPA或LAMP，将./install.sh 后面的参数替换为lnmpa或lamp即可。如需更改网站和数据库目录先修改安装包目录下的 lnmp.conf 文件。</p>
+<blockquote>
+<p> 运行上述LNMP安装命令后，会出现如下提示：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/1.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 输入对应MySQL或MariaDB版本前面的序号，回车进入下一步.：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/2.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 需要设置MySQL的root密码（不输入直接回车将会设置为root）如果输入有错误需要删除时，可以按住Ctrl再按Backspace键进行删除(个别情况下是只需要Backspace键)。输入后回车进入下一步，如下图所示：：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/3.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 询问是否需要启用MySQL InnoDB，InnoDB引擎默认为开启，一般建议开启，直接回车或输入 y ，如果确定确实不需要该引擎可以输入 n，输入完成，回车进入下一步。注意：选择PHP7等高版本时需要自行确认是否与自己的程序兼容。</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/4.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 输入要选择的PHP版本的序号，回车进入下一步，选择是否安装内存优化：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/5.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 再选择Apache版本</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/6.png" alt="ico原来的样子"></p>
+<p>按提示输入对应版本前面的数字序号，回车。</p>
+<p>提示”Press any key to install…or Press Ctrl+c to cancel”后，按回车键确认开始安装。<br>LNMP脚本就会自动安装编译Nginx、MySQL、PHP、phpMyAdmin、Zend Optimizer这几个软件。</p>
+<p>安装时间可能会几十分钟到几个小时不等，主要是机器的配置网速等原因会造成影响。</p>
+<blockquote>
+<p> 安装完成  如果显示Nginx: OK，MySQL: OK，PHP: OK</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/7.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 并且Nginx、MySQL、PHP都是running，80和3306端口都存在，并提示安装使用的时间及Install lnmp V1.4 completed! enjoy it.的话，说明已经安装成功</p>
+</blockquote>
+<p>安装失败</p>
+<blockquote>
+<p> 安装失败</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/8.png" alt="ico原来的样子"></p>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>lnmp</tag>
+        <tag>linux</tag>
+        <tag>centos7.3</tag>
       </tags>
   </entry>
   <entry>
@@ -3262,7 +3262,7 @@ class QuotesSpider(scrapy.Spider):
 </blockquote>
 <p>二、使用npm下载 web框架express模块</p>
 <blockquote>
-<p>npm install --save <a href="mailto:&#101;&#x78;&#x70;&#x72;&#x65;&#115;&#x73;&#64;&#x34;&#x2e;&#x31;&#x35;&#x2e;&#50;">&#101;&#x78;&#x70;&#x72;&#x65;&#115;&#x73;&#64;&#x34;&#x2e;&#x31;&#x35;&#x2e;&#50;</a></p>
+<p>npm install --save <a href="mailto:&#x65;&#x78;&#x70;&#x72;&#101;&#115;&#x73;&#x40;&#x34;&#x2e;&#x31;&#x35;&#x2e;&#x32;">&#x65;&#x78;&#x70;&#x72;&#101;&#115;&#x73;&#x40;&#x34;&#x2e;&#x31;&#x35;&#x2e;&#x32;</a></p>
 </blockquote>
 <p>三、使用npm下载socket.io模块</p>
 <blockquote>
@@ -3458,6 +3458,23 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>使用git 与github友好交流</title>
+    <url>/2017/08/11/%E4%BD%BF%E7%94%A8git-%E4%B8%8Egithub%E5%8F%8B%E5%A5%BD%E4%BA%A4%E6%B5%81/</url>
+    <content><![CDATA[<p>##<strong>本文主要介绍window 端Git 与github友好交流</strong></p>
+<blockquote>
+<p>1、安装window版（32/64）git。 window端安装过程无脑略过—— </p>
+</blockquote>
+<a id="more"></a>
+
+
+<p>2、本文默认github已注册并添加过 ssh key<br>3、github上新建仓库<br>git add / add *<br>git commit -m<br>git remote add origin <a href="http://xxxx.github.io/">http://xxxx.github.io</a><br>git push -u origin master<br>git pull<br>git rm -r xxx<br>git commit -m ‘’<br>git push -u origin master<br>git  –version</p>
+]]></content>
+      <tags>
+        <tag>git</tag>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>发布Laravel扩展包larapay</title>
     <url>/2018/12/04/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85larapay/</url>
     <content><![CDATA[<p><strong>发布Laravel扩展封装支付包larapay</strong> </p>
@@ -3493,20 +3510,34 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>使用git 与github友好交流</title>
-    <url>/2017/08/11/%E4%BD%BF%E7%94%A8git-%E4%B8%8Egithub%E5%8F%8B%E5%A5%BD%E4%BA%A4%E6%B5%81/</url>
-    <content><![CDATA[<p>##<strong>本文主要介绍window 端Git 与github友好交流</strong></p>
-<blockquote>
-<p>1、安装window版（32/64）git。 window端安装过程无脑略过—— </p>
-</blockquote>
+    <title>发布Laravel扩展包mqtt</title>
+    <url>/2021/02/01/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85mqtt/</url>
+    <content><![CDATA[<p><strong>发布Laravel扩展包mqtt</strong> </p>
 <a id="more"></a>
 
-
-<p>2、本文默认github已注册并添加过 ssh key<br>3、github上新建仓库<br>git add / add *<br>git commit -m<br>git remote add origin <a href="http://xxxx.github.io/">http://xxxx.github.io</a><br>git push -u origin master<br>git pull<br>git rm -r xxx<br>git commit -m ‘’<br>git push -u origin master<br>git  –version</p>
+<p>一、编写扩展包</p>
+<blockquote>
+<p><a href="http://baishunhua.com/2018/12/04/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85larapay/" target="_blank">[ 参考文章 ]</a></p>
+</blockquote>
+<p>二、Github地址</p>
+<blockquote>
+<p><a href="https://github.com/shunhua/mqtt" target="_blank">[ mqtt ]</a></p>
+</blockquote>
+<p>三、Packagist地址</p>
+<blockquote>
+<p><a href="https://packagist.org/packages/shunhua/laravel-mqtt" target="_blank">[ Packagist ]</a></p>
+</blockquote>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p> 目前 tags 为 v1.0</p>
+</blockquote>
 ]]></content>
       <tags>
-        <tag>git</tag>
-        <tag>github</tag>
+        <tag>laravel</tag>
+        <tag>composer</tag>
+        <tag>mqtt</tag>
       </tags>
   </entry>
   <entry>
@@ -3539,37 +3570,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>Safari</tag>
         <tag>Copy</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>发布Laravel扩展包mqtt</title>
-    <url>/2021/02/01/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85mqtt/</url>
-    <content><![CDATA[<p><strong>发布Laravel扩展包mqtt</strong> </p>
-<a id="more"></a>
-
-<p>一、编写扩展包</p>
-<blockquote>
-<p><a href="http://baishunhua.com/2018/12/04/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85larapay/" target="_blank">[ 参考文章 ]</a></p>
-</blockquote>
-<p>二、Github地址</p>
-<blockquote>
-<p><a href="https://github.com/shunhua/mqtt" target="_blank">[ mqtt ]</a></p>
-</blockquote>
-<p>三、Packagist地址</p>
-<blockquote>
-<p><a href="https://packagist.org/packages/shunhua/laravel-mqtt" target="_blank">[ Packagist ]</a></p>
-</blockquote>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p> 目前 tags 为 v1.0</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>laravel</tag>
-        <tag>composer</tag>
-        <tag>mqtt</tag>
       </tags>
   </entry>
   <entry>
@@ -3761,49 +3761,28 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>连续轮询数组中的元素[s/m/d]</title>
-    <url>/2017/12/27/%E8%BF%9E%E7%BB%AD%E8%BD%AE%E8%AF%A2%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0-s-m-d/</url>
-    <content><![CDATA[<p>##<strong>连续轮询数组中的元素[s/m/d]</strong></p>
+    <title>界面化管理部署DNMP</title>
+    <url>/2021/01/21/%E7%95%8C%E9%9D%A2%E5%8C%96%E7%AE%A1%E7%90%86%E9%83%A8%E7%BD%B2DNMP/</url>
+    <content><![CDATA[<p><strong>界面化管理部署DNMP</strong></p>
 <a id="more"></a>
 
+<p>github: <a href="https://github.com/shunhua/dnmp" target="_blank">[ shunhua/dnmp ]</a></p>
 <blockquote>
-<p>实现在任何时间段连续轮询出数组中的元素—— </p>
+<p>docker-compose up -d</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">   public $Randomnotify &#x3D; array(</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid1&#39;,&#39;key&#39;&#x3D;&gt;&#39;key1&#39;),</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid2&#39;,&#39;key&#39;&#x3D;&gt;&#39;key2&#39;),</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid3&#39;,&#39;key&#39;&#x3D;&gt;&#39;key3&#39;),</span><br><span class="line">	...</span><br><span class="line">);</span><br><span class="line">public function dataPollingInterval($list,$polling_time&#x3D;&#39;1m&#39;,$polling_number&#x3D;1) &#123;</span><br><span class="line">    &#x2F;&#x2F; 规划轮询间隔时间的参数:</span><br><span class="line">    $interval &#x3D; false;</span><br><span class="line">	&#x2F;&#x2F; 判断$polling_time 的类型是 秒、分、小时、天 中的哪1种。</span><br><span class="line">    $arg &#x3D; array( </span><br><span class="line">        &#39;s&#39;&#x3D;&gt;1,            &#x2F;&#x2F; 秒</span><br><span class="line">        &#39;m&#39;&#x3D;&gt;60,            &#x2F;&#x2F; 分&#x3D; 60 sec</span><br><span class="line">        &#39;h&#39; &#x3D;&gt;3600,        &#x2F;&#x2F; 时&#x3D; 3600 sec</span><br><span class="line">        &#39;d&#39; &#x3D;&gt; 86400,    &#x2F;&#x2F; 天&#x3D; 86400 sec</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 判断间隔时间的类型，并计算间隔时间</span><br><span class="line">    foreach ($arg as $k &#x3D;&gt; $v) &#123;</span><br><span class="line">        if (false!&#x3D;&#x3D; stripos($polling_time,$k)) &#123;</span><br><span class="line">            $interval &#x3D; intval($polling_time)*$v;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	  &#x2F;&#x2F; 判断间隔时间</span><br><span class="line">    if(!is_int($interval))&#123;  </span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">	&#x2F;&#x2F; 从今年开始的秒数</span><br><span class="line">    $this_year_begin_second &#x3D; strtotime(date(&#39;Y-01-01 01:00:01&#39;, time()));</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 当前秒数 - 今年开始的秒数，得到今年到目前为止的秒数。</span><br><span class="line">    $polling_time &#x3D; time()-$this_year_begin_second;</span><br><span class="line">	</span><br><span class="line">    &#x2F;&#x2F; 从今年到目前为止的秒数，计算得到当前轮数</span><br><span class="line">    $len &#x3D; count($list); &#x2F;&#x2F; 总长度</span><br><span class="line">    $start_index &#x3D; intval($polling_time&#x2F;$interval);</span><br><span class="line">    $start_index &#x3D; $polling_number*$start_index%$len; &#x2F;&#x2F; 轮排数量 * 轮数 , 取余 总数量。</span><br><span class="line">	$res &#x3D; array();</span><br><span class="line">    &#x2F;&#x2F; 将轮数 指向到数组的索引，然后从这个索引开始接着往下循环遍历。</span><br><span class="line">    for ($i&#x3D;0; $i&lt;$len; ++$i) &#123;</span><br><span class="line">        $index&#x3D;$i+$start_index; &#x2F;&#x2F; 索引的变化是根据时间来变</span><br><span class="line">        if ($index&gt;&#x3D;$len) &#123;</span><br><span class="line">            $index&#x3D;$index-$len ;</span><br><span class="line">        &#125;</span><br><span class="line">        $res[]&#x3D;$list[$index]; &#x2F;&#x2F; 存入结果</span><br><span class="line">    &#125;</span><br><span class="line">    return $res[0];</span><br><span class="line">&#125;  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>docker 容器启动后 Portainer默认端口：9000</p>
+<blockquote>
+<p>localhost:9000</p>
+</blockquote>
+<p>打开 Portainer, 首次需要创建账户。</p>
+<p>最终效果如下图 :</p>
+<p><img src="/assets/blogImg/p0.png" alt="ico原来的样子"></p>
+<p><img src="/assets/blogImg/p1.png" alt="ico原来的样子"></p>
+<p><img src="/assets/blogImg/p2.png" alt="ico原来的样子"></p>
 ]]></content>
       <tags>
-        <tag>轮询</tag>
-        <tag>数组</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>银联电子支付-chinapay</title>
-    <url>/2018/08/01/%E9%93%B6%E8%81%94%E7%94%B5%E5%AD%90%E6%94%AF%E4%BB%98-chinapay/</url>
-    <content><![CDATA[<p><strong>银联电子支付对接流程</strong></p>
-<a id="more"></a>
-
-<blockquote>
-<p> 申请好商户后查看银联邮件 </p>
-</blockquote>
-<p><img src="/assets/blogImg/yl1.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 根据邮件中的商户信息登录商户管理系统</p>
-</blockquote>
-<p>证书操作参考 邮件中的《企业门户控台证书申请操作指引.docx》</p>
-<p><img src="/assets/blogImg/yl2.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 登录商户管理系统后申请交易证书</p>
-</blockquote>
-<p><img src="/assets/blogImg/yl3.png" alt="ico原来的样子"></p>
-<p>交易证书申请成功之后，激活证书，根据证书文档 导出交易证书私钥</p>
-<blockquote>
-<p> 下载sdk及配置证书路径</p>
-</blockquote>
-<p><img src="/assets/blogImg/yl4.png" alt="ico原来的样子"></p>
-]]></content>
-      <tags>
-        <tag>Chinapay</tag>
-        <tag>银联电子</tag>
+        <tag>DNMP</tag>
+        <tag>Portainer</tag>
       </tags>
   </entry>
   <entry>
@@ -3892,28 +3871,49 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>界面化管理部署DNMP</title>
-    <url>/2021/01/21/%E7%95%8C%E9%9D%A2%E5%8C%96%E7%AE%A1%E7%90%86%E9%83%A8%E7%BD%B2DNMP/</url>
-    <content><![CDATA[<p><strong>界面化管理部署DNMP</strong></p>
+    <title>连续轮询数组中的元素[s/m/d]</title>
+    <url>/2017/12/27/%E8%BF%9E%E7%BB%AD%E8%BD%AE%E8%AF%A2%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0-s-m-d/</url>
+    <content><![CDATA[<p>##<strong>连续轮询数组中的元素[s/m/d]</strong></p>
 <a id="more"></a>
 
-<p>github: <a href="https://github.com/shunhua/dnmp" target="_blank">[ shunhua/dnmp ]</a></p>
 <blockquote>
-<p>docker-compose up -d</p>
+<p>实现在任何时间段连续轮询出数组中的元素—— </p>
 </blockquote>
-<p>docker 容器启动后 Portainer默认端口：9000</p>
-<blockquote>
-<p>localhost:9000</p>
-</blockquote>
-<p>打开 Portainer, 首次需要创建账户。</p>
-<p>最终效果如下图 :</p>
-<p><img src="/assets/blogImg/p0.png" alt="ico原来的样子"></p>
-<p><img src="/assets/blogImg/p1.png" alt="ico原来的样子"></p>
-<p><img src="/assets/blogImg/p2.png" alt="ico原来的样子"></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">   public $Randomnotify &#x3D; array(</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid1&#39;,&#39;key&#39;&#x3D;&gt;&#39;key1&#39;),</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid2&#39;,&#39;key&#39;&#x3D;&gt;&#39;key2&#39;),</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid3&#39;,&#39;key&#39;&#x3D;&gt;&#39;key3&#39;),</span><br><span class="line">	...</span><br><span class="line">);</span><br><span class="line">public function dataPollingInterval($list,$polling_time&#x3D;&#39;1m&#39;,$polling_number&#x3D;1) &#123;</span><br><span class="line">    &#x2F;&#x2F; 规划轮询间隔时间的参数:</span><br><span class="line">    $interval &#x3D; false;</span><br><span class="line">	&#x2F;&#x2F; 判断$polling_time 的类型是 秒、分、小时、天 中的哪1种。</span><br><span class="line">    $arg &#x3D; array( </span><br><span class="line">        &#39;s&#39;&#x3D;&gt;1,            &#x2F;&#x2F; 秒</span><br><span class="line">        &#39;m&#39;&#x3D;&gt;60,            &#x2F;&#x2F; 分&#x3D; 60 sec</span><br><span class="line">        &#39;h&#39; &#x3D;&gt;3600,        &#x2F;&#x2F; 时&#x3D; 3600 sec</span><br><span class="line">        &#39;d&#39; &#x3D;&gt; 86400,    &#x2F;&#x2F; 天&#x3D; 86400 sec</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 判断间隔时间的类型，并计算间隔时间</span><br><span class="line">    foreach ($arg as $k &#x3D;&gt; $v) &#123;</span><br><span class="line">        if (false!&#x3D;&#x3D; stripos($polling_time,$k)) &#123;</span><br><span class="line">            $interval &#x3D; intval($polling_time)*$v;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	  &#x2F;&#x2F; 判断间隔时间</span><br><span class="line">    if(!is_int($interval))&#123;  </span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">	&#x2F;&#x2F; 从今年开始的秒数</span><br><span class="line">    $this_year_begin_second &#x3D; strtotime(date(&#39;Y-01-01 01:00:01&#39;, time()));</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 当前秒数 - 今年开始的秒数，得到今年到目前为止的秒数。</span><br><span class="line">    $polling_time &#x3D; time()-$this_year_begin_second;</span><br><span class="line">	</span><br><span class="line">    &#x2F;&#x2F; 从今年到目前为止的秒数，计算得到当前轮数</span><br><span class="line">    $len &#x3D; count($list); &#x2F;&#x2F; 总长度</span><br><span class="line">    $start_index &#x3D; intval($polling_time&#x2F;$interval);</span><br><span class="line">    $start_index &#x3D; $polling_number*$start_index%$len; &#x2F;&#x2F; 轮排数量 * 轮数 , 取余 总数量。</span><br><span class="line">	$res &#x3D; array();</span><br><span class="line">    &#x2F;&#x2F; 将轮数 指向到数组的索引，然后从这个索引开始接着往下循环遍历。</span><br><span class="line">    for ($i&#x3D;0; $i&lt;$len; ++$i) &#123;</span><br><span class="line">        $index&#x3D;$i+$start_index; &#x2F;&#x2F; 索引的变化是根据时间来变</span><br><span class="line">        if ($index&gt;&#x3D;$len) &#123;</span><br><span class="line">            $index&#x3D;$index-$len ;</span><br><span class="line">        &#125;</span><br><span class="line">        $res[]&#x3D;$list[$index]; &#x2F;&#x2F; 存入结果</span><br><span class="line">    &#125;</span><br><span class="line">    return $res[0];</span><br><span class="line">&#125;  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
-        <tag>DNMP</tag>
-        <tag>Portainer</tag>
+        <tag>轮询</tag>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>银联电子支付-chinapay</title>
+    <url>/2018/08/01/%E9%93%B6%E8%81%94%E7%94%B5%E5%AD%90%E6%94%AF%E4%BB%98-chinapay/</url>
+    <content><![CDATA[<p><strong>银联电子支付对接流程</strong></p>
+<a id="more"></a>
+
+<blockquote>
+<p> 申请好商户后查看银联邮件 </p>
+</blockquote>
+<p><img src="/assets/blogImg/yl1.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 根据邮件中的商户信息登录商户管理系统</p>
+</blockquote>
+<p>证书操作参考 邮件中的《企业门户控台证书申请操作指引.docx》</p>
+<p><img src="/assets/blogImg/yl2.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 登录商户管理系统后申请交易证书</p>
+</blockquote>
+<p><img src="/assets/blogImg/yl3.png" alt="ico原来的样子"></p>
+<p>交易证书申请成功之后，激活证书，根据证书文档 导出交易证书私钥</p>
+<blockquote>
+<p> 下载sdk及配置证书路径</p>
+</blockquote>
+<p><img src="/assets/blogImg/yl4.png" alt="ico原来的样子"></p>
+]]></content>
+      <tags>
+        <tag>Chinapay</tag>
+        <tag>银联电子</tag>
       </tags>
   </entry>
 </search>
