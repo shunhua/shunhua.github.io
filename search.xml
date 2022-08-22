@@ -96,7 +96,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#x40;&#113;&#113;&#46;&#99;&#111;&#109;">&#x78;&#x40;&#113;&#113;&#46;&#99;&#111;&#109;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#64;&#x71;&#113;&#x2e;&#99;&#x6f;&#109;">&#120;&#64;&#x71;&#113;&#x2e;&#99;&#x6f;&#109;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -107,7 +107,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#64;&#113;&#x71;&#46;&#99;&#x6f;&#x6d;">&#x62;&#64;&#113;&#x71;&#46;&#99;&#x6f;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#64;&#113;&#113;&#46;&#x63;&#111;&#109;">&#x62;&#64;&#113;&#113;&#46;&#x63;&#111;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -570,6 +570,67 @@
       </tags>
   </entry>
   <entry>
+    <title>Go 语言基础</title>
+    <url>/2017/11/08/Go-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> 包、变量、函数</p>
+</blockquote>
+<ul>
+<li><p>包<br>每个 Go 程序都是由包组成的。程序运行的入口是包 <code>main</code><br>这个程序使用并导入了包 “fmt” 和 <code>&quot;math/rand&quot;</code>。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;math&#x2F;rand&quot;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>变量<br>var 语句定义了一个变量的列表 如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var c, python, java bool</span><br><span class="line">var i, j int &#x3D; 1, 2</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	var i int</span><br><span class="line">	&#x2F;*在函数中，&#96;:&#x3D;&#96; 简洁赋值语句在明确类型的地方，可以用于替代 var 定义</span><br><span class="line">	函数外的每个语句都必须以关键字开始（&#96;var&#96;、&#96;func&#96;、等等），&#96;:&#x3D;&#96; 结构不能使用在函数外*&#x2F;</span><br><span class="line">	k :&#x3D; 3</span><br><span class="line">	var c, python, java &#x3D; true, false, &quot;no!&quot;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>函数<br>函数可以没有参数或接受多个参数<br>在这个例子中，<code>add</code> 接受两个 int 类型的参数。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func add(x int, y int) int &#123;</span><br><span class="line">	return x + y</span><br><span class="line">&#125;</span><br><span class="line">||</span><br><span class="line">func add(x , y int) int &#123;</span><br><span class="line">	return x + y</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p> 流程控制语句</p>
+</blockquote>
+<ul>
+<li><p>for<br>Go 只有一种循环结构——<code>for</code> 循环<br>基本的 for 循环除了没有了 <code>( )</code> 之外（甚至强制不能使用它们）。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	sum :&#x3D; 0</span><br><span class="line">	for i :&#x3D; 0; i &lt; 10; i++ &#123;</span><br><span class="line">		sum +&#x3D; i</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(sum)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>if<br>if 语句除了没有了 <code>( )</code> 之外（甚至强制不能使用它们）。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func sqrt(x float64) string &#123;</span><br><span class="line">	if x &lt; 0 &#123;</span><br><span class="line">		return sqrt(-x) + &quot;i&quot;</span><br><span class="line">	&#125;</span><br><span class="line">	if v :&#x3D; math.Pow(x, n); v &lt; lim &#123;</span><br><span class="line">		return v</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		fmt.Printf(&quot;%g &gt;&#x3D; %g\n&quot;, v, lim)</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>switch<br>如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	fmt.Print(&quot;Go runs on &quot;)</span><br><span class="line">	switch os :&#x3D; runtime.GOOS; os &#123;</span><br><span class="line">	case &quot;darwin&quot;:</span><br><span class="line">		fmt.Println(&quot;OS X.&quot;)</span><br><span class="line">	case &quot;linux&quot;:</span><br><span class="line">		fmt.Println(&quot;Linux.&quot;)</span><br><span class="line">	default:</span><br><span class="line">		&#x2F;&#x2F; freebsd, openbsd,</span><br><span class="line">		&#x2F;&#x2F; plan9, windows...</span><br><span class="line">		fmt.Printf(&quot;%s.&quot;, os)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>defer<br>defer 语句会延迟函数的执行直到上层函数返回。<br>延迟调用的参数会立刻生成，但是在上层函数返回前函数都不会被调用。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	defer fmt.Println(&quot;world&quot;)&#x2F;&#x2F;延迟函数</span><br><span class="line">	fmt.Println(&quot;hello&quot;) &#x2F;&#x2F;上层函数</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;hello</span><br><span class="line">&#x2F;&#x2F;wolrd</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p> 复杂类型</p>
+</blockquote>
+<ul>
+<li><p>指针<br>Go 具有指针。 指针保存了变量的内存地址</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	i, j :&#x3D; 42, 2701</span><br><span class="line"></span><br><span class="line">	p :&#x3D; &amp;i         &#x2F;* 生成一个指向 i 的指针 *&#x2F;</span><br><span class="line">	fmt.Println(*p) &#x2F;* 通过指针 p 读取 i    *&#x2F;</span><br><span class="line">	*p &#x3D; 21         &#x2F;* 通过指针 p 设置 i    *&#x2F;</span><br><span class="line">	fmt.Println(i)  &#x2F;* 输出 i &#x3D;21          *&#x2F; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>结构体<br>一个结构体（<code>struct</code>）就是一个字段的集合</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type Vertex struct &#123;</span><br><span class="line">	X int</span><br><span class="line">	Y int</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">v :&#x3D; Vertex&#123;1, 2&#125;</span><br><span class="line">v.X &#x3D; 4</span><br><span class="line">fmt.Println(v.X)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数组<br>类型 [n]T 是一个有 n 个类型为 T 的值的数组</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	var a [2]string</span><br><span class="line">	a[0] &#x3D; &quot;Hello&quot;</span><br><span class="line">	a[1] &#x3D; &quot;World&quot;</span><br><span class="line">	fmt.Println(a[0], a[1])</span><br><span class="line">	fmt.Println(a)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>slice<br>一个 slice 会指向一个序列的值，并且包含了长度信息<br>s[lo:hi]表示从 lo 到 hi-1 的 slice 元素，含两端。因此<br>s[lo:lo]是空的，而<br>s[lo:lo+1]有一个元素。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	p :&#x3D; []int&#123;2, 3, 5, 7, 11, 13&#125;</span><br><span class="line">	fmt.Println(&quot;p &#x3D;&#x3D;&quot;, p)</span><br><span class="line"></span><br><span class="line">	for i :&#x3D; 0; i &lt; len(p); i++ &#123;</span><br><span class="line">		fmt.Printf(&quot;p[%d] &#x3D;&#x3D; %d\n&quot;, i, p[i])</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>map<br>map 映射键到值</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type Vertex struct &#123;</span><br><span class="line">	Lat, Long float64</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var m map[string]Vertex</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	m &#x3D; make(map[string]Vertex)</span><br><span class="line">	m[&quot;Bell Labs&quot;] &#x3D; Vertex&#123;</span><br><span class="line">		40.68433, -74.39967,</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(m[&quot;Bell Labs&quot;])</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>golang</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LNMP一键安装包常用命令及配置文件路径</title>
     <url>/2017/12/06/LNMP%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84/</url>
     <content><![CDATA[<a id="more"></a>
@@ -645,67 +706,6 @@
 ]]></content>
       <tags>
         <tag>lnmp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Go 语言基础</title>
-    <url>/2017/11/08/Go-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> 包、变量、函数</p>
-</blockquote>
-<ul>
-<li><p>包<br>每个 Go 程序都是由包组成的。程序运行的入口是包 <code>main</code><br>这个程序使用并导入了包 “fmt” 和 <code>&quot;math/rand&quot;</code>。如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;math&#x2F;rand&quot;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>变量<br>var 语句定义了一个变量的列表 如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var c, python, java bool</span><br><span class="line">var i, j int &#x3D; 1, 2</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	var i int</span><br><span class="line">	&#x2F;*在函数中，&#96;:&#x3D;&#96; 简洁赋值语句在明确类型的地方，可以用于替代 var 定义</span><br><span class="line">	函数外的每个语句都必须以关键字开始（&#96;var&#96;、&#96;func&#96;、等等），&#96;:&#x3D;&#96; 结构不能使用在函数外*&#x2F;</span><br><span class="line">	k :&#x3D; 3</span><br><span class="line">	var c, python, java &#x3D; true, false, &quot;no!&quot;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li><p>函数<br>函数可以没有参数或接受多个参数<br>在这个例子中，<code>add</code> 接受两个 int 类型的参数。如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func add(x int, y int) int &#123;</span><br><span class="line">	return x + y</span><br><span class="line">&#125;</span><br><span class="line">||</span><br><span class="line">func add(x , y int) int &#123;</span><br><span class="line">	return x + y</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<blockquote>
-<p> 流程控制语句</p>
-</blockquote>
-<ul>
-<li><p>for<br>Go 只有一种循环结构——<code>for</code> 循环<br>基本的 for 循环除了没有了 <code>( )</code> 之外（甚至强制不能使用它们）。如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	sum :&#x3D; 0</span><br><span class="line">	for i :&#x3D; 0; i &lt; 10; i++ &#123;</span><br><span class="line">		sum +&#x3D; i</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(sum)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>if<br>if 语句除了没有了 <code>( )</code> 之外（甚至强制不能使用它们）。如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func sqrt(x float64) string &#123;</span><br><span class="line">	if x &lt; 0 &#123;</span><br><span class="line">		return sqrt(-x) + &quot;i&quot;</span><br><span class="line">	&#125;</span><br><span class="line">	if v :&#x3D; math.Pow(x, n); v &lt; lim &#123;</span><br><span class="line">		return v</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		fmt.Printf(&quot;%g &gt;&#x3D; %g\n&quot;, v, lim)</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>switch<br>如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	fmt.Print(&quot;Go runs on &quot;)</span><br><span class="line">	switch os :&#x3D; runtime.GOOS; os &#123;</span><br><span class="line">	case &quot;darwin&quot;:</span><br><span class="line">		fmt.Println(&quot;OS X.&quot;)</span><br><span class="line">	case &quot;linux&quot;:</span><br><span class="line">		fmt.Println(&quot;Linux.&quot;)</span><br><span class="line">	default:</span><br><span class="line">		&#x2F;&#x2F; freebsd, openbsd,</span><br><span class="line">		&#x2F;&#x2F; plan9, windows...</span><br><span class="line">		fmt.Printf(&quot;%s.&quot;, os)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>defer<br>defer 语句会延迟函数的执行直到上层函数返回。<br>延迟调用的参数会立刻生成，但是在上层函数返回前函数都不会被调用。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	defer fmt.Println(&quot;world&quot;)&#x2F;&#x2F;延迟函数</span><br><span class="line">	fmt.Println(&quot;hello&quot;) &#x2F;&#x2F;上层函数</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;hello</span><br><span class="line">&#x2F;&#x2F;wolrd</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<blockquote>
-<p> 复杂类型</p>
-</blockquote>
-<ul>
-<li><p>指针<br>Go 具有指针。 指针保存了变量的内存地址</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	i, j :&#x3D; 42, 2701</span><br><span class="line"></span><br><span class="line">	p :&#x3D; &amp;i         &#x2F;* 生成一个指向 i 的指针 *&#x2F;</span><br><span class="line">	fmt.Println(*p) &#x2F;* 通过指针 p 读取 i    *&#x2F;</span><br><span class="line">	*p &#x3D; 21         &#x2F;* 通过指针 p 设置 i    *&#x2F;</span><br><span class="line">	fmt.Println(i)  &#x2F;* 输出 i &#x3D;21          *&#x2F; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>结构体<br>一个结构体（<code>struct</code>）就是一个字段的集合</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type Vertex struct &#123;</span><br><span class="line">	X int</span><br><span class="line">	Y int</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">v :&#x3D; Vertex&#123;1, 2&#125;</span><br><span class="line">v.X &#x3D; 4</span><br><span class="line">fmt.Println(v.X)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>数组<br>类型 [n]T 是一个有 n 个类型为 T 的值的数组</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	var a [2]string</span><br><span class="line">	a[0] &#x3D; &quot;Hello&quot;</span><br><span class="line">	a[1] &#x3D; &quot;World&quot;</span><br><span class="line">	fmt.Println(a[0], a[1])</span><br><span class="line">	fmt.Println(a)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>slice<br>一个 slice 会指向一个序列的值，并且包含了长度信息<br>s[lo:hi]表示从 lo 到 hi-1 的 slice 元素，含两端。因此<br>s[lo:lo]是空的，而<br>s[lo:lo+1]有一个元素。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	p :&#x3D; []int&#123;2, 3, 5, 7, 11, 13&#125;</span><br><span class="line">	fmt.Println(&quot;p &#x3D;&#x3D;&quot;, p)</span><br><span class="line"></span><br><span class="line">	for i :&#x3D; 0; i &lt; len(p); i++ &#123;</span><br><span class="line">		fmt.Printf(&quot;p[%d] &#x3D;&#x3D; %d\n&quot;, i, p[i])</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>map<br>map 映射键到值</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type Vertex struct &#123;</span><br><span class="line">	Lat, Long float64</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var m map[string]Vertex</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	m &#x3D; make(map[string]Vertex)</span><br><span class="line">	m[&quot;Bell Labs&quot;] &#x3D; Vertex&#123;</span><br><span class="line">		40.68433, -74.39967,</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(m[&quot;Bell Labs&quot;])</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>golang</tag>
       </tags>
   </entry>
   <entry>
@@ -1158,6 +1158,38 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Live 阿里云直播</title>
+    <url>/2019/07/04/Live-%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%B4%E6%92%AD/</url>
+    <content><![CDATA[<a id="more"></a>
+<p> <a href="https://help.aliyun.com/document_detail/86866.html?spm=a2c4g.11186623.6.573.72df68123ova0d" target="_blank">[阿里云文档]</a> 具体流程依据文档<br> 需要：备案域名 / 直播云服务器</p>
+<blockquote>
+<p>开通阿里云直播控制台</p>
+</blockquote>
+<p><img src="/assets/aliyun/1.png" alt="ico原来的样子"><br><img src="/assets/aliyun/2.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>直播控制台-概览配置 推流/播流 域名</p>
+</blockquote>
+<p>生成之后解析对应域名的 CNAME 到推流/播流域名上<br><img src="/assets/aliyun/3.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>PC端 OBS/VLC 测试</p>
+</blockquote>
+<p>地址生成器–&gt;生成的 推流/播流 地址相应在 OBS/VLC 上使用即可看到同步直播</p>
+<p><img src="/assets/aliyun/4.png" alt="ico原来的样子"><br><img src="/assets/aliyun/5.png" alt="ico原来的样子"><br><img src="/assets/aliyun/6.png" alt="ico原来的样子"><br><img src="/assets/aliyun/7.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>观看直播 [后续…]</p>
+</blockquote>
+<p> 前面的直播推流配置完成之后，我们需要让用户或者观众看到直播<br> 正常用户观看直播的流程是：登录直播网站 -&gt; 点开直播房间 -&gt; 服务器获取播放地址 -&gt; 用户观看直播<br> 1.创建一个测试直播的控制器</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">namespace App\Http\Controllers;</span><br><span class="line"></span><br><span class="line">use xxx;&#x2F;&#x2F;sdk包</span><br><span class="line"></span><br><span class="line">class LiveController extends Controller</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    public function index()</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; 通过sdk获取直播地址</span><br><span class="line">        $liveurl &#x3D; \xxx\xxx\xxx(&#39;xxx&#39;, &#39;app&#39;, &#39;stream&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.页面展示</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 引入 CDN --&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.bootcss.com&#x2F;flv.js&#x2F;1.3.2&#x2F;flv.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;!-- dom --&gt;</span><br><span class="line">&lt;video id&#x3D;&quot;videoElement&quot;&gt;&lt;&#x2F;video&gt;</span><br><span class="line">&lt;!-- js --&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    if (flvjs.isSupported()) &#123;</span><br><span class="line">        var videoElement &#x3D; document.getElementById(&#39;videoElement&#39;);</span><br><span class="line">        var flvPlayer &#x3D; flvjs.createPlayer(&#123;</span><br><span class="line">            type: &#39;flv&#39;,</span><br><span class="line">            url: &#39;&#123;&#123; $liveurl &#125;&#125;&#39;</span><br><span class="line">        &#125;);</span><br><span class="line">        flvPlayer.attachMediaElement(videoElement);</span><br><span class="line">        flvPlayer.load();</span><br><span class="line">        flvPlayer.play();</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><strong>Notice</strong><br>后续通过sdk整合到项目开发中…</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>Linux定时任务采集聚合数据api文章</title>
     <url>/2019/04/18/Linux%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E9%87%87%E9%9B%86%E8%81%9A%E5%90%88%E6%95%B0%E6%8D%AEapi%E6%96%87%E7%AB%A0/</url>
     <content><![CDATA[<p><strong>Linux定时任务采集文章</strong> </p>
@@ -1191,38 +1223,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
         <tag>Linux</tag>
         <tag>crontab</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Live 阿里云直播</title>
-    <url>/2019/07/04/Live-%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%B4%E6%92%AD/</url>
-    <content><![CDATA[<a id="more"></a>
-<p> <a href="https://help.aliyun.com/document_detail/86866.html?spm=a2c4g.11186623.6.573.72df68123ova0d" target="_blank">[阿里云文档]</a> 具体流程依据文档<br> 需要：备案域名 / 直播云服务器</p>
-<blockquote>
-<p>开通阿里云直播控制台</p>
-</blockquote>
-<p><img src="/assets/aliyun/1.png" alt="ico原来的样子"><br><img src="/assets/aliyun/2.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>直播控制台-概览配置 推流/播流 域名</p>
-</blockquote>
-<p>生成之后解析对应域名的 CNAME 到推流/播流域名上<br><img src="/assets/aliyun/3.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>PC端 OBS/VLC 测试</p>
-</blockquote>
-<p>地址生成器–&gt;生成的 推流/播流 地址相应在 OBS/VLC 上使用即可看到同步直播</p>
-<p><img src="/assets/aliyun/4.png" alt="ico原来的样子"><br><img src="/assets/aliyun/5.png" alt="ico原来的样子"><br><img src="/assets/aliyun/6.png" alt="ico原来的样子"><br><img src="/assets/aliyun/7.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>观看直播 [后续…]</p>
-</blockquote>
-<p> 前面的直播推流配置完成之后，我们需要让用户或者观众看到直播<br> 正常用户观看直播的流程是：登录直播网站 -&gt; 点开直播房间 -&gt; 服务器获取播放地址 -&gt; 用户观看直播<br> 1.创建一个测试直播的控制器</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">namespace App\Http\Controllers;</span><br><span class="line"></span><br><span class="line">use xxx;&#x2F;&#x2F;sdk包</span><br><span class="line"></span><br><span class="line">class LiveController extends Controller</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    public function index()</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; 通过sdk获取直播地址</span><br><span class="line">        $liveurl &#x3D; \xxx\xxx\xxx(&#39;xxx&#39;, &#39;app&#39;, &#39;stream&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>2.页面展示</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 引入 CDN --&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.bootcss.com&#x2F;flv.js&#x2F;1.3.2&#x2F;flv.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;!-- dom --&gt;</span><br><span class="line">&lt;video id&#x3D;&quot;videoElement&quot;&gt;&lt;&#x2F;video&gt;</span><br><span class="line">&lt;!-- js --&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    if (flvjs.isSupported()) &#123;</span><br><span class="line">        var videoElement &#x3D; document.getElementById(&#39;videoElement&#39;);</span><br><span class="line">        var flvPlayer &#x3D; flvjs.createPlayer(&#123;</span><br><span class="line">            type: &#39;flv&#39;,</span><br><span class="line">            url: &#39;&#123;&#123; $liveurl &#125;&#125;&#39;</span><br><span class="line">        &#125;);</span><br><span class="line">        flvPlayer.attachMediaElement(videoElement);</span><br><span class="line">        flvPlayer.load();</span><br><span class="line">        flvPlayer.play();</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><strong>Notice</strong><br>后续通过sdk整合到项目开发中…</li>
-</ul>
-]]></content>
   </entry>
   <entry>
     <title>Markdown 基本语法</title>
@@ -1380,6 +1380,36 @@ public $queue = &#39;listeners&#39;;</code></pre>
       <tags>
         <tag>nginx</tag>
         <tag>反向代理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nginx分发-指定文件名称</title>
+    <url>/2020/12/07/Nginx%E5%88%86%E5%8F%91-%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E5%90%8D%E7%A7%B0/</url>
+    <content><![CDATA[<p><strong>Nginx分发-指定文件名称</strong></p>
+<a id="more"></a>
+
+<p>一般在我们上传完资源文件之后，为了避免文件名冲突，会将文件名改成毫无意义的一段字符<br>其实，nginx是支持下载时重命名的，让文件名更加友好</p>
+<p>eg: xxx.com/storage/uploads/2020-12-07-728632757453485.png?n=test</p>
+<blockquote>
+<p>有后缀：</p>
+</blockquote>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">location</span> <span class="regexp">~* .*\.(txt|jpg|png)(\?.*)?$</span> &#123; </span><br><span class="line">    <span class="attribute">if</span> ($request_uri <span class="regexp">~* ^.*\/(.*)\.(txt|jpg|png)(\?n=([^&amp;]+))$)</span> &#123;</span><br><span class="line">        <span class="attribute">add_header</span> Content-Disposition <span class="string">&quot;attachment;filename=$arg_n.<span class="variable">$2</span>&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>无后缀：</p>
+</blockquote>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">location</span> <span class="regexp">~* [^/]+(?!.*/)</span> &#123;</span><br><span class="line">    <span class="attribute">if</span> ($request_uri <span class="regexp">~* [^/]+(?!.*/)(\?n=([^&amp;]+))$)</span> &#123;</span><br><span class="line">        <span class="attribute">add_header</span> Content-Disposition <span class="string">&quot;attachment;filename=$arg_n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://baishunhua.com/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.</p>
+</blockquote>
+<p>That’s it! enjoy :)</p>
+]]></content>
+      <tags>
+        <tag>nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -1610,36 +1640,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       <tags>
         <tag>PHP5.3+</tag>
         <tag>新特性</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nginx分发-指定文件名称</title>
-    <url>/2020/12/07/Nginx%E5%88%86%E5%8F%91-%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E5%90%8D%E7%A7%B0/</url>
-    <content><![CDATA[<p><strong>Nginx分发-指定文件名称</strong></p>
-<a id="more"></a>
-
-<p>一般在我们上传完资源文件之后，为了避免文件名冲突，会将文件名改成毫无意义的一段字符<br>其实，nginx是支持下载时重命名的，让文件名更加友好</p>
-<p>eg: xxx.com/storage/uploads/2020-12-07-728632757453485.png?n=test</p>
-<blockquote>
-<p>有后缀：</p>
-</blockquote>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">location</span> <span class="regexp">~* .*\.(txt|jpg|png)(\?.*)?$</span> &#123; </span><br><span class="line">    <span class="attribute">if</span> ($request_uri <span class="regexp">~* ^.*\/(.*)\.(txt|jpg|png)(\?n=([^&amp;]+))$)</span> &#123;</span><br><span class="line">        <span class="attribute">add_header</span> Content-Disposition <span class="string">&quot;attachment;filename=$arg_n.<span class="variable">$2</span>&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>无后缀：</p>
-</blockquote>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">location</span> <span class="regexp">~* [^/]+(?!.*/)</span> &#123;</span><br><span class="line">    <span class="attribute">if</span> ($request_uri <span class="regexp">~* [^/]+(?!.*/)(\?n=([^&amp;]+))$)</span> &#123;</span><br><span class="line">        <span class="attribute">add_header</span> Content-Disposition <span class="string">&quot;attachment;filename=$arg_n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://baishunhua.com/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.</p>
-</blockquote>
-<p>That’s it! enjoy :)</p>
-]]></content>
-      <tags>
-        <tag>nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -2086,6 +2086,23 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>docker + redis 部署一主二从三哨兵</title>
+    <url>/2021/12/06/docker-redis-%E9%83%A8%E7%BD%B2%E4%B8%80%E4%B8%BB%E4%BA%8C%E4%BB%8E%E4%B8%89%E5%93%A8%E5%85%B5/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/redis.png" alt="redis"></p>
+<a id="more"></a>
+
+<p><strong>概述</strong></p>
+<ul>
+<li>在部署redis 的时候，如果redis宕机，缓存将不可用，redis提供了哨兵模式保证redis实现高可用。</li>
+<li>即一台主机两台从机，三台哨兵主机，如果主实例宕机，哨兵将一台从机升级为主机。实现高可用。<br><img src="/assets/blogImg/redis-1.png" alt="redis-1"></li>
+</ul>
+<p>参考文档 ⚔：<br><a href="https://blog.csdn.net/qq_41773902/article/details/105627708" target="_blank">[ 点我 ]</a> | <a href="https://www.jianshu.com/p/319d0980ff89#comments" target="_blank">[ 点我 ]</a> | <a href="https://www.pianshen.com/article/68951456452/" target="_blank">[ 点我 ]</a></p>
+]]></content>
+      <tags>
+        <tag>redis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>centos7下lnmp 添加、删除虚拟主机</title>
     <url>/2017/09/15/centos7%E4%B8%8Blnmp-%E6%B7%BB%E5%8A%A0%E3%80%81%E5%88%A0%E9%99%A4%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2181,23 +2198,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>docker + redis 部署一主二从三哨兵</title>
-    <url>/2021/12/06/docker-redis-%E9%83%A8%E7%BD%B2%E4%B8%80%E4%B8%BB%E4%BA%8C%E4%BB%8E%E4%B8%89%E5%93%A8%E5%85%B5/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/redis.png" alt="redis"></p>
-<a id="more"></a>
-
-<p><strong>概述</strong></p>
-<ul>
-<li>在部署redis 的时候，如果redis宕机，缓存将不可用，redis提供了哨兵模式保证redis实现高可用。</li>
-<li>即一台主机两台从机，三台哨兵主机，如果主实例宕机，哨兵将一台从机升级为主机。实现高可用。<br><img src="/assets/blogImg/redis-1.png" alt="redis-1"></li>
-</ul>
-<p>参考文档 ⚔：<br><a href="https://blog.csdn.net/qq_41773902/article/details/105627708" target="_blank">[ 点我 ]</a> | <a href="https://www.jianshu.com/p/319d0980ff89#comments" target="_blank">[ 点我 ]</a> | <a href="https://www.pianshen.com/article/68951456452/" target="_blank">[ 点我 ]</a></p>
-]]></content>
-      <tags>
-        <tag>redis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>gRPC 的介绍及使用</title>
     <url>/2021/12/07/gRPC-%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/grpc.png" alt="grpc"></p>
@@ -2255,7 +2255,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#x67;&#105;&#x74;&#x40;&#x67;&#x69;&#x74;&#x68;&#x75;&#98;&#46;&#x63;&#111;&#x6d;">&#x67;&#105;&#x74;&#x40;&#x67;&#x69;&#x74;&#x68;&#x75;&#98;&#46;&#x63;&#111;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#x67;&#105;&#x74;&#x40;&#103;&#x69;&#x74;&#x68;&#117;&#x62;&#46;&#99;&#x6f;&#x6d;">&#x67;&#105;&#x74;&#x40;&#103;&#x69;&#x74;&#x68;&#117;&#x62;&#46;&#99;&#x6f;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -2752,70 +2752,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>linux centos7.3 lnmp一键安装包集成</title>
-    <url>/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E9%9B%86%E6%88%90/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>一、下载并安装LNMP一键安装包</strong></p>
-<p>安装LNMP稳定版</p>
-<blockquote>
-<p> wget -c <a href="http://soft.vpser.net/lnmp/lnmp1.4.tar.gz">http://soft.vpser.net/lnmp/lnmp1.4.tar.gz</a> &amp;&amp; tar zxf lnmp1.4.tar.gz &amp;&amp; cd lnmp1.4 &amp;&amp; ./install.sh lnmp：</p>
-</blockquote>
-<p>默认安装lnmp可不写，如需要安装LNMPA或LAMP，将./install.sh 后面的参数替换为lnmpa或lamp即可。如需更改网站和数据库目录先修改安装包目录下的 lnmp.conf 文件。</p>
-<blockquote>
-<p> 运行上述LNMP安装命令后，会出现如下提示：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/1.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 输入对应MySQL或MariaDB版本前面的序号，回车进入下一步.：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/2.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 需要设置MySQL的root密码（不输入直接回车将会设置为root）如果输入有错误需要删除时，可以按住Ctrl再按Backspace键进行删除(个别情况下是只需要Backspace键)。输入后回车进入下一步，如下图所示：：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/3.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 询问是否需要启用MySQL InnoDB，InnoDB引擎默认为开启，一般建议开启，直接回车或输入 y ，如果确定确实不需要该引擎可以输入 n，输入完成，回车进入下一步。注意：选择PHP7等高版本时需要自行确认是否与自己的程序兼容。</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/4.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 输入要选择的PHP版本的序号，回车进入下一步，选择是否安装内存优化：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/5.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 再选择Apache版本</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/6.png" alt="ico原来的样子"></p>
-<p>按提示输入对应版本前面的数字序号，回车。</p>
-<p>提示”Press any key to install…or Press Ctrl+c to cancel”后，按回车键确认开始安装。<br>LNMP脚本就会自动安装编译Nginx、MySQL、PHP、phpMyAdmin、Zend Optimizer这几个软件。</p>
-<p>安装时间可能会几十分钟到几个小时不等，主要是机器的配置网速等原因会造成影响。</p>
-<blockquote>
-<p> 安装完成  如果显示Nginx: OK，MySQL: OK，PHP: OK</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/7.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 并且Nginx、MySQL、PHP都是running，80和3306端口都存在，并提示安装使用的时间及Install lnmp V1.4 completed! enjoy it.的话，说明已经安装成功</p>
-</blockquote>
-<p>安装失败</p>
-<blockquote>
-<p> 安装失败</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/8.png" alt="ico原来的样子"></p>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>linux</tag>
-        <tag>centos7.3</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>linux 常用小技巧</title>
     <url>/2022/01/12/linux-%E5%B8%B8%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/linux.png" alt="linux"></p>
@@ -2888,6 +2824,70 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>linux centos7.3 lnmp一键安装包集成</title>
+    <url>/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E9%9B%86%E6%88%90/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>一、下载并安装LNMP一键安装包</strong></p>
+<p>安装LNMP稳定版</p>
+<blockquote>
+<p> wget -c <a href="http://soft.vpser.net/lnmp/lnmp1.4.tar.gz">http://soft.vpser.net/lnmp/lnmp1.4.tar.gz</a> &amp;&amp; tar zxf lnmp1.4.tar.gz &amp;&amp; cd lnmp1.4 &amp;&amp; ./install.sh lnmp：</p>
+</blockquote>
+<p>默认安装lnmp可不写，如需要安装LNMPA或LAMP，将./install.sh 后面的参数替换为lnmpa或lamp即可。如需更改网站和数据库目录先修改安装包目录下的 lnmp.conf 文件。</p>
+<blockquote>
+<p> 运行上述LNMP安装命令后，会出现如下提示：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/1.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 输入对应MySQL或MariaDB版本前面的序号，回车进入下一步.：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/2.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 需要设置MySQL的root密码（不输入直接回车将会设置为root）如果输入有错误需要删除时，可以按住Ctrl再按Backspace键进行删除(个别情况下是只需要Backspace键)。输入后回车进入下一步，如下图所示：：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/3.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 询问是否需要启用MySQL InnoDB，InnoDB引擎默认为开启，一般建议开启，直接回车或输入 y ，如果确定确实不需要该引擎可以输入 n，输入完成，回车进入下一步。注意：选择PHP7等高版本时需要自行确认是否与自己的程序兼容。</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/4.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 输入要选择的PHP版本的序号，回车进入下一步，选择是否安装内存优化：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/5.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 再选择Apache版本</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/6.png" alt="ico原来的样子"></p>
+<p>按提示输入对应版本前面的数字序号，回车。</p>
+<p>提示”Press any key to install…or Press Ctrl+c to cancel”后，按回车键确认开始安装。<br>LNMP脚本就会自动安装编译Nginx、MySQL、PHP、phpMyAdmin、Zend Optimizer这几个软件。</p>
+<p>安装时间可能会几十分钟到几个小时不等，主要是机器的配置网速等原因会造成影响。</p>
+<blockquote>
+<p> 安装完成  如果显示Nginx: OK，MySQL: OK，PHP: OK</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/7.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 并且Nginx、MySQL、PHP都是running，80和3306端口都存在，并提示安装使用的时间及Install lnmp V1.4 completed! enjoy it.的话，说明已经安装成功</p>
+</blockquote>
+<p>安装失败</p>
+<blockquote>
+<p> 安装失败</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/8.png" alt="ico原来的样子"></p>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>lnmp</tag>
+        <tag>linux</tag>
+        <tag>centos7.3</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>linux下安装redis及认证密码</title>
     <url>/2018/03/06/linux%E4%B8%8B%E5%AE%89%E8%A3%85redis%E5%8F%8A%E8%AE%A4%E8%AF%81%E5%AF%86%E7%A0%81/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2913,6 +2913,27 @@ class QuotesSpider(scrapy.Spider):
         <tag>lnmp</tag>
         <tag>redis</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>lnmp tp pathinfo问题</title>
+    <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>/usr/local/php/etc/php.ini</p>
+<blockquote>
+<p> cgi.fix_pathinfo=1</p>
+</blockquote>
+<blockquote>
+<p> lnmp restart</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
   </entry>
   <entry>
     <title>lnmp集成环境下部署laravel5.x项目</title>
@@ -2987,27 +3008,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>lnmp tp pathinfo问题</title>
-    <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>/usr/local/php/etc/php.ini</p>
-<blockquote>
-<p> cgi.fix_pathinfo=1</p>
-</blockquote>
-<blockquote>
-<p> lnmp restart</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
-  </entry>
-  <entry>
     <title>mysql通过.ibd和.frm文件恢复数据</title>
     <url>/2019/12/17/mysql%E9%80%9A%E8%BF%87-ibd%E5%92%8C-frm%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E6%95%B0%E6%8D%AE/</url>
     <content><![CDATA[<a id="more"></a>
@@ -3061,6 +3061,41 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>mysql</tag>
         <tag>Innodb</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>php 递归拼接一条线会员</title>
+    <url>/2017/09/14/php-%E9%80%92%E5%BD%92%E6%8B%BC%E6%8E%A5%E4%B8%80%E6%9D%A1%E7%BA%BF%E4%BC%9A%E5%91%98/</url>
+    <content><![CDATA[<p><strong>php 递归拼接一条线会员：</strong> </p>
+<a id="more"></a>
+
+<ul>
+<li><strong>PHP使用递归&amp;参数引用</strong></li>
+</ul>
+<blockquote>
+<p> public static function parentIdLine($adminid,&amp;$parentAdmin_strs=’’)<br> {</p>
+<pre><code>       $parent_id = self::find($adminid)-&gt;parent_id;
+       // 构造上级限制
+       $parentids = array(0,1); //主要是限制管理员不拿提成          
+       if (!in_array($parent_id, $parentids) ) &#123;
+          $parentAdmin_strs .= $parent_id.&#39;,&#39;;
+          self::parentIdLine($parent_id,$parentAdmin_strs); 
+       &#125; 
+
+     return $parentAdmin_strs;</code></pre>
+<p>}</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.<br>   ok,  enjoy it !!!</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>php</tag>
+        <tag>递归</tag>
       </tags>
   </entry>
   <entry>
@@ -3144,72 +3179,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>php 递归拼接一条线会员</title>
-    <url>/2017/09/14/php-%E9%80%92%E5%BD%92%E6%8B%BC%E6%8E%A5%E4%B8%80%E6%9D%A1%E7%BA%BF%E4%BC%9A%E5%91%98/</url>
-    <content><![CDATA[<p><strong>php 递归拼接一条线会员：</strong> </p>
-<a id="more"></a>
-
-<ul>
-<li><strong>PHP使用递归&amp;参数引用</strong></li>
-</ul>
-<blockquote>
-<p> public static function parentIdLine($adminid,&amp;$parentAdmin_strs=’’)<br> {</p>
-<pre><code>       $parent_id = self::find($adminid)-&gt;parent_id;
-       // 构造上级限制
-       $parentids = array(0,1); //主要是限制管理员不拿提成          
-       if (!in_array($parent_id, $parentids) ) &#123;
-          $parentAdmin_strs .= $parent_id.&#39;,&#39;;
-          self::parentIdLine($parent_id,$parentAdmin_strs); 
-       &#125; 
-
-     return $parentAdmin_strs;</code></pre>
-<p>}</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.<br>   ok,  enjoy it !!!</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>php</tag>
-        <tag>递归</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>socket.io的使用</title>
-    <url>/2018/03/28/socket-io%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><strong>socket.io的基础教程</strong> </p>
-<a id="more"></a>
-
-<p>一、安装nodejs [默认安装][<a href="https://nodejs.org/en/download/" target="_blank">下载nodejs</a>]<br>新建文件夹[socket],在目录下执行以下代码<br>nodejs中用npm初始化来创建package.json</p>
-<blockquote>
-<p> npm init</p>
-</blockquote>
-<p>二、使用npm下载 web框架express模块</p>
-<blockquote>
-<p>npm install --save <a href="mailto:&#101;&#120;&#112;&#114;&#x65;&#115;&#115;&#x40;&#x34;&#x2e;&#49;&#53;&#x2e;&#x32;">&#101;&#120;&#112;&#114;&#x65;&#115;&#115;&#x40;&#x34;&#x2e;&#49;&#53;&#x2e;&#x32;</a></p>
-</blockquote>
-<p>三、使用npm下载socket.io模块</p>
-<blockquote>
-<p>npm install --save socket.io</p>
-</blockquote>
-<p>四、新建index.js 代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var app &#x3D; require(&#39;express&#39;)();</span><br><span class="line">var http &#x3D; require(&#39;http&#39;).Server(app);</span><br><span class="line">var io &#x3D; require(&#39;socket.io&#39;)(http);</span><br><span class="line"></span><br><span class="line">app.get(&#39;&#x2F;&#39;, function(req, res)&#123;</span><br><span class="line">  res.sendFile(__dirname + &#39;&#x2F;index.html&#39;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">io.on(&#39;connection&#39;, function(socket)&#123;</span><br><span class="line">  socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">     io.emit(&#39;bsh&#39;, msg);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.listen(3000, function()&#123;</span><br><span class="line">  console.log(&#39;listening on *:3000&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>五、新建index.html 代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Socket.IO chat&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      * &#123; margin: 0; padding: 0; box-sizing: border-box; &#125;</span><br><span class="line">      body &#123; font: 13px Helvetica, Arial; &#125;</span><br><span class="line">      form &#123; background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; &#125;</span><br><span class="line">      form input &#123; border: 0; padding: 10px; width: 90%; margin-right: .5%; &#125;</span><br><span class="line">      form button &#123; width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; &#125;</span><br><span class="line">      #messages &#123; list-style-type: none; margin: 0; padding: 0; &#125;</span><br><span class="line">      #messages li &#123; padding: 5px 10px; &#125;</span><br><span class="line">      #messages li:nth-child(odd) &#123; background: #eee; &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.1.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  $(function () &#123;</span><br><span class="line">    var socket &#x3D; io();</span><br><span class="line">    $(&#39;form&#39;).submit(function()&#123;</span><br><span class="line">      socket.emit(&#39;bsh&#39;, $(&#39;#m&#39;).val());</span><br><span class="line">      $(&#39;#m&#39;).val(&#39;&#39;);</span><br><span class="line">      return false;</span><br><span class="line">    &#125;);</span><br><span class="line">    socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">      $(&#39;#messages&#39;).append($(&#39;&lt;li&gt;&#39;).text(msg));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;ul id&#x3D;&quot;messages&quot;&gt;&lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;form action&#x3D;&quot;&quot;&gt;</span><br><span class="line">      &lt;input id&#x3D;&quot;m&quot; autocomplete&#x3D;&quot;off&quot; &#x2F;&gt;&lt;button&gt;Send&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-
-<p>六、执行 node index.js<br>七、浏览器打开localhost:3000</p>
-]]></content>
-      <tags>
-        <tag>socket.io</tag>
-        <tag>nodejs</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>redis lua的使用</title>
     <url>/2022/01/13/redis-lua%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/lua.png" alt="lua"></p>
@@ -3282,6 +3251,37 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>socket.io的使用</title>
+    <url>/2018/03/28/socket-io%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><strong>socket.io的基础教程</strong> </p>
+<a id="more"></a>
+
+<p>一、安装nodejs [默认安装][<a href="https://nodejs.org/en/download/" target="_blank">下载nodejs</a>]<br>新建文件夹[socket],在目录下执行以下代码<br>nodejs中用npm初始化来创建package.json</p>
+<blockquote>
+<p> npm init</p>
+</blockquote>
+<p>二、使用npm下载 web框架express模块</p>
+<blockquote>
+<p>npm install --save <a href="mailto:&#x65;&#x78;&#112;&#x72;&#x65;&#115;&#x73;&#x40;&#52;&#x2e;&#49;&#53;&#46;&#50;">&#x65;&#x78;&#112;&#x72;&#x65;&#115;&#x73;&#x40;&#52;&#x2e;&#49;&#53;&#46;&#50;</a></p>
+</blockquote>
+<p>三、使用npm下载socket.io模块</p>
+<blockquote>
+<p>npm install --save socket.io</p>
+</blockquote>
+<p>四、新建index.js 代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var app &#x3D; require(&#39;express&#39;)();</span><br><span class="line">var http &#x3D; require(&#39;http&#39;).Server(app);</span><br><span class="line">var io &#x3D; require(&#39;socket.io&#39;)(http);</span><br><span class="line"></span><br><span class="line">app.get(&#39;&#x2F;&#39;, function(req, res)&#123;</span><br><span class="line">  res.sendFile(__dirname + &#39;&#x2F;index.html&#39;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">io.on(&#39;connection&#39;, function(socket)&#123;</span><br><span class="line">  socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">     io.emit(&#39;bsh&#39;, msg);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.listen(3000, function()&#123;</span><br><span class="line">  console.log(&#39;listening on *:3000&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>五、新建index.html 代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Socket.IO chat&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      * &#123; margin: 0; padding: 0; box-sizing: border-box; &#125;</span><br><span class="line">      body &#123; font: 13px Helvetica, Arial; &#125;</span><br><span class="line">      form &#123; background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; &#125;</span><br><span class="line">      form input &#123; border: 0; padding: 10px; width: 90%; margin-right: .5%; &#125;</span><br><span class="line">      form button &#123; width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; &#125;</span><br><span class="line">      #messages &#123; list-style-type: none; margin: 0; padding: 0; &#125;</span><br><span class="line">      #messages li &#123; padding: 5px 10px; &#125;</span><br><span class="line">      #messages li:nth-child(odd) &#123; background: #eee; &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.1.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  $(function () &#123;</span><br><span class="line">    var socket &#x3D; io();</span><br><span class="line">    $(&#39;form&#39;).submit(function()&#123;</span><br><span class="line">      socket.emit(&#39;bsh&#39;, $(&#39;#m&#39;).val());</span><br><span class="line">      $(&#39;#m&#39;).val(&#39;&#39;);</span><br><span class="line">      return false;</span><br><span class="line">    &#125;);</span><br><span class="line">    socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">      $(&#39;#messages&#39;).append($(&#39;&lt;li&gt;&#39;).text(msg));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;ul id&#x3D;&quot;messages&quot;&gt;&lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;form action&#x3D;&quot;&quot;&gt;</span><br><span class="line">      &lt;input id&#x3D;&quot;m&quot; autocomplete&#x3D;&quot;off&quot; &#x2F;&gt;&lt;button&gt;Send&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>六、执行 node index.js<br>七、浏览器打开localhost:3000</p>
+]]></content>
+      <tags>
+        <tag>socket.io</tag>
+        <tag>nodejs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sublime text3 安装配置svn 及默认快捷键</title>
     <url>/2017/08/25/sublime-text3-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEsvn-%E5%8F%8A%E9%BB%98%E8%AE%A4%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
     <content><![CDATA[<p><strong>sublime text3 安装配置svn 及默认快捷键：</strong> </p>
@@ -3321,6 +3321,39 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>svn</tag>
         <tag>sublime text3</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vim常用命令</title>
+    <url>/2017/11/21/vim%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<p><strong>vim常用命令</strong> </p>
+<a id="more"></a>
+<blockquote>
+<p>常用命令:</p>
+</blockquote>
+<ul>
+<li>[gg]第一行</li>
+<li>[G]最后一行</li>
+<li>[nG|ngg]到n行</li>
+<li>[u]撤销改动</li>
+<li>[dd]删除一行</li>
+<li>[yy]复制一行</li>
+<li>[i]在光标之前插入</li>
+<li>[a]在光标之后插入</li>
+<li>[$|End]到行尾</li>
+<li>[0|^|Home]到行首</li>
+<li>[o]在当前行下插入一空行</li>
+<li>[dw]删除光标所在的单词</li>
+<li>[daw]删除光标所在的单词,包括空白字符</li>
+<li>[diw]删除光标所在的单词,不包括空白字符</li>
+</ul>
+<blockquote>
+<p>示图如下:</p>
+</blockquote>
+<p><img src="/assets/blogImg/vim/1.png" alt="ico原来的样子"></p>
+]]></content>
+      <tags>
+        <tag>vim</tag>
       </tags>
   </entry>
   <entry>
@@ -3370,39 +3403,6 @@ class QuotesSpider(scrapy.Spider):
         <tag>vue</tag>
         <tag>element-ui</tag>
         <tag>vue-element-admin</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vim常用命令</title>
-    <url>/2017/11/21/vim%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<p><strong>vim常用命令</strong> </p>
-<a id="more"></a>
-<blockquote>
-<p>常用命令:</p>
-</blockquote>
-<ul>
-<li>[gg]第一行</li>
-<li>[G]最后一行</li>
-<li>[nG|ngg]到n行</li>
-<li>[u]撤销改动</li>
-<li>[dd]删除一行</li>
-<li>[yy]复制一行</li>
-<li>[i]在光标之前插入</li>
-<li>[a]在光标之后插入</li>
-<li>[$|End]到行尾</li>
-<li>[0|^|Home]到行首</li>
-<li>[o]在当前行下插入一空行</li>
-<li>[dw]删除光标所在的单词</li>
-<li>[daw]删除光标所在的单词,包括空白字符</li>
-<li>[diw]删除光标所在的单词,不包括空白字符</li>
-</ul>
-<blockquote>
-<p>示图如下:</p>
-</blockquote>
-<p><img src="/assets/blogImg/vim/1.png" alt="ico原来的样子"></p>
-]]></content>
-      <tags>
-        <tag>vim</tag>
       </tags>
   </entry>
   <entry>
@@ -3458,23 +3458,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>使用git 与github友好交流</title>
-    <url>/2017/08/11/%E4%BD%BF%E7%94%A8git-%E4%B8%8Egithub%E5%8F%8B%E5%A5%BD%E4%BA%A4%E6%B5%81/</url>
-    <content><![CDATA[<p>##<strong>本文主要介绍window 端Git 与github友好交流</strong></p>
-<blockquote>
-<p>1、安装window版（32/64）git。 window端安装过程无脑略过—— </p>
-</blockquote>
-<a id="more"></a>
-
-
-<p>2、本文默认github已注册并添加过 ssh key<br>3、github上新建仓库<br>git add / add *<br>git commit -m<br>git remote add origin <a href="http://xxxx.github.io/">http://xxxx.github.io</a><br>git push -u origin master<br>git pull<br>git rm -r xxx<br>git commit -m ‘’<br>git push -u origin master<br>git  –version</p>
-]]></content>
-      <tags>
-        <tag>git</tag>
-        <tag>github</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>发布Laravel扩展包larapay</title>
     <url>/2018/12/04/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85larapay/</url>
     <content><![CDATA[<p><strong>发布Laravel扩展封装支付包larapay</strong> </p>
@@ -3507,6 +3490,23 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>laravel</tag>
         <tag>composer - 扩展包</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用git 与github友好交流</title>
+    <url>/2017/08/11/%E4%BD%BF%E7%94%A8git-%E4%B8%8Egithub%E5%8F%8B%E5%A5%BD%E4%BA%A4%E6%B5%81/</url>
+    <content><![CDATA[<p>##<strong>本文主要介绍window 端Git 与github友好交流</strong></p>
+<blockquote>
+<p>1、安装window版（32/64）git。 window端安装过程无脑略过—— </p>
+</blockquote>
+<a id="more"></a>
+
+
+<p>2、本文默认github已注册并添加过 ssh key<br>3、github上新建仓库<br>git add / add *<br>git commit -m<br>git remote add origin <a href="http://xxxx.github.io/">http://xxxx.github.io</a><br>git push -u origin master<br>git pull<br>git rm -r xxx<br>git commit -m ‘’<br>git push -u origin master<br>git  –version</p>
+]]></content>
+      <tags>
+        <tag>git</tag>
+        <tag>github</tag>
       </tags>
   </entry>
   <entry>
