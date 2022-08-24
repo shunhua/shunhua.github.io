@@ -125,7 +125,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#64;&#113;&#113;&#46;&#x63;&#111;&#109;">&#x78;&#64;&#113;&#113;&#46;&#x63;&#111;&#109;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#x40;&#113;&#x71;&#x2e;&#99;&#111;&#109;">&#120;&#x40;&#113;&#x71;&#x2e;&#99;&#111;&#109;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -136,7 +136,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#98;&#x40;&#x71;&#x71;&#46;&#99;&#111;&#x6d;">&#98;&#x40;&#x71;&#x71;&#46;&#99;&#111;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#x40;&#x71;&#113;&#46;&#99;&#x6f;&#x6d;">&#x62;&#x40;&#x71;&#113;&#46;&#99;&#x6f;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -709,103 +709,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Laravel Redis 广播测试</title>
-    <url>/2019/04/19/Laravel-Redis-%E5%B9%BF%E6%92%AD%E6%B5%8B%E8%AF%95/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p> 附上 <a href="https://github.com/shunhua/laravel-echo" target="_blank">[Github]</a> 地址 </p>
-<p> 一、项目搭建<br> a.安装laravel</p>
-<blockquote>
-<p>composer create-project –prefer-dist laravel/laravel echo</p>
-</blockquote>
-<p> b.配置mysql 数据库</p>
-<blockquote>
-<p>php artisan migrate</p>
-</blockquote>
-<p>  c.快速认证</p>
-<blockquote>
-<p>php artisan make:auth</p>
-</blockquote>
-<p> 本文仅使用了 redis 的广播驱动 测试环境 win10<br> 二、安装redis 并启动</p>
-<blockquote>
-<p>redis-server.exe</p>
-</blockquote>
-<p><img src="/assets/blogImg/guangbo/redis.png" alt="ico原来的样子"><br>测试redis 连接成功<br><img src="/assets/blogImg/guangbo/redis1.png" alt="ico原来的样子"></p>
-<p>a.配置文件 .env 中配置以下代码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">BROADCAST_DRIVER&#x3D;redis</span><br></pre></td></tr></table></figure>
-<p>b.广播服务提供者  config/app.php 配置文件中 providers 数组中打开注释</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">App\Providers\BroadcastServiceProvider::class,</span><br></pre></td></tr></table></figure>
-<p>c.CSRF 令牌[后续视图中添加]</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;csrf-token&quot; content&#x3D;&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</span><br></pre></td></tr></table></figure>
-<p>d.安装 Predis 库</p>
-<blockquote>
-<p>composer require predis/predis</p>
-</blockquote>
-<p>三、安装 Laravel Echo</p>
-<p>a.通过 npm 包管理器安装 Echo</p>
-<blockquote>
-<p>npm install<br>   npm install -g laravel-echo-server</p>
-</blockquote>
-<p>b.初始化 laravel-echo-server</p>
-<blockquote>
-<p>laravel-echo-server init</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 是否在开发模式下运行此服务器（y&#x2F;n） 输入y</span><br><span class="line">? Do you want to run this server in development mode? (y&#x2F;N) </span><br><span class="line">&#x2F;&#x2F; 设置服务器的端口 默认 6001 输入 6001就可以了 或者你想要的</span><br><span class="line">? Which port would you like to serve from? (6001)</span><br><span class="line">&#x2F;&#x2F; 想用的数据库  选择 redis</span><br><span class="line">? Which database would you like to use to store presence channel members? (Use arrow keys)</span><br><span class="line">❯ redis </span><br><span class="line">  sqlite </span><br><span class="line">&#x2F;&#x2F;   这里输入 你的laravel  项目的访问域名</span><br><span class="line">? Enter the host of your Laravel authentication server. (http:&#x2F;&#x2F;localhost) </span><br><span class="line">&#x2F;&#x2F; 选择 网络协议 http</span><br><span class="line">? Will you be serving on http or https? (Use arrow keys)</span><br><span class="line">❯ http </span><br><span class="line">  https </span><br><span class="line">&#x2F;&#x2F; 您想为HTTP API生成客户端ID&#x2F;密钥吗 N</span><br><span class="line">? Do you want to generate a client ID&#x2F;Key for HTTP API? (y&#x2F;N) </span><br><span class="line">&#x2F;&#x2F; 要设置对API的跨域访问吗？（y&#x2F;n）N</span><br><span class="line">Configuration file saved. Run laravel-echo-server start to run server.</span><br></pre></td></tr></table></figure>
-<p>设置完成后 项目根目录 下 会生成 laravel-echo-server.json 文件 这里面就是刚才的配置<br><img src="/assets/blogImg/guangbo/echo.png" alt="ico原来的样子"><br>执行命令启动 服务 出现如下 则启动成功</p>
-<blockquote>
-<p>laravel-echo-server start</p>
-</blockquote>
-<p><img src="/assets/blogImg/guangbo/echo1.png" alt="ico原来的样子"></p>
-<p>四、频道<br>频道Channel、PrivateChannel 或 PresenceChannel 的实例。Channel 实例表示任何用户都可以订阅的公开频道，而 PrivateChannels 和 PresenceChannels 则表示需要 频道授权 的私有频道：<br>a.创建事件</p>
-<blockquote>
-<p>php artisan make:event PublicMessageEvent </p>
-</blockquote>
-<p>文件生成目录 app/Events</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public $message;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Create a new event instance.</span><br><span class="line"> *</span><br><span class="line"> * @param User $user</span><br><span class="line"> * @param string $message</span><br><span class="line"> *&#x2F;</span><br><span class="line">public function __construct(string $message)</span><br><span class="line">&#123;</span><br><span class="line">    $this-&gt;message &#x3D; $message;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Get the channels the event should broadcast on.</span><br><span class="line"> *</span><br><span class="line"> * @return \Illuminate\Broadcasting\Channel|array</span><br><span class="line"> *&#x2F;</span><br><span class="line">public function broadcastOn()</span><br><span class="line">&#123;</span><br><span class="line">    return new Channel(&#39;push&#39;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Laravel 默认会使用事件的类名作为广播名称来广播事件，自定义：</span><br><span class="line">public function broadcastAs()</span><br><span class="line">&#123;</span><br><span class="line">    return &#39;push.message&#39;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;想更细粒度地控制广播数据:</span><br><span class="line">public function broadcastWith()</span><br><span class="line">&#123;</span><br><span class="line">    return [&#39;message&#39; &#x3D;&gt; $this-&gt;message,&#39;status&#39; &#x3D;&gt; &#39;okok&#39;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; laravel-echo-server 1.5 版本的 需要添加 否则Laravel echo channel listen 不监听事件</span><br><span class="line">public function handle()</span><br><span class="line">&#123;</span><br><span class="line">    broadcast(new push());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>b.添加路由</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">use App\Events\PublicMessageEvent;</span><br><span class="line"> Route::get(&#39;&#x2F;echo&#39;, function () &#123;</span><br><span class="line">    return view(&#39;echo&#39;);</span><br><span class="line"> &#125;);</span><br><span class="line"></span><br><span class="line">Route::get(&#39;&#x2F;push&#x2F;&#123;message&#125;&#39;, function ($message) &#123;</span><br><span class="line">    broadcast(new PublicMessageEvent($message));</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>五、前端视图<br>a.安装 laravel-echo</p>
-<blockquote>
-<p>npm install laravel-echo</p>
-</blockquote>
-<p>编辑 resource/js/bootstrap.js 添加如下代码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Echo from &quot;laravel-echo&quot;</span><br><span class="line"></span><br><span class="line">window.Echo &#x3D; new Echo(&#123;</span><br><span class="line">    broadcaster: &#39;socket.io&#39;,</span><br><span class="line">    host: window.location.hostname + &#39;:6001&#39;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>编辑 resource/js/app.js 添加如下代码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Echo.channel(&#39;push&#39;)</span><br><span class="line">    .listen(&#39;.push.message&#39;, (e) &#x3D;&gt; &#123;</span><br><span class="line">        alert(e.message)</span><br><span class="line">        console.log(e);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-<p>创建 echo.blade.php head 中加上</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;csrf-token&quot; content&#x3D;&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;&#x2F;&#x2F;&#123;&#123; Request::getHost() &#125;&#125;:6001&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;&#x2F;js&#x2F;app.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-<p>编译 js 文件 </p>
-<blockquote>
-<p>npm run watch</p>
-</blockquote>
-<p>浏览器访问 项目域名 /echo<br>浏览器访问 项目域名 /push/这是一个测试广播[what can i say]<br>echo 页面 会自动弹出<br><img src="/assets/blogImg/guangbo/echo2.png" alt="ico原来的样子"><br><img src="/assets/blogImg/guangbo/echo4.png" alt="ico原来的样子"><br><img src="/assets/blogImg/guangbo/echo5.png" alt="ico原来的样子"><br>到这 广播 发布到公共频道就完成了</p>
-<hr>
-<p>私有频道 PrivateChannel</p>
-<blockquote>
-<p>php artisan make:event PrivateMessageEvent</p>
-</blockquote>
-<p>PrivateMessageEvent 中 写入 以下内容</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public $message;</span><br><span class="line">   public $user;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * Create a new event instance.</span><br><span class="line">    *</span><br><span class="line">    * @param User $user</span><br><span class="line">    * @param string $message</span><br><span class="line">    *&#x2F;</span><br><span class="line">   public function __construct(User $user, string $message)</span><br><span class="line">   &#123;</span><br><span class="line">       $this-&gt;user &#x3D; $user;</span><br><span class="line">       $this-&gt;message &#x3D; $message;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * Get the channels the event should broadcast on.</span><br><span class="line">    *</span><br><span class="line">    * @return \Illuminate\Broadcasting\Channel|array</span><br><span class="line">    *&#x2F;</span><br><span class="line">   public function broadcastOn()</span><br><span class="line">   &#123;</span><br><span class="line">       return new PrivateChannel(&#39;privatePush.&#39; . $this-&gt;user-&gt;id);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;&#x2F;想更细粒度地控制广播数据:</span><br><span class="line">   public function broadcastWith()</span><br><span class="line">   &#123;</span><br><span class="line">       return [&#39;message&#39; &#x3D;&gt; $this-&gt;message,&#39;status&#39; &#x3D;&gt; &#39;okok&#39;];</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p>添加发布广播到私有频道 触发路由 routes/web 测试时记得新增下用户</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Route::get(&#39;&#x2F;privatePush&#x2F;&#123;message&#125;&#x2F;&#123;id&#125;&#39;, function ($message, $id) &#123;</span><br><span class="line">    $user &#x3D; \App\User::find($id);</span><br><span class="line">    if (empty($user)) return &#39;无此用户&#39;;</span><br><span class="line">    broadcast(new PrivateMessageEvent($user, $message));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>echo.blade.php 中加入</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    @if(!empty(Auth::user()))</span><br><span class="line">        window.id &#x3D; &quot;&#123;&#123;Auth::user()-&gt;id&#125;&#125;&quot;</span><br><span class="line">    @endif</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-<p>app.js</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Echo.private(&#39;privatePush.&#39; + window.id)</span><br><span class="line">    .listen(&#39;PrivateMessageEvent&#39;, (e) &#x3D;&gt; &#123;</span><br><span class="line">        alert(&#39;qweqwe&#39;)</span><br><span class="line">        console.log(e);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><strong>Notice</strong><br>安静,安静一下 Enjoy it ~</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>laravel5.7</tag>
-        <tag>Redis</tag>
-        <tag>广播</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Laragon 在 Windows 中搭建 Laravel 开发环境</title>
     <url>/2017/09/15/Laragon-%E5%9C%A8-Windows-%E4%B8%AD%E6%90%AD%E5%BB%BA-Laravel-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</url>
     <content><![CDATA[<a id="more"></a>
@@ -933,6 +836,103 @@
         <tag>Laragon</tag>
         <tag>Laravel</tag>
         <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Laravel Redis 广播测试</title>
+    <url>/2019/04/19/Laravel-Redis-%E5%B9%BF%E6%92%AD%E6%B5%8B%E8%AF%95/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p> 附上 <a href="https://github.com/shunhua/laravel-echo" target="_blank">[Github]</a> 地址 </p>
+<p> 一、项目搭建<br> a.安装laravel</p>
+<blockquote>
+<p>composer create-project –prefer-dist laravel/laravel echo</p>
+</blockquote>
+<p> b.配置mysql 数据库</p>
+<blockquote>
+<p>php artisan migrate</p>
+</blockquote>
+<p>  c.快速认证</p>
+<blockquote>
+<p>php artisan make:auth</p>
+</blockquote>
+<p> 本文仅使用了 redis 的广播驱动 测试环境 win10<br> 二、安装redis 并启动</p>
+<blockquote>
+<p>redis-server.exe</p>
+</blockquote>
+<p><img src="/assets/blogImg/guangbo/redis.png" alt="ico原来的样子"><br>测试redis 连接成功<br><img src="/assets/blogImg/guangbo/redis1.png" alt="ico原来的样子"></p>
+<p>a.配置文件 .env 中配置以下代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">BROADCAST_DRIVER&#x3D;redis</span><br></pre></td></tr></table></figure>
+<p>b.广播服务提供者  config/app.php 配置文件中 providers 数组中打开注释</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">App\Providers\BroadcastServiceProvider::class,</span><br></pre></td></tr></table></figure>
+<p>c.CSRF 令牌[后续视图中添加]</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;csrf-token&quot; content&#x3D;&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>d.安装 Predis 库</p>
+<blockquote>
+<p>composer require predis/predis</p>
+</blockquote>
+<p>三、安装 Laravel Echo</p>
+<p>a.通过 npm 包管理器安装 Echo</p>
+<blockquote>
+<p>npm install<br>   npm install -g laravel-echo-server</p>
+</blockquote>
+<p>b.初始化 laravel-echo-server</p>
+<blockquote>
+<p>laravel-echo-server init</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 是否在开发模式下运行此服务器（y&#x2F;n） 输入y</span><br><span class="line">? Do you want to run this server in development mode? (y&#x2F;N) </span><br><span class="line">&#x2F;&#x2F; 设置服务器的端口 默认 6001 输入 6001就可以了 或者你想要的</span><br><span class="line">? Which port would you like to serve from? (6001)</span><br><span class="line">&#x2F;&#x2F; 想用的数据库  选择 redis</span><br><span class="line">? Which database would you like to use to store presence channel members? (Use arrow keys)</span><br><span class="line">❯ redis </span><br><span class="line">  sqlite </span><br><span class="line">&#x2F;&#x2F;   这里输入 你的laravel  项目的访问域名</span><br><span class="line">? Enter the host of your Laravel authentication server. (http:&#x2F;&#x2F;localhost) </span><br><span class="line">&#x2F;&#x2F; 选择 网络协议 http</span><br><span class="line">? Will you be serving on http or https? (Use arrow keys)</span><br><span class="line">❯ http </span><br><span class="line">  https </span><br><span class="line">&#x2F;&#x2F; 您想为HTTP API生成客户端ID&#x2F;密钥吗 N</span><br><span class="line">? Do you want to generate a client ID&#x2F;Key for HTTP API? (y&#x2F;N) </span><br><span class="line">&#x2F;&#x2F; 要设置对API的跨域访问吗？（y&#x2F;n）N</span><br><span class="line">Configuration file saved. Run laravel-echo-server start to run server.</span><br></pre></td></tr></table></figure>
+<p>设置完成后 项目根目录 下 会生成 laravel-echo-server.json 文件 这里面就是刚才的配置<br><img src="/assets/blogImg/guangbo/echo.png" alt="ico原来的样子"><br>执行命令启动 服务 出现如下 则启动成功</p>
+<blockquote>
+<p>laravel-echo-server start</p>
+</blockquote>
+<p><img src="/assets/blogImg/guangbo/echo1.png" alt="ico原来的样子"></p>
+<p>四、频道<br>频道Channel、PrivateChannel 或 PresenceChannel 的实例。Channel 实例表示任何用户都可以订阅的公开频道，而 PrivateChannels 和 PresenceChannels 则表示需要 频道授权 的私有频道：<br>a.创建事件</p>
+<blockquote>
+<p>php artisan make:event PublicMessageEvent </p>
+</blockquote>
+<p>文件生成目录 app/Events</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public $message;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Create a new event instance.</span><br><span class="line"> *</span><br><span class="line"> * @param User $user</span><br><span class="line"> * @param string $message</span><br><span class="line"> *&#x2F;</span><br><span class="line">public function __construct(string $message)</span><br><span class="line">&#123;</span><br><span class="line">    $this-&gt;message &#x3D; $message;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Get the channels the event should broadcast on.</span><br><span class="line"> *</span><br><span class="line"> * @return \Illuminate\Broadcasting\Channel|array</span><br><span class="line"> *&#x2F;</span><br><span class="line">public function broadcastOn()</span><br><span class="line">&#123;</span><br><span class="line">    return new Channel(&#39;push&#39;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Laravel 默认会使用事件的类名作为广播名称来广播事件，自定义：</span><br><span class="line">public function broadcastAs()</span><br><span class="line">&#123;</span><br><span class="line">    return &#39;push.message&#39;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;想更细粒度地控制广播数据:</span><br><span class="line">public function broadcastWith()</span><br><span class="line">&#123;</span><br><span class="line">    return [&#39;message&#39; &#x3D;&gt; $this-&gt;message,&#39;status&#39; &#x3D;&gt; &#39;okok&#39;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; laravel-echo-server 1.5 版本的 需要添加 否则Laravel echo channel listen 不监听事件</span><br><span class="line">public function handle()</span><br><span class="line">&#123;</span><br><span class="line">    broadcast(new push());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>b.添加路由</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">use App\Events\PublicMessageEvent;</span><br><span class="line"> Route::get(&#39;&#x2F;echo&#39;, function () &#123;</span><br><span class="line">    return view(&#39;echo&#39;);</span><br><span class="line"> &#125;);</span><br><span class="line"></span><br><span class="line">Route::get(&#39;&#x2F;push&#x2F;&#123;message&#125;&#39;, function ($message) &#123;</span><br><span class="line">    broadcast(new PublicMessageEvent($message));</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>五、前端视图<br>a.安装 laravel-echo</p>
+<blockquote>
+<p>npm install laravel-echo</p>
+</blockquote>
+<p>编辑 resource/js/bootstrap.js 添加如下代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Echo from &quot;laravel-echo&quot;</span><br><span class="line"></span><br><span class="line">window.Echo &#x3D; new Echo(&#123;</span><br><span class="line">    broadcaster: &#39;socket.io&#39;,</span><br><span class="line">    host: window.location.hostname + &#39;:6001&#39;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>编辑 resource/js/app.js 添加如下代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Echo.channel(&#39;push&#39;)</span><br><span class="line">    .listen(&#39;.push.message&#39;, (e) &#x3D;&gt; &#123;</span><br><span class="line">        alert(e.message)</span><br><span class="line">        console.log(e);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>创建 echo.blade.php head 中加上</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;csrf-token&quot; content&#x3D;&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;&#x2F;&#x2F;&#123;&#123; Request::getHost() &#125;&#125;:6001&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;&#x2F;js&#x2F;app.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<p>编译 js 文件 </p>
+<blockquote>
+<p>npm run watch</p>
+</blockquote>
+<p>浏览器访问 项目域名 /echo<br>浏览器访问 项目域名 /push/这是一个测试广播[what can i say]<br>echo 页面 会自动弹出<br><img src="/assets/blogImg/guangbo/echo2.png" alt="ico原来的样子"><br><img src="/assets/blogImg/guangbo/echo4.png" alt="ico原来的样子"><br><img src="/assets/blogImg/guangbo/echo5.png" alt="ico原来的样子"><br>到这 广播 发布到公共频道就完成了</p>
+<hr>
+<p>私有频道 PrivateChannel</p>
+<blockquote>
+<p>php artisan make:event PrivateMessageEvent</p>
+</blockquote>
+<p>PrivateMessageEvent 中 写入 以下内容</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public $message;</span><br><span class="line">   public $user;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * Create a new event instance.</span><br><span class="line">    *</span><br><span class="line">    * @param User $user</span><br><span class="line">    * @param string $message</span><br><span class="line">    *&#x2F;</span><br><span class="line">   public function __construct(User $user, string $message)</span><br><span class="line">   &#123;</span><br><span class="line">       $this-&gt;user &#x3D; $user;</span><br><span class="line">       $this-&gt;message &#x3D; $message;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * Get the channels the event should broadcast on.</span><br><span class="line">    *</span><br><span class="line">    * @return \Illuminate\Broadcasting\Channel|array</span><br><span class="line">    *&#x2F;</span><br><span class="line">   public function broadcastOn()</span><br><span class="line">   &#123;</span><br><span class="line">       return new PrivateChannel(&#39;privatePush.&#39; . $this-&gt;user-&gt;id);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;&#x2F;想更细粒度地控制广播数据:</span><br><span class="line">   public function broadcastWith()</span><br><span class="line">   &#123;</span><br><span class="line">       return [&#39;message&#39; &#x3D;&gt; $this-&gt;message,&#39;status&#39; &#x3D;&gt; &#39;okok&#39;];</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>添加发布广播到私有频道 触发路由 routes/web 测试时记得新增下用户</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Route::get(&#39;&#x2F;privatePush&#x2F;&#123;message&#125;&#x2F;&#123;id&#125;&#39;, function ($message, $id) &#123;</span><br><span class="line">    $user &#x3D; \App\User::find($id);</span><br><span class="line">    if (empty($user)) return &#39;无此用户&#39;;</span><br><span class="line">    broadcast(new PrivateMessageEvent($user, $message));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>echo.blade.php 中加入</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    @if(!empty(Auth::user()))</span><br><span class="line">        window.id &#x3D; &quot;&#123;&#123;Auth::user()-&gt;id&#125;&#125;&quot;</span><br><span class="line">    @endif</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<p>app.js</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Echo.private(&#39;privatePush.&#39; + window.id)</span><br><span class="line">    .listen(&#39;PrivateMessageEvent&#39;, (e) &#x3D;&gt; &#123;</span><br><span class="line">        alert(&#39;qweqwe&#39;)</span><br><span class="line">        console.log(e);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><strong>Notice</strong><br>安静,安静一下 Enjoy it ~</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>laravel5.7</tag>
+        <tag>Redis</tag>
+        <tag>广播</tag>
       </tags>
   </entry>
   <entry>
@@ -1334,6 +1334,22 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Nginx 反向代理</title>
+    <url>/2019/09/19/Nginx-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><a href="https://baishunhua.com/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/" target="_blank">安装nginx</a></p>
+<blockquote>
+<p>高防服务器上 nginx.conf 配置模板</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server_name  www.xxx.com;</span><br><span class="line">...</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">    proxy_pass http:&#x2F;&#x2F;ip[原服务器ip];</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>nginx</tag>
+        <tag>反向代理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MySQL启动错误</title>
     <url>/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1367,19 +1383,33 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Nginx 反向代理</title>
-    <url>/2019/09/19/Nginx-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
-    <content><![CDATA[<a id="more"></a>
+    <title>Nginx分发-指定文件名称</title>
+    <url>/2020/12/07/Nginx%E5%88%86%E5%8F%91-%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E5%90%8D%E7%A7%B0/</url>
+    <content><![CDATA[<p><strong>Nginx分发-指定文件名称</strong></p>
+<a id="more"></a>
 
-<p><a href="https://baishunhua.com/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/" target="_blank">安装nginx</a></p>
+<p>一般在我们上传完资源文件之后，为了避免文件名冲突，会将文件名改成毫无意义的一段字符<br>其实，nginx是支持下载时重命名的，让文件名更加友好</p>
+<p>eg: xxx.com/storage/uploads/2020-12-07-728632757453485.png?n=test</p>
 <blockquote>
-<p>高防服务器上 nginx.conf 配置模板</p>
+<p>有后缀：</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server_name  www.xxx.com;</span><br><span class="line">...</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">    proxy_pass http:&#x2F;&#x2F;ip[原服务器ip];</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">location</span> <span class="regexp">~* .*\.(txt|jpg|png)(\?.*)?$</span> &#123; </span><br><span class="line">    <span class="attribute">if</span> ($request_uri <span class="regexp">~* ^.*\/(.*)\.(txt|jpg|png)(\?n=([^&amp;]+))$)</span> &#123;</span><br><span class="line">        <span class="attribute">add_header</span> Content-Disposition <span class="string">&quot;attachment;filename=$arg_n.<span class="variable">$2</span>&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>无后缀：</p>
+</blockquote>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">location</span> <span class="regexp">~* [^/]+(?!.*/)</span> &#123;</span><br><span class="line">    <span class="attribute">if</span> ($request_uri <span class="regexp">~* [^/]+(?!.*/)(\?n=([^&amp;]+))$)</span> &#123;</span><br><span class="line">        <span class="attribute">add_header</span> Content-Disposition <span class="string">&quot;attachment;filename=$arg_n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://baishunhua.com/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.</p>
+</blockquote>
+<p>That’s it! enjoy :)</p>
 ]]></content>
       <tags>
         <tag>nginx</tag>
-        <tag>反向代理</tag>
       </tags>
   </entry>
   <entry>
@@ -1610,36 +1640,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       <tags>
         <tag>PHP5.3+</tag>
         <tag>新特性</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nginx分发-指定文件名称</title>
-    <url>/2020/12/07/Nginx%E5%88%86%E5%8F%91-%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E5%90%8D%E7%A7%B0/</url>
-    <content><![CDATA[<p><strong>Nginx分发-指定文件名称</strong></p>
-<a id="more"></a>
-
-<p>一般在我们上传完资源文件之后，为了避免文件名冲突，会将文件名改成毫无意义的一段字符<br>其实，nginx是支持下载时重命名的，让文件名更加友好</p>
-<p>eg: xxx.com/storage/uploads/2020-12-07-728632757453485.png?n=test</p>
-<blockquote>
-<p>有后缀：</p>
-</blockquote>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">location</span> <span class="regexp">~* .*\.(txt|jpg|png)(\?.*)?$</span> &#123; </span><br><span class="line">    <span class="attribute">if</span> ($request_uri <span class="regexp">~* ^.*\/(.*)\.(txt|jpg|png)(\?n=([^&amp;]+))$)</span> &#123;</span><br><span class="line">        <span class="attribute">add_header</span> Content-Disposition <span class="string">&quot;attachment;filename=$arg_n.<span class="variable">$2</span>&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>无后缀：</p>
-</blockquote>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">location</span> <span class="regexp">~* [^/]+(?!.*/)</span> &#123;</span><br><span class="line">    <span class="attribute">if</span> ($request_uri <span class="regexp">~* [^/]+(?!.*/)(\?n=([^&amp;]+))$)</span> &#123;</span><br><span class="line">        <span class="attribute">add_header</span> Content-Disposition <span class="string">&quot;attachment;filename=$arg_n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://baishunhua.com/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.</p>
-</blockquote>
-<p>That’s it! enjoy :)</p>
-]]></content>
-      <tags>
-        <tag>nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -2086,6 +2086,23 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>docker + redis 部署一主二从三哨兵</title>
+    <url>/2021/12/06/docker-redis-%E9%83%A8%E7%BD%B2%E4%B8%80%E4%B8%BB%E4%BA%8C%E4%BB%8E%E4%B8%89%E5%93%A8%E5%85%B5/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/redis.png" alt="redis"></p>
+<a id="more"></a>
+
+<p><strong>概述</strong></p>
+<ul>
+<li>在部署redis 的时候，如果redis宕机，缓存将不可用，redis提供了哨兵模式保证redis实现高可用。</li>
+<li>即一台主机两台从机，三台哨兵主机，如果主实例宕机，哨兵将一台从机升级为主机。实现高可用。<br><img src="/assets/blogImg/redis-1.png" alt="redis-1"></li>
+</ul>
+<p>参考文档 ⚔：<br><a href="https://blog.csdn.net/qq_41773902/article/details/105627708" target="_blank">[ 点我 ]</a> | <a href="https://www.jianshu.com/p/319d0980ff89#comments" target="_blank">[ 点我 ]</a> | <a href="https://www.pianshen.com/article/68951456452/" target="_blank">[ 点我 ]</a></p>
+]]></content>
+      <tags>
+        <tag>redis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>centos7下lnmp 添加、删除虚拟主机</title>
     <url>/2017/09/15/centos7%E4%B8%8Blnmp-%E6%B7%BB%E5%8A%A0%E3%80%81%E5%88%A0%E9%99%A4%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2181,23 +2198,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>docker + redis 部署一主二从三哨兵</title>
-    <url>/2021/12/06/docker-redis-%E9%83%A8%E7%BD%B2%E4%B8%80%E4%B8%BB%E4%BA%8C%E4%BB%8E%E4%B8%89%E5%93%A8%E5%85%B5/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/redis.png" alt="redis"></p>
-<a id="more"></a>
-
-<p><strong>概述</strong></p>
-<ul>
-<li>在部署redis 的时候，如果redis宕机，缓存将不可用，redis提供了哨兵模式保证redis实现高可用。</li>
-<li>即一台主机两台从机，三台哨兵主机，如果主实例宕机，哨兵将一台从机升级为主机。实现高可用。<br><img src="/assets/blogImg/redis-1.png" alt="redis-1"></li>
-</ul>
-<p>参考文档 ⚔：<br><a href="https://blog.csdn.net/qq_41773902/article/details/105627708" target="_blank">[ 点我 ]</a> | <a href="https://www.jianshu.com/p/319d0980ff89#comments" target="_blank">[ 点我 ]</a> | <a href="https://www.pianshen.com/article/68951456452/" target="_blank">[ 点我 ]</a></p>
-]]></content>
-      <tags>
-        <tag>redis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>gRPC 的介绍及使用</title>
     <url>/2021/12/07/gRPC-%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/grpc.png" alt="grpc"></p>
@@ -2255,7 +2255,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#103;&#x69;&#116;&#64;&#x67;&#x69;&#116;&#x68;&#x75;&#x62;&#46;&#99;&#x6f;&#109;">&#103;&#x69;&#116;&#64;&#x67;&#x69;&#116;&#x68;&#x75;&#x62;&#46;&#99;&#x6f;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#x67;&#x69;&#x74;&#64;&#x67;&#x69;&#116;&#104;&#x75;&#x62;&#46;&#99;&#x6f;&#109;">&#x67;&#x69;&#x74;&#64;&#x67;&#x69;&#116;&#104;&#x75;&#x62;&#46;&#99;&#x6f;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -2888,27 +2888,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>lnmp tp pathinfo问题</title>
-    <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>/usr/local/php/etc/php.ini</p>
-<blockquote>
-<p> cgi.fix_pathinfo=1</p>
-</blockquote>
-<blockquote>
-<p> lnmp restart</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
-  </entry>
-  <entry>
     <title>linux下安装redis及认证密码</title>
     <url>/2018/03/06/linux%E4%B8%8B%E5%AE%89%E8%A3%85redis%E5%8F%8A%E8%AE%A4%E8%AF%81%E5%AF%86%E7%A0%81/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2934,6 +2913,27 @@ class QuotesSpider(scrapy.Spider):
         <tag>lnmp</tag>
         <tag>redis</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>lnmp tp pathinfo问题</title>
+    <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>/usr/local/php/etc/php.ini</p>
+<blockquote>
+<p> cgi.fix_pathinfo=1</p>
+</blockquote>
+<blockquote>
+<p> lnmp restart</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
   </entry>
   <entry>
     <title>lnmp集成环境下部署laravel5.x项目</title>
@@ -3179,6 +3179,37 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>socket.io的使用</title>
+    <url>/2018/03/28/socket-io%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><strong>socket.io的基础教程</strong> </p>
+<a id="more"></a>
+
+<p>一、安装nodejs [默认安装][<a href="https://nodejs.org/en/download/" target="_blank">下载nodejs</a>]<br>新建文件夹[socket],在目录下执行以下代码<br>nodejs中用npm初始化来创建package.json</p>
+<blockquote>
+<p> npm init</p>
+</blockquote>
+<p>二、使用npm下载 web框架express模块</p>
+<blockquote>
+<p>npm install --save <a href="mailto:&#x65;&#x78;&#x70;&#x72;&#x65;&#x73;&#x73;&#x40;&#x34;&#x2e;&#49;&#53;&#46;&#x32;">&#x65;&#x78;&#x70;&#x72;&#x65;&#x73;&#x73;&#x40;&#x34;&#x2e;&#49;&#53;&#46;&#x32;</a></p>
+</blockquote>
+<p>三、使用npm下载socket.io模块</p>
+<blockquote>
+<p>npm install --save socket.io</p>
+</blockquote>
+<p>四、新建index.js 代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var app &#x3D; require(&#39;express&#39;)();</span><br><span class="line">var http &#x3D; require(&#39;http&#39;).Server(app);</span><br><span class="line">var io &#x3D; require(&#39;socket.io&#39;)(http);</span><br><span class="line"></span><br><span class="line">app.get(&#39;&#x2F;&#39;, function(req, res)&#123;</span><br><span class="line">  res.sendFile(__dirname + &#39;&#x2F;index.html&#39;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">io.on(&#39;connection&#39;, function(socket)&#123;</span><br><span class="line">  socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">     io.emit(&#39;bsh&#39;, msg);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.listen(3000, function()&#123;</span><br><span class="line">  console.log(&#39;listening on *:3000&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>五、新建index.html 代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Socket.IO chat&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      * &#123; margin: 0; padding: 0; box-sizing: border-box; &#125;</span><br><span class="line">      body &#123; font: 13px Helvetica, Arial; &#125;</span><br><span class="line">      form &#123; background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; &#125;</span><br><span class="line">      form input &#123; border: 0; padding: 10px; width: 90%; margin-right: .5%; &#125;</span><br><span class="line">      form button &#123; width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; &#125;</span><br><span class="line">      #messages &#123; list-style-type: none; margin: 0; padding: 0; &#125;</span><br><span class="line">      #messages li &#123; padding: 5px 10px; &#125;</span><br><span class="line">      #messages li:nth-child(odd) &#123; background: #eee; &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.1.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  $(function () &#123;</span><br><span class="line">    var socket &#x3D; io();</span><br><span class="line">    $(&#39;form&#39;).submit(function()&#123;</span><br><span class="line">      socket.emit(&#39;bsh&#39;, $(&#39;#m&#39;).val());</span><br><span class="line">      $(&#39;#m&#39;).val(&#39;&#39;);</span><br><span class="line">      return false;</span><br><span class="line">    &#125;);</span><br><span class="line">    socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">      $(&#39;#messages&#39;).append($(&#39;&lt;li&gt;&#39;).text(msg));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;ul id&#x3D;&quot;messages&quot;&gt;&lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;form action&#x3D;&quot;&quot;&gt;</span><br><span class="line">      &lt;input id&#x3D;&quot;m&quot; autocomplete&#x3D;&quot;off&quot; &#x2F;&gt;&lt;button&gt;Send&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>六、执行 node index.js<br>七、浏览器打开localhost:3000</p>
+]]></content>
+      <tags>
+        <tag>socket.io</tag>
+        <tag>nodejs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>redis lua的使用</title>
     <url>/2022/01/13/redis-lua%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/lua.png" alt="lua"></p>
@@ -3248,37 +3279,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>redis</tag>
         <tag>lua</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>socket.io的使用</title>
-    <url>/2018/03/28/socket-io%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><strong>socket.io的基础教程</strong> </p>
-<a id="more"></a>
-
-<p>一、安装nodejs [默认安装][<a href="https://nodejs.org/en/download/" target="_blank">下载nodejs</a>]<br>新建文件夹[socket],在目录下执行以下代码<br>nodejs中用npm初始化来创建package.json</p>
-<blockquote>
-<p> npm init</p>
-</blockquote>
-<p>二、使用npm下载 web框架express模块</p>
-<blockquote>
-<p>npm install --save <a href="mailto:&#101;&#x78;&#112;&#114;&#101;&#x73;&#115;&#64;&#52;&#46;&#49;&#x35;&#46;&#50;">&#101;&#x78;&#112;&#114;&#101;&#x73;&#115;&#64;&#52;&#46;&#49;&#x35;&#46;&#50;</a></p>
-</blockquote>
-<p>三、使用npm下载socket.io模块</p>
-<blockquote>
-<p>npm install --save socket.io</p>
-</blockquote>
-<p>四、新建index.js 代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var app &#x3D; require(&#39;express&#39;)();</span><br><span class="line">var http &#x3D; require(&#39;http&#39;).Server(app);</span><br><span class="line">var io &#x3D; require(&#39;socket.io&#39;)(http);</span><br><span class="line"></span><br><span class="line">app.get(&#39;&#x2F;&#39;, function(req, res)&#123;</span><br><span class="line">  res.sendFile(__dirname + &#39;&#x2F;index.html&#39;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">io.on(&#39;connection&#39;, function(socket)&#123;</span><br><span class="line">  socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">     io.emit(&#39;bsh&#39;, msg);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.listen(3000, function()&#123;</span><br><span class="line">  console.log(&#39;listening on *:3000&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>五、新建index.html 代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Socket.IO chat&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      * &#123; margin: 0; padding: 0; box-sizing: border-box; &#125;</span><br><span class="line">      body &#123; font: 13px Helvetica, Arial; &#125;</span><br><span class="line">      form &#123; background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; &#125;</span><br><span class="line">      form input &#123; border: 0; padding: 10px; width: 90%; margin-right: .5%; &#125;</span><br><span class="line">      form button &#123; width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; &#125;</span><br><span class="line">      #messages &#123; list-style-type: none; margin: 0; padding: 0; &#125;</span><br><span class="line">      #messages li &#123; padding: 5px 10px; &#125;</span><br><span class="line">      #messages li:nth-child(odd) &#123; background: #eee; &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.1.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  $(function () &#123;</span><br><span class="line">    var socket &#x3D; io();</span><br><span class="line">    $(&#39;form&#39;).submit(function()&#123;</span><br><span class="line">      socket.emit(&#39;bsh&#39;, $(&#39;#m&#39;).val());</span><br><span class="line">      $(&#39;#m&#39;).val(&#39;&#39;);</span><br><span class="line">      return false;</span><br><span class="line">    &#125;);</span><br><span class="line">    socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">      $(&#39;#messages&#39;).append($(&#39;&lt;li&gt;&#39;).text(msg));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;ul id&#x3D;&quot;messages&quot;&gt;&lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;form action&#x3D;&quot;&quot;&gt;</span><br><span class="line">      &lt;input id&#x3D;&quot;m&quot; autocomplete&#x3D;&quot;off&quot; &#x2F;&gt;&lt;button&gt;Send&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-
-<p>六、执行 node index.js<br>七、浏览器打开localhost:3000</p>
-]]></content>
-      <tags>
-        <tag>socket.io</tag>
-        <tag>nodejs</tag>
       </tags>
   </entry>
   <entry>
