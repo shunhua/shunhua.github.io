@@ -125,7 +125,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#64;&#113;&#x71;&#x2e;&#x63;&#x6f;&#109;">&#120;&#64;&#113;&#x71;&#x2e;&#x63;&#x6f;&#109;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#64;&#113;&#x71;&#x2e;&#99;&#x6f;&#109;">&#x78;&#64;&#113;&#x71;&#x2e;&#99;&#x6f;&#109;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -136,7 +136,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#64;&#113;&#113;&#46;&#x63;&#111;&#109;">&#x62;&#64;&#113;&#113;&#46;&#x63;&#111;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#x40;&#x71;&#x71;&#46;&#x63;&#x6f;&#x6d;">&#x62;&#x40;&#x71;&#x71;&#46;&#x63;&#x6f;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -469,68 +469,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Etcd一文</title>
-    <url>/2021/11/04/Etcd%E4%B8%80%E6%96%87/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/etcd.png" alt="Etcd"></p>
-<a id="more"></a>
-<p><strong>一、概述</strong></p>
-<blockquote>
-<p>背景：近期k8s应用中etcd的功能存在一些困惑，对其进行来单独的学习，能更深入理解k8s中的的一些特性。</p>
-</blockquote>
-<ul>
-<li>简单：安装配置简单，而且提供了HTTP API进行交互，使用也很简单</li>
-<li>安全：支持SSL证书验证</li>
-<li>快速：根据官方提供的benchmark数据，单实例支持每秒2k+读操作</li>
-<li>可靠：采用raft算法，实现分布式系统数据的可用性和一致性</li>
-</ul>
-<p><strong>二、应用场景</strong></p>
-<ul>
-<li>服务注册与发现</li>
-<li>消息发布与订阅</li>
-<li>负载均衡</li>
-<li>分部署通知与协调</li>
-<li>分布式锁</li>
-<li>分布式队列</li>
-<li>集群与监控与Leader选举</li>
-</ul>
-<p><strong>三、安装部署</strong></p>
-<p>推荐使用yum安装方式</p>
-<blockquote>
-<p>hostnamectl set-hostname etcd-1<br>wget <a href="http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm">http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</a><br>rpm -ivh epel-release-latest-7.noarch.rpm</p>
-<h1 id="yum-仓库中的etcd版本为3-3-11，如果需要最新版本的etcd可以进行二进制安装"><a href="#yum-仓库中的etcd版本为3-3-11，如果需要最新版本的etcd可以进行二进制安装" class="headerlink" title="yum 仓库中的etcd版本为3.3.11，如果需要最新版本的etcd可以进行二进制安装"></a>yum 仓库中的etcd版本为3.3.11，如果需要最新版本的etcd可以进行二进制安装</h1><p>yum -y install etcd<br>systemctl enable etcd</p>
-</blockquote>
-<p><strong>四、简单使用</strong></p>
-<p>1、增加 set</p>
-<blockquote>
-<p>$ etcdctl set /testdir/testkey “Hello world”<br>Hello world</p>
-</blockquote>
-<p>2、删除 rm</p>
-<blockquote>
-<p>$ etcdctl rm /testdir/testkey<br>PrevNode.Value: Hello</p>
-</blockquote>
-<p>3、更新 update</p>
-<blockquote>
-<p>etcdctl update /testdir/testkey “Hello”<br>Hello</p>
-</blockquote>
-<p>4、查询 get</p>
-<blockquote>
-<p>etcdctl get /testdir/testkey<br>Hello world</p>
-</blockquote>
-<p><strong>五、总结</strong></p>
-<ul>
-<li><p>etcd 默认只保存 1000 个历史事件，所以不适合有大量更新操作的场景，这样会导致数据的丢失。 etcd 典型的应用场景是配置管理和服务发现，这些场景都是读多写少的。</p>
-</li>
-<li><p>相比于 zookeeper，etcd 使用起来要简单很多。不过要实现真正的服务发现功能，etcd 还需要和其他工具（比如 registrator、confd 等）一起使用来实现服务的自动注册和更新。</p>
-</li>
-<li><p>目前 etcd 还没有图形化的工具。 </p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Etcd</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Docker下实践ELK(Elasticsearch、Logstash、Kibana)</title>
     <url>/2021/12/22/Docker%E4%B8%8B%E5%AE%9E%E8%B7%B5ELK-Elasticsearch%E3%80%81Logstash%E3%80%81Kibana/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/elk.png" alt="elk"></p>
@@ -836,6 +774,68 @@
         <tag>Laragon</tag>
         <tag>Laravel</tag>
         <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Etcd一文</title>
+    <url>/2021/11/04/Etcd%E4%B8%80%E6%96%87/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/etcd.png" alt="Etcd"></p>
+<a id="more"></a>
+<p><strong>一、概述</strong></p>
+<blockquote>
+<p>背景：近期k8s应用中etcd的功能存在一些困惑，对其进行来单独的学习，能更深入理解k8s中的的一些特性。</p>
+</blockquote>
+<ul>
+<li>简单：安装配置简单，而且提供了HTTP API进行交互，使用也很简单</li>
+<li>安全：支持SSL证书验证</li>
+<li>快速：根据官方提供的benchmark数据，单实例支持每秒2k+读操作</li>
+<li>可靠：采用raft算法，实现分布式系统数据的可用性和一致性</li>
+</ul>
+<p><strong>二、应用场景</strong></p>
+<ul>
+<li>服务注册与发现</li>
+<li>消息发布与订阅</li>
+<li>负载均衡</li>
+<li>分部署通知与协调</li>
+<li>分布式锁</li>
+<li>分布式队列</li>
+<li>集群与监控与Leader选举</li>
+</ul>
+<p><strong>三、安装部署</strong></p>
+<p>推荐使用yum安装方式</p>
+<blockquote>
+<p>hostnamectl set-hostname etcd-1<br>wget <a href="http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm">http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</a><br>rpm -ivh epel-release-latest-7.noarch.rpm</p>
+<h1 id="yum-仓库中的etcd版本为3-3-11，如果需要最新版本的etcd可以进行二进制安装"><a href="#yum-仓库中的etcd版本为3-3-11，如果需要最新版本的etcd可以进行二进制安装" class="headerlink" title="yum 仓库中的etcd版本为3.3.11，如果需要最新版本的etcd可以进行二进制安装"></a>yum 仓库中的etcd版本为3.3.11，如果需要最新版本的etcd可以进行二进制安装</h1><p>yum -y install etcd<br>systemctl enable etcd</p>
+</blockquote>
+<p><strong>四、简单使用</strong></p>
+<p>1、增加 set</p>
+<blockquote>
+<p>$ etcdctl set /testdir/testkey “Hello world”<br>Hello world</p>
+</blockquote>
+<p>2、删除 rm</p>
+<blockquote>
+<p>$ etcdctl rm /testdir/testkey<br>PrevNode.Value: Hello</p>
+</blockquote>
+<p>3、更新 update</p>
+<blockquote>
+<p>etcdctl update /testdir/testkey “Hello”<br>Hello</p>
+</blockquote>
+<p>4、查询 get</p>
+<blockquote>
+<p>etcdctl get /testdir/testkey<br>Hello world</p>
+</blockquote>
+<p><strong>五、总结</strong></p>
+<ul>
+<li><p>etcd 默认只保存 1000 个历史事件，所以不适合有大量更新操作的场景，这样会导致数据的丢失。 etcd 典型的应用场景是配置管理和服务发现，这些场景都是读多写少的。</p>
+</li>
+<li><p>相比于 zookeeper，etcd 使用起来要简单很多。不过要实现真正的服务发现功能，etcd 还需要和其他工具（比如 registrator、confd 等）一起使用来实现服务的自动注册和更新。</p>
+</li>
+<li><p>目前 etcd 还没有图形化的工具。 </p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Etcd</tag>
       </tags>
   </entry>
   <entry>
@@ -2255,7 +2255,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#x67;&#x69;&#116;&#64;&#x67;&#105;&#x74;&#104;&#117;&#x62;&#46;&#99;&#x6f;&#x6d;">&#x67;&#x69;&#116;&#64;&#x67;&#105;&#x74;&#104;&#117;&#x62;&#46;&#99;&#x6f;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#x67;&#x69;&#116;&#x40;&#x67;&#105;&#x74;&#104;&#117;&#98;&#46;&#99;&#111;&#109;">&#x67;&#x69;&#116;&#x40;&#x67;&#105;&#x74;&#104;&#117;&#98;&#46;&#99;&#111;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -3251,37 +3251,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>socket.io的使用</title>
-    <url>/2018/03/28/socket-io%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><strong>socket.io的基础教程</strong> </p>
-<a id="more"></a>
-
-<p>一、安装nodejs [默认安装][<a href="https://nodejs.org/en/download/" target="_blank">下载nodejs</a>]<br>新建文件夹[socket],在目录下执行以下代码<br>nodejs中用npm初始化来创建package.json</p>
-<blockquote>
-<p> npm init</p>
-</blockquote>
-<p>二、使用npm下载 web框架express模块</p>
-<blockquote>
-<p>npm install --save <a href="mailto:&#x65;&#120;&#x70;&#114;&#101;&#115;&#x73;&#64;&#x34;&#46;&#x31;&#x35;&#46;&#x32;">&#x65;&#120;&#x70;&#114;&#101;&#115;&#x73;&#64;&#x34;&#46;&#x31;&#x35;&#46;&#x32;</a></p>
-</blockquote>
-<p>三、使用npm下载socket.io模块</p>
-<blockquote>
-<p>npm install --save socket.io</p>
-</blockquote>
-<p>四、新建index.js 代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var app &#x3D; require(&#39;express&#39;)();</span><br><span class="line">var http &#x3D; require(&#39;http&#39;).Server(app);</span><br><span class="line">var io &#x3D; require(&#39;socket.io&#39;)(http);</span><br><span class="line"></span><br><span class="line">app.get(&#39;&#x2F;&#39;, function(req, res)&#123;</span><br><span class="line">  res.sendFile(__dirname + &#39;&#x2F;index.html&#39;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">io.on(&#39;connection&#39;, function(socket)&#123;</span><br><span class="line">  socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">     io.emit(&#39;bsh&#39;, msg);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.listen(3000, function()&#123;</span><br><span class="line">  console.log(&#39;listening on *:3000&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>五、新建index.html 代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Socket.IO chat&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      * &#123; margin: 0; padding: 0; box-sizing: border-box; &#125;</span><br><span class="line">      body &#123; font: 13px Helvetica, Arial; &#125;</span><br><span class="line">      form &#123; background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; &#125;</span><br><span class="line">      form input &#123; border: 0; padding: 10px; width: 90%; margin-right: .5%; &#125;</span><br><span class="line">      form button &#123; width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; &#125;</span><br><span class="line">      #messages &#123; list-style-type: none; margin: 0; padding: 0; &#125;</span><br><span class="line">      #messages li &#123; padding: 5px 10px; &#125;</span><br><span class="line">      #messages li:nth-child(odd) &#123; background: #eee; &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.1.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  $(function () &#123;</span><br><span class="line">    var socket &#x3D; io();</span><br><span class="line">    $(&#39;form&#39;).submit(function()&#123;</span><br><span class="line">      socket.emit(&#39;bsh&#39;, $(&#39;#m&#39;).val());</span><br><span class="line">      $(&#39;#m&#39;).val(&#39;&#39;);</span><br><span class="line">      return false;</span><br><span class="line">    &#125;);</span><br><span class="line">    socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">      $(&#39;#messages&#39;).append($(&#39;&lt;li&gt;&#39;).text(msg));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;ul id&#x3D;&quot;messages&quot;&gt;&lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;form action&#x3D;&quot;&quot;&gt;</span><br><span class="line">      &lt;input id&#x3D;&quot;m&quot; autocomplete&#x3D;&quot;off&quot; &#x2F;&gt;&lt;button&gt;Send&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-
-<p>六、执行 node index.js<br>七、浏览器打开localhost:3000</p>
-]]></content>
-      <tags>
-        <tag>socket.io</tag>
-        <tag>nodejs</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>sublime text3 安装配置svn 及默认快捷键</title>
     <url>/2017/08/25/sublime-text3-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEsvn-%E5%8F%8A%E9%BB%98%E8%AE%A4%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
     <content><![CDATA[<p><strong>sublime text3 安装配置svn 及默认快捷键：</strong> </p>
@@ -3321,6 +3290,37 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>svn</tag>
         <tag>sublime text3</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>socket.io的使用</title>
+    <url>/2018/03/28/socket-io%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><strong>socket.io的基础教程</strong> </p>
+<a id="more"></a>
+
+<p>一、安装nodejs [默认安装][<a href="https://nodejs.org/en/download/" target="_blank">下载nodejs</a>]<br>新建文件夹[socket],在目录下执行以下代码<br>nodejs中用npm初始化来创建package.json</p>
+<blockquote>
+<p> npm init</p>
+</blockquote>
+<p>二、使用npm下载 web框架express模块</p>
+<blockquote>
+<p>npm install --save <a href="mailto:&#x65;&#120;&#x70;&#x72;&#x65;&#x73;&#115;&#64;&#x34;&#46;&#49;&#53;&#46;&#50;">&#x65;&#120;&#x70;&#x72;&#x65;&#x73;&#115;&#64;&#x34;&#46;&#49;&#53;&#46;&#50;</a></p>
+</blockquote>
+<p>三、使用npm下载socket.io模块</p>
+<blockquote>
+<p>npm install --save socket.io</p>
+</blockquote>
+<p>四、新建index.js 代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var app &#x3D; require(&#39;express&#39;)();</span><br><span class="line">var http &#x3D; require(&#39;http&#39;).Server(app);</span><br><span class="line">var io &#x3D; require(&#39;socket.io&#39;)(http);</span><br><span class="line"></span><br><span class="line">app.get(&#39;&#x2F;&#39;, function(req, res)&#123;</span><br><span class="line">  res.sendFile(__dirname + &#39;&#x2F;index.html&#39;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">io.on(&#39;connection&#39;, function(socket)&#123;</span><br><span class="line">  socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">     io.emit(&#39;bsh&#39;, msg);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.listen(3000, function()&#123;</span><br><span class="line">  console.log(&#39;listening on *:3000&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>五、新建index.html 代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Socket.IO chat&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      * &#123; margin: 0; padding: 0; box-sizing: border-box; &#125;</span><br><span class="line">      body &#123; font: 13px Helvetica, Arial; &#125;</span><br><span class="line">      form &#123; background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; &#125;</span><br><span class="line">      form input &#123; border: 0; padding: 10px; width: 90%; margin-right: .5%; &#125;</span><br><span class="line">      form button &#123; width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; &#125;</span><br><span class="line">      #messages &#123; list-style-type: none; margin: 0; padding: 0; &#125;</span><br><span class="line">      #messages li &#123; padding: 5px 10px; &#125;</span><br><span class="line">      #messages li:nth-child(odd) &#123; background: #eee; &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.1.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  $(function () &#123;</span><br><span class="line">    var socket &#x3D; io();</span><br><span class="line">    $(&#39;form&#39;).submit(function()&#123;</span><br><span class="line">      socket.emit(&#39;bsh&#39;, $(&#39;#m&#39;).val());</span><br><span class="line">      $(&#39;#m&#39;).val(&#39;&#39;);</span><br><span class="line">      return false;</span><br><span class="line">    &#125;);</span><br><span class="line">    socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">      $(&#39;#messages&#39;).append($(&#39;&lt;li&gt;&#39;).text(msg));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;ul id&#x3D;&quot;messages&quot;&gt;&lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;form action&#x3D;&quot;&quot;&gt;</span><br><span class="line">      &lt;input id&#x3D;&quot;m&quot; autocomplete&#x3D;&quot;off&quot; &#x2F;&gt;&lt;button&gt;Send&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>六、执行 node index.js<br>七、浏览器打开localhost:3000</p>
+]]></content>
+      <tags>
+        <tag>socket.io</tag>
+        <tag>nodejs</tag>
       </tags>
   </entry>
   <entry>
@@ -3406,58 +3406,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>使用Tailwind CSS新建一个项目</title>
-    <url>/2021/11/18/%E4%BD%BF%E7%94%A8Tailwind-CSS%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/tailwindcss.png" alt="tailwindcss"></p>
-<a id="more"></a>
-
-<p>中文官网： <a href="https://www.tailwindcss.cn/" target="_blank">[ Tailwind-CSS中文官网 ]</a><br>Github地址： <a href="https://github.com/tailwindlabs/tailwindcss" target="_blank">[ Github ]</a><br><strong>安装PostCSS</strong><br>新建一个项目目录，然后在根目录运行</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm i --save-dev postcss-cli</span><br></pre></td></tr></table></figure>
-
-<p>了解Sass，Less，Stylus等css 预处理器区别及使用、了解Just-In-Time(Jit)即时动态编译<br><strong>安装Tailwind CSS以及相关依赖</strong></p>
-<blockquote>
-<p>npm install tailwindcss@latest postcss@latest autoprefixer@latest</p>
-</blockquote>
-<p><strong>添加Tailwind作为PostCSS插件</strong><br>在根目录新建一个postcss配置文件postcss.config.js,并且将文件内容修改为以下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; postcss.config.js</span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  plugins: &#123;</span><br><span class="line">    tailwindcss: &#123;&#125;,</span><br><span class="line">    autoprefixer: &#123;&#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>创建您的配置文件</strong><br>运行以下命令</p>
-<blockquote>
-<p>npm init -y</p>
-</blockquote>
-<p><strong>安装PostCSS</strong><br>新建一个项目目录，然后在根目录运行</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm i --save-dev postcss-cli</span><br></pre></td></tr></table></figure>
-
-<p>这会在根目录下生成一个package.json文件。<br>继续运行</p>
-<blockquote>
-<p>npx tailwindcss init</p>
-</blockquote>
-<p>这会在你的项目根目录创建一个tailwind.config.js文件，将内容修改为以下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; tailwind.config.js</span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  purge: [],</span><br><span class="line">  darkMode: false, &#x2F;&#x2F; or &#39;media&#39; or &#39;class&#39;</span><br><span class="line">  theme: &#123;</span><br><span class="line">    extend: &#123;&#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  variants: &#123;&#125;,</span><br><span class="line">  plugins: [],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>创建你的css文件</strong><br>创建一个css文件，位置随意，比如src/style.css,并且将内容修改为如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;* .&#x2F;你的css文件夹&#x2F;styles.css *&#x2F;</span><br><span class="line">@tailwind base;</span><br><span class="line">@tailwind components;</span><br><span class="line">@tailwind utilities;</span><br></pre></td></tr></table></figure>
-
-<p><strong>创建构建命令</strong><br>现在打开 package.json 文件，添加以下运行脚本：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;build&quot;: &quot;postcss src&#x2F;style.css -o dist&#x2F;tailwind.css&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这个构建的css文件就是你最终使用的css文件。<br>现在，从命令行运行 <code>npm run build</code> 将构建最终的CSS文件。</p>
-<p>生成的文件位于 <code>dist/tailwind.css</code> （您可以在上面的命令中更改位置）。</p>
-<p>然后在你的html文件中引用这个css文件就可以。</p>
-<p><strong>更改文件后自动重新生成CSS</strong><br>如果你想要每次修改文件后，自动重新生成一下css文件，比如你在style.css里自定义了一个组件，并且希望实时生效，那么就需要用到监听。<br>现在打开 package.json 文件，添加以下运行脚本：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;watch&quot;: &quot;postcss build src&#x2F;css&#x2F;tailwind.css -o dist&#x2F;css&#x2F;tailwind.css --watch&quot;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>现在 package.json 文件的脚本部分变成了这样：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">   &quot;build&quot;: &quot;tailwindcss build src&#x2F;css&#x2F;tailwind.css -o dist&#x2F;css&#x2F;tailwind.css&quot;,</span><br><span class="line">   &quot;watch&quot;: &quot;postcss build src&#x2F;css&#x2F;tailwind.css -o dist&#x2F;css&#x2F;tailwind.css --watch&quot;,</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
-<p>这时候只要运行npm run watch就可以自动监听你的页面改动.</p>
-<blockquote>
-<p>babel 简单来说把 JavaScript 中 es2015/2016/2017/2046 的新语法转化为 es5，让低端运行环境(如浏览器和 node )能够认识并执行</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Tailwind-CSS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用git 与github友好交流</title>
     <url>/2017/08/11/%E4%BD%BF%E7%94%A8git-%E4%B8%8Egithub%E5%8F%8B%E5%A5%BD%E4%BA%A4%E6%B5%81/</url>
     <content><![CDATA[<p>##<strong>本文主要介绍window 端Git 与github友好交流</strong></p>
@@ -3507,6 +3455,58 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>laravel</tag>
         <tag>composer - 扩展包</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用Tailwind CSS新建一个项目</title>
+    <url>/2021/11/18/%E4%BD%BF%E7%94%A8Tailwind-CSS%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/tailwindcss.png" alt="tailwindcss"></p>
+<a id="more"></a>
+
+<p>中文官网： <a href="https://www.tailwindcss.cn/" target="_blank">[ Tailwind-CSS中文官网 ]</a><br>Github地址： <a href="https://github.com/tailwindlabs/tailwindcss" target="_blank">[ Github ]</a><br><strong>安装PostCSS</strong><br>新建一个项目目录，然后在根目录运行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm i --save-dev postcss-cli</span><br></pre></td></tr></table></figure>
+
+<p>了解Sass，Less，Stylus等css 预处理器区别及使用、了解Just-In-Time(Jit)即时动态编译<br><strong>安装Tailwind CSS以及相关依赖</strong></p>
+<blockquote>
+<p>npm install tailwindcss@latest postcss@latest autoprefixer@latest</p>
+</blockquote>
+<p><strong>添加Tailwind作为PostCSS插件</strong><br>在根目录新建一个postcss配置文件postcss.config.js,并且将文件内容修改为以下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; postcss.config.js</span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  plugins: &#123;</span><br><span class="line">    tailwindcss: &#123;&#125;,</span><br><span class="line">    autoprefixer: &#123;&#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>创建您的配置文件</strong><br>运行以下命令</p>
+<blockquote>
+<p>npm init -y</p>
+</blockquote>
+<p><strong>安装PostCSS</strong><br>新建一个项目目录，然后在根目录运行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm i --save-dev postcss-cli</span><br></pre></td></tr></table></figure>
+
+<p>这会在根目录下生成一个package.json文件。<br>继续运行</p>
+<blockquote>
+<p>npx tailwindcss init</p>
+</blockquote>
+<p>这会在你的项目根目录创建一个tailwind.config.js文件，将内容修改为以下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; tailwind.config.js</span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  purge: [],</span><br><span class="line">  darkMode: false, &#x2F;&#x2F; or &#39;media&#39; or &#39;class&#39;</span><br><span class="line">  theme: &#123;</span><br><span class="line">    extend: &#123;&#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  variants: &#123;&#125;,</span><br><span class="line">  plugins: [],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>创建你的css文件</strong><br>创建一个css文件，位置随意，比如src/style.css,并且将内容修改为如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;* .&#x2F;你的css文件夹&#x2F;styles.css *&#x2F;</span><br><span class="line">@tailwind base;</span><br><span class="line">@tailwind components;</span><br><span class="line">@tailwind utilities;</span><br></pre></td></tr></table></figure>
+
+<p><strong>创建构建命令</strong><br>现在打开 package.json 文件，添加以下运行脚本：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;build&quot;: &quot;postcss src&#x2F;style.css -o dist&#x2F;tailwind.css&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个构建的css文件就是你最终使用的css文件。<br>现在，从命令行运行 <code>npm run build</code> 将构建最终的CSS文件。</p>
+<p>生成的文件位于 <code>dist/tailwind.css</code> （您可以在上面的命令中更改位置）。</p>
+<p>然后在你的html文件中引用这个css文件就可以。</p>
+<p><strong>更改文件后自动重新生成CSS</strong><br>如果你想要每次修改文件后，自动重新生成一下css文件，比如你在style.css里自定义了一个组件，并且希望实时生效，那么就需要用到监听。<br>现在打开 package.json 文件，添加以下运行脚本：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;watch&quot;: &quot;postcss build src&#x2F;css&#x2F;tailwind.css -o dist&#x2F;css&#x2F;tailwind.css --watch&quot;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在 package.json 文件的脚本部分变成了这样：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">   &quot;build&quot;: &quot;tailwindcss build src&#x2F;css&#x2F;tailwind.css -o dist&#x2F;css&#x2F;tailwind.css&quot;,</span><br><span class="line">   &quot;watch&quot;: &quot;postcss build src&#x2F;css&#x2F;tailwind.css -o dist&#x2F;css&#x2F;tailwind.css --watch&quot;,</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+<p>这时候只要运行npm run watch就可以自动监听你的页面改动.</p>
+<blockquote>
+<p>babel 简单来说把 JavaScript 中 es2015/2016/2017/2046 的新语法转化为 es5，让低端运行环境(如浏览器和 node )能够认识并执行</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Tailwind-CSS</tag>
       </tags>
   </entry>
   <entry>
