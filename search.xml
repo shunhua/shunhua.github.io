@@ -125,7 +125,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#64;&#113;&#x71;&#x2e;&#99;&#x6f;&#109;">&#x78;&#64;&#113;&#x71;&#x2e;&#99;&#x6f;&#109;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#64;&#x71;&#x71;&#x2e;&#x63;&#111;&#109;">&#x78;&#64;&#x71;&#x71;&#x2e;&#x63;&#111;&#109;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -136,7 +136,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#x40;&#x71;&#x71;&#46;&#x63;&#x6f;&#x6d;">&#x62;&#x40;&#x71;&#x71;&#46;&#x63;&#x6f;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#64;&#113;&#113;&#46;&#x63;&#x6f;&#x6d;">&#x62;&#64;&#113;&#113;&#46;&#x63;&#x6f;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -508,6 +508,68 @@
       </tags>
   </entry>
   <entry>
+    <title>Etcd一文</title>
+    <url>/2021/11/04/Etcd%E4%B8%80%E6%96%87/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/etcd.png" alt="Etcd"></p>
+<a id="more"></a>
+<p><strong>一、概述</strong></p>
+<blockquote>
+<p>背景：近期k8s应用中etcd的功能存在一些困惑，对其进行来单独的学习，能更深入理解k8s中的的一些特性。</p>
+</blockquote>
+<ul>
+<li>简单：安装配置简单，而且提供了HTTP API进行交互，使用也很简单</li>
+<li>安全：支持SSL证书验证</li>
+<li>快速：根据官方提供的benchmark数据，单实例支持每秒2k+读操作</li>
+<li>可靠：采用raft算法，实现分布式系统数据的可用性和一致性</li>
+</ul>
+<p><strong>二、应用场景</strong></p>
+<ul>
+<li>服务注册与发现</li>
+<li>消息发布与订阅</li>
+<li>负载均衡</li>
+<li>分部署通知与协调</li>
+<li>分布式锁</li>
+<li>分布式队列</li>
+<li>集群与监控与Leader选举</li>
+</ul>
+<p><strong>三、安装部署</strong></p>
+<p>推荐使用yum安装方式</p>
+<blockquote>
+<p>hostnamectl set-hostname etcd-1<br>wget <a href="http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm">http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</a><br>rpm -ivh epel-release-latest-7.noarch.rpm</p>
+<h1 id="yum-仓库中的etcd版本为3-3-11，如果需要最新版本的etcd可以进行二进制安装"><a href="#yum-仓库中的etcd版本为3-3-11，如果需要最新版本的etcd可以进行二进制安装" class="headerlink" title="yum 仓库中的etcd版本为3.3.11，如果需要最新版本的etcd可以进行二进制安装"></a>yum 仓库中的etcd版本为3.3.11，如果需要最新版本的etcd可以进行二进制安装</h1><p>yum -y install etcd<br>systemctl enable etcd</p>
+</blockquote>
+<p><strong>四、简单使用</strong></p>
+<p>1、增加 set</p>
+<blockquote>
+<p>$ etcdctl set /testdir/testkey “Hello world”<br>Hello world</p>
+</blockquote>
+<p>2、删除 rm</p>
+<blockquote>
+<p>$ etcdctl rm /testdir/testkey<br>PrevNode.Value: Hello</p>
+</blockquote>
+<p>3、更新 update</p>
+<blockquote>
+<p>etcdctl update /testdir/testkey “Hello”<br>Hello</p>
+</blockquote>
+<p>4、查询 get</p>
+<blockquote>
+<p>etcdctl get /testdir/testkey<br>Hello world</p>
+</blockquote>
+<p><strong>五、总结</strong></p>
+<ul>
+<li><p>etcd 默认只保存 1000 个历史事件，所以不适合有大量更新操作的场景，这样会导致数据的丢失。 etcd 典型的应用场景是配置管理和服务发现，这些场景都是读多写少的。</p>
+</li>
+<li><p>相比于 zookeeper，etcd 使用起来要简单很多。不过要实现真正的服务发现功能，etcd 还需要和其他工具（比如 registrator、confd 等）一起使用来实现服务的自动注册和更新。</p>
+</li>
+<li><p>目前 etcd 还没有图形化的工具。 </p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Etcd</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Go 语言基础</title>
     <url>/2017/11/08/Go-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<a id="more"></a>
@@ -774,68 +836,6 @@
         <tag>Laragon</tag>
         <tag>Laravel</tag>
         <tag>Windows</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Etcd一文</title>
-    <url>/2021/11/04/Etcd%E4%B8%80%E6%96%87/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/etcd.png" alt="Etcd"></p>
-<a id="more"></a>
-<p><strong>一、概述</strong></p>
-<blockquote>
-<p>背景：近期k8s应用中etcd的功能存在一些困惑，对其进行来单独的学习，能更深入理解k8s中的的一些特性。</p>
-</blockquote>
-<ul>
-<li>简单：安装配置简单，而且提供了HTTP API进行交互，使用也很简单</li>
-<li>安全：支持SSL证书验证</li>
-<li>快速：根据官方提供的benchmark数据，单实例支持每秒2k+读操作</li>
-<li>可靠：采用raft算法，实现分布式系统数据的可用性和一致性</li>
-</ul>
-<p><strong>二、应用场景</strong></p>
-<ul>
-<li>服务注册与发现</li>
-<li>消息发布与订阅</li>
-<li>负载均衡</li>
-<li>分部署通知与协调</li>
-<li>分布式锁</li>
-<li>分布式队列</li>
-<li>集群与监控与Leader选举</li>
-</ul>
-<p><strong>三、安装部署</strong></p>
-<p>推荐使用yum安装方式</p>
-<blockquote>
-<p>hostnamectl set-hostname etcd-1<br>wget <a href="http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm">http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</a><br>rpm -ivh epel-release-latest-7.noarch.rpm</p>
-<h1 id="yum-仓库中的etcd版本为3-3-11，如果需要最新版本的etcd可以进行二进制安装"><a href="#yum-仓库中的etcd版本为3-3-11，如果需要最新版本的etcd可以进行二进制安装" class="headerlink" title="yum 仓库中的etcd版本为3.3.11，如果需要最新版本的etcd可以进行二进制安装"></a>yum 仓库中的etcd版本为3.3.11，如果需要最新版本的etcd可以进行二进制安装</h1><p>yum -y install etcd<br>systemctl enable etcd</p>
-</blockquote>
-<p><strong>四、简单使用</strong></p>
-<p>1、增加 set</p>
-<blockquote>
-<p>$ etcdctl set /testdir/testkey “Hello world”<br>Hello world</p>
-</blockquote>
-<p>2、删除 rm</p>
-<blockquote>
-<p>$ etcdctl rm /testdir/testkey<br>PrevNode.Value: Hello</p>
-</blockquote>
-<p>3、更新 update</p>
-<blockquote>
-<p>etcdctl update /testdir/testkey “Hello”<br>Hello</p>
-</blockquote>
-<p>4、查询 get</p>
-<blockquote>
-<p>etcdctl get /testdir/testkey<br>Hello world</p>
-</blockquote>
-<p><strong>五、总结</strong></p>
-<ul>
-<li><p>etcd 默认只保存 1000 个历史事件，所以不适合有大量更新操作的场景，这样会导致数据的丢失。 etcd 典型的应用场景是配置管理和服务发现，这些场景都是读多写少的。</p>
-</li>
-<li><p>相比于 zookeeper，etcd 使用起来要简单很多。不过要实现真正的服务发现功能，etcd 还需要和其他工具（比如 registrator、confd 等）一起使用来实现服务的自动注册和更新。</p>
-</li>
-<li><p>目前 etcd 还没有图形化的工具。 </p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Etcd</tag>
       </tags>
   </entry>
   <entry>
@@ -1383,36 +1383,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Nginx分发-指定文件名称</title>
-    <url>/2020/12/07/Nginx%E5%88%86%E5%8F%91-%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E5%90%8D%E7%A7%B0/</url>
-    <content><![CDATA[<p><strong>Nginx分发-指定文件名称</strong></p>
-<a id="more"></a>
-
-<p>一般在我们上传完资源文件之后，为了避免文件名冲突，会将文件名改成毫无意义的一段字符<br>其实，nginx是支持下载时重命名的，让文件名更加友好</p>
-<p>eg: xxx.com/storage/uploads/2020-12-07-728632757453485.png?n=test</p>
-<blockquote>
-<p>有后缀：</p>
-</blockquote>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">location</span> <span class="regexp">~* .*\.(txt|jpg|png)(\?.*)?$</span> &#123; </span><br><span class="line">    <span class="attribute">if</span> ($request_uri <span class="regexp">~* ^.*\/(.*)\.(txt|jpg|png)(\?n=([^&amp;]+))$)</span> &#123;</span><br><span class="line">        <span class="attribute">add_header</span> Content-Disposition <span class="string">&quot;attachment;filename=$arg_n.<span class="variable">$2</span>&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>无后缀：</p>
-</blockquote>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">location</span> <span class="regexp">~* [^/]+(?!.*/)</span> &#123;</span><br><span class="line">    <span class="attribute">if</span> ($request_uri <span class="regexp">~* [^/]+(?!.*/)(\?n=([^&amp;]+))$)</span> &#123;</span><br><span class="line">        <span class="attribute">add_header</span> Content-Disposition <span class="string">&quot;attachment;filename=$arg_n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://baishunhua.com/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.</p>
-</blockquote>
-<p>That’s it! enjoy :)</p>
-]]></content>
-      <tags>
-        <tag>nginx</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>PHP 5.3、5.4、5.5、5.6、7 中的新特性</title>
     <url>/2017/09/26/PHP-5-3%E3%80%815-4%E3%80%815-5%E3%80%815-6%E3%80%817-%E4%B8%AD%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7/</url>
     <content><![CDATA[<p><strong>PHP 5.3、5.4、5.5、5.6、7 中的新特性</strong></p>
@@ -1684,6 +1654,36 @@ public $queue = &#39;listeners&#39;;</code></pre>
       <tags>
         <tag>php</tag>
         <tag>socket</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nginx分发-指定文件名称</title>
+    <url>/2020/12/07/Nginx%E5%88%86%E5%8F%91-%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E5%90%8D%E7%A7%B0/</url>
+    <content><![CDATA[<p><strong>Nginx分发-指定文件名称</strong></p>
+<a id="more"></a>
+
+<p>一般在我们上传完资源文件之后，为了避免文件名冲突，会将文件名改成毫无意义的一段字符<br>其实，nginx是支持下载时重命名的，让文件名更加友好</p>
+<p>eg: xxx.com/storage/uploads/2020-12-07-728632757453485.png?n=test</p>
+<blockquote>
+<p>有后缀：</p>
+</blockquote>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">location</span> <span class="regexp">~* .*\.(txt|jpg|png)(\?.*)?$</span> &#123; </span><br><span class="line">    <span class="attribute">if</span> ($request_uri <span class="regexp">~* ^.*\/(.*)\.(txt|jpg|png)(\?n=([^&amp;]+))$)</span> &#123;</span><br><span class="line">        <span class="attribute">add_header</span> Content-Disposition <span class="string">&quot;attachment;filename=$arg_n.<span class="variable">$2</span>&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>无后缀：</p>
+</blockquote>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">location</span> <span class="regexp">~* [^/]+(?!.*/)</span> &#123;</span><br><span class="line">    <span class="attribute">if</span> ($request_uri <span class="regexp">~* [^/]+(?!.*/)(\?n=([^&amp;]+))$)</span> &#123;</span><br><span class="line">        <span class="attribute">add_header</span> Content-Disposition <span class="string">&quot;attachment;filename=$arg_n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://baishunhua.com/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.</p>
+</blockquote>
+<p>That’s it! enjoy :)</p>
+]]></content>
+      <tags>
+        <tag>nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -2255,7 +2255,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#x67;&#x69;&#116;&#x40;&#x67;&#105;&#x74;&#104;&#117;&#98;&#46;&#99;&#111;&#109;">&#x67;&#x69;&#116;&#x40;&#x67;&#105;&#x74;&#104;&#117;&#98;&#46;&#99;&#111;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#x67;&#x69;&#x74;&#64;&#103;&#x69;&#x74;&#x68;&#117;&#x62;&#x2e;&#x63;&#x6f;&#109;">&#x67;&#x69;&#x74;&#64;&#103;&#x69;&#x74;&#x68;&#117;&#x62;&#x2e;&#x63;&#x6f;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -3251,6 +3251,37 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>socket.io的使用</title>
+    <url>/2018/03/28/socket-io%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><strong>socket.io的基础教程</strong> </p>
+<a id="more"></a>
+
+<p>一、安装nodejs [默认安装][<a href="https://nodejs.org/en/download/" target="_blank">下载nodejs</a>]<br>新建文件夹[socket],在目录下执行以下代码<br>nodejs中用npm初始化来创建package.json</p>
+<blockquote>
+<p> npm init</p>
+</blockquote>
+<p>二、使用npm下载 web框架express模块</p>
+<blockquote>
+<p>npm install --save <a href="mailto:&#x65;&#120;&#x70;&#114;&#101;&#115;&#115;&#x40;&#x34;&#46;&#x31;&#53;&#46;&#50;">&#x65;&#120;&#x70;&#114;&#101;&#115;&#115;&#x40;&#x34;&#46;&#x31;&#53;&#46;&#50;</a></p>
+</blockquote>
+<p>三、使用npm下载socket.io模块</p>
+<blockquote>
+<p>npm install --save socket.io</p>
+</blockquote>
+<p>四、新建index.js 代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var app &#x3D; require(&#39;express&#39;)();</span><br><span class="line">var http &#x3D; require(&#39;http&#39;).Server(app);</span><br><span class="line">var io &#x3D; require(&#39;socket.io&#39;)(http);</span><br><span class="line"></span><br><span class="line">app.get(&#39;&#x2F;&#39;, function(req, res)&#123;</span><br><span class="line">  res.sendFile(__dirname + &#39;&#x2F;index.html&#39;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">io.on(&#39;connection&#39;, function(socket)&#123;</span><br><span class="line">  socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">     io.emit(&#39;bsh&#39;, msg);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.listen(3000, function()&#123;</span><br><span class="line">  console.log(&#39;listening on *:3000&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>五、新建index.html 代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Socket.IO chat&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      * &#123; margin: 0; padding: 0; box-sizing: border-box; &#125;</span><br><span class="line">      body &#123; font: 13px Helvetica, Arial; &#125;</span><br><span class="line">      form &#123; background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; &#125;</span><br><span class="line">      form input &#123; border: 0; padding: 10px; width: 90%; margin-right: .5%; &#125;</span><br><span class="line">      form button &#123; width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; &#125;</span><br><span class="line">      #messages &#123; list-style-type: none; margin: 0; padding: 0; &#125;</span><br><span class="line">      #messages li &#123; padding: 5px 10px; &#125;</span><br><span class="line">      #messages li:nth-child(odd) &#123; background: #eee; &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.1.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  $(function () &#123;</span><br><span class="line">    var socket &#x3D; io();</span><br><span class="line">    $(&#39;form&#39;).submit(function()&#123;</span><br><span class="line">      socket.emit(&#39;bsh&#39;, $(&#39;#m&#39;).val());</span><br><span class="line">      $(&#39;#m&#39;).val(&#39;&#39;);</span><br><span class="line">      return false;</span><br><span class="line">    &#125;);</span><br><span class="line">    socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">      $(&#39;#messages&#39;).append($(&#39;&lt;li&gt;&#39;).text(msg));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;ul id&#x3D;&quot;messages&quot;&gt;&lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;form action&#x3D;&quot;&quot;&gt;</span><br><span class="line">      &lt;input id&#x3D;&quot;m&quot; autocomplete&#x3D;&quot;off&quot; &#x2F;&gt;&lt;button&gt;Send&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>六、执行 node index.js<br>七、浏览器打开localhost:3000</p>
+]]></content>
+      <tags>
+        <tag>socket.io</tag>
+        <tag>nodejs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sublime text3 安装配置svn 及默认快捷键</title>
     <url>/2017/08/25/sublime-text3-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEsvn-%E5%8F%8A%E9%BB%98%E8%AE%A4%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
     <content><![CDATA[<p><strong>sublime text3 安装配置svn 及默认快捷键：</strong> </p>
@@ -3290,37 +3321,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>svn</tag>
         <tag>sublime text3</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>socket.io的使用</title>
-    <url>/2018/03/28/socket-io%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><strong>socket.io的基础教程</strong> </p>
-<a id="more"></a>
-
-<p>一、安装nodejs [默认安装][<a href="https://nodejs.org/en/download/" target="_blank">下载nodejs</a>]<br>新建文件夹[socket],在目录下执行以下代码<br>nodejs中用npm初始化来创建package.json</p>
-<blockquote>
-<p> npm init</p>
-</blockquote>
-<p>二、使用npm下载 web框架express模块</p>
-<blockquote>
-<p>npm install --save <a href="mailto:&#x65;&#120;&#x70;&#x72;&#x65;&#x73;&#115;&#64;&#x34;&#46;&#49;&#53;&#46;&#50;">&#x65;&#120;&#x70;&#x72;&#x65;&#x73;&#115;&#64;&#x34;&#46;&#49;&#53;&#46;&#50;</a></p>
-</blockquote>
-<p>三、使用npm下载socket.io模块</p>
-<blockquote>
-<p>npm install --save socket.io</p>
-</blockquote>
-<p>四、新建index.js 代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var app &#x3D; require(&#39;express&#39;)();</span><br><span class="line">var http &#x3D; require(&#39;http&#39;).Server(app);</span><br><span class="line">var io &#x3D; require(&#39;socket.io&#39;)(http);</span><br><span class="line"></span><br><span class="line">app.get(&#39;&#x2F;&#39;, function(req, res)&#123;</span><br><span class="line">  res.sendFile(__dirname + &#39;&#x2F;index.html&#39;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">io.on(&#39;connection&#39;, function(socket)&#123;</span><br><span class="line">  socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">     io.emit(&#39;bsh&#39;, msg);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.listen(3000, function()&#123;</span><br><span class="line">  console.log(&#39;listening on *:3000&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>五、新建index.html 代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Socket.IO chat&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      * &#123; margin: 0; padding: 0; box-sizing: border-box; &#125;</span><br><span class="line">      body &#123; font: 13px Helvetica, Arial; &#125;</span><br><span class="line">      form &#123; background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; &#125;</span><br><span class="line">      form input &#123; border: 0; padding: 10px; width: 90%; margin-right: .5%; &#125;</span><br><span class="line">      form button &#123; width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; &#125;</span><br><span class="line">      #messages &#123; list-style-type: none; margin: 0; padding: 0; &#125;</span><br><span class="line">      #messages li &#123; padding: 5px 10px; &#125;</span><br><span class="line">      #messages li:nth-child(odd) &#123; background: #eee; &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.1.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  $(function () &#123;</span><br><span class="line">    var socket &#x3D; io();</span><br><span class="line">    $(&#39;form&#39;).submit(function()&#123;</span><br><span class="line">      socket.emit(&#39;bsh&#39;, $(&#39;#m&#39;).val());</span><br><span class="line">      $(&#39;#m&#39;).val(&#39;&#39;);</span><br><span class="line">      return false;</span><br><span class="line">    &#125;);</span><br><span class="line">    socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">      $(&#39;#messages&#39;).append($(&#39;&lt;li&gt;&#39;).text(msg));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;ul id&#x3D;&quot;messages&quot;&gt;&lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;form action&#x3D;&quot;&quot;&gt;</span><br><span class="line">      &lt;input id&#x3D;&quot;m&quot; autocomplete&#x3D;&quot;off&quot; &#x2F;&gt;&lt;button&gt;Send&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-
-<p>六、执行 node index.js<br>七、浏览器打开localhost:3000</p>
-]]></content>
-      <tags>
-        <tag>socket.io</tag>
-        <tag>nodejs</tag>
       </tags>
   </entry>
   <entry>
@@ -3406,58 +3406,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>使用git 与github友好交流</title>
-    <url>/2017/08/11/%E4%BD%BF%E7%94%A8git-%E4%B8%8Egithub%E5%8F%8B%E5%A5%BD%E4%BA%A4%E6%B5%81/</url>
-    <content><![CDATA[<p>##<strong>本文主要介绍window 端Git 与github友好交流</strong></p>
-<blockquote>
-<p>1、安装window版（32/64）git。 window端安装过程无脑略过—— </p>
-</blockquote>
-<a id="more"></a>
-
-
-<p>2、本文默认github已注册并添加过 ssh key<br>3、github上新建仓库<br>git add / add *<br>git commit -m<br>git remote add origin <a href="http://xxxx.github.io/">http://xxxx.github.io</a><br>git push -u origin master<br>git pull<br>git rm -r xxx<br>git commit -m ‘’<br>git push -u origin master<br>git  –version</p>
-]]></content>
-      <tags>
-        <tag>git</tag>
-        <tag>github</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>发布Laravel扩展包larapay</title>
-    <url>/2018/12/04/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85larapay/</url>
-    <content><![CDATA[<p><strong>发布Laravel扩展封装支付包larapay</strong> </p>
-<a id="more"></a>
-<p>一、编写扩展包</p>
-<blockquote>
-<p>mkdir -p packages/shunhua/larapay</p>
-</blockquote>
-<p>进入扩展包目录，初始化 composer 配置</p>
-<blockquote>
-<p>composer init</p>
-</blockquote>
-<p>执行之后，项目下生成一个 composer.json 文件：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;name&quot;: &quot;shunhua&#x2F;larapay&quot;,</span><br><span class="line">    &quot;description&quot;: &quot;Alipay,Unicompay&quot;,</span><br><span class="line">    &quot;keywords&quot;: [&quot;Alipay&quot;, &quot;Unicompay&quot;],</span><br><span class="line">    &quot;license&quot;: &quot;MIT&quot;,</span><br><span class="line">    &quot;authors&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;Bsh&quot;,</span><br><span class="line">            &quot;email&quot;: &quot;2399315737@qq.com&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    &quot;require&quot;: &#123;</span><br><span class="line">        &quot;php&quot;: &quot;&gt;&#x3D;5.6.4&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;autoload&quot;: &#123;</span><br><span class="line">        &quot;psr-4&quot;: &#123;</span><br><span class="line">            &quot;Shunhua\\Larapay\\&quot;: &quot;src&#x2F;&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>包目录如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">shunhua&#x2F;larapay</span><br><span class="line">├── src  #存放扩展包所有的逻辑代码</span><br><span class="line">├── doc # 存放文档</span><br><span class="line">├── README.md</span><br><span class="line">├── composer.json</span><br></pre></td></tr></table></figure>
-
-<p>二、扩展包发布</p>
-<ol>
-<li>提交代码到 GitHub<br>首先，需要把扩展包的代码提交到 GitHub 上，记录下 GitHub 版本库的地址，注意是 HTTPS。<br><img src="/assets/blogImg/laravel.png" alt="ico原来的样子"></li>
-<li>把扩展包发布到 Packagist<br>访问 <a href="https://packagist.org/packages/submit" target="_blank">[ Packagist ]</a> 官网，登录后，点击右上角Submit按钮，进入发布向导:<br>此时，将 GitHub 版本库的地址填写至 Repository URL 输入框中，然后点击 Submit 提交按钮，一切顺利，可以看到发布成功</li>
-<li>设置版本信息<br>版本默认是 dev-master，Composer 包的版本号会从 Git 的 tag 中同步过来。<br>.查看本地所有的tag [git tag]<br>.创建一个新的tag[git tag xxx]<br>.查看提交状态[git log –oneline –decorate –graph]</li>
-</ol>
-<blockquote>
-<p>git tag v0.9<br>git push origin –tags<br>git push origin</p>
-</blockquote>
-<hr>
-<p>使用 <a href="https://github.com/shunhua/larapay" target="_blank">[ shunhua/larapay ]</a>包</p>
-]]></content>
-      <tags>
-        <tag>laravel</tag>
-        <tag>composer - 扩展包</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用Tailwind CSS新建一个项目</title>
     <url>/2021/11/18/%E4%BD%BF%E7%94%A8Tailwind-CSS%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/tailwindcss.png" alt="tailwindcss"></p>
@@ -3507,6 +3455,58 @@ class QuotesSpider(scrapy.Spider):
 ]]></content>
       <tags>
         <tag>Tailwind-CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用git 与github友好交流</title>
+    <url>/2017/08/11/%E4%BD%BF%E7%94%A8git-%E4%B8%8Egithub%E5%8F%8B%E5%A5%BD%E4%BA%A4%E6%B5%81/</url>
+    <content><![CDATA[<p>##<strong>本文主要介绍window 端Git 与github友好交流</strong></p>
+<blockquote>
+<p>1、安装window版（32/64）git。 window端安装过程无脑略过—— </p>
+</blockquote>
+<a id="more"></a>
+
+
+<p>2、本文默认github已注册并添加过 ssh key<br>3、github上新建仓库<br>git add / add *<br>git commit -m<br>git remote add origin <a href="http://xxxx.github.io/">http://xxxx.github.io</a><br>git push -u origin master<br>git pull<br>git rm -r xxx<br>git commit -m ‘’<br>git push -u origin master<br>git  –version</p>
+]]></content>
+      <tags>
+        <tag>git</tag>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>发布Laravel扩展包larapay</title>
+    <url>/2018/12/04/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85larapay/</url>
+    <content><![CDATA[<p><strong>发布Laravel扩展封装支付包larapay</strong> </p>
+<a id="more"></a>
+<p>一、编写扩展包</p>
+<blockquote>
+<p>mkdir -p packages/shunhua/larapay</p>
+</blockquote>
+<p>进入扩展包目录，初始化 composer 配置</p>
+<blockquote>
+<p>composer init</p>
+</blockquote>
+<p>执行之后，项目下生成一个 composer.json 文件：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;name&quot;: &quot;shunhua&#x2F;larapay&quot;,</span><br><span class="line">    &quot;description&quot;: &quot;Alipay,Unicompay&quot;,</span><br><span class="line">    &quot;keywords&quot;: [&quot;Alipay&quot;, &quot;Unicompay&quot;],</span><br><span class="line">    &quot;license&quot;: &quot;MIT&quot;,</span><br><span class="line">    &quot;authors&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;Bsh&quot;,</span><br><span class="line">            &quot;email&quot;: &quot;2399315737@qq.com&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    &quot;require&quot;: &#123;</span><br><span class="line">        &quot;php&quot;: &quot;&gt;&#x3D;5.6.4&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;autoload&quot;: &#123;</span><br><span class="line">        &quot;psr-4&quot;: &#123;</span><br><span class="line">            &quot;Shunhua\\Larapay\\&quot;: &quot;src&#x2F;&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>包目录如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">shunhua&#x2F;larapay</span><br><span class="line">├── src  #存放扩展包所有的逻辑代码</span><br><span class="line">├── doc # 存放文档</span><br><span class="line">├── README.md</span><br><span class="line">├── composer.json</span><br></pre></td></tr></table></figure>
+
+<p>二、扩展包发布</p>
+<ol>
+<li>提交代码到 GitHub<br>首先，需要把扩展包的代码提交到 GitHub 上，记录下 GitHub 版本库的地址，注意是 HTTPS。<br><img src="/assets/blogImg/laravel.png" alt="ico原来的样子"></li>
+<li>把扩展包发布到 Packagist<br>访问 <a href="https://packagist.org/packages/submit" target="_blank">[ Packagist ]</a> 官网，登录后，点击右上角Submit按钮，进入发布向导:<br>此时，将 GitHub 版本库的地址填写至 Repository URL 输入框中，然后点击 Submit 提交按钮，一切顺利，可以看到发布成功</li>
+<li>设置版本信息<br>版本默认是 dev-master，Composer 包的版本号会从 Git 的 tag 中同步过来。<br>.查看本地所有的tag [git tag]<br>.创建一个新的tag[git tag xxx]<br>.查看提交状态[git log –oneline –decorate –graph]</li>
+</ol>
+<blockquote>
+<p>git tag v0.9<br>git push origin –tags<br>git push origin</p>
+</blockquote>
+<hr>
+<p>使用 <a href="https://github.com/shunhua/larapay" target="_blank">[ shunhua/larapay ]</a>包</p>
+]]></content>
+      <tags>
+        <tag>laravel</tag>
+        <tag>composer - 扩展包</tag>
       </tags>
   </entry>
   <entry>
