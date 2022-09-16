@@ -125,7 +125,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#64;&#x71;&#113;&#x2e;&#99;&#x6f;&#x6d;">&#x78;&#64;&#x71;&#113;&#x2e;&#99;&#x6f;&#x6d;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#64;&#x71;&#x71;&#x2e;&#x63;&#x6f;&#109;">&#x78;&#64;&#x71;&#x71;&#x2e;&#x63;&#x6f;&#109;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -136,7 +136,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#64;&#x71;&#113;&#x2e;&#99;&#x6f;&#x6d;">&#x62;&#64;&#x71;&#113;&#x2e;&#99;&#x6f;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#64;&#113;&#x71;&#x2e;&#x63;&#x6f;&#109;">&#x62;&#64;&#113;&#x71;&#x2e;&#x63;&#x6f;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -251,99 +251,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Centos下两种守护进程的配置</title>
-    <url>/2018/03/21/Centos%E4%B8%8B%E4%B8%A4%E7%A7%8D%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E7%9A%84%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<a id="more"></a>
-
-
-<blockquote>
-<p>一、php artisan</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-xx]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D;php &#x2F;home&#x2F;wwwroot&#x2F;www.xxx.com&#x2F;artisan queue:work --tries&#x3D;3</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;4</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xxx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>二、执行node js </p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-node]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D; node &#x2F;home&#x2F;socket&#x2F;stocket.js</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;1</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>Centos</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Centos7下基于laradock部署laravel5.x</title>
-    <url>/2018/04/09/Centos7%E4%B8%8B%E5%9F%BA%E4%BA%8Elaradock%E9%83%A8%E7%BD%B2laravel5-x/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>一、安装docker</strong></p>
-<p>Go to：<a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/" target="_blank">[ .rpm安装路径 ]</a> <a href="https://docs.docker.com/engine/installation/linux/docker-ce/centos/#install-using-the-repository" target="_blank">[ 官方参考 ]</a><br><img src="/assets/blogImg/laradock/1.png" alt="ico原来的样子"></p>
-<p>打开路径地址，本文默认安装选择最新版，<br><img src="/assets/blogImg/laradock/2.png" alt="ico原来的样子"><br>下载rpm安装包</p>
-<blockquote>
-<p> wget <a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm">https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm</a></p>
-</blockquote>
-<p>安装 Docker CE,执行命令</p>
-<blockquote>
-<p> $ sudo yum install docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm<br>或者 yum install /path/to/package.rpm  </p>
-</blockquote>
-<p>启动docker –hello[docker run hello-world]</p>
-<blockquote>
-<p> systemctl start docker<br>systemctl enable docker 开机启动</p>
-</blockquote>
-<p><strong>二、CentOS 7配置中国镜像</strong></p>
-<p><a href="https://yq.aliyun.com/articles/29941" target="_blank">[ 参考配置原文 ]</a> docker –registry-mirror=<a href="https://registry.docker-cn.com/">https://registry.docker-cn.com</a> daemon [提示找不到registry]</p>
-<ul>
-<li>CentOS的配置方式略微复杂，需要先将默认的配置文件复制出来</li>
-<li>/lib/systemd/system/docker.service -&gt; /etc/systemd/system/docker.service</li>
-<li>然后再将加速器地址添加到配置文件的启动命令</li>
-<li>重启Docker就可以了。</li>
-</ul>
-<blockquote>
-<ul>
-<li>sudo cp -n /lib/systemd/system/docker.service /etc/systemd/system/docker.service</li>
-<li>sudo sed -i “s|ExecStart=/usr/bin/docker daemon|ExecStart=/usr/bin/docker daemon –registry-mirror=<a href="https://registry.docker-cn.com|g&quot;/">https://registry.docker-cn.com|g&quot;</a> /etc/systemd/system/docker.service</li>
-<li>sudo sed -i “s|ExecStart=/usr/bin/dockerd|ExecStart=/usr/bin/dockerd –registry-mirror=<a href="https://registry.docker-cn.com|g&quot;/">https://registry.docker-cn.com|g&quot;</a> /etc/systemd/system/docker.service</li>
-<li>sudo systemctl daemon-reload</li>
-<li>sudo systemctl restart docker  </li>
-</ul>
-</blockquote>
-<p>docker 安装完成！！！</p>
-<p><strong>三、拉取 Laradock</strong></p>
-<ul>
-<li>目录路径[/home/]</li>
-<li>git clone <a href="https://github.com/Laradock/laradock.git">https://github.com/Laradock/laradock.git</a>  </li>
-<li>cp env-example .env </li>
-<li>docker-compose up -d nginx mysql phpmyadmin</li>
-<li>访问phpmyadmin[<a href="http://ip:8080/]%E9%BB%98%E8%AE%A4%E5%80%BC%E4%B8%BA">http://ip:8080/]默认值为</a>  服务器[mysql] 账号[root] 密码[root]</li>
-<li>获取laradock[/home/laradock]后 在同级下创建项目目录[/home/www]</li>
-<li>修改[/home/laradock/.env]APPLICATION=../www/</li>
-<li>[/home/laradock]下使用root用户docker-compose exec workspace bash</li>
-<li>[/home/laradock]下使用laradock用户  docker-compose exec –user=laradock workspace bash</li>
-<li>配置中国镜像 composer config -g repo.packagist composer <a href="https://packagist.phpcomposer.com/">https://packagist.phpcomposer.com</a></li>
-<li>创建laravel composer create-project laravel/laravel my-app</li>
-</ul>
-<blockquote>
-<p> 安装SVN 配置钩子文件到 [/home/www]  </p>
-</blockquote>
-<p><a href="https://lisonghe.com/detail/19" target="_blank">[ svn安装文档参考 ]</a> </p>
-<blockquote>
-<p> 安装SVN成功后,服务器开启端口权限，上传代码,修改数据库配置，导入数据库</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>laradock</tag>
-        <tag>centos7</tag>
-        <tag>laravel5</tag>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CentOS 7 搭建SVN服务器</title>
     <url>/2017/09/14/CentOS-7-%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
     <content><![CDATA[<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CentOS 7 搭建SVN服务器</strong> </p>
@@ -421,6 +328,99 @@
       </tags>
   </entry>
   <entry>
+    <title>Centos7下基于laradock部署laravel5.x</title>
+    <url>/2018/04/09/Centos7%E4%B8%8B%E5%9F%BA%E4%BA%8Elaradock%E9%83%A8%E7%BD%B2laravel5-x/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>一、安装docker</strong></p>
+<p>Go to：<a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/" target="_blank">[ .rpm安装路径 ]</a> <a href="https://docs.docker.com/engine/installation/linux/docker-ce/centos/#install-using-the-repository" target="_blank">[ 官方参考 ]</a><br><img src="/assets/blogImg/laradock/1.png" alt="ico原来的样子"></p>
+<p>打开路径地址，本文默认安装选择最新版，<br><img src="/assets/blogImg/laradock/2.png" alt="ico原来的样子"><br>下载rpm安装包</p>
+<blockquote>
+<p> wget <a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm">https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm</a></p>
+</blockquote>
+<p>安装 Docker CE,执行命令</p>
+<blockquote>
+<p> $ sudo yum install docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm<br>或者 yum install /path/to/package.rpm  </p>
+</blockquote>
+<p>启动docker –hello[docker run hello-world]</p>
+<blockquote>
+<p> systemctl start docker<br>systemctl enable docker 开机启动</p>
+</blockquote>
+<p><strong>二、CentOS 7配置中国镜像</strong></p>
+<p><a href="https://yq.aliyun.com/articles/29941" target="_blank">[ 参考配置原文 ]</a> docker –registry-mirror=<a href="https://registry.docker-cn.com/">https://registry.docker-cn.com</a> daemon [提示找不到registry]</p>
+<ul>
+<li>CentOS的配置方式略微复杂，需要先将默认的配置文件复制出来</li>
+<li>/lib/systemd/system/docker.service -&gt; /etc/systemd/system/docker.service</li>
+<li>然后再将加速器地址添加到配置文件的启动命令</li>
+<li>重启Docker就可以了。</li>
+</ul>
+<blockquote>
+<ul>
+<li>sudo cp -n /lib/systemd/system/docker.service /etc/systemd/system/docker.service</li>
+<li>sudo sed -i “s|ExecStart=/usr/bin/docker daemon|ExecStart=/usr/bin/docker daemon –registry-mirror=<a href="https://registry.docker-cn.com|g&quot;/">https://registry.docker-cn.com|g&quot;</a> /etc/systemd/system/docker.service</li>
+<li>sudo sed -i “s|ExecStart=/usr/bin/dockerd|ExecStart=/usr/bin/dockerd –registry-mirror=<a href="https://registry.docker-cn.com|g&quot;/">https://registry.docker-cn.com|g&quot;</a> /etc/systemd/system/docker.service</li>
+<li>sudo systemctl daemon-reload</li>
+<li>sudo systemctl restart docker  </li>
+</ul>
+</blockquote>
+<p>docker 安装完成！！！</p>
+<p><strong>三、拉取 Laradock</strong></p>
+<ul>
+<li>目录路径[/home/]</li>
+<li>git clone <a href="https://github.com/Laradock/laradock.git">https://github.com/Laradock/laradock.git</a>  </li>
+<li>cp env-example .env </li>
+<li>docker-compose up -d nginx mysql phpmyadmin</li>
+<li>访问phpmyadmin[<a href="http://ip:8080/]%E9%BB%98%E8%AE%A4%E5%80%BC%E4%B8%BA">http://ip:8080/]默认值为</a>  服务器[mysql] 账号[root] 密码[root]</li>
+<li>获取laradock[/home/laradock]后 在同级下创建项目目录[/home/www]</li>
+<li>修改[/home/laradock/.env]APPLICATION=../www/</li>
+<li>[/home/laradock]下使用root用户docker-compose exec workspace bash</li>
+<li>[/home/laradock]下使用laradock用户  docker-compose exec –user=laradock workspace bash</li>
+<li>配置中国镜像 composer config -g repo.packagist composer <a href="https://packagist.phpcomposer.com/">https://packagist.phpcomposer.com</a></li>
+<li>创建laravel composer create-project laravel/laravel my-app</li>
+</ul>
+<blockquote>
+<p> 安装SVN 配置钩子文件到 [/home/www]  </p>
+</blockquote>
+<p><a href="https://lisonghe.com/detail/19" target="_blank">[ svn安装文档参考 ]</a> </p>
+<blockquote>
+<p> 安装SVN成功后,服务器开启端口权限，上传代码,修改数据库配置，导入数据库</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>laradock</tag>
+        <tag>centos7</tag>
+        <tag>laravel5</tag>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Centos下两种守护进程的配置</title>
+    <url>/2018/03/21/Centos%E4%B8%8B%E4%B8%A4%E7%A7%8D%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E7%9A%84%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<a id="more"></a>
+
+
+<blockquote>
+<p>一、php artisan</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-xx]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D;php &#x2F;home&#x2F;wwwroot&#x2F;www.xxx.com&#x2F;artisan queue:work --tries&#x3D;3</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;4</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xxx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>二、执行node js </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-node]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D; node &#x2F;home&#x2F;socket&#x2F;stocket.js</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;1</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Centos</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Centos下安装PHP7</title>
     <url>/2018/03/21/Centos%E4%B8%8B%E5%AE%89%E8%A3%85PHP7/</url>
     <content><![CDATA[<a id="more"></a>
@@ -466,45 +466,6 @@
       <tags>
         <tag>Centos</tag>
         <tag>PHP7</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Docker下实践ELK(Elasticsearch、Logstash、Kibana)</title>
-    <url>/2021/12/22/Docker%E4%B8%8B%E5%AE%9E%E8%B7%B5ELK-Elasticsearch%E3%80%81Logstash%E3%80%81Kibana/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/elk.png" alt="elk"></p>
-<a id="more"></a>
-
-<p><strong>什么是 ELK</strong><br><a href="https://www.elastic.co/cn/what-is/elk-stack" target="_blank">[ 官方网址 ]</a> | <a href="https://github.com/deviantony/docker-elk" target="_blank">[ Github资源 ]</a><br><img src="/assets/blogImg/elk.svg" alt="elk"></p>
-<ul>
-<li>Elasticsearch</li>
-</ul>
-<blockquote>
-<p>Elasticsearch 是一个分布式的 RESTful 风格的 <code>搜索和数据分析引擎</code>，能够解决不断涌现出的各种用例。作为 Elastic Stack 的核心，它集中<code>存储您的数据</code>，帮助您发现意料之中以及意料之外的情况。</p>
-</blockquote>
-<ul>
-<li>Logstash</li>
-</ul>
-<blockquote>
-<p>Logstash 是开源的服务器端数据处理管道，能够同时 从多个来源 <code>采集数据、转换数据</code>，然后将数据发送到您最喜欢的<code>存储库</code> （存储库是 <code>Elasticsearch</code>）中。</p>
-</blockquote>
-<ul>
-<li>Kibana</li>
-</ul>
-<blockquote>
-<p>Kibana 让您能够<code>可视化 Elasticsearch</code> 中的数据并操作 Elastic Stack。</p>
-</blockquote>
-<p><img src="/assets/blogImg/elk-lu.svg" alt="elk-lu"><br><strong>整体架构流程图：</strong><br><a href="https://excalidraw.com/" target="_blank">[ 画图工具 ]</a></p>
-<ul>
-<li>filebeat: 负责将日志数据传输到 redis</li>
-<li>Redis：暂时进行缓存</li>
-<li>logstash: 收集缓存中的日志数据</li>
-<li>elasticsearch: 负责存储日志数据</li>
-<li>kibana: 负责显示日志的数据</li>
-</ul>
-<p><img src="/assets/blogImg/elk1.png" alt="elk"></p>
-]]></content>
-      <tags>
-        <tag>ELK</tag>
       </tags>
   </entry>
   <entry>
@@ -567,6 +528,45 @@
 ]]></content>
       <tags>
         <tag>Etcd</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Docker下实践ELK(Elasticsearch、Logstash、Kibana)</title>
+    <url>/2021/12/22/Docker%E4%B8%8B%E5%AE%9E%E8%B7%B5ELK-Elasticsearch%E3%80%81Logstash%E3%80%81Kibana/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/elk.png" alt="elk"></p>
+<a id="more"></a>
+
+<p><strong>什么是 ELK</strong><br><a href="https://www.elastic.co/cn/what-is/elk-stack" target="_blank">[ 官方网址 ]</a> | <a href="https://github.com/deviantony/docker-elk" target="_blank">[ Github资源 ]</a><br><img src="/assets/blogImg/elk.svg" alt="elk"></p>
+<ul>
+<li>Elasticsearch</li>
+</ul>
+<blockquote>
+<p>Elasticsearch 是一个分布式的 RESTful 风格的 <code>搜索和数据分析引擎</code>，能够解决不断涌现出的各种用例。作为 Elastic Stack 的核心，它集中<code>存储您的数据</code>，帮助您发现意料之中以及意料之外的情况。</p>
+</blockquote>
+<ul>
+<li>Logstash</li>
+</ul>
+<blockquote>
+<p>Logstash 是开源的服务器端数据处理管道，能够同时 从多个来源 <code>采集数据、转换数据</code>，然后将数据发送到您最喜欢的<code>存储库</code> （存储库是 <code>Elasticsearch</code>）中。</p>
+</blockquote>
+<ul>
+<li>Kibana</li>
+</ul>
+<blockquote>
+<p>Kibana 让您能够<code>可视化 Elasticsearch</code> 中的数据并操作 Elastic Stack。</p>
+</blockquote>
+<p><img src="/assets/blogImg/elk-lu.svg" alt="elk-lu"><br><strong>整体架构流程图：</strong><br><a href="https://excalidraw.com/" target="_blank">[ 画图工具 ]</a></p>
+<ul>
+<li>filebeat: 负责将日志数据传输到 redis</li>
+<li>Redis：暂时进行缓存</li>
+<li>logstash: 收集缓存中的日志数据</li>
+<li>elasticsearch: 负责存储日志数据</li>
+<li>kibana: 负责显示日志的数据</li>
+</ul>
+<p><img src="/assets/blogImg/elk1.png" alt="elk"></p>
+]]></content>
+      <tags>
+        <tag>ELK</tag>
       </tags>
   </entry>
   <entry>
@@ -1312,6 +1312,39 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>MySQL启动错误</title>
+    <url>/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p>/etc/init.d/MySQL start 错误信息如下:</p>
+</blockquote>
+<ul>
+<li>ERROR! MySQL server PID file could not be found!</li>
+<li>Starting MySQL.. ERROR! The server quit without updating PID file (/usr/local/mysql/var/AYXXXXXXXXXXX.pid). </li>
+</ul>
+<ul>
+<li>mysql日志文件的路径：/usr/local/mysql/var/</li>
+<li>my.cnf文件路径：/etc/</li>
+</ul>
+<ul>
+<li>启动会报错Starting MySQL.. ERROR! The server quit without updating PID file (/var/local/mysql/var/AYxxxxxxx.pid)</li>
+<li>原因是因为 mysql-bin.0000的文件占满系统盘，磁盘空间不足导致无法写入。</li>
+</ul>
+<blockquote>
+<p>解决方法:</p>
+</blockquote>
+<ol>
+<li>删除所有mysql-bin.0000日志文件全部rm掉</li>
+<li>修改在my.cnf 文件，找到 log-bin=mysql-bin 将其启注释掉，以后就不会产生2进制的mysql-bin.0000的日志文件</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>lnmp</tag>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MySQL出现1030-Got error 28 from storage engine错误</title>
     <url>/2018/11/22/MySQL%E5%87%BA%E7%8E%B01030-Got-error-28-from-storage-engine%E9%94%99%E8%AF%AF/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1377,39 +1410,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
 ]]></content>
       <tags>
         <tag>nginx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL启动错误</title>
-    <url>/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p>/etc/init.d/MySQL start 错误信息如下:</p>
-</blockquote>
-<ul>
-<li>ERROR! MySQL server PID file could not be found!</li>
-<li>Starting MySQL.. ERROR! The server quit without updating PID file (/usr/local/mysql/var/AYXXXXXXXXXXX.pid). </li>
-</ul>
-<ul>
-<li>mysql日志文件的路径：/usr/local/mysql/var/</li>
-<li>my.cnf文件路径：/etc/</li>
-</ul>
-<ul>
-<li>启动会报错Starting MySQL.. ERROR! The server quit without updating PID file (/var/local/mysql/var/AYxxxxxxx.pid)</li>
-<li>原因是因为 mysql-bin.0000的文件占满系统盘，磁盘空间不足导致无法写入。</li>
-</ul>
-<blockquote>
-<p>解决方法:</p>
-</blockquote>
-<ol>
-<li>删除所有mysql-bin.0000日志文件全部rm掉</li>
-<li>修改在my.cnf 文件，找到 log-bin=mysql-bin 将其启注释掉，以后就不会产生2进制的mysql-bin.0000的日志文件</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -1687,6 +1687,22 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>SELinux 状态</title>
+    <url>/2017/08/11/SELinux-%E7%8A%B6%E6%80%81/</url>
+    <content><![CDATA[<p>##<strong>查看SELinux状态：</strong></p>
+<blockquote>
+<p>1、/usr/sbin/sestatus -v      ##如果SELinux status参数为enabled即为开启状态—— </p>
+</blockquote>
+<a id="more"></a>
+
+<p><img src="/assets/blogImg/reduce-http.jpg" alt="ico原来的样子"></p>
+<p>1、/usr/sbin/sestatus -v      ##如果SELinux status参数为enabled即为开启状态<br>SELinux status:                 enabled<br>2、getenforce                 ##也可以用这个命令检查<br>关闭SELinux：<br>1、临时关闭（不用重启机器）：<br>setenforce 0                  ##设置SELinux 成为permissive模式<br>                              ##setenforce 1 设置SELinux 成为enforcing模式<br>2、修改配置文件需要重启机器：<br>修改/etc/selinux/config 文件<br>将SELINUX=enforcing改为SELINUX=disabled<br>重启机器即可</p>
+]]></content>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python scrapy入门教程</title>
     <url>/2017/09/26/Python-scrapy%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[<p><strong>Python scrapy入门教程</strong> </p>
@@ -1763,22 +1779,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>Python</tag>
         <tag>scrapy</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SELinux 状态</title>
-    <url>/2017/08/11/SELinux-%E7%8A%B6%E6%80%81/</url>
-    <content><![CDATA[<p>##<strong>查看SELinux状态：</strong></p>
-<blockquote>
-<p>1、/usr/sbin/sestatus -v      ##如果SELinux status参数为enabled即为开启状态—— </p>
-</blockquote>
-<a id="more"></a>
-
-<p><img src="/assets/blogImg/reduce-http.jpg" alt="ico原来的样子"></p>
-<p>1、/usr/sbin/sestatus -v      ##如果SELinux status参数为enabled即为开启状态<br>SELinux status:                 enabled<br>2、getenforce                 ##也可以用这个命令检查<br>关闭SELinux：<br>1、临时关闭（不用重启机器）：<br>setenforce 0                  ##设置SELinux 成为permissive模式<br>                              ##setenforce 1 设置SELinux 成为enforcing模式<br>2、修改配置文件需要重启机器：<br>修改/etc/selinux/config 文件<br>将SELINUX=enforcing改为SELINUX=disabled<br>重启机器即可</p>
-]]></content>
-      <tags>
-        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -2255,7 +2255,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#103;&#105;&#x74;&#64;&#x67;&#x69;&#116;&#x68;&#x75;&#x62;&#x2e;&#99;&#111;&#x6d;">&#103;&#105;&#x74;&#64;&#x67;&#x69;&#116;&#x68;&#x75;&#x62;&#x2e;&#99;&#111;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#103;&#x69;&#x74;&#x40;&#x67;&#x69;&#x74;&#104;&#117;&#x62;&#46;&#99;&#111;&#x6d;">&#103;&#x69;&#x74;&#x40;&#x67;&#x69;&#x74;&#104;&#117;&#x62;&#46;&#99;&#111;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -2499,64 +2499,6 @@ class QuotesSpider(scrapy.Spider):
         <tag>golang</tag>
         <tag>go-zero</tag>
         <tag>goctl</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>install program</title>
-    <url>/2017/11/02/install-program/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> 安装项目及配置svn</p>
-</blockquote>
-<ul>
-<li>lnmp vhost add</li>
-<li>mkdir -p /home/svn/repos</li>
-<li>svnadmin create /home/svn/repos/</li>
-<li>cd /home/svn/repos/conf</li>
-<li>vi passwd</li>
-<li>vim authz</li>
-<li>vim svnserve.conf</li>
-<li>cd ../hooks/</li>
-<li>cp post-commit.tmpl post-commit</li>
-<li>chmod +x post-commit</li>
-<li>vim post-commit</li>
-<li>cd /home/wwwroot/<a href="http://www.xxxx.cn/">www.xxxx.cn/</a></li>
-<li>svn co svn://127.0.0.1/repos ./</li>
-</ul>
-<blockquote>
-<p> 配置、修改</p>
-</blockquote>
-<ul>
-<li>vim /usr/local/nginx/conf/vhost/<a href="http://www.xxxx.cn.conf/">www.xxxx.cn.conf</a></li>
-<li>/etc/init.d/nginx restart</li>
-<li>vim /home/wwwroot/mnzr.xiazhiweizhi.cn/config/queue.php</li>
-<li>cd /etc/supervisord.d/</li>
-<li>cp laravel-worker-zr.ini laravel-worker-mnzr.ini</li>
-<li>chmod -R 777 bootstrap/cache/ storage/ public/upload/</li>
-<li>chown -R www:www ../mnzr.xiazhiweizhi.cn/</li>
-<li>supervisorctl status</li>
-<li>supervisorctl reread</li>
-<li>supervisorctl update</li>
-<li>supervisorctl restart laravel-worker-xxx:*</li>
-<li>composer require simplesoftwareio/simple-qrcode</li>
-<li>history |grep composer</li>
-<li>composer install</li>
-<li>php artisan storage:link</li>
-<li>php artisan passport:keys</li>
-</ul>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>centos7</tag>
-        <tag>laravel5</tag>
-        <tag>install</tag>
       </tags>
   </entry>
   <entry>
@@ -2816,6 +2758,91 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>linux下安装redis及认证密码</title>
+    <url>/2018/03/06/linux%E4%B8%8B%E5%AE%89%E8%A3%85redis%E5%8F%8A%E8%AE%A4%E8%AF%81%E5%AF%86%E7%A0%81/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>一、安装 redis</strong><br>进入lnmp解压后的目录，执行</p>
+<blockquote>
+<p> ./addons.sh install redis </p>
+</blockquote>
+<p><strong>二、redis 设置认证密码</strong><br>requirepass foobared去掉#注释，将foobared改为自己的密码然后保存，重启服务</p>
+<blockquote>
+<p> vim /usr/local/redis/etc/redis.conf</p>
+</blockquote>
+<p><strong>三、redis 状态管理</strong></p>
+<blockquote>
+<p> /etc/init.d/redis {start|stop|restart|kill}</p>
+</blockquote>
+<p><strong>四、查看 redis 启动情况</strong></p>
+<blockquote>
+<p> ps aux | grep redis</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>lnmp</tag>
+        <tag>redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>install program</title>
+    <url>/2017/11/02/install-program/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> 安装项目及配置svn</p>
+</blockquote>
+<ul>
+<li>lnmp vhost add</li>
+<li>mkdir -p /home/svn/repos</li>
+<li>svnadmin create /home/svn/repos/</li>
+<li>cd /home/svn/repos/conf</li>
+<li>vi passwd</li>
+<li>vim authz</li>
+<li>vim svnserve.conf</li>
+<li>cd ../hooks/</li>
+<li>cp post-commit.tmpl post-commit</li>
+<li>chmod +x post-commit</li>
+<li>vim post-commit</li>
+<li>cd /home/wwwroot/<a href="http://www.xxxx.cn/">www.xxxx.cn/</a></li>
+<li>svn co svn://127.0.0.1/repos ./</li>
+</ul>
+<blockquote>
+<p> 配置、修改</p>
+</blockquote>
+<ul>
+<li>vim /usr/local/nginx/conf/vhost/<a href="http://www.xxxx.cn.conf/">www.xxxx.cn.conf</a></li>
+<li>/etc/init.d/nginx restart</li>
+<li>vim /home/wwwroot/mnzr.xiazhiweizhi.cn/config/queue.php</li>
+<li>cd /etc/supervisord.d/</li>
+<li>cp laravel-worker-zr.ini laravel-worker-mnzr.ini</li>
+<li>chmod -R 777 bootstrap/cache/ storage/ public/upload/</li>
+<li>chown -R www:www ../mnzr.xiazhiweizhi.cn/</li>
+<li>supervisorctl status</li>
+<li>supervisorctl reread</li>
+<li>supervisorctl update</li>
+<li>supervisorctl restart laravel-worker-xxx:*</li>
+<li>composer require simplesoftwareio/simple-qrcode</li>
+<li>history |grep composer</li>
+<li>composer install</li>
+<li>php artisan storage:link</li>
+<li>php artisan passport:keys</li>
+</ul>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>centos7</tag>
+        <tag>laravel5</tag>
+        <tag>install</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>linux 常用小技巧</title>
     <url>/2022/01/12/linux-%E5%B8%B8%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/linux.png" alt="linux"></p>
@@ -2960,54 +2987,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>lnmp tp pathinfo问题</title>
-    <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>/usr/local/php/etc/php.ini</p>
-<blockquote>
-<p> cgi.fix_pathinfo=1</p>
-</blockquote>
-<blockquote>
-<p> lnmp restart</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
-  </entry>
-  <entry>
-    <title>linux下安装redis及认证密码</title>
-    <url>/2018/03/06/linux%E4%B8%8B%E5%AE%89%E8%A3%85redis%E5%8F%8A%E8%AE%A4%E8%AF%81%E5%AF%86%E7%A0%81/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>一、安装 redis</strong><br>进入lnmp解压后的目录，执行</p>
-<blockquote>
-<p> ./addons.sh install redis </p>
-</blockquote>
-<p><strong>二、redis 设置认证密码</strong><br>requirepass foobared去掉#注释，将foobared改为自己的密码然后保存，重启服务</p>
-<blockquote>
-<p> vim /usr/local/redis/etc/redis.conf</p>
-</blockquote>
-<p><strong>三、redis 状态管理</strong></p>
-<blockquote>
-<p> /etc/init.d/redis {start|stop|restart|kill}</p>
-</blockquote>
-<p><strong>四、查看 redis 启动情况</strong></p>
-<blockquote>
-<p> ps aux | grep redis</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>redis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mysql通过.ibd和.frm文件恢复数据</title>
     <url>/2019/12/17/mysql%E9%80%9A%E8%BF%87-ibd%E5%92%8C-frm%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E6%95%B0%E6%8D%AE/</url>
     <content><![CDATA[<a id="more"></a>
@@ -3061,6 +3040,41 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>mysql</tag>
         <tag>Innodb</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>php 递归拼接一条线会员</title>
+    <url>/2017/09/14/php-%E9%80%92%E5%BD%92%E6%8B%BC%E6%8E%A5%E4%B8%80%E6%9D%A1%E7%BA%BF%E4%BC%9A%E5%91%98/</url>
+    <content><![CDATA[<p><strong>php 递归拼接一条线会员：</strong> </p>
+<a id="more"></a>
+
+<ul>
+<li><strong>PHP使用递归&amp;参数引用</strong></li>
+</ul>
+<blockquote>
+<p> public static function parentIdLine($adminid,&amp;$parentAdmin_strs=’’)<br> {</p>
+<pre><code>       $parent_id = self::find($adminid)-&gt;parent_id;
+       // 构造上级限制
+       $parentids = array(0,1); //主要是限制管理员不拿提成          
+       if (!in_array($parent_id, $parentids) ) &#123;
+          $parentAdmin_strs .= $parent_id.&#39;,&#39;;
+          self::parentIdLine($parent_id,$parentAdmin_strs); 
+       &#125; 
+
+     return $parentAdmin_strs;</code></pre>
+<p>}</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.<br>   ok,  enjoy it !!!</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>php</tag>
+        <tag>递归</tag>
       </tags>
   </entry>
   <entry>
@@ -3144,41 +3158,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>php 递归拼接一条线会员</title>
-    <url>/2017/09/14/php-%E9%80%92%E5%BD%92%E6%8B%BC%E6%8E%A5%E4%B8%80%E6%9D%A1%E7%BA%BF%E4%BC%9A%E5%91%98/</url>
-    <content><![CDATA[<p><strong>php 递归拼接一条线会员：</strong> </p>
-<a id="more"></a>
-
-<ul>
-<li><strong>PHP使用递归&amp;参数引用</strong></li>
-</ul>
-<blockquote>
-<p> public static function parentIdLine($adminid,&amp;$parentAdmin_strs=’’)<br> {</p>
-<pre><code>       $parent_id = self::find($adminid)-&gt;parent_id;
-       // 构造上级限制
-       $parentids = array(0,1); //主要是限制管理员不拿提成          
-       if (!in_array($parent_id, $parentids) ) &#123;
-          $parentAdmin_strs .= $parent_id.&#39;,&#39;;
-          self::parentIdLine($parent_id,$parentAdmin_strs); 
-       &#125; 
-
-     return $parentAdmin_strs;</code></pre>
-<p>}</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.<br>   ok,  enjoy it !!!</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>php</tag>
-        <tag>递归</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>redis lua的使用</title>
     <url>/2022/01/13/redis-lua%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/lua.png" alt="lua"></p>
@@ -3251,37 +3230,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>socket.io的使用</title>
-    <url>/2018/03/28/socket-io%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><strong>socket.io的基础教程</strong> </p>
-<a id="more"></a>
-
-<p>一、安装nodejs [默认安装][<a href="https://nodejs.org/en/download/" target="_blank">下载nodejs</a>]<br>新建文件夹[socket],在目录下执行以下代码<br>nodejs中用npm初始化来创建package.json</p>
-<blockquote>
-<p> npm init</p>
-</blockquote>
-<p>二、使用npm下载 web框架express模块</p>
-<blockquote>
-<p>npm install --save <a href="mailto:&#x65;&#x78;&#112;&#x72;&#x65;&#x73;&#115;&#64;&#52;&#46;&#49;&#x35;&#46;&#50;">&#x65;&#x78;&#112;&#x72;&#x65;&#x73;&#115;&#64;&#52;&#46;&#49;&#x35;&#46;&#50;</a></p>
-</blockquote>
-<p>三、使用npm下载socket.io模块</p>
-<blockquote>
-<p>npm install --save socket.io</p>
-</blockquote>
-<p>四、新建index.js 代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var app &#x3D; require(&#39;express&#39;)();</span><br><span class="line">var http &#x3D; require(&#39;http&#39;).Server(app);</span><br><span class="line">var io &#x3D; require(&#39;socket.io&#39;)(http);</span><br><span class="line"></span><br><span class="line">app.get(&#39;&#x2F;&#39;, function(req, res)&#123;</span><br><span class="line">  res.sendFile(__dirname + &#39;&#x2F;index.html&#39;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">io.on(&#39;connection&#39;, function(socket)&#123;</span><br><span class="line">  socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">     io.emit(&#39;bsh&#39;, msg);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.listen(3000, function()&#123;</span><br><span class="line">  console.log(&#39;listening on *:3000&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>五、新建index.html 代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Socket.IO chat&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      * &#123; margin: 0; padding: 0; box-sizing: border-box; &#125;</span><br><span class="line">      body &#123; font: 13px Helvetica, Arial; &#125;</span><br><span class="line">      form &#123; background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; &#125;</span><br><span class="line">      form input &#123; border: 0; padding: 10px; width: 90%; margin-right: .5%; &#125;</span><br><span class="line">      form button &#123; width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; &#125;</span><br><span class="line">      #messages &#123; list-style-type: none; margin: 0; padding: 0; &#125;</span><br><span class="line">      #messages li &#123; padding: 5px 10px; &#125;</span><br><span class="line">      #messages li:nth-child(odd) &#123; background: #eee; &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.1.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  $(function () &#123;</span><br><span class="line">    var socket &#x3D; io();</span><br><span class="line">    $(&#39;form&#39;).submit(function()&#123;</span><br><span class="line">      socket.emit(&#39;bsh&#39;, $(&#39;#m&#39;).val());</span><br><span class="line">      $(&#39;#m&#39;).val(&#39;&#39;);</span><br><span class="line">      return false;</span><br><span class="line">    &#125;);</span><br><span class="line">    socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">      $(&#39;#messages&#39;).append($(&#39;&lt;li&gt;&#39;).text(msg));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;ul id&#x3D;&quot;messages&quot;&gt;&lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;form action&#x3D;&quot;&quot;&gt;</span><br><span class="line">      &lt;input id&#x3D;&quot;m&quot; autocomplete&#x3D;&quot;off&quot; &#x2F;&gt;&lt;button&gt;Send&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-
-<p>六、执行 node index.js<br>七、浏览器打开localhost:3000</p>
-]]></content>
-      <tags>
-        <tag>socket.io</tag>
-        <tag>nodejs</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>sublime text3 安装配置svn 及默认快捷键</title>
     <url>/2017/08/25/sublime-text3-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEsvn-%E5%8F%8A%E9%BB%98%E8%AE%A4%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
     <content><![CDATA[<p><strong>sublime text3 安装配置svn 及默认快捷键：</strong> </p>
@@ -3321,6 +3269,37 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>svn</tag>
         <tag>sublime text3</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>socket.io的使用</title>
+    <url>/2018/03/28/socket-io%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><strong>socket.io的基础教程</strong> </p>
+<a id="more"></a>
+
+<p>一、安装nodejs [默认安装][<a href="https://nodejs.org/en/download/" target="_blank">下载nodejs</a>]<br>新建文件夹[socket],在目录下执行以下代码<br>nodejs中用npm初始化来创建package.json</p>
+<blockquote>
+<p> npm init</p>
+</blockquote>
+<p>二、使用npm下载 web框架express模块</p>
+<blockquote>
+<p>npm install --save <a href="mailto:&#x65;&#x78;&#112;&#114;&#x65;&#x73;&#115;&#64;&#52;&#46;&#49;&#x35;&#46;&#x32;">&#x65;&#x78;&#112;&#114;&#x65;&#x73;&#115;&#64;&#52;&#46;&#49;&#x35;&#46;&#x32;</a></p>
+</blockquote>
+<p>三、使用npm下载socket.io模块</p>
+<blockquote>
+<p>npm install --save socket.io</p>
+</blockquote>
+<p>四、新建index.js 代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var app &#x3D; require(&#39;express&#39;)();</span><br><span class="line">var http &#x3D; require(&#39;http&#39;).Server(app);</span><br><span class="line">var io &#x3D; require(&#39;socket.io&#39;)(http);</span><br><span class="line"></span><br><span class="line">app.get(&#39;&#x2F;&#39;, function(req, res)&#123;</span><br><span class="line">  res.sendFile(__dirname + &#39;&#x2F;index.html&#39;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">io.on(&#39;connection&#39;, function(socket)&#123;</span><br><span class="line">  socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">     io.emit(&#39;bsh&#39;, msg);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.listen(3000, function()&#123;</span><br><span class="line">  console.log(&#39;listening on *:3000&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>五、新建index.html 代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Socket.IO chat&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      * &#123; margin: 0; padding: 0; box-sizing: border-box; &#125;</span><br><span class="line">      body &#123; font: 13px Helvetica, Arial; &#125;</span><br><span class="line">      form &#123; background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; &#125;</span><br><span class="line">      form input &#123; border: 0; padding: 10px; width: 90%; margin-right: .5%; &#125;</span><br><span class="line">      form button &#123; width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; &#125;</span><br><span class="line">      #messages &#123; list-style-type: none; margin: 0; padding: 0; &#125;</span><br><span class="line">      #messages li &#123; padding: 5px 10px; &#125;</span><br><span class="line">      #messages li:nth-child(odd) &#123; background: #eee; &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.1.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  $(function () &#123;</span><br><span class="line">    var socket &#x3D; io();</span><br><span class="line">    $(&#39;form&#39;).submit(function()&#123;</span><br><span class="line">      socket.emit(&#39;bsh&#39;, $(&#39;#m&#39;).val());</span><br><span class="line">      $(&#39;#m&#39;).val(&#39;&#39;);</span><br><span class="line">      return false;</span><br><span class="line">    &#125;);</span><br><span class="line">    socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">      $(&#39;#messages&#39;).append($(&#39;&lt;li&gt;&#39;).text(msg));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;ul id&#x3D;&quot;messages&quot;&gt;&lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;form action&#x3D;&quot;&quot;&gt;</span><br><span class="line">      &lt;input id&#x3D;&quot;m&quot; autocomplete&#x3D;&quot;off&quot; &#x2F;&gt;&lt;button&gt;Send&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>六、执行 node index.js<br>七、浏览器打开localhost:3000</p>
+]]></content>
+      <tags>
+        <tag>socket.io</tag>
+        <tag>nodejs</tag>
       </tags>
   </entry>
   <entry>
@@ -3458,23 +3437,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>使用git 与github友好交流</title>
-    <url>/2017/08/11/%E4%BD%BF%E7%94%A8git-%E4%B8%8Egithub%E5%8F%8B%E5%A5%BD%E4%BA%A4%E6%B5%81/</url>
-    <content><![CDATA[<p>##<strong>本文主要介绍window 端Git 与github友好交流</strong></p>
-<blockquote>
-<p>1、安装window版（32/64）git。 window端安装过程无脑略过—— </p>
-</blockquote>
-<a id="more"></a>
-
-
-<p>2、本文默认github已注册并添加过 ssh key<br>3、github上新建仓库<br>git add / add *<br>git commit -m<br>git remote add origin <a href="http://xxxx.github.io/">http://xxxx.github.io</a><br>git push -u origin master<br>git pull<br>git rm -r xxx<br>git commit -m ‘’<br>git push -u origin master<br>git  –version</p>
-]]></content>
-      <tags>
-        <tag>git</tag>
-        <tag>github</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>发布Laravel扩展包larapay</title>
     <url>/2018/12/04/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85larapay/</url>
     <content><![CDATA[<p><strong>发布Laravel扩展封装支付包larapay</strong> </p>
@@ -3510,66 +3472,20 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>发布Laravel扩展包mqtt</title>
-    <url>/2021/02/01/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85mqtt/</url>
-    <content><![CDATA[<p><strong>发布Laravel扩展包mqtt</strong> </p>
+    <title>使用git 与github友好交流</title>
+    <url>/2017/08/11/%E4%BD%BF%E7%94%A8git-%E4%B8%8Egithub%E5%8F%8B%E5%A5%BD%E4%BA%A4%E6%B5%81/</url>
+    <content><![CDATA[<p>##<strong>本文主要介绍window 端Git 与github友好交流</strong></p>
+<blockquote>
+<p>1、安装window版（32/64）git。 window端安装过程无脑略过—— </p>
+</blockquote>
 <a id="more"></a>
 
-<p>一、编写扩展包</p>
-<blockquote>
-<p><a href="http://baishunhua.com/2018/12/04/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85larapay/" target="_blank">[ 参考文章 ]</a></p>
-</blockquote>
-<p>二、Github地址</p>
-<blockquote>
-<p><a href="https://github.com/shunhua/mqtt" target="_blank">[ mqtt ]</a></p>
-</blockquote>
-<p>三、Packagist地址</p>
-<blockquote>
-<p><a href="https://packagist.org/packages/shunhua/laravel-mqtt" target="_blank">[ Packagist ]</a></p>
-</blockquote>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p> 目前 tags 为 v1.0</p>
-</blockquote>
+
+<p>2、本文默认github已注册并添加过 ssh key<br>3、github上新建仓库<br>git add / add *<br>git commit -m<br>git remote add origin <a href="http://xxxx.github.io/">http://xxxx.github.io</a><br>git push -u origin master<br>git pull<br>git rm -r xxx<br>git commit -m ‘’<br>git push -u origin master<br>git  –version</p>
 ]]></content>
       <tags>
-        <tag>laravel</tag>
-        <tag>composer</tag>
-        <tag>mqtt</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>实现在Safari一键复制</title>
-    <url>/2018/10/27/%E5%AE%9E%E7%8E%B0%E5%9C%A8Safari%E4%B8%80%E9%94%AE%E5%A4%8D%E5%88%B6/</url>
-    <content><![CDATA[<p><strong>实现在Safari一键复制</strong></p>
-<a id="more"></a>
-
-<p>参考文档 <a href="https://github.com/zenorocha/clipboard.js" target="_blank">[ clipboard.js ]</a></p>
-<blockquote>
-<p>传统复制code</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var Url2&#x3D;document.getElementById(&quot;copy-text&quot;);</span><br><span class="line">Url2.select(); &#x2F;&#x2F; 选择对象</span><br><span class="line">document.execCommand(&quot;Copy&quot;); &#x2F;&#x2F; 执行浏览器复制命令</span><br><span class="line">Message.success(&#39;复制成功&#39;);</span><br></pre></td></tr></table></figure>
-<p>这种复制方式在苹果手机和safari上失效</p>
-<blockquote>
-<p>使用 clipboard.js</p>
-</blockquote>
-<p>CDN Providers</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">jsDelivr</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;clipboard@2&#x2F;dist&#x2F;clipboard.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">cdnjs</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdnjs.cloudflare.com&#x2F;ajax&#x2F;libs&#x2F;clipboard.js&#x2F;2.0.0&#x2F;clipboard.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>html code</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;button class&#x3D;&quot;fuzhi&quot; data-clipboard-demo data-clipboard-action&#x3D;&quot;copy&quot; data-clipboard-text&#x3D;&quot;&#123;&#123;$qr_code&#125;&#125;&quot;  onclick&#x3D;&quot;copyContent();&quot;&gt; 点击复制 &lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
-
-<p>js code</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var clipboard &#x3D; new ClipboardJS(&#39;.fuzhi&#39;);</span><br><span class="line">clipboard.on(&#39;success&#39;, function(e) &#123;</span><br><span class="line">    e.clearSelection();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <tags>
-        <tag>Safari</tag>
-        <tag>Copy</tag>
+        <tag>git</tag>
+        <tag>github</tag>
       </tags>
   </entry>
   <entry>
@@ -3670,44 +3586,35 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>有赞vantUI step1</title>
-    <url>/2018/04/02/%E6%9C%89%E8%B5%9EvantUI-step1/</url>
-    <content><![CDATA[<p><strong>有赞vantUI学习 step1</strong></p>
+    <title>实现在Safari一键复制</title>
+    <url>/2018/10/27/%E5%AE%9E%E7%8E%B0%E5%9C%A8Safari%E4%B8%80%E9%94%AE%E5%A4%8D%E5%88%B6/</url>
+    <content><![CDATA[<p><strong>实现在Safari一键复制</strong></p>
 <a id="more"></a>
-<p>1、安装淘宝镜像 </p>
-<blockquote>
-<p>npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></p>
-</blockquote>
-<p>2、安装vue-cli </p>
-<blockquote>
-<p>cnpm install –global vue-cli</p>
-</blockquote>
-<p>3、使用vue-cli安装项目[bsh] </p>
-<blockquote>
-<p>vue init youzan/vue-cli-template-vant bsh</p>
-</blockquote>
-<p>4、安装vantUI</p>
-<blockquote>
-<p>cnpm i vant -S</p>
-</blockquote>
-<p>5、引入组件 推荐使用安装 babel-plugin-import 插件</p>
-<blockquote>
-<p>npm i babel-plugin-import -D</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 在 .babelrc 或 babel-loader 中添加插件配置</span><br><span class="line">&#123;</span><br><span class="line">  &quot;plugins&quot;: [</span><br><span class="line">    [&quot;import&quot;, &#123; &quot;libraryName&quot;: &quot;vant&quot;, &quot;style&quot;: true &#125;]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>6、install dependencies 安装依赖</p>
+<p>参考文档 <a href="https://github.com/zenorocha/clipboard.js" target="_blank">[ clipboard.js ]</a></p>
 <blockquote>
-<p>npm install</p>
+<p>传统复制code</p>
 </blockquote>
-<p>7、# serve with hot reload at localhost:8080</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var Url2&#x3D;document.getElementById(&quot;copy-text&quot;);</span><br><span class="line">Url2.select(); &#x2F;&#x2F; 选择对象</span><br><span class="line">document.execCommand(&quot;Copy&quot;); &#x2F;&#x2F; 执行浏览器复制命令</span><br><span class="line">Message.success(&#39;复制成功&#39;);</span><br></pre></td></tr></table></figure>
+<p>这种复制方式在苹果手机和safari上失效</p>
 <blockquote>
-<p>npm run dev</p>
+<p>使用 clipboard.js</p>
 </blockquote>
+<p>CDN Providers</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">jsDelivr</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;clipboard@2&#x2F;dist&#x2F;clipboard.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">cdnjs</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdnjs.cloudflare.com&#x2F;ajax&#x2F;libs&#x2F;clipboard.js&#x2F;2.0.0&#x2F;clipboard.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>html code</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;button class&#x3D;&quot;fuzhi&quot; data-clipboard-demo data-clipboard-action&#x3D;&quot;copy&quot; data-clipboard-text&#x3D;&quot;&#123;&#123;$qr_code&#125;&#125;&quot;  onclick&#x3D;&quot;copyContent();&quot;&gt; 点击复制 &lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
+
+<p>js code</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var clipboard &#x3D; new ClipboardJS(&#39;.fuzhi&#39;);</span><br><span class="line">clipboard.on(&#39;success&#39;, function(e) &#123;</span><br><span class="line">    e.clearSelection();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
 ]]></content>
       <tags>
-        <tag>vue</tag>
-        <tag>vant</tag>
+        <tag>Safari</tag>
+        <tag>Copy</tag>
       </tags>
   </entry>
   <entry>
@@ -3783,6 +3690,47 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>DNMP</tag>
         <tag>Portainer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>有赞vantUI step1</title>
+    <url>/2018/04/02/%E6%9C%89%E8%B5%9EvantUI-step1/</url>
+    <content><![CDATA[<p><strong>有赞vantUI学习 step1</strong></p>
+<a id="more"></a>
+<p>1、安装淘宝镜像 </p>
+<blockquote>
+<p>npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></p>
+</blockquote>
+<p>2、安装vue-cli </p>
+<blockquote>
+<p>cnpm install –global vue-cli</p>
+</blockquote>
+<p>3、使用vue-cli安装项目[bsh] </p>
+<blockquote>
+<p>vue init youzan/vue-cli-template-vant bsh</p>
+</blockquote>
+<p>4、安装vantUI</p>
+<blockquote>
+<p>cnpm i vant -S</p>
+</blockquote>
+<p>5、引入组件 推荐使用安装 babel-plugin-import 插件</p>
+<blockquote>
+<p>npm i babel-plugin-import -D</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 在 .babelrc 或 babel-loader 中添加插件配置</span><br><span class="line">&#123;</span><br><span class="line">  &quot;plugins&quot;: [</span><br><span class="line">    [&quot;import&quot;, &#123; &quot;libraryName&quot;: &quot;vant&quot;, &quot;style&quot;: true &#125;]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>6、install dependencies 安装依赖</p>
+<blockquote>
+<p>npm install</p>
+</blockquote>
+<p>7、# serve with hot reload at localhost:8080</p>
+<blockquote>
+<p>npm run dev</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>vue</tag>
+        <tag>vant</tag>
       </tags>
   </entry>
   <entry>
@@ -3871,6 +3819,37 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>发布Laravel扩展包mqtt</title>
+    <url>/2021/02/01/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85mqtt/</url>
+    <content><![CDATA[<p><strong>发布Laravel扩展包mqtt</strong> </p>
+<a id="more"></a>
+
+<p>一、编写扩展包</p>
+<blockquote>
+<p><a href="http://baishunhua.com/2018/12/04/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85larapay/" target="_blank">[ 参考文章 ]</a></p>
+</blockquote>
+<p>二、Github地址</p>
+<blockquote>
+<p><a href="https://github.com/shunhua/mqtt" target="_blank">[ mqtt ]</a></p>
+</blockquote>
+<p>三、Packagist地址</p>
+<blockquote>
+<p><a href="https://packagist.org/packages/shunhua/laravel-mqtt" target="_blank">[ Packagist ]</a></p>
+</blockquote>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p> 目前 tags 为 v1.0</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>laravel</tag>
+        <tag>composer</tag>
+        <tag>mqtt</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>连续轮询数组中的元素[s/m/d]</title>
     <url>/2017/12/27/%E8%BF%9E%E7%BB%AD%E8%BD%AE%E8%AF%A2%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0-s-m-d/</url>
     <content><![CDATA[<p>##<strong>连续轮询数组中的元素[s/m/d]</strong></p>
@@ -3915,5 +3894,26 @@ class QuotesSpider(scrapy.Spider):
         <tag>Chinapay</tag>
         <tag>银联电子</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>lnmp tp pathinfo问题</title>
+    <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>/usr/local/php/etc/php.ini</p>
+<blockquote>
+<p> cgi.fix_pathinfo=1</p>
+</blockquote>
+<blockquote>
+<p> lnmp restart</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
   </entry>
 </search>
