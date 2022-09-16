@@ -1,78 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>9段PHP实用功能的代码推荐</title>
-    <url>/2018/02/24/9%E6%AE%B5PHP%E5%AE%9E%E7%94%A8%E5%8A%9F%E8%83%BD%E7%9A%84%E4%BB%A3%E7%A0%81%E6%8E%A8%E8%8D%90/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> 一、查看邮件是否已被阅读</p>
-</blockquote>
-<p>当你在发送邮件时，你或许很想知道该邮件是否被对方已阅读。这里有段非常有趣的代码片段能够显示对方IP地址记录阅读的实际日期和时间。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">Header(&quot;Content-Type: image&#x2F;jpeg&quot;);</span><br><span class="line">&#x2F;&#x2F;Get IP</span><br><span class="line">if (!empty($_SERVER[&#39;HTTP_CLIENT_IP&#39;]))</span><br><span class="line">&#123;</span><br><span class="line"> $ip&#x3D;$_SERVER[&#39;HTTP_CLIENT_IP&#39;];</span><br><span class="line">&#125;</span><br><span class="line">elseif (!empty($_SERVER[&#39;HTTP_X_FORWARDED_FOR&#39;]))</span><br><span class="line">&#123;</span><br><span class="line"> $ip&#x3D;$_SERVER[&#39;HTTP_X_FORWARDED_FOR&#39;];</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line"> $ip&#x3D;$_SERVER[&#39;REMOTE_ADDR&#39;];</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;Time</span><br><span class="line">$actual_time &#x3D; time();</span><br><span class="line">$actual_day &#x3D; date(&#39;Y.m.d&#39;, $actual_time);</span><br><span class="line">$actual_day_chart &#x3D; date(&#39;d&#x2F;m&#x2F;y&#39;, $actual_time);</span><br><span class="line">$actual_hour &#x3D; date(&#39;H:i:s&#39;, $actual_time);</span><br><span class="line">&#x2F;&#x2F;GET Browser</span><br><span class="line">$browser &#x3D; $_SERVER[&#39;HTTP_USER_AGENT&#39;];</span><br><span class="line">&#x2F;&#x2F;LOG</span><br><span class="line">$myFile &#x3D; &quot;log.txt&quot;;</span><br><span class="line">$fh &#x3D; fopen($myFile, &#39;a+&#39;);</span><br><span class="line">$stringData &#x3D; $actual_day . &#39; &#39; . $actual_hour . &#39; &#39; . $ip . &#39; &#39; . $browser . &#39; &#39; . &quot;\r\n&quot;;</span><br><span class="line">fwrite($fh, $stringData);</span><br><span class="line">fclose($fh);</span><br><span class="line">&#x2F;&#x2F;Generate Image (Es. dimesion is 1x1)</span><br><span class="line">$newimage &#x3D; ImageCreate(1,1);</span><br><span class="line">$grigio &#x3D; ImageColorAllocate($newimage,255,255,255);</span><br><span class="line">ImageJPEG($newimage);</span><br><span class="line">ImageDestroy($newimage);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p> 二、从网页中提取关键字</p>
-</blockquote>
-<p>一段伟大的代码片段能够轻松的从网页中提取关键字。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$meta &#x3D; get_meta_tags(&#39;http:&#x2F;&#x2F;www.emoticode.net&#x2F;&#39;);</span><br><span class="line">$keywords &#x3D; $meta[&#39;keywords&#39;];</span><br><span class="line">&#x2F;&#x2F; Split keywords</span><br><span class="line">$keywords &#x3D; explode(&#39;,&#39;, $keywords );</span><br><span class="line">&#x2F;&#x2F; Trim them</span><br><span class="line">$keywords &#x3D; array_map( &#39;trim&#39;, $keywords );</span><br><span class="line">&#x2F;&#x2F; Remove empty values</span><br><span class="line">$keywords &#x3D; array_filter( $keywords );</span><br><span class="line">print_r( $keywords );</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p> 三、查找页面上的所有链接</p>
-</blockquote>
-<p>使用DOM，你可以轻松从任何页面上抓取链接，代码示例如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$html &#x3D; file_get_contents(&#39;http:&#x2F;&#x2F;www.example.com&#39;);</span><br><span class="line">$dom &#x3D; new DOMDocument();</span><br><span class="line">@$dom-&gt;loadHTML($html);</span><br><span class="line">&#x2F;&#x2F; grab all the on the page</span><br><span class="line">$xpath &#x3D; new DOMXPath($dom);</span><br><span class="line">$hrefs &#x3D; $xpath-&gt;evaluate(&quot;&#x2F;html&#x2F;body&#x2F;&#x2F;a&quot;);</span><br><span class="line"></span><br><span class="line">for ($i &#x3D; 0; $i &lt; $hrefs-&gt;length; $i++) &#123;</span><br><span class="line">      $href &#x3D; $hrefs-&gt;item($i);</span><br><span class="line">      $url &#x3D; $href-&gt;getAttribute(&#39;href&#39;);</span><br><span class="line">      echo $url.&#39;&lt;br &#x2F;&gt;&#39;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p> 四、自动转换URL，跳转至超链接</p>
-</blockquote>
-<p>在WordPress中，如果你想自动转换URL，跳转至超链接页面，你可以利用内置的函数make_clickable()执行此操作。如果你想基于WordPress之外操作该程序，那么你可以参考wp-includes/formatting.php源代码。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function _make_url_clickable_cb($matches) &#123;</span><br><span class="line">   $ret &#x3D; &#39;&#39;;</span><br><span class="line">   $url &#x3D; $matches[2];</span><br><span class="line"></span><br><span class="line">   if ( empty($url) )</span><br><span class="line">       return $matches[0];</span><br><span class="line">   &#x2F;&#x2F; removed trailing [.,;:] from URL</span><br><span class="line">   if ( in_array(substr($url, -1), array(&#39;.&#39;, &#39;,&#39;, &#39;;&#39;, &#39;:&#39;)) &#x3D;&#x3D;&#x3D; true ) &#123;</span><br><span class="line">       $ret &#x3D; substr($url, -1);</span><br><span class="line">       $url &#x3D; substr($url, 0, strlen($url)-1);</span><br><span class="line">   &#125;</span><br><span class="line">   return $matches[1] . &quot;&lt;a href&#x3D;\&quot;$url\&quot; rel&#x3D;\&quot;nofollow\&quot;&gt;$url&lt;&#x2F;a&gt;&quot; . $ret;</span><br><span class="line">&#125;</span><br><span class="line">function _make_web_ftp_clickable_cb($matches) &#123;</span><br><span class="line">   $ret &#x3D; &#39;&#39;;</span><br><span class="line">   $dest &#x3D; $matches[2];</span><br><span class="line">   $dest &#x3D; &#39;http:&#x2F;&#x2F;&#39; . $dest;</span><br><span class="line">   if ( empty($dest) )</span><br><span class="line">       return $matches[0];</span><br><span class="line">   &#x2F;&#x2F; removed trailing [,;:] from URL</span><br><span class="line">   if ( in_array(substr($dest, -1), array(&#39;.&#39;, &#39;,&#39;, &#39;;&#39;, &#39;:&#39;)) &#x3D;&#x3D;&#x3D; true ) &#123;</span><br><span class="line">       $ret &#x3D; substr($dest, -1);</span><br><span class="line">       $dest &#x3D; substr($dest, 0, strlen($dest)-1);</span><br><span class="line">   &#125;</span><br><span class="line">   return $matches[1] . &quot;&lt;a href&#x3D;\&quot;$dest\&quot; rel&#x3D;\&quot;nofollow\&quot;&gt;$dest&lt;&#x2F;a&gt;&quot; . $ret;</span><br><span class="line">&#125;</span><br><span class="line">function _make_email_clickable_cb($matches) &#123;</span><br><span class="line">   $email &#x3D; $matches[2] . &#39;@&#39; . $matches[3];</span><br><span class="line">   return $matches[1] . &quot;&lt;a href&#x3D;\&quot;mailto:$email\&quot;&gt;$email&lt;&#x2F;a&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">function make_clickable($ret) &#123;</span><br><span class="line">   $ret &#x3D; &#39; &#39; . $ret;</span><br><span class="line">   &#x2F;&#x2F; in testing, using arrays here was found to be faster</span><br><span class="line">   $ret &#x3D; preg_replace_callback(&#39;#([\s&gt;])([\w]+?:&#x2F;&#x2F;[\w\\x80-\\xff\#$%&amp;~&#x2F;.\-;:&#x3D;,?@\[\]+]*)#is&#39;, &#39;_make_url_clickable_cb&#39;, $ret);</span><br><span class="line">   $ret &#x3D; preg_replace_callback(&#39;#([\s&gt;])((www|ftp)\.[\w\\x80-\\xff\#$%&amp;~&#x2F;.\-;:&#x3D;,?@\[\]+]*)#is&#39;, &#39;_make_web_ftp_clickable_cb&#39;, $ret);</span><br><span class="line">   $ret &#x3D; preg_replace_callback(&#39;#([\s&gt;])([.0-9a-z_+-]+)@(([0-9a-z-]+\.)+[0-9a-z]&#123;2,&#125;)#i&#39;, &#39;_make_email_clickable_cb&#39;, $ret);</span><br><span class="line"></span><br><span class="line">   &#x2F;&#x2F; this one is not in an array because we need it to run last, for cleanup of accidental links within links</span><br><span class="line">   $ret &#x3D; preg_replace(&quot;#(&lt;a( [^&gt;]+?&gt;|&gt;))&lt;a [^&gt;]+?&gt;([^&gt;]+?)&lt;&#x2F;a&gt;&lt;&#x2F;a&gt;#i&quot;, &quot;$1$3&lt;&#x2F;a&gt;&quot;, $ret);</span><br><span class="line">   $ret &#x3D; trim($ret);</span><br><span class="line">   return $ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p> 五、创建数据URL</p>
-</blockquote>
-<p>数据URL可以直接嵌入到HTML/CSS/JS中，以节省大量的 HTTP请求。 下面的这段代码可利用$file轻松创建数据URL</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function data_uri($file, $mime) &#123;</span><br><span class="line"> $contents&#x3D;file_get_contents($file);</span><br><span class="line"> $base64&#x3D;base64_encode($contents);</span><br><span class="line"> echo &quot;data:$mime;base64,$base64&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p> 六、从服务器上下载&amp;保存一个远程图片</p>
-</blockquote>
-<p>当你在搭建网站时，从远程服务器下载某张图片并且将其保存在自己的服务器上，这一操作会经常用到。代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$image &#x3D; file_get_contents(&#39;http:&#x2F;&#x2F;www.url.com&#x2F;image.jpg&#39;);</span><br><span class="line">file_put_contents(&#39;&#x2F;images&#x2F;image.jpg&#39;, $image); &#x2F;&#x2F;Where to save the image</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p> 七、移除Remove Microsoft Word HTML Tag</p>
-</blockquote>
-<p>当你使用Microsoft Word会创建许多Tag，比如font，span，style，class等。这些标签对于Word本身而言是非常有用的，但是当你从Word粘贴至网页时，你会发现很多无用的Tag。因此，下面的这段代码可帮助你删除所有无用的Word HTML Tag。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function cleanHTML($html) &#123;</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; Removes all FONT and SPAN tags, and all Class and Style attributes.</span><br><span class="line">&#x2F;&#x2F;&#x2F; Designed to get rid of non-standard Microsoft Word HTML tags.</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">&#x2F;&#x2F; start by completely removing all unwanted tags</span><br><span class="line"></span><br><span class="line">$html &#x3D; ereg_replace(&quot;&lt;(&#x2F;)?(font|span|del|ins)[^&gt;]*&gt;&quot;,&quot;&quot;,$html);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; then run another pass over the html (twice), removing unwanted attributes</span><br><span class="line"></span><br><span class="line">$html &#x3D; ereg_replace(&quot;&lt;([^&gt;]*)(class|lang|style|size|face)&#x3D;(&quot;[^&quot;]*&quot;|&#39;[^&#39;]*&#39;|[^&gt;]+)([^&gt;]*)&gt;&quot;,&quot;&lt;\1&gt;&quot;,$html);</span><br><span class="line">$html &#x3D; ereg_replace(&quot;&lt;([^&gt;]*)(class|lang|style|size|face)&#x3D;(&quot;[^&quot;]*&quot;|&#39;[^&#39;]*&#39;|[^&gt;]+)([^&gt;]*)&gt;&quot;,&quot;&lt;\1&gt;&quot;,$html);</span><br><span class="line">return $html</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p> 八、检测浏览器语言</p>
-</blockquote>
-<p>如果你的网站上有多种语言，那么可以使用这段代码作为默认的语言来检测浏览器语言。该段代码将返回浏览器客户端使用的初始语言。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function get_client_language($availableLanguages, $default&#x3D;&#39;en&#39;)&#123;</span><br><span class="line">   if (isset($_SERVER[&#39;HTTP_ACCEPT_LANGUAGE&#39;])) &#123;</span><br><span class="line">       $langs&#x3D;explode(&#39;,&#39;,$_SERVER[&#39;HTTP_ACCEPT_LANGUAGE&#39;]);</span><br><span class="line"></span><br><span class="line">       foreach ($langs as $value)&#123;</span><br><span class="line">           $choice&#x3D;substr($value,0,2);</span><br><span class="line">           if(in_array($choice, $availableLanguages))&#123;</span><br><span class="line">               return $choice;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125; </span><br><span class="line">   return $default;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p> 九、显示Facebook 粉丝数量 </p>
-</blockquote>
-<p>如果你的网站或者博客上有内链的Facebook页面，你或许想知道拥有多少粉丝。这段代码将帮助你查看Facebook粉丝数，记住，别忘了在你的页面ID第二行添加该段代码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">   $page_id &#x3D; &quot;YOUR PAGE-ID&quot;;</span><br><span class="line">   $xml &#x3D; @simplexml_load_file(&quot;http:&#x2F;&#x2F;api.facebook.com&#x2F;restserver.php?method&#x3D;facebook.fql.query&amp;query&#x3D;SELECT%20fan_count%20FROM%20page%20WHERE%20page_id&#x3D;&quot;.$page_id.&quot;&quot;) or die (&quot;a lot&quot;);</span><br><span class="line">   $fans &#x3D; $xml-&gt;page-&gt;fan_count;</span><br><span class="line">   echo $fans;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-
-
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>php</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Alipay 开放平台支付</title>
     <url>/2018/10/26/Alipay-%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E6%94%AF%E4%BB%98/</url>
     <content><![CDATA[<a id="more"></a>
@@ -99,75 +27,6 @@
       <tags>
         <tag>Alipay</tag>
         <tag>开放平台</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CentOS 7 Git服务器搭建及配置公钥</title>
-    <url>/2018/04/08/CentOS-7-Git%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E5%85%AC%E9%92%A5/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>一、Git服务器搭建</strong></p>
-<p>a. 安装Git</p>
-<blockquote>
-<p>yum install -y git</p>
-</blockquote>
-<p>b. 添加新用户、为用户设置密码</p>
-<blockquote>
-<p>adduser git<br>passwd git</p>
-</blockquote>
-<p>c. 创建空的Git仓库</p>
-<blockquote>
-<p>cd /home/git<br>git init --bare test.git<br>chown -R git:git ../git</p>
-</blockquote>
-<p>d. 在服务器端打开RSA认证</p>
-<blockquote>
-<p>cd /home/git<br>mkdir .ssh<br>cd .ssh<br>touch authorized_keys </p>
-</blockquote>
-<p>e. 命令行创建SSH key</p>
-<blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#64;&#113;&#113;&#x2e;&#99;&#x6f;&#109;">&#x78;&#64;&#113;&#113;&#x2e;&#99;&#x6f;&#109;</a>“</p>
-</blockquote>
-<p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
-<p>f.把步骤5生成的公钥导入服务器</p>
-<blockquote>
-<p>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
-</blockquote>
-<p>简单操作：windows 打开 Git-Gui-&gt;Help-&gt;Show SSH Key 直接复制key到Linux authorized_keys文件中 </p>
-<p><strong>二、配置钩子</strong></p>
-<p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
-<blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#x40;&#x71;&#x71;&#46;&#x63;&#x6f;&#109;">&#x62;&#x40;&#x71;&#x71;&#46;&#x63;&#x6f;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
-</blockquote>
-<p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
-<blockquote>
-<p>git ALL=(ALL) NOPASSWD: ALL</p>
-</blockquote>
-<p>进入网站目录拉取<br>su git<br>sudo -u www git clone ssh://git@127.0.0.1/home/git/test.git </p>
-<p>c. 配置钩子[主要]</p>
-<blockquote>
-<p>cd /home/git/test.git/hooks/<br>vim post-receive</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">export LANG&#x3D;zh_CN.UTF-8</span><br><span class="line">cd &#x2F;home&#x2F;wwwroot&#x2F;www&#x2F;test&#x2F;</span><br><span class="line">unset GIT_DIR </span><br><span class="line">sudo -u www git pull origin master</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>chown git:git post-receive<br>chmod +x post-receive</p>
-</blockquote>
-<p>在本地clone拉取远程git仓库</p>
-<blockquote>
-<p>git clone ssh://git@127.0.0.1/home/git/test.git</p>
-</blockquote>
-<p><strong>git 回滚到任意版本操作</strong></p>
-<blockquote>
-<p>git reset –hard xxx[版本号]<br>git push -f origin master</p>
-</blockquote>
-<p><strong>git known_hosts</strong></p>
-<blockquote>
-<p>sudo -u www ssh-keygen -R 127.0.0.1<br>sudo -u www git pull origin master</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>CentOS 7</tag>
-        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -204,50 +63,72 @@
       </tags>
   </entry>
   <entry>
-    <title>CentOS 7 安装MySQL5.7</title>
-    <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85MySQL5-7/</url>
-    <content><![CDATA[<p><strong>Centos下安装MySQL</strong> </p>
-<a id="more"></a>
-<p>官方mysql.com 支持我们使用yum的方式安装mysql 5.7最新版。所以大家根本无需手工编译安装（除非你需要）。CentOS7的yum源中默认好像是没有mysql的。为了解决这个问题，我们要先下载mysql的repo源。<br>一、下载mysql的repo源</p>
+    <title>CentOS 7 Git服务器搭建及配置公钥</title>
+    <url>/2018/04/08/CentOS-7-Git%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E5%85%AC%E9%92%A5/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>一、Git服务器搭建</strong></p>
+<p>a. 安装Git</p>
 <blockquote>
-<p>wget <a href="http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm">http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm</a></p>
+<p>yum install -y git</p>
 </blockquote>
-<p>二、 安装mysql57-community-release-el7-9.noarch.rpm包</p>
+<p>b. 添加新用户、为用户设置密码</p>
 <blockquote>
-<p>rpm -ivh mysql57-community-release-el7-9.noarch.rpm</p>
+<p>adduser git<br>passwd git</p>
 </blockquote>
-<p>三、 安装mysql （下载需要一段时间)</p>
+<p>c. 创建空的Git仓库</p>
 <blockquote>
-<p>yum install mysql-community-server</p>
+<p>cd /home/git<br>git init --bare test.git<br>chown -R git:git ../git</p>
 </blockquote>
-<p>四、启动mysql</p>
+<p>d. 在服务器端打开RSA认证</p>
 <blockquote>
-<p>systemctl start mysqld<br>systemctl enable mysqld.service</p>
+<p>cd /home/git<br>mkdir .ssh<br>cd .ssh<br>touch authorized_keys </p>
 </blockquote>
-<p>五、第一次启动后，mysql5.7 会生成一个随机root密码 （MySQL 5.7.6以上）</p>
+<p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>grep ‘temporary passwor’ /var/log/mysqld.log</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#x40;&#x71;&#x71;&#46;&#x63;&#111;&#109;">&#120;&#x40;&#x71;&#x71;&#46;&#x63;&#111;&#109;</a>“</p>
 </blockquote>
-<p>修改root密码</p>
+<p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
+<p>f.把步骤5生成的公钥导入服务器</p>
 <blockquote>
-<p>ALTER USER USER() IDENTIFIED BY ‘123456’;</p>
+<p>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
-<p>外网访问</p>
+<p>简单操作：windows 打开 Git-Gui-&gt;Help-&gt;Show SSH Key 直接复制key到Linux authorized_keys文件中 </p>
+<p><strong>二、配置钩子</strong></p>
+<p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>mysql -u root -p  # 首次登录会修改密码<br>GRANT ALL PRIVILEGES ON <em>.</em> TO ‘root’@’%’ IDENTIFIED BY ‘your_root_password’ WITH GRANT OPTION;</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#98;&#64;&#113;&#113;&#46;&#99;&#x6f;&#x6d;">&#98;&#64;&#113;&#113;&#46;&#99;&#x6f;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
-<p>删除mysql</p>
+<p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
-<p>rpm -qa|grep mysql；<br>yum remove packages</p>
+<p>git ALL=(ALL) NOPASSWD: ALL</p>
 </blockquote>
-<p>端口查看</p>
+<p>进入网站目录拉取<br>su git<br>sudo -u www git clone ssh://git@127.0.0.1/home/git/test.git </p>
+<p>c. 配置钩子[主要]</p>
 <blockquote>
-<p>ps -aux | grep mysql<br>netstat -apn | grep 3306<br>netstat -apn</p>
+<p>cd /home/git/test.git/hooks/<br>vim post-receive</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">export LANG&#x3D;zh_CN.UTF-8</span><br><span class="line">cd &#x2F;home&#x2F;wwwroot&#x2F;www&#x2F;test&#x2F;</span><br><span class="line">unset GIT_DIR </span><br><span class="line">sudo -u www git pull origin master</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>chown git:git post-receive<br>chmod +x post-receive</p>
+</blockquote>
+<p>在本地clone拉取远程git仓库</p>
+<blockquote>
+<p>git clone ssh://git@127.0.0.1/home/git/test.git</p>
+</blockquote>
+<p><strong>git 回滚到任意版本操作</strong></p>
+<blockquote>
+<p>git reset –hard xxx[版本号]<br>git push -f origin master</p>
+</blockquote>
+<p><strong>git known_hosts</strong></p>
+<blockquote>
+<p>sudo -u www ssh-keygen -R 127.0.0.1<br>sudo -u www git pull origin master</p>
 </blockquote>
 ]]></content>
       <tags>
-        <tag>Centos</tag>
-        <tag>MySQL</tag>
+        <tag>CentOS 7</tag>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -328,6 +209,125 @@
       </tags>
   </entry>
   <entry>
+    <title>9段PHP实用功能的代码推荐</title>
+    <url>/2018/02/24/9%E6%AE%B5PHP%E5%AE%9E%E7%94%A8%E5%8A%9F%E8%83%BD%E7%9A%84%E4%BB%A3%E7%A0%81%E6%8E%A8%E8%8D%90/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> 一、查看邮件是否已被阅读</p>
+</blockquote>
+<p>当你在发送邮件时，你或许很想知道该邮件是否被对方已阅读。这里有段非常有趣的代码片段能够显示对方IP地址记录阅读的实际日期和时间。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">Header(&quot;Content-Type: image&#x2F;jpeg&quot;);</span><br><span class="line">&#x2F;&#x2F;Get IP</span><br><span class="line">if (!empty($_SERVER[&#39;HTTP_CLIENT_IP&#39;]))</span><br><span class="line">&#123;</span><br><span class="line"> $ip&#x3D;$_SERVER[&#39;HTTP_CLIENT_IP&#39;];</span><br><span class="line">&#125;</span><br><span class="line">elseif (!empty($_SERVER[&#39;HTTP_X_FORWARDED_FOR&#39;]))</span><br><span class="line">&#123;</span><br><span class="line"> $ip&#x3D;$_SERVER[&#39;HTTP_X_FORWARDED_FOR&#39;];</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line"> $ip&#x3D;$_SERVER[&#39;REMOTE_ADDR&#39;];</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;Time</span><br><span class="line">$actual_time &#x3D; time();</span><br><span class="line">$actual_day &#x3D; date(&#39;Y.m.d&#39;, $actual_time);</span><br><span class="line">$actual_day_chart &#x3D; date(&#39;d&#x2F;m&#x2F;y&#39;, $actual_time);</span><br><span class="line">$actual_hour &#x3D; date(&#39;H:i:s&#39;, $actual_time);</span><br><span class="line">&#x2F;&#x2F;GET Browser</span><br><span class="line">$browser &#x3D; $_SERVER[&#39;HTTP_USER_AGENT&#39;];</span><br><span class="line">&#x2F;&#x2F;LOG</span><br><span class="line">$myFile &#x3D; &quot;log.txt&quot;;</span><br><span class="line">$fh &#x3D; fopen($myFile, &#39;a+&#39;);</span><br><span class="line">$stringData &#x3D; $actual_day . &#39; &#39; . $actual_hour . &#39; &#39; . $ip . &#39; &#39; . $browser . &#39; &#39; . &quot;\r\n&quot;;</span><br><span class="line">fwrite($fh, $stringData);</span><br><span class="line">fclose($fh);</span><br><span class="line">&#x2F;&#x2F;Generate Image (Es. dimesion is 1x1)</span><br><span class="line">$newimage &#x3D; ImageCreate(1,1);</span><br><span class="line">$grigio &#x3D; ImageColorAllocate($newimage,255,255,255);</span><br><span class="line">ImageJPEG($newimage);</span><br><span class="line">ImageDestroy($newimage);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 二、从网页中提取关键字</p>
+</blockquote>
+<p>一段伟大的代码片段能够轻松的从网页中提取关键字。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$meta &#x3D; get_meta_tags(&#39;http:&#x2F;&#x2F;www.emoticode.net&#x2F;&#39;);</span><br><span class="line">$keywords &#x3D; $meta[&#39;keywords&#39;];</span><br><span class="line">&#x2F;&#x2F; Split keywords</span><br><span class="line">$keywords &#x3D; explode(&#39;,&#39;, $keywords );</span><br><span class="line">&#x2F;&#x2F; Trim them</span><br><span class="line">$keywords &#x3D; array_map( &#39;trim&#39;, $keywords );</span><br><span class="line">&#x2F;&#x2F; Remove empty values</span><br><span class="line">$keywords &#x3D; array_filter( $keywords );</span><br><span class="line">print_r( $keywords );</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 三、查找页面上的所有链接</p>
+</blockquote>
+<p>使用DOM，你可以轻松从任何页面上抓取链接，代码示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$html &#x3D; file_get_contents(&#39;http:&#x2F;&#x2F;www.example.com&#39;);</span><br><span class="line">$dom &#x3D; new DOMDocument();</span><br><span class="line">@$dom-&gt;loadHTML($html);</span><br><span class="line">&#x2F;&#x2F; grab all the on the page</span><br><span class="line">$xpath &#x3D; new DOMXPath($dom);</span><br><span class="line">$hrefs &#x3D; $xpath-&gt;evaluate(&quot;&#x2F;html&#x2F;body&#x2F;&#x2F;a&quot;);</span><br><span class="line"></span><br><span class="line">for ($i &#x3D; 0; $i &lt; $hrefs-&gt;length; $i++) &#123;</span><br><span class="line">      $href &#x3D; $hrefs-&gt;item($i);</span><br><span class="line">      $url &#x3D; $href-&gt;getAttribute(&#39;href&#39;);</span><br><span class="line">      echo $url.&#39;&lt;br &#x2F;&gt;&#39;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 四、自动转换URL，跳转至超链接</p>
+</blockquote>
+<p>在WordPress中，如果你想自动转换URL，跳转至超链接页面，你可以利用内置的函数make_clickable()执行此操作。如果你想基于WordPress之外操作该程序，那么你可以参考wp-includes/formatting.php源代码。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function _make_url_clickable_cb($matches) &#123;</span><br><span class="line">   $ret &#x3D; &#39;&#39;;</span><br><span class="line">   $url &#x3D; $matches[2];</span><br><span class="line"></span><br><span class="line">   if ( empty($url) )</span><br><span class="line">       return $matches[0];</span><br><span class="line">   &#x2F;&#x2F; removed trailing [.,;:] from URL</span><br><span class="line">   if ( in_array(substr($url, -1), array(&#39;.&#39;, &#39;,&#39;, &#39;;&#39;, &#39;:&#39;)) &#x3D;&#x3D;&#x3D; true ) &#123;</span><br><span class="line">       $ret &#x3D; substr($url, -1);</span><br><span class="line">       $url &#x3D; substr($url, 0, strlen($url)-1);</span><br><span class="line">   &#125;</span><br><span class="line">   return $matches[1] . &quot;&lt;a href&#x3D;\&quot;$url\&quot; rel&#x3D;\&quot;nofollow\&quot;&gt;$url&lt;&#x2F;a&gt;&quot; . $ret;</span><br><span class="line">&#125;</span><br><span class="line">function _make_web_ftp_clickable_cb($matches) &#123;</span><br><span class="line">   $ret &#x3D; &#39;&#39;;</span><br><span class="line">   $dest &#x3D; $matches[2];</span><br><span class="line">   $dest &#x3D; &#39;http:&#x2F;&#x2F;&#39; . $dest;</span><br><span class="line">   if ( empty($dest) )</span><br><span class="line">       return $matches[0];</span><br><span class="line">   &#x2F;&#x2F; removed trailing [,;:] from URL</span><br><span class="line">   if ( in_array(substr($dest, -1), array(&#39;.&#39;, &#39;,&#39;, &#39;;&#39;, &#39;:&#39;)) &#x3D;&#x3D;&#x3D; true ) &#123;</span><br><span class="line">       $ret &#x3D; substr($dest, -1);</span><br><span class="line">       $dest &#x3D; substr($dest, 0, strlen($dest)-1);</span><br><span class="line">   &#125;</span><br><span class="line">   return $matches[1] . &quot;&lt;a href&#x3D;\&quot;$dest\&quot; rel&#x3D;\&quot;nofollow\&quot;&gt;$dest&lt;&#x2F;a&gt;&quot; . $ret;</span><br><span class="line">&#125;</span><br><span class="line">function _make_email_clickable_cb($matches) &#123;</span><br><span class="line">   $email &#x3D; $matches[2] . &#39;@&#39; . $matches[3];</span><br><span class="line">   return $matches[1] . &quot;&lt;a href&#x3D;\&quot;mailto:$email\&quot;&gt;$email&lt;&#x2F;a&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">function make_clickable($ret) &#123;</span><br><span class="line">   $ret &#x3D; &#39; &#39; . $ret;</span><br><span class="line">   &#x2F;&#x2F; in testing, using arrays here was found to be faster</span><br><span class="line">   $ret &#x3D; preg_replace_callback(&#39;#([\s&gt;])([\w]+?:&#x2F;&#x2F;[\w\\x80-\\xff\#$%&amp;~&#x2F;.\-;:&#x3D;,?@\[\]+]*)#is&#39;, &#39;_make_url_clickable_cb&#39;, $ret);</span><br><span class="line">   $ret &#x3D; preg_replace_callback(&#39;#([\s&gt;])((www|ftp)\.[\w\\x80-\\xff\#$%&amp;~&#x2F;.\-;:&#x3D;,?@\[\]+]*)#is&#39;, &#39;_make_web_ftp_clickable_cb&#39;, $ret);</span><br><span class="line">   $ret &#x3D; preg_replace_callback(&#39;#([\s&gt;])([.0-9a-z_+-]+)@(([0-9a-z-]+\.)+[0-9a-z]&#123;2,&#125;)#i&#39;, &#39;_make_email_clickable_cb&#39;, $ret);</span><br><span class="line"></span><br><span class="line">   &#x2F;&#x2F; this one is not in an array because we need it to run last, for cleanup of accidental links within links</span><br><span class="line">   $ret &#x3D; preg_replace(&quot;#(&lt;a( [^&gt;]+?&gt;|&gt;))&lt;a [^&gt;]+?&gt;([^&gt;]+?)&lt;&#x2F;a&gt;&lt;&#x2F;a&gt;#i&quot;, &quot;$1$3&lt;&#x2F;a&gt;&quot;, $ret);</span><br><span class="line">   $ret &#x3D; trim($ret);</span><br><span class="line">   return $ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 五、创建数据URL</p>
+</blockquote>
+<p>数据URL可以直接嵌入到HTML/CSS/JS中，以节省大量的 HTTP请求。 下面的这段代码可利用$file轻松创建数据URL</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function data_uri($file, $mime) &#123;</span><br><span class="line"> $contents&#x3D;file_get_contents($file);</span><br><span class="line"> $base64&#x3D;base64_encode($contents);</span><br><span class="line"> echo &quot;data:$mime;base64,$base64&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 六、从服务器上下载&amp;保存一个远程图片</p>
+</blockquote>
+<p>当你在搭建网站时，从远程服务器下载某张图片并且将其保存在自己的服务器上，这一操作会经常用到。代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$image &#x3D; file_get_contents(&#39;http:&#x2F;&#x2F;www.url.com&#x2F;image.jpg&#39;);</span><br><span class="line">file_put_contents(&#39;&#x2F;images&#x2F;image.jpg&#39;, $image); &#x2F;&#x2F;Where to save the image</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 七、移除Remove Microsoft Word HTML Tag</p>
+</blockquote>
+<p>当你使用Microsoft Word会创建许多Tag，比如font，span，style，class等。这些标签对于Word本身而言是非常有用的，但是当你从Word粘贴至网页时，你会发现很多无用的Tag。因此，下面的这段代码可帮助你删除所有无用的Word HTML Tag。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function cleanHTML($html) &#123;</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">&#x2F;&#x2F;&#x2F; Removes all FONT and SPAN tags, and all Class and Style attributes.</span><br><span class="line">&#x2F;&#x2F;&#x2F; Designed to get rid of non-standard Microsoft Word HTML tags.</span><br><span class="line">&#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">&#x2F;&#x2F; start by completely removing all unwanted tags</span><br><span class="line"></span><br><span class="line">$html &#x3D; ereg_replace(&quot;&lt;(&#x2F;)?(font|span|del|ins)[^&gt;]*&gt;&quot;,&quot;&quot;,$html);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; then run another pass over the html (twice), removing unwanted attributes</span><br><span class="line"></span><br><span class="line">$html &#x3D; ereg_replace(&quot;&lt;([^&gt;]*)(class|lang|style|size|face)&#x3D;(&quot;[^&quot;]*&quot;|&#39;[^&#39;]*&#39;|[^&gt;]+)([^&gt;]*)&gt;&quot;,&quot;&lt;\1&gt;&quot;,$html);</span><br><span class="line">$html &#x3D; ereg_replace(&quot;&lt;([^&gt;]*)(class|lang|style|size|face)&#x3D;(&quot;[^&quot;]*&quot;|&#39;[^&#39;]*&#39;|[^&gt;]+)([^&gt;]*)&gt;&quot;,&quot;&lt;\1&gt;&quot;,$html);</span><br><span class="line">return $html</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 八、检测浏览器语言</p>
+</blockquote>
+<p>如果你的网站上有多种语言，那么可以使用这段代码作为默认的语言来检测浏览器语言。该段代码将返回浏览器客户端使用的初始语言。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function get_client_language($availableLanguages, $default&#x3D;&#39;en&#39;)&#123;</span><br><span class="line">   if (isset($_SERVER[&#39;HTTP_ACCEPT_LANGUAGE&#39;])) &#123;</span><br><span class="line">       $langs&#x3D;explode(&#39;,&#39;,$_SERVER[&#39;HTTP_ACCEPT_LANGUAGE&#39;]);</span><br><span class="line"></span><br><span class="line">       foreach ($langs as $value)&#123;</span><br><span class="line">           $choice&#x3D;substr($value,0,2);</span><br><span class="line">           if(in_array($choice, $availableLanguages))&#123;</span><br><span class="line">               return $choice;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125; </span><br><span class="line">   return $default;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 九、显示Facebook 粉丝数量 </p>
+</blockquote>
+<p>如果你的网站或者博客上有内链的Facebook页面，你或许想知道拥有多少粉丝。这段代码将帮助你查看Facebook粉丝数，记住，别忘了在你的页面ID第二行添加该段代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">   $page_id &#x3D; &quot;YOUR PAGE-ID&quot;;</span><br><span class="line">   $xml &#x3D; @simplexml_load_file(&quot;http:&#x2F;&#x2F;api.facebook.com&#x2F;restserver.php?method&#x3D;facebook.fql.query&amp;query&#x3D;SELECT%20fan_count%20FROM%20page%20WHERE%20page_id&#x3D;&quot;.$page_id.&quot;&quot;) or die (&quot;a lot&quot;);</span><br><span class="line">   $fans &#x3D; $xml-&gt;page-&gt;fan_count;</span><br><span class="line">   echo $fans;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>php</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS 7 安装MySQL5.7</title>
+    <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85MySQL5-7/</url>
+    <content><![CDATA[<p><strong>Centos下安装MySQL</strong> </p>
+<a id="more"></a>
+<p>官方mysql.com 支持我们使用yum的方式安装mysql 5.7最新版。所以大家根本无需手工编译安装（除非你需要）。CentOS7的yum源中默认好像是没有mysql的。为了解决这个问题，我们要先下载mysql的repo源。<br>一、下载mysql的repo源</p>
+<blockquote>
+<p>wget <a href="http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm">http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm</a></p>
+</blockquote>
+<p>二、 安装mysql57-community-release-el7-9.noarch.rpm包</p>
+<blockquote>
+<p>rpm -ivh mysql57-community-release-el7-9.noarch.rpm</p>
+</blockquote>
+<p>三、 安装mysql （下载需要一段时间)</p>
+<blockquote>
+<p>yum install mysql-community-server</p>
+</blockquote>
+<p>四、启动mysql</p>
+<blockquote>
+<p>systemctl start mysqld<br>systemctl enable mysqld.service</p>
+</blockquote>
+<p>五、第一次启动后，mysql5.7 会生成一个随机root密码 （MySQL 5.7.6以上）</p>
+<blockquote>
+<p>grep ‘temporary passwor’ /var/log/mysqld.log</p>
+</blockquote>
+<p>修改root密码</p>
+<blockquote>
+<p>ALTER USER USER() IDENTIFIED BY ‘123456’;</p>
+</blockquote>
+<p>外网访问</p>
+<blockquote>
+<p>mysql -u root -p  # 首次登录会修改密码<br>GRANT ALL PRIVILEGES ON <em>.</em> TO ‘root’@’%’ IDENTIFIED BY ‘your_root_password’ WITH GRANT OPTION;</p>
+</blockquote>
+<p>删除mysql</p>
+<blockquote>
+<p>rpm -qa|grep mysql；<br>yum remove packages</p>
+</blockquote>
+<p>端口查看</p>
+<blockquote>
+<p>ps -aux | grep mysql<br>netstat -apn | grep 3306<br>netstat -apn</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Centos</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Centos7下基于laradock部署laravel5.x</title>
     <url>/2018/04/09/Centos7%E4%B8%8B%E5%9F%BA%E4%BA%8Elaradock%E9%83%A8%E7%BD%B2laravel5-x/</url>
     <content><![CDATA[<a id="more"></a>
@@ -401,26 +401,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Centos下两种守护进程的配置</title>
-    <url>/2018/03/21/Centos%E4%B8%8B%E4%B8%A4%E7%A7%8D%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E7%9A%84%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<a id="more"></a>
-
-
-<blockquote>
-<p>一、php artisan</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-xx]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D;php &#x2F;home&#x2F;wwwroot&#x2F;www.xxx.com&#x2F;artisan queue:work --tries&#x3D;3</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;4</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xxx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>二、执行node js </p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-node]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D; node &#x2F;home&#x2F;socket&#x2F;stocket.js</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;1</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>Centos</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Centos下安装PHP7</title>
     <url>/2018/03/21/Centos%E4%B8%8B%E5%AE%89%E8%A3%85PHP7/</url>
     <content><![CDATA[<a id="more"></a>
@@ -466,6 +446,26 @@
       <tags>
         <tag>Centos</tag>
         <tag>PHP7</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Centos下两种守护进程的配置</title>
+    <url>/2018/03/21/Centos%E4%B8%8B%E4%B8%A4%E7%A7%8D%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E7%9A%84%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<a id="more"></a>
+
+
+<blockquote>
+<p>一、php artisan</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-xx]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D;php &#x2F;home&#x2F;wwwroot&#x2F;www.xxx.com&#x2F;artisan queue:work --tries&#x3D;3</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;4</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xxx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>二、执行node js </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-node]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D; node &#x2F;home&#x2F;socket&#x2F;stocket.js</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;1</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Centos</tag>
       </tags>
   </entry>
   <entry>
@@ -570,67 +570,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Go 语言基础</title>
-    <url>/2017/11/08/Go-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> 包、变量、函数</p>
-</blockquote>
-<ul>
-<li><p>包<br>每个 Go 程序都是由包组成的。程序运行的入口是包 <code>main</code><br>这个程序使用并导入了包 “fmt” 和 <code>&quot;math/rand&quot;</code>。如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;math&#x2F;rand&quot;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>变量<br>var 语句定义了一个变量的列表 如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var c, python, java bool</span><br><span class="line">var i, j int &#x3D; 1, 2</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	var i int</span><br><span class="line">	&#x2F;*在函数中，&#96;:&#x3D;&#96; 简洁赋值语句在明确类型的地方，可以用于替代 var 定义</span><br><span class="line">	函数外的每个语句都必须以关键字开始（&#96;var&#96;、&#96;func&#96;、等等），&#96;:&#x3D;&#96; 结构不能使用在函数外*&#x2F;</span><br><span class="line">	k :&#x3D; 3</span><br><span class="line">	var c, python, java &#x3D; true, false, &quot;no!&quot;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li><p>函数<br>函数可以没有参数或接受多个参数<br>在这个例子中，<code>add</code> 接受两个 int 类型的参数。如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func add(x int, y int) int &#123;</span><br><span class="line">	return x + y</span><br><span class="line">&#125;</span><br><span class="line">||</span><br><span class="line">func add(x , y int) int &#123;</span><br><span class="line">	return x + y</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<blockquote>
-<p> 流程控制语句</p>
-</blockquote>
-<ul>
-<li><p>for<br>Go 只有一种循环结构——<code>for</code> 循环<br>基本的 for 循环除了没有了 <code>( )</code> 之外（甚至强制不能使用它们）。如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	sum :&#x3D; 0</span><br><span class="line">	for i :&#x3D; 0; i &lt; 10; i++ &#123;</span><br><span class="line">		sum +&#x3D; i</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(sum)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>if<br>if 语句除了没有了 <code>( )</code> 之外（甚至强制不能使用它们）。如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func sqrt(x float64) string &#123;</span><br><span class="line">	if x &lt; 0 &#123;</span><br><span class="line">		return sqrt(-x) + &quot;i&quot;</span><br><span class="line">	&#125;</span><br><span class="line">	if v :&#x3D; math.Pow(x, n); v &lt; lim &#123;</span><br><span class="line">		return v</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		fmt.Printf(&quot;%g &gt;&#x3D; %g\n&quot;, v, lim)</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>switch<br>如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	fmt.Print(&quot;Go runs on &quot;)</span><br><span class="line">	switch os :&#x3D; runtime.GOOS; os &#123;</span><br><span class="line">	case &quot;darwin&quot;:</span><br><span class="line">		fmt.Println(&quot;OS X.&quot;)</span><br><span class="line">	case &quot;linux&quot;:</span><br><span class="line">		fmt.Println(&quot;Linux.&quot;)</span><br><span class="line">	default:</span><br><span class="line">		&#x2F;&#x2F; freebsd, openbsd,</span><br><span class="line">		&#x2F;&#x2F; plan9, windows...</span><br><span class="line">		fmt.Printf(&quot;%s.&quot;, os)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>defer<br>defer 语句会延迟函数的执行直到上层函数返回。<br>延迟调用的参数会立刻生成，但是在上层函数返回前函数都不会被调用。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	defer fmt.Println(&quot;world&quot;)&#x2F;&#x2F;延迟函数</span><br><span class="line">	fmt.Println(&quot;hello&quot;) &#x2F;&#x2F;上层函数</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;hello</span><br><span class="line">&#x2F;&#x2F;wolrd</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<blockquote>
-<p> 复杂类型</p>
-</blockquote>
-<ul>
-<li><p>指针<br>Go 具有指针。 指针保存了变量的内存地址</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	i, j :&#x3D; 42, 2701</span><br><span class="line"></span><br><span class="line">	p :&#x3D; &amp;i         &#x2F;* 生成一个指向 i 的指针 *&#x2F;</span><br><span class="line">	fmt.Println(*p) &#x2F;* 通过指针 p 读取 i    *&#x2F;</span><br><span class="line">	*p &#x3D; 21         &#x2F;* 通过指针 p 设置 i    *&#x2F;</span><br><span class="line">	fmt.Println(i)  &#x2F;* 输出 i &#x3D;21          *&#x2F; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>结构体<br>一个结构体（<code>struct</code>）就是一个字段的集合</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type Vertex struct &#123;</span><br><span class="line">	X int</span><br><span class="line">	Y int</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">v :&#x3D; Vertex&#123;1, 2&#125;</span><br><span class="line">v.X &#x3D; 4</span><br><span class="line">fmt.Println(v.X)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>数组<br>类型 [n]T 是一个有 n 个类型为 T 的值的数组</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	var a [2]string</span><br><span class="line">	a[0] &#x3D; &quot;Hello&quot;</span><br><span class="line">	a[1] &#x3D; &quot;World&quot;</span><br><span class="line">	fmt.Println(a[0], a[1])</span><br><span class="line">	fmt.Println(a)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>slice<br>一个 slice 会指向一个序列的值，并且包含了长度信息<br>s[lo:hi]表示从 lo 到 hi-1 的 slice 元素，含两端。因此<br>s[lo:lo]是空的，而<br>s[lo:lo+1]有一个元素。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	p :&#x3D; []int&#123;2, 3, 5, 7, 11, 13&#125;</span><br><span class="line">	fmt.Println(&quot;p &#x3D;&#x3D;&quot;, p)</span><br><span class="line"></span><br><span class="line">	for i :&#x3D; 0; i &lt; len(p); i++ &#123;</span><br><span class="line">		fmt.Printf(&quot;p[%d] &#x3D;&#x3D; %d\n&quot;, i, p[i])</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>map<br>map 映射键到值</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type Vertex struct &#123;</span><br><span class="line">	Lat, Long float64</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var m map[string]Vertex</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	m &#x3D; make(map[string]Vertex)</span><br><span class="line">	m[&quot;Bell Labs&quot;] &#x3D; Vertex&#123;</span><br><span class="line">		40.68433, -74.39967,</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(m[&quot;Bell Labs&quot;])</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>golang</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LNMP一键安装包常用命令及配置文件路径</title>
     <url>/2017/12/06/LNMP%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84/</url>
     <content><![CDATA[<a id="more"></a>
@@ -706,103 +645,6 @@
 ]]></content>
       <tags>
         <tag>lnmp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Laravel Redis 广播测试</title>
-    <url>/2019/04/19/Laravel-Redis-%E5%B9%BF%E6%92%AD%E6%B5%8B%E8%AF%95/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p> 附上 <a href="https://github.com/shunhua/laravel-echo" target="_blank">[Github]</a> 地址 </p>
-<p> 一、项目搭建<br> a.安装laravel</p>
-<blockquote>
-<p>composer create-project –prefer-dist laravel/laravel echo</p>
-</blockquote>
-<p> b.配置mysql 数据库</p>
-<blockquote>
-<p>php artisan migrate</p>
-</blockquote>
-<p>  c.快速认证</p>
-<blockquote>
-<p>php artisan make:auth</p>
-</blockquote>
-<p> 本文仅使用了 redis 的广播驱动 测试环境 win10<br> 二、安装redis 并启动</p>
-<blockquote>
-<p>redis-server.exe</p>
-</blockquote>
-<p><img src="/assets/blogImg/guangbo/redis.png" alt="ico原来的样子"><br>测试redis 连接成功<br><img src="/assets/blogImg/guangbo/redis1.png" alt="ico原来的样子"></p>
-<p>a.配置文件 .env 中配置以下代码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">BROADCAST_DRIVER&#x3D;redis</span><br></pre></td></tr></table></figure>
-<p>b.广播服务提供者  config/app.php 配置文件中 providers 数组中打开注释</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">App\Providers\BroadcastServiceProvider::class,</span><br></pre></td></tr></table></figure>
-<p>c.CSRF 令牌[后续视图中添加]</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;csrf-token&quot; content&#x3D;&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</span><br></pre></td></tr></table></figure>
-<p>d.安装 Predis 库</p>
-<blockquote>
-<p>composer require predis/predis</p>
-</blockquote>
-<p>三、安装 Laravel Echo</p>
-<p>a.通过 npm 包管理器安装 Echo</p>
-<blockquote>
-<p>npm install<br>   npm install -g laravel-echo-server</p>
-</blockquote>
-<p>b.初始化 laravel-echo-server</p>
-<blockquote>
-<p>laravel-echo-server init</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 是否在开发模式下运行此服务器（y&#x2F;n） 输入y</span><br><span class="line">? Do you want to run this server in development mode? (y&#x2F;N) </span><br><span class="line">&#x2F;&#x2F; 设置服务器的端口 默认 6001 输入 6001就可以了 或者你想要的</span><br><span class="line">? Which port would you like to serve from? (6001)</span><br><span class="line">&#x2F;&#x2F; 想用的数据库  选择 redis</span><br><span class="line">? Which database would you like to use to store presence channel members? (Use arrow keys)</span><br><span class="line">❯ redis </span><br><span class="line">  sqlite </span><br><span class="line">&#x2F;&#x2F;   这里输入 你的laravel  项目的访问域名</span><br><span class="line">? Enter the host of your Laravel authentication server. (http:&#x2F;&#x2F;localhost) </span><br><span class="line">&#x2F;&#x2F; 选择 网络协议 http</span><br><span class="line">? Will you be serving on http or https? (Use arrow keys)</span><br><span class="line">❯ http </span><br><span class="line">  https </span><br><span class="line">&#x2F;&#x2F; 您想为HTTP API生成客户端ID&#x2F;密钥吗 N</span><br><span class="line">? Do you want to generate a client ID&#x2F;Key for HTTP API? (y&#x2F;N) </span><br><span class="line">&#x2F;&#x2F; 要设置对API的跨域访问吗？（y&#x2F;n）N</span><br><span class="line">Configuration file saved. Run laravel-echo-server start to run server.</span><br></pre></td></tr></table></figure>
-<p>设置完成后 项目根目录 下 会生成 laravel-echo-server.json 文件 这里面就是刚才的配置<br><img src="/assets/blogImg/guangbo/echo.png" alt="ico原来的样子"><br>执行命令启动 服务 出现如下 则启动成功</p>
-<blockquote>
-<p>laravel-echo-server start</p>
-</blockquote>
-<p><img src="/assets/blogImg/guangbo/echo1.png" alt="ico原来的样子"></p>
-<p>四、频道<br>频道Channel、PrivateChannel 或 PresenceChannel 的实例。Channel 实例表示任何用户都可以订阅的公开频道，而 PrivateChannels 和 PresenceChannels 则表示需要 频道授权 的私有频道：<br>a.创建事件</p>
-<blockquote>
-<p>php artisan make:event PublicMessageEvent </p>
-</blockquote>
-<p>文件生成目录 app/Events</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public $message;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Create a new event instance.</span><br><span class="line"> *</span><br><span class="line"> * @param User $user</span><br><span class="line"> * @param string $message</span><br><span class="line"> *&#x2F;</span><br><span class="line">public function __construct(string $message)</span><br><span class="line">&#123;</span><br><span class="line">    $this-&gt;message &#x3D; $message;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Get the channels the event should broadcast on.</span><br><span class="line"> *</span><br><span class="line"> * @return \Illuminate\Broadcasting\Channel|array</span><br><span class="line"> *&#x2F;</span><br><span class="line">public function broadcastOn()</span><br><span class="line">&#123;</span><br><span class="line">    return new Channel(&#39;push&#39;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Laravel 默认会使用事件的类名作为广播名称来广播事件，自定义：</span><br><span class="line">public function broadcastAs()</span><br><span class="line">&#123;</span><br><span class="line">    return &#39;push.message&#39;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;想更细粒度地控制广播数据:</span><br><span class="line">public function broadcastWith()</span><br><span class="line">&#123;</span><br><span class="line">    return [&#39;message&#39; &#x3D;&gt; $this-&gt;message,&#39;status&#39; &#x3D;&gt; &#39;okok&#39;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; laravel-echo-server 1.5 版本的 需要添加 否则Laravel echo channel listen 不监听事件</span><br><span class="line">public function handle()</span><br><span class="line">&#123;</span><br><span class="line">    broadcast(new push());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>b.添加路由</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">use App\Events\PublicMessageEvent;</span><br><span class="line"> Route::get(&#39;&#x2F;echo&#39;, function () &#123;</span><br><span class="line">    return view(&#39;echo&#39;);</span><br><span class="line"> &#125;);</span><br><span class="line"></span><br><span class="line">Route::get(&#39;&#x2F;push&#x2F;&#123;message&#125;&#39;, function ($message) &#123;</span><br><span class="line">    broadcast(new PublicMessageEvent($message));</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>五、前端视图<br>a.安装 laravel-echo</p>
-<blockquote>
-<p>npm install laravel-echo</p>
-</blockquote>
-<p>编辑 resource/js/bootstrap.js 添加如下代码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Echo from &quot;laravel-echo&quot;</span><br><span class="line"></span><br><span class="line">window.Echo &#x3D; new Echo(&#123;</span><br><span class="line">    broadcaster: &#39;socket.io&#39;,</span><br><span class="line">    host: window.location.hostname + &#39;:6001&#39;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>编辑 resource/js/app.js 添加如下代码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Echo.channel(&#39;push&#39;)</span><br><span class="line">    .listen(&#39;.push.message&#39;, (e) &#x3D;&gt; &#123;</span><br><span class="line">        alert(e.message)</span><br><span class="line">        console.log(e);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-<p>创建 echo.blade.php head 中加上</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;csrf-token&quot; content&#x3D;&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;&#x2F;&#x2F;&#123;&#123; Request::getHost() &#125;&#125;:6001&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;&#x2F;js&#x2F;app.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-<p>编译 js 文件 </p>
-<blockquote>
-<p>npm run watch</p>
-</blockquote>
-<p>浏览器访问 项目域名 /echo<br>浏览器访问 项目域名 /push/这是一个测试广播[what can i say]<br>echo 页面 会自动弹出<br><img src="/assets/blogImg/guangbo/echo2.png" alt="ico原来的样子"><br><img src="/assets/blogImg/guangbo/echo4.png" alt="ico原来的样子"><br><img src="/assets/blogImg/guangbo/echo5.png" alt="ico原来的样子"><br>到这 广播 发布到公共频道就完成了</p>
-<hr>
-<p>私有频道 PrivateChannel</p>
-<blockquote>
-<p>php artisan make:event PrivateMessageEvent</p>
-</blockquote>
-<p>PrivateMessageEvent 中 写入 以下内容</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public $message;</span><br><span class="line">   public $user;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * Create a new event instance.</span><br><span class="line">    *</span><br><span class="line">    * @param User $user</span><br><span class="line">    * @param string $message</span><br><span class="line">    *&#x2F;</span><br><span class="line">   public function __construct(User $user, string $message)</span><br><span class="line">   &#123;</span><br><span class="line">       $this-&gt;user &#x3D; $user;</span><br><span class="line">       $this-&gt;message &#x3D; $message;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * Get the channels the event should broadcast on.</span><br><span class="line">    *</span><br><span class="line">    * @return \Illuminate\Broadcasting\Channel|array</span><br><span class="line">    *&#x2F;</span><br><span class="line">   public function broadcastOn()</span><br><span class="line">   &#123;</span><br><span class="line">       return new PrivateChannel(&#39;privatePush.&#39; . $this-&gt;user-&gt;id);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;&#x2F;想更细粒度地控制广播数据:</span><br><span class="line">   public function broadcastWith()</span><br><span class="line">   &#123;</span><br><span class="line">       return [&#39;message&#39; &#x3D;&gt; $this-&gt;message,&#39;status&#39; &#x3D;&gt; &#39;okok&#39;];</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p>添加发布广播到私有频道 触发路由 routes/web 测试时记得新增下用户</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Route::get(&#39;&#x2F;privatePush&#x2F;&#123;message&#125;&#x2F;&#123;id&#125;&#39;, function ($message, $id) &#123;</span><br><span class="line">    $user &#x3D; \App\User::find($id);</span><br><span class="line">    if (empty($user)) return &#39;无此用户&#39;;</span><br><span class="line">    broadcast(new PrivateMessageEvent($user, $message));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>echo.blade.php 中加入</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    @if(!empty(Auth::user()))</span><br><span class="line">        window.id &#x3D; &quot;&#123;&#123;Auth::user()-&gt;id&#125;&#125;&quot;</span><br><span class="line">    @endif</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-<p>app.js</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Echo.private(&#39;privatePush.&#39; + window.id)</span><br><span class="line">    .listen(&#39;PrivateMessageEvent&#39;, (e) &#x3D;&gt; &#123;</span><br><span class="line">        alert(&#39;qweqwe&#39;)</span><br><span class="line">        console.log(e);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><strong>Notice</strong><br>安静,安静一下 Enjoy it ~</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>laravel5.7</tag>
-        <tag>Redis</tag>
-        <tag>广播</tag>
       </tags>
   </entry>
   <entry>
@@ -936,6 +778,164 @@
       </tags>
   </entry>
   <entry>
+    <title>Go 语言基础</title>
+    <url>/2017/11/08/Go-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> 包、变量、函数</p>
+</blockquote>
+<ul>
+<li><p>包<br>每个 Go 程序都是由包组成的。程序运行的入口是包 <code>main</code><br>这个程序使用并导入了包 “fmt” 和 <code>&quot;math/rand&quot;</code>。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;math&#x2F;rand&quot;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>变量<br>var 语句定义了一个变量的列表 如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var c, python, java bool</span><br><span class="line">var i, j int &#x3D; 1, 2</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	var i int</span><br><span class="line">	&#x2F;*在函数中，&#96;:&#x3D;&#96; 简洁赋值语句在明确类型的地方，可以用于替代 var 定义</span><br><span class="line">	函数外的每个语句都必须以关键字开始（&#96;var&#96;、&#96;func&#96;、等等），&#96;:&#x3D;&#96; 结构不能使用在函数外*&#x2F;</span><br><span class="line">	k :&#x3D; 3</span><br><span class="line">	var c, python, java &#x3D; true, false, &quot;no!&quot;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>函数<br>函数可以没有参数或接受多个参数<br>在这个例子中，<code>add</code> 接受两个 int 类型的参数。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func add(x int, y int) int &#123;</span><br><span class="line">	return x + y</span><br><span class="line">&#125;</span><br><span class="line">||</span><br><span class="line">func add(x , y int) int &#123;</span><br><span class="line">	return x + y</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p> 流程控制语句</p>
+</blockquote>
+<ul>
+<li><p>for<br>Go 只有一种循环结构——<code>for</code> 循环<br>基本的 for 循环除了没有了 <code>( )</code> 之外（甚至强制不能使用它们）。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	sum :&#x3D; 0</span><br><span class="line">	for i :&#x3D; 0; i &lt; 10; i++ &#123;</span><br><span class="line">		sum +&#x3D; i</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(sum)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>if<br>if 语句除了没有了 <code>( )</code> 之外（甚至强制不能使用它们）。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func sqrt(x float64) string &#123;</span><br><span class="line">	if x &lt; 0 &#123;</span><br><span class="line">		return sqrt(-x) + &quot;i&quot;</span><br><span class="line">	&#125;</span><br><span class="line">	if v :&#x3D; math.Pow(x, n); v &lt; lim &#123;</span><br><span class="line">		return v</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		fmt.Printf(&quot;%g &gt;&#x3D; %g\n&quot;, v, lim)</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>switch<br>如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	fmt.Print(&quot;Go runs on &quot;)</span><br><span class="line">	switch os :&#x3D; runtime.GOOS; os &#123;</span><br><span class="line">	case &quot;darwin&quot;:</span><br><span class="line">		fmt.Println(&quot;OS X.&quot;)</span><br><span class="line">	case &quot;linux&quot;:</span><br><span class="line">		fmt.Println(&quot;Linux.&quot;)</span><br><span class="line">	default:</span><br><span class="line">		&#x2F;&#x2F; freebsd, openbsd,</span><br><span class="line">		&#x2F;&#x2F; plan9, windows...</span><br><span class="line">		fmt.Printf(&quot;%s.&quot;, os)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>defer<br>defer 语句会延迟函数的执行直到上层函数返回。<br>延迟调用的参数会立刻生成，但是在上层函数返回前函数都不会被调用。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	defer fmt.Println(&quot;world&quot;)&#x2F;&#x2F;延迟函数</span><br><span class="line">	fmt.Println(&quot;hello&quot;) &#x2F;&#x2F;上层函数</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;hello</span><br><span class="line">&#x2F;&#x2F;wolrd</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p> 复杂类型</p>
+</blockquote>
+<ul>
+<li><p>指针<br>Go 具有指针。 指针保存了变量的内存地址</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	i, j :&#x3D; 42, 2701</span><br><span class="line"></span><br><span class="line">	p :&#x3D; &amp;i         &#x2F;* 生成一个指向 i 的指针 *&#x2F;</span><br><span class="line">	fmt.Println(*p) &#x2F;* 通过指针 p 读取 i    *&#x2F;</span><br><span class="line">	*p &#x3D; 21         &#x2F;* 通过指针 p 设置 i    *&#x2F;</span><br><span class="line">	fmt.Println(i)  &#x2F;* 输出 i &#x3D;21          *&#x2F; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>结构体<br>一个结构体（<code>struct</code>）就是一个字段的集合</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type Vertex struct &#123;</span><br><span class="line">	X int</span><br><span class="line">	Y int</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">v :&#x3D; Vertex&#123;1, 2&#125;</span><br><span class="line">v.X &#x3D; 4</span><br><span class="line">fmt.Println(v.X)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数组<br>类型 [n]T 是一个有 n 个类型为 T 的值的数组</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	var a [2]string</span><br><span class="line">	a[0] &#x3D; &quot;Hello&quot;</span><br><span class="line">	a[1] &#x3D; &quot;World&quot;</span><br><span class="line">	fmt.Println(a[0], a[1])</span><br><span class="line">	fmt.Println(a)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>slice<br>一个 slice 会指向一个序列的值，并且包含了长度信息<br>s[lo:hi]表示从 lo 到 hi-1 的 slice 元素，含两端。因此<br>s[lo:lo]是空的，而<br>s[lo:lo+1]有一个元素。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	p :&#x3D; []int&#123;2, 3, 5, 7, 11, 13&#125;</span><br><span class="line">	fmt.Println(&quot;p &#x3D;&#x3D;&quot;, p)</span><br><span class="line"></span><br><span class="line">	for i :&#x3D; 0; i &lt; len(p); i++ &#123;</span><br><span class="line">		fmt.Printf(&quot;p[%d] &#x3D;&#x3D; %d\n&quot;, i, p[i])</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>map<br>map 映射键到值</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type Vertex struct &#123;</span><br><span class="line">	Lat, Long float64</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var m map[string]Vertex</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	m &#x3D; make(map[string]Vertex)</span><br><span class="line">	m[&quot;Bell Labs&quot;] &#x3D; Vertex&#123;</span><br><span class="line">		40.68433, -74.39967,</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(m[&quot;Bell Labs&quot;])</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>golang</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Laravel Redis 广播测试</title>
+    <url>/2019/04/19/Laravel-Redis-%E5%B9%BF%E6%92%AD%E6%B5%8B%E8%AF%95/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p> 附上 <a href="https://github.com/shunhua/laravel-echo" target="_blank">[Github]</a> 地址 </p>
+<p> 一、项目搭建<br> a.安装laravel</p>
+<blockquote>
+<p>composer create-project –prefer-dist laravel/laravel echo</p>
+</blockquote>
+<p> b.配置mysql 数据库</p>
+<blockquote>
+<p>php artisan migrate</p>
+</blockquote>
+<p>  c.快速认证</p>
+<blockquote>
+<p>php artisan make:auth</p>
+</blockquote>
+<p> 本文仅使用了 redis 的广播驱动 测试环境 win10<br> 二、安装redis 并启动</p>
+<blockquote>
+<p>redis-server.exe</p>
+</blockquote>
+<p><img src="/assets/blogImg/guangbo/redis.png" alt="ico原来的样子"><br>测试redis 连接成功<br><img src="/assets/blogImg/guangbo/redis1.png" alt="ico原来的样子"></p>
+<p>a.配置文件 .env 中配置以下代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">BROADCAST_DRIVER&#x3D;redis</span><br></pre></td></tr></table></figure>
+<p>b.广播服务提供者  config/app.php 配置文件中 providers 数组中打开注释</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">App\Providers\BroadcastServiceProvider::class,</span><br></pre></td></tr></table></figure>
+<p>c.CSRF 令牌[后续视图中添加]</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;csrf-token&quot; content&#x3D;&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>d.安装 Predis 库</p>
+<blockquote>
+<p>composer require predis/predis</p>
+</blockquote>
+<p>三、安装 Laravel Echo</p>
+<p>a.通过 npm 包管理器安装 Echo</p>
+<blockquote>
+<p>npm install<br>   npm install -g laravel-echo-server</p>
+</blockquote>
+<p>b.初始化 laravel-echo-server</p>
+<blockquote>
+<p>laravel-echo-server init</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 是否在开发模式下运行此服务器（y&#x2F;n） 输入y</span><br><span class="line">? Do you want to run this server in development mode? (y&#x2F;N) </span><br><span class="line">&#x2F;&#x2F; 设置服务器的端口 默认 6001 输入 6001就可以了 或者你想要的</span><br><span class="line">? Which port would you like to serve from? (6001)</span><br><span class="line">&#x2F;&#x2F; 想用的数据库  选择 redis</span><br><span class="line">? Which database would you like to use to store presence channel members? (Use arrow keys)</span><br><span class="line">❯ redis </span><br><span class="line">  sqlite </span><br><span class="line">&#x2F;&#x2F;   这里输入 你的laravel  项目的访问域名</span><br><span class="line">? Enter the host of your Laravel authentication server. (http:&#x2F;&#x2F;localhost) </span><br><span class="line">&#x2F;&#x2F; 选择 网络协议 http</span><br><span class="line">? Will you be serving on http or https? (Use arrow keys)</span><br><span class="line">❯ http </span><br><span class="line">  https </span><br><span class="line">&#x2F;&#x2F; 您想为HTTP API生成客户端ID&#x2F;密钥吗 N</span><br><span class="line">? Do you want to generate a client ID&#x2F;Key for HTTP API? (y&#x2F;N) </span><br><span class="line">&#x2F;&#x2F; 要设置对API的跨域访问吗？（y&#x2F;n）N</span><br><span class="line">Configuration file saved. Run laravel-echo-server start to run server.</span><br></pre></td></tr></table></figure>
+<p>设置完成后 项目根目录 下 会生成 laravel-echo-server.json 文件 这里面就是刚才的配置<br><img src="/assets/blogImg/guangbo/echo.png" alt="ico原来的样子"><br>执行命令启动 服务 出现如下 则启动成功</p>
+<blockquote>
+<p>laravel-echo-server start</p>
+</blockquote>
+<p><img src="/assets/blogImg/guangbo/echo1.png" alt="ico原来的样子"></p>
+<p>四、频道<br>频道Channel、PrivateChannel 或 PresenceChannel 的实例。Channel 实例表示任何用户都可以订阅的公开频道，而 PrivateChannels 和 PresenceChannels 则表示需要 频道授权 的私有频道：<br>a.创建事件</p>
+<blockquote>
+<p>php artisan make:event PublicMessageEvent </p>
+</blockquote>
+<p>文件生成目录 app/Events</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public $message;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Create a new event instance.</span><br><span class="line"> *</span><br><span class="line"> * @param User $user</span><br><span class="line"> * @param string $message</span><br><span class="line"> *&#x2F;</span><br><span class="line">public function __construct(string $message)</span><br><span class="line">&#123;</span><br><span class="line">    $this-&gt;message &#x3D; $message;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Get the channels the event should broadcast on.</span><br><span class="line"> *</span><br><span class="line"> * @return \Illuminate\Broadcasting\Channel|array</span><br><span class="line"> *&#x2F;</span><br><span class="line">public function broadcastOn()</span><br><span class="line">&#123;</span><br><span class="line">    return new Channel(&#39;push&#39;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Laravel 默认会使用事件的类名作为广播名称来广播事件，自定义：</span><br><span class="line">public function broadcastAs()</span><br><span class="line">&#123;</span><br><span class="line">    return &#39;push.message&#39;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;想更细粒度地控制广播数据:</span><br><span class="line">public function broadcastWith()</span><br><span class="line">&#123;</span><br><span class="line">    return [&#39;message&#39; &#x3D;&gt; $this-&gt;message,&#39;status&#39; &#x3D;&gt; &#39;okok&#39;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; laravel-echo-server 1.5 版本的 需要添加 否则Laravel echo channel listen 不监听事件</span><br><span class="line">public function handle()</span><br><span class="line">&#123;</span><br><span class="line">    broadcast(new push());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>b.添加路由</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">use App\Events\PublicMessageEvent;</span><br><span class="line"> Route::get(&#39;&#x2F;echo&#39;, function () &#123;</span><br><span class="line">    return view(&#39;echo&#39;);</span><br><span class="line"> &#125;);</span><br><span class="line"></span><br><span class="line">Route::get(&#39;&#x2F;push&#x2F;&#123;message&#125;&#39;, function ($message) &#123;</span><br><span class="line">    broadcast(new PublicMessageEvent($message));</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>五、前端视图<br>a.安装 laravel-echo</p>
+<blockquote>
+<p>npm install laravel-echo</p>
+</blockquote>
+<p>编辑 resource/js/bootstrap.js 添加如下代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Echo from &quot;laravel-echo&quot;</span><br><span class="line"></span><br><span class="line">window.Echo &#x3D; new Echo(&#123;</span><br><span class="line">    broadcaster: &#39;socket.io&#39;,</span><br><span class="line">    host: window.location.hostname + &#39;:6001&#39;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>编辑 resource/js/app.js 添加如下代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Echo.channel(&#39;push&#39;)</span><br><span class="line">    .listen(&#39;.push.message&#39;, (e) &#x3D;&gt; &#123;</span><br><span class="line">        alert(e.message)</span><br><span class="line">        console.log(e);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>创建 echo.blade.php head 中加上</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;csrf-token&quot; content&#x3D;&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;&#x2F;&#x2F;&#123;&#123; Request::getHost() &#125;&#125;:6001&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;&#x2F;js&#x2F;app.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<p>编译 js 文件 </p>
+<blockquote>
+<p>npm run watch</p>
+</blockquote>
+<p>浏览器访问 项目域名 /echo<br>浏览器访问 项目域名 /push/这是一个测试广播[what can i say]<br>echo 页面 会自动弹出<br><img src="/assets/blogImg/guangbo/echo2.png" alt="ico原来的样子"><br><img src="/assets/blogImg/guangbo/echo4.png" alt="ico原来的样子"><br><img src="/assets/blogImg/guangbo/echo5.png" alt="ico原来的样子"><br>到这 广播 发布到公共频道就完成了</p>
+<hr>
+<p>私有频道 PrivateChannel</p>
+<blockquote>
+<p>php artisan make:event PrivateMessageEvent</p>
+</blockquote>
+<p>PrivateMessageEvent 中 写入 以下内容</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public $message;</span><br><span class="line">   public $user;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * Create a new event instance.</span><br><span class="line">    *</span><br><span class="line">    * @param User $user</span><br><span class="line">    * @param string $message</span><br><span class="line">    *&#x2F;</span><br><span class="line">   public function __construct(User $user, string $message)</span><br><span class="line">   &#123;</span><br><span class="line">       $this-&gt;user &#x3D; $user;</span><br><span class="line">       $this-&gt;message &#x3D; $message;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * Get the channels the event should broadcast on.</span><br><span class="line">    *</span><br><span class="line">    * @return \Illuminate\Broadcasting\Channel|array</span><br><span class="line">    *&#x2F;</span><br><span class="line">   public function broadcastOn()</span><br><span class="line">   &#123;</span><br><span class="line">       return new PrivateChannel(&#39;privatePush.&#39; . $this-&gt;user-&gt;id);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;&#x2F;想更细粒度地控制广播数据:</span><br><span class="line">   public function broadcastWith()</span><br><span class="line">   &#123;</span><br><span class="line">       return [&#39;message&#39; &#x3D;&gt; $this-&gt;message,&#39;status&#39; &#x3D;&gt; &#39;okok&#39;];</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>添加发布广播到私有频道 触发路由 routes/web 测试时记得新增下用户</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Route::get(&#39;&#x2F;privatePush&#x2F;&#123;message&#125;&#x2F;&#123;id&#125;&#39;, function ($message, $id) &#123;</span><br><span class="line">    $user &#x3D; \App\User::find($id);</span><br><span class="line">    if (empty($user)) return &#39;无此用户&#39;;</span><br><span class="line">    broadcast(new PrivateMessageEvent($user, $message));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>echo.blade.php 中加入</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    @if(!empty(Auth::user()))</span><br><span class="line">        window.id &#x3D; &quot;&#123;&#123;Auth::user()-&gt;id&#125;&#125;&quot;</span><br><span class="line">    @endif</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<p>app.js</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Echo.private(&#39;privatePush.&#39; + window.id)</span><br><span class="line">    .listen(&#39;PrivateMessageEvent&#39;, (e) &#x3D;&gt; &#123;</span><br><span class="line">        alert(&#39;qweqwe&#39;)</span><br><span class="line">        console.log(e);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><strong>Notice</strong><br>安静,安静一下 Enjoy it ~</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>laravel5.7</tag>
+        <tag>Redis</tag>
+        <tag>广播</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Laravel yansongda/laravel-pay</title>
     <url>/2018/09/29/Laravel-yansongda-laravel-pay/</url>
     <content><![CDATA[<a id="more"></a>
@@ -984,6 +984,25 @@
       <tags>
         <tag>laravel5.6</tag>
         <tag>laravel-pay</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux安装配置守护进程</title>
+    <url>/2018/03/09/Linux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> centos 下安装Supervisor</p>
+</blockquote>
+<p>yum install supervisor</p>
+<blockquote>
+<p> 配置Supervisor</p>
+</blockquote>
+<p>cd /etc/supervisord.d/<br>vim laravel-worker.ini<br>systemctl start supervisord</p>
+]]></content>
+      <tags>
+        <tag>linux</tag>
+        <tag>Supervisor</tag>
       </tags>
   </entry>
   <entry>
@@ -1041,50 +1060,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Laravel 和 Vue 的项目搭建</title>
-    <url>/2018/11/02/Laravel-%E5%92%8C-Vue-%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>一、Laravel创建项目</strong> </p>
-<blockquote>
-<p>composer create-project –prefer-dist laravel/laravel laravel-vue</p>
-</blockquote>
-<p><strong>二、扩展包</strong> </p>
-<blockquote>
-<p>npm install<br>npm install vue-router iview</p>
-</blockquote>
-<p><strong>三、前端结构搭建</strong><br>vue前端的文件结构在 /recources/js 目录[laravel5.7]，vue能够渲染主要是两个操作</p>
-<ul>
-<li>vue 挂载到页面的节点中</li>
-<li>vue-router 处理路由，渲染对应的组件</li>
-</ul>
-<p>code流程  </p>
-<ol>
-<li><p>创建 web 路由<br>在 /routes/web.php 中新建一个访问我们挂载着vue页面的路由。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Route::get(&#39;&#x2F;&#39;, function () &#123;</span><br><span class="line">    return view(&#39;welcome&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编辑welcome.blade.php<br>在 resource/views 新建 welcome.blade.php,代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0, maximum-scale&#x3D;1.0, minimum-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;csrf-token&quot; content&#x3D;&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</span><br><span class="line">  &lt;title&gt;&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;&#123;&#123; mix(&#39;css&#x2F;app.css&#39;) &#125;&#125;&quot;&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body ontouchstart&gt;</span><br><span class="line">  &lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#123;&#123; mix(&#39;js&#x2F;app.js&#39;) &#125;&#125;&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改 /recources/js/app.js</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">require(&#39;.&#x2F;bootstrap&#39;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 导入扩展包</span><br><span class="line">window.Vue &#x3D; require(&#39;vue&#39;);</span><br><span class="line"></span><br><span class="line">import App from &#39;.&#x2F;components&#x2F;app.vue&#39;</span><br><span class="line">import VueRouter from &#39;vue-router&#39;;</span><br><span class="line">import iView from &#39;iview&#39;;</span><br><span class="line">import &#39;iview&#x2F;dist&#x2F;styles&#x2F;iview.css&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 导入vue</span><br><span class="line">Vue.use(iView);</span><br><span class="line">Vue.use(VueRouter);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 路由配置</span><br><span class="line">const RouterConfig &#x3D; &#123;</span><br><span class="line">    routes: [</span><br><span class="line">        &#x2F;&#x2F; ExampleComponent laravel默认的示例组件</span><br><span class="line">        &#123; path: &#39;&#x2F;&#39;, component: require(&#39;.&#x2F;components&#x2F;ExampleComponent.vue&#39;) &#125;,</span><br><span class="line">        &#123; path: &#39;&#x2F;bsh&#39;, component: require(&#39;.&#x2F;components&#x2F;bsh.vue&#39;) &#125;,</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br><span class="line">const router &#x3D; new VueRouter(RouterConfig);</span><br><span class="line"></span><br><span class="line">const app &#x3D; new Vue(&#123;</span><br><span class="line">    el: &#39;#app&#39;,</span><br><span class="line">    router: router,</span><br><span class="line">    render: h &#x3D;&gt; h(App)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>建立 Layout<br>在 /recources/js/components/ 新建 app.vue, 将 iview 的 layout 代码搬过来：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;style scoped&gt;</span><br><span class="line">  .layout-con&#123;</span><br><span class="line">    height: 100%;</span><br><span class="line">    width: 100%;</span><br><span class="line">  &#125;</span><br><span class="line">  .menu-item span&#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    width: 69px;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    vertical-align: bottom;</span><br><span class="line">    transition: width .2s ease .2s;</span><br><span class="line">  &#125;</span><br><span class="line">  .menu-item i&#123;</span><br><span class="line">    transform: translateX(0px);</span><br><span class="line">    transition: font-size .2s ease, transform .2s ease;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">    font-size: 16px;</span><br><span class="line">  &#125;</span><br><span class="line">  .collapsed-menu span&#123;</span><br><span class="line">    width: 0px;</span><br><span class="line">    transition: width .2s ease;</span><br><span class="line">  &#125;</span><br><span class="line">  .collapsed-menu i&#123;</span><br><span class="line">    transform: translateX(5px);</span><br><span class="line">    transition: font-size .2s ease .2s, transform .2s ease .2s;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">    font-size: 22px;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;layout&quot;&gt;</span><br><span class="line">    &lt;Layout :style&#x3D;&quot;&#123;minHeight: &#39;100vh&#39;&#125;&quot;&gt;</span><br><span class="line">      &lt;Sider collapsible :collapsed-width&#x3D;&quot;78&quot; v-model&#x3D;&quot;isCollapsed&quot;&gt;</span><br><span class="line">        &lt;Menu active-name&#x3D;&quot;1-2&quot; theme&#x3D;&quot;dark&quot; width&#x3D;&quot;auto&quot; :class&#x3D;&quot;menuitemClasses&quot;&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-1&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;ios-navigate&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 1&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-2&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;search&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 2&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-3&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;settings&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 3&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">        &lt;&#x2F;Menu&gt;</span><br><span class="line">      &lt;&#x2F;Sider&gt;</span><br><span class="line">      &lt;Layout&gt;</span><br><span class="line">        &lt;Header :style&#x3D;&quot;&#123;background: &#39;#fff&#39;, boxShadow: &#39;0 2px 3px 2px rgba(0,0,0,.1)&#39;&#125;&quot;&gt;&lt;&#x2F;Header&gt;</span><br><span class="line">        &lt;Content :style&#x3D;&quot;&#123;padding: &#39;0 16px 16px&#39;&#125;&quot;&gt;</span><br><span class="line">          &lt;Breadcrumb :style&#x3D;&quot;&#123;margin: &#39;16px 0&#39;&#125;&quot;&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Home&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Components&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Layout&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">          &lt;&#x2F;Breadcrumb&gt;</span><br><span class="line">          &lt;Card&gt;</span><br><span class="line">            &lt;div style&#x3D;&quot;height: 600px&quot;&gt;&lt;router-view&gt;&lt;&#x2F;router-view&gt;&lt;&#x2F;div&gt;</span><br><span class="line">          &lt;&#x2F;Card&gt;</span><br><span class="line">        &lt;&#x2F;Content&gt;</span><br><span class="line">      &lt;&#x2F;Layout&gt;</span><br><span class="line">    &lt;&#x2F;Layout&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">    data () &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        isCollapsed: false</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line">      menuitemClasses: function () &#123;</span><br><span class="line">        return [</span><br><span class="line">          &#39;menu-item&#39;,</span><br><span class="line">          this.isCollapsed ? &#39;collapsed-menu&#39; : &#39;&#39;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>添加组件<br>路由访问的组件会渲染到 app.vue中的[router-view]<br>然后修改组件 /recources/js/components/bsh.vue 的内容：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;Tabs&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;macOS&quot; icon&#x3D;&quot;social-apple&quot;&gt;标签一的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;Windows&quot; icon&#x3D;&quot;social-windows&quot;&gt;标签二的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;Linux&quot; icon&#x3D;&quot;social-tux&quot;&gt;标签三的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">    &lt;&#x2F;Tabs&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>编译运行<br>常用的编译命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 本地环境编译</span><br><span class="line">npm run dev</span><br><span class="line"></span><br><span class="line"># 本地环境编译 + 监控文件修改</span><br><span class="line">npm run watch</span><br><span class="line"></span><br><span class="line"># 生产环境编译</span><br><span class="line">npm run prod</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>Laravel</tag>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux下安装node.js</title>
     <url>/2018/03/21/Linux%E4%B8%8B%E5%AE%89%E8%A3%85node-js/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1139,22 +1114,47 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Linux安装配置守护进程</title>
-    <url>/2018/03/09/Linux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/</url>
+    <title>Laravel 和 Vue 的项目搭建</title>
+    <url>/2018/11/02/Laravel-%E5%92%8C-Vue-%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/</url>
     <content><![CDATA[<a id="more"></a>
 
+<p><strong>一、Laravel创建项目</strong> </p>
 <blockquote>
-<p> centos 下安装Supervisor</p>
+<p>composer create-project –prefer-dist laravel/laravel laravel-vue</p>
 </blockquote>
-<p>yum install supervisor</p>
+<p><strong>二、扩展包</strong> </p>
 <blockquote>
-<p> 配置Supervisor</p>
+<p>npm install<br>npm install vue-router iview</p>
 </blockquote>
-<p>cd /etc/supervisord.d/<br>vim laravel-worker.ini<br>systemctl start supervisord</p>
+<p><strong>三、前端结构搭建</strong><br>vue前端的文件结构在 /recources/js 目录[laravel5.7]，vue能够渲染主要是两个操作</p>
+<ul>
+<li>vue 挂载到页面的节点中</li>
+<li>vue-router 处理路由，渲染对应的组件</li>
+</ul>
+<p>code流程  </p>
+<ol>
+<li><p>创建 web 路由<br>在 /routes/web.php 中新建一个访问我们挂载着vue页面的路由。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Route::get(&#39;&#x2F;&#39;, function () &#123;</span><br><span class="line">    return view(&#39;welcome&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑welcome.blade.php<br>在 resource/views 新建 welcome.blade.php,代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0, maximum-scale&#x3D;1.0, minimum-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;csrf-token&quot; content&#x3D;&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</span><br><span class="line">  &lt;title&gt;&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;&#123;&#123; mix(&#39;css&#x2F;app.css&#39;) &#125;&#125;&quot;&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body ontouchstart&gt;</span><br><span class="line">  &lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#123;&#123; mix(&#39;js&#x2F;app.js&#39;) &#125;&#125;&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改 /recources/js/app.js</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">require(&#39;.&#x2F;bootstrap&#39;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 导入扩展包</span><br><span class="line">window.Vue &#x3D; require(&#39;vue&#39;);</span><br><span class="line"></span><br><span class="line">import App from &#39;.&#x2F;components&#x2F;app.vue&#39;</span><br><span class="line">import VueRouter from &#39;vue-router&#39;;</span><br><span class="line">import iView from &#39;iview&#39;;</span><br><span class="line">import &#39;iview&#x2F;dist&#x2F;styles&#x2F;iview.css&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 导入vue</span><br><span class="line">Vue.use(iView);</span><br><span class="line">Vue.use(VueRouter);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 路由配置</span><br><span class="line">const RouterConfig &#x3D; &#123;</span><br><span class="line">    routes: [</span><br><span class="line">        &#x2F;&#x2F; ExampleComponent laravel默认的示例组件</span><br><span class="line">        &#123; path: &#39;&#x2F;&#39;, component: require(&#39;.&#x2F;components&#x2F;ExampleComponent.vue&#39;) &#125;,</span><br><span class="line">        &#123; path: &#39;&#x2F;bsh&#39;, component: require(&#39;.&#x2F;components&#x2F;bsh.vue&#39;) &#125;,</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br><span class="line">const router &#x3D; new VueRouter(RouterConfig);</span><br><span class="line"></span><br><span class="line">const app &#x3D; new Vue(&#123;</span><br><span class="line">    el: &#39;#app&#39;,</span><br><span class="line">    router: router,</span><br><span class="line">    render: h &#x3D;&gt; h(App)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>建立 Layout<br>在 /recources/js/components/ 新建 app.vue, 将 iview 的 layout 代码搬过来：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;style scoped&gt;</span><br><span class="line">  .layout-con&#123;</span><br><span class="line">    height: 100%;</span><br><span class="line">    width: 100%;</span><br><span class="line">  &#125;</span><br><span class="line">  .menu-item span&#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    width: 69px;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    vertical-align: bottom;</span><br><span class="line">    transition: width .2s ease .2s;</span><br><span class="line">  &#125;</span><br><span class="line">  .menu-item i&#123;</span><br><span class="line">    transform: translateX(0px);</span><br><span class="line">    transition: font-size .2s ease, transform .2s ease;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">    font-size: 16px;</span><br><span class="line">  &#125;</span><br><span class="line">  .collapsed-menu span&#123;</span><br><span class="line">    width: 0px;</span><br><span class="line">    transition: width .2s ease;</span><br><span class="line">  &#125;</span><br><span class="line">  .collapsed-menu i&#123;</span><br><span class="line">    transform: translateX(5px);</span><br><span class="line">    transition: font-size .2s ease .2s, transform .2s ease .2s;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">    font-size: 22px;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;layout&quot;&gt;</span><br><span class="line">    &lt;Layout :style&#x3D;&quot;&#123;minHeight: &#39;100vh&#39;&#125;&quot;&gt;</span><br><span class="line">      &lt;Sider collapsible :collapsed-width&#x3D;&quot;78&quot; v-model&#x3D;&quot;isCollapsed&quot;&gt;</span><br><span class="line">        &lt;Menu active-name&#x3D;&quot;1-2&quot; theme&#x3D;&quot;dark&quot; width&#x3D;&quot;auto&quot; :class&#x3D;&quot;menuitemClasses&quot;&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-1&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;ios-navigate&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 1&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-2&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;search&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 2&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-3&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;settings&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 3&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">        &lt;&#x2F;Menu&gt;</span><br><span class="line">      &lt;&#x2F;Sider&gt;</span><br><span class="line">      &lt;Layout&gt;</span><br><span class="line">        &lt;Header :style&#x3D;&quot;&#123;background: &#39;#fff&#39;, boxShadow: &#39;0 2px 3px 2px rgba(0,0,0,.1)&#39;&#125;&quot;&gt;&lt;&#x2F;Header&gt;</span><br><span class="line">        &lt;Content :style&#x3D;&quot;&#123;padding: &#39;0 16px 16px&#39;&#125;&quot;&gt;</span><br><span class="line">          &lt;Breadcrumb :style&#x3D;&quot;&#123;margin: &#39;16px 0&#39;&#125;&quot;&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Home&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Components&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Layout&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">          &lt;&#x2F;Breadcrumb&gt;</span><br><span class="line">          &lt;Card&gt;</span><br><span class="line">            &lt;div style&#x3D;&quot;height: 600px&quot;&gt;&lt;router-view&gt;&lt;&#x2F;router-view&gt;&lt;&#x2F;div&gt;</span><br><span class="line">          &lt;&#x2F;Card&gt;</span><br><span class="line">        &lt;&#x2F;Content&gt;</span><br><span class="line">      &lt;&#x2F;Layout&gt;</span><br><span class="line">    &lt;&#x2F;Layout&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">    data () &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        isCollapsed: false</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line">      menuitemClasses: function () &#123;</span><br><span class="line">        return [</span><br><span class="line">          &#39;menu-item&#39;,</span><br><span class="line">          this.isCollapsed ? &#39;collapsed-menu&#39; : &#39;&#39;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>添加组件<br>路由访问的组件会渲染到 app.vue中的[router-view]<br>然后修改组件 /recources/js/components/bsh.vue 的内容：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;Tabs&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;macOS&quot; icon&#x3D;&quot;social-apple&quot;&gt;标签一的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;Windows&quot; icon&#x3D;&quot;social-windows&quot;&gt;标签二的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;Linux&quot; icon&#x3D;&quot;social-tux&quot;&gt;标签三的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">    &lt;&#x2F;Tabs&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>编译运行<br>常用的编译命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 本地环境编译</span><br><span class="line">npm run dev</span><br><span class="line"></span><br><span class="line"># 本地环境编译 + 监控文件修改</span><br><span class="line">npm run watch</span><br><span class="line"></span><br><span class="line"># 生产环境编译</span><br><span class="line">npm run prod</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
 ]]></content>
       <tags>
-        <tag>linux</tag>
-        <tag>Supervisor</tag>
+        <tag>Laravel</tag>
+        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -1193,6 +1193,28 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>MySQL出现1030-Got error 28 from storage engine错误</title>
+    <url>/2018/11/22/MySQL%E5%87%BA%E7%8E%B01030-Got-error-28-from-storage-engine%E9%94%99%E8%AF%AF/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>一般这种情况都是日志文件太大导致的</p>
+<ul>
+<li>mysql二进制文件 参考文档：<a href="https://baishunhua.com/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/" target="_blank">[ MySQL启动错误 ]</a></li>
+<li>其他日志文件</li>
+</ul>
+<blockquote>
+<p>df -h</p>
+</blockquote>
+<p>查看磁盘使用情况</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -h --max-depth&#x3D;1 | grep G | sort -n</span><br></pre></td></tr></table></figure>
+<p>以G单位排序查看占用磁盘的文件，然后删除没用的日志文件 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -s * | sort -nr</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>lnmp</tag>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Live 阿里云直播</title>
     <url>/2019/07/04/Live-%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%B4%E6%92%AD/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1223,6 +1245,55 @@ public $queue = &#39;listeners&#39;;</code></pre>
 <li><strong>Notice</strong><br>后续通过sdk整合到项目开发中…</li>
 </ul>
 ]]></content>
+  </entry>
+  <entry>
+    <title>Nginx 反向代理</title>
+    <url>/2019/09/19/Nginx-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><a href="https://baishunhua.com/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/" target="_blank">安装nginx</a></p>
+<blockquote>
+<p>高防服务器上 nginx.conf 配置模板</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server_name  www.xxx.com;</span><br><span class="line">...</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">    proxy_pass http:&#x2F;&#x2F;ip[原服务器ip];</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>nginx</tag>
+        <tag>反向代理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL启动错误</title>
+    <url>/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p>/etc/init.d/MySQL start 错误信息如下:</p>
+</blockquote>
+<ul>
+<li>ERROR! MySQL server PID file could not be found!</li>
+<li>Starting MySQL.. ERROR! The server quit without updating PID file (/usr/local/mysql/var/AYXXXXXXXXXXX.pid). </li>
+</ul>
+<ul>
+<li>mysql日志文件的路径：/usr/local/mysql/var/</li>
+<li>my.cnf文件路径：/etc/</li>
+</ul>
+<ul>
+<li>启动会报错Starting MySQL.. ERROR! The server quit without updating PID file (/var/local/mysql/var/AYxxxxxxx.pid)</li>
+<li>原因是因为 mysql-bin.0000的文件占满系统盘，磁盘空间不足导致无法写入。</li>
+</ul>
+<blockquote>
+<p>解决方法:</p>
+</blockquote>
+<ol>
+<li>删除所有mysql-bin.0000日志文件全部rm掉</li>
+<li>修改在my.cnf 文件，找到 log-bin=mysql-bin 将其启注释掉，以后就不会产生2进制的mysql-bin.0000的日志文件</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>lnmp</tag>
+        <tag>mysql</tag>
+      </tags>
   </entry>
   <entry>
     <title>Markdown 基本语法</title>
@@ -1309,77 +1380,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
 ]]></content>
       <tags>
         <tag>-Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL出现1030-Got error 28 from storage engine错误</title>
-    <url>/2018/11/22/MySQL%E5%87%BA%E7%8E%B01030-Got-error-28-from-storage-engine%E9%94%99%E8%AF%AF/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>一般这种情况都是日志文件太大导致的</p>
-<ul>
-<li>mysql二进制文件 参考文档：<a href="https://baishunhua.com/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/" target="_blank">[ MySQL启动错误 ]</a></li>
-<li>其他日志文件</li>
-</ul>
-<blockquote>
-<p>df -h</p>
-</blockquote>
-<p>查看磁盘使用情况</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -h --max-depth&#x3D;1 | grep G | sort -n</span><br></pre></td></tr></table></figure>
-<p>以G单位排序查看占用磁盘的文件，然后删除没用的日志文件 </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -s * | sort -nr</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nginx 反向代理</title>
-    <url>/2019/09/19/Nginx-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><a href="https://baishunhua.com/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/" target="_blank">安装nginx</a></p>
-<blockquote>
-<p>高防服务器上 nginx.conf 配置模板</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server_name  www.xxx.com;</span><br><span class="line">...</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">    proxy_pass http:&#x2F;&#x2F;ip[原服务器ip];</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>nginx</tag>
-        <tag>反向代理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL启动错误</title>
-    <url>/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p>/etc/init.d/MySQL start 错误信息如下:</p>
-</blockquote>
-<ul>
-<li>ERROR! MySQL server PID file could not be found!</li>
-<li>Starting MySQL.. ERROR! The server quit without updating PID file (/usr/local/mysql/var/AYXXXXXXXXXXX.pid). </li>
-</ul>
-<ul>
-<li>mysql日志文件的路径：/usr/local/mysql/var/</li>
-<li>my.cnf文件路径：/etc/</li>
-</ul>
-<ul>
-<li>启动会报错Starting MySQL.. ERROR! The server quit without updating PID file (/var/local/mysql/var/AYxxxxxxx.pid)</li>
-<li>原因是因为 mysql-bin.0000的文件占满系统盘，磁盘空间不足导致无法写入。</li>
-</ul>
-<blockquote>
-<p>解决方法:</p>
-</blockquote>
-<ol>
-<li>删除所有mysql-bin.0000日志文件全部rm掉</li>
-<li>修改在my.cnf 文件，找到 log-bin=mysql-bin 将其启注释掉，以后就不会产生2进制的mysql-bin.0000的日志文件</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -1643,6 +1643,22 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>SELinux 状态</title>
+    <url>/2017/08/11/SELinux-%E7%8A%B6%E6%80%81/</url>
+    <content><![CDATA[<p>##<strong>查看SELinux状态：</strong></p>
+<blockquote>
+<p>1、/usr/sbin/sestatus -v      ##如果SELinux status参数为enabled即为开启状态—— </p>
+</blockquote>
+<a id="more"></a>
+
+<p><img src="/assets/blogImg/reduce-http.jpg" alt="ico原来的样子"></p>
+<p>1、/usr/sbin/sestatus -v      ##如果SELinux status参数为enabled即为开启状态<br>SELinux status:                 enabled<br>2、getenforce                 ##也可以用这个命令检查<br>关闭SELinux：<br>1、临时关闭（不用重启机器）：<br>setenforce 0                  ##设置SELinux 成为permissive模式<br>                              ##setenforce 1 设置SELinux 成为enforcing模式<br>2、修改配置文件需要重启机器：<br>修改/etc/selinux/config 文件<br>将SELINUX=enforcing改为SELINUX=disabled<br>重启机器即可</p>
+]]></content>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PHP Socket 基础教程</title>
     <url>/2018/03/12/PHP-Socket-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1766,122 +1782,98 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>SELinux 状态</title>
-    <url>/2017/08/11/SELinux-%E7%8A%B6%E6%80%81/</url>
-    <content><![CDATA[<p>##<strong>查看SELinux状态：</strong></p>
-<blockquote>
-<p>1、/usr/sbin/sestatus -v      ##如果SELinux status参数为enabled即为开启状态—— </p>
-</blockquote>
-<a id="more"></a>
+    <title>centos7下lnmp 添加、删除虚拟主机</title>
+    <url>/2017/09/15/centos7%E4%B8%8Blnmp-%E6%B7%BB%E5%8A%A0%E3%80%81%E5%88%A0%E9%99%A4%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/</url>
+    <content><![CDATA[<a id="more"></a>
 
-<p><img src="/assets/blogImg/reduce-http.jpg" alt="ico原来的样子"></p>
-<p>1、/usr/sbin/sestatus -v      ##如果SELinux status参数为enabled即为开启状态<br>SELinux status:                 enabled<br>2、getenforce                 ##也可以用这个命令检查<br>关闭SELinux：<br>1、临时关闭（不用重启机器）：<br>setenforce 0                  ##设置SELinux 成为permissive模式<br>                              ##setenforce 1 设置SELinux 成为enforcing模式<br>2、修改配置文件需要重启机器：<br>修改/etc/selinux/config 文件<br>将SELINUX=enforcing改为SELINUX=disabled<br>重启机器即可</p>
-]]></content>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Swift学习笔记NO.1</title>
-    <url>/2017/09/25/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0NO-1/</url>
-    <content><![CDATA[<p><strong>Swift学习笔记NO.1</strong> </p>
-<a id="more"></a>
-
-<p><strong>Swift 教程</strong></p>
+<p><strong>添加网站(虚拟主机</strong></p>
 <blockquote>
-<p> Swift 是一种支持多编程范式和编译式的开源编程语言,苹果于2014年WWDC（苹果开发者大会）发布，用于开发 iOS，OS X 和 watchOS 应用程序。<br>Swift 结合了 C 和 Objective-C 的优点并且不受 C 兼容性的限制。<br>Swift 在 Mac OS 和 iOS 平台可以和 Object-C 使用相同的运行环境。<br>2015年6月8日，苹果于WWDC 2015上宣布，Swift将开放源代码，包括编译器和标准库。</p>
+<p> 执行：lnmp vhost add 出现如下界面：</p>
 </blockquote>
-<p>第一个 Swift 程序当然从输出 “Hello, World!” 开始</p>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-1.png" alt="ico原来的样子"></p>
 <blockquote>
-<p> 代码如下所示：</p>
+<p> 这里要输入要添加网站的域名，我们已添加<a href="http://www.vpser.net域名为例,如上图提示后输入域名/">www.vpser.net域名为例，如上图提示后输入域名</a> <a href="http://www.vpser.net/">www.vpser.net</a> 回车后提示：</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var myString &#x3D; &quot;Hello, World!&quot;</span><br><span class="line">print(myString)</span><br></pre></td></tr></table></figure>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-2.png" alt="ico原来的样子"></p>
+<p>这里询问是否添加更多域名，直接再输入要绑定的域名，这里我们将 vpser.net 也绑上，多个域名空格隔开，如不需要绑其他域名就直接回车。：</p>
 <blockquote>
-<p> 实例解析：</p>
+<p> 下面需要设置网站的目录：</p>
 </blockquote>
-<ul>
-<li>var myString = “Hello, World!” : 使用 var 关键字定义一个变量 myString，值为 Hello, World!</li>
-<li>print : 输出变量的值</li>
-</ul>
-<p><strong>Swift 环境搭建</strong></p>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-3.png" alt="ico原来的样子"></p>
+<p>网站目录不存在的话会创建目录。也可以输入已经存在的目录或要设置的目录（注意如要输入必须是全路径即以/开头的完整路径！！！）。不输入直接回车的话，采用默认目录：/home/wwwroot/域名</p>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-4.png" alt="ico原来的样子"></p>
 <blockquote>
-<p> Swift是一门开源的编程语言，该语言用于开发OS X和iOS应用程序。<br>在正式开发应用程序前，我们需要搭建Swift开发环境，以便更好友好的使用各种开发工具和语言进行快速应用开发。由于Swift开发环境需要在OS X系统中运行，因此其环境的搭建将不同于Windows环境，下面就一起来学习一下swift开发环境的搭建方法。</p>
+<p> 伪静态可以使URL更加简洁也利于SEO，如程序支持并且需要设置伪静态的话，如启用输入 y ，不启用输入 n 回车(注意LNMPA或LAMP模式没有该选择项！)</p>
 </blockquote>
-<p>成功搭建swift开发环境的前题：</p>
-<ul>
-<li>必须拥有一台苹果电脑。因为集成开发环境XCode只能运行在OS X系统上。</li>
-<li>电脑系统必须在OS 10.9.3及以上。</li>
-<li>电脑必须安装Xcode集成开发环境。</li>
-</ul>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-5.png" alt="ico原来的样子"></p>
 <blockquote>
-<p> Swift 开发工具Xcode下载</p>
+<p> 默认已经有了discuz、discuzx、discuzx2(Discuz X二级目录)、wordpress、wp2(WordPress二级目录)、typecho、typecho2(Typecho二级目录)、sablog、emlog、dabr、phpwind、、dedecms、drupal、ecshop、shopex等常用的Nginx伪静态配置文件，可以直接输入名称进行使用，如果是二级目录则需要对应配置文件里的二级目录的名称。</p>
 </blockquote>
-<ul>
-<li><a href="https://swift.org/download/#latest-development-snapshots" target="_blank">[ Swift 源代码下载 ]</a></li>
-<li><a href="https://developer.apple.com/xcode/download/" target="_blank">[ Swift开发工具官网地址 ]</a></li>
-<li><a href="http://rj.baidu.com/soft/detail/40233.html" target="_blank">[ Swift 开发工具百度软件中心下载（国内比较快） ]</a></li>
-</ul>
-<p>下载完成后，双击下载的 dmg 文件安装，安装完成后我们将 Xcode 图标踢移动到应用文件夹。<br> <img src="/assets/blogImg/swift/xcode2.jpg" alt="ico原来的样子"></p>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-6.png" alt="ico原来的样子"></p>
 <blockquote>
-<p> 第一个 Swift 程序</p>
+<p> 这一步是设置日志，如启用日志输入 y ，不启用输入 n 回车</p>
 </blockquote>
-<p>Xcode 安装完成后，我们就可以开始编写 Swift 代码了。<br>接下来我们在应用文件夹打开 Xcode，打开后在屏幕顶部选择 File =&gt; New =&gt; Playground。<br><img src="/assets/blogImg/swift/xc1.jpg" alt="ico原来的样子"></p>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-7.png" alt="ico原来的样子"></p>
 <blockquote>
-<p> 接着 为 playground 设置一个名字并选择 iOS 平台。</p>
+<p> 如果启用需要再输入要设置的日志的名称，默认日志目录为：/home/wwwlogs/ 默认文件名为：域名.log 回车确认后，会询问是否添加数据库和数据库用户。</p>
 </blockquote>
-<p><img src="/assets/blogImg/swift/xc2.jpg" alt="ico原来的样子"></p>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-8.png" alt="ico原来的样子"></p>
 <blockquote>
-<p> Swift 的 playground 就像是一个可交互的文档，它是用来练手学swift的，写一句代码出一行结果（右侧），可以实时查看代码结果，是学习swift语言的利器！</p>
+<p> 如果需要添加数据库输入 y ，不添加数据库输入 n 回车。</p>
 </blockquote>
-<p><img src="/assets/blogImg/swift/xc3.jpg" alt="ico原来的样子"> </p>
-<p>以下是 Swift Playground 窗口默认的代码：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import UIKit</span><br><span class="line">var str &#x3D; &quot;Hello, playground&quot;</span><br></pre></td></tr></table></figure>
-<p>如果你想创建 OS x 程序，需要导入 Cocoa 包 import Cocoa 代码如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line">var str &#x3D; &quot;Hello, playground&quot;</span><br></pre></td></tr></table></figure>
-
-<p><strong>创建第一个项目</strong></p>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-9.png" alt="ico原来的样子"></p>
 <blockquote>
-<p> 1、打开 xcode 工具，选择 File =&gt; New =&gt; Project</p>
+<p> 如果要添加，需要先验证MySQL的root密码(注：输入密码将不显示)<br>提示Enter database name: 后输入要创建的数据库名称，要创建的数据库用户名会和数据库同名，回车确认。</p>
 </blockquote>
-<p><img src="/assets/blogImg/swift/xc4.jpg" alt="ico原来的样子"> </p>
+<p>提示Please enter password for mysql user 数据库名: 后输入要设置的密码，回车确认。</p>
+<p>如果安装了FTP服务器会询问是否添加FTP账号</p>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-10.png" alt="ico原来的样子"></p>
 <blockquote>
-<p> 2、我们选择一个”Single View Application”，并点击”next”，创建一个简单示例app应用。</p>
+<p> 如果需要添加输入 y ，不添加输入 n 回车</p>
 </blockquote>
-<p><img src="/assets/blogImg/swift/xc5.jpg" alt="ico原来的样子"> </p>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-11.png" alt="ico原来的样子"></p>
+<p>提示Enter ftp account name: 后输入要创建的FTP账号名称，回车确认。<br>提示Enter password for ftp account FTP账号: 后输入要设置的密码，回车确认。</p>
 <blockquote>
-<p> 3、接着我们输入项目名称（ProductName),公司名称（Organization Name),公司标识前缀名（Organization identifier) 还要选择开发语言(Language),选择设备（Devices)。<br>其中Language有两个选项：Objective-c和swift，因为我们是学习swift当然选择swift项了。 点击”Next”下一步。</p>
+<p> 接下来是1.4新增的添加SSL功能</p>
 </blockquote>
-<p><img src="/assets/blogImg/swift/xc6.jpg" alt="ico原来的样子"> </p>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-12.png" alt="ico原来的样子"></p>
 <blockquote>
-<p> 4、选择存放的目录，如果要使用Git源代码管理，将勾上Source Control的create git repository on My Mac. 点击create创建项目。</p>
+<p> 如果需要添加输入 y ，不添加输入 n 回车。<br>选择了添加SSL会提示</p>
 </blockquote>
-<p><img src="/assets/blogImg/swift/xc7.jpg" alt="ico原来的样子"> </p>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-13.png" alt="ico原来的样子"></p>
 <blockquote>
-<p> 5、项目创建后，默认生成了一个示例文件，可以看到swift将oc中的h和m文件合并成了一个文件（即swift后缀名文件). Main.storyboard相当于xib文件，有比xib更多的功能。</p>
+<p> 添加成功会提示添加的域名、目录、伪静态、日志、数据库、FTP等相关信息，如下图：</p>
 </blockquote>
-<p><img src="/assets/blogImg/swift/xc8.jpg" alt="ico原来的样子"> </p>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-info.png" alt="ico原来的样子"></p>
 <blockquote>
-<p> 6、打开main.storyboard,默认看到一个简单的空白的应用界面，大小为平板界面大小。 如果开发都只需要开发兼容iphone手机的app,那么可以把Use Auto Layout的勾去掉（默认为勾上）。</p>
+<p> LNMPA或LAMP可以直接使用网站根目录下放.htaccess 来设置伪静态规则(具体规则可以去程序官网网站找google百度)，但是在LNMP下，需要使用Nginx伪静态规则。<br>伪静态可以随时添加或删除，如果添加完虚拟主机后忘记或没有添加伪静态，可以通过修改配置文件来添加伪静态。<br>虚拟主机配置文件在：/usr/local/nginx/conf/vhost/域名.conf<br>伪静态规则文件需要放在/usr/local/nginx/conf/ 下面。<br>编辑虚拟主机配置文件，可以使用vi、nano或winscp，后2个工具对新手来说简单些。<br>例如前面我们添加的虚拟主机，打开后前半部分配置会显示如下：</p>
 </blockquote>
-<p><img src="/assets/blogImg/swift/xc9.jpg" alt="ico原来的样子"> </p>
+<p><img src="/assets/blogImg/lnmp/lnmp-rewrite-modify.png" alt="ico原来的样子"></p>
+<hr>
 <blockquote>
-<p> 7、弹出了一个对话框，让我们选择界面尺寸，iPhone或都 iPad。我们选择iPhone的尺寸。</p>
+<p> 列出网站(虚拟主机) 执行：lnmp vhost list</p>
 </blockquote>
-<p><img src="/assets/blogImg/swift/xc10.jpg" alt="ico原来的样子"> </p>
+<p><img src="/assets/blogImg/lnmp/lnmp-1.2-vhost-list.png" alt="ico原来的样子"></p>
 <blockquote>
-<p> 8、我们为界面添加点内容，在右下方找到Text控件，将它拖入storyboard上，并双击写入文本”Hello World!”。</p>
+<p> 删除网站(虚拟主机) 执行：lnmp vhost del</p>
 </blockquote>
-<p><img src="/assets/blogImg/swift/xc11.jpg" alt="ico原来的样子"> </p>
+<p><img src="/assets/blogImg/lnmp/lnmp-1.2-vhost-del.png" alt="ico原来的样子"></p>
+<p>删除网站会先列出当前已有虚拟主机，按提示输入要删除的虚拟主机域名 回车确认。</p>
+<blockquote>
+<p> LNMP默认网站配置文件：/usr/local/nginx/conf/nginx.conf</p>
+</blockquote>
 <hr>
 <ul>
 <li><strong>Notice</strong></li>
 </ul>
 <blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
 </blockquote>
 ]]></content>
       <tags>
-        <tag>Swift</tag>
+        <tag>lnmp</tag>
+        <tag>linux</tag>
+        <tag>centos7.3</tag>
       </tags>
   </entry>
   <entry>
@@ -2086,118 +2078,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>centos7下lnmp 添加、删除虚拟主机</title>
-    <url>/2017/09/15/centos7%E4%B8%8Blnmp-%E6%B7%BB%E5%8A%A0%E3%80%81%E5%88%A0%E9%99%A4%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>添加网站(虚拟主机</strong></p>
-<blockquote>
-<p> 执行：lnmp vhost add 出现如下界面：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-1.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 这里要输入要添加网站的域名，我们已添加<a href="http://www.vpser.net域名为例,如上图提示后输入域名/">www.vpser.net域名为例，如上图提示后输入域名</a> <a href="http://www.vpser.net/">www.vpser.net</a> 回车后提示：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-2.png" alt="ico原来的样子"></p>
-<p>这里询问是否添加更多域名，直接再输入要绑定的域名，这里我们将 vpser.net 也绑上，多个域名空格隔开，如不需要绑其他域名就直接回车。：</p>
-<blockquote>
-<p> 下面需要设置网站的目录：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-3.png" alt="ico原来的样子"></p>
-<p>网站目录不存在的话会创建目录。也可以输入已经存在的目录或要设置的目录（注意如要输入必须是全路径即以/开头的完整路径！！！）。不输入直接回车的话，采用默认目录：/home/wwwroot/域名</p>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-4.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 伪静态可以使URL更加简洁也利于SEO，如程序支持并且需要设置伪静态的话，如启用输入 y ，不启用输入 n 回车(注意LNMPA或LAMP模式没有该选择项！)</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-5.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 默认已经有了discuz、discuzx、discuzx2(Discuz X二级目录)、wordpress、wp2(WordPress二级目录)、typecho、typecho2(Typecho二级目录)、sablog、emlog、dabr、phpwind、、dedecms、drupal、ecshop、shopex等常用的Nginx伪静态配置文件，可以直接输入名称进行使用，如果是二级目录则需要对应配置文件里的二级目录的名称。</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-6.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 这一步是设置日志，如启用日志输入 y ，不启用输入 n 回车</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-7.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 如果启用需要再输入要设置的日志的名称，默认日志目录为：/home/wwwlogs/ 默认文件名为：域名.log 回车确认后，会询问是否添加数据库和数据库用户。</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-8.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 如果需要添加数据库输入 y ，不添加数据库输入 n 回车。</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-9.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 如果要添加，需要先验证MySQL的root密码(注：输入密码将不显示)<br>提示Enter database name: 后输入要创建的数据库名称，要创建的数据库用户名会和数据库同名，回车确认。</p>
-</blockquote>
-<p>提示Please enter password for mysql user 数据库名: 后输入要设置的密码，回车确认。</p>
-<p>如果安装了FTP服务器会询问是否添加FTP账号</p>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-10.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 如果需要添加输入 y ，不添加输入 n 回车</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-11.png" alt="ico原来的样子"></p>
-<p>提示Enter ftp account name: 后输入要创建的FTP账号名称，回车确认。<br>提示Enter password for ftp account FTP账号: 后输入要设置的密码，回车确认。</p>
-<blockquote>
-<p> 接下来是1.4新增的添加SSL功能</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-12.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 如果需要添加输入 y ，不添加输入 n 回车。<br>选择了添加SSL会提示</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-13.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 添加成功会提示添加的域名、目录、伪静态、日志、数据库、FTP等相关信息，如下图：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-info.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> LNMPA或LAMP可以直接使用网站根目录下放.htaccess 来设置伪静态规则(具体规则可以去程序官网网站找google百度)，但是在LNMP下，需要使用Nginx伪静态规则。<br>伪静态可以随时添加或删除，如果添加完虚拟主机后忘记或没有添加伪静态，可以通过修改配置文件来添加伪静态。<br>虚拟主机配置文件在：/usr/local/nginx/conf/vhost/域名.conf<br>伪静态规则文件需要放在/usr/local/nginx/conf/ 下面。<br>编辑虚拟主机配置文件，可以使用vi、nano或winscp，后2个工具对新手来说简单些。<br>例如前面我们添加的虚拟主机，打开后前半部分配置会显示如下：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp-rewrite-modify.png" alt="ico原来的样子"></p>
-<hr>
-<blockquote>
-<p> 列出网站(虚拟主机) 执行：lnmp vhost list</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp-1.2-vhost-list.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 删除网站(虚拟主机) 执行：lnmp vhost del</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp-1.2-vhost-del.png" alt="ico原来的样子"></p>
-<p>删除网站会先列出当前已有虚拟主机，按提示输入要删除的虚拟主机域名 回车确认。</p>
-<blockquote>
-<p> LNMP默认网站配置文件：/usr/local/nginx/conf/nginx.conf</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>linux</tag>
-        <tag>centos7.3</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker + redis 部署一主二从三哨兵</title>
-    <url>/2021/12/06/docker-redis-%E9%83%A8%E7%BD%B2%E4%B8%80%E4%B8%BB%E4%BA%8C%E4%BB%8E%E4%B8%89%E5%93%A8%E5%85%B5/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/redis.png" alt="redis"></p>
-<a id="more"></a>
-
-<p><strong>概述</strong></p>
-<ul>
-<li>在部署redis 的时候，如果redis宕机，缓存将不可用，redis提供了哨兵模式保证redis实现高可用。</li>
-<li>即一台主机两台从机，三台哨兵主机，如果主实例宕机，哨兵将一台从机升级为主机。实现高可用。<br><img src="/assets/blogImg/redis-1.png" alt="redis-1"></li>
-</ul>
-<p>参考文档 ⚔：<br><a href="https://blog.csdn.net/qq_41773902/article/details/105627708" target="_blank">[ 点我 ]</a> | <a href="https://www.jianshu.com/p/319d0980ff89#comments" target="_blank">[ 点我 ]</a> | <a href="https://www.pianshen.com/article/68951456452/" target="_blank">[ 点我 ]</a></p>
-]]></content>
-      <tags>
-        <tag>redis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>gRPC 的介绍及使用</title>
     <url>/2021/12/07/gRPC-%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/grpc.png" alt="grpc"></p>
@@ -2246,6 +2126,23 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>docker + redis 部署一主二从三哨兵</title>
+    <url>/2021/12/06/docker-redis-%E9%83%A8%E7%BD%B2%E4%B8%80%E4%B8%BB%E4%BA%8C%E4%BB%8E%E4%B8%89%E5%93%A8%E5%85%B5/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/redis.png" alt="redis"></p>
+<a id="more"></a>
+
+<p><strong>概述</strong></p>
+<ul>
+<li>在部署redis 的时候，如果redis宕机，缓存将不可用，redis提供了哨兵模式保证redis实现高可用。</li>
+<li>即一台主机两台从机，三台哨兵主机，如果主实例宕机，哨兵将一台从机升级为主机。实现高可用。<br><img src="/assets/blogImg/redis-1.png" alt="redis-1"></li>
+</ul>
+<p>参考文档 ⚔：<br><a href="https://blog.csdn.net/qq_41773902/article/details/105627708" target="_blank">[ 点我 ]</a> | <a href="https://www.jianshu.com/p/319d0980ff89#comments" target="_blank">[ 点我 ]</a> | <a href="https://www.pianshen.com/article/68951456452/" target="_blank">[ 点我 ]</a></p>
+]]></content>
+      <tags>
+        <tag>redis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>gin-vue-admin的安装及使用</title>
     <url>/2021/10/14/gin-vue-admin%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/diary-5.jpg" alt="gin-vue-admin"></p>
@@ -2255,7 +2152,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#x67;&#x69;&#116;&#64;&#x67;&#x69;&#116;&#104;&#x75;&#98;&#46;&#x63;&#x6f;&#x6d;">&#x67;&#x69;&#116;&#64;&#x67;&#x69;&#116;&#104;&#x75;&#98;&#46;&#x63;&#x6f;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#103;&#105;&#116;&#64;&#x67;&#105;&#116;&#104;&#117;&#x62;&#46;&#99;&#111;&#109;">&#103;&#105;&#116;&#64;&#x67;&#105;&#116;&#104;&#117;&#x62;&#46;&#99;&#111;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -2283,101 +2180,106 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>go-zero实战：让微服务Go起来</title>
-    <url>/2021/12/24/go-zero%E5%AE%9E%E6%88%98%EF%BC%9A%E8%AE%A9%E5%BE%AE%E6%9C%8D%E5%8A%A1Go%E8%B5%B7%E6%9D%A5/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/go-zero.png" alt="go-zero"></p>
+    <title>Swift学习笔记NO.1</title>
+    <url>/2017/09/25/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0NO-1/</url>
+    <content><![CDATA[<p><strong>Swift学习笔记NO.1</strong> </p>
 <a id="more"></a>
-<p>示例说明:</p>
-<ul>
-<li>Demo1: <a href="https://github.com/nivin-studio/go-zero-mall" target="_blank">[ 项目地址 ]</a> | <a href="https://juejin.cn/post/7036011047391592485" target="_blank">[ 参考掘金 ]</a> </li>
-<li>Demo2: <a href="https://juejin.cn/post/6920847373510017031" target="_blank">[ 参考掘金 ]</a></li>
-</ul>
-<p>知识点大纲:</p>
-<ul>
-<li><code>Docker</code> 本地开发环境搭建</li>
-<li><code>go-zero api rpc</code> 服务的使用</li>
-<li><code>go-zero api jwt</code> 鉴权</li>
-<li><code>go-zero rpc auth</code> 验证</li>
-<li><code>go-zero model</code> 使用</li>
-<li><code>go-zero</code> 服务监控</li>
-<li><code>go-zero</code> 链路追踪</li>
-</ul>
-<p>文章目录：</p>
-<ul>
-<li><a href="https://juejin.cn/post/7036011047391592485" target="_blank">go-zero实战：1 项目介绍</a></li>
-<li><a href="https://juejin.cn/post/7036010137408143373" target="_blank">go-zero实战：2 环境搭建</a></li>
-<li><a href="https://juejin.cn/post/7036010157075071006" target="_blank">go-zero实战：3 服务拆分</a></li>
-<li><a href="https://juejin.cn/post/7036011410265997348" target="_blank">go-zero实战：4 用户服务（user）</a></li>
-<li><a href="https://juejin.cn/post/7036010952889729032" target="_blank">go-zero实战：5 产品服务（product）</a></li>
-<li><a href="https://juejin.cn/post/7036011643737735198" target="_blank">go-zero实战：6 订单服务（order）</a></li>
-<li><a href="https://juejin.cn/post/7036011624838201352" target="_blank">go-zero实战：7 支付服务（pay）</a></li>
-<li><a href="https://juejin.cn/post/7044185614811398174" target="_blank">go-zero实战：8 RPC服务 Auth 验证</a></li>
-<li><a href="https://juejin.cn/post/7044509187027501063" target="_blank">go-zero实战：9 服务监控 Prometheus</a></li>
-<li><a href="https://juejin.cn/post/7044558366445666341" target="_blank">go-zero实战：10 链路追踪 Jaeger</a></li>
-<li><a href="https://juejin.cn/post/7051205679217901599" target="_blank">go-zero实战：11 分布式事务 DTM</a></li>
-</ul>
-<p>目录结构:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">├── common           # 通用库</span><br><span class="line">├── service          # 服务</span><br><span class="line">│   ├── order</span><br><span class="line">│   │   ├── api      # order api 服务</span><br><span class="line">│   │   ├── model    # order 数据模型</span><br><span class="line">│   │   └── rpc      # order rpc 服务</span><br><span class="line">│   ├── pay</span><br><span class="line">│   │   ├── api      # pay api 服务</span><br><span class="line">│   │   ├── model    # pay 数据模型</span><br><span class="line">│   │   └── rpc      # pay rpc 服务</span><br><span class="line">│   ├── product</span><br><span class="line">│   │   ├── api      # product api 服务</span><br><span class="line">│   │   ├── model    # product 数据模型</span><br><span class="line">│   │   └── rpc      # product rpc 服务</span><br><span class="line">│   └── user</span><br><span class="line">│       ├── api      # user api 服务</span><br><span class="line">│       ├── model    # user 数据模型</span><br><span class="line">│       └── rpc      # user rpc 服务</span><br><span class="line">└── go.mod</span><br></pre></td></tr></table></figure>
 
-<p>理解 <code>go-zero</code> 中的底层思想:</p>
-<p>0、goctl (go control)</p>
-<ul>
-<li><p>生成 model 命令 </p>
+<p><strong>Swift 教程</strong></p>
 <blockquote>
-<p>goctl model mysql ddl -src ./model/xxx.sql -dir ./model -c</p>
+<p> Swift 是一种支持多编程范式和编译式的开源编程语言,苹果于2014年WWDC（苹果开发者大会）发布，用于开发 iOS，OS X 和 watchOS 应用程序。<br>Swift 结合了 C 和 Objective-C 的优点并且不受 C 兼容性的限制。<br>Swift 在 Mac OS 和 iOS 平台可以和 Object-C 使用相同的运行环境。<br>2015年6月8日，苹果于WWDC 2015上宣布，Swift将开放源代码，包括编译器和标准库。</p>
 </blockquote>
-</li>
-<li><p>生成 api   命令 </p>
+<p>第一个 Swift 程序当然从输出 “Hello, World!” 开始</p>
 <blockquote>
-<p>goctl api go -api ./api/xxx.api -dir ./api</p>
+<p> 代码如下所示：</p>
 </blockquote>
-</li>
-<li><p>生成 rpc   命令 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var myString &#x3D; &quot;Hello, World!&quot;</span><br><span class="line">print(myString)</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>goctl rpc proto -src ./rpc/xxx.proto -dir ./rpc</p>
+<p> 实例解析：</p>
 </blockquote>
-</li>
-</ul>
-<p>1、api rpc</p>
 <ul>
-<li>api 对外（客户端、App、PC）</li>
-<li>rpc 对内 （api、rpc）</li>
-<li>rpc/svc 通常依赖处理 mysql(orm) redis(cache) 或者调用其他的 rpc 服务</li>
-<li>服务之间最好单向调用（不然 a-&gt;b 和 b-&gt;a 容易造成错误指向矛盾）</li>
+<li>var myString = “Hello, World!” : 使用 var 关键字定义一个变量 myString，值为 Hello, World!</li>
+<li>print : 输出变量的值</li>
 </ul>
-<p>2、etc config svc</p>
+<p><strong>Swift 环境搭建</strong></p>
+<blockquote>
+<p> Swift是一门开源的编程语言，该语言用于开发OS X和iOS应用程序。<br>在正式开发应用程序前，我们需要搭建Swift开发环境，以便更好友好的使用各种开发工具和语言进行快速应用开发。由于Swift开发环境需要在OS X系统中运行，因此其环境的搭建将不同于Windows环境，下面就一起来学习一下swift开发环境的搭建方法。</p>
+</blockquote>
+<p>成功搭建swift开发环境的前题：</p>
 <ul>
-<li>etc (配置文件)</li>
-<li>config (定义的 go 配置对象)</li>
-<li>svc (service context，用来传递给 logic 层的)</li>
-<li>etcd 的注册发现服务</li>
+<li>必须拥有一台苹果电脑。因为集成开发环境XCode只能运行在OS X系统上。</li>
+<li>电脑系统必须在OS 10.9.3及以上。</li>
+<li>电脑必须安装Xcode集成开发环境。</li>
 </ul>
-<p>3、interface</p>
+<blockquote>
+<p> Swift 开发工具Xcode下载</p>
+</blockquote>
 <ul>
-<li>方法集</li>
-<li>结构体实现接口</li>
-<li>New + 结构体名称 初始化</li>
+<li><a href="https://swift.org/download/#latest-development-snapshots" target="_blank">[ Swift 源代码下载 ]</a></li>
+<li><a href="https://developer.apple.com/xcode/download/" target="_blank">[ Swift开发工具官网地址 ]</a></li>
+<li><a href="http://rj.baidu.com/soft/detail/40233.html" target="_blank">[ Swift 开发工具百度软件中心下载（国内比较快） ]</a></li>
 </ul>
-<p>4、开发流程</p>
+<p>下载完成后，双击下载的 dmg 文件安装，安装完成后我们将 Xcode 图标踢移动到应用文件夹。<br> <img src="/assets/blogImg/swift/xcode2.jpg" alt="ico原来的样子"></p>
+<blockquote>
+<p> 第一个 Swift 程序</p>
+</blockquote>
+<p>Xcode 安装完成后，我们就可以开始编写 Swift 代码了。<br>接下来我们在应用文件夹打开 Xcode，打开后在屏幕顶部选择 File =&gt; New =&gt; Playground。<br><img src="/assets/blogImg/swift/xc1.jpg" alt="ico原来的样子"></p>
+<blockquote>
+<p> 接着 为 playground 设置一个名字并选择 iOS 平台。</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc2.jpg" alt="ico原来的样子"></p>
+<blockquote>
+<p> Swift 的 playground 就像是一个可交互的文档，它是用来练手学swift的，写一句代码出一行结果（右侧），可以实时查看代码结果，是学习swift语言的利器！</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc3.jpg" alt="ico原来的样子"> </p>
+<p>以下是 Swift Playground 窗口默认的代码：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import UIKit</span><br><span class="line">var str &#x3D; &quot;Hello, playground&quot;</span><br></pre></td></tr></table></figure>
+<p>如果你想创建 OS x 程序，需要导入 Cocoa 包 import Cocoa 代码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line">var str &#x3D; &quot;Hello, playground&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>创建第一个项目</strong></p>
+<blockquote>
+<p> 1、打开 xcode 工具，选择 File =&gt; New =&gt; Project</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc4.jpg" alt="ico原来的样子"> </p>
+<blockquote>
+<p> 2、我们选择一个”Single View Application”，并点击”next”，创建一个简单示例app应用。</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc5.jpg" alt="ico原来的样子"> </p>
+<blockquote>
+<p> 3、接着我们输入项目名称（ProductName),公司名称（Organization Name),公司标识前缀名（Organization identifier) 还要选择开发语言(Language),选择设备（Devices)。<br>其中Language有两个选项：Objective-c和swift，因为我们是学习swift当然选择swift项了。 点击”Next”下一步。</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc6.jpg" alt="ico原来的样子"> </p>
+<blockquote>
+<p> 4、选择存放的目录，如果要使用Git源代码管理，将勾上Source Control的create git repository on My Mac. 点击create创建项目。</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc7.jpg" alt="ico原来的样子"> </p>
+<blockquote>
+<p> 5、项目创建后，默认生成了一个示例文件，可以看到swift将oc中的h和m文件合并成了一个文件（即swift后缀名文件). Main.storyboard相当于xib文件，有比xib更多的功能。</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc8.jpg" alt="ico原来的样子"> </p>
+<blockquote>
+<p> 6、打开main.storyboard,默认看到一个简单的空白的应用界面，大小为平板界面大小。 如果开发都只需要开发兼容iphone手机的app,那么可以把Use Auto Layout的勾去掉（默认为勾上）。</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc9.jpg" alt="ico原来的样子"> </p>
+<blockquote>
+<p> 7、弹出了一个对话框，让我们选择界面尺寸，iPhone或都 iPad。我们选择iPhone的尺寸。</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc10.jpg" alt="ico原来的样子"> </p>
+<blockquote>
+<p> 8、我们为界面添加点内容，在右下方找到Text控件，将它拖入storyboard上，并双击写入文本”Hello World!”。</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc11.jpg" alt="ico原来的样子"> </p>
+<hr>
 <ul>
-<li>goctl环境准备</li>
-<li>数据库设计</li>
-<li>业务开发</li>
-<li>新建工程</li>
-<li>创建服务目录</li>
-<li>创建服务类型（api/rpc/rmq/job/script）</li>
-<li>编写api、proto文件</li>
-<li>代码生成</li>
-<li>生成数据库访问层代码model</li>
-<li>配置config，yaml变更</li>
-<li>资源依赖填充（ServiceContext）</li>
-<li>添加中间件</li>
-<li>业务代码填充</li>
-<li>错误处理</li>
+<li><strong>Notice</strong></li>
 </ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
 ]]></content>
       <tags>
-        <tag>go-zero</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -2502,6 +2404,104 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>go-zero实战：让微服务Go起来</title>
+    <url>/2021/12/24/go-zero%E5%AE%9E%E6%88%98%EF%BC%9A%E8%AE%A9%E5%BE%AE%E6%9C%8D%E5%8A%A1Go%E8%B5%B7%E6%9D%A5/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/go-zero.png" alt="go-zero"></p>
+<a id="more"></a>
+<p>示例说明:</p>
+<ul>
+<li>Demo1: <a href="https://github.com/nivin-studio/go-zero-mall" target="_blank">[ 项目地址 ]</a> | <a href="https://juejin.cn/post/7036011047391592485" target="_blank">[ 参考掘金 ]</a> </li>
+<li>Demo2: <a href="https://juejin.cn/post/6920847373510017031" target="_blank">[ 参考掘金 ]</a></li>
+</ul>
+<p>知识点大纲:</p>
+<ul>
+<li><code>Docker</code> 本地开发环境搭建</li>
+<li><code>go-zero api rpc</code> 服务的使用</li>
+<li><code>go-zero api jwt</code> 鉴权</li>
+<li><code>go-zero rpc auth</code> 验证</li>
+<li><code>go-zero model</code> 使用</li>
+<li><code>go-zero</code> 服务监控</li>
+<li><code>go-zero</code> 链路追踪</li>
+</ul>
+<p>文章目录：</p>
+<ul>
+<li><a href="https://juejin.cn/post/7036011047391592485" target="_blank">go-zero实战：1 项目介绍</a></li>
+<li><a href="https://juejin.cn/post/7036010137408143373" target="_blank">go-zero实战：2 环境搭建</a></li>
+<li><a href="https://juejin.cn/post/7036010157075071006" target="_blank">go-zero实战：3 服务拆分</a></li>
+<li><a href="https://juejin.cn/post/7036011410265997348" target="_blank">go-zero实战：4 用户服务（user）</a></li>
+<li><a href="https://juejin.cn/post/7036010952889729032" target="_blank">go-zero实战：5 产品服务（product）</a></li>
+<li><a href="https://juejin.cn/post/7036011643737735198" target="_blank">go-zero实战：6 订单服务（order）</a></li>
+<li><a href="https://juejin.cn/post/7036011624838201352" target="_blank">go-zero实战：7 支付服务（pay）</a></li>
+<li><a href="https://juejin.cn/post/7044185614811398174" target="_blank">go-zero实战：8 RPC服务 Auth 验证</a></li>
+<li><a href="https://juejin.cn/post/7044509187027501063" target="_blank">go-zero实战：9 服务监控 Prometheus</a></li>
+<li><a href="https://juejin.cn/post/7044558366445666341" target="_blank">go-zero实战：10 链路追踪 Jaeger</a></li>
+<li><a href="https://juejin.cn/post/7051205679217901599" target="_blank">go-zero实战：11 分布式事务 DTM</a></li>
+</ul>
+<p>目录结构:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">├── common           # 通用库</span><br><span class="line">├── service          # 服务</span><br><span class="line">│   ├── order</span><br><span class="line">│   │   ├── api      # order api 服务</span><br><span class="line">│   │   ├── model    # order 数据模型</span><br><span class="line">│   │   └── rpc      # order rpc 服务</span><br><span class="line">│   ├── pay</span><br><span class="line">│   │   ├── api      # pay api 服务</span><br><span class="line">│   │   ├── model    # pay 数据模型</span><br><span class="line">│   │   └── rpc      # pay rpc 服务</span><br><span class="line">│   ├── product</span><br><span class="line">│   │   ├── api      # product api 服务</span><br><span class="line">│   │   ├── model    # product 数据模型</span><br><span class="line">│   │   └── rpc      # product rpc 服务</span><br><span class="line">│   └── user</span><br><span class="line">│       ├── api      # user api 服务</span><br><span class="line">│       ├── model    # user 数据模型</span><br><span class="line">│       └── rpc      # user rpc 服务</span><br><span class="line">└── go.mod</span><br></pre></td></tr></table></figure>
+
+<p>理解 <code>go-zero</code> 中的底层思想:</p>
+<p>0、goctl (go control)</p>
+<ul>
+<li><p>生成 model 命令 </p>
+<blockquote>
+<p>goctl model mysql ddl -src ./model/xxx.sql -dir ./model -c</p>
+</blockquote>
+</li>
+<li><p>生成 api   命令 </p>
+<blockquote>
+<p>goctl api go -api ./api/xxx.api -dir ./api</p>
+</blockquote>
+</li>
+<li><p>生成 rpc   命令 </p>
+<blockquote>
+<p>goctl rpc proto -src ./rpc/xxx.proto -dir ./rpc</p>
+</blockquote>
+</li>
+</ul>
+<p>1、api rpc</p>
+<ul>
+<li>api 对外（客户端、App、PC）</li>
+<li>rpc 对内 （api、rpc）</li>
+<li>rpc/svc 通常依赖处理 mysql(orm) redis(cache) 或者调用其他的 rpc 服务</li>
+<li>服务之间最好单向调用（不然 a-&gt;b 和 b-&gt;a 容易造成错误指向矛盾）</li>
+</ul>
+<p>2、etc config svc</p>
+<ul>
+<li>etc (配置文件)</li>
+<li>config (定义的 go 配置对象)</li>
+<li>svc (service context，用来传递给 logic 层的)</li>
+<li>etcd 的注册发现服务</li>
+</ul>
+<p>3、interface</p>
+<ul>
+<li>方法集</li>
+<li>结构体实现接口</li>
+<li>New + 结构体名称 初始化</li>
+</ul>
+<p>4、开发流程</p>
+<ul>
+<li>goctl环境准备</li>
+<li>数据库设计</li>
+<li>业务开发</li>
+<li>新建工程</li>
+<li>创建服务目录</li>
+<li>创建服务类型（api/rpc/rmq/job/script）</li>
+<li>编写api、proto文件</li>
+<li>代码生成</li>
+<li>生成数据库访问层代码model</li>
+<li>配置config，yaml变更</li>
+<li>资源依赖填充（ServiceContext）</li>
+<li>添加中间件</li>
+<li>业务代码填充</li>
+<li>错误处理</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>go-zero</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>install program</title>
     <url>/2017/11/02/install-program/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2580,36 +2580,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>laravel-admin</tag>
         <tag>字段排序</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>laravel 修改器</title>
-    <url>/2017/09/14/laravel-%E4%BF%AE%E6%94%B9%E5%99%A8/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<ul>
-<li><strong>定义修改器</strong></li>
-</ul>
-<blockquote>
-<p> 要定义一个修改器，需要在模型中定义setFooAttribute 方法，其中 Foo 是你想要访问的字段（使用驼峰式命名规则）接下来让我们为 first  name属性定义一个修改器，当我们为模型上的 first_name 赋值时该修改器会被自动调用：<br>public function setFirstNameAttribute($value)<br>{<br>  $this-&gt;attributes[‘first_name’] = strtolower($value);<br>}</p>
-</blockquote>
-<ul>
-<li><strong>定义访问器</strong></li>
-</ul>
-<blockquote>
-<p>通要定义一个访问器，需要在模型中创建一个getFooAttribute 方法，其中 Foo 是你想要访问的字段名（使用驼峰式命名规则）。在本例中，我们将会为 first name 属性定义一个访问器，该访问器在获取 first_name 的值时被 Eloquent 自动调用：<br> public function getFirstNameAttribute($value)<br> {<br>   return ucfirst($value);<br> }</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>使用访问器&amp;修改器能快捷方便的应用于日常开发<br>比如：修改、重置默认字段值 等等</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>laravel5.x</tag>
-        <tag>修改器</tag>
       </tags>
   </entry>
   <entry>
@@ -2752,6 +2722,84 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>laravel 修改器</title>
+    <url>/2017/09/14/laravel-%E4%BF%AE%E6%94%B9%E5%99%A8/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<ul>
+<li><strong>定义修改器</strong></li>
+</ul>
+<blockquote>
+<p> 要定义一个修改器，需要在模型中定义setFooAttribute 方法，其中 Foo 是你想要访问的字段（使用驼峰式命名规则）接下来让我们为 first  name属性定义一个修改器，当我们为模型上的 first_name 赋值时该修改器会被自动调用：<br>public function setFirstNameAttribute($value)<br>{<br>  $this-&gt;attributes[‘first_name’] = strtolower($value);<br>}</p>
+</blockquote>
+<ul>
+<li><strong>定义访问器</strong></li>
+</ul>
+<blockquote>
+<p>通要定义一个访问器，需要在模型中创建一个getFooAttribute 方法，其中 Foo 是你想要访问的字段名（使用驼峰式命名规则）。在本例中，我们将会为 first name 属性定义一个访问器，该访问器在获取 first_name 的值时被 Eloquent 自动调用：<br> public function getFirstNameAttribute($value)<br> {<br>   return ucfirst($value);<br> }</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>使用访问器&amp;修改器能快捷方便的应用于日常开发<br>比如：修改、重置默认字段值 等等</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>laravel5.x</tag>
+        <tag>修改器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux下安装redis及认证密码</title>
+    <url>/2018/03/06/linux%E4%B8%8B%E5%AE%89%E8%A3%85redis%E5%8F%8A%E8%AE%A4%E8%AF%81%E5%AF%86%E7%A0%81/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>一、安装 redis</strong><br>进入lnmp解压后的目录，执行</p>
+<blockquote>
+<p> ./addons.sh install redis </p>
+</blockquote>
+<p><strong>二、redis 设置认证密码</strong><br>requirepass foobared去掉#注释，将foobared改为自己的密码然后保存，重启服务</p>
+<blockquote>
+<p> vim /usr/local/redis/etc/redis.conf</p>
+</blockquote>
+<p><strong>三、redis 状态管理</strong></p>
+<blockquote>
+<p> /etc/init.d/redis {start|stop|restart|kill}</p>
+</blockquote>
+<p><strong>四、查看 redis 启动情况</strong></p>
+<blockquote>
+<p> ps aux | grep redis</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>lnmp</tag>
+        <tag>redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>lnmp tp pathinfo问题</title>
+    <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>/usr/local/php/etc/php.ini</p>
+<blockquote>
+<p> cgi.fix_pathinfo=1</p>
+</blockquote>
+<blockquote>
+<p> lnmp restart</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
+  </entry>
+  <entry>
     <title>linux centos7.3 lnmp一键安装包集成</title>
     <url>/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E9%9B%86%E6%88%90/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2813,6 +2861,19 @@ class QuotesSpider(scrapy.Spider):
         <tag>lnmp</tag>
         <tag>linux</tag>
         <tag>centos7.3</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql自定义重置数据表ID值</title>
+    <url>/2018/10/30/mysql%E8%87%AA%E5%AE%9A%E4%B9%89%E9%87%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E8%A1%A8ID%E5%80%BC/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> alter table 表名 AUTO_INCREMENT=自定义ID;</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -2888,52 +2949,60 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>linux下安装redis及认证密码</title>
-    <url>/2018/03/06/linux%E4%B8%8B%E5%AE%89%E8%A3%85redis%E5%8F%8A%E8%AE%A4%E8%AF%81%E5%AF%86%E7%A0%81/</url>
+    <title>mysql通过.ibd和.frm文件恢复数据</title>
+    <url>/2019/12/17/mysql%E9%80%9A%E8%BF%87-ibd%E5%92%8C-frm%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E6%95%B0%E6%8D%AE/</url>
     <content><![CDATA[<a id="more"></a>
 
-<p><strong>一、安装 redis</strong><br>进入lnmp解压后的目录，执行</p>
+<p>数据库存储的数据实际上也是存储在文件里的,此类文件只能mysql能读取。</p>
+<p>Myisam 引擎:</p>
 <blockquote>
-<p> ./addons.sh install redis </p>
+<p>xxx.frm 表结构文件<br>xxx.MYD 数据文件<br>xxx.MYI 索引文件</p>
 </blockquote>
-<p><strong>二、redis 设置认证密码</strong><br>requirepass foobared去掉#注释，将foobared改为自己的密码然后保存，重启服务</p>
+<p>Innodb 引擎:</p>
 <blockquote>
-<p> vim /usr/local/redis/etc/redis.conf</p>
+<p>xxx.ibd 数据和索引文件<br>xxx.frm 表结构文件</p>
 </blockquote>
-<p><strong>三、redis 状态管理</strong></p>
+<p>此篇环境为Lnmp集成环境下的mysql<br>在/etc/my.conf   datadir = /usr/local/var/mysql/</p>
+<p>简写主要步骤:<br>1.将原先的.ibd文件与原先的.frm文件解除绑定</p>
 <blockquote>
-<p> /etc/init.d/redis {start|stop|restart|kill}</p>
+<p>alter table 表名 discard tablespace;</p>
 </blockquote>
-<p><strong>四、查看 redis 启动情况</strong></p>
+<p>2.停掉服务，新的.ibd文件覆盖旧的.ibd文件，再开启服务</p>
+<p>3.将新的.ibd文件与.frm文件发生联系</p>
 <blockquote>
-<p> ps aux | grep redis</p>
+<p>alter table 表名 import tablespace;</p>
+</blockquote>
+<p>类似这种单个表操作,若表很多 可简单分批处理[.ibd、.frm同级目录执行]<br>安装 mysql-utilities</p>
+<blockquote>
+<p>yum -y install mysql-utilities</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    $files &#x3D; glob(&quot;*.ibd&quot;);</span><br><span class="line">    $discardTablespace &#x3D; &#39;&#39;;</span><br><span class="line">    $importTablespace &#x3D; &#39;&#39;;</span><br><span class="line">    $createTable &#x3D; &#39;&#39;;</span><br><span class="line">    foreach ($files as $key &#x3D;&gt; $value) &#123;</span><br><span class="line">        $discardTablespace .&#x3D; &quot;ALTER TABLE &#96;&#123;$value&#125;&#96; DISCARD TABLESPACE;\n&quot;;</span><br><span class="line">        $importTablespace .&#x3D; &quot;ALTER TABLE &#96;&#123;$value&#125;&#96; IMPORT TABLESPACE;\n&quot;;</span><br><span class="line">        &#x2F;&#x2F;恢复表建表语句</span><br><span class="line">        $value &#x3D; substr($value, 0, -3).&#39;frm&#39;;</span><br><span class="line">        $shell &#x3D; &#39;mysqlfrm --server&#x3D;root:数据库密码@localhost:3306 &#39;.$value.&#39; --port&#x3D;3309  --user&#x3D;root | tail -n +12&#39;;</span><br><span class="line">        $output &#x3D; shell_exec($shell);</span><br><span class="line">        $lineCount &#x3D;  substr_count($output, &quot;\n&quot;);</span><br><span class="line">        $arr &#x3D; explode(&quot;\n&quot;, $output);</span><br><span class="line">        $arrCount &#x3D; count($arr);</span><br><span class="line">        $arr &#x3D; array_slice($arr, 0, $arrCount-3);</span><br><span class="line">        $createTable .&#x3D; join(&quot;\n&quot;, $arr).&quot;;\n\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    file_put_contents(&#39;discard_tablespace.sql&#39;, $discardTablespace); &#x2F;&#x2F;用于删除表空间</span><br><span class="line">    file_put_contents(&#39;import_tablespace.sql&#39;, $importTablespace); &#x2F;&#x2F;用于导入新的表空间</span><br><span class="line">    file_put_contents(&#39;structure.sql&#39;, $createTable); &#x2F;&#x2F;用于建表结构</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>php index.php &amp;</p>
+</blockquote>
+<p>生成的文件中可能存在[表名+.ibd]的类表名，可手动修改。</p>
+<p>由于版本库的原因可能存在文件为空(全是分号)</p>
+<blockquote>
+<p>mysqlfrm –diagnostic ./ &gt;&gt; structure.sql</p>
+</blockquote>
+<p>执行完后 检查下sql文件中可能存在<UNKNOW>(varchar(1020))等字符问题 可手动修改完善</p>
+<blockquote>
+<p>source structure.sql</p>
+</blockquote>
+<p>此时执行完后 会生成表结构。</p>
+<p>执行discard_tablespace.sql 解除旧的绑定关系</p>
+<blockquote>
+<p>source discard_tablespace.sql</p>
+</blockquote>
+<p>新的.ibd文件覆盖旧的后 执行导入新的关系</p>
+<blockquote>
+<p>source import_tablespace.sql</p>
 </blockquote>
 ]]></content>
       <tags>
-        <tag>lnmp</tag>
-        <tag>redis</tag>
+        <tag>mysql</tag>
+        <tag>Innodb</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>lnmp tp pathinfo问题</title>
-    <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>/usr/local/php/etc/php.ini</p>
-<blockquote>
-<p> cgi.fix_pathinfo=1</p>
-</blockquote>
-<blockquote>
-<p> lnmp restart</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
   </entry>
   <entry>
     <title>lnmp集成环境下部署laravel5.x项目</title>
@@ -2992,75 +3061,6 @@ class QuotesSpider(scrapy.Spider):
         <tag>lnmp</tag>
         <tag>centos7.3</tag>
         <tag>laravel</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mysql自定义重置数据表ID值</title>
-    <url>/2018/10/30/mysql%E8%87%AA%E5%AE%9A%E4%B9%89%E9%87%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E8%A1%A8ID%E5%80%BC/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> alter table 表名 AUTO_INCREMENT=自定义ID;</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mysql通过.ibd和.frm文件恢复数据</title>
-    <url>/2019/12/17/mysql%E9%80%9A%E8%BF%87-ibd%E5%92%8C-frm%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E6%95%B0%E6%8D%AE/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>数据库存储的数据实际上也是存储在文件里的,此类文件只能mysql能读取。</p>
-<p>Myisam 引擎:</p>
-<blockquote>
-<p>xxx.frm 表结构文件<br>xxx.MYD 数据文件<br>xxx.MYI 索引文件</p>
-</blockquote>
-<p>Innodb 引擎:</p>
-<blockquote>
-<p>xxx.ibd 数据和索引文件<br>xxx.frm 表结构文件</p>
-</blockquote>
-<p>此篇环境为Lnmp集成环境下的mysql<br>在/etc/my.conf   datadir = /usr/local/var/mysql/</p>
-<p>简写主要步骤:<br>1.将原先的.ibd文件与原先的.frm文件解除绑定</p>
-<blockquote>
-<p>alter table 表名 discard tablespace;</p>
-</blockquote>
-<p>2.停掉服务，新的.ibd文件覆盖旧的.ibd文件，再开启服务</p>
-<p>3.将新的.ibd文件与.frm文件发生联系</p>
-<blockquote>
-<p>alter table 表名 import tablespace;</p>
-</blockquote>
-<p>类似这种单个表操作,若表很多 可简单分批处理[.ibd、.frm同级目录执行]<br>安装 mysql-utilities</p>
-<blockquote>
-<p>yum -y install mysql-utilities</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    $files &#x3D; glob(&quot;*.ibd&quot;);</span><br><span class="line">    $discardTablespace &#x3D; &#39;&#39;;</span><br><span class="line">    $importTablespace &#x3D; &#39;&#39;;</span><br><span class="line">    $createTable &#x3D; &#39;&#39;;</span><br><span class="line">    foreach ($files as $key &#x3D;&gt; $value) &#123;</span><br><span class="line">        $discardTablespace .&#x3D; &quot;ALTER TABLE &#96;&#123;$value&#125;&#96; DISCARD TABLESPACE;\n&quot;;</span><br><span class="line">        $importTablespace .&#x3D; &quot;ALTER TABLE &#96;&#123;$value&#125;&#96; IMPORT TABLESPACE;\n&quot;;</span><br><span class="line">        &#x2F;&#x2F;恢复表建表语句</span><br><span class="line">        $value &#x3D; substr($value, 0, -3).&#39;frm&#39;;</span><br><span class="line">        $shell &#x3D; &#39;mysqlfrm --server&#x3D;root:数据库密码@localhost:3306 &#39;.$value.&#39; --port&#x3D;3309  --user&#x3D;root | tail -n +12&#39;;</span><br><span class="line">        $output &#x3D; shell_exec($shell);</span><br><span class="line">        $lineCount &#x3D;  substr_count($output, &quot;\n&quot;);</span><br><span class="line">        $arr &#x3D; explode(&quot;\n&quot;, $output);</span><br><span class="line">        $arrCount &#x3D; count($arr);</span><br><span class="line">        $arr &#x3D; array_slice($arr, 0, $arrCount-3);</span><br><span class="line">        $createTable .&#x3D; join(&quot;\n&quot;, $arr).&quot;;\n\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    file_put_contents(&#39;discard_tablespace.sql&#39;, $discardTablespace); &#x2F;&#x2F;用于删除表空间</span><br><span class="line">    file_put_contents(&#39;import_tablespace.sql&#39;, $importTablespace); &#x2F;&#x2F;用于导入新的表空间</span><br><span class="line">    file_put_contents(&#39;structure.sql&#39;, $createTable); &#x2F;&#x2F;用于建表结构</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>php index.php &amp;</p>
-</blockquote>
-<p>生成的文件中可能存在[表名+.ibd]的类表名，可手动修改。</p>
-<p>由于版本库的原因可能存在文件为空(全是分号)</p>
-<blockquote>
-<p>mysqlfrm –diagnostic ./ &gt;&gt; structure.sql</p>
-</blockquote>
-<p>执行完后 检查下sql文件中可能存在<UNKNOW>(varchar(1020))等字符问题 可手动修改完善</p>
-<blockquote>
-<p>source structure.sql</p>
-</blockquote>
-<p>此时执行完后 会生成表结构。</p>
-<p>执行discard_tablespace.sql 解除旧的绑定关系</p>
-<blockquote>
-<p>source discard_tablespace.sql</p>
-</blockquote>
-<p>新的.ibd文件覆盖旧的后 执行导入新的关系</p>
-<blockquote>
-<p>source import_tablespace.sql</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>mysql</tag>
-        <tag>Innodb</tag>
       </tags>
   </entry>
   <entry>
@@ -3141,41 +3141,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>nginx</tag>
         <tag>负载均衡</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>php 递归拼接一条线会员</title>
-    <url>/2017/09/14/php-%E9%80%92%E5%BD%92%E6%8B%BC%E6%8E%A5%E4%B8%80%E6%9D%A1%E7%BA%BF%E4%BC%9A%E5%91%98/</url>
-    <content><![CDATA[<p><strong>php 递归拼接一条线会员：</strong> </p>
-<a id="more"></a>
-
-<ul>
-<li><strong>PHP使用递归&amp;参数引用</strong></li>
-</ul>
-<blockquote>
-<p> public static function parentIdLine($adminid,&amp;$parentAdmin_strs=’’)<br> {</p>
-<pre><code>       $parent_id = self::find($adminid)-&gt;parent_id;
-       // 构造上级限制
-       $parentids = array(0,1); //主要是限制管理员不拿提成          
-       if (!in_array($parent_id, $parentids) ) &#123;
-          $parentAdmin_strs .= $parent_id.&#39;,&#39;;
-          self::parentIdLine($parent_id,$parentAdmin_strs); 
-       &#125; 
-
-     return $parentAdmin_strs;</code></pre>
-<p>}</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.<br>   ok,  enjoy it !!!</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>php</tag>
-        <tag>递归</tag>
       </tags>
   </entry>
   <entry>
@@ -3262,7 +3227,7 @@ class QuotesSpider(scrapy.Spider):
 </blockquote>
 <p>二、使用npm下载 web框架express模块</p>
 <blockquote>
-<p>npm install --save <a href="mailto:&#x65;&#x78;&#112;&#114;&#x65;&#x73;&#x73;&#x40;&#52;&#46;&#49;&#53;&#46;&#x32;">&#x65;&#x78;&#112;&#114;&#x65;&#x73;&#x73;&#x40;&#52;&#46;&#49;&#53;&#46;&#x32;</a></p>
+<p>npm install --save <a href="mailto:&#x65;&#120;&#112;&#114;&#x65;&#x73;&#x73;&#x40;&#x34;&#46;&#49;&#53;&#x2e;&#x32;">&#x65;&#120;&#112;&#114;&#x65;&#x73;&#x73;&#x40;&#x34;&#46;&#49;&#53;&#x2e;&#x32;</a></p>
 </blockquote>
 <p>三、使用npm下载socket.io模块</p>
 <blockquote>
@@ -3279,6 +3244,41 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>socket.io</tag>
         <tag>nodejs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>php 递归拼接一条线会员</title>
+    <url>/2017/09/14/php-%E9%80%92%E5%BD%92%E6%8B%BC%E6%8E%A5%E4%B8%80%E6%9D%A1%E7%BA%BF%E4%BC%9A%E5%91%98/</url>
+    <content><![CDATA[<p><strong>php 递归拼接一条线会员：</strong> </p>
+<a id="more"></a>
+
+<ul>
+<li><strong>PHP使用递归&amp;参数引用</strong></li>
+</ul>
+<blockquote>
+<p> public static function parentIdLine($adminid,&amp;$parentAdmin_strs=’’)<br> {</p>
+<pre><code>       $parent_id = self::find($adminid)-&gt;parent_id;
+       // 构造上级限制
+       $parentids = array(0,1); //主要是限制管理员不拿提成          
+       if (!in_array($parent_id, $parentids) ) &#123;
+          $parentAdmin_strs .= $parent_id.&#39;,&#39;;
+          self::parentIdLine($parent_id,$parentAdmin_strs); 
+       &#125; 
+
+     return $parentAdmin_strs;</code></pre>
+<p>}</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.<br>   ok,  enjoy it !!!</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>php</tag>
+        <tag>递归</tag>
       </tags>
   </entry>
   <entry>
@@ -3324,36 +3324,20 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>vim常用命令</title>
-    <url>/2017/11/21/vim%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<p><strong>vim常用命令</strong> </p>
+    <title>使用git 与github友好交流</title>
+    <url>/2017/08/11/%E4%BD%BF%E7%94%A8git-%E4%B8%8Egithub%E5%8F%8B%E5%A5%BD%E4%BA%A4%E6%B5%81/</url>
+    <content><![CDATA[<p>##<strong>本文主要介绍window 端Git 与github友好交流</strong></p>
+<blockquote>
+<p>1、安装window版（32/64）git。 window端安装过程无脑略过—— </p>
+</blockquote>
 <a id="more"></a>
-<blockquote>
-<p>常用命令:</p>
-</blockquote>
-<ul>
-<li>[gg]第一行</li>
-<li>[G]最后一行</li>
-<li>[nG|ngg]到n行</li>
-<li>[u]撤销改动</li>
-<li>[dd]删除一行</li>
-<li>[yy]复制一行</li>
-<li>[i]在光标之前插入</li>
-<li>[a]在光标之后插入</li>
-<li>[$|End]到行尾</li>
-<li>[0|^|Home]到行首</li>
-<li>[o]在当前行下插入一空行</li>
-<li>[dw]删除光标所在的单词</li>
-<li>[daw]删除光标所在的单词,包括空白字符</li>
-<li>[diw]删除光标所在的单词,不包括空白字符</li>
-</ul>
-<blockquote>
-<p>示图如下:</p>
-</blockquote>
-<p><img src="/assets/blogImg/vim/1.png" alt="ico原来的样子"></p>
+
+
+<p>2、本文默认github已注册并添加过 ssh key<br>3、github上新建仓库<br>git add / add *<br>git commit -m<br>git remote add origin <a href="http://xxxx.github.io/">http://xxxx.github.io</a><br>git push -u origin master<br>git pull<br>git rm -r xxx<br>git commit -m ‘’<br>git push -u origin master<br>git  –version</p>
 ]]></content>
       <tags>
-        <tag>vim</tag>
+        <tag>git</tag>
+        <tag>github</tag>
       </tags>
   </entry>
   <entry>
@@ -3406,72 +3390,67 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>使用Tailwind CSS新建一个项目</title>
-    <url>/2021/11/18/%E4%BD%BF%E7%94%A8Tailwind-CSS%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/tailwindcss.png" alt="tailwindcss"></p>
+    <title>vim常用命令</title>
+    <url>/2017/11/21/vim%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<p><strong>vim常用命令</strong> </p>
 <a id="more"></a>
-
-<p>中文官网： <a href="https://www.tailwindcss.cn/" target="_blank">[ Tailwind-CSS中文官网 ]</a><br>Github地址： <a href="https://github.com/tailwindlabs/tailwindcss" target="_blank">[ Github ]</a><br><strong>安装PostCSS</strong><br>新建一个项目目录，然后在根目录运行</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm i --save-dev postcss-cli</span><br></pre></td></tr></table></figure>
-
-<p>了解Sass，Less，Stylus等css 预处理器区别及使用、了解Just-In-Time(Jit)即时动态编译<br><strong>安装Tailwind CSS以及相关依赖</strong></p>
 <blockquote>
-<p>npm install tailwindcss@latest postcss@latest autoprefixer@latest</p>
+<p>常用命令:</p>
 </blockquote>
-<p><strong>添加Tailwind作为PostCSS插件</strong><br>在根目录新建一个postcss配置文件postcss.config.js,并且将文件内容修改为以下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; postcss.config.js</span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  plugins: &#123;</span><br><span class="line">    tailwindcss: &#123;&#125;,</span><br><span class="line">    autoprefixer: &#123;&#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>创建您的配置文件</strong><br>运行以下命令</p>
+<ul>
+<li>[gg]第一行</li>
+<li>[G]最后一行</li>
+<li>[nG|ngg]到n行</li>
+<li>[u]撤销改动</li>
+<li>[dd]删除一行</li>
+<li>[yy]复制一行</li>
+<li>[i]在光标之前插入</li>
+<li>[a]在光标之后插入</li>
+<li>[$|End]到行尾</li>
+<li>[0|^|Home]到行首</li>
+<li>[o]在当前行下插入一空行</li>
+<li>[dw]删除光标所在的单词</li>
+<li>[daw]删除光标所在的单词,包括空白字符</li>
+<li>[diw]删除光标所在的单词,不包括空白字符</li>
+</ul>
 <blockquote>
-<p>npm init -y</p>
+<p>示图如下:</p>
 </blockquote>
-<p><strong>安装PostCSS</strong><br>新建一个项目目录，然后在根目录运行</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm i --save-dev postcss-cli</span><br></pre></td></tr></table></figure>
-
-<p>这会在根目录下生成一个package.json文件。<br>继续运行</p>
-<blockquote>
-<p>npx tailwindcss init</p>
-</blockquote>
-<p>这会在你的项目根目录创建一个tailwind.config.js文件，将内容修改为以下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; tailwind.config.js</span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  purge: [],</span><br><span class="line">  darkMode: false, &#x2F;&#x2F; or &#39;media&#39; or &#39;class&#39;</span><br><span class="line">  theme: &#123;</span><br><span class="line">    extend: &#123;&#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  variants: &#123;&#125;,</span><br><span class="line">  plugins: [],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>创建你的css文件</strong><br>创建一个css文件，位置随意，比如src/style.css,并且将内容修改为如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;* .&#x2F;你的css文件夹&#x2F;styles.css *&#x2F;</span><br><span class="line">@tailwind base;</span><br><span class="line">@tailwind components;</span><br><span class="line">@tailwind utilities;</span><br></pre></td></tr></table></figure>
-
-<p><strong>创建构建命令</strong><br>现在打开 package.json 文件，添加以下运行脚本：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;build&quot;: &quot;postcss src&#x2F;style.css -o dist&#x2F;tailwind.css&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这个构建的css文件就是你最终使用的css文件。<br>现在，从命令行运行 <code>npm run build</code> 将构建最终的CSS文件。</p>
-<p>生成的文件位于 <code>dist/tailwind.css</code> （您可以在上面的命令中更改位置）。</p>
-<p>然后在你的html文件中引用这个css文件就可以。</p>
-<p><strong>更改文件后自动重新生成CSS</strong><br>如果你想要每次修改文件后，自动重新生成一下css文件，比如你在style.css里自定义了一个组件，并且希望实时生效，那么就需要用到监听。<br>现在打开 package.json 文件，添加以下运行脚本：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;watch&quot;: &quot;postcss build src&#x2F;css&#x2F;tailwind.css -o dist&#x2F;css&#x2F;tailwind.css --watch&quot;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>现在 package.json 文件的脚本部分变成了这样：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">   &quot;build&quot;: &quot;tailwindcss build src&#x2F;css&#x2F;tailwind.css -o dist&#x2F;css&#x2F;tailwind.css&quot;,</span><br><span class="line">   &quot;watch&quot;: &quot;postcss build src&#x2F;css&#x2F;tailwind.css -o dist&#x2F;css&#x2F;tailwind.css --watch&quot;,</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
-<p>这时候只要运行npm run watch就可以自动监听你的页面改动.</p>
-<blockquote>
-<p>babel 简单来说把 JavaScript 中 es2015/2016/2017/2046 的新语法转化为 es5，让低端运行环境(如浏览器和 node )能够认识并执行</p>
-</blockquote>
+<p><img src="/assets/blogImg/vim/1.png" alt="ico原来的样子"></p>
 ]]></content>
       <tags>
-        <tag>Tailwind-CSS</tag>
+        <tag>vim</tag>
       </tags>
   </entry>
   <entry>
-    <title>使用git 与github友好交流</title>
-    <url>/2017/08/11/%E4%BD%BF%E7%94%A8git-%E4%B8%8Egithub%E5%8F%8B%E5%A5%BD%E4%BA%A4%E6%B5%81/</url>
-    <content><![CDATA[<p>##<strong>本文主要介绍window 端Git 与github友好交流</strong></p>
-<blockquote>
-<p>1、安装window版（32/64）git。 window端安装过程无脑略过—— </p>
-</blockquote>
+    <title>发布Laravel扩展包mqtt</title>
+    <url>/2021/02/01/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85mqtt/</url>
+    <content><![CDATA[<p><strong>发布Laravel扩展包mqtt</strong> </p>
 <a id="more"></a>
 
-
-<p>2、本文默认github已注册并添加过 ssh key<br>3、github上新建仓库<br>git add / add *<br>git commit -m<br>git remote add origin <a href="http://xxxx.github.io/">http://xxxx.github.io</a><br>git push -u origin master<br>git pull<br>git rm -r xxx<br>git commit -m ‘’<br>git push -u origin master<br>git  –version</p>
+<p>一、编写扩展包</p>
+<blockquote>
+<p><a href="http://baishunhua.com/2018/12/04/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85larapay/" target="_blank">[ 参考文章 ]</a></p>
+</blockquote>
+<p>二、Github地址</p>
+<blockquote>
+<p><a href="https://github.com/shunhua/mqtt" target="_blank">[ mqtt ]</a></p>
+</blockquote>
+<p>三、Packagist地址</p>
+<blockquote>
+<p><a href="https://packagist.org/packages/shunhua/laravel-mqtt" target="_blank">[ Packagist ]</a></p>
+</blockquote>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p> 目前 tags 为 v1.0</p>
+</blockquote>
 ]]></content>
       <tags>
-        <tag>git</tag>
-        <tag>github</tag>
+        <tag>laravel</tag>
+        <tag>composer</tag>
+        <tag>mqtt</tag>
       </tags>
   </entry>
   <entry>
@@ -3507,69 +3486,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>laravel</tag>
         <tag>composer - 扩展包</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>发布Laravel扩展包mqtt</title>
-    <url>/2021/02/01/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85mqtt/</url>
-    <content><![CDATA[<p><strong>发布Laravel扩展包mqtt</strong> </p>
-<a id="more"></a>
-
-<p>一、编写扩展包</p>
-<blockquote>
-<p><a href="http://baishunhua.com/2018/12/04/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85larapay/" target="_blank">[ 参考文章 ]</a></p>
-</blockquote>
-<p>二、Github地址</p>
-<blockquote>
-<p><a href="https://github.com/shunhua/mqtt" target="_blank">[ mqtt ]</a></p>
-</blockquote>
-<p>三、Packagist地址</p>
-<blockquote>
-<p><a href="https://packagist.org/packages/shunhua/laravel-mqtt" target="_blank">[ Packagist ]</a></p>
-</blockquote>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p> 目前 tags 为 v1.0</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>laravel</tag>
-        <tag>composer</tag>
-        <tag>mqtt</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>实现在Safari一键复制</title>
-    <url>/2018/10/27/%E5%AE%9E%E7%8E%B0%E5%9C%A8Safari%E4%B8%80%E9%94%AE%E5%A4%8D%E5%88%B6/</url>
-    <content><![CDATA[<p><strong>实现在Safari一键复制</strong></p>
-<a id="more"></a>
-
-<p>参考文档 <a href="https://github.com/zenorocha/clipboard.js" target="_blank">[ clipboard.js ]</a></p>
-<blockquote>
-<p>传统复制code</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var Url2&#x3D;document.getElementById(&quot;copy-text&quot;);</span><br><span class="line">Url2.select(); &#x2F;&#x2F; 选择对象</span><br><span class="line">document.execCommand(&quot;Copy&quot;); &#x2F;&#x2F; 执行浏览器复制命令</span><br><span class="line">Message.success(&#39;复制成功&#39;);</span><br></pre></td></tr></table></figure>
-<p>这种复制方式在苹果手机和safari上失效</p>
-<blockquote>
-<p>使用 clipboard.js</p>
-</blockquote>
-<p>CDN Providers</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">jsDelivr</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;clipboard@2&#x2F;dist&#x2F;clipboard.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">cdnjs</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdnjs.cloudflare.com&#x2F;ajax&#x2F;libs&#x2F;clipboard.js&#x2F;2.0.0&#x2F;clipboard.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>html code</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;button class&#x3D;&quot;fuzhi&quot; data-clipboard-demo data-clipboard-action&#x3D;&quot;copy&quot; data-clipboard-text&#x3D;&quot;&#123;&#123;$qr_code&#125;&#125;&quot;  onclick&#x3D;&quot;copyContent();&quot;&gt; 点击复制 &lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
-
-<p>js code</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var clipboard &#x3D; new ClipboardJS(&#39;.fuzhi&#39;);</span><br><span class="line">clipboard.on(&#39;success&#39;, function(e) &#123;</span><br><span class="line">    e.clearSelection();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <tags>
-        <tag>Safari</tag>
-        <tag>Copy</tag>
       </tags>
   </entry>
   <entry>
@@ -3625,6 +3541,38 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>实现在Safari一键复制</title>
+    <url>/2018/10/27/%E5%AE%9E%E7%8E%B0%E5%9C%A8Safari%E4%B8%80%E9%94%AE%E5%A4%8D%E5%88%B6/</url>
+    <content><![CDATA[<p><strong>实现在Safari一键复制</strong></p>
+<a id="more"></a>
+
+<p>参考文档 <a href="https://github.com/zenorocha/clipboard.js" target="_blank">[ clipboard.js ]</a></p>
+<blockquote>
+<p>传统复制code</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var Url2&#x3D;document.getElementById(&quot;copy-text&quot;);</span><br><span class="line">Url2.select(); &#x2F;&#x2F; 选择对象</span><br><span class="line">document.execCommand(&quot;Copy&quot;); &#x2F;&#x2F; 执行浏览器复制命令</span><br><span class="line">Message.success(&#39;复制成功&#39;);</span><br></pre></td></tr></table></figure>
+<p>这种复制方式在苹果手机和safari上失效</p>
+<blockquote>
+<p>使用 clipboard.js</p>
+</blockquote>
+<p>CDN Providers</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">jsDelivr</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;clipboard@2&#x2F;dist&#x2F;clipboard.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">cdnjs</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdnjs.cloudflare.com&#x2F;ajax&#x2F;libs&#x2F;clipboard.js&#x2F;2.0.0&#x2F;clipboard.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>html code</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;button class&#x3D;&quot;fuzhi&quot; data-clipboard-demo data-clipboard-action&#x3D;&quot;copy&quot; data-clipboard-text&#x3D;&quot;&#123;&#123;$qr_code&#125;&#125;&quot;  onclick&#x3D;&quot;copyContent();&quot;&gt; 点击复制 &lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
+
+<p>js code</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var clipboard &#x3D; new ClipboardJS(&#39;.fuzhi&#39;);</span><br><span class="line">clipboard.on(&#39;success&#39;, function(e) &#123;</span><br><span class="line">    e.clearSelection();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <tags>
+        <tag>Safari</tag>
+        <tag>Copy</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>开源项目及部署工具</title>
     <url>/2021/10/19/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E5%8F%8A%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/diary-6.jpg" alt="开源项目"></p>
@@ -3667,6 +3615,58 @@ class QuotesSpider(scrapy.Spider):
         <tag>php</tag>
         <tag>golang</tag>
         <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用Tailwind CSS新建一个项目</title>
+    <url>/2021/11/18/%E4%BD%BF%E7%94%A8Tailwind-CSS%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/tailwindcss.png" alt="tailwindcss"></p>
+<a id="more"></a>
+
+<p>中文官网： <a href="https://www.tailwindcss.cn/" target="_blank">[ Tailwind-CSS中文官网 ]</a><br>Github地址： <a href="https://github.com/tailwindlabs/tailwindcss" target="_blank">[ Github ]</a><br><strong>安装PostCSS</strong><br>新建一个项目目录，然后在根目录运行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm i --save-dev postcss-cli</span><br></pre></td></tr></table></figure>
+
+<p>了解Sass，Less，Stylus等css 预处理器区别及使用、了解Just-In-Time(Jit)即时动态编译<br><strong>安装Tailwind CSS以及相关依赖</strong></p>
+<blockquote>
+<p>npm install tailwindcss@latest postcss@latest autoprefixer@latest</p>
+</blockquote>
+<p><strong>添加Tailwind作为PostCSS插件</strong><br>在根目录新建一个postcss配置文件postcss.config.js,并且将文件内容修改为以下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; postcss.config.js</span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  plugins: &#123;</span><br><span class="line">    tailwindcss: &#123;&#125;,</span><br><span class="line">    autoprefixer: &#123;&#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>创建您的配置文件</strong><br>运行以下命令</p>
+<blockquote>
+<p>npm init -y</p>
+</blockquote>
+<p><strong>安装PostCSS</strong><br>新建一个项目目录，然后在根目录运行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm i --save-dev postcss-cli</span><br></pre></td></tr></table></figure>
+
+<p>这会在根目录下生成一个package.json文件。<br>继续运行</p>
+<blockquote>
+<p>npx tailwindcss init</p>
+</blockquote>
+<p>这会在你的项目根目录创建一个tailwind.config.js文件，将内容修改为以下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; tailwind.config.js</span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  purge: [],</span><br><span class="line">  darkMode: false, &#x2F;&#x2F; or &#39;media&#39; or &#39;class&#39;</span><br><span class="line">  theme: &#123;</span><br><span class="line">    extend: &#123;&#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  variants: &#123;&#125;,</span><br><span class="line">  plugins: [],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>创建你的css文件</strong><br>创建一个css文件，位置随意，比如src/style.css,并且将内容修改为如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;* .&#x2F;你的css文件夹&#x2F;styles.css *&#x2F;</span><br><span class="line">@tailwind base;</span><br><span class="line">@tailwind components;</span><br><span class="line">@tailwind utilities;</span><br></pre></td></tr></table></figure>
+
+<p><strong>创建构建命令</strong><br>现在打开 package.json 文件，添加以下运行脚本：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;build&quot;: &quot;postcss src&#x2F;style.css -o dist&#x2F;tailwind.css&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个构建的css文件就是你最终使用的css文件。<br>现在，从命令行运行 <code>npm run build</code> 将构建最终的CSS文件。</p>
+<p>生成的文件位于 <code>dist/tailwind.css</code> （您可以在上面的命令中更改位置）。</p>
+<p>然后在你的html文件中引用这个css文件就可以。</p>
+<p><strong>更改文件后自动重新生成CSS</strong><br>如果你想要每次修改文件后，自动重新生成一下css文件，比如你在style.css里自定义了一个组件，并且希望实时生效，那么就需要用到监听。<br>现在打开 package.json 文件，添加以下运行脚本：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;watch&quot;: &quot;postcss build src&#x2F;css&#x2F;tailwind.css -o dist&#x2F;css&#x2F;tailwind.css --watch&quot;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在 package.json 文件的脚本部分变成了这样：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">   &quot;build&quot;: &quot;tailwindcss build src&#x2F;css&#x2F;tailwind.css -o dist&#x2F;css&#x2F;tailwind.css&quot;,</span><br><span class="line">   &quot;watch&quot;: &quot;postcss build src&#x2F;css&#x2F;tailwind.css -o dist&#x2F;css&#x2F;tailwind.css --watch&quot;,</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+<p>这时候只要运行npm run watch就可以自动监听你的页面改动.</p>
+<blockquote>
+<p>babel 简单来说把 JavaScript 中 es2015/2016/2017/2046 的新语法转化为 es5，让低端运行环境(如浏览器和 node )能够认识并执行</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Tailwind-CSS</tag>
       </tags>
   </entry>
   <entry>
@@ -3720,6 +3720,31 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>界面化管理部署DNMP</title>
+    <url>/2021/01/21/%E7%95%8C%E9%9D%A2%E5%8C%96%E7%AE%A1%E7%90%86%E9%83%A8%E7%BD%B2DNMP/</url>
+    <content><![CDATA[<p><strong>界面化管理部署DNMP</strong></p>
+<a id="more"></a>
+
+<p>github: <a href="https://github.com/shunhua/dnmp" target="_blank">[ shunhua/dnmp ]</a></p>
+<blockquote>
+<p>docker-compose up -d</p>
+</blockquote>
+<p>docker 容器启动后 Portainer默认端口：9000</p>
+<blockquote>
+<p>localhost:9000</p>
+</blockquote>
+<p>打开 Portainer, 首次需要创建账户。</p>
+<p>最终效果如下图 :</p>
+<p><img src="/assets/blogImg/p0.png" alt="ico原来的样子"></p>
+<p><img src="/assets/blogImg/p1.png" alt="ico原来的样子"></p>
+<p><img src="/assets/blogImg/p2.png" alt="ico原来的样子"></p>
+]]></content>
+      <tags>
+        <tag>DNMP</tag>
+        <tag>Portainer</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>有赞vantUI step1</title>
     <url>/2018/04/02/%E6%9C%89%E8%B5%9EvantUI-step1/</url>
     <content><![CDATA[<p><strong>有赞vantUI学习 step1</strong></p>
@@ -3761,28 +3786,49 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>界面化管理部署DNMP</title>
-    <url>/2021/01/21/%E7%95%8C%E9%9D%A2%E5%8C%96%E7%AE%A1%E7%90%86%E9%83%A8%E7%BD%B2DNMP/</url>
-    <content><![CDATA[<p><strong>界面化管理部署DNMP</strong></p>
+    <title>连续轮询数组中的元素[s/m/d]</title>
+    <url>/2017/12/27/%E8%BF%9E%E7%BB%AD%E8%BD%AE%E8%AF%A2%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0-s-m-d/</url>
+    <content><![CDATA[<p>##<strong>连续轮询数组中的元素[s/m/d]</strong></p>
 <a id="more"></a>
 
-<p>github: <a href="https://github.com/shunhua/dnmp" target="_blank">[ shunhua/dnmp ]</a></p>
 <blockquote>
-<p>docker-compose up -d</p>
+<p>实现在任何时间段连续轮询出数组中的元素—— </p>
 </blockquote>
-<p>docker 容器启动后 Portainer默认端口：9000</p>
-<blockquote>
-<p>localhost:9000</p>
-</blockquote>
-<p>打开 Portainer, 首次需要创建账户。</p>
-<p>最终效果如下图 :</p>
-<p><img src="/assets/blogImg/p0.png" alt="ico原来的样子"></p>
-<p><img src="/assets/blogImg/p1.png" alt="ico原来的样子"></p>
-<p><img src="/assets/blogImg/p2.png" alt="ico原来的样子"></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">   public $Randomnotify &#x3D; array(</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid1&#39;,&#39;key&#39;&#x3D;&gt;&#39;key1&#39;),</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid2&#39;,&#39;key&#39;&#x3D;&gt;&#39;key2&#39;),</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid3&#39;,&#39;key&#39;&#x3D;&gt;&#39;key3&#39;),</span><br><span class="line">	...</span><br><span class="line">);</span><br><span class="line">public function dataPollingInterval($list,$polling_time&#x3D;&#39;1m&#39;,$polling_number&#x3D;1) &#123;</span><br><span class="line">    &#x2F;&#x2F; 规划轮询间隔时间的参数:</span><br><span class="line">    $interval &#x3D; false;</span><br><span class="line">	&#x2F;&#x2F; 判断$polling_time 的类型是 秒、分、小时、天 中的哪1种。</span><br><span class="line">    $arg &#x3D; array( </span><br><span class="line">        &#39;s&#39;&#x3D;&gt;1,            &#x2F;&#x2F; 秒</span><br><span class="line">        &#39;m&#39;&#x3D;&gt;60,            &#x2F;&#x2F; 分&#x3D; 60 sec</span><br><span class="line">        &#39;h&#39; &#x3D;&gt;3600,        &#x2F;&#x2F; 时&#x3D; 3600 sec</span><br><span class="line">        &#39;d&#39; &#x3D;&gt; 86400,    &#x2F;&#x2F; 天&#x3D; 86400 sec</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 判断间隔时间的类型，并计算间隔时间</span><br><span class="line">    foreach ($arg as $k &#x3D;&gt; $v) &#123;</span><br><span class="line">        if (false!&#x3D;&#x3D; stripos($polling_time,$k)) &#123;</span><br><span class="line">            $interval &#x3D; intval($polling_time)*$v;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	  &#x2F;&#x2F; 判断间隔时间</span><br><span class="line">    if(!is_int($interval))&#123;  </span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">	&#x2F;&#x2F; 从今年开始的秒数</span><br><span class="line">    $this_year_begin_second &#x3D; strtotime(date(&#39;Y-01-01 01:00:01&#39;, time()));</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 当前秒数 - 今年开始的秒数，得到今年到目前为止的秒数。</span><br><span class="line">    $polling_time &#x3D; time()-$this_year_begin_second;</span><br><span class="line">	</span><br><span class="line">    &#x2F;&#x2F; 从今年到目前为止的秒数，计算得到当前轮数</span><br><span class="line">    $len &#x3D; count($list); &#x2F;&#x2F; 总长度</span><br><span class="line">    $start_index &#x3D; intval($polling_time&#x2F;$interval);</span><br><span class="line">    $start_index &#x3D; $polling_number*$start_index%$len; &#x2F;&#x2F; 轮排数量 * 轮数 , 取余 总数量。</span><br><span class="line">	$res &#x3D; array();</span><br><span class="line">    &#x2F;&#x2F; 将轮数 指向到数组的索引，然后从这个索引开始接着往下循环遍历。</span><br><span class="line">    for ($i&#x3D;0; $i&lt;$len; ++$i) &#123;</span><br><span class="line">        $index&#x3D;$i+$start_index; &#x2F;&#x2F; 索引的变化是根据时间来变</span><br><span class="line">        if ($index&gt;&#x3D;$len) &#123;</span><br><span class="line">            $index&#x3D;$index-$len ;</span><br><span class="line">        &#125;</span><br><span class="line">        $res[]&#x3D;$list[$index]; &#x2F;&#x2F; 存入结果</span><br><span class="line">    &#125;</span><br><span class="line">    return $res[0];</span><br><span class="line">&#125;  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
-        <tag>DNMP</tag>
-        <tag>Portainer</tag>
+        <tag>轮询</tag>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>银联电子支付-chinapay</title>
+    <url>/2018/08/01/%E9%93%B6%E8%81%94%E7%94%B5%E5%AD%90%E6%94%AF%E4%BB%98-chinapay/</url>
+    <content><![CDATA[<p><strong>银联电子支付对接流程</strong></p>
+<a id="more"></a>
+
+<blockquote>
+<p> 申请好商户后查看银联邮件 </p>
+</blockquote>
+<p><img src="/assets/blogImg/yl1.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 根据邮件中的商户信息登录商户管理系统</p>
+</blockquote>
+<p>证书操作参考 邮件中的《企业门户控台证书申请操作指引.docx》</p>
+<p><img src="/assets/blogImg/yl2.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 登录商户管理系统后申请交易证书</p>
+</blockquote>
+<p><img src="/assets/blogImg/yl3.png" alt="ico原来的样子"></p>
+<p>交易证书申请成功之后，激活证书，根据证书文档 导出交易证书私钥</p>
+<blockquote>
+<p> 下载sdk及配置证书路径</p>
+</blockquote>
+<p><img src="/assets/blogImg/yl4.png" alt="ico原来的样子"></p>
+]]></content>
+      <tags>
+        <tag>Chinapay</tag>
+        <tag>银联电子</tag>
       </tags>
   </entry>
   <entry>
@@ -3868,52 +3914,6 @@ class QuotesSpider(scrapy.Spider):
         <tag>php</tag>
         <tag>laravel5.x</tag>
         <tag>公众号</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>连续轮询数组中的元素[s/m/d]</title>
-    <url>/2017/12/27/%E8%BF%9E%E7%BB%AD%E8%BD%AE%E8%AF%A2%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0-s-m-d/</url>
-    <content><![CDATA[<p>##<strong>连续轮询数组中的元素[s/m/d]</strong></p>
-<a id="more"></a>
-
-<blockquote>
-<p>实现在任何时间段连续轮询出数组中的元素—— </p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">   public $Randomnotify &#x3D; array(</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid1&#39;,&#39;key&#39;&#x3D;&gt;&#39;key1&#39;),</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid2&#39;,&#39;key&#39;&#x3D;&gt;&#39;key2&#39;),</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid3&#39;,&#39;key&#39;&#x3D;&gt;&#39;key3&#39;),</span><br><span class="line">	...</span><br><span class="line">);</span><br><span class="line">public function dataPollingInterval($list,$polling_time&#x3D;&#39;1m&#39;,$polling_number&#x3D;1) &#123;</span><br><span class="line">    &#x2F;&#x2F; 规划轮询间隔时间的参数:</span><br><span class="line">    $interval &#x3D; false;</span><br><span class="line">	&#x2F;&#x2F; 判断$polling_time 的类型是 秒、分、小时、天 中的哪1种。</span><br><span class="line">    $arg &#x3D; array( </span><br><span class="line">        &#39;s&#39;&#x3D;&gt;1,            &#x2F;&#x2F; 秒</span><br><span class="line">        &#39;m&#39;&#x3D;&gt;60,            &#x2F;&#x2F; 分&#x3D; 60 sec</span><br><span class="line">        &#39;h&#39; &#x3D;&gt;3600,        &#x2F;&#x2F; 时&#x3D; 3600 sec</span><br><span class="line">        &#39;d&#39; &#x3D;&gt; 86400,    &#x2F;&#x2F; 天&#x3D; 86400 sec</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 判断间隔时间的类型，并计算间隔时间</span><br><span class="line">    foreach ($arg as $k &#x3D;&gt; $v) &#123;</span><br><span class="line">        if (false!&#x3D;&#x3D; stripos($polling_time,$k)) &#123;</span><br><span class="line">            $interval &#x3D; intval($polling_time)*$v;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	  &#x2F;&#x2F; 判断间隔时间</span><br><span class="line">    if(!is_int($interval))&#123;  </span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">	&#x2F;&#x2F; 从今年开始的秒数</span><br><span class="line">    $this_year_begin_second &#x3D; strtotime(date(&#39;Y-01-01 01:00:01&#39;, time()));</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 当前秒数 - 今年开始的秒数，得到今年到目前为止的秒数。</span><br><span class="line">    $polling_time &#x3D; time()-$this_year_begin_second;</span><br><span class="line">	</span><br><span class="line">    &#x2F;&#x2F; 从今年到目前为止的秒数，计算得到当前轮数</span><br><span class="line">    $len &#x3D; count($list); &#x2F;&#x2F; 总长度</span><br><span class="line">    $start_index &#x3D; intval($polling_time&#x2F;$interval);</span><br><span class="line">    $start_index &#x3D; $polling_number*$start_index%$len; &#x2F;&#x2F; 轮排数量 * 轮数 , 取余 总数量。</span><br><span class="line">	$res &#x3D; array();</span><br><span class="line">    &#x2F;&#x2F; 将轮数 指向到数组的索引，然后从这个索引开始接着往下循环遍历。</span><br><span class="line">    for ($i&#x3D;0; $i&lt;$len; ++$i) &#123;</span><br><span class="line">        $index&#x3D;$i+$start_index; &#x2F;&#x2F; 索引的变化是根据时间来变</span><br><span class="line">        if ($index&gt;&#x3D;$len) &#123;</span><br><span class="line">            $index&#x3D;$index-$len ;</span><br><span class="line">        &#125;</span><br><span class="line">        $res[]&#x3D;$list[$index]; &#x2F;&#x2F; 存入结果</span><br><span class="line">    &#125;</span><br><span class="line">    return $res[0];</span><br><span class="line">&#125;  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>轮询</tag>
-        <tag>数组</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>银联电子支付-chinapay</title>
-    <url>/2018/08/01/%E9%93%B6%E8%81%94%E7%94%B5%E5%AD%90%E6%94%AF%E4%BB%98-chinapay/</url>
-    <content><![CDATA[<p><strong>银联电子支付对接流程</strong></p>
-<a id="more"></a>
-
-<blockquote>
-<p> 申请好商户后查看银联邮件 </p>
-</blockquote>
-<p><img src="/assets/blogImg/yl1.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 根据邮件中的商户信息登录商户管理系统</p>
-</blockquote>
-<p>证书操作参考 邮件中的《企业门户控台证书申请操作指引.docx》</p>
-<p><img src="/assets/blogImg/yl2.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 登录商户管理系统后申请交易证书</p>
-</blockquote>
-<p><img src="/assets/blogImg/yl3.png" alt="ico原来的样子"></p>
-<p>交易证书申请成功之后，激活证书，根据证书文档 导出交易证书私钥</p>
-<blockquote>
-<p> 下载sdk及配置证书路径</p>
-</blockquote>
-<p><img src="/assets/blogImg/yl4.png" alt="ico原来的样子"></p>
-]]></content>
-      <tags>
-        <tag>Chinapay</tag>
-        <tag>银联电子</tag>
       </tags>
   </entry>
 </search>
