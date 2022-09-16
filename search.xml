@@ -125,7 +125,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#x40;&#113;&#x71;&#46;&#x63;&#111;&#109;">&#x78;&#x40;&#113;&#x71;&#46;&#x63;&#111;&#109;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#x40;&#113;&#x71;&#x2e;&#99;&#x6f;&#x6d;">&#x78;&#x40;&#113;&#x71;&#x2e;&#99;&#x6f;&#x6d;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -136,7 +136,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#98;&#64;&#113;&#113;&#x2e;&#99;&#111;&#x6d;">&#98;&#64;&#113;&#113;&#x2e;&#99;&#111;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#x40;&#x71;&#113;&#x2e;&#99;&#111;&#109;">&#x62;&#x40;&#x71;&#113;&#x2e;&#99;&#111;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -168,6 +168,39 @@
       <tags>
         <tag>CentOS 7</tag>
         <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS 7 安装 Nginx 1.11.x</title>
+    <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/</url>
+    <content><![CDATA[<p><strong>Centos下安装Nginx</strong> </p>
+<a id="more"></a>
+
+<p>一、准备工作 安装必备工具</p>
+<blockquote>
+<p>yum install -y gcc gcc-c++ autoconf automake<br>yum install -y zlib zlib-devel openssl openssl-devel pcre-devel</p>
+</blockquote>
+<p>不安装这些依赖库，后面编译的时候会报错，当然你的系统已经有这些包可以跳过。<br>pcre：用来作地址重写的功能。<br>zlib：nginx 的gzip模块,传输数据打包，省流量（但消耗资源）。<br>openssl：提供ssl加密协议。</p>
+<p>二、添加nginx用户</p>
+<blockquote>
+<p>/usr/sbin/groupadd -f www<br>/usr/sbin/useradd -g www www</p>
+</blockquote>
+<p>三、nginx文件准备及编译</p>
+<blockquote>
+<p>wget <a href="http://nginx.org/download/nginx-1.11.4.tar.gz">http://nginx.org/download/nginx-1.11.4.tar.gz</a><br>tar -zxvf nginx-1.11.4.tar.gz<br>cd nginx-1.11.4/<br>./configure –user=www –group=www<br>make &amp;&amp; make install</p>
+</blockquote>
+<p>四、开始firewall端口服务</p>
+<blockquote>
+<p>firewall-cmd  –permanent –zone=public –add-service=http<br>firewall-cmd  –reload</p>
+</blockquote>
+<p>常用命令</p>
+<blockquote>
+<p>/usr/local/nginx/sbin/nginx -s reload<br>/usr/local/nginx/sbin/nginx -s stop<br>/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Centos</tag>
+        <tag>Nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -295,39 +328,6 @@
       </tags>
   </entry>
   <entry>
-    <title>CentOS 7 安装 Nginx 1.11.x</title>
-    <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/</url>
-    <content><![CDATA[<p><strong>Centos下安装Nginx</strong> </p>
-<a id="more"></a>
-
-<p>一、准备工作 安装必备工具</p>
-<blockquote>
-<p>yum install -y gcc gcc-c++ autoconf automake<br>yum install -y zlib zlib-devel openssl openssl-devel pcre-devel</p>
-</blockquote>
-<p>不安装这些依赖库，后面编译的时候会报错，当然你的系统已经有这些包可以跳过。<br>pcre：用来作地址重写的功能。<br>zlib：nginx 的gzip模块,传输数据打包，省流量（但消耗资源）。<br>openssl：提供ssl加密协议。</p>
-<p>二、添加nginx用户</p>
-<blockquote>
-<p>/usr/sbin/groupadd -f www<br>/usr/sbin/useradd -g www www</p>
-</blockquote>
-<p>三、nginx文件准备及编译</p>
-<blockquote>
-<p>wget <a href="http://nginx.org/download/nginx-1.11.4.tar.gz">http://nginx.org/download/nginx-1.11.4.tar.gz</a><br>tar -zxvf nginx-1.11.4.tar.gz<br>cd nginx-1.11.4/<br>./configure –user=www –group=www<br>make &amp;&amp; make install</p>
-</blockquote>
-<p>四、开始firewall端口服务</p>
-<blockquote>
-<p>firewall-cmd  –permanent –zone=public –add-service=http<br>firewall-cmd  –reload</p>
-</blockquote>
-<p>常用命令</p>
-<blockquote>
-<p>/usr/local/nginx/sbin/nginx -s reload<br>/usr/local/nginx/sbin/nginx -s stop<br>/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Centos</tag>
-        <tag>Nginx</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Centos下两种守护进程的配置</title>
     <url>/2018/03/21/Centos%E4%B8%8B%E4%B8%A4%E7%A7%8D%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E7%9A%84%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<a id="more"></a>
@@ -345,6 +345,79 @@
 ]]></content>
       <tags>
         <tag>Centos</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Centos7下基于laradock部署laravel5.x</title>
+    <url>/2018/04/09/Centos7%E4%B8%8B%E5%9F%BA%E4%BA%8Elaradock%E9%83%A8%E7%BD%B2laravel5-x/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>一、安装docker</strong></p>
+<p>Go to：<a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/" target="_blank">[ .rpm安装路径 ]</a> <a href="https://docs.docker.com/engine/installation/linux/docker-ce/centos/#install-using-the-repository" target="_blank">[ 官方参考 ]</a><br><img src="/assets/blogImg/laradock/1.png" alt="ico原来的样子"></p>
+<p>打开路径地址，本文默认安装选择最新版，<br><img src="/assets/blogImg/laradock/2.png" alt="ico原来的样子"><br>下载rpm安装包</p>
+<blockquote>
+<p> wget <a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm">https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm</a></p>
+</blockquote>
+<p>安装 Docker CE,执行命令</p>
+<blockquote>
+<p> $ sudo yum install docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm<br>或者 yum install /path/to/package.rpm  </p>
+</blockquote>
+<p>启动docker –hello[docker run hello-world]</p>
+<blockquote>
+<p> systemctl start docker<br>systemctl enable docker 开机启动</p>
+</blockquote>
+<p><strong>二、CentOS 7配置中国镜像</strong></p>
+<p><a href="https://yq.aliyun.com/articles/29941" target="_blank">[ 参考配置原文 ]</a> docker –registry-mirror=<a href="https://registry.docker-cn.com/">https://registry.docker-cn.com</a> daemon [提示找不到registry]</p>
+<ul>
+<li>CentOS的配置方式略微复杂，需要先将默认的配置文件复制出来</li>
+<li>/lib/systemd/system/docker.service -&gt; /etc/systemd/system/docker.service</li>
+<li>然后再将加速器地址添加到配置文件的启动命令</li>
+<li>重启Docker就可以了。</li>
+</ul>
+<blockquote>
+<ul>
+<li>sudo cp -n /lib/systemd/system/docker.service /etc/systemd/system/docker.service</li>
+<li>sudo sed -i “s|ExecStart=/usr/bin/docker daemon|ExecStart=/usr/bin/docker daemon –registry-mirror=<a href="https://registry.docker-cn.com|g&quot;/">https://registry.docker-cn.com|g&quot;</a> /etc/systemd/system/docker.service</li>
+<li>sudo sed -i “s|ExecStart=/usr/bin/dockerd|ExecStart=/usr/bin/dockerd –registry-mirror=<a href="https://registry.docker-cn.com|g&quot;/">https://registry.docker-cn.com|g&quot;</a> /etc/systemd/system/docker.service</li>
+<li>sudo systemctl daemon-reload</li>
+<li>sudo systemctl restart docker  </li>
+</ul>
+</blockquote>
+<p>docker 安装完成！！！</p>
+<p><strong>三、拉取 Laradock</strong></p>
+<ul>
+<li>目录路径[/home/]</li>
+<li>git clone <a href="https://github.com/Laradock/laradock.git">https://github.com/Laradock/laradock.git</a>  </li>
+<li>cp env-example .env </li>
+<li>docker-compose up -d nginx mysql phpmyadmin</li>
+<li>访问phpmyadmin[<a href="http://ip:8080/]%E9%BB%98%E8%AE%A4%E5%80%BC%E4%B8%BA">http://ip:8080/]默认值为</a>  服务器[mysql] 账号[root] 密码[root]</li>
+<li>获取laradock[/home/laradock]后 在同级下创建项目目录[/home/www]</li>
+<li>修改[/home/laradock/.env]APPLICATION=../www/</li>
+<li>[/home/laradock]下使用root用户docker-compose exec workspace bash</li>
+<li>[/home/laradock]下使用laradock用户  docker-compose exec –user=laradock workspace bash</li>
+<li>配置中国镜像 composer config -g repo.packagist composer <a href="https://packagist.phpcomposer.com/">https://packagist.phpcomposer.com</a></li>
+<li>创建laravel composer create-project laravel/laravel my-app</li>
+</ul>
+<blockquote>
+<p> 安装SVN 配置钩子文件到 [/home/www]  </p>
+</blockquote>
+<p><a href="https://lisonghe.com/detail/19" target="_blank">[ svn安装文档参考 ]</a> </p>
+<blockquote>
+<p> 安装SVN成功后,服务器开启端口权限，上传代码,修改数据库配置，导入数据库</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>laradock</tag>
+        <tag>centos7</tag>
+        <tag>laravel5</tag>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -860,79 +933,6 @@
         <tag>laravel5.7</tag>
         <tag>Redis</tag>
         <tag>广播</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Centos7下基于laradock部署laravel5.x</title>
-    <url>/2018/04/09/Centos7%E4%B8%8B%E5%9F%BA%E4%BA%8Elaradock%E9%83%A8%E7%BD%B2laravel5-x/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>一、安装docker</strong></p>
-<p>Go to：<a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/" target="_blank">[ .rpm安装路径 ]</a> <a href="https://docs.docker.com/engine/installation/linux/docker-ce/centos/#install-using-the-repository" target="_blank">[ 官方参考 ]</a><br><img src="/assets/blogImg/laradock/1.png" alt="ico原来的样子"></p>
-<p>打开路径地址，本文默认安装选择最新版，<br><img src="/assets/blogImg/laradock/2.png" alt="ico原来的样子"><br>下载rpm安装包</p>
-<blockquote>
-<p> wget <a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm">https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm</a></p>
-</blockquote>
-<p>安装 Docker CE,执行命令</p>
-<blockquote>
-<p> $ sudo yum install docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm<br>或者 yum install /path/to/package.rpm  </p>
-</blockquote>
-<p>启动docker –hello[docker run hello-world]</p>
-<blockquote>
-<p> systemctl start docker<br>systemctl enable docker 开机启动</p>
-</blockquote>
-<p><strong>二、CentOS 7配置中国镜像</strong></p>
-<p><a href="https://yq.aliyun.com/articles/29941" target="_blank">[ 参考配置原文 ]</a> docker –registry-mirror=<a href="https://registry.docker-cn.com/">https://registry.docker-cn.com</a> daemon [提示找不到registry]</p>
-<ul>
-<li>CentOS的配置方式略微复杂，需要先将默认的配置文件复制出来</li>
-<li>/lib/systemd/system/docker.service -&gt; /etc/systemd/system/docker.service</li>
-<li>然后再将加速器地址添加到配置文件的启动命令</li>
-<li>重启Docker就可以了。</li>
-</ul>
-<blockquote>
-<ul>
-<li>sudo cp -n /lib/systemd/system/docker.service /etc/systemd/system/docker.service</li>
-<li>sudo sed -i “s|ExecStart=/usr/bin/docker daemon|ExecStart=/usr/bin/docker daemon –registry-mirror=<a href="https://registry.docker-cn.com|g&quot;/">https://registry.docker-cn.com|g&quot;</a> /etc/systemd/system/docker.service</li>
-<li>sudo sed -i “s|ExecStart=/usr/bin/dockerd|ExecStart=/usr/bin/dockerd –registry-mirror=<a href="https://registry.docker-cn.com|g&quot;/">https://registry.docker-cn.com|g&quot;</a> /etc/systemd/system/docker.service</li>
-<li>sudo systemctl daemon-reload</li>
-<li>sudo systemctl restart docker  </li>
-</ul>
-</blockquote>
-<p>docker 安装完成！！！</p>
-<p><strong>三、拉取 Laradock</strong></p>
-<ul>
-<li>目录路径[/home/]</li>
-<li>git clone <a href="https://github.com/Laradock/laradock.git">https://github.com/Laradock/laradock.git</a>  </li>
-<li>cp env-example .env </li>
-<li>docker-compose up -d nginx mysql phpmyadmin</li>
-<li>访问phpmyadmin[<a href="http://ip:8080/]%E9%BB%98%E8%AE%A4%E5%80%BC%E4%B8%BA">http://ip:8080/]默认值为</a>  服务器[mysql] 账号[root] 密码[root]</li>
-<li>获取laradock[/home/laradock]后 在同级下创建项目目录[/home/www]</li>
-<li>修改[/home/laradock/.env]APPLICATION=../www/</li>
-<li>[/home/laradock]下使用root用户docker-compose exec workspace bash</li>
-<li>[/home/laradock]下使用laradock用户  docker-compose exec –user=laradock workspace bash</li>
-<li>配置中国镜像 composer config -g repo.packagist composer <a href="https://packagist.phpcomposer.com/">https://packagist.phpcomposer.com</a></li>
-<li>创建laravel composer create-project laravel/laravel my-app</li>
-</ul>
-<blockquote>
-<p> 安装SVN 配置钩子文件到 [/home/www]  </p>
-</blockquote>
-<p><a href="https://lisonghe.com/detail/19" target="_blank">[ svn安装文档参考 ]</a> </p>
-<blockquote>
-<p> 安装SVN成功后,服务器开启端口权限，上传代码,修改数据库配置，导入数据库</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>laradock</tag>
-        <tag>centos7</tag>
-        <tag>laravel5</tag>
-        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -2255,7 +2255,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#103;&#x69;&#x74;&#64;&#x67;&#105;&#x74;&#x68;&#117;&#98;&#46;&#x63;&#111;&#109;">&#103;&#x69;&#x74;&#64;&#x67;&#105;&#x74;&#x68;&#117;&#98;&#46;&#x63;&#111;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#x67;&#x69;&#x74;&#64;&#103;&#x69;&#x74;&#104;&#117;&#x62;&#x2e;&#99;&#111;&#109;">&#x67;&#x69;&#x74;&#64;&#103;&#x69;&#x74;&#104;&#117;&#x62;&#x2e;&#99;&#111;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -2613,6 +2613,42 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>laravel5.3使用队列</title>
+    <url>/2017/09/14/laravel5-3%E4%BD%BF%E7%94%A8%E9%98%9F%E5%88%97/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<ul>
+<li><strong>驱动预备知识</strong></li>
+</ul>
+<blockquote>
+<p> 要使用 database 队列驱动，你需要数据表保存任务信息。要生成创建这些表的迁移，可以运行 Artisan 命令 queue:table，迁移被创建之后，可以使用 migrate 命令生成这些表<br>php artisan queue:table<br>php artisan migrate</p>
+</blockquote>
+<ul>
+<li><strong>创建任务</strong></li>
+</ul>
+<blockquote>
+<p>通常，所有的任务类都保存在 app/Jobs 目录.如果 app/Jobs 不存在，在运行 Artisan 命令 make:job 的时候，它将会自动创建。你可以通过 Artisan CLI 来生成队列任务类：<br>php artisan make:job SendReminderEmail[名称]</p>
+</blockquote>
+<ul>
+<li><strong>延时分发</strong></li>
+</ul>
+<blockquote>
+<p>   $job = (new ProcessPodcast($pocast))<br>   -&gt;delay(Carbon::now()-&gt;addMinutes(10));<br>   dispatch($job);</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>当修改变更队列程序后，需要重启队列<br>php artisan queue:restart</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>laravel5.3</tag>
+        <tag>queue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>laravel 微信公众号项目修改兼容web端</title>
     <url>/2017/08/30/laravel-%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E9%A1%B9%E7%9B%AE%E4%BF%AE%E6%94%B9%E5%85%BC%E5%AE%B9web%E7%AB%AF/</url>
     <content><![CDATA[<blockquote>
@@ -2648,42 +2684,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>laravel</tag>
         <tag>web-wechat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>laravel5.3使用队列</title>
-    <url>/2017/09/14/laravel5-3%E4%BD%BF%E7%94%A8%E9%98%9F%E5%88%97/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<ul>
-<li><strong>驱动预备知识</strong></li>
-</ul>
-<blockquote>
-<p> 要使用 database 队列驱动，你需要数据表保存任务信息。要生成创建这些表的迁移，可以运行 Artisan 命令 queue:table，迁移被创建之后，可以使用 migrate 命令生成这些表<br>php artisan queue:table<br>php artisan migrate</p>
-</blockquote>
-<ul>
-<li><strong>创建任务</strong></li>
-</ul>
-<blockquote>
-<p>通常，所有的任务类都保存在 app/Jobs 目录.如果 app/Jobs 不存在，在运行 Artisan 命令 make:job 的时候，它将会自动创建。你可以通过 Artisan CLI 来生成队列任务类：<br>php artisan make:job SendReminderEmail[名称]</p>
-</blockquote>
-<ul>
-<li><strong>延时分发</strong></li>
-</ul>
-<blockquote>
-<p>   $job = (new ProcessPodcast($pocast))<br>   -&gt;delay(Carbon::now()-&gt;addMinutes(10));<br>   dispatch($job);</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>当修改变更队列程序后，需要重启队列<br>php artisan queue:restart</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>laravel5.3</tag>
-        <tag>queue</tag>
       </tags>
   </entry>
   <entry>
@@ -3262,7 +3262,7 @@ class QuotesSpider(scrapy.Spider):
 </blockquote>
 <p>二、使用npm下载 web框架express模块</p>
 <blockquote>
-<p>npm install --save <a href="mailto:&#x65;&#x78;&#112;&#x72;&#x65;&#x73;&#x73;&#64;&#52;&#x2e;&#x31;&#x35;&#x2e;&#50;">&#x65;&#x78;&#112;&#x72;&#x65;&#x73;&#x73;&#64;&#52;&#x2e;&#x31;&#x35;&#x2e;&#50;</a></p>
+<p>npm install --save <a href="mailto:&#x65;&#120;&#x70;&#114;&#x65;&#115;&#x73;&#x40;&#x34;&#46;&#49;&#x35;&#46;&#50;">&#x65;&#120;&#x70;&#114;&#x65;&#115;&#x73;&#x40;&#x34;&#46;&#49;&#x35;&#46;&#50;</a></p>
 </blockquote>
 <p>三、使用npm下载socket.io模块</p>
 <blockquote>
@@ -3720,6 +3720,31 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>界面化管理部署DNMP</title>
+    <url>/2021/01/21/%E7%95%8C%E9%9D%A2%E5%8C%96%E7%AE%A1%E7%90%86%E9%83%A8%E7%BD%B2DNMP/</url>
+    <content><![CDATA[<p><strong>界面化管理部署DNMP</strong></p>
+<a id="more"></a>
+
+<p>github: <a href="https://github.com/shunhua/dnmp" target="_blank">[ shunhua/dnmp ]</a></p>
+<blockquote>
+<p>docker-compose up -d</p>
+</blockquote>
+<p>docker 容器启动后 Portainer默认端口：9000</p>
+<blockquote>
+<p>localhost:9000</p>
+</blockquote>
+<p>打开 Portainer, 首次需要创建账户。</p>
+<p>最终效果如下图 :</p>
+<p><img src="/assets/blogImg/p0.png" alt="ico原来的样子"></p>
+<p><img src="/assets/blogImg/p1.png" alt="ico原来的样子"></p>
+<p><img src="/assets/blogImg/p2.png" alt="ico原来的样子"></p>
+]]></content>
+      <tags>
+        <tag>DNMP</tag>
+        <tag>Portainer</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>有赞vantUI step1</title>
     <url>/2018/04/02/%E6%9C%89%E8%B5%9EvantUI-step1/</url>
     <content><![CDATA[<p><strong>有赞vantUI学习 step1</strong></p>
@@ -3758,31 +3783,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>vue</tag>
         <tag>vant</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>界面化管理部署DNMP</title>
-    <url>/2021/01/21/%E7%95%8C%E9%9D%A2%E5%8C%96%E7%AE%A1%E7%90%86%E9%83%A8%E7%BD%B2DNMP/</url>
-    <content><![CDATA[<p><strong>界面化管理部署DNMP</strong></p>
-<a id="more"></a>
-
-<p>github: <a href="https://github.com/shunhua/dnmp" target="_blank">[ shunhua/dnmp ]</a></p>
-<blockquote>
-<p>docker-compose up -d</p>
-</blockquote>
-<p>docker 容器启动后 Portainer默认端口：9000</p>
-<blockquote>
-<p>localhost:9000</p>
-</blockquote>
-<p>打开 Portainer, 首次需要创建账户。</p>
-<p>最终效果如下图 :</p>
-<p><img src="/assets/blogImg/p0.png" alt="ico原来的样子"></p>
-<p><img src="/assets/blogImg/p1.png" alt="ico原来的样子"></p>
-<p><img src="/assets/blogImg/p2.png" alt="ico原来的样子"></p>
-]]></content>
-      <tags>
-        <tag>DNMP</tag>
-        <tag>Portainer</tag>
       </tags>
   </entry>
   <entry>
