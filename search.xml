@@ -125,7 +125,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#64;&#x71;&#113;&#x2e;&#99;&#x6f;&#109;">&#120;&#64;&#x71;&#113;&#x2e;&#99;&#x6f;&#109;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#64;&#x71;&#113;&#46;&#x63;&#x6f;&#109;">&#120;&#64;&#x71;&#113;&#46;&#x63;&#x6f;&#109;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -136,7 +136,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#98;&#x40;&#113;&#x71;&#46;&#99;&#111;&#109;">&#98;&#x40;&#113;&#x71;&#46;&#99;&#111;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#64;&#x71;&#x71;&#x2e;&#99;&#111;&#x6d;">&#x62;&#64;&#x71;&#x71;&#x2e;&#99;&#111;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -936,6 +936,57 @@
       </tags>
   </entry>
   <entry>
+    <title>Laravel yansongda/laravel-pay</title>
+    <url>/2018/09/29/Laravel-yansongda-laravel-pay/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p>运行环境:</p>
+</blockquote>
+<ul>
+<li>php &gt;= 7.0</li>
+<li>composer</li>
+<li>laravel || lumen &gt;= 5.1</li>
+</ul>
+<p><strong>一、安装</strong></p>
+<blockquote>
+<p>composer require yansongda/laravel-pay</p>
+</blockquote>
+<p>添加service provider（如果laravel&lt;5.5 或者 lumen）[5.5以上忽略]</p>
+<p>laravel &lt; 5.5</p>
+<blockquote>
+<p>Yansongda\LaravelPay\PayServiceProvider::class,</p>
+</blockquote>
+<p>lumen</p>
+<blockquote>
+<p>$app-&gt;register(Yansongda\LaravelPay\PayServiceProvider::class);</p>
+</blockquote>
+<p>添加 alias（如果laravel&lt;5.5 或者 lumen）[5.5以上忽略]</p>
+<blockquote>
+<p>‘Pay’ =&gt; Yansongda\LaravelPay\Facades\Pay::class,</p>
+</blockquote>
+<p>配置文件</p>
+<blockquote>
+<p>php artisan vendor:publish –provider=”Yansongda\LaravelPay\PayServiceProvider” –tag=laravel-pay</p>
+</blockquote>
+<p><strong>二、使用[支付宝]</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">use Yansongda\Pay\Pay;</span><br><span class="line"></span><br><span class="line">$config &#x3D; [</span><br><span class="line">    &#39;app_id&#39; &#x3D;&gt; &#39;2016082000295641&#39;,</span><br><span class="line">    &#39;notify_url&#39; &#x3D;&gt; &#39;http:&#x2F;&#x2F;yansongda.cn&#x2F;notify.php&#39;,</span><br><span class="line">    &#39;return_url&#39; &#x3D;&gt; &#39;http:&#x2F;&#x2F;yansongda.cn&#x2F;return.php&#39;,</span><br><span class="line">    &#39;ali_public_key&#39; &#x3D;&gt; &#39;MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuWJKrQ6SWvS6niI+4vEVZiYfjkCfLQfoFI2nCp9ZLDS42QtiL4Ccyx8scgc3nhVwmVRte8f57TFvGhvJD0upT4O5O&#x2F;lRxmTjechXAorirVdAODpOu0mFfQV9y&#x2F;T9o9hHnU+VmO5spoVb3umqpq6D&#x2F;Pt8p25Yk852&#x2F;w01VTIczrXC4QlrbOEe3sr1E9auoC7rgYjjCO6lZUIDjX&#x2F;oBmNXZxhRDrYx4Yf5X7y8FRBFvygIE2FgxV4Yw+SL3QAa2m5MLcbusJpxOml9YVQfP8iSurx41PvvXUMo49JG3BDVernaCYXQCoUJv9fJwbnfZd7J5YByC+5KM4sblJTq7bXZWQIDAQAB&#39;,</span><br><span class="line">    &#39;private_key&#39; &#x3D;&gt; &#39;MIIEpAIBAAKCAQEAs6+F2leOgOrvj9jTeDhb5q46GewOjqLBlGSs&#x2F;bVL4Z3fMr3p+Q1Tux&#x2F;6uogeVi&#x2F;eHd84xvQdfpZ87A1SfoWnEGH5z15yorccxSOwWUI+q8gz51IWqjgZxhWKe31BxNZ+prnQpyeMBtE25fXp5nQZ&#x2F;pftgePyUUvUZRcAUisswntobDQKbwx28VCXw5XB2A+lvYEvxmMv&#x2F;QexYjwKK4M54j435TuC3UctZbnuynSPpOmCu45ZhEYXd4YMsGMdZE5&#x2F;077ZU1aU7wx&#x2F;gk07PiHImEOCDkzqsFo0Buc&#x2F;knGcdOiUDvm2hn2y1XvwjyFOThsqCsQYi4JmwZdRa8kvOf57nwIDAQABAoIBAQCw5QCqln4VTrTvcW+msB1ReX57nJgsNfDLbV2dG8mLYQemBa9833DqDK6iynTLNq69y88ylose33o2TVtEccGp8Dqluv6yUAED14G6LexS43KtrXPgugAtsXE253ZDGUNwUggnN1i0MW2RcMqHdQ9ORDWvJUCeZj&#x2F;AEafgPN8AyiLrZeL07jJz&#x2F;uaRfAuNqkImCVIarKUX3HBCjl9TpuoMjcMhz&#x2F;MsOmQ0agtCatO1eoH1sqv5Odvxb1i59c8Hvq&#x2F;mGEXyRuoiDo05SE6IyXYXr84&#x2F;Nf2xvVNHNQA6kTckj8shSi+HGM4mO1Y4Pbb7XcnxNkT0Inn6oJMSiy56P+CpAoGBAO1O+5FE1ZuVGuLb48cY+0lHCD+nhSBd66B5FrxgPYCkFOQWR7pWyfNDBlmO3SSooQ8TQXA25blrkDxzOAEGX57EPiipXr&#x2F;hy5e+WNoukpy09rsO1TMsvC+v0FXLvZ+TIAkqfnYBgaT56ku7yZ8aFGMwdCPL7WJYAwUIcZX8wZ3dAoGBAMHWplAqhe4bfkGOEEpfs6VvEQxCqYMYVyR65K0rI1LiDZn6Ij8fdVtwMjGKFSZZTspmsqnbbuCE&#x2F;VTyDzF4NpAxdm3cBtZACv1Lpu2Om+aTzhK2PI6WTDVTKAJBYegXaahBCqVbSxieR62IWtmOMjggTtAKWZ1P5LQcRwdkaB2rAoGAWnAPT318Kp7YcDx8whOzMGnxqtCc24jvk2iSUZgb2Dqv+3zCOTF6JUsV0Guxu5bISoZ8GdfSFKf5gBAo97sGFeuUBMsHYPkcLehM1FmLZk1Q+ljcx3P1A&#x2F;ds3kWXLolTXCrlpvNMBSN5NwOKAyhdPK&#x2F;qkvnUrfX8sJ5XK2H4J8ECgYAGIZ0HIiE0Y+g9eJnpUFelXvsCEUW9YNK4065SD&#x2F;BBGedmPHRC3OLgbo8X5A9BNEf6vP7fwpIiRfKhcjqqzOuk6fueA&#x2F;yvYD04v+Da2MzzoS8+hkcqF3T3pta4I4tORRdRfCUzD80zTSZlRc&#x2F;h286Y2eTETd+By1onnFFe2X01mwKBgQDaxo4PBcLL2OyVT5DoXiIdTCJ8KNZL9+kV1aiBuOWxnRgkDjPngslzNa1bK+klGgJNYDbQqohKNn1HeFX3mYNfCUpuSnD2Yag53Dd&#x2F;1DLO+NxzwvTu4D6DCUnMMMBVaF42ig31Bs0jI3JQZVqeeFzSET8fkoFopJf3G6UXlrIEAQ&#x3D;&#x3D;&#39;,</span><br><span class="line">    &#39;http&#39; &#x3D;&gt; [ &#x2F;&#x2F; optional</span><br><span class="line">        &#39;timeout&#39; &#x3D;&gt; 5.0,</span><br><span class="line">        &#39;connect_timeout&#39; &#x3D;&gt; 5.0,</span><br><span class="line">        &#x2F;&#x2F; 更多配置项请参考 [Guzzle](https:&#x2F;&#x2F;guzzle-cn.readthedocs.io&#x2F;zh_CN&#x2F;latest&#x2F;request-options.html)</span><br><span class="line">    ]</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 支付</span><br><span class="line">$order &#x3D; [</span><br><span class="line">    &#39;out_trade_no&#39; &#x3D;&gt; time(),</span><br><span class="line">    &#39;total_amount&#39; &#x3D;&gt; &#39;1&#39;,</span><br><span class="line">    &#39;subject&#39; &#x3D;&gt; &#39;test&#39;,</span><br><span class="line">];</span><br><span class="line">$alipay &#x3D; Pay::alipay($config)-&gt;web($order);</span><br><span class="line"></span><br><span class="line">return $alipay-&gt;send();&#x2F;&#x2F; laravel 框架中请直接 &#96;return $alipay&#96;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 退款</span><br><span class="line">$order &#x3D; [</span><br><span class="line">    &#39;out_trade_no&#39; &#x3D;&gt; &#39;1514027114&#39;,</span><br><span class="line">    &#39;refund_amount&#39; &#x3D;&gt; &#39;0.01&#39;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;refund($order); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 查询</span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;find(&#39;out_trade_no_123456&#39;); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 取消</span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;cancel(&#39;out_trade_no_123456&#39;); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 关闭</span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;close(&#39;out_trade_no_123456&#39;); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 验证服务器数据</span><br><span class="line">$alipay &#x3D; Pay::alipay($config)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 是的，验签就这么简单！</span><br><span class="line">$data &#x3D; $alipay-&gt;verify(); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$data-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line">$alipay-&gt;success()-&gt;send(); &#x2F;&#x2F; 向支付宝服务器确认接收到的数据。laravel 框架中请直接 &#96;return $alipay-&gt;success()&#96;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>若前端框架使用vue、react等 此时后端返回的是form表单需要简单处理下，如下:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const div &#x3D; document.createElement(&#39;div&#39;) &#x2F;&#x2F; 创建div</span><br><span class="line">div.innerHTML &#x3D; res.data &#x2F;&#x2F; 将返回的form 放入div</span><br><span class="line">document.body.appendChild(div)</span><br><span class="line">document.forms[&#39;alipaysubmit&#39;].submit()</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>laravel5.6</tag>
+        <tag>laravel-pay</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Laravel 事件系统</title>
     <url>/2019/04/22/Laravel-%E4%BA%8B%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
     <content><![CDATA[<a id="more"></a>
@@ -990,57 +1041,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Laravel yansongda/laravel-pay</title>
-    <url>/2018/09/29/Laravel-yansongda-laravel-pay/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p>运行环境:</p>
-</blockquote>
-<ul>
-<li>php &gt;= 7.0</li>
-<li>composer</li>
-<li>laravel || lumen &gt;= 5.1</li>
-</ul>
-<p><strong>一、安装</strong></p>
-<blockquote>
-<p>composer require yansongda/laravel-pay</p>
-</blockquote>
-<p>添加service provider（如果laravel&lt;5.5 或者 lumen）[5.5以上忽略]</p>
-<p>laravel &lt; 5.5</p>
-<blockquote>
-<p>Yansongda\LaravelPay\PayServiceProvider::class,</p>
-</blockquote>
-<p>lumen</p>
-<blockquote>
-<p>$app-&gt;register(Yansongda\LaravelPay\PayServiceProvider::class);</p>
-</blockquote>
-<p>添加 alias（如果laravel&lt;5.5 或者 lumen）[5.5以上忽略]</p>
-<blockquote>
-<p>‘Pay’ =&gt; Yansongda\LaravelPay\Facades\Pay::class,</p>
-</blockquote>
-<p>配置文件</p>
-<blockquote>
-<p>php artisan vendor:publish –provider=”Yansongda\LaravelPay\PayServiceProvider” –tag=laravel-pay</p>
-</blockquote>
-<p><strong>二、使用[支付宝]</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">use Yansongda\Pay\Pay;</span><br><span class="line"></span><br><span class="line">$config &#x3D; [</span><br><span class="line">    &#39;app_id&#39; &#x3D;&gt; &#39;2016082000295641&#39;,</span><br><span class="line">    &#39;notify_url&#39; &#x3D;&gt; &#39;http:&#x2F;&#x2F;yansongda.cn&#x2F;notify.php&#39;,</span><br><span class="line">    &#39;return_url&#39; &#x3D;&gt; &#39;http:&#x2F;&#x2F;yansongda.cn&#x2F;return.php&#39;,</span><br><span class="line">    &#39;ali_public_key&#39; &#x3D;&gt; &#39;MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuWJKrQ6SWvS6niI+4vEVZiYfjkCfLQfoFI2nCp9ZLDS42QtiL4Ccyx8scgc3nhVwmVRte8f57TFvGhvJD0upT4O5O&#x2F;lRxmTjechXAorirVdAODpOu0mFfQV9y&#x2F;T9o9hHnU+VmO5spoVb3umqpq6D&#x2F;Pt8p25Yk852&#x2F;w01VTIczrXC4QlrbOEe3sr1E9auoC7rgYjjCO6lZUIDjX&#x2F;oBmNXZxhRDrYx4Yf5X7y8FRBFvygIE2FgxV4Yw+SL3QAa2m5MLcbusJpxOml9YVQfP8iSurx41PvvXUMo49JG3BDVernaCYXQCoUJv9fJwbnfZd7J5YByC+5KM4sblJTq7bXZWQIDAQAB&#39;,</span><br><span class="line">    &#39;private_key&#39; &#x3D;&gt; &#39;MIIEpAIBAAKCAQEAs6+F2leOgOrvj9jTeDhb5q46GewOjqLBlGSs&#x2F;bVL4Z3fMr3p+Q1Tux&#x2F;6uogeVi&#x2F;eHd84xvQdfpZ87A1SfoWnEGH5z15yorccxSOwWUI+q8gz51IWqjgZxhWKe31BxNZ+prnQpyeMBtE25fXp5nQZ&#x2F;pftgePyUUvUZRcAUisswntobDQKbwx28VCXw5XB2A+lvYEvxmMv&#x2F;QexYjwKK4M54j435TuC3UctZbnuynSPpOmCu45ZhEYXd4YMsGMdZE5&#x2F;077ZU1aU7wx&#x2F;gk07PiHImEOCDkzqsFo0Buc&#x2F;knGcdOiUDvm2hn2y1XvwjyFOThsqCsQYi4JmwZdRa8kvOf57nwIDAQABAoIBAQCw5QCqln4VTrTvcW+msB1ReX57nJgsNfDLbV2dG8mLYQemBa9833DqDK6iynTLNq69y88ylose33o2TVtEccGp8Dqluv6yUAED14G6LexS43KtrXPgugAtsXE253ZDGUNwUggnN1i0MW2RcMqHdQ9ORDWvJUCeZj&#x2F;AEafgPN8AyiLrZeL07jJz&#x2F;uaRfAuNqkImCVIarKUX3HBCjl9TpuoMjcMhz&#x2F;MsOmQ0agtCatO1eoH1sqv5Odvxb1i59c8Hvq&#x2F;mGEXyRuoiDo05SE6IyXYXr84&#x2F;Nf2xvVNHNQA6kTckj8shSi+HGM4mO1Y4Pbb7XcnxNkT0Inn6oJMSiy56P+CpAoGBAO1O+5FE1ZuVGuLb48cY+0lHCD+nhSBd66B5FrxgPYCkFOQWR7pWyfNDBlmO3SSooQ8TQXA25blrkDxzOAEGX57EPiipXr&#x2F;hy5e+WNoukpy09rsO1TMsvC+v0FXLvZ+TIAkqfnYBgaT56ku7yZ8aFGMwdCPL7WJYAwUIcZX8wZ3dAoGBAMHWplAqhe4bfkGOEEpfs6VvEQxCqYMYVyR65K0rI1LiDZn6Ij8fdVtwMjGKFSZZTspmsqnbbuCE&#x2F;VTyDzF4NpAxdm3cBtZACv1Lpu2Om+aTzhK2PI6WTDVTKAJBYegXaahBCqVbSxieR62IWtmOMjggTtAKWZ1P5LQcRwdkaB2rAoGAWnAPT318Kp7YcDx8whOzMGnxqtCc24jvk2iSUZgb2Dqv+3zCOTF6JUsV0Guxu5bISoZ8GdfSFKf5gBAo97sGFeuUBMsHYPkcLehM1FmLZk1Q+ljcx3P1A&#x2F;ds3kWXLolTXCrlpvNMBSN5NwOKAyhdPK&#x2F;qkvnUrfX8sJ5XK2H4J8ECgYAGIZ0HIiE0Y+g9eJnpUFelXvsCEUW9YNK4065SD&#x2F;BBGedmPHRC3OLgbo8X5A9BNEf6vP7fwpIiRfKhcjqqzOuk6fueA&#x2F;yvYD04v+Da2MzzoS8+hkcqF3T3pta4I4tORRdRfCUzD80zTSZlRc&#x2F;h286Y2eTETd+By1onnFFe2X01mwKBgQDaxo4PBcLL2OyVT5DoXiIdTCJ8KNZL9+kV1aiBuOWxnRgkDjPngslzNa1bK+klGgJNYDbQqohKNn1HeFX3mYNfCUpuSnD2Yag53Dd&#x2F;1DLO+NxzwvTu4D6DCUnMMMBVaF42ig31Bs0jI3JQZVqeeFzSET8fkoFopJf3G6UXlrIEAQ&#x3D;&#x3D;&#39;,</span><br><span class="line">    &#39;http&#39; &#x3D;&gt; [ &#x2F;&#x2F; optional</span><br><span class="line">        &#39;timeout&#39; &#x3D;&gt; 5.0,</span><br><span class="line">        &#39;connect_timeout&#39; &#x3D;&gt; 5.0,</span><br><span class="line">        &#x2F;&#x2F; 更多配置项请参考 [Guzzle](https:&#x2F;&#x2F;guzzle-cn.readthedocs.io&#x2F;zh_CN&#x2F;latest&#x2F;request-options.html)</span><br><span class="line">    ]</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 支付</span><br><span class="line">$order &#x3D; [</span><br><span class="line">    &#39;out_trade_no&#39; &#x3D;&gt; time(),</span><br><span class="line">    &#39;total_amount&#39; &#x3D;&gt; &#39;1&#39;,</span><br><span class="line">    &#39;subject&#39; &#x3D;&gt; &#39;test&#39;,</span><br><span class="line">];</span><br><span class="line">$alipay &#x3D; Pay::alipay($config)-&gt;web($order);</span><br><span class="line"></span><br><span class="line">return $alipay-&gt;send();&#x2F;&#x2F; laravel 框架中请直接 &#96;return $alipay&#96;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 退款</span><br><span class="line">$order &#x3D; [</span><br><span class="line">    &#39;out_trade_no&#39; &#x3D;&gt; &#39;1514027114&#39;,</span><br><span class="line">    &#39;refund_amount&#39; &#x3D;&gt; &#39;0.01&#39;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;refund($order); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 查询</span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;find(&#39;out_trade_no_123456&#39;); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 取消</span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;cancel(&#39;out_trade_no_123456&#39;); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 关闭</span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;close(&#39;out_trade_no_123456&#39;); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 验证服务器数据</span><br><span class="line">$alipay &#x3D; Pay::alipay($config)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 是的，验签就这么简单！</span><br><span class="line">$data &#x3D; $alipay-&gt;verify(); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$data-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line">$alipay-&gt;success()-&gt;send(); &#x2F;&#x2F; 向支付宝服务器确认接收到的数据。laravel 框架中请直接 &#96;return $alipay-&gt;success()&#96;</span><br></pre></td></tr></table></figure>
-
-
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>若前端框架使用vue、react等 此时后端返回的是form表单需要简单处理下，如下:</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const div &#x3D; document.createElement(&#39;div&#39;) &#x2F;&#x2F; 创建div</span><br><span class="line">div.innerHTML &#x3D; res.data &#x2F;&#x2F; 将返回的form 放入div</span><br><span class="line">document.body.appendChild(div)</span><br><span class="line">document.forms[&#39;alipaysubmit&#39;].submit()</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>laravel5.6</tag>
-        <tag>laravel-pay</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Laravel 和 Vue 的项目搭建</title>
     <url>/2018/11/02/Laravel-%E5%92%8C-Vue-%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1082,25 +1082,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       <tags>
         <tag>Laravel</tag>
         <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux安装配置守护进程</title>
-    <url>/2018/03/09/Linux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> centos 下安装Supervisor</p>
-</blockquote>
-<p>yum install supervisor</p>
-<blockquote>
-<p> 配置Supervisor</p>
-</blockquote>
-<p>cd /etc/supervisord.d/<br>vim laravel-worker.ini<br>systemctl start supervisord</p>
-]]></content>
-      <tags>
-        <tag>linux</tag>
-        <tag>Supervisor</tag>
       </tags>
   </entry>
   <entry>
@@ -1158,36 +1139,23 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Live 阿里云直播</title>
-    <url>/2019/07/04/Live-%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%B4%E6%92%AD/</url>
+    <title>Linux安装配置守护进程</title>
+    <url>/2018/03/09/Linux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/</url>
     <content><![CDATA[<a id="more"></a>
-<p> <a href="https://help.aliyun.com/document_detail/86866.html?spm=a2c4g.11186623.6.573.72df68123ova0d" target="_blank">[阿里云文档]</a> 具体流程依据文档<br> 需要：备案域名 / 直播云服务器</p>
-<blockquote>
-<p>开通阿里云直播控制台</p>
-</blockquote>
-<p><img src="/assets/aliyun/1.png" alt="ico原来的样子"><br><img src="/assets/aliyun/2.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>直播控制台-概览配置 推流/播流 域名</p>
-</blockquote>
-<p>生成之后解析对应域名的 CNAME 到推流/播流域名上<br><img src="/assets/aliyun/3.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>PC端 OBS/VLC 测试</p>
-</blockquote>
-<p>地址生成器–&gt;生成的 推流/播流 地址相应在 OBS/VLC 上使用即可看到同步直播</p>
-<p><img src="/assets/aliyun/4.png" alt="ico原来的样子"><br><img src="/assets/aliyun/5.png" alt="ico原来的样子"><br><img src="/assets/aliyun/6.png" alt="ico原来的样子"><br><img src="/assets/aliyun/7.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>观看直播 [后续…]</p>
-</blockquote>
-<p> 前面的直播推流配置完成之后，我们需要让用户或者观众看到直播<br> 正常用户观看直播的流程是：登录直播网站 -&gt; 点开直播房间 -&gt; 服务器获取播放地址 -&gt; 用户观看直播<br> 1.创建一个测试直播的控制器</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">namespace App\Http\Controllers;</span><br><span class="line"></span><br><span class="line">use xxx;&#x2F;&#x2F;sdk包</span><br><span class="line"></span><br><span class="line">class LiveController extends Controller</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    public function index()</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; 通过sdk获取直播地址</span><br><span class="line">        $liveurl &#x3D; \xxx\xxx\xxx(&#39;xxx&#39;, &#39;app&#39;, &#39;stream&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>2.页面展示</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 引入 CDN --&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.bootcss.com&#x2F;flv.js&#x2F;1.3.2&#x2F;flv.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;!-- dom --&gt;</span><br><span class="line">&lt;video id&#x3D;&quot;videoElement&quot;&gt;&lt;&#x2F;video&gt;</span><br><span class="line">&lt;!-- js --&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    if (flvjs.isSupported()) &#123;</span><br><span class="line">        var videoElement &#x3D; document.getElementById(&#39;videoElement&#39;);</span><br><span class="line">        var flvPlayer &#x3D; flvjs.createPlayer(&#123;</span><br><span class="line">            type: &#39;flv&#39;,</span><br><span class="line">            url: &#39;&#123;&#123; $liveurl &#125;&#125;&#39;</span><br><span class="line">        &#125;);</span><br><span class="line">        flvPlayer.attachMediaElement(videoElement);</span><br><span class="line">        flvPlayer.load();</span><br><span class="line">        flvPlayer.play();</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
 
-<hr>
-<ul>
-<li><strong>Notice</strong><br>后续通过sdk整合到项目开发中…</li>
-</ul>
+<blockquote>
+<p> centos 下安装Supervisor</p>
+</blockquote>
+<p>yum install supervisor</p>
+<blockquote>
+<p> 配置Supervisor</p>
+</blockquote>
+<p>cd /etc/supervisord.d/<br>vim laravel-worker.ini<br>systemctl start supervisord</p>
 ]]></content>
+      <tags>
+        <tag>linux</tag>
+        <tag>Supervisor</tag>
+      </tags>
   </entry>
   <entry>
     <title>Linux定时任务采集聚合数据api文章</title>
@@ -1223,6 +1191,38 @@ public $queue = &#39;listeners&#39;;</code></pre>
         <tag>Linux</tag>
         <tag>crontab</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Live 阿里云直播</title>
+    <url>/2019/07/04/Live-%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%B4%E6%92%AD/</url>
+    <content><![CDATA[<a id="more"></a>
+<p> <a href="https://help.aliyun.com/document_detail/86866.html?spm=a2c4g.11186623.6.573.72df68123ova0d" target="_blank">[阿里云文档]</a> 具体流程依据文档<br> 需要：备案域名 / 直播云服务器</p>
+<blockquote>
+<p>开通阿里云直播控制台</p>
+</blockquote>
+<p><img src="/assets/aliyun/1.png" alt="ico原来的样子"><br><img src="/assets/aliyun/2.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>直播控制台-概览配置 推流/播流 域名</p>
+</blockquote>
+<p>生成之后解析对应域名的 CNAME 到推流/播流域名上<br><img src="/assets/aliyun/3.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>PC端 OBS/VLC 测试</p>
+</blockquote>
+<p>地址生成器–&gt;生成的 推流/播流 地址相应在 OBS/VLC 上使用即可看到同步直播</p>
+<p><img src="/assets/aliyun/4.png" alt="ico原来的样子"><br><img src="/assets/aliyun/5.png" alt="ico原来的样子"><br><img src="/assets/aliyun/6.png" alt="ico原来的样子"><br><img src="/assets/aliyun/7.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>观看直播 [后续…]</p>
+</blockquote>
+<p> 前面的直播推流配置完成之后，我们需要让用户或者观众看到直播<br> 正常用户观看直播的流程是：登录直播网站 -&gt; 点开直播房间 -&gt; 服务器获取播放地址 -&gt; 用户观看直播<br> 1.创建一个测试直播的控制器</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">namespace App\Http\Controllers;</span><br><span class="line"></span><br><span class="line">use xxx;&#x2F;&#x2F;sdk包</span><br><span class="line"></span><br><span class="line">class LiveController extends Controller</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    public function index()</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; 通过sdk获取直播地址</span><br><span class="line">        $liveurl &#x3D; \xxx\xxx\xxx(&#39;xxx&#39;, &#39;app&#39;, &#39;stream&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.页面展示</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 引入 CDN --&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.bootcss.com&#x2F;flv.js&#x2F;1.3.2&#x2F;flv.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;!-- dom --&gt;</span><br><span class="line">&lt;video id&#x3D;&quot;videoElement&quot;&gt;&lt;&#x2F;video&gt;</span><br><span class="line">&lt;!-- js --&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    if (flvjs.isSupported()) &#123;</span><br><span class="line">        var videoElement &#x3D; document.getElementById(&#39;videoElement&#39;);</span><br><span class="line">        var flvPlayer &#x3D; flvjs.createPlayer(&#123;</span><br><span class="line">            type: &#39;flv&#39;,</span><br><span class="line">            url: &#39;&#123;&#123; $liveurl &#125;&#125;&#39;</span><br><span class="line">        &#125;);</span><br><span class="line">        flvPlayer.attachMediaElement(videoElement);</span><br><span class="line">        flvPlayer.load();</span><br><span class="line">        flvPlayer.play();</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><strong>Notice</strong><br>后续通过sdk整合到项目开发中…</li>
+</ul>
+]]></content>
   </entry>
   <entry>
     <title>Markdown 基本语法</title>
@@ -1782,6 +1782,109 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>Swift学习笔记NO.1</title>
+    <url>/2017/09/25/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0NO-1/</url>
+    <content><![CDATA[<p><strong>Swift学习笔记NO.1</strong> </p>
+<a id="more"></a>
+
+<p><strong>Swift 教程</strong></p>
+<blockquote>
+<p> Swift 是一种支持多编程范式和编译式的开源编程语言,苹果于2014年WWDC（苹果开发者大会）发布，用于开发 iOS，OS X 和 watchOS 应用程序。<br>Swift 结合了 C 和 Objective-C 的优点并且不受 C 兼容性的限制。<br>Swift 在 Mac OS 和 iOS 平台可以和 Object-C 使用相同的运行环境。<br>2015年6月8日，苹果于WWDC 2015上宣布，Swift将开放源代码，包括编译器和标准库。</p>
+</blockquote>
+<p>第一个 Swift 程序当然从输出 “Hello, World!” 开始</p>
+<blockquote>
+<p> 代码如下所示：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var myString &#x3D; &quot;Hello, World!&quot;</span><br><span class="line">print(myString)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> 实例解析：</p>
+</blockquote>
+<ul>
+<li>var myString = “Hello, World!” : 使用 var 关键字定义一个变量 myString，值为 Hello, World!</li>
+<li>print : 输出变量的值</li>
+</ul>
+<p><strong>Swift 环境搭建</strong></p>
+<blockquote>
+<p> Swift是一门开源的编程语言，该语言用于开发OS X和iOS应用程序。<br>在正式开发应用程序前，我们需要搭建Swift开发环境，以便更好友好的使用各种开发工具和语言进行快速应用开发。由于Swift开发环境需要在OS X系统中运行，因此其环境的搭建将不同于Windows环境，下面就一起来学习一下swift开发环境的搭建方法。</p>
+</blockquote>
+<p>成功搭建swift开发环境的前题：</p>
+<ul>
+<li>必须拥有一台苹果电脑。因为集成开发环境XCode只能运行在OS X系统上。</li>
+<li>电脑系统必须在OS 10.9.3及以上。</li>
+<li>电脑必须安装Xcode集成开发环境。</li>
+</ul>
+<blockquote>
+<p> Swift 开发工具Xcode下载</p>
+</blockquote>
+<ul>
+<li><a href="https://swift.org/download/#latest-development-snapshots" target="_blank">[ Swift 源代码下载 ]</a></li>
+<li><a href="https://developer.apple.com/xcode/download/" target="_blank">[ Swift开发工具官网地址 ]</a></li>
+<li><a href="http://rj.baidu.com/soft/detail/40233.html" target="_blank">[ Swift 开发工具百度软件中心下载（国内比较快） ]</a></li>
+</ul>
+<p>下载完成后，双击下载的 dmg 文件安装，安装完成后我们将 Xcode 图标踢移动到应用文件夹。<br> <img src="/assets/blogImg/swift/xcode2.jpg" alt="ico原来的样子"></p>
+<blockquote>
+<p> 第一个 Swift 程序</p>
+</blockquote>
+<p>Xcode 安装完成后，我们就可以开始编写 Swift 代码了。<br>接下来我们在应用文件夹打开 Xcode，打开后在屏幕顶部选择 File =&gt; New =&gt; Playground。<br><img src="/assets/blogImg/swift/xc1.jpg" alt="ico原来的样子"></p>
+<blockquote>
+<p> 接着 为 playground 设置一个名字并选择 iOS 平台。</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc2.jpg" alt="ico原来的样子"></p>
+<blockquote>
+<p> Swift 的 playground 就像是一个可交互的文档，它是用来练手学swift的，写一句代码出一行结果（右侧），可以实时查看代码结果，是学习swift语言的利器！</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc3.jpg" alt="ico原来的样子"> </p>
+<p>以下是 Swift Playground 窗口默认的代码：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import UIKit</span><br><span class="line">var str &#x3D; &quot;Hello, playground&quot;</span><br></pre></td></tr></table></figure>
+<p>如果你想创建 OS x 程序，需要导入 Cocoa 包 import Cocoa 代码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line">var str &#x3D; &quot;Hello, playground&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>创建第一个项目</strong></p>
+<blockquote>
+<p> 1、打开 xcode 工具，选择 File =&gt; New =&gt; Project</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc4.jpg" alt="ico原来的样子"> </p>
+<blockquote>
+<p> 2、我们选择一个”Single View Application”，并点击”next”，创建一个简单示例app应用。</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc5.jpg" alt="ico原来的样子"> </p>
+<blockquote>
+<p> 3、接着我们输入项目名称（ProductName),公司名称（Organization Name),公司标识前缀名（Organization identifier) 还要选择开发语言(Language),选择设备（Devices)。<br>其中Language有两个选项：Objective-c和swift，因为我们是学习swift当然选择swift项了。 点击”Next”下一步。</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc6.jpg" alt="ico原来的样子"> </p>
+<blockquote>
+<p> 4、选择存放的目录，如果要使用Git源代码管理，将勾上Source Control的create git repository on My Mac. 点击create创建项目。</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc7.jpg" alt="ico原来的样子"> </p>
+<blockquote>
+<p> 5、项目创建后，默认生成了一个示例文件，可以看到swift将oc中的h和m文件合并成了一个文件（即swift后缀名文件). Main.storyboard相当于xib文件，有比xib更多的功能。</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc8.jpg" alt="ico原来的样子"> </p>
+<blockquote>
+<p> 6、打开main.storyboard,默认看到一个简单的空白的应用界面，大小为平板界面大小。 如果开发都只需要开发兼容iphone手机的app,那么可以把Use Auto Layout的勾去掉（默认为勾上）。</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc9.jpg" alt="ico原来的样子"> </p>
+<blockquote>
+<p> 7、弹出了一个对话框，让我们选择界面尺寸，iPhone或都 iPad。我们选择iPhone的尺寸。</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc10.jpg" alt="ico原来的样子"> </p>
+<blockquote>
+<p> 8、我们为界面添加点内容，在右下方找到Text控件，将它拖入storyboard上，并双击写入文本”Hello World!”。</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc11.jpg" alt="ico原来的样子"> </p>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Swift</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Swift学习笔记NO.2</title>
     <url>/2017/09/25/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0NO-2/</url>
     <content><![CDATA[<p><strong>Swift学习笔记NO.2</strong> </p>
@@ -1983,109 +2086,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>Swift学习笔记NO.1</title>
-    <url>/2017/09/25/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0NO-1/</url>
-    <content><![CDATA[<p><strong>Swift学习笔记NO.1</strong> </p>
-<a id="more"></a>
-
-<p><strong>Swift 教程</strong></p>
-<blockquote>
-<p> Swift 是一种支持多编程范式和编译式的开源编程语言,苹果于2014年WWDC（苹果开发者大会）发布，用于开发 iOS，OS X 和 watchOS 应用程序。<br>Swift 结合了 C 和 Objective-C 的优点并且不受 C 兼容性的限制。<br>Swift 在 Mac OS 和 iOS 平台可以和 Object-C 使用相同的运行环境。<br>2015年6月8日，苹果于WWDC 2015上宣布，Swift将开放源代码，包括编译器和标准库。</p>
-</blockquote>
-<p>第一个 Swift 程序当然从输出 “Hello, World!” 开始</p>
-<blockquote>
-<p> 代码如下所示：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var myString &#x3D; &quot;Hello, World!&quot;</span><br><span class="line">print(myString)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p> 实例解析：</p>
-</blockquote>
-<ul>
-<li>var myString = “Hello, World!” : 使用 var 关键字定义一个变量 myString，值为 Hello, World!</li>
-<li>print : 输出变量的值</li>
-</ul>
-<p><strong>Swift 环境搭建</strong></p>
-<blockquote>
-<p> Swift是一门开源的编程语言，该语言用于开发OS X和iOS应用程序。<br>在正式开发应用程序前，我们需要搭建Swift开发环境，以便更好友好的使用各种开发工具和语言进行快速应用开发。由于Swift开发环境需要在OS X系统中运行，因此其环境的搭建将不同于Windows环境，下面就一起来学习一下swift开发环境的搭建方法。</p>
-</blockquote>
-<p>成功搭建swift开发环境的前题：</p>
-<ul>
-<li>必须拥有一台苹果电脑。因为集成开发环境XCode只能运行在OS X系统上。</li>
-<li>电脑系统必须在OS 10.9.3及以上。</li>
-<li>电脑必须安装Xcode集成开发环境。</li>
-</ul>
-<blockquote>
-<p> Swift 开发工具Xcode下载</p>
-</blockquote>
-<ul>
-<li><a href="https://swift.org/download/#latest-development-snapshots" target="_blank">[ Swift 源代码下载 ]</a></li>
-<li><a href="https://developer.apple.com/xcode/download/" target="_blank">[ Swift开发工具官网地址 ]</a></li>
-<li><a href="http://rj.baidu.com/soft/detail/40233.html" target="_blank">[ Swift 开发工具百度软件中心下载（国内比较快） ]</a></li>
-</ul>
-<p>下载完成后，双击下载的 dmg 文件安装，安装完成后我们将 Xcode 图标踢移动到应用文件夹。<br> <img src="/assets/blogImg/swift/xcode2.jpg" alt="ico原来的样子"></p>
-<blockquote>
-<p> 第一个 Swift 程序</p>
-</blockquote>
-<p>Xcode 安装完成后，我们就可以开始编写 Swift 代码了。<br>接下来我们在应用文件夹打开 Xcode，打开后在屏幕顶部选择 File =&gt; New =&gt; Playground。<br><img src="/assets/blogImg/swift/xc1.jpg" alt="ico原来的样子"></p>
-<blockquote>
-<p> 接着 为 playground 设置一个名字并选择 iOS 平台。</p>
-</blockquote>
-<p><img src="/assets/blogImg/swift/xc2.jpg" alt="ico原来的样子"></p>
-<blockquote>
-<p> Swift 的 playground 就像是一个可交互的文档，它是用来练手学swift的，写一句代码出一行结果（右侧），可以实时查看代码结果，是学习swift语言的利器！</p>
-</blockquote>
-<p><img src="/assets/blogImg/swift/xc3.jpg" alt="ico原来的样子"> </p>
-<p>以下是 Swift Playground 窗口默认的代码：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import UIKit</span><br><span class="line">var str &#x3D; &quot;Hello, playground&quot;</span><br></pre></td></tr></table></figure>
-<p>如果你想创建 OS x 程序，需要导入 Cocoa 包 import Cocoa 代码如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line">var str &#x3D; &quot;Hello, playground&quot;</span><br></pre></td></tr></table></figure>
-
-<p><strong>创建第一个项目</strong></p>
-<blockquote>
-<p> 1、打开 xcode 工具，选择 File =&gt; New =&gt; Project</p>
-</blockquote>
-<p><img src="/assets/blogImg/swift/xc4.jpg" alt="ico原来的样子"> </p>
-<blockquote>
-<p> 2、我们选择一个”Single View Application”，并点击”next”，创建一个简单示例app应用。</p>
-</blockquote>
-<p><img src="/assets/blogImg/swift/xc5.jpg" alt="ico原来的样子"> </p>
-<blockquote>
-<p> 3、接着我们输入项目名称（ProductName),公司名称（Organization Name),公司标识前缀名（Organization identifier) 还要选择开发语言(Language),选择设备（Devices)。<br>其中Language有两个选项：Objective-c和swift，因为我们是学习swift当然选择swift项了。 点击”Next”下一步。</p>
-</blockquote>
-<p><img src="/assets/blogImg/swift/xc6.jpg" alt="ico原来的样子"> </p>
-<blockquote>
-<p> 4、选择存放的目录，如果要使用Git源代码管理，将勾上Source Control的create git repository on My Mac. 点击create创建项目。</p>
-</blockquote>
-<p><img src="/assets/blogImg/swift/xc7.jpg" alt="ico原来的样子"> </p>
-<blockquote>
-<p> 5、项目创建后，默认生成了一个示例文件，可以看到swift将oc中的h和m文件合并成了一个文件（即swift后缀名文件). Main.storyboard相当于xib文件，有比xib更多的功能。</p>
-</blockquote>
-<p><img src="/assets/blogImg/swift/xc8.jpg" alt="ico原来的样子"> </p>
-<blockquote>
-<p> 6、打开main.storyboard,默认看到一个简单的空白的应用界面，大小为平板界面大小。 如果开发都只需要开发兼容iphone手机的app,那么可以把Use Auto Layout的勾去掉（默认为勾上）。</p>
-</blockquote>
-<p><img src="/assets/blogImg/swift/xc9.jpg" alt="ico原来的样子"> </p>
-<blockquote>
-<p> 7、弹出了一个对话框，让我们选择界面尺寸，iPhone或都 iPad。我们选择iPhone的尺寸。</p>
-</blockquote>
-<p><img src="/assets/blogImg/swift/xc10.jpg" alt="ico原来的样子"> </p>
-<blockquote>
-<p> 8、我们为界面添加点内容，在右下方找到Text控件，将它拖入storyboard上，并双击写入文本”Hello World!”。</p>
-</blockquote>
-<p><img src="/assets/blogImg/swift/xc11.jpg" alt="ico原来的样子"> </p>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Swift</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>centos7下lnmp 添加、删除虚拟主机</title>
     <url>/2017/09/15/centos7%E4%B8%8Blnmp-%E6%B7%BB%E5%8A%A0%E3%80%81%E5%88%A0%E9%99%A4%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2255,7 +2255,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#103;&#x69;&#116;&#64;&#103;&#105;&#x74;&#104;&#x75;&#x62;&#x2e;&#x63;&#111;&#x6d;">&#103;&#x69;&#116;&#64;&#103;&#105;&#x74;&#104;&#x75;&#x62;&#x2e;&#x63;&#111;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#x67;&#x69;&#x74;&#x40;&#x67;&#x69;&#x74;&#104;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#x6d;">&#x67;&#x69;&#x74;&#x40;&#x67;&#x69;&#x74;&#104;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -3008,6 +3008,62 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>mysql通过.ibd和.frm文件恢复数据</title>
+    <url>/2019/12/17/mysql%E9%80%9A%E8%BF%87-ibd%E5%92%8C-frm%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E6%95%B0%E6%8D%AE/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>数据库存储的数据实际上也是存储在文件里的,此类文件只能mysql能读取。</p>
+<p>Myisam 引擎:</p>
+<blockquote>
+<p>xxx.frm 表结构文件<br>xxx.MYD 数据文件<br>xxx.MYI 索引文件</p>
+</blockquote>
+<p>Innodb 引擎:</p>
+<blockquote>
+<p>xxx.ibd 数据和索引文件<br>xxx.frm 表结构文件</p>
+</blockquote>
+<p>此篇环境为Lnmp集成环境下的mysql<br>在/etc/my.conf   datadir = /usr/local/var/mysql/</p>
+<p>简写主要步骤:<br>1.将原先的.ibd文件与原先的.frm文件解除绑定</p>
+<blockquote>
+<p>alter table 表名 discard tablespace;</p>
+</blockquote>
+<p>2.停掉服务，新的.ibd文件覆盖旧的.ibd文件，再开启服务</p>
+<p>3.将新的.ibd文件与.frm文件发生联系</p>
+<blockquote>
+<p>alter table 表名 import tablespace;</p>
+</blockquote>
+<p>类似这种单个表操作,若表很多 可简单分批处理[.ibd、.frm同级目录执行]<br>安装 mysql-utilities</p>
+<blockquote>
+<p>yum -y install mysql-utilities</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    $files &#x3D; glob(&quot;*.ibd&quot;);</span><br><span class="line">    $discardTablespace &#x3D; &#39;&#39;;</span><br><span class="line">    $importTablespace &#x3D; &#39;&#39;;</span><br><span class="line">    $createTable &#x3D; &#39;&#39;;</span><br><span class="line">    foreach ($files as $key &#x3D;&gt; $value) &#123;</span><br><span class="line">        $discardTablespace .&#x3D; &quot;ALTER TABLE &#96;&#123;$value&#125;&#96; DISCARD TABLESPACE;\n&quot;;</span><br><span class="line">        $importTablespace .&#x3D; &quot;ALTER TABLE &#96;&#123;$value&#125;&#96; IMPORT TABLESPACE;\n&quot;;</span><br><span class="line">        &#x2F;&#x2F;恢复表建表语句</span><br><span class="line">        $value &#x3D; substr($value, 0, -3).&#39;frm&#39;;</span><br><span class="line">        $shell &#x3D; &#39;mysqlfrm --server&#x3D;root:数据库密码@localhost:3306 &#39;.$value.&#39; --port&#x3D;3309  --user&#x3D;root | tail -n +12&#39;;</span><br><span class="line">        $output &#x3D; shell_exec($shell);</span><br><span class="line">        $lineCount &#x3D;  substr_count($output, &quot;\n&quot;);</span><br><span class="line">        $arr &#x3D; explode(&quot;\n&quot;, $output);</span><br><span class="line">        $arrCount &#x3D; count($arr);</span><br><span class="line">        $arr &#x3D; array_slice($arr, 0, $arrCount-3);</span><br><span class="line">        $createTable .&#x3D; join(&quot;\n&quot;, $arr).&quot;;\n\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    file_put_contents(&#39;discard_tablespace.sql&#39;, $discardTablespace); &#x2F;&#x2F;用于删除表空间</span><br><span class="line">    file_put_contents(&#39;import_tablespace.sql&#39;, $importTablespace); &#x2F;&#x2F;用于导入新的表空间</span><br><span class="line">    file_put_contents(&#39;structure.sql&#39;, $createTable); &#x2F;&#x2F;用于建表结构</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>php index.php &amp;</p>
+</blockquote>
+<p>生成的文件中可能存在[表名+.ibd]的类表名，可手动修改。</p>
+<p>由于版本库的原因可能存在文件为空(全是分号)</p>
+<blockquote>
+<p>mysqlfrm –diagnostic ./ &gt;&gt; structure.sql</p>
+</blockquote>
+<p>执行完后 检查下sql文件中可能存在<UNKNOW>(varchar(1020))等字符问题 可手动修改完善</p>
+<blockquote>
+<p>source structure.sql</p>
+</blockquote>
+<p>此时执行完后 会生成表结构。</p>
+<p>执行discard_tablespace.sql 解除旧的绑定关系</p>
+<blockquote>
+<p>source discard_tablespace.sql</p>
+</blockquote>
+<p>新的.ibd文件覆盖旧的后 执行导入新的关系</p>
+<blockquote>
+<p>source import_tablespace.sql</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>mysql</tag>
+        <tag>Innodb</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>nginx 实现负载均衡</title>
     <url>/2017/09/21/nginx-%E5%AE%9E%E7%8E%B0%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</url>
     <content><![CDATA[<a id="more"></a>
@@ -3088,59 +3144,111 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>mysql通过.ibd和.frm文件恢复数据</title>
-    <url>/2019/12/17/mysql%E9%80%9A%E8%BF%87-ibd%E5%92%8C-frm%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E6%95%B0%E6%8D%AE/</url>
-    <content><![CDATA[<a id="more"></a>
+    <title>php 递归拼接一条线会员</title>
+    <url>/2017/09/14/php-%E9%80%92%E5%BD%92%E6%8B%BC%E6%8E%A5%E4%B8%80%E6%9D%A1%E7%BA%BF%E4%BC%9A%E5%91%98/</url>
+    <content><![CDATA[<p><strong>php 递归拼接一条线会员：</strong> </p>
+<a id="more"></a>
 
-<p>数据库存储的数据实际上也是存储在文件里的,此类文件只能mysql能读取。</p>
-<p>Myisam 引擎:</p>
+<ul>
+<li><strong>PHP使用递归&amp;参数引用</strong></li>
+</ul>
 <blockquote>
-<p>xxx.frm 表结构文件<br>xxx.MYD 数据文件<br>xxx.MYI 索引文件</p>
+<p> public static function parentIdLine($adminid,&amp;$parentAdmin_strs=’’)<br> {</p>
+<pre><code>       $parent_id = self::find($adminid)-&gt;parent_id;
+       // 构造上级限制
+       $parentids = array(0,1); //主要是限制管理员不拿提成          
+       if (!in_array($parent_id, $parentids) ) &#123;
+          $parentAdmin_strs .= $parent_id.&#39;,&#39;;
+          self::parentIdLine($parent_id,$parentAdmin_strs); 
+       &#125; 
+
+     return $parentAdmin_strs;</code></pre>
+<p>}</p>
 </blockquote>
-<p>Innodb 引擎:</p>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
 <blockquote>
-<p>xxx.ibd 数据和索引文件<br>xxx.frm 表结构文件</p>
-</blockquote>
-<p>此篇环境为Lnmp集成环境下的mysql<br>在/etc/my.conf   datadir = /usr/local/var/mysql/</p>
-<p>简写主要步骤:<br>1.将原先的.ibd文件与原先的.frm文件解除绑定</p>
-<blockquote>
-<p>alter table 表名 discard tablespace;</p>
-</blockquote>
-<p>2.停掉服务，新的.ibd文件覆盖旧的.ibd文件，再开启服务</p>
-<p>3.将新的.ibd文件与.frm文件发生联系</p>
-<blockquote>
-<p>alter table 表名 import tablespace;</p>
-</blockquote>
-<p>类似这种单个表操作,若表很多 可简单分批处理[.ibd、.frm同级目录执行]<br>安装 mysql-utilities</p>
-<blockquote>
-<p>yum -y install mysql-utilities</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    $files &#x3D; glob(&quot;*.ibd&quot;);</span><br><span class="line">    $discardTablespace &#x3D; &#39;&#39;;</span><br><span class="line">    $importTablespace &#x3D; &#39;&#39;;</span><br><span class="line">    $createTable &#x3D; &#39;&#39;;</span><br><span class="line">    foreach ($files as $key &#x3D;&gt; $value) &#123;</span><br><span class="line">        $discardTablespace .&#x3D; &quot;ALTER TABLE &#96;&#123;$value&#125;&#96; DISCARD TABLESPACE;\n&quot;;</span><br><span class="line">        $importTablespace .&#x3D; &quot;ALTER TABLE &#96;&#123;$value&#125;&#96; IMPORT TABLESPACE;\n&quot;;</span><br><span class="line">        &#x2F;&#x2F;恢复表建表语句</span><br><span class="line">        $value &#x3D; substr($value, 0, -3).&#39;frm&#39;;</span><br><span class="line">        $shell &#x3D; &#39;mysqlfrm --server&#x3D;root:数据库密码@localhost:3306 &#39;.$value.&#39; --port&#x3D;3309  --user&#x3D;root | tail -n +12&#39;;</span><br><span class="line">        $output &#x3D; shell_exec($shell);</span><br><span class="line">        $lineCount &#x3D;  substr_count($output, &quot;\n&quot;);</span><br><span class="line">        $arr &#x3D; explode(&quot;\n&quot;, $output);</span><br><span class="line">        $arrCount &#x3D; count($arr);</span><br><span class="line">        $arr &#x3D; array_slice($arr, 0, $arrCount-3);</span><br><span class="line">        $createTable .&#x3D; join(&quot;\n&quot;, $arr).&quot;;\n\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    file_put_contents(&#39;discard_tablespace.sql&#39;, $discardTablespace); &#x2F;&#x2F;用于删除表空间</span><br><span class="line">    file_put_contents(&#39;import_tablespace.sql&#39;, $importTablespace); &#x2F;&#x2F;用于导入新的表空间</span><br><span class="line">    file_put_contents(&#39;structure.sql&#39;, $createTable); &#x2F;&#x2F;用于建表结构</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>php index.php &amp;</p>
-</blockquote>
-<p>生成的文件中可能存在[表名+.ibd]的类表名，可手动修改。</p>
-<p>由于版本库的原因可能存在文件为空(全是分号)</p>
-<blockquote>
-<p>mysqlfrm –diagnostic ./ &gt;&gt; structure.sql</p>
-</blockquote>
-<p>执行完后 检查下sql文件中可能存在<UNKNOW>(varchar(1020))等字符问题 可手动修改完善</p>
-<blockquote>
-<p>source structure.sql</p>
-</blockquote>
-<p>此时执行完后 会生成表结构。</p>
-<p>执行discard_tablespace.sql 解除旧的绑定关系</p>
-<blockquote>
-<p>source discard_tablespace.sql</p>
-</blockquote>
-<p>新的.ibd文件覆盖旧的后 执行导入新的关系</p>
-<blockquote>
-<p>source import_tablespace.sql</p>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.<br>   ok,  enjoy it !!!</p>
 </blockquote>
 ]]></content>
       <tags>
-        <tag>mysql</tag>
-        <tag>Innodb</tag>
+        <tag>php</tag>
+        <tag>递归</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>socket.io的使用</title>
+    <url>/2018/03/28/socket-io%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><strong>socket.io的基础教程</strong> </p>
+<a id="more"></a>
+
+<p>一、安装nodejs [默认安装][<a href="https://nodejs.org/en/download/" target="_blank">下载nodejs</a>]<br>新建文件夹[socket],在目录下执行以下代码<br>nodejs中用npm初始化来创建package.json</p>
+<blockquote>
+<p> npm init</p>
+</blockquote>
+<p>二、使用npm下载 web框架express模块</p>
+<blockquote>
+<p>npm install --save <a href="mailto:&#x65;&#120;&#112;&#x72;&#x65;&#x73;&#x73;&#64;&#52;&#x2e;&#49;&#x35;&#x2e;&#x32;">&#x65;&#120;&#112;&#x72;&#x65;&#x73;&#x73;&#64;&#52;&#x2e;&#49;&#x35;&#x2e;&#x32;</a></p>
+</blockquote>
+<p>三、使用npm下载socket.io模块</p>
+<blockquote>
+<p>npm install --save socket.io</p>
+</blockquote>
+<p>四、新建index.js 代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var app &#x3D; require(&#39;express&#39;)();</span><br><span class="line">var http &#x3D; require(&#39;http&#39;).Server(app);</span><br><span class="line">var io &#x3D; require(&#39;socket.io&#39;)(http);</span><br><span class="line"></span><br><span class="line">app.get(&#39;&#x2F;&#39;, function(req, res)&#123;</span><br><span class="line">  res.sendFile(__dirname + &#39;&#x2F;index.html&#39;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">io.on(&#39;connection&#39;, function(socket)&#123;</span><br><span class="line">  socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">     io.emit(&#39;bsh&#39;, msg);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.listen(3000, function()&#123;</span><br><span class="line">  console.log(&#39;listening on *:3000&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>五、新建index.html 代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Socket.IO chat&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      * &#123; margin: 0; padding: 0; box-sizing: border-box; &#125;</span><br><span class="line">      body &#123; font: 13px Helvetica, Arial; &#125;</span><br><span class="line">      form &#123; background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; &#125;</span><br><span class="line">      form input &#123; border: 0; padding: 10px; width: 90%; margin-right: .5%; &#125;</span><br><span class="line">      form button &#123; width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; &#125;</span><br><span class="line">      #messages &#123; list-style-type: none; margin: 0; padding: 0; &#125;</span><br><span class="line">      #messages li &#123; padding: 5px 10px; &#125;</span><br><span class="line">      #messages li:nth-child(odd) &#123; background: #eee; &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.1.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  $(function () &#123;</span><br><span class="line">    var socket &#x3D; io();</span><br><span class="line">    $(&#39;form&#39;).submit(function()&#123;</span><br><span class="line">      socket.emit(&#39;bsh&#39;, $(&#39;#m&#39;).val());</span><br><span class="line">      $(&#39;#m&#39;).val(&#39;&#39;);</span><br><span class="line">      return false;</span><br><span class="line">    &#125;);</span><br><span class="line">    socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">      $(&#39;#messages&#39;).append($(&#39;&lt;li&gt;&#39;).text(msg));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;ul id&#x3D;&quot;messages&quot;&gt;&lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;form action&#x3D;&quot;&quot;&gt;</span><br><span class="line">      &lt;input id&#x3D;&quot;m&quot; autocomplete&#x3D;&quot;off&quot; &#x2F;&gt;&lt;button&gt;Send&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>六、执行 node index.js<br>七、浏览器打开localhost:3000</p>
+]]></content>
+      <tags>
+        <tag>socket.io</tag>
+        <tag>nodejs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sublime text3 安装配置svn 及默认快捷键</title>
+    <url>/2017/08/25/sublime-text3-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEsvn-%E5%8F%8A%E9%BB%98%E8%AE%A4%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
+    <content><![CDATA[<p><strong>sublime text3 安装配置svn 及默认快捷键：</strong> </p>
+<a id="more"></a>
+
+<ul>
+<li><strong>省去安装st3 过程….</strong></li>
+</ul>
+<blockquote>
+<ol>
+<li>ctrl+shift+P 调出控制台  然后输入 install package  /  输入install 选择  install package</li>
+<li>输入 svn 选择  TortoiseSVN   选择确定安装。</li>
+<li>等待安装  （左下角有进度表示）。—–&gt;安装成功  插件包里会有svn插件  存在</li>
+<li>安装完成后 会有 提示首页 上面会有 配置 demo</li>
+<li>按照提示操作 </li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>如果你的TortoiseSVN安装时 不是 默认安装地址，需要配置 安装路径</strong></li>
+</ul>
+<blockquote>
+<p>“Preferences-&gt;Package Settings-&gt;TortoiseSVN-&gt;Settings - User”  （首选项–&gt;配置—-&gt;TortoiseSVN–&gt;Settings - User）</p>
+</blockquote>
+<ul>
+<li><strong>修改默认路径。</strong></li>
+</ul>
+<blockquote>
+<p>   {<br>    // Auto close update dialog when no errors, conflicts and merges<br>    “autoCloseUpdateDialog”: false,<br>    // Auto close commit dialog when no errors, conflicts and merges<br>    “autoCloseCommitDialog”: true,<br>    “tortoiseproc_path”: “D:\TortoiseSVN\bin\TortoiseProc.exe”   //你自己的路径<br>    }</p>
+</blockquote>
+<ul>
+<li><strong>默认快捷键[^hello]: hi</strong></li>
+</ul>
+<blockquote>
+<p>[<br>{ “keys”: [“alt+u”], “command”: “svn_update” }<br>,{ “keys”: [“alt+c”], “command”: “svn_commit” }<br>,{ “keys”: [“alt+r”], “command”: “svn_revert” }<br>]</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>svn</tag>
+        <tag>sublime text3</tag>
       </tags>
   </entry>
   <entry>
@@ -3213,114 +3321,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>redis</tag>
         <tag>lua</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>socket.io的使用</title>
-    <url>/2018/03/28/socket-io%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><strong>socket.io的基础教程</strong> </p>
-<a id="more"></a>
-
-<p>一、安装nodejs [默认安装][<a href="https://nodejs.org/en/download/" target="_blank">下载nodejs</a>]<br>新建文件夹[socket],在目录下执行以下代码<br>nodejs中用npm初始化来创建package.json</p>
-<blockquote>
-<p> npm init</p>
-</blockquote>
-<p>二、使用npm下载 web框架express模块</p>
-<blockquote>
-<p>npm install --save <a href="mailto:&#101;&#120;&#x70;&#114;&#x65;&#115;&#115;&#x40;&#52;&#46;&#49;&#x35;&#46;&#50;">&#101;&#120;&#x70;&#114;&#x65;&#115;&#115;&#x40;&#52;&#46;&#49;&#x35;&#46;&#50;</a></p>
-</blockquote>
-<p>三、使用npm下载socket.io模块</p>
-<blockquote>
-<p>npm install --save socket.io</p>
-</blockquote>
-<p>四、新建index.js 代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var app &#x3D; require(&#39;express&#39;)();</span><br><span class="line">var http &#x3D; require(&#39;http&#39;).Server(app);</span><br><span class="line">var io &#x3D; require(&#39;socket.io&#39;)(http);</span><br><span class="line"></span><br><span class="line">app.get(&#39;&#x2F;&#39;, function(req, res)&#123;</span><br><span class="line">  res.sendFile(__dirname + &#39;&#x2F;index.html&#39;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">io.on(&#39;connection&#39;, function(socket)&#123;</span><br><span class="line">  socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">     io.emit(&#39;bsh&#39;, msg);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.listen(3000, function()&#123;</span><br><span class="line">  console.log(&#39;listening on *:3000&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>五、新建index.html 代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Socket.IO chat&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      * &#123; margin: 0; padding: 0; box-sizing: border-box; &#125;</span><br><span class="line">      body &#123; font: 13px Helvetica, Arial; &#125;</span><br><span class="line">      form &#123; background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; &#125;</span><br><span class="line">      form input &#123; border: 0; padding: 10px; width: 90%; margin-right: .5%; &#125;</span><br><span class="line">      form button &#123; width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; &#125;</span><br><span class="line">      #messages &#123; list-style-type: none; margin: 0; padding: 0; &#125;</span><br><span class="line">      #messages li &#123; padding: 5px 10px; &#125;</span><br><span class="line">      #messages li:nth-child(odd) &#123; background: #eee; &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.1.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  $(function () &#123;</span><br><span class="line">    var socket &#x3D; io();</span><br><span class="line">    $(&#39;form&#39;).submit(function()&#123;</span><br><span class="line">      socket.emit(&#39;bsh&#39;, $(&#39;#m&#39;).val());</span><br><span class="line">      $(&#39;#m&#39;).val(&#39;&#39;);</span><br><span class="line">      return false;</span><br><span class="line">    &#125;);</span><br><span class="line">    socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">      $(&#39;#messages&#39;).append($(&#39;&lt;li&gt;&#39;).text(msg));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;ul id&#x3D;&quot;messages&quot;&gt;&lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;form action&#x3D;&quot;&quot;&gt;</span><br><span class="line">      &lt;input id&#x3D;&quot;m&quot; autocomplete&#x3D;&quot;off&quot; &#x2F;&gt;&lt;button&gt;Send&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-
-<p>六、执行 node index.js<br>七、浏览器打开localhost:3000</p>
-]]></content>
-      <tags>
-        <tag>socket.io</tag>
-        <tag>nodejs</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>php 递归拼接一条线会员</title>
-    <url>/2017/09/14/php-%E9%80%92%E5%BD%92%E6%8B%BC%E6%8E%A5%E4%B8%80%E6%9D%A1%E7%BA%BF%E4%BC%9A%E5%91%98/</url>
-    <content><![CDATA[<p><strong>php 递归拼接一条线会员：</strong> </p>
-<a id="more"></a>
-
-<ul>
-<li><strong>PHP使用递归&amp;参数引用</strong></li>
-</ul>
-<blockquote>
-<p> public static function parentIdLine($adminid,&amp;$parentAdmin_strs=’’)<br> {</p>
-<pre><code>       $parent_id = self::find($adminid)-&gt;parent_id;
-       // 构造上级限制
-       $parentids = array(0,1); //主要是限制管理员不拿提成          
-       if (!in_array($parent_id, $parentids) ) &#123;
-          $parentAdmin_strs .= $parent_id.&#39;,&#39;;
-          self::parentIdLine($parent_id,$parentAdmin_strs); 
-       &#125; 
-
-     return $parentAdmin_strs;</code></pre>
-<p>}</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.<br>   ok,  enjoy it !!!</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>php</tag>
-        <tag>递归</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sublime text3 安装配置svn 及默认快捷键</title>
-    <url>/2017/08/25/sublime-text3-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEsvn-%E5%8F%8A%E9%BB%98%E8%AE%A4%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
-    <content><![CDATA[<p><strong>sublime text3 安装配置svn 及默认快捷键：</strong> </p>
-<a id="more"></a>
-
-<ul>
-<li><strong>省去安装st3 过程….</strong></li>
-</ul>
-<blockquote>
-<ol>
-<li>ctrl+shift+P 调出控制台  然后输入 install package  /  输入install 选择  install package</li>
-<li>输入 svn 选择  TortoiseSVN   选择确定安装。</li>
-<li>等待安装  （左下角有进度表示）。—–&gt;安装成功  插件包里会有svn插件  存在</li>
-<li>安装完成后 会有 提示首页 上面会有 配置 demo</li>
-<li>按照提示操作 </li>
-</ol>
-</blockquote>
-<ul>
-<li><strong>如果你的TortoiseSVN安装时 不是 默认安装地址，需要配置 安装路径</strong></li>
-</ul>
-<blockquote>
-<p>“Preferences-&gt;Package Settings-&gt;TortoiseSVN-&gt;Settings - User”  （首选项–&gt;配置—-&gt;TortoiseSVN–&gt;Settings - User）</p>
-</blockquote>
-<ul>
-<li><strong>修改默认路径。</strong></li>
-</ul>
-<blockquote>
-<p>   {<br>    // Auto close update dialog when no errors, conflicts and merges<br>    “autoCloseUpdateDialog”: false,<br>    // Auto close commit dialog when no errors, conflicts and merges<br>    “autoCloseCommitDialog”: true,<br>    “tortoiseproc_path”: “D:\TortoiseSVN\bin\TortoiseProc.exe”   //你自己的路径<br>    }</p>
-</blockquote>
-<ul>
-<li><strong>默认快捷键[^hello]: hi</strong></li>
-</ul>
-<blockquote>
-<p>[<br>{ “keys”: [“alt+u”], “command”: “svn_update” }<br>,{ “keys”: [“alt+c”], “command”: “svn_commit” }<br>,{ “keys”: [“alt+r”], “command”: “svn_revert” }<br>]</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>svn</tag>
-        <tag>sublime text3</tag>
       </tags>
   </entry>
   <entry>
