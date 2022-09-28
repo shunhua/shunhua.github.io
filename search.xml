@@ -1,104 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Alipay 开放平台支付</title>
-    <url>/2018/10/26/Alipay-%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E6%94%AF%E4%BB%98/</url>
-    <content><![CDATA[<a id="more"></a>
-
-
-<p>参考文档 <a href="https://docs.open.alipay.com/291/" target="_blank">[ 开放平台文档中心 ]</a></p>
-<blockquote>
-<p>生成RSA密钥</p>
-</blockquote>
-<p>a. 应用公钥2048<br>b. 应用私钥2048</p>
-<blockquote>
-<p>上传应用公钥并获取支付宝公钥</p>
-</blockquote>
-<p>支付宝公钥应用于开发中</p>
-<blockquote>
-<p>使用应用私钥生成请求签名</p>
-</blockquote>
-<p>应用私钥应用于开发中</p>
-<blockquote>
-<p>使用支付宝公钥验签</p>
-</blockquote>
-<p>支付宝公钥应用于开发中</p>
-]]></content>
-      <tags>
-        <tag>Alipay</tag>
-        <tag>开放平台</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CentOS 7 Git服务器搭建及配置公钥</title>
-    <url>/2018/04/08/CentOS-7-Git%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E5%85%AC%E9%92%A5/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>一、Git服务器搭建</strong></p>
-<p>a. 安装Git</p>
-<blockquote>
-<p>yum install -y git</p>
-</blockquote>
-<p>b. 添加新用户、为用户设置密码</p>
-<blockquote>
-<p>adduser git<br>passwd git</p>
-</blockquote>
-<p>c. 创建空的Git仓库</p>
-<blockquote>
-<p>cd /home/git<br>git init --bare test.git<br>chown -R git:git ../git</p>
-</blockquote>
-<p>d. 在服务器端打开RSA认证</p>
-<blockquote>
-<p>cd /home/git<br>mkdir .ssh<br>cd .ssh<br>touch authorized_keys </p>
-</blockquote>
-<p>e. 命令行创建SSH key</p>
-<blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#64;&#x71;&#x71;&#x2e;&#x63;&#x6f;&#x6d;">&#x78;&#64;&#x71;&#x71;&#x2e;&#x63;&#x6f;&#x6d;</a>“</p>
-</blockquote>
-<p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
-<p>f.把步骤5生成的公钥导入服务器</p>
-<blockquote>
-<p>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
-</blockquote>
-<p>简单操作：windows 打开 Git-Gui-&gt;Help-&gt;Show SSH Key 直接复制key到Linux authorized_keys文件中 </p>
-<p><strong>二、配置钩子</strong></p>
-<p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
-<blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#98;&#64;&#x71;&#113;&#46;&#99;&#111;&#109;">&#98;&#64;&#x71;&#113;&#46;&#99;&#111;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
-</blockquote>
-<p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
-<blockquote>
-<p>git ALL=(ALL) NOPASSWD: ALL</p>
-</blockquote>
-<p>进入网站目录拉取<br>su git<br>sudo -u www git clone ssh://git@127.0.0.1/home/git/test.git </p>
-<p>c. 配置钩子[主要]</p>
-<blockquote>
-<p>cd /home/git/test.git/hooks/<br>vim post-receive</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">export LANG&#x3D;zh_CN.UTF-8</span><br><span class="line">cd &#x2F;home&#x2F;wwwroot&#x2F;www&#x2F;test&#x2F;</span><br><span class="line">unset GIT_DIR </span><br><span class="line">sudo -u www git pull origin master</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>chown git:git post-receive<br>chmod +x post-receive</p>
-</blockquote>
-<p>在本地clone拉取远程git仓库</p>
-<blockquote>
-<p>git clone ssh://git@127.0.0.1/home/git/test.git</p>
-</blockquote>
-<p><strong>git 回滚到任意版本操作</strong></p>
-<blockquote>
-<p>git reset –hard xxx[版本号]<br>git push -f origin master</p>
-</blockquote>
-<p><strong>git known_hosts</strong></p>
-<blockquote>
-<p>sudo -u www ssh-keygen -R 127.0.0.1<br>sudo -u www git pull origin master</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>CentOS 7</tag>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>9段PHP实用功能的代码推荐</title>
     <url>/2018/02/24/9%E6%AE%B5PHP%E5%AE%9E%E7%94%A8%E5%8A%9F%E8%83%BD%E7%9A%84%E4%BB%A3%E7%A0%81%E6%8E%A8%E8%8D%90/</url>
     <content><![CDATA[<a id="more"></a>
@@ -168,6 +70,104 @@
 ]]></content>
       <tags>
         <tag>php</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Alipay 开放平台支付</title>
+    <url>/2018/10/26/Alipay-%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E6%94%AF%E4%BB%98/</url>
+    <content><![CDATA[<a id="more"></a>
+
+
+<p>参考文档 <a href="https://docs.open.alipay.com/291/" target="_blank">[ 开放平台文档中心 ]</a></p>
+<blockquote>
+<p>生成RSA密钥</p>
+</blockquote>
+<p>a. 应用公钥2048<br>b. 应用私钥2048</p>
+<blockquote>
+<p>上传应用公钥并获取支付宝公钥</p>
+</blockquote>
+<p>支付宝公钥应用于开发中</p>
+<blockquote>
+<p>使用应用私钥生成请求签名</p>
+</blockquote>
+<p>应用私钥应用于开发中</p>
+<blockquote>
+<p>使用支付宝公钥验签</p>
+</blockquote>
+<p>支付宝公钥应用于开发中</p>
+]]></content>
+      <tags>
+        <tag>Alipay</tag>
+        <tag>开放平台</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS 7 Git服务器搭建及配置公钥</title>
+    <url>/2018/04/08/CentOS-7-Git%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E5%85%AC%E9%92%A5/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>一、Git服务器搭建</strong></p>
+<p>a. 安装Git</p>
+<blockquote>
+<p>yum install -y git</p>
+</blockquote>
+<p>b. 添加新用户、为用户设置密码</p>
+<blockquote>
+<p>adduser git<br>passwd git</p>
+</blockquote>
+<p>c. 创建空的Git仓库</p>
+<blockquote>
+<p>cd /home/git<br>git init --bare test.git<br>chown -R git:git ../git</p>
+</blockquote>
+<p>d. 在服务器端打开RSA认证</p>
+<blockquote>
+<p>cd /home/git<br>mkdir .ssh<br>cd .ssh<br>touch authorized_keys </p>
+</blockquote>
+<p>e. 命令行创建SSH key</p>
+<blockquote>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#x40;&#x71;&#113;&#46;&#x63;&#111;&#109;">&#x78;&#x40;&#x71;&#113;&#46;&#x63;&#111;&#109;</a>“</p>
+</blockquote>
+<p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
+<p>f.把步骤5生成的公钥导入服务器</p>
+<blockquote>
+<p>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+</blockquote>
+<p>简单操作：windows 打开 Git-Gui-&gt;Help-&gt;Show SSH Key 直接复制key到Linux authorized_keys文件中 </p>
+<p><strong>二、配置钩子</strong></p>
+<p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
+<blockquote>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#98;&#64;&#x71;&#x71;&#x2e;&#x63;&#x6f;&#109;">&#98;&#64;&#x71;&#x71;&#x2e;&#x63;&#x6f;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+</blockquote>
+<p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
+<blockquote>
+<p>git ALL=(ALL) NOPASSWD: ALL</p>
+</blockquote>
+<p>进入网站目录拉取<br>su git<br>sudo -u www git clone ssh://git@127.0.0.1/home/git/test.git </p>
+<p>c. 配置钩子[主要]</p>
+<blockquote>
+<p>cd /home/git/test.git/hooks/<br>vim post-receive</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">export LANG&#x3D;zh_CN.UTF-8</span><br><span class="line">cd &#x2F;home&#x2F;wwwroot&#x2F;www&#x2F;test&#x2F;</span><br><span class="line">unset GIT_DIR </span><br><span class="line">sudo -u www git pull origin master</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>chown git:git post-receive<br>chmod +x post-receive</p>
+</blockquote>
+<p>在本地clone拉取远程git仓库</p>
+<blockquote>
+<p>git clone ssh://git@127.0.0.1/home/git/test.git</p>
+</blockquote>
+<p><strong>git 回滚到任意版本操作</strong></p>
+<blockquote>
+<p>git reset –hard xxx[版本号]<br>git push -f origin master</p>
+</blockquote>
+<p><strong>git known_hosts</strong></p>
+<blockquote>
+<p>sudo -u www ssh-keygen -R 127.0.0.1<br>sudo -u www git pull origin master</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>CentOS 7</tag>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -251,79 +251,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Centos7下基于laradock部署laravel5.x</title>
-    <url>/2018/04/09/Centos7%E4%B8%8B%E5%9F%BA%E4%BA%8Elaradock%E9%83%A8%E7%BD%B2laravel5-x/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>一、安装docker</strong></p>
-<p>Go to：<a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/" target="_blank">[ .rpm安装路径 ]</a> <a href="https://docs.docker.com/engine/installation/linux/docker-ce/centos/#install-using-the-repository" target="_blank">[ 官方参考 ]</a><br><img src="/assets/blogImg/laradock/1.png" alt="ico原来的样子"></p>
-<p>打开路径地址，本文默认安装选择最新版，<br><img src="/assets/blogImg/laradock/2.png" alt="ico原来的样子"><br>下载rpm安装包</p>
-<blockquote>
-<p> wget <a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm">https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm</a></p>
-</blockquote>
-<p>安装 Docker CE,执行命令</p>
-<blockquote>
-<p> $ sudo yum install docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm<br>或者 yum install /path/to/package.rpm  </p>
-</blockquote>
-<p>启动docker –hello[docker run hello-world]</p>
-<blockquote>
-<p> systemctl start docker<br>systemctl enable docker 开机启动</p>
-</blockquote>
-<p><strong>二、CentOS 7配置中国镜像</strong></p>
-<p><a href="https://yq.aliyun.com/articles/29941" target="_blank">[ 参考配置原文 ]</a> docker –registry-mirror=<a href="https://registry.docker-cn.com/">https://registry.docker-cn.com</a> daemon [提示找不到registry]</p>
-<ul>
-<li>CentOS的配置方式略微复杂，需要先将默认的配置文件复制出来</li>
-<li>/lib/systemd/system/docker.service -&gt; /etc/systemd/system/docker.service</li>
-<li>然后再将加速器地址添加到配置文件的启动命令</li>
-<li>重启Docker就可以了。</li>
-</ul>
-<blockquote>
-<ul>
-<li>sudo cp -n /lib/systemd/system/docker.service /etc/systemd/system/docker.service</li>
-<li>sudo sed -i “s|ExecStart=/usr/bin/docker daemon|ExecStart=/usr/bin/docker daemon –registry-mirror=<a href="https://registry.docker-cn.com|g&quot;/">https://registry.docker-cn.com|g&quot;</a> /etc/systemd/system/docker.service</li>
-<li>sudo sed -i “s|ExecStart=/usr/bin/dockerd|ExecStart=/usr/bin/dockerd –registry-mirror=<a href="https://registry.docker-cn.com|g&quot;/">https://registry.docker-cn.com|g&quot;</a> /etc/systemd/system/docker.service</li>
-<li>sudo systemctl daemon-reload</li>
-<li>sudo systemctl restart docker  </li>
-</ul>
-</blockquote>
-<p>docker 安装完成！！！</p>
-<p><strong>三、拉取 Laradock</strong></p>
-<ul>
-<li>目录路径[/home/]</li>
-<li>git clone <a href="https://github.com/Laradock/laradock.git">https://github.com/Laradock/laradock.git</a>  </li>
-<li>cp env-example .env </li>
-<li>docker-compose up -d nginx mysql phpmyadmin</li>
-<li>访问phpmyadmin[<a href="http://ip:8080/]%E9%BB%98%E8%AE%A4%E5%80%BC%E4%B8%BA">http://ip:8080/]默认值为</a>  服务器[mysql] 账号[root] 密码[root]</li>
-<li>获取laradock[/home/laradock]后 在同级下创建项目目录[/home/www]</li>
-<li>修改[/home/laradock/.env]APPLICATION=../www/</li>
-<li>[/home/laradock]下使用root用户docker-compose exec workspace bash</li>
-<li>[/home/laradock]下使用laradock用户  docker-compose exec –user=laradock workspace bash</li>
-<li>配置中国镜像 composer config -g repo.packagist composer <a href="https://packagist.phpcomposer.com/">https://packagist.phpcomposer.com</a></li>
-<li>创建laravel composer create-project laravel/laravel my-app</li>
-</ul>
-<blockquote>
-<p> 安装SVN 配置钩子文件到 [/home/www]  </p>
-</blockquote>
-<p><a href="https://lisonghe.com/detail/19" target="_blank">[ svn安装文档参考 ]</a> </p>
-<blockquote>
-<p> 安装SVN成功后,服务器开启端口权限，上传代码,修改数据库配置，导入数据库</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>laradock</tag>
-        <tag>centos7</tag>
-        <tag>laravel5</tag>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CentOS 7 搭建SVN服务器</title>
     <url>/2017/09/14/CentOS-7-%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
     <content><![CDATA[<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CentOS 7 搭建SVN服务器</strong> </p>
@@ -401,6 +328,147 @@
       </tags>
   </entry>
   <entry>
+    <title>Centos7下基于laradock部署laravel5.x</title>
+    <url>/2018/04/09/Centos7%E4%B8%8B%E5%9F%BA%E4%BA%8Elaradock%E9%83%A8%E7%BD%B2laravel5-x/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>一、安装docker</strong></p>
+<p>Go to：<a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/" target="_blank">[ .rpm安装路径 ]</a> <a href="https://docs.docker.com/engine/installation/linux/docker-ce/centos/#install-using-the-repository" target="_blank">[ 官方参考 ]</a><br><img src="/assets/blogImg/laradock/1.png" alt="ico原来的样子"></p>
+<p>打开路径地址，本文默认安装选择最新版，<br><img src="/assets/blogImg/laradock/2.png" alt="ico原来的样子"><br>下载rpm安装包</p>
+<blockquote>
+<p> wget <a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm">https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm</a></p>
+</blockquote>
+<p>安装 Docker CE,执行命令</p>
+<blockquote>
+<p> $ sudo yum install docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm<br>或者 yum install /path/to/package.rpm  </p>
+</blockquote>
+<p>启动docker –hello[docker run hello-world]</p>
+<blockquote>
+<p> systemctl start docker<br>systemctl enable docker 开机启动</p>
+</blockquote>
+<p><strong>二、CentOS 7配置中国镜像</strong></p>
+<p><a href="https://yq.aliyun.com/articles/29941" target="_blank">[ 参考配置原文 ]</a> docker –registry-mirror=<a href="https://registry.docker-cn.com/">https://registry.docker-cn.com</a> daemon [提示找不到registry]</p>
+<ul>
+<li>CentOS的配置方式略微复杂，需要先将默认的配置文件复制出来</li>
+<li>/lib/systemd/system/docker.service -&gt; /etc/systemd/system/docker.service</li>
+<li>然后再将加速器地址添加到配置文件的启动命令</li>
+<li>重启Docker就可以了。</li>
+</ul>
+<blockquote>
+<ul>
+<li>sudo cp -n /lib/systemd/system/docker.service /etc/systemd/system/docker.service</li>
+<li>sudo sed -i “s|ExecStart=/usr/bin/docker daemon|ExecStart=/usr/bin/docker daemon –registry-mirror=<a href="https://registry.docker-cn.com|g&quot;/">https://registry.docker-cn.com|g&quot;</a> /etc/systemd/system/docker.service</li>
+<li>sudo sed -i “s|ExecStart=/usr/bin/dockerd|ExecStart=/usr/bin/dockerd –registry-mirror=<a href="https://registry.docker-cn.com|g&quot;/">https://registry.docker-cn.com|g&quot;</a> /etc/systemd/system/docker.service</li>
+<li>sudo systemctl daemon-reload</li>
+<li>sudo systemctl restart docker  </li>
+</ul>
+</blockquote>
+<p>docker 安装完成！！！</p>
+<p><strong>三、拉取 Laradock</strong></p>
+<ul>
+<li>目录路径[/home/]</li>
+<li>git clone <a href="https://github.com/Laradock/laradock.git">https://github.com/Laradock/laradock.git</a>  </li>
+<li>cp env-example .env </li>
+<li>docker-compose up -d nginx mysql phpmyadmin</li>
+<li>访问phpmyadmin[<a href="http://ip:8080/]%E9%BB%98%E8%AE%A4%E5%80%BC%E4%B8%BA">http://ip:8080/]默认值为</a>  服务器[mysql] 账号[root] 密码[root]</li>
+<li>获取laradock[/home/laradock]后 在同级下创建项目目录[/home/www]</li>
+<li>修改[/home/laradock/.env]APPLICATION=../www/</li>
+<li>[/home/laradock]下使用root用户docker-compose exec workspace bash</li>
+<li>[/home/laradock]下使用laradock用户  docker-compose exec –user=laradock workspace bash</li>
+<li>配置中国镜像 composer config -g repo.packagist composer <a href="https://packagist.phpcomposer.com/">https://packagist.phpcomposer.com</a></li>
+<li>创建laravel composer create-project laravel/laravel my-app</li>
+</ul>
+<blockquote>
+<p> 安装SVN 配置钩子文件到 [/home/www]  </p>
+</blockquote>
+<p><a href="https://lisonghe.com/detail/19" target="_blank">[ svn安装文档参考 ]</a> </p>
+<blockquote>
+<p> 安装SVN成功后,服务器开启端口权限，上传代码,修改数据库配置，导入数据库</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>laradock</tag>
+        <tag>centos7</tag>
+        <tag>laravel5</tag>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Centos下两种守护进程的配置</title>
+    <url>/2018/03/21/Centos%E4%B8%8B%E4%B8%A4%E7%A7%8D%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E7%9A%84%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<a id="more"></a>
+
+
+<blockquote>
+<p>一、php artisan</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-xx]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D;php &#x2F;home&#x2F;wwwroot&#x2F;www.xxx.com&#x2F;artisan queue:work --tries&#x3D;3</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;4</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xxx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>二、执行node js </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-node]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D; node &#x2F;home&#x2F;socket&#x2F;stocket.js</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;1</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Centos</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Centos下安装PHP7</title>
+    <url>/2018/03/21/Centos%E4%B8%8B%E5%AE%89%E8%A3%85PHP7/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>一、安装yum仓库</p>
+<blockquote>
+<p>yum install epel-release<br>rpm -Uvh <a href="https://mirror.webtatic.com/yum/el7/webtatic-release.rpm">https://mirror.webtatic.com/yum/el7/webtatic-release.rpm</a></p>
+</blockquote>
+<p>二、安装php7</p>
+<blockquote>
+<p>yum install php70w<br>php -v</p>
+</blockquote>
+<p>三、安装php扩展</p>
+<blockquote>
+<p>yum search php70<br>yum install php70w-xml php70w-soap php70w-xmlrpc<br>yum install php70w-mbstring php70w-json php70w-gd php70w-mcrypt<br>yum install php70w-fpm php70w-mysql php70w-pdo php70w-opcache</p>
+</blockquote>
+<p>nginx 配置 php</p>
+<p>1、启动fpm</p>
+<blockquote>
+<p>systemctl start php-fpm<br>systemctl enable php-fpm # 开机启动</p>
+</blockquote>
+<p>2、配置nginx</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">location ~ \.php$ &#123;</span><br><span class="line">    root html;        </span><br><span class="line">    fastcgi_pass   127.0.0.1:9000;     # 也可以用 socket 进行连接</span><br><span class="line">    fastcgi_index  index.php;</span><br><span class="line">    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;</span><br><span class="line">    include        fastcgi_params;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、重启nginx</p>
+<blockquote>
+<p>systemctl restart nginx</p>
+</blockquote>
+<p>##php 错误日志##<br>nginx是一个web服务器，因此nginx的access日志只有对访问页面的记录，不会有php 的 error log信息。<br>nginx把对php的请求发给php-fpm fastcgi进程来处理，默认的php-fpm只会输出php-fpm的错误信息，在php-fpm的errors log里也看不到php的errorlog<br>原因是php-fpm的配置文件php-fpm.conf中默认是关闭worker进程的错误输出，直接把他们重定向到/dev/null,所以我们在nginx的error log 和php-fpm的errorlog都看不到php的错误日志。</p>
+<p>1、修改php-fpm.conf中配置</p>
+<blockquote>
+<p>catch_workers_output = yes<br>error_log = log/error_log</p>
+</blockquote>
+<p>2、修改php.ini中配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">log_errors &#x3D; On</span><br><span class="line">error_log &#x3D; &quot;&#x2F;var&#x2F;log&#x2F;php&#x2F;error_log&quot;  # 填写日志路径</span><br><span class="line">error_reporting &#x3D; E_ALL&amp;~E_NOTICE</span><br></pre></td></tr></table></figure>
+<p>3、重启php-fpm<br>注意：<br>a、php-fpm.conf 中的php_admin_value[error_log] 参数 会覆盖php.ini中的 error_log 参数<br>所以确保你在phpinfo()中看到的最终error_log文件具有可写权限并且没有设置php_admin_value[error_log] 参数，否则错误日志会输出到php-fpm的错误日志里</p>
+<p>b、找不到php.ini位置，使用php的phpinfo()结果查看<br>c、如何修改PHP错误日志不输出到页面或屏幕上</p>
+<p>修改php.ini</p>
+<blockquote>
+<p>不显示错误信息(不输出到页面或屏幕上)<br>display_errors = off<br>记录错误信息(保存到日志文件中)<br>log_errors = on<br>捕获所有错误信息<br>error_reporting = E_ALL<br>设置日志文件名<br>error_log =   </p>
+</blockquote>
+<p>程序中修改以上配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ini_set(&quot;display_errors&quot;, 0)</span><br><span class="line">ini_set(&quot;error_reporting&quot;, E_ALL);  </span><br><span class="line">ini_set(&quot;error_log&quot;, &quot;&lt;日志文件名&gt;&quot;)</span><br><span class="line">ini_set(&quot;log_errors&quot;, 1);</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>Centos</tag>
+        <tag>PHP7</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Docker下实践ELK(Elasticsearch、Logstash、Kibana)</title>
     <url>/2021/12/22/Docker%E4%B8%8B%E5%AE%9E%E8%B7%B5ELK-Elasticsearch%E3%80%81Logstash%E3%80%81Kibana/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/elk.png" alt="elk"></p>
@@ -437,26 +505,6 @@
 ]]></content>
       <tags>
         <tag>ELK</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Centos下两种守护进程的配置</title>
-    <url>/2018/03/21/Centos%E4%B8%8B%E4%B8%A4%E7%A7%8D%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E7%9A%84%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<a id="more"></a>
-
-
-<blockquote>
-<p>一、php artisan</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-xx]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D;php &#x2F;home&#x2F;wwwroot&#x2F;www.xxx.com&#x2F;artisan queue:work --tries&#x3D;3</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;4</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xxx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>二、执行node js </p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-node]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D; node &#x2F;home&#x2F;socket&#x2F;stocket.js</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;1</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>Centos</tag>
       </tags>
   </entry>
   <entry>
@@ -522,54 +570,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Centos下安装PHP7</title>
-    <url>/2018/03/21/Centos%E4%B8%8B%E5%AE%89%E8%A3%85PHP7/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>一、安装yum仓库</p>
-<blockquote>
-<p>yum install epel-release<br>rpm -Uvh <a href="https://mirror.webtatic.com/yum/el7/webtatic-release.rpm">https://mirror.webtatic.com/yum/el7/webtatic-release.rpm</a></p>
-</blockquote>
-<p>二、安装php7</p>
-<blockquote>
-<p>yum install php70w<br>php -v</p>
-</blockquote>
-<p>三、安装php扩展</p>
-<blockquote>
-<p>yum search php70<br>yum install php70w-xml php70w-soap php70w-xmlrpc<br>yum install php70w-mbstring php70w-json php70w-gd php70w-mcrypt<br>yum install php70w-fpm php70w-mysql php70w-pdo php70w-opcache</p>
-</blockquote>
-<p>nginx 配置 php</p>
-<p>1、启动fpm</p>
-<blockquote>
-<p>systemctl start php-fpm<br>systemctl enable php-fpm # 开机启动</p>
-</blockquote>
-<p>2、配置nginx</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">location ~ \.php$ &#123;</span><br><span class="line">    root html;        </span><br><span class="line">    fastcgi_pass   127.0.0.1:9000;     # 也可以用 socket 进行连接</span><br><span class="line">    fastcgi_index  index.php;</span><br><span class="line">    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;</span><br><span class="line">    include        fastcgi_params;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>3、重启nginx</p>
-<blockquote>
-<p>systemctl restart nginx</p>
-</blockquote>
-<p>##php 错误日志##<br>nginx是一个web服务器，因此nginx的access日志只有对访问页面的记录，不会有php 的 error log信息。<br>nginx把对php的请求发给php-fpm fastcgi进程来处理，默认的php-fpm只会输出php-fpm的错误信息，在php-fpm的errors log里也看不到php的errorlog<br>原因是php-fpm的配置文件php-fpm.conf中默认是关闭worker进程的错误输出，直接把他们重定向到/dev/null,所以我们在nginx的error log 和php-fpm的errorlog都看不到php的错误日志。</p>
-<p>1、修改php-fpm.conf中配置</p>
-<blockquote>
-<p>catch_workers_output = yes<br>error_log = log/error_log</p>
-</blockquote>
-<p>2、修改php.ini中配置</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">log_errors &#x3D; On</span><br><span class="line">error_log &#x3D; &quot;&#x2F;var&#x2F;log&#x2F;php&#x2F;error_log&quot;  # 填写日志路径</span><br><span class="line">error_reporting &#x3D; E_ALL&amp;~E_NOTICE</span><br></pre></td></tr></table></figure>
-<p>3、重启php-fpm<br>注意：<br>a、php-fpm.conf 中的php_admin_value[error_log] 参数 会覆盖php.ini中的 error_log 参数<br>所以确保你在phpinfo()中看到的最终error_log文件具有可写权限并且没有设置php_admin_value[error_log] 参数，否则错误日志会输出到php-fpm的错误日志里</p>
-<p>b、找不到php.ini位置，使用php的phpinfo()结果查看<br>c、如何修改PHP错误日志不输出到页面或屏幕上</p>
-<p>修改php.ini</p>
-<blockquote>
-<p>不显示错误信息(不输出到页面或屏幕上)<br>display_errors = off<br>记录错误信息(保存到日志文件中)<br>log_errors = on<br>捕获所有错误信息<br>error_reporting = E_ALL<br>设置日志文件名<br>error_log =   </p>
-</blockquote>
-<p>程序中修改以上配置</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ini_set(&quot;display_errors&quot;, 0)</span><br><span class="line">ini_set(&quot;error_reporting&quot;, E_ALL);  </span><br><span class="line">ini_set(&quot;error_log&quot;, &quot;&lt;日志文件名&gt;&quot;)</span><br><span class="line">ini_set(&quot;log_errors&quot;, 1);</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>Centos</tag>
-        <tag>PHP7</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Go 语言基础</title>
     <url>/2017/11/08/Go-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<a id="more"></a>
@@ -628,6 +628,84 @@
 ]]></content>
       <tags>
         <tag>golang</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LNMP一键安装包常用命令及配置文件路径</title>
+    <url>/2017/12/06/LNMP%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84/</url>
+    <content><![CDATA[<a id="more"></a>
+<p><strong>LNMP常用命令</strong></p>
+<blockquote>
+<p>状态管理LNMP状态管理:</p>
+</blockquote>
+<p>lnmp [start|stop|reload|restart|kill|status]</p>
+<blockquote>
+<p>Nginx状态管理:</p>
+</blockquote>
+<p>/etc/init.d/nginx [start|stop|reload|restart]</p>
+<blockquote>
+<p>PHP-FPM状态管理:</p>
+</blockquote>
+<p>/etc/init.d/php-fpm [start|stop|quit|restart|reload|logrotate]</p>
+<blockquote>
+<p>MySQL状态管理:</p>
+</blockquote>
+<p>/etc/init.d/mysql [start|stop|restart|reload|force-reload|status]</p>
+<blockquote>
+<p>Apache状态管理:</p>
+</blockquote>
+<p>/etc/init.d/httpd [start|stop|restart|graceful|graceful-stop|configtest|status]</p>
+<p><strong>配置文件路径</strong></p>
+<blockquote>
+<p>MySQL目录:</p>
+</blockquote>
+<p> /usr/local/mysql/</p>
+<blockquote>
+<p>MySQL配置文件:</p>
+</blockquote>
+<p>/etc/my.cnf</p>
+<hr>
+<blockquote>
+<p>PHP目录:</p>
+</blockquote>
+<p> /usr/local/php/</p>
+<blockquote>
+<p>PHP配置文件:</p>
+</blockquote>
+<p>/usr/local/php/etc/php.ini</p>
+<hr>
+<blockquote>
+<p>网站目录:</p>
+</blockquote>
+<p>/home/wwwroot/default/</p>
+<blockquote>
+<p>Nginx配置文件:</p>
+</blockquote>
+<p>/usr/local/nginx/conf/nginx.conf</p>
+<blockquote>
+<p>Nginx日志目录:</p>
+</blockquote>
+<p>/home/wwwlogs/</p>
+<blockquote>
+<p>Nginx虚拟主机配置文件:</p>
+</blockquote>
+<p>/usr/local/nginx/conf/vhost/域名.conf</p>
+<blockquote>
+<p>常用Linux命令:</p>
+</blockquote>
+<ul>
+<li>top</li>
+<li>df -m[k]</li>
+<li>find / -type f -size +1G</li>
+<li>[&gt; filename]</li>
+</ul>
+<p><strong>Notice</strong></p>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>lnmp</tag>
       </tags>
   </entry>
   <entry>
@@ -761,84 +839,6 @@
       </tags>
   </entry>
   <entry>
-    <title>LNMP一键安装包常用命令及配置文件路径</title>
-    <url>/2017/12/06/LNMP%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84/</url>
-    <content><![CDATA[<a id="more"></a>
-<p><strong>LNMP常用命令</strong></p>
-<blockquote>
-<p>状态管理LNMP状态管理:</p>
-</blockquote>
-<p>lnmp [start|stop|reload|restart|kill|status]</p>
-<blockquote>
-<p>Nginx状态管理:</p>
-</blockquote>
-<p>/etc/init.d/nginx [start|stop|reload|restart]</p>
-<blockquote>
-<p>PHP-FPM状态管理:</p>
-</blockquote>
-<p>/etc/init.d/php-fpm [start|stop|quit|restart|reload|logrotate]</p>
-<blockquote>
-<p>MySQL状态管理:</p>
-</blockquote>
-<p>/etc/init.d/mysql [start|stop|restart|reload|force-reload|status]</p>
-<blockquote>
-<p>Apache状态管理:</p>
-</blockquote>
-<p>/etc/init.d/httpd [start|stop|restart|graceful|graceful-stop|configtest|status]</p>
-<p><strong>配置文件路径</strong></p>
-<blockquote>
-<p>MySQL目录:</p>
-</blockquote>
-<p> /usr/local/mysql/</p>
-<blockquote>
-<p>MySQL配置文件:</p>
-</blockquote>
-<p>/etc/my.cnf</p>
-<hr>
-<blockquote>
-<p>PHP目录:</p>
-</blockquote>
-<p> /usr/local/php/</p>
-<blockquote>
-<p>PHP配置文件:</p>
-</blockquote>
-<p>/usr/local/php/etc/php.ini</p>
-<hr>
-<blockquote>
-<p>网站目录:</p>
-</blockquote>
-<p>/home/wwwroot/default/</p>
-<blockquote>
-<p>Nginx配置文件:</p>
-</blockquote>
-<p>/usr/local/nginx/conf/nginx.conf</p>
-<blockquote>
-<p>Nginx日志目录:</p>
-</blockquote>
-<p>/home/wwwlogs/</p>
-<blockquote>
-<p>Nginx虚拟主机配置文件:</p>
-</blockquote>
-<p>/usr/local/nginx/conf/vhost/域名.conf</p>
-<blockquote>
-<p>常用Linux命令:</p>
-</blockquote>
-<ul>
-<li>top</li>
-<li>df -m[k]</li>
-<li>find / -type f -size +1G</li>
-<li>[&gt; filename]</li>
-</ul>
-<p><strong>Notice</strong></p>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>lnmp</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Laravel Redis 广播测试</title>
     <url>/2019/04/19/Laravel-Redis-%E5%B9%BF%E6%92%AD%E6%B5%8B%E8%AF%95/</url>
     <content><![CDATA[<a id="more"></a>
@@ -936,6 +936,57 @@
       </tags>
   </entry>
   <entry>
+    <title>Laravel yansongda/laravel-pay</title>
+    <url>/2018/09/29/Laravel-yansongda-laravel-pay/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p>运行环境:</p>
+</blockquote>
+<ul>
+<li>php &gt;= 7.0</li>
+<li>composer</li>
+<li>laravel || lumen &gt;= 5.1</li>
+</ul>
+<p><strong>一、安装</strong></p>
+<blockquote>
+<p>composer require yansongda/laravel-pay</p>
+</blockquote>
+<p>添加service provider（如果laravel&lt;5.5 或者 lumen）[5.5以上忽略]</p>
+<p>laravel &lt; 5.5</p>
+<blockquote>
+<p>Yansongda\LaravelPay\PayServiceProvider::class,</p>
+</blockquote>
+<p>lumen</p>
+<blockquote>
+<p>$app-&gt;register(Yansongda\LaravelPay\PayServiceProvider::class);</p>
+</blockquote>
+<p>添加 alias（如果laravel&lt;5.5 或者 lumen）[5.5以上忽略]</p>
+<blockquote>
+<p>‘Pay’ =&gt; Yansongda\LaravelPay\Facades\Pay::class,</p>
+</blockquote>
+<p>配置文件</p>
+<blockquote>
+<p>php artisan vendor:publish –provider=”Yansongda\LaravelPay\PayServiceProvider” –tag=laravel-pay</p>
+</blockquote>
+<p><strong>二、使用[支付宝]</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">use Yansongda\Pay\Pay;</span><br><span class="line"></span><br><span class="line">$config &#x3D; [</span><br><span class="line">    &#39;app_id&#39; &#x3D;&gt; &#39;2016082000295641&#39;,</span><br><span class="line">    &#39;notify_url&#39; &#x3D;&gt; &#39;http:&#x2F;&#x2F;yansongda.cn&#x2F;notify.php&#39;,</span><br><span class="line">    &#39;return_url&#39; &#x3D;&gt; &#39;http:&#x2F;&#x2F;yansongda.cn&#x2F;return.php&#39;,</span><br><span class="line">    &#39;ali_public_key&#39; &#x3D;&gt; &#39;MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuWJKrQ6SWvS6niI+4vEVZiYfjkCfLQfoFI2nCp9ZLDS42QtiL4Ccyx8scgc3nhVwmVRte8f57TFvGhvJD0upT4O5O&#x2F;lRxmTjechXAorirVdAODpOu0mFfQV9y&#x2F;T9o9hHnU+VmO5spoVb3umqpq6D&#x2F;Pt8p25Yk852&#x2F;w01VTIczrXC4QlrbOEe3sr1E9auoC7rgYjjCO6lZUIDjX&#x2F;oBmNXZxhRDrYx4Yf5X7y8FRBFvygIE2FgxV4Yw+SL3QAa2m5MLcbusJpxOml9YVQfP8iSurx41PvvXUMo49JG3BDVernaCYXQCoUJv9fJwbnfZd7J5YByC+5KM4sblJTq7bXZWQIDAQAB&#39;,</span><br><span class="line">    &#39;private_key&#39; &#x3D;&gt; &#39;MIIEpAIBAAKCAQEAs6+F2leOgOrvj9jTeDhb5q46GewOjqLBlGSs&#x2F;bVL4Z3fMr3p+Q1Tux&#x2F;6uogeVi&#x2F;eHd84xvQdfpZ87A1SfoWnEGH5z15yorccxSOwWUI+q8gz51IWqjgZxhWKe31BxNZ+prnQpyeMBtE25fXp5nQZ&#x2F;pftgePyUUvUZRcAUisswntobDQKbwx28VCXw5XB2A+lvYEvxmMv&#x2F;QexYjwKK4M54j435TuC3UctZbnuynSPpOmCu45ZhEYXd4YMsGMdZE5&#x2F;077ZU1aU7wx&#x2F;gk07PiHImEOCDkzqsFo0Buc&#x2F;knGcdOiUDvm2hn2y1XvwjyFOThsqCsQYi4JmwZdRa8kvOf57nwIDAQABAoIBAQCw5QCqln4VTrTvcW+msB1ReX57nJgsNfDLbV2dG8mLYQemBa9833DqDK6iynTLNq69y88ylose33o2TVtEccGp8Dqluv6yUAED14G6LexS43KtrXPgugAtsXE253ZDGUNwUggnN1i0MW2RcMqHdQ9ORDWvJUCeZj&#x2F;AEafgPN8AyiLrZeL07jJz&#x2F;uaRfAuNqkImCVIarKUX3HBCjl9TpuoMjcMhz&#x2F;MsOmQ0agtCatO1eoH1sqv5Odvxb1i59c8Hvq&#x2F;mGEXyRuoiDo05SE6IyXYXr84&#x2F;Nf2xvVNHNQA6kTckj8shSi+HGM4mO1Y4Pbb7XcnxNkT0Inn6oJMSiy56P+CpAoGBAO1O+5FE1ZuVGuLb48cY+0lHCD+nhSBd66B5FrxgPYCkFOQWR7pWyfNDBlmO3SSooQ8TQXA25blrkDxzOAEGX57EPiipXr&#x2F;hy5e+WNoukpy09rsO1TMsvC+v0FXLvZ+TIAkqfnYBgaT56ku7yZ8aFGMwdCPL7WJYAwUIcZX8wZ3dAoGBAMHWplAqhe4bfkGOEEpfs6VvEQxCqYMYVyR65K0rI1LiDZn6Ij8fdVtwMjGKFSZZTspmsqnbbuCE&#x2F;VTyDzF4NpAxdm3cBtZACv1Lpu2Om+aTzhK2PI6WTDVTKAJBYegXaahBCqVbSxieR62IWtmOMjggTtAKWZ1P5LQcRwdkaB2rAoGAWnAPT318Kp7YcDx8whOzMGnxqtCc24jvk2iSUZgb2Dqv+3zCOTF6JUsV0Guxu5bISoZ8GdfSFKf5gBAo97sGFeuUBMsHYPkcLehM1FmLZk1Q+ljcx3P1A&#x2F;ds3kWXLolTXCrlpvNMBSN5NwOKAyhdPK&#x2F;qkvnUrfX8sJ5XK2H4J8ECgYAGIZ0HIiE0Y+g9eJnpUFelXvsCEUW9YNK4065SD&#x2F;BBGedmPHRC3OLgbo8X5A9BNEf6vP7fwpIiRfKhcjqqzOuk6fueA&#x2F;yvYD04v+Da2MzzoS8+hkcqF3T3pta4I4tORRdRfCUzD80zTSZlRc&#x2F;h286Y2eTETd+By1onnFFe2X01mwKBgQDaxo4PBcLL2OyVT5DoXiIdTCJ8KNZL9+kV1aiBuOWxnRgkDjPngslzNa1bK+klGgJNYDbQqohKNn1HeFX3mYNfCUpuSnD2Yag53Dd&#x2F;1DLO+NxzwvTu4D6DCUnMMMBVaF42ig31Bs0jI3JQZVqeeFzSET8fkoFopJf3G6UXlrIEAQ&#x3D;&#x3D;&#39;,</span><br><span class="line">    &#39;http&#39; &#x3D;&gt; [ &#x2F;&#x2F; optional</span><br><span class="line">        &#39;timeout&#39; &#x3D;&gt; 5.0,</span><br><span class="line">        &#39;connect_timeout&#39; &#x3D;&gt; 5.0,</span><br><span class="line">        &#x2F;&#x2F; 更多配置项请参考 [Guzzle](https:&#x2F;&#x2F;guzzle-cn.readthedocs.io&#x2F;zh_CN&#x2F;latest&#x2F;request-options.html)</span><br><span class="line">    ]</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 支付</span><br><span class="line">$order &#x3D; [</span><br><span class="line">    &#39;out_trade_no&#39; &#x3D;&gt; time(),</span><br><span class="line">    &#39;total_amount&#39; &#x3D;&gt; &#39;1&#39;,</span><br><span class="line">    &#39;subject&#39; &#x3D;&gt; &#39;test&#39;,</span><br><span class="line">];</span><br><span class="line">$alipay &#x3D; Pay::alipay($config)-&gt;web($order);</span><br><span class="line"></span><br><span class="line">return $alipay-&gt;send();&#x2F;&#x2F; laravel 框架中请直接 &#96;return $alipay&#96;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 退款</span><br><span class="line">$order &#x3D; [</span><br><span class="line">    &#39;out_trade_no&#39; &#x3D;&gt; &#39;1514027114&#39;,</span><br><span class="line">    &#39;refund_amount&#39; &#x3D;&gt; &#39;0.01&#39;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;refund($order); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 查询</span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;find(&#39;out_trade_no_123456&#39;); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 取消</span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;cancel(&#39;out_trade_no_123456&#39;); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 关闭</span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;close(&#39;out_trade_no_123456&#39;); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 验证服务器数据</span><br><span class="line">$alipay &#x3D; Pay::alipay($config)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 是的，验签就这么简单！</span><br><span class="line">$data &#x3D; $alipay-&gt;verify(); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$data-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line">$alipay-&gt;success()-&gt;send(); &#x2F;&#x2F; 向支付宝服务器确认接收到的数据。laravel 框架中请直接 &#96;return $alipay-&gt;success()&#96;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>若前端框架使用vue、react等 此时后端返回的是form表单需要简单处理下，如下:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const div &#x3D; document.createElement(&#39;div&#39;) &#x2F;&#x2F; 创建div</span><br><span class="line">div.innerHTML &#x3D; res.data &#x2F;&#x2F; 将返回的form 放入div</span><br><span class="line">document.body.appendChild(div)</span><br><span class="line">document.forms[&#39;alipaysubmit&#39;].submit()</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>laravel5.6</tag>
+        <tag>laravel-pay</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Laravel 事件系统</title>
     <url>/2019/04/22/Laravel-%E4%BA%8B%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
     <content><![CDATA[<a id="more"></a>
@@ -990,73 +1041,47 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Linux安装配置守护进程</title>
-    <url>/2018/03/09/Linux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/</url>
+    <title>Laravel 和 Vue 的项目搭建</title>
+    <url>/2018/11/02/Laravel-%E5%92%8C-Vue-%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/</url>
     <content><![CDATA[<a id="more"></a>
 
+<p><strong>一、Laravel创建项目</strong> </p>
 <blockquote>
-<p> centos 下安装Supervisor</p>
+<p>composer create-project –prefer-dist laravel/laravel laravel-vue</p>
 </blockquote>
-<p>yum install supervisor</p>
+<p><strong>二、扩展包</strong> </p>
 <blockquote>
-<p> 配置Supervisor</p>
+<p>npm install<br>npm install vue-router iview</p>
 </blockquote>
-<p>cd /etc/supervisord.d/<br>vim laravel-worker.ini<br>systemctl start supervisord</p>
+<p><strong>三、前端结构搭建</strong><br>vue前端的文件结构在 /recources/js 目录[laravel5.7]，vue能够渲染主要是两个操作</p>
+<ul>
+<li>vue 挂载到页面的节点中</li>
+<li>vue-router 处理路由，渲染对应的组件</li>
+</ul>
+<p>code流程  </p>
+<ol>
+<li><p>创建 web 路由<br>在 /routes/web.php 中新建一个访问我们挂载着vue页面的路由。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Route::get(&#39;&#x2F;&#39;, function () &#123;</span><br><span class="line">    return view(&#39;welcome&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑welcome.blade.php<br>在 resource/views 新建 welcome.blade.php,代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0, maximum-scale&#x3D;1.0, minimum-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;csrf-token&quot; content&#x3D;&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</span><br><span class="line">  &lt;title&gt;&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;&#123;&#123; mix(&#39;css&#x2F;app.css&#39;) &#125;&#125;&quot;&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body ontouchstart&gt;</span><br><span class="line">  &lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#123;&#123; mix(&#39;js&#x2F;app.js&#39;) &#125;&#125;&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改 /recources/js/app.js</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">require(&#39;.&#x2F;bootstrap&#39;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 导入扩展包</span><br><span class="line">window.Vue &#x3D; require(&#39;vue&#39;);</span><br><span class="line"></span><br><span class="line">import App from &#39;.&#x2F;components&#x2F;app.vue&#39;</span><br><span class="line">import VueRouter from &#39;vue-router&#39;;</span><br><span class="line">import iView from &#39;iview&#39;;</span><br><span class="line">import &#39;iview&#x2F;dist&#x2F;styles&#x2F;iview.css&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 导入vue</span><br><span class="line">Vue.use(iView);</span><br><span class="line">Vue.use(VueRouter);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 路由配置</span><br><span class="line">const RouterConfig &#x3D; &#123;</span><br><span class="line">    routes: [</span><br><span class="line">        &#x2F;&#x2F; ExampleComponent laravel默认的示例组件</span><br><span class="line">        &#123; path: &#39;&#x2F;&#39;, component: require(&#39;.&#x2F;components&#x2F;ExampleComponent.vue&#39;) &#125;,</span><br><span class="line">        &#123; path: &#39;&#x2F;bsh&#39;, component: require(&#39;.&#x2F;components&#x2F;bsh.vue&#39;) &#125;,</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br><span class="line">const router &#x3D; new VueRouter(RouterConfig);</span><br><span class="line"></span><br><span class="line">const app &#x3D; new Vue(&#123;</span><br><span class="line">    el: &#39;#app&#39;,</span><br><span class="line">    router: router,</span><br><span class="line">    render: h &#x3D;&gt; h(App)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>建立 Layout<br>在 /recources/js/components/ 新建 app.vue, 将 iview 的 layout 代码搬过来：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;style scoped&gt;</span><br><span class="line">  .layout-con&#123;</span><br><span class="line">    height: 100%;</span><br><span class="line">    width: 100%;</span><br><span class="line">  &#125;</span><br><span class="line">  .menu-item span&#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    width: 69px;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    vertical-align: bottom;</span><br><span class="line">    transition: width .2s ease .2s;</span><br><span class="line">  &#125;</span><br><span class="line">  .menu-item i&#123;</span><br><span class="line">    transform: translateX(0px);</span><br><span class="line">    transition: font-size .2s ease, transform .2s ease;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">    font-size: 16px;</span><br><span class="line">  &#125;</span><br><span class="line">  .collapsed-menu span&#123;</span><br><span class="line">    width: 0px;</span><br><span class="line">    transition: width .2s ease;</span><br><span class="line">  &#125;</span><br><span class="line">  .collapsed-menu i&#123;</span><br><span class="line">    transform: translateX(5px);</span><br><span class="line">    transition: font-size .2s ease .2s, transform .2s ease .2s;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">    font-size: 22px;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;layout&quot;&gt;</span><br><span class="line">    &lt;Layout :style&#x3D;&quot;&#123;minHeight: &#39;100vh&#39;&#125;&quot;&gt;</span><br><span class="line">      &lt;Sider collapsible :collapsed-width&#x3D;&quot;78&quot; v-model&#x3D;&quot;isCollapsed&quot;&gt;</span><br><span class="line">        &lt;Menu active-name&#x3D;&quot;1-2&quot; theme&#x3D;&quot;dark&quot; width&#x3D;&quot;auto&quot; :class&#x3D;&quot;menuitemClasses&quot;&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-1&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;ios-navigate&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 1&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-2&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;search&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 2&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-3&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;settings&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 3&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">        &lt;&#x2F;Menu&gt;</span><br><span class="line">      &lt;&#x2F;Sider&gt;</span><br><span class="line">      &lt;Layout&gt;</span><br><span class="line">        &lt;Header :style&#x3D;&quot;&#123;background: &#39;#fff&#39;, boxShadow: &#39;0 2px 3px 2px rgba(0,0,0,.1)&#39;&#125;&quot;&gt;&lt;&#x2F;Header&gt;</span><br><span class="line">        &lt;Content :style&#x3D;&quot;&#123;padding: &#39;0 16px 16px&#39;&#125;&quot;&gt;</span><br><span class="line">          &lt;Breadcrumb :style&#x3D;&quot;&#123;margin: &#39;16px 0&#39;&#125;&quot;&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Home&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Components&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Layout&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">          &lt;&#x2F;Breadcrumb&gt;</span><br><span class="line">          &lt;Card&gt;</span><br><span class="line">            &lt;div style&#x3D;&quot;height: 600px&quot;&gt;&lt;router-view&gt;&lt;&#x2F;router-view&gt;&lt;&#x2F;div&gt;</span><br><span class="line">          &lt;&#x2F;Card&gt;</span><br><span class="line">        &lt;&#x2F;Content&gt;</span><br><span class="line">      &lt;&#x2F;Layout&gt;</span><br><span class="line">    &lt;&#x2F;Layout&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">    data () &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        isCollapsed: false</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line">      menuitemClasses: function () &#123;</span><br><span class="line">        return [</span><br><span class="line">          &#39;menu-item&#39;,</span><br><span class="line">          this.isCollapsed ? &#39;collapsed-menu&#39; : &#39;&#39;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>添加组件<br>路由访问的组件会渲染到 app.vue中的[router-view]<br>然后修改组件 /recources/js/components/bsh.vue 的内容：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;Tabs&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;macOS&quot; icon&#x3D;&quot;social-apple&quot;&gt;标签一的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;Windows&quot; icon&#x3D;&quot;social-windows&quot;&gt;标签二的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;Linux&quot; icon&#x3D;&quot;social-tux&quot;&gt;标签三的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">    &lt;&#x2F;Tabs&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>编译运行<br>常用的编译命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 本地环境编译</span><br><span class="line">npm run dev</span><br><span class="line"></span><br><span class="line"># 本地环境编译 + 监控文件修改</span><br><span class="line">npm run watch</span><br><span class="line"></span><br><span class="line"># 生产环境编译</span><br><span class="line">npm run prod</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
 ]]></content>
       <tags>
-        <tag>linux</tag>
-        <tag>Supervisor</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Laravel yansongda/laravel-pay</title>
-    <url>/2018/09/29/Laravel-yansongda-laravel-pay/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p>运行环境:</p>
-</blockquote>
-<ul>
-<li>php &gt;= 7.0</li>
-<li>composer</li>
-<li>laravel || lumen &gt;= 5.1</li>
-</ul>
-<p><strong>一、安装</strong></p>
-<blockquote>
-<p>composer require yansongda/laravel-pay</p>
-</blockquote>
-<p>添加service provider（如果laravel&lt;5.5 或者 lumen）[5.5以上忽略]</p>
-<p>laravel &lt; 5.5</p>
-<blockquote>
-<p>Yansongda\LaravelPay\PayServiceProvider::class,</p>
-</blockquote>
-<p>lumen</p>
-<blockquote>
-<p>$app-&gt;register(Yansongda\LaravelPay\PayServiceProvider::class);</p>
-</blockquote>
-<p>添加 alias（如果laravel&lt;5.5 或者 lumen）[5.5以上忽略]</p>
-<blockquote>
-<p>‘Pay’ =&gt; Yansongda\LaravelPay\Facades\Pay::class,</p>
-</blockquote>
-<p>配置文件</p>
-<blockquote>
-<p>php artisan vendor:publish –provider=”Yansongda\LaravelPay\PayServiceProvider” –tag=laravel-pay</p>
-</blockquote>
-<p><strong>二、使用[支付宝]</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">use Yansongda\Pay\Pay;</span><br><span class="line"></span><br><span class="line">$config &#x3D; [</span><br><span class="line">    &#39;app_id&#39; &#x3D;&gt; &#39;2016082000295641&#39;,</span><br><span class="line">    &#39;notify_url&#39; &#x3D;&gt; &#39;http:&#x2F;&#x2F;yansongda.cn&#x2F;notify.php&#39;,</span><br><span class="line">    &#39;return_url&#39; &#x3D;&gt; &#39;http:&#x2F;&#x2F;yansongda.cn&#x2F;return.php&#39;,</span><br><span class="line">    &#39;ali_public_key&#39; &#x3D;&gt; &#39;MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuWJKrQ6SWvS6niI+4vEVZiYfjkCfLQfoFI2nCp9ZLDS42QtiL4Ccyx8scgc3nhVwmVRte8f57TFvGhvJD0upT4O5O&#x2F;lRxmTjechXAorirVdAODpOu0mFfQV9y&#x2F;T9o9hHnU+VmO5spoVb3umqpq6D&#x2F;Pt8p25Yk852&#x2F;w01VTIczrXC4QlrbOEe3sr1E9auoC7rgYjjCO6lZUIDjX&#x2F;oBmNXZxhRDrYx4Yf5X7y8FRBFvygIE2FgxV4Yw+SL3QAa2m5MLcbusJpxOml9YVQfP8iSurx41PvvXUMo49JG3BDVernaCYXQCoUJv9fJwbnfZd7J5YByC+5KM4sblJTq7bXZWQIDAQAB&#39;,</span><br><span class="line">    &#39;private_key&#39; &#x3D;&gt; &#39;MIIEpAIBAAKCAQEAs6+F2leOgOrvj9jTeDhb5q46GewOjqLBlGSs&#x2F;bVL4Z3fMr3p+Q1Tux&#x2F;6uogeVi&#x2F;eHd84xvQdfpZ87A1SfoWnEGH5z15yorccxSOwWUI+q8gz51IWqjgZxhWKe31BxNZ+prnQpyeMBtE25fXp5nQZ&#x2F;pftgePyUUvUZRcAUisswntobDQKbwx28VCXw5XB2A+lvYEvxmMv&#x2F;QexYjwKK4M54j435TuC3UctZbnuynSPpOmCu45ZhEYXd4YMsGMdZE5&#x2F;077ZU1aU7wx&#x2F;gk07PiHImEOCDkzqsFo0Buc&#x2F;knGcdOiUDvm2hn2y1XvwjyFOThsqCsQYi4JmwZdRa8kvOf57nwIDAQABAoIBAQCw5QCqln4VTrTvcW+msB1ReX57nJgsNfDLbV2dG8mLYQemBa9833DqDK6iynTLNq69y88ylose33o2TVtEccGp8Dqluv6yUAED14G6LexS43KtrXPgugAtsXE253ZDGUNwUggnN1i0MW2RcMqHdQ9ORDWvJUCeZj&#x2F;AEafgPN8AyiLrZeL07jJz&#x2F;uaRfAuNqkImCVIarKUX3HBCjl9TpuoMjcMhz&#x2F;MsOmQ0agtCatO1eoH1sqv5Odvxb1i59c8Hvq&#x2F;mGEXyRuoiDo05SE6IyXYXr84&#x2F;Nf2xvVNHNQA6kTckj8shSi+HGM4mO1Y4Pbb7XcnxNkT0Inn6oJMSiy56P+CpAoGBAO1O+5FE1ZuVGuLb48cY+0lHCD+nhSBd66B5FrxgPYCkFOQWR7pWyfNDBlmO3SSooQ8TQXA25blrkDxzOAEGX57EPiipXr&#x2F;hy5e+WNoukpy09rsO1TMsvC+v0FXLvZ+TIAkqfnYBgaT56ku7yZ8aFGMwdCPL7WJYAwUIcZX8wZ3dAoGBAMHWplAqhe4bfkGOEEpfs6VvEQxCqYMYVyR65K0rI1LiDZn6Ij8fdVtwMjGKFSZZTspmsqnbbuCE&#x2F;VTyDzF4NpAxdm3cBtZACv1Lpu2Om+aTzhK2PI6WTDVTKAJBYegXaahBCqVbSxieR62IWtmOMjggTtAKWZ1P5LQcRwdkaB2rAoGAWnAPT318Kp7YcDx8whOzMGnxqtCc24jvk2iSUZgb2Dqv+3zCOTF6JUsV0Guxu5bISoZ8GdfSFKf5gBAo97sGFeuUBMsHYPkcLehM1FmLZk1Q+ljcx3P1A&#x2F;ds3kWXLolTXCrlpvNMBSN5NwOKAyhdPK&#x2F;qkvnUrfX8sJ5XK2H4J8ECgYAGIZ0HIiE0Y+g9eJnpUFelXvsCEUW9YNK4065SD&#x2F;BBGedmPHRC3OLgbo8X5A9BNEf6vP7fwpIiRfKhcjqqzOuk6fueA&#x2F;yvYD04v+Da2MzzoS8+hkcqF3T3pta4I4tORRdRfCUzD80zTSZlRc&#x2F;h286Y2eTETd+By1onnFFe2X01mwKBgQDaxo4PBcLL2OyVT5DoXiIdTCJ8KNZL9+kV1aiBuOWxnRgkDjPngslzNa1bK+klGgJNYDbQqohKNn1HeFX3mYNfCUpuSnD2Yag53Dd&#x2F;1DLO+NxzwvTu4D6DCUnMMMBVaF42ig31Bs0jI3JQZVqeeFzSET8fkoFopJf3G6UXlrIEAQ&#x3D;&#x3D;&#39;,</span><br><span class="line">    &#39;http&#39; &#x3D;&gt; [ &#x2F;&#x2F; optional</span><br><span class="line">        &#39;timeout&#39; &#x3D;&gt; 5.0,</span><br><span class="line">        &#39;connect_timeout&#39; &#x3D;&gt; 5.0,</span><br><span class="line">        &#x2F;&#x2F; 更多配置项请参考 [Guzzle](https:&#x2F;&#x2F;guzzle-cn.readthedocs.io&#x2F;zh_CN&#x2F;latest&#x2F;request-options.html)</span><br><span class="line">    ]</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 支付</span><br><span class="line">$order &#x3D; [</span><br><span class="line">    &#39;out_trade_no&#39; &#x3D;&gt; time(),</span><br><span class="line">    &#39;total_amount&#39; &#x3D;&gt; &#39;1&#39;,</span><br><span class="line">    &#39;subject&#39; &#x3D;&gt; &#39;test&#39;,</span><br><span class="line">];</span><br><span class="line">$alipay &#x3D; Pay::alipay($config)-&gt;web($order);</span><br><span class="line"></span><br><span class="line">return $alipay-&gt;send();&#x2F;&#x2F; laravel 框架中请直接 &#96;return $alipay&#96;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 退款</span><br><span class="line">$order &#x3D; [</span><br><span class="line">    &#39;out_trade_no&#39; &#x3D;&gt; &#39;1514027114&#39;,</span><br><span class="line">    &#39;refund_amount&#39; &#x3D;&gt; &#39;0.01&#39;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;refund($order); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 查询</span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;find(&#39;out_trade_no_123456&#39;); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 取消</span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;cancel(&#39;out_trade_no_123456&#39;); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 关闭</span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;close(&#39;out_trade_no_123456&#39;); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 验证服务器数据</span><br><span class="line">$alipay &#x3D; Pay::alipay($config)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 是的，验签就这么简单！</span><br><span class="line">$data &#x3D; $alipay-&gt;verify(); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$data-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line">$alipay-&gt;success()-&gt;send(); &#x2F;&#x2F; 向支付宝服务器确认接收到的数据。laravel 框架中请直接 &#96;return $alipay-&gt;success()&#96;</span><br></pre></td></tr></table></figure>
-
-
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>若前端框架使用vue、react等 此时后端返回的是form表单需要简单处理下，如下:</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const div &#x3D; document.createElement(&#39;div&#39;) &#x2F;&#x2F; 创建div</span><br><span class="line">div.innerHTML &#x3D; res.data &#x2F;&#x2F; 将返回的form 放入div</span><br><span class="line">document.body.appendChild(div)</span><br><span class="line">document.forms[&#39;alipaysubmit&#39;].submit()</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>laravel5.6</tag>
-        <tag>laravel-pay</tag>
+        <tag>Laravel</tag>
+        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -1114,47 +1139,22 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Laravel 和 Vue 的项目搭建</title>
-    <url>/2018/11/02/Laravel-%E5%92%8C-Vue-%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/</url>
+    <title>Linux安装配置守护进程</title>
+    <url>/2018/03/09/Linux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/</url>
     <content><![CDATA[<a id="more"></a>
 
-<p><strong>一、Laravel创建项目</strong> </p>
 <blockquote>
-<p>composer create-project –prefer-dist laravel/laravel laravel-vue</p>
+<p> centos 下安装Supervisor</p>
 </blockquote>
-<p><strong>二、扩展包</strong> </p>
+<p>yum install supervisor</p>
 <blockquote>
-<p>npm install<br>npm install vue-router iview</p>
+<p> 配置Supervisor</p>
 </blockquote>
-<p><strong>三、前端结构搭建</strong><br>vue前端的文件结构在 /recources/js 目录[laravel5.7]，vue能够渲染主要是两个操作</p>
-<ul>
-<li>vue 挂载到页面的节点中</li>
-<li>vue-router 处理路由，渲染对应的组件</li>
-</ul>
-<p>code流程  </p>
-<ol>
-<li><p>创建 web 路由<br>在 /routes/web.php 中新建一个访问我们挂载着vue页面的路由。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Route::get(&#39;&#x2F;&#39;, function () &#123;</span><br><span class="line">    return view(&#39;welcome&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编辑welcome.blade.php<br>在 resource/views 新建 welcome.blade.php,代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0, maximum-scale&#x3D;1.0, minimum-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;csrf-token&quot; content&#x3D;&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</span><br><span class="line">  &lt;title&gt;&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;&#123;&#123; mix(&#39;css&#x2F;app.css&#39;) &#125;&#125;&quot;&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body ontouchstart&gt;</span><br><span class="line">  &lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#123;&#123; mix(&#39;js&#x2F;app.js&#39;) &#125;&#125;&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改 /recources/js/app.js</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">require(&#39;.&#x2F;bootstrap&#39;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 导入扩展包</span><br><span class="line">window.Vue &#x3D; require(&#39;vue&#39;);</span><br><span class="line"></span><br><span class="line">import App from &#39;.&#x2F;components&#x2F;app.vue&#39;</span><br><span class="line">import VueRouter from &#39;vue-router&#39;;</span><br><span class="line">import iView from &#39;iview&#39;;</span><br><span class="line">import &#39;iview&#x2F;dist&#x2F;styles&#x2F;iview.css&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 导入vue</span><br><span class="line">Vue.use(iView);</span><br><span class="line">Vue.use(VueRouter);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 路由配置</span><br><span class="line">const RouterConfig &#x3D; &#123;</span><br><span class="line">    routes: [</span><br><span class="line">        &#x2F;&#x2F; ExampleComponent laravel默认的示例组件</span><br><span class="line">        &#123; path: &#39;&#x2F;&#39;, component: require(&#39;.&#x2F;components&#x2F;ExampleComponent.vue&#39;) &#125;,</span><br><span class="line">        &#123; path: &#39;&#x2F;bsh&#39;, component: require(&#39;.&#x2F;components&#x2F;bsh.vue&#39;) &#125;,</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br><span class="line">const router &#x3D; new VueRouter(RouterConfig);</span><br><span class="line"></span><br><span class="line">const app &#x3D; new Vue(&#123;</span><br><span class="line">    el: &#39;#app&#39;,</span><br><span class="line">    router: router,</span><br><span class="line">    render: h &#x3D;&gt; h(App)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>建立 Layout<br>在 /recources/js/components/ 新建 app.vue, 将 iview 的 layout 代码搬过来：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;style scoped&gt;</span><br><span class="line">  .layout-con&#123;</span><br><span class="line">    height: 100%;</span><br><span class="line">    width: 100%;</span><br><span class="line">  &#125;</span><br><span class="line">  .menu-item span&#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    width: 69px;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    vertical-align: bottom;</span><br><span class="line">    transition: width .2s ease .2s;</span><br><span class="line">  &#125;</span><br><span class="line">  .menu-item i&#123;</span><br><span class="line">    transform: translateX(0px);</span><br><span class="line">    transition: font-size .2s ease, transform .2s ease;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">    font-size: 16px;</span><br><span class="line">  &#125;</span><br><span class="line">  .collapsed-menu span&#123;</span><br><span class="line">    width: 0px;</span><br><span class="line">    transition: width .2s ease;</span><br><span class="line">  &#125;</span><br><span class="line">  .collapsed-menu i&#123;</span><br><span class="line">    transform: translateX(5px);</span><br><span class="line">    transition: font-size .2s ease .2s, transform .2s ease .2s;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">    font-size: 22px;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;layout&quot;&gt;</span><br><span class="line">    &lt;Layout :style&#x3D;&quot;&#123;minHeight: &#39;100vh&#39;&#125;&quot;&gt;</span><br><span class="line">      &lt;Sider collapsible :collapsed-width&#x3D;&quot;78&quot; v-model&#x3D;&quot;isCollapsed&quot;&gt;</span><br><span class="line">        &lt;Menu active-name&#x3D;&quot;1-2&quot; theme&#x3D;&quot;dark&quot; width&#x3D;&quot;auto&quot; :class&#x3D;&quot;menuitemClasses&quot;&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-1&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;ios-navigate&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 1&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-2&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;search&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 2&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-3&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;settings&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 3&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">        &lt;&#x2F;Menu&gt;</span><br><span class="line">      &lt;&#x2F;Sider&gt;</span><br><span class="line">      &lt;Layout&gt;</span><br><span class="line">        &lt;Header :style&#x3D;&quot;&#123;background: &#39;#fff&#39;, boxShadow: &#39;0 2px 3px 2px rgba(0,0,0,.1)&#39;&#125;&quot;&gt;&lt;&#x2F;Header&gt;</span><br><span class="line">        &lt;Content :style&#x3D;&quot;&#123;padding: &#39;0 16px 16px&#39;&#125;&quot;&gt;</span><br><span class="line">          &lt;Breadcrumb :style&#x3D;&quot;&#123;margin: &#39;16px 0&#39;&#125;&quot;&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Home&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Components&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Layout&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">          &lt;&#x2F;Breadcrumb&gt;</span><br><span class="line">          &lt;Card&gt;</span><br><span class="line">            &lt;div style&#x3D;&quot;height: 600px&quot;&gt;&lt;router-view&gt;&lt;&#x2F;router-view&gt;&lt;&#x2F;div&gt;</span><br><span class="line">          &lt;&#x2F;Card&gt;</span><br><span class="line">        &lt;&#x2F;Content&gt;</span><br><span class="line">      &lt;&#x2F;Layout&gt;</span><br><span class="line">    &lt;&#x2F;Layout&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">    data () &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        isCollapsed: false</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line">      menuitemClasses: function () &#123;</span><br><span class="line">        return [</span><br><span class="line">          &#39;menu-item&#39;,</span><br><span class="line">          this.isCollapsed ? &#39;collapsed-menu&#39; : &#39;&#39;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>添加组件<br>路由访问的组件会渲染到 app.vue中的[router-view]<br>然后修改组件 /recources/js/components/bsh.vue 的内容：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;Tabs&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;macOS&quot; icon&#x3D;&quot;social-apple&quot;&gt;标签一的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;Windows&quot; icon&#x3D;&quot;social-windows&quot;&gt;标签二的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;Linux&quot; icon&#x3D;&quot;social-tux&quot;&gt;标签三的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">    &lt;&#x2F;Tabs&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>编译运行<br>常用的编译命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 本地环境编译</span><br><span class="line">npm run dev</span><br><span class="line"></span><br><span class="line"># 本地环境编译 + 监控文件修改</span><br><span class="line">npm run watch</span><br><span class="line"></span><br><span class="line"># 生产环境编译</span><br><span class="line">npm run prod</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
+<p>cd /etc/supervisord.d/<br>vim laravel-worker.ini<br>systemctl start supervisord</p>
 ]]></content>
       <tags>
-        <tag>Laravel</tag>
-        <tag>Vue</tag>
+        <tag>linux</tag>
+        <tag>Supervisor</tag>
       </tags>
   </entry>
   <entry>
@@ -1223,44 +1223,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
 <li><strong>Notice</strong><br>后续通过sdk整合到项目开发中…</li>
 </ul>
 ]]></content>
-  </entry>
-  <entry>
-    <title>MySQL出现1030-Got error 28 from storage engine错误</title>
-    <url>/2018/11/22/MySQL%E5%87%BA%E7%8E%B01030-Got-error-28-from-storage-engine%E9%94%99%E8%AF%AF/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>一般这种情况都是日志文件太大导致的</p>
-<ul>
-<li>mysql二进制文件 参考文档：<a href="https://baishunhua.com/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/" target="_blank">[ MySQL启动错误 ]</a></li>
-<li>其他日志文件</li>
-</ul>
-<blockquote>
-<p>df -h</p>
-</blockquote>
-<p>查看磁盘使用情况</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -h --max-depth&#x3D;1 | grep G | sort -n</span><br></pre></td></tr></table></figure>
-<p>以G单位排序查看占用磁盘的文件，然后删除没用的日志文件 </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -s * | sort -nr</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nginx 反向代理</title>
-    <url>/2019/09/19/Nginx-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><a href="https://baishunhua.com/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/" target="_blank">安装nginx</a></p>
-<blockquote>
-<p>高防服务器上 nginx.conf 配置模板</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server_name  www.xxx.com;</span><br><span class="line">...</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">    proxy_pass http:&#x2F;&#x2F;ip[原服务器ip];</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>nginx</tag>
-        <tag>反向代理</tag>
-      </tags>
   </entry>
   <entry>
     <title>Markdown 基本语法</title>
@@ -1350,6 +1312,28 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>MySQL出现1030-Got error 28 from storage engine错误</title>
+    <url>/2018/11/22/MySQL%E5%87%BA%E7%8E%B01030-Got-error-28-from-storage-engine%E9%94%99%E8%AF%AF/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>一般这种情况都是日志文件太大导致的</p>
+<ul>
+<li>mysql二进制文件 参考文档：<a href="https://baishunhua.com/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/" target="_blank">[ MySQL启动错误 ]</a></li>
+<li>其他日志文件</li>
+</ul>
+<blockquote>
+<p>df -h</p>
+</blockquote>
+<p>查看磁盘使用情况</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -h --max-depth&#x3D;1 | grep G | sort -n</span><br></pre></td></tr></table></figure>
+<p>以G单位排序查看占用磁盘的文件，然后删除没用的日志文件 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -s * | sort -nr</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>lnmp</tag>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MySQL启动错误</title>
     <url>/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1380,6 +1364,22 @@ public $queue = &#39;listeners&#39;;</code></pre>
       <tags>
         <tag>lnmp</tag>
         <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nginx 反向代理</title>
+    <url>/2019/09/19/Nginx-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><a href="https://baishunhua.com/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/" target="_blank">安装nginx</a></p>
+<blockquote>
+<p>高防服务器上 nginx.conf 配置模板</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server_name  www.xxx.com;</span><br><span class="line">...</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">    proxy_pass http:&#x2F;&#x2F;ip[原服务器ip];</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>nginx</tag>
+        <tag>反向代理</tag>
       </tags>
   </entry>
   <entry>
@@ -2255,7 +2255,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#103;&#105;&#116;&#64;&#103;&#x69;&#x74;&#104;&#x75;&#x62;&#46;&#99;&#111;&#109;">&#103;&#105;&#116;&#64;&#103;&#x69;&#x74;&#104;&#x75;&#x62;&#46;&#99;&#111;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#103;&#x69;&#116;&#64;&#103;&#x69;&#x74;&#x68;&#x75;&#x62;&#x2e;&#99;&#x6f;&#109;">&#103;&#x69;&#116;&#64;&#103;&#x69;&#x74;&#x68;&#x75;&#x62;&#x2e;&#99;&#x6f;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -2378,29 +2378,6 @@ class QuotesSpider(scrapy.Spider):
 ]]></content>
       <tags>
         <tag>go-zero</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>laravel-admin 实现字段排序</title>
-    <url>/2017/09/21/laravel-admin-%E5%AE%9E%E7%8E%B0%E5%AD%97%E6%AE%B5%E6%8E%92%E5%BA%8F/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> 排序代码</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">protected function grid()</span><br><span class="line">&#123;</span><br><span class="line">    return Admin::grid(Member::class, function (Grid $grid) &#123;</span><br><span class="line"></span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;id&#39;, &#39;desc&#39;);</span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;balance&#39;, &#39;desc&#39;);</span><br><span class="line"></span><br><span class="line">        $grid-&gt;id(&#39;ID&#39;)-&gt;sortable();</span><br><span class="line"></span><br><span class="line">        $grid-&gt;balance(&#39;余额&#39;)-&gt;sortable();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>laravel-admin</tag>
-        <tag>字段排序</tag>
       </tags>
   </entry>
   <entry>
@@ -2583,6 +2560,59 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>laravel-admin 实现字段排序</title>
+    <url>/2017/09/21/laravel-admin-%E5%AE%9E%E7%8E%B0%E5%AD%97%E6%AE%B5%E6%8E%92%E5%BA%8F/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> 排序代码</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">protected function grid()</span><br><span class="line">&#123;</span><br><span class="line">    return Admin::grid(Member::class, function (Grid $grid) &#123;</span><br><span class="line"></span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;id&#39;, &#39;desc&#39;);</span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;balance&#39;, &#39;desc&#39;);</span><br><span class="line"></span><br><span class="line">        $grid-&gt;id(&#39;ID&#39;)-&gt;sortable();</span><br><span class="line"></span><br><span class="line">        $grid-&gt;balance(&#39;余额&#39;)-&gt;sortable();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>laravel-admin</tag>
+        <tag>字段排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>laravel 修改器</title>
+    <url>/2017/09/14/laravel-%E4%BF%AE%E6%94%B9%E5%99%A8/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<ul>
+<li><strong>定义修改器</strong></li>
+</ul>
+<blockquote>
+<p> 要定义一个修改器，需要在模型中定义setFooAttribute 方法，其中 Foo 是你想要访问的字段（使用驼峰式命名规则）接下来让我们为 first  name属性定义一个修改器，当我们为模型上的 first_name 赋值时该修改器会被自动调用：<br>public function setFirstNameAttribute($value)<br>{<br>  $this-&gt;attributes[‘first_name’] = strtolower($value);<br>}</p>
+</blockquote>
+<ul>
+<li><strong>定义访问器</strong></li>
+</ul>
+<blockquote>
+<p>通要定义一个访问器，需要在模型中创建一个getFooAttribute 方法，其中 Foo 是你想要访问的字段名（使用驼峰式命名规则）。在本例中，我们将会为 first name 属性定义一个访问器，该访问器在获取 first_name 的值时被 Eloquent 自动调用：<br> public function getFirstNameAttribute($value)<br> {<br>   return ucfirst($value);<br> }</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>使用访问器&amp;修改器能快捷方便的应用于日常开发<br>比如：修改、重置默认字段值 等等</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>laravel5.x</tag>
+        <tag>修改器</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>laravel 微信公众号项目修改兼容web端</title>
     <url>/2017/08/30/laravel-%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E9%A1%B9%E7%9B%AE%E4%BF%AE%E6%94%B9%E5%85%BC%E5%AE%B9web%E7%AB%AF/</url>
     <content><![CDATA[<blockquote>
@@ -2618,36 +2648,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>laravel</tag>
         <tag>web-wechat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>laravel 修改器</title>
-    <url>/2017/09/14/laravel-%E4%BF%AE%E6%94%B9%E5%99%A8/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<ul>
-<li><strong>定义修改器</strong></li>
-</ul>
-<blockquote>
-<p> 要定义一个修改器，需要在模型中定义setFooAttribute 方法，其中 Foo 是你想要访问的字段（使用驼峰式命名规则）接下来让我们为 first  name属性定义一个修改器，当我们为模型上的 first_name 赋值时该修改器会被自动调用：<br>public function setFirstNameAttribute($value)<br>{<br>  $this-&gt;attributes[‘first_name’] = strtolower($value);<br>}</p>
-</blockquote>
-<ul>
-<li><strong>定义访问器</strong></li>
-</ul>
-<blockquote>
-<p>通要定义一个访问器，需要在模型中创建一个getFooAttribute 方法，其中 Foo 是你想要访问的字段名（使用驼峰式命名规则）。在本例中，我们将会为 first name 属性定义一个访问器，该访问器在获取 first_name 的值时被 Eloquent 自动调用：<br> public function getFirstNameAttribute($value)<br> {<br>   return ucfirst($value);<br> }</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>使用访问器&amp;修改器能快捷方便的应用于日常开发<br>比如：修改、重置默认字段值 等等</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>laravel5.x</tag>
-        <tag>修改器</tag>
       </tags>
   </entry>
   <entry>
@@ -2752,33 +2752,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>linux下安装redis及认证密码</title>
-    <url>/2018/03/06/linux%E4%B8%8B%E5%AE%89%E8%A3%85redis%E5%8F%8A%E8%AE%A4%E8%AF%81%E5%AF%86%E7%A0%81/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>一、安装 redis</strong><br>进入lnmp解压后的目录，执行</p>
-<blockquote>
-<p> ./addons.sh install redis </p>
-</blockquote>
-<p><strong>二、redis 设置认证密码</strong><br>requirepass foobared去掉#注释，将foobared改为自己的密码然后保存，重启服务</p>
-<blockquote>
-<p> vim /usr/local/redis/etc/redis.conf</p>
-</blockquote>
-<p><strong>三、redis 状态管理</strong></p>
-<blockquote>
-<p> /etc/init.d/redis {start|stop|restart|kill}</p>
-</blockquote>
-<p><strong>四、查看 redis 启动情况</strong></p>
-<blockquote>
-<p> ps aux | grep redis</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>redis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>linux centos7.3 lnmp一键安装包集成</title>
     <url>/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E9%9B%86%E6%88%90/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2840,40 +2813,6 @@ class QuotesSpider(scrapy.Spider):
         <tag>lnmp</tag>
         <tag>linux</tag>
         <tag>centos7.3</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>lnmp tp pathinfo问题</title>
-    <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>/usr/local/php/etc/php.ini</p>
-<blockquote>
-<p> cgi.fix_pathinfo=1</p>
-</blockquote>
-<blockquote>
-<p> lnmp restart</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
-  </entry>
-  <entry>
-    <title>mysql自定义重置数据表ID值</title>
-    <url>/2018/10/30/mysql%E8%87%AA%E5%AE%9A%E4%B9%89%E9%87%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E8%A1%A8ID%E5%80%BC/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> alter table 表名 AUTO_INCREMENT=自定义ID;</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -2949,6 +2888,54 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>linux下安装redis及认证密码</title>
+    <url>/2018/03/06/linux%E4%B8%8B%E5%AE%89%E8%A3%85redis%E5%8F%8A%E8%AE%A4%E8%AF%81%E5%AF%86%E7%A0%81/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>一、安装 redis</strong><br>进入lnmp解压后的目录，执行</p>
+<blockquote>
+<p> ./addons.sh install redis </p>
+</blockquote>
+<p><strong>二、redis 设置认证密码</strong><br>requirepass foobared去掉#注释，将foobared改为自己的密码然后保存，重启服务</p>
+<blockquote>
+<p> vim /usr/local/redis/etc/redis.conf</p>
+</blockquote>
+<p><strong>三、redis 状态管理</strong></p>
+<blockquote>
+<p> /etc/init.d/redis {start|stop|restart|kill}</p>
+</blockquote>
+<p><strong>四、查看 redis 启动情况</strong></p>
+<blockquote>
+<p> ps aux | grep redis</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>lnmp</tag>
+        <tag>redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>lnmp tp pathinfo问题</title>
+    <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>/usr/local/php/etc/php.ini</p>
+<blockquote>
+<p> cgi.fix_pathinfo=1</p>
+</blockquote>
+<blockquote>
+<p> lnmp restart</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
+  </entry>
+  <entry>
     <title>lnmp集成环境下部署laravel5.x项目</title>
     <url>/2017/09/21/lnmp%E9%9B%86%E6%88%90%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2laravel5-x%E9%A1%B9%E7%9B%AE/</url>
     <content><![CDATA[<a id="more"></a>
@@ -3008,6 +2995,19 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>mysql自定义重置数据表ID值</title>
+    <url>/2018/10/30/mysql%E8%87%AA%E5%AE%9A%E4%B9%89%E9%87%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E8%A1%A8ID%E5%80%BC/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> alter table 表名 AUTO_INCREMENT=自定义ID;</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mysql通过.ibd和.frm文件恢复数据</title>
     <url>/2019/12/17/mysql%E9%80%9A%E8%BF%87-ibd%E5%92%8C-frm%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E6%95%B0%E6%8D%AE/</url>
     <content><![CDATA[<a id="more"></a>
@@ -3061,6 +3061,86 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>mysql</tag>
         <tag>Innodb</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>nginx 实现负载均衡</title>
+    <url>/2017/09/21/nginx-%E5%AE%9E%E7%8E%B0%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> nginx支持的四种负载均衡策略</p>
+</blockquote>
+<ul>
+<li> 轮询：将请求依次轮询发给每个服务器。</li>
+<li> 最少链接：将请求发送给持有最少活动链接的服务器。</li>
+<li> ip哈希：通过哈希函数决定请求发送给哪个服务器。</li>
+<li> 权重：服务器的权重越高，处理请求的概率越大。</li>
+</ul>
+<blockquote>
+<p> 1.轮询负载均衡</p>
+</blockquote>
+<p>在nginx.conf配置文件中添加如下配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http &#123;</span><br><span class="line"> upstream CashServers &#123;</span><br><span class="line">     server 192.168.1.252;</span><br><span class="line">     server 192.168.1.253;</span><br><span class="line"> &#125;</span><br><span class="line"> server &#123;</span><br><span class="line">     listen 80;</span><br><span class="line">     location &#x2F; &#123;</span><br><span class="line">         proxy_pass http:&#x2F;&#x2F;CashServers;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<ul>
+<li> 缺省配置就是轮询策略;</li>
+<li> nginx负载均衡支持http和https协议，只需要修改 proxy_pass后协议即可;</li>
+<li> nginx支持FastCGI, uwsgi, SCGI,memcached的负载均衡,只需将 proxy_pass改为fastcgi_pass, uwsgi_pass, scgi_pass,memcached_pass即可。</li>
+<li> 此策略适合服务器配置相当，无状态且短平快的服务使用。</li>
+</ul>
+<blockquote>
+<p> 2.最少链接负载均衡</p>
+</blockquote>
+<p>在nginx.conf配置文件中添加如下配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">   upstream CashServers &#123;</span><br><span class="line">       least_conn;</span><br><span class="line">         server 192.168.1.252;</span><br><span class="line">         server 192.168.1.253;</span><br><span class="line">   &#125;</span><br><span class="line">   server &#123;</span><br><span class="line">         listen 80;</span><br><span class="line">         location &#x2F; &#123;</span><br><span class="line">             proxy_pass http:&#x2F;&#x2F;CashServers;</span><br><span class="line">         &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<ul>
+<li> 最少链接负载均衡通过least_conn指令定义;</li>
+<li> 此负载均衡策略适合请求处理时间长短不一造成服务器过载的情况;</li>
+</ul>
+<blockquote>
+<p> 3.ip哈希负载均衡</p>
+</blockquote>
+<p>在nginx.conf配置文件中添加如下配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  http &#123;</span><br><span class="line">    upstream CashServers &#123;</span><br><span class="line">        ip_hash;</span><br><span class="line">        server 192.168.1.252;</span><br><span class="line">        server 192.168.1.253;</span><br><span class="line">    &#125;</span><br><span class="line">    server &#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        location &#x2F; &#123;</span><br><span class="line">            proxy_pass http:&#x2F;&#x2F;CashServers;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<ul>
+<li> ip哈希负载均衡使用ip_hash指令定义;</li>
+<li> nginx使用请求客户端的ip地址进行哈希计算，确保使用同一个服务器响应请求;</li>
+<li> 此策略适合有状态服务，比如session;</li>
+</ul>
+<blockquote>
+<p> 4.权重负载均衡</p>
+</blockquote>
+<p>在nginx.conf配置文件中添加如下配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    upstream CashServers &#123;   </span><br><span class="line">        server 192.168.1.252 weight&#x3D;1;   </span><br><span class="line">        server 192.168.1.253 weight&#x3D;2;</span><br><span class="line">    &#125;</span><br><span class="line">    server &#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        location &#x2F; &#123;</span><br><span class="line">            proxy_pass http:&#x2F;&#x2F;CashServers;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<ul>
+<li> 权重负载均衡需要使用weight指令定义;</li>
+<li> 权重越高分配到需要处理的请求越多;</li>
+<li> 此策略可以与最少链接负载和ip哈希策略结合使用;</li>
+<li> 此策略比较适合服务器的硬件配置差别比较大的情况;</li>
+</ul>
+<blockquote>
+<p> 健康检测</p>
+</blockquote>
+<p>nginx内置了针对服务器的健康检测机制，如果特定服务器请求失败，则nginx即可进行标记待下次就不会请求分配给它。max_fails定义失败指定次数后进行标记服务器不可用。</p>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>nginx</tag>
+        <tag>负载均衡</tag>
       </tags>
   </entry>
   <entry>
@@ -3171,86 +3251,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>nginx 实现负载均衡</title>
-    <url>/2017/09/21/nginx-%E5%AE%9E%E7%8E%B0%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> nginx支持的四种负载均衡策略</p>
-</blockquote>
-<ul>
-<li> 轮询：将请求依次轮询发给每个服务器。</li>
-<li> 最少链接：将请求发送给持有最少活动链接的服务器。</li>
-<li> ip哈希：通过哈希函数决定请求发送给哪个服务器。</li>
-<li> 权重：服务器的权重越高，处理请求的概率越大。</li>
-</ul>
-<blockquote>
-<p> 1.轮询负载均衡</p>
-</blockquote>
-<p>在nginx.conf配置文件中添加如下配置</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http &#123;</span><br><span class="line"> upstream CashServers &#123;</span><br><span class="line">     server 192.168.1.252;</span><br><span class="line">     server 192.168.1.253;</span><br><span class="line"> &#125;</span><br><span class="line"> server &#123;</span><br><span class="line">     listen 80;</span><br><span class="line">     location &#x2F; &#123;</span><br><span class="line">         proxy_pass http:&#x2F;&#x2F;CashServers;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>注意：</p>
-<ul>
-<li> 缺省配置就是轮询策略;</li>
-<li> nginx负载均衡支持http和https协议，只需要修改 proxy_pass后协议即可;</li>
-<li> nginx支持FastCGI, uwsgi, SCGI,memcached的负载均衡,只需将 proxy_pass改为fastcgi_pass, uwsgi_pass, scgi_pass,memcached_pass即可。</li>
-<li> 此策略适合服务器配置相当，无状态且短平快的服务使用。</li>
-</ul>
-<blockquote>
-<p> 2.最少链接负载均衡</p>
-</blockquote>
-<p>在nginx.conf配置文件中添加如下配置</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">   upstream CashServers &#123;</span><br><span class="line">       least_conn;</span><br><span class="line">         server 192.168.1.252;</span><br><span class="line">         server 192.168.1.253;</span><br><span class="line">   &#125;</span><br><span class="line">   server &#123;</span><br><span class="line">         listen 80;</span><br><span class="line">         location &#x2F; &#123;</span><br><span class="line">             proxy_pass http:&#x2F;&#x2F;CashServers;</span><br><span class="line">         &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>注意：</p>
-<ul>
-<li> 最少链接负载均衡通过least_conn指令定义;</li>
-<li> 此负载均衡策略适合请求处理时间长短不一造成服务器过载的情况;</li>
-</ul>
-<blockquote>
-<p> 3.ip哈希负载均衡</p>
-</blockquote>
-<p>在nginx.conf配置文件中添加如下配置</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  http &#123;</span><br><span class="line">    upstream CashServers &#123;</span><br><span class="line">        ip_hash;</span><br><span class="line">        server 192.168.1.252;</span><br><span class="line">        server 192.168.1.253;</span><br><span class="line">    &#125;</span><br><span class="line">    server &#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        location &#x2F; &#123;</span><br><span class="line">            proxy_pass http:&#x2F;&#x2F;CashServers;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>注意：</p>
-<ul>
-<li> ip哈希负载均衡使用ip_hash指令定义;</li>
-<li> nginx使用请求客户端的ip地址进行哈希计算，确保使用同一个服务器响应请求;</li>
-<li> 此策略适合有状态服务，比如session;</li>
-</ul>
-<blockquote>
-<p> 4.权重负载均衡</p>
-</blockquote>
-<p>在nginx.conf配置文件中添加如下配置</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    upstream CashServers &#123;   </span><br><span class="line">        server 192.168.1.252 weight&#x3D;1;   </span><br><span class="line">        server 192.168.1.253 weight&#x3D;2;</span><br><span class="line">    &#125;</span><br><span class="line">    server &#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        location &#x2F; &#123;</span><br><span class="line">            proxy_pass http:&#x2F;&#x2F;CashServers;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>注意：</p>
-<ul>
-<li> 权重负载均衡需要使用weight指令定义;</li>
-<li> 权重越高分配到需要处理的请求越多;</li>
-<li> 此策略可以与最少链接负载和ip哈希策略结合使用;</li>
-<li> 此策略比较适合服务器的硬件配置差别比较大的情况;</li>
-</ul>
-<blockquote>
-<p> 健康检测</p>
-</blockquote>
-<p>nginx内置了针对服务器的健康检测机制，如果特定服务器请求失败，则nginx即可进行标记待下次就不会请求分配给它。max_fails定义失败指定次数后进行标记服务器不可用。</p>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>nginx</tag>
-        <tag>负载均衡</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>socket.io的使用</title>
     <url>/2018/03/28/socket-io%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><strong>socket.io的基础教程</strong> </p>
@@ -3262,7 +3262,7 @@ class QuotesSpider(scrapy.Spider):
 </blockquote>
 <p>二、使用npm下载 web框架express模块</p>
 <blockquote>
-<p>npm install --save <a href="mailto:&#101;&#120;&#x70;&#114;&#x65;&#x73;&#115;&#64;&#x34;&#46;&#x31;&#x35;&#46;&#x32;">&#101;&#120;&#x70;&#114;&#x65;&#x73;&#115;&#64;&#x34;&#46;&#x31;&#x35;&#46;&#x32;</a></p>
+<p>npm install --save <a href="mailto:&#x65;&#120;&#112;&#x72;&#x65;&#x73;&#x73;&#64;&#52;&#46;&#x31;&#x35;&#x2e;&#50;">&#x65;&#120;&#112;&#x72;&#x65;&#x73;&#x73;&#64;&#52;&#46;&#x31;&#x35;&#x2e;&#50;</a></p>
 </blockquote>
 <p>三、使用npm下载socket.io模块</p>
 <blockquote>
@@ -3279,6 +3279,48 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>socket.io</tag>
         <tag>nodejs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sublime text3 安装配置svn 及默认快捷键</title>
+    <url>/2017/08/25/sublime-text3-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEsvn-%E5%8F%8A%E9%BB%98%E8%AE%A4%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
+    <content><![CDATA[<p><strong>sublime text3 安装配置svn 及默认快捷键：</strong> </p>
+<a id="more"></a>
+
+<ul>
+<li><strong>省去安装st3 过程….</strong></li>
+</ul>
+<blockquote>
+<ol>
+<li>ctrl+shift+P 调出控制台  然后输入 install package  /  输入install 选择  install package</li>
+<li>输入 svn 选择  TortoiseSVN   选择确定安装。</li>
+<li>等待安装  （左下角有进度表示）。—–&gt;安装成功  插件包里会有svn插件  存在</li>
+<li>安装完成后 会有 提示首页 上面会有 配置 demo</li>
+<li>按照提示操作 </li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>如果你的TortoiseSVN安装时 不是 默认安装地址，需要配置 安装路径</strong></li>
+</ul>
+<blockquote>
+<p>“Preferences-&gt;Package Settings-&gt;TortoiseSVN-&gt;Settings - User”  （首选项–&gt;配置—-&gt;TortoiseSVN–&gt;Settings - User）</p>
+</blockquote>
+<ul>
+<li><strong>修改默认路径。</strong></li>
+</ul>
+<blockquote>
+<p>   {<br>    // Auto close update dialog when no errors, conflicts and merges<br>    “autoCloseUpdateDialog”: false,<br>    // Auto close commit dialog when no errors, conflicts and merges<br>    “autoCloseCommitDialog”: true,<br>    “tortoiseproc_path”: “D:\TortoiseSVN\bin\TortoiseProc.exe”   //你自己的路径<br>    }</p>
+</blockquote>
+<ul>
+<li><strong>默认快捷键[^hello]: hi</strong></li>
+</ul>
+<blockquote>
+<p>[<br>{ “keys”: [“alt+u”], “command”: “svn_update” }<br>,{ “keys”: [“alt+c”], “command”: “svn_commit” }<br>,{ “keys”: [“alt+r”], “command”: “svn_revert” }<br>]</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>svn</tag>
+        <tag>sublime text3</tag>
       </tags>
   </entry>
   <entry>
@@ -3312,23 +3354,6 @@ class QuotesSpider(scrapy.Spider):
 ]]></content>
       <tags>
         <tag>vim</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用git 与github友好交流</title>
-    <url>/2017/08/11/%E4%BD%BF%E7%94%A8git-%E4%B8%8Egithub%E5%8F%8B%E5%A5%BD%E4%BA%A4%E6%B5%81/</url>
-    <content><![CDATA[<p>##<strong>本文主要介绍window 端Git 与github友好交流</strong></p>
-<blockquote>
-<p>1、安装window版（32/64）git。 window端安装过程无脑略过—— </p>
-</blockquote>
-<a id="more"></a>
-
-
-<p>2、本文默认github已注册并添加过 ssh key<br>3、github上新建仓库<br>git add / add *<br>git commit -m<br>git remote add origin <a href="http://xxxx.github.io/">http://xxxx.github.io</a><br>git push -u origin master<br>git pull<br>git rm -r xxx<br>git commit -m ‘’<br>git push -u origin master<br>git  –version</p>
-]]></content>
-      <tags>
-        <tag>git</tag>
-        <tag>github</tag>
       </tags>
   </entry>
   <entry>
@@ -3433,6 +3458,23 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>使用git 与github友好交流</title>
+    <url>/2017/08/11/%E4%BD%BF%E7%94%A8git-%E4%B8%8Egithub%E5%8F%8B%E5%A5%BD%E4%BA%A4%E6%B5%81/</url>
+    <content><![CDATA[<p>##<strong>本文主要介绍window 端Git 与github友好交流</strong></p>
+<blockquote>
+<p>1、安装window版（32/64）git。 window端安装过程无脑略过—— </p>
+</blockquote>
+<a id="more"></a>
+
+
+<p>2、本文默认github已注册并添加过 ssh key<br>3、github上新建仓库<br>git add / add *<br>git commit -m<br>git remote add origin <a href="http://xxxx.github.io/">http://xxxx.github.io</a><br>git push -u origin master<br>git pull<br>git rm -r xxx<br>git commit -m ‘’<br>git push -u origin master<br>git  –version</p>
+]]></content>
+      <tags>
+        <tag>git</tag>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>发布Laravel扩展包larapay</title>
     <url>/2018/12/04/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85larapay/</url>
     <content><![CDATA[<p><strong>发布Laravel扩展封装支付包larapay</strong> </p>
@@ -3496,48 +3538,6 @@ class QuotesSpider(scrapy.Spider):
         <tag>laravel</tag>
         <tag>composer</tag>
         <tag>mqtt</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sublime text3 安装配置svn 及默认快捷键</title>
-    <url>/2017/08/25/sublime-text3-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEsvn-%E5%8F%8A%E9%BB%98%E8%AE%A4%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
-    <content><![CDATA[<p><strong>sublime text3 安装配置svn 及默认快捷键：</strong> </p>
-<a id="more"></a>
-
-<ul>
-<li><strong>省去安装st3 过程….</strong></li>
-</ul>
-<blockquote>
-<ol>
-<li>ctrl+shift+P 调出控制台  然后输入 install package  /  输入install 选择  install package</li>
-<li>输入 svn 选择  TortoiseSVN   选择确定安装。</li>
-<li>等待安装  （左下角有进度表示）。—–&gt;安装成功  插件包里会有svn插件  存在</li>
-<li>安装完成后 会有 提示首页 上面会有 配置 demo</li>
-<li>按照提示操作 </li>
-</ol>
-</blockquote>
-<ul>
-<li><strong>如果你的TortoiseSVN安装时 不是 默认安装地址，需要配置 安装路径</strong></li>
-</ul>
-<blockquote>
-<p>“Preferences-&gt;Package Settings-&gt;TortoiseSVN-&gt;Settings - User”  （首选项–&gt;配置—-&gt;TortoiseSVN–&gt;Settings - User）</p>
-</blockquote>
-<ul>
-<li><strong>修改默认路径。</strong></li>
-</ul>
-<blockquote>
-<p>   {<br>    // Auto close update dialog when no errors, conflicts and merges<br>    “autoCloseUpdateDialog”: false,<br>    // Auto close commit dialog when no errors, conflicts and merges<br>    “autoCloseCommitDialog”: true,<br>    “tortoiseproc_path”: “D:\TortoiseSVN\bin\TortoiseProc.exe”   //你自己的路径<br>    }</p>
-</blockquote>
-<ul>
-<li><strong>默认快捷键[^hello]: hi</strong></li>
-</ul>
-<blockquote>
-<p>[<br>{ “keys”: [“alt+u”], “command”: “svn_update” }<br>,{ “keys”: [“alt+c”], “command”: “svn_commit” }<br>,{ “keys”: [“alt+r”], “command”: “svn_revert” }<br>]</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>svn</tag>
-        <tag>sublime text3</tag>
       </tags>
   </entry>
   <entry>
@@ -3670,72 +3670,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>界面化管理部署DNMP</title>
-    <url>/2021/01/21/%E7%95%8C%E9%9D%A2%E5%8C%96%E7%AE%A1%E7%90%86%E9%83%A8%E7%BD%B2DNMP/</url>
-    <content><![CDATA[<p><strong>界面化管理部署DNMP</strong></p>
-<a id="more"></a>
-
-<p>github: <a href="https://github.com/shunhua/dnmp" target="_blank">[ shunhua/dnmp ]</a></p>
-<blockquote>
-<p>docker-compose up -d</p>
-</blockquote>
-<p>docker 容器启动后 Portainer默认端口：9000</p>
-<blockquote>
-<p>localhost:9000</p>
-</blockquote>
-<p>打开 Portainer, 首次需要创建账户。</p>
-<p>最终效果如下图 :</p>
-<p><img src="/assets/blogImg/p0.png" alt="ico原来的样子"></p>
-<p><img src="/assets/blogImg/p1.png" alt="ico原来的样子"></p>
-<p><img src="/assets/blogImg/p2.png" alt="ico原来的样子"></p>
-]]></content>
-      <tags>
-        <tag>DNMP</tag>
-        <tag>Portainer</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>有赞vantUI step1</title>
-    <url>/2018/04/02/%E6%9C%89%E8%B5%9EvantUI-step1/</url>
-    <content><![CDATA[<p><strong>有赞vantUI学习 step1</strong></p>
-<a id="more"></a>
-<p>1、安装淘宝镜像 </p>
-<blockquote>
-<p>npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></p>
-</blockquote>
-<p>2、安装vue-cli </p>
-<blockquote>
-<p>cnpm install –global vue-cli</p>
-</blockquote>
-<p>3、使用vue-cli安装项目[bsh] </p>
-<blockquote>
-<p>vue init youzan/vue-cli-template-vant bsh</p>
-</blockquote>
-<p>4、安装vantUI</p>
-<blockquote>
-<p>cnpm i vant -S</p>
-</blockquote>
-<p>5、引入组件 推荐使用安装 babel-plugin-import 插件</p>
-<blockquote>
-<p>npm i babel-plugin-import -D</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 在 .babelrc 或 babel-loader 中添加插件配置</span><br><span class="line">&#123;</span><br><span class="line">  &quot;plugins&quot;: [</span><br><span class="line">    [&quot;import&quot;, &#123; &quot;libraryName&quot;: &quot;vant&quot;, &quot;style&quot;: true &#125;]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>6、install dependencies 安装依赖</p>
-<blockquote>
-<p>npm install</p>
-</blockquote>
-<p>7、# serve with hot reload at localhost:8080</p>
-<blockquote>
-<p>npm run dev</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>vue</tag>
-        <tag>vant</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>搭建一套规范的 Vue3.x 项目工程环境</title>
     <url>/2021/11/04/%E6%90%AD%E5%BB%BA%E4%B8%80%E5%A5%97%E8%A7%84%E8%8C%83%E7%9A%84-Vue3-x-%E9%A1%B9%E7%9B%AE%E5%B7%A5%E7%A8%8B%E7%8E%AF%E5%A2%83/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/rabbit.jpg" alt="Vue3.x"></p>
@@ -3783,6 +3717,72 @@ class QuotesSpider(scrapy.Spider):
         <tag>Vue3</tag>
         <tag>Vite</tag>
         <tag>TypeScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>有赞vantUI step1</title>
+    <url>/2018/04/02/%E6%9C%89%E8%B5%9EvantUI-step1/</url>
+    <content><![CDATA[<p><strong>有赞vantUI学习 step1</strong></p>
+<a id="more"></a>
+<p>1、安装淘宝镜像 </p>
+<blockquote>
+<p>npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></p>
+</blockquote>
+<p>2、安装vue-cli </p>
+<blockquote>
+<p>cnpm install –global vue-cli</p>
+</blockquote>
+<p>3、使用vue-cli安装项目[bsh] </p>
+<blockquote>
+<p>vue init youzan/vue-cli-template-vant bsh</p>
+</blockquote>
+<p>4、安装vantUI</p>
+<blockquote>
+<p>cnpm i vant -S</p>
+</blockquote>
+<p>5、引入组件 推荐使用安装 babel-plugin-import 插件</p>
+<blockquote>
+<p>npm i babel-plugin-import -D</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 在 .babelrc 或 babel-loader 中添加插件配置</span><br><span class="line">&#123;</span><br><span class="line">  &quot;plugins&quot;: [</span><br><span class="line">    [&quot;import&quot;, &#123; &quot;libraryName&quot;: &quot;vant&quot;, &quot;style&quot;: true &#125;]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>6、install dependencies 安装依赖</p>
+<blockquote>
+<p>npm install</p>
+</blockquote>
+<p>7、# serve with hot reload at localhost:8080</p>
+<blockquote>
+<p>npm run dev</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>vue</tag>
+        <tag>vant</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>界面化管理部署DNMP</title>
+    <url>/2021/01/21/%E7%95%8C%E9%9D%A2%E5%8C%96%E7%AE%A1%E7%90%86%E9%83%A8%E7%BD%B2DNMP/</url>
+    <content><![CDATA[<p><strong>界面化管理部署DNMP</strong></p>
+<a id="more"></a>
+
+<p>github: <a href="https://github.com/shunhua/dnmp" target="_blank">[ shunhua/dnmp ]</a></p>
+<blockquote>
+<p>docker-compose up -d</p>
+</blockquote>
+<p>docker 容器启动后 Portainer默认端口：9000</p>
+<blockquote>
+<p>localhost:9000</p>
+</blockquote>
+<p>打开 Portainer, 首次需要创建账户。</p>
+<p>最终效果如下图 :</p>
+<p><img src="/assets/blogImg/p0.png" alt="ico原来的样子"></p>
+<p><img src="/assets/blogImg/p1.png" alt="ico原来的样子"></p>
+<p><img src="/assets/blogImg/p2.png" alt="ico原来的样子"></p>
+]]></content>
+      <tags>
+        <tag>DNMP</tag>
+        <tag>Portainer</tag>
       </tags>
   </entry>
   <entry>
