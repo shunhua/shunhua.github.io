@@ -125,7 +125,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#x40;&#x71;&#113;&#46;&#x63;&#111;&#109;">&#x78;&#x40;&#x71;&#113;&#46;&#x63;&#111;&#109;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#x40;&#113;&#x71;&#x2e;&#x63;&#x6f;&#x6d;">&#x78;&#x40;&#113;&#x71;&#x2e;&#x63;&#x6f;&#x6d;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -136,7 +136,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#98;&#64;&#x71;&#x71;&#x2e;&#x63;&#x6f;&#109;">&#98;&#64;&#x71;&#x71;&#x2e;&#x63;&#x6f;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#98;&#64;&#x71;&#113;&#46;&#x63;&#x6f;&#x6d;">&#98;&#64;&#x71;&#113;&#46;&#x63;&#x6f;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -1687,85 +1687,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Python scrapy入门教程</title>
-    <url>/2017/09/26/Python-scrapy%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<p><strong>Python scrapy入门教程</strong> </p>
-<a id="more"></a>
-
-<p><strong>Python 安装</strong></p>
-<p>Python下载地址：<a href="https://www.python.org/downloads/windows/" target="_blank">[ Python-Downloads ]</a> </p>
-<p>如果您已经熟悉 Python 包的安装，您可以从 PyPI 安装 Scrapy 及其依赖：</p>
-<blockquote>
-<p> pip install Scrapy</p>
-</blockquote>
-<p>win32api问题解决<br>安装pywin32地址：<a href="http://sourceforge.net/projects/pywin32/" target="_blank">[ 安装pywin32 ]</a> </p>
-<blockquote>
-<p> No module named win32api问题解决</p>
-</blockquote>
-<p>请确保下载与系统（win32或amd64）匹配的版本</p>
-<blockquote>
-<p> 引导完成以下任务</p>
-</blockquote>
-<ul>
-<li>创建一个新的 Scrapy 项目</li>
-<li>编写 爬虫 以抓取网站并提取数据</li>
-<li>使用命令行导出已爬取的数据</li>
-<li>将爬虫更改为递归跟进链接</li>
-<li>使用爬虫参数</li>
-</ul>
-<p>在开始爬取之前，您必须设置一个新的Scrapy项目。进入您要存储代码的目录，并运行如下命令：</p>
-<blockquote>
-<p> scrapy startproject tutorial</p>
-</blockquote>
-<p>这将创建一个具有以下内容的 tutorial 目录：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tutorial&#x2F;</span><br><span class="line">    scrapy.cfg            # 部署配置文件</span><br><span class="line"></span><br><span class="line">    tutorial&#x2F;             # 项目的 Python 模块，您将从这里加入您的代码</span><br><span class="line">        __init__.py</span><br><span class="line"></span><br><span class="line">        items.py          # 项目的 item 定义文件</span><br><span class="line"></span><br><span class="line">        pipelines.py      # 项目的 pipelines 文件</span><br><span class="line"></span><br><span class="line">        settings.py       # 项目的 settings 文件</span><br><span class="line"></span><br><span class="line">        spiders&#x2F;          # 放置spider代码的目录.</span><br><span class="line">            __init__.py</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p> 我们的第一个爬虫</p>
-</blockquote>
-<p>爬虫是您定义的类，Scrapy用它从网站（或一组网站）中抓取信息。它们必须子类化 scrapy.Spider 并定义初始请求，可选地如何跟踪页面中的链接，以及如何解析下载的页面内容以提取数据。</p>
-<p>这是我们第一个爬虫的代码。将其保存在项目中的 tutorial / spiders 目录下名为 shunhua_spider.py 的文件中：</p>
-<pre><code>import scrapy
-
-class QuotesSpider(scrapy.Spider):
-    name = &quot;shunhua&quot;
-
-    def start_requests(self):
-        urls = [
-            &#39;https://shunhua.github.io/&#39;,
-            &#39;https://shunhua.github.io/page/2/&#39;,
-        ]
-        for url in urls:
-            yield scrapy.Request(url=url, callback=self.parse)
-
-    def parse(self, response):
-        page = response.url.split(&quot;/&quot;)[-2]
-        filename = &#39;shunhua-%s.html&#39; % page
-        with open(filename, &#39;wb&#39;) as f:
-            f.write(response.body)
-        self.log(&#39;Saved file %s&#39; % filename)
-</code></pre>
-<blockquote>
-<p> 如何运行我们的爬虫 </p>
-</blockquote>
-<p>要让我们的蜘蛛工作，进入项目的根目录并运行： </p>
-<blockquote>
-<p> scrapy crawl shunhua </p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Python</tag>
-        <tag>scrapy</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SELinux 状态</title>
     <url>/2017/08/11/SELinux-%E7%8A%B6%E6%80%81/</url>
     <content><![CDATA[<p>##<strong>查看SELinux状态：</strong></p>
@@ -1882,6 +1803,85 @@ class QuotesSpider(scrapy.Spider):
 ]]></content>
       <tags>
         <tag>Swift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python scrapy入门教程</title>
+    <url>/2017/09/26/Python-scrapy%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<p><strong>Python scrapy入门教程</strong> </p>
+<a id="more"></a>
+
+<p><strong>Python 安装</strong></p>
+<p>Python下载地址：<a href="https://www.python.org/downloads/windows/" target="_blank">[ Python-Downloads ]</a> </p>
+<p>如果您已经熟悉 Python 包的安装，您可以从 PyPI 安装 Scrapy 及其依赖：</p>
+<blockquote>
+<p> pip install Scrapy</p>
+</blockquote>
+<p>win32api问题解决<br>安装pywin32地址：<a href="http://sourceforge.net/projects/pywin32/" target="_blank">[ 安装pywin32 ]</a> </p>
+<blockquote>
+<p> No module named win32api问题解决</p>
+</blockquote>
+<p>请确保下载与系统（win32或amd64）匹配的版本</p>
+<blockquote>
+<p> 引导完成以下任务</p>
+</blockquote>
+<ul>
+<li>创建一个新的 Scrapy 项目</li>
+<li>编写 爬虫 以抓取网站并提取数据</li>
+<li>使用命令行导出已爬取的数据</li>
+<li>将爬虫更改为递归跟进链接</li>
+<li>使用爬虫参数</li>
+</ul>
+<p>在开始爬取之前，您必须设置一个新的Scrapy项目。进入您要存储代码的目录，并运行如下命令：</p>
+<blockquote>
+<p> scrapy startproject tutorial</p>
+</blockquote>
+<p>这将创建一个具有以下内容的 tutorial 目录：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tutorial&#x2F;</span><br><span class="line">    scrapy.cfg            # 部署配置文件</span><br><span class="line"></span><br><span class="line">    tutorial&#x2F;             # 项目的 Python 模块，您将从这里加入您的代码</span><br><span class="line">        __init__.py</span><br><span class="line"></span><br><span class="line">        items.py          # 项目的 item 定义文件</span><br><span class="line"></span><br><span class="line">        pipelines.py      # 项目的 pipelines 文件</span><br><span class="line"></span><br><span class="line">        settings.py       # 项目的 settings 文件</span><br><span class="line"></span><br><span class="line">        spiders&#x2F;          # 放置spider代码的目录.</span><br><span class="line">            __init__.py</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 我们的第一个爬虫</p>
+</blockquote>
+<p>爬虫是您定义的类，Scrapy用它从网站（或一组网站）中抓取信息。它们必须子类化 scrapy.Spider 并定义初始请求，可选地如何跟踪页面中的链接，以及如何解析下载的页面内容以提取数据。</p>
+<p>这是我们第一个爬虫的代码。将其保存在项目中的 tutorial / spiders 目录下名为 shunhua_spider.py 的文件中：</p>
+<pre><code>import scrapy
+
+class QuotesSpider(scrapy.Spider):
+    name = &quot;shunhua&quot;
+
+    def start_requests(self):
+        urls = [
+            &#39;https://shunhua.github.io/&#39;,
+            &#39;https://shunhua.github.io/page/2/&#39;,
+        ]
+        for url in urls:
+            yield scrapy.Request(url=url, callback=self.parse)
+
+    def parse(self, response):
+        page = response.url.split(&quot;/&quot;)[-2]
+        filename = &#39;shunhua-%s.html&#39; % page
+        with open(filename, &#39;wb&#39;) as f:
+            f.write(response.body)
+        self.log(&#39;Saved file %s&#39; % filename)
+</code></pre>
+<blockquote>
+<p> 如何运行我们的爬虫 </p>
+</blockquote>
+<p>要让我们的蜘蛛工作，进入项目的根目录并运行： </p>
+<blockquote>
+<p> scrapy crawl shunhua </p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Python</tag>
+        <tag>scrapy</tag>
       </tags>
   </entry>
   <entry>
@@ -2255,7 +2255,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#103;&#x69;&#116;&#64;&#103;&#x69;&#x74;&#x68;&#x75;&#x62;&#x2e;&#99;&#x6f;&#109;">&#103;&#x69;&#116;&#64;&#103;&#x69;&#x74;&#x68;&#x75;&#x62;&#x2e;&#99;&#x6f;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#x67;&#x69;&#x74;&#64;&#103;&#x69;&#x74;&#104;&#117;&#x62;&#46;&#x63;&#111;&#109;">&#x67;&#x69;&#x74;&#64;&#103;&#x69;&#x74;&#104;&#117;&#x62;&#46;&#x63;&#111;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -2613,6 +2613,42 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>laravel5.3使用队列</title>
+    <url>/2017/09/14/laravel5-3%E4%BD%BF%E7%94%A8%E9%98%9F%E5%88%97/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<ul>
+<li><strong>驱动预备知识</strong></li>
+</ul>
+<blockquote>
+<p> 要使用 database 队列驱动，你需要数据表保存任务信息。要生成创建这些表的迁移，可以运行 Artisan 命令 queue:table，迁移被创建之后，可以使用 migrate 命令生成这些表<br>php artisan queue:table<br>php artisan migrate</p>
+</blockquote>
+<ul>
+<li><strong>创建任务</strong></li>
+</ul>
+<blockquote>
+<p>通常，所有的任务类都保存在 app/Jobs 目录.如果 app/Jobs 不存在，在运行 Artisan 命令 make:job 的时候，它将会自动创建。你可以通过 Artisan CLI 来生成队列任务类：<br>php artisan make:job SendReminderEmail[名称]</p>
+</blockquote>
+<ul>
+<li><strong>延时分发</strong></li>
+</ul>
+<blockquote>
+<p>   $job = (new ProcessPodcast($pocast))<br>   -&gt;delay(Carbon::now()-&gt;addMinutes(10));<br>   dispatch($job);</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>当修改变更队列程序后，需要重启队列<br>php artisan queue:restart</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>laravel5.3</tag>
+        <tag>queue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>laravel 微信公众号项目修改兼容web端</title>
     <url>/2017/08/30/laravel-%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E9%A1%B9%E7%9B%AE%E4%BF%AE%E6%94%B9%E5%85%BC%E5%AE%B9web%E7%AB%AF/</url>
     <content><![CDATA[<blockquote>
@@ -2648,42 +2684,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>laravel</tag>
         <tag>web-wechat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>laravel5.3使用队列</title>
-    <url>/2017/09/14/laravel5-3%E4%BD%BF%E7%94%A8%E9%98%9F%E5%88%97/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<ul>
-<li><strong>驱动预备知识</strong></li>
-</ul>
-<blockquote>
-<p> 要使用 database 队列驱动，你需要数据表保存任务信息。要生成创建这些表的迁移，可以运行 Artisan 命令 queue:table，迁移被创建之后，可以使用 migrate 命令生成这些表<br>php artisan queue:table<br>php artisan migrate</p>
-</blockquote>
-<ul>
-<li><strong>创建任务</strong></li>
-</ul>
-<blockquote>
-<p>通常，所有的任务类都保存在 app/Jobs 目录.如果 app/Jobs 不存在，在运行 Artisan 命令 make:job 的时候，它将会自动创建。你可以通过 Artisan CLI 来生成队列任务类：<br>php artisan make:job SendReminderEmail[名称]</p>
-</blockquote>
-<ul>
-<li><strong>延时分发</strong></li>
-</ul>
-<blockquote>
-<p>   $job = (new ProcessPodcast($pocast))<br>   -&gt;delay(Carbon::now()-&gt;addMinutes(10));<br>   dispatch($job);</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>当修改变更队列程序后，需要重启队列<br>php artisan queue:restart</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>laravel5.3</tag>
-        <tag>queue</tag>
       </tags>
   </entry>
   <entry>
@@ -3262,7 +3262,7 @@ class QuotesSpider(scrapy.Spider):
 </blockquote>
 <p>二、使用npm下载 web框架express模块</p>
 <blockquote>
-<p>npm install --save <a href="mailto:&#x65;&#120;&#112;&#x72;&#x65;&#x73;&#x73;&#64;&#52;&#46;&#x31;&#x35;&#x2e;&#50;">&#x65;&#120;&#112;&#x72;&#x65;&#x73;&#x73;&#64;&#52;&#46;&#x31;&#x35;&#x2e;&#50;</a></p>
+<p>npm install --save <a href="mailto:&#x65;&#120;&#x70;&#114;&#101;&#115;&#x73;&#x40;&#x34;&#x2e;&#x31;&#x35;&#46;&#50;">&#x65;&#120;&#x70;&#114;&#101;&#115;&#x73;&#x40;&#x34;&#x2e;&#x31;&#x35;&#46;&#50;</a></p>
 </blockquote>
 <p>三、使用npm下载socket.io模块</p>
 <blockquote>
