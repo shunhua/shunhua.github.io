@@ -125,7 +125,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#64;&#x71;&#x71;&#x2e;&#99;&#111;&#x6d;">&#120;&#64;&#x71;&#x71;&#x2e;&#99;&#111;&#x6d;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#64;&#x71;&#x71;&#46;&#x63;&#x6f;&#x6d;">&#120;&#64;&#x71;&#x71;&#46;&#x63;&#x6f;&#x6d;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -136,7 +136,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#64;&#x71;&#113;&#46;&#x63;&#x6f;&#109;">&#x62;&#64;&#x71;&#113;&#46;&#x63;&#x6f;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#64;&#113;&#113;&#46;&#99;&#x6f;&#x6d;">&#x62;&#64;&#113;&#113;&#46;&#99;&#x6f;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -328,74 +328,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Centos下两种守护进程的配置</title>
-    <url>/2018/03/21/Centos%E4%B8%8B%E4%B8%A4%E7%A7%8D%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E7%9A%84%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<a id="more"></a>
-
-
-<blockquote>
-<p>一、php artisan</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-xx]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D;php &#x2F;home&#x2F;wwwroot&#x2F;www.xxx.com&#x2F;artisan queue:work --tries&#x3D;3</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;4</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xxx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>二、执行node js </p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-node]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D; node &#x2F;home&#x2F;socket&#x2F;stocket.js</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;1</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>Centos</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Centos下安装PHP7</title>
-    <url>/2018/03/21/Centos%E4%B8%8B%E5%AE%89%E8%A3%85PHP7/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>一、安装yum仓库</p>
-<blockquote>
-<p>yum install epel-release<br>rpm -Uvh <a href="https://mirror.webtatic.com/yum/el7/webtatic-release.rpm">https://mirror.webtatic.com/yum/el7/webtatic-release.rpm</a></p>
-</blockquote>
-<p>二、安装php7</p>
-<blockquote>
-<p>yum install php70w<br>php -v</p>
-</blockquote>
-<p>三、安装php扩展</p>
-<blockquote>
-<p>yum search php70<br>yum install php70w-xml php70w-soap php70w-xmlrpc<br>yum install php70w-mbstring php70w-json php70w-gd php70w-mcrypt<br>yum install php70w-fpm php70w-mysql php70w-pdo php70w-opcache</p>
-</blockquote>
-<p>nginx 配置 php</p>
-<p>1、启动fpm</p>
-<blockquote>
-<p>systemctl start php-fpm<br>systemctl enable php-fpm # 开机启动</p>
-</blockquote>
-<p>2、配置nginx</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">location ~ \.php$ &#123;</span><br><span class="line">    root html;        </span><br><span class="line">    fastcgi_pass   127.0.0.1:9000;     # 也可以用 socket 进行连接</span><br><span class="line">    fastcgi_index  index.php;</span><br><span class="line">    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;</span><br><span class="line">    include        fastcgi_params;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>3、重启nginx</p>
-<blockquote>
-<p>systemctl restart nginx</p>
-</blockquote>
-<p>##php 错误日志##<br>nginx是一个web服务器，因此nginx的access日志只有对访问页面的记录，不会有php 的 error log信息。<br>nginx把对php的请求发给php-fpm fastcgi进程来处理，默认的php-fpm只会输出php-fpm的错误信息，在php-fpm的errors log里也看不到php的errorlog<br>原因是php-fpm的配置文件php-fpm.conf中默认是关闭worker进程的错误输出，直接把他们重定向到/dev/null,所以我们在nginx的error log 和php-fpm的errorlog都看不到php的错误日志。</p>
-<p>1、修改php-fpm.conf中配置</p>
-<blockquote>
-<p>catch_workers_output = yes<br>error_log = log/error_log</p>
-</blockquote>
-<p>2、修改php.ini中配置</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">log_errors &#x3D; On</span><br><span class="line">error_log &#x3D; &quot;&#x2F;var&#x2F;log&#x2F;php&#x2F;error_log&quot;  # 填写日志路径</span><br><span class="line">error_reporting &#x3D; E_ALL&amp;~E_NOTICE</span><br></pre></td></tr></table></figure>
-<p>3、重启php-fpm<br>注意：<br>a、php-fpm.conf 中的php_admin_value[error_log] 参数 会覆盖php.ini中的 error_log 参数<br>所以确保你在phpinfo()中看到的最终error_log文件具有可写权限并且没有设置php_admin_value[error_log] 参数，否则错误日志会输出到php-fpm的错误日志里</p>
-<p>b、找不到php.ini位置，使用php的phpinfo()结果查看<br>c、如何修改PHP错误日志不输出到页面或屏幕上</p>
-<p>修改php.ini</p>
-<blockquote>
-<p>不显示错误信息(不输出到页面或屏幕上)<br>display_errors = off<br>记录错误信息(保存到日志文件中)<br>log_errors = on<br>捕获所有错误信息<br>error_reporting = E_ALL<br>设置日志文件名<br>error_log =   </p>
-</blockquote>
-<p>程序中修改以上配置</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ini_set(&quot;display_errors&quot;, 0)</span><br><span class="line">ini_set(&quot;error_reporting&quot;, E_ALL);  </span><br><span class="line">ini_set(&quot;error_log&quot;, &quot;&lt;日志文件名&gt;&quot;)</span><br><span class="line">ini_set(&quot;log_errors&quot;, 1);</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>Centos</tag>
-        <tag>PHP7</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Centos7下基于laradock部署laravel5.x</title>
     <url>/2018/04/09/Centos7%E4%B8%8B%E5%9F%BA%E4%BA%8Elaradock%E9%83%A8%E7%BD%B2laravel5-x/</url>
     <content><![CDATA[<a id="more"></a>
@@ -466,6 +398,74 @@
         <tag>centos7</tag>
         <tag>laravel5</tag>
         <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Centos下两种守护进程的配置</title>
+    <url>/2018/03/21/Centos%E4%B8%8B%E4%B8%A4%E7%A7%8D%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E7%9A%84%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<a id="more"></a>
+
+
+<blockquote>
+<p>一、php artisan</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-xx]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D;php &#x2F;home&#x2F;wwwroot&#x2F;www.xxx.com&#x2F;artisan queue:work --tries&#x3D;3</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;4</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xxx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>二、执行node js </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-node]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D; node &#x2F;home&#x2F;socket&#x2F;stocket.js</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;1</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Centos</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Centos下安装PHP7</title>
+    <url>/2018/03/21/Centos%E4%B8%8B%E5%AE%89%E8%A3%85PHP7/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>一、安装yum仓库</p>
+<blockquote>
+<p>yum install epel-release<br>rpm -Uvh <a href="https://mirror.webtatic.com/yum/el7/webtatic-release.rpm">https://mirror.webtatic.com/yum/el7/webtatic-release.rpm</a></p>
+</blockquote>
+<p>二、安装php7</p>
+<blockquote>
+<p>yum install php70w<br>php -v</p>
+</blockquote>
+<p>三、安装php扩展</p>
+<blockquote>
+<p>yum search php70<br>yum install php70w-xml php70w-soap php70w-xmlrpc<br>yum install php70w-mbstring php70w-json php70w-gd php70w-mcrypt<br>yum install php70w-fpm php70w-mysql php70w-pdo php70w-opcache</p>
+</blockquote>
+<p>nginx 配置 php</p>
+<p>1、启动fpm</p>
+<blockquote>
+<p>systemctl start php-fpm<br>systemctl enable php-fpm # 开机启动</p>
+</blockquote>
+<p>2、配置nginx</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">location ~ \.php$ &#123;</span><br><span class="line">    root html;        </span><br><span class="line">    fastcgi_pass   127.0.0.1:9000;     # 也可以用 socket 进行连接</span><br><span class="line">    fastcgi_index  index.php;</span><br><span class="line">    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;</span><br><span class="line">    include        fastcgi_params;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、重启nginx</p>
+<blockquote>
+<p>systemctl restart nginx</p>
+</blockquote>
+<p>##php 错误日志##<br>nginx是一个web服务器，因此nginx的access日志只有对访问页面的记录，不会有php 的 error log信息。<br>nginx把对php的请求发给php-fpm fastcgi进程来处理，默认的php-fpm只会输出php-fpm的错误信息，在php-fpm的errors log里也看不到php的errorlog<br>原因是php-fpm的配置文件php-fpm.conf中默认是关闭worker进程的错误输出，直接把他们重定向到/dev/null,所以我们在nginx的error log 和php-fpm的errorlog都看不到php的错误日志。</p>
+<p>1、修改php-fpm.conf中配置</p>
+<blockquote>
+<p>catch_workers_output = yes<br>error_log = log/error_log</p>
+</blockquote>
+<p>2、修改php.ini中配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">log_errors &#x3D; On</span><br><span class="line">error_log &#x3D; &quot;&#x2F;var&#x2F;log&#x2F;php&#x2F;error_log&quot;  # 填写日志路径</span><br><span class="line">error_reporting &#x3D; E_ALL&amp;~E_NOTICE</span><br></pre></td></tr></table></figure>
+<p>3、重启php-fpm<br>注意：<br>a、php-fpm.conf 中的php_admin_value[error_log] 参数 会覆盖php.ini中的 error_log 参数<br>所以确保你在phpinfo()中看到的最终error_log文件具有可写权限并且没有设置php_admin_value[error_log] 参数，否则错误日志会输出到php-fpm的错误日志里</p>
+<p>b、找不到php.ini位置，使用php的phpinfo()结果查看<br>c、如何修改PHP错误日志不输出到页面或屏幕上</p>
+<p>修改php.ini</p>
+<blockquote>
+<p>不显示错误信息(不输出到页面或屏幕上)<br>display_errors = off<br>记录错误信息(保存到日志文件中)<br>log_errors = on<br>捕获所有错误信息<br>error_reporting = E_ALL<br>设置日志文件名<br>error_log =   </p>
+</blockquote>
+<p>程序中修改以上配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ini_set(&quot;display_errors&quot;, 0)</span><br><span class="line">ini_set(&quot;error_reporting&quot;, E_ALL);  </span><br><span class="line">ini_set(&quot;error_log&quot;, &quot;&lt;日志文件名&gt;&quot;)</span><br><span class="line">ini_set(&quot;log_errors&quot;, 1);</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>Centos</tag>
+        <tag>PHP7</tag>
       </tags>
   </entry>
   <entry>
@@ -570,6 +570,67 @@
       </tags>
   </entry>
   <entry>
+    <title>Go 语言基础</title>
+    <url>/2017/11/08/Go-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> 包、变量、函数</p>
+</blockquote>
+<ul>
+<li><p>包<br>每个 Go 程序都是由包组成的。程序运行的入口是包 <code>main</code><br>这个程序使用并导入了包 “fmt” 和 <code>&quot;math/rand&quot;</code>。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;math&#x2F;rand&quot;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>变量<br>var 语句定义了一个变量的列表 如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var c, python, java bool</span><br><span class="line">var i, j int &#x3D; 1, 2</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	var i int</span><br><span class="line">	&#x2F;*在函数中，&#96;:&#x3D;&#96; 简洁赋值语句在明确类型的地方，可以用于替代 var 定义</span><br><span class="line">	函数外的每个语句都必须以关键字开始（&#96;var&#96;、&#96;func&#96;、等等），&#96;:&#x3D;&#96; 结构不能使用在函数外*&#x2F;</span><br><span class="line">	k :&#x3D; 3</span><br><span class="line">	var c, python, java &#x3D; true, false, &quot;no!&quot;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>函数<br>函数可以没有参数或接受多个参数<br>在这个例子中，<code>add</code> 接受两个 int 类型的参数。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func add(x int, y int) int &#123;</span><br><span class="line">	return x + y</span><br><span class="line">&#125;</span><br><span class="line">||</span><br><span class="line">func add(x , y int) int &#123;</span><br><span class="line">	return x + y</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p> 流程控制语句</p>
+</blockquote>
+<ul>
+<li><p>for<br>Go 只有一种循环结构——<code>for</code> 循环<br>基本的 for 循环除了没有了 <code>( )</code> 之外（甚至强制不能使用它们）。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	sum :&#x3D; 0</span><br><span class="line">	for i :&#x3D; 0; i &lt; 10; i++ &#123;</span><br><span class="line">		sum +&#x3D; i</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(sum)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>if<br>if 语句除了没有了 <code>( )</code> 之外（甚至强制不能使用它们）。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func sqrt(x float64) string &#123;</span><br><span class="line">	if x &lt; 0 &#123;</span><br><span class="line">		return sqrt(-x) + &quot;i&quot;</span><br><span class="line">	&#125;</span><br><span class="line">	if v :&#x3D; math.Pow(x, n); v &lt; lim &#123;</span><br><span class="line">		return v</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		fmt.Printf(&quot;%g &gt;&#x3D; %g\n&quot;, v, lim)</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>switch<br>如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	fmt.Print(&quot;Go runs on &quot;)</span><br><span class="line">	switch os :&#x3D; runtime.GOOS; os &#123;</span><br><span class="line">	case &quot;darwin&quot;:</span><br><span class="line">		fmt.Println(&quot;OS X.&quot;)</span><br><span class="line">	case &quot;linux&quot;:</span><br><span class="line">		fmt.Println(&quot;Linux.&quot;)</span><br><span class="line">	default:</span><br><span class="line">		&#x2F;&#x2F; freebsd, openbsd,</span><br><span class="line">		&#x2F;&#x2F; plan9, windows...</span><br><span class="line">		fmt.Printf(&quot;%s.&quot;, os)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>defer<br>defer 语句会延迟函数的执行直到上层函数返回。<br>延迟调用的参数会立刻生成，但是在上层函数返回前函数都不会被调用。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	defer fmt.Println(&quot;world&quot;)&#x2F;&#x2F;延迟函数</span><br><span class="line">	fmt.Println(&quot;hello&quot;) &#x2F;&#x2F;上层函数</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;hello</span><br><span class="line">&#x2F;&#x2F;wolrd</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p> 复杂类型</p>
+</blockquote>
+<ul>
+<li><p>指针<br>Go 具有指针。 指针保存了变量的内存地址</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	i, j :&#x3D; 42, 2701</span><br><span class="line"></span><br><span class="line">	p :&#x3D; &amp;i         &#x2F;* 生成一个指向 i 的指针 *&#x2F;</span><br><span class="line">	fmt.Println(*p) &#x2F;* 通过指针 p 读取 i    *&#x2F;</span><br><span class="line">	*p &#x3D; 21         &#x2F;* 通过指针 p 设置 i    *&#x2F;</span><br><span class="line">	fmt.Println(i)  &#x2F;* 输出 i &#x3D;21          *&#x2F; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>结构体<br>一个结构体（<code>struct</code>）就是一个字段的集合</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type Vertex struct &#123;</span><br><span class="line">	X int</span><br><span class="line">	Y int</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">v :&#x3D; Vertex&#123;1, 2&#125;</span><br><span class="line">v.X &#x3D; 4</span><br><span class="line">fmt.Println(v.X)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数组<br>类型 [n]T 是一个有 n 个类型为 T 的值的数组</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	var a [2]string</span><br><span class="line">	a[0] &#x3D; &quot;Hello&quot;</span><br><span class="line">	a[1] &#x3D; &quot;World&quot;</span><br><span class="line">	fmt.Println(a[0], a[1])</span><br><span class="line">	fmt.Println(a)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>slice<br>一个 slice 会指向一个序列的值，并且包含了长度信息<br>s[lo:hi]表示从 lo 到 hi-1 的 slice 元素，含两端。因此<br>s[lo:lo]是空的，而<br>s[lo:lo+1]有一个元素。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	p :&#x3D; []int&#123;2, 3, 5, 7, 11, 13&#125;</span><br><span class="line">	fmt.Println(&quot;p &#x3D;&#x3D;&quot;, p)</span><br><span class="line"></span><br><span class="line">	for i :&#x3D; 0; i &lt; len(p); i++ &#123;</span><br><span class="line">		fmt.Printf(&quot;p[%d] &#x3D;&#x3D; %d\n&quot;, i, p[i])</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>map<br>map 映射键到值</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type Vertex struct &#123;</span><br><span class="line">	Lat, Long float64</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var m map[string]Vertex</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	m &#x3D; make(map[string]Vertex)</span><br><span class="line">	m[&quot;Bell Labs&quot;] &#x3D; Vertex&#123;</span><br><span class="line">		40.68433, -74.39967,</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(m[&quot;Bell Labs&quot;])</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>golang</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LNMP一键安装包常用命令及配置文件路径</title>
     <url>/2017/12/06/LNMP%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84/</url>
     <content><![CDATA[<a id="more"></a>
@@ -645,67 +706,6 @@
 ]]></content>
       <tags>
         <tag>lnmp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Go 语言基础</title>
-    <url>/2017/11/08/Go-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> 包、变量、函数</p>
-</blockquote>
-<ul>
-<li><p>包<br>每个 Go 程序都是由包组成的。程序运行的入口是包 <code>main</code><br>这个程序使用并导入了包 “fmt” 和 <code>&quot;math/rand&quot;</code>。如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;math&#x2F;rand&quot;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>变量<br>var 语句定义了一个变量的列表 如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var c, python, java bool</span><br><span class="line">var i, j int &#x3D; 1, 2</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	var i int</span><br><span class="line">	&#x2F;*在函数中，&#96;:&#x3D;&#96; 简洁赋值语句在明确类型的地方，可以用于替代 var 定义</span><br><span class="line">	函数外的每个语句都必须以关键字开始（&#96;var&#96;、&#96;func&#96;、等等），&#96;:&#x3D;&#96; 结构不能使用在函数外*&#x2F;</span><br><span class="line">	k :&#x3D; 3</span><br><span class="line">	var c, python, java &#x3D; true, false, &quot;no!&quot;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li><p>函数<br>函数可以没有参数或接受多个参数<br>在这个例子中，<code>add</code> 接受两个 int 类型的参数。如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func add(x int, y int) int &#123;</span><br><span class="line">	return x + y</span><br><span class="line">&#125;</span><br><span class="line">||</span><br><span class="line">func add(x , y int) int &#123;</span><br><span class="line">	return x + y</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<blockquote>
-<p> 流程控制语句</p>
-</blockquote>
-<ul>
-<li><p>for<br>Go 只有一种循环结构——<code>for</code> 循环<br>基本的 for 循环除了没有了 <code>( )</code> 之外（甚至强制不能使用它们）。如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	sum :&#x3D; 0</span><br><span class="line">	for i :&#x3D; 0; i &lt; 10; i++ &#123;</span><br><span class="line">		sum +&#x3D; i</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(sum)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>if<br>if 语句除了没有了 <code>( )</code> 之外（甚至强制不能使用它们）。如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func sqrt(x float64) string &#123;</span><br><span class="line">	if x &lt; 0 &#123;</span><br><span class="line">		return sqrt(-x) + &quot;i&quot;</span><br><span class="line">	&#125;</span><br><span class="line">	if v :&#x3D; math.Pow(x, n); v &lt; lim &#123;</span><br><span class="line">		return v</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		fmt.Printf(&quot;%g &gt;&#x3D; %g\n&quot;, v, lim)</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>switch<br>如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	fmt.Print(&quot;Go runs on &quot;)</span><br><span class="line">	switch os :&#x3D; runtime.GOOS; os &#123;</span><br><span class="line">	case &quot;darwin&quot;:</span><br><span class="line">		fmt.Println(&quot;OS X.&quot;)</span><br><span class="line">	case &quot;linux&quot;:</span><br><span class="line">		fmt.Println(&quot;Linux.&quot;)</span><br><span class="line">	default:</span><br><span class="line">		&#x2F;&#x2F; freebsd, openbsd,</span><br><span class="line">		&#x2F;&#x2F; plan9, windows...</span><br><span class="line">		fmt.Printf(&quot;%s.&quot;, os)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>defer<br>defer 语句会延迟函数的执行直到上层函数返回。<br>延迟调用的参数会立刻生成，但是在上层函数返回前函数都不会被调用。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	defer fmt.Println(&quot;world&quot;)&#x2F;&#x2F;延迟函数</span><br><span class="line">	fmt.Println(&quot;hello&quot;) &#x2F;&#x2F;上层函数</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;hello</span><br><span class="line">&#x2F;&#x2F;wolrd</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<blockquote>
-<p> 复杂类型</p>
-</blockquote>
-<ul>
-<li><p>指针<br>Go 具有指针。 指针保存了变量的内存地址</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	i, j :&#x3D; 42, 2701</span><br><span class="line"></span><br><span class="line">	p :&#x3D; &amp;i         &#x2F;* 生成一个指向 i 的指针 *&#x2F;</span><br><span class="line">	fmt.Println(*p) &#x2F;* 通过指针 p 读取 i    *&#x2F;</span><br><span class="line">	*p &#x3D; 21         &#x2F;* 通过指针 p 设置 i    *&#x2F;</span><br><span class="line">	fmt.Println(i)  &#x2F;* 输出 i &#x3D;21          *&#x2F; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>结构体<br>一个结构体（<code>struct</code>）就是一个字段的集合</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type Vertex struct &#123;</span><br><span class="line">	X int</span><br><span class="line">	Y int</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">v :&#x3D; Vertex&#123;1, 2&#125;</span><br><span class="line">v.X &#x3D; 4</span><br><span class="line">fmt.Println(v.X)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>数组<br>类型 [n]T 是一个有 n 个类型为 T 的值的数组</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	var a [2]string</span><br><span class="line">	a[0] &#x3D; &quot;Hello&quot;</span><br><span class="line">	a[1] &#x3D; &quot;World&quot;</span><br><span class="line">	fmt.Println(a[0], a[1])</span><br><span class="line">	fmt.Println(a)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>slice<br>一个 slice 会指向一个序列的值，并且包含了长度信息<br>s[lo:hi]表示从 lo 到 hi-1 的 slice 元素，含两端。因此<br>s[lo:lo]是空的，而<br>s[lo:lo+1]有一个元素。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	p :&#x3D; []int&#123;2, 3, 5, 7, 11, 13&#125;</span><br><span class="line">	fmt.Println(&quot;p &#x3D;&#x3D;&quot;, p)</span><br><span class="line"></span><br><span class="line">	for i :&#x3D; 0; i &lt; len(p); i++ &#123;</span><br><span class="line">		fmt.Printf(&quot;p[%d] &#x3D;&#x3D; %d\n&quot;, i, p[i])</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>map<br>map 映射键到值</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type Vertex struct &#123;</span><br><span class="line">	Lat, Long float64</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var m map[string]Vertex</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	m &#x3D; make(map[string]Vertex)</span><br><span class="line">	m[&quot;Bell Labs&quot;] &#x3D; Vertex&#123;</span><br><span class="line">		40.68433, -74.39967,</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(m[&quot;Bell Labs&quot;])</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>golang</tag>
       </tags>
   </entry>
   <entry>
@@ -1139,25 +1139,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Linux安装配置守护进程</title>
-    <url>/2018/03/09/Linux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> centos 下安装Supervisor</p>
-</blockquote>
-<p>yum install supervisor</p>
-<blockquote>
-<p> 配置Supervisor</p>
-</blockquote>
-<p>cd /etc/supervisord.d/<br>vim laravel-worker.ini<br>systemctl start supervisord</p>
-]]></content>
-      <tags>
-        <tag>linux</tag>
-        <tag>Supervisor</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux定时任务采集聚合数据api文章</title>
     <url>/2019/04/18/Linux%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E9%87%87%E9%9B%86%E8%81%9A%E5%90%88%E6%95%B0%E6%8D%AEapi%E6%96%87%E7%AB%A0/</url>
     <content><![CDATA[<p><strong>Linux定时任务采集文章</strong> </p>
@@ -1190,6 +1171,25 @@ public $queue = &#39;listeners&#39;;</code></pre>
         <tag>Laravel</tag>
         <tag>Linux</tag>
         <tag>crontab</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux安装配置守护进程</title>
+    <url>/2018/03/09/Linux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> centos 下安装Supervisor</p>
+</blockquote>
+<p>yum install supervisor</p>
+<blockquote>
+<p> 配置Supervisor</p>
+</blockquote>
+<p>cd /etc/supervisord.d/<br>vim laravel-worker.ini<br>systemctl start supervisord</p>
+]]></content>
+      <tags>
+        <tag>linux</tag>
+        <tag>Supervisor</tag>
       </tags>
   </entry>
   <entry>
@@ -2086,23 +2086,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>docker + redis 部署一主二从三哨兵</title>
-    <url>/2021/12/06/docker-redis-%E9%83%A8%E7%BD%B2%E4%B8%80%E4%B8%BB%E4%BA%8C%E4%BB%8E%E4%B8%89%E5%93%A8%E5%85%B5/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/redis.png" alt="redis"></p>
-<a id="more"></a>
-
-<p><strong>概述</strong></p>
-<ul>
-<li>在部署redis 的时候，如果redis宕机，缓存将不可用，redis提供了哨兵模式保证redis实现高可用。</li>
-<li>即一台主机两台从机，三台哨兵主机，如果主实例宕机，哨兵将一台从机升级为主机。实现高可用。<br><img src="/assets/blogImg/redis-1.png" alt="redis-1"></li>
-</ul>
-<p>参考文档 ⚔：<br><a href="https://blog.csdn.net/qq_41773902/article/details/105627708" target="_blank">[ 点我 ]</a> | <a href="https://www.jianshu.com/p/319d0980ff89#comments" target="_blank">[ 点我 ]</a> | <a href="https://www.pianshen.com/article/68951456452/" target="_blank">[ 点我 ]</a></p>
-]]></content>
-      <tags>
-        <tag>redis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>centos7下lnmp 添加、删除虚拟主机</title>
     <url>/2017/09/15/centos7%E4%B8%8Blnmp-%E6%B7%BB%E5%8A%A0%E3%80%81%E5%88%A0%E9%99%A4%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2198,40 +2181,20 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>gin-vue-admin的安装及使用</title>
-    <url>/2021/10/14/gin-vue-admin%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/diary-5.jpg" alt="gin-vue-admin"></p>
+    <title>docker + redis 部署一主二从三哨兵</title>
+    <url>/2021/12/06/docker-redis-%E9%83%A8%E7%BD%B2%E4%B8%80%E4%B8%BB%E4%BA%8C%E4%BB%8E%E4%B8%89%E5%93%A8%E5%85%B5/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/redis.png" alt="redis"></p>
 <a id="more"></a>
 
-<p>官网地址： <a href="https://www.gin-vue-admin.com/" target="_blank">[ gin-vue-admin官网 ]</a><br>gitHub： <a href="https://github.com/flipped-aurora/gin-vue-admin" target="_blank">[ gin-vue-admin ]</a></p>
+<p><strong>概述</strong></p>
 <ul>
-<li><p>克隆项目</p>
-<blockquote>
-<p>git clone <a href="mailto:&#x67;&#105;&#x74;&#x40;&#103;&#105;&#116;&#x68;&#x75;&#98;&#x2e;&#99;&#111;&#109;">&#x67;&#105;&#x74;&#x40;&#103;&#105;&#116;&#x68;&#x75;&#98;&#x2e;&#99;&#111;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
-</blockquote>
-</li>
-<li><p>进入项目gin目录</p>
-<blockquote>
-<p>cd gin-vue-admin/server<br>go run main.go</p>
-</blockquote>
-</li>
-<li><p>进入项目vue目录</p>
-<blockquote>
-<p>cd gin-vue-admin/web<br>npm i<br>npm run serve</p>
-</blockquote>
-</li>
-<li><p>打开web网站 开始初始化</p>
-</li>
-<li><p>代码生成器</p>
-</li>
+<li>在部署redis 的时候，如果redis宕机，缓存将不可用，redis提供了哨兵模式保证redis实现高可用。</li>
+<li>即一台主机两台从机，三台哨兵主机，如果主实例宕机，哨兵将一台从机升级为主机。实现高可用。<br><img src="/assets/blogImg/redis-1.png" alt="redis-1"></li>
 </ul>
+<p>参考文档 ⚔：<br><a href="https://blog.csdn.net/qq_41773902/article/details/105627708" target="_blank">[ 点我 ]</a> | <a href="https://www.jianshu.com/p/319d0980ff89#comments" target="_blank">[ 点我 ]</a> | <a href="https://www.pianshen.com/article/68951456452/" target="_blank">[ 点我 ]</a></p>
 ]]></content>
       <tags>
-        <tag>golang</tag>
-        <tag>gin-vue-admin</tag>
-        <tag>vue</tag>
-        <tag>element-ui</tag>
-        <tag>gin</tag>
+        <tag>redis</tag>
       </tags>
   </entry>
   <entry>
@@ -2280,6 +2243,43 @@ class QuotesSpider(scrapy.Spider):
 ]]></content>
       <tags>
         <tag>gRPC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>gin-vue-admin的安装及使用</title>
+    <url>/2021/10/14/gin-vue-admin%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/diary-5.jpg" alt="gin-vue-admin"></p>
+<a id="more"></a>
+
+<p>官网地址： <a href="https://www.gin-vue-admin.com/" target="_blank">[ gin-vue-admin官网 ]</a><br>gitHub： <a href="https://github.com/flipped-aurora/gin-vue-admin" target="_blank">[ gin-vue-admin ]</a></p>
+<ul>
+<li><p>克隆项目</p>
+<blockquote>
+<p>git clone <a href="mailto:&#x67;&#105;&#x74;&#x40;&#x67;&#x69;&#x74;&#x68;&#x75;&#x62;&#x2e;&#99;&#x6f;&#x6d;">&#x67;&#105;&#x74;&#x40;&#x67;&#x69;&#x74;&#x68;&#x75;&#x62;&#x2e;&#99;&#x6f;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
+</blockquote>
+</li>
+<li><p>进入项目gin目录</p>
+<blockquote>
+<p>cd gin-vue-admin/server<br>go run main.go</p>
+</blockquote>
+</li>
+<li><p>进入项目vue目录</p>
+<blockquote>
+<p>cd gin-vue-admin/web<br>npm i<br>npm run serve</p>
+</blockquote>
+</li>
+<li><p>打开web网站 开始初始化</p>
+</li>
+<li><p>代码生成器</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>golang</tag>
+        <tag>gin-vue-admin</tag>
+        <tag>vue</tag>
+        <tag>element-ui</tag>
+        <tag>gin</tag>
       </tags>
   </entry>
   <entry>
@@ -2502,29 +2502,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>laravel-admin 实现字段排序</title>
-    <url>/2017/09/21/laravel-admin-%E5%AE%9E%E7%8E%B0%E5%AD%97%E6%AE%B5%E6%8E%92%E5%BA%8F/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> 排序代码</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">protected function grid()</span><br><span class="line">&#123;</span><br><span class="line">    return Admin::grid(Member::class, function (Grid $grid) &#123;</span><br><span class="line"></span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;id&#39;, &#39;desc&#39;);</span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;balance&#39;, &#39;desc&#39;);</span><br><span class="line"></span><br><span class="line">        $grid-&gt;id(&#39;ID&#39;)-&gt;sortable();</span><br><span class="line"></span><br><span class="line">        $grid-&gt;balance(&#39;余额&#39;)-&gt;sortable();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>laravel-admin</tag>
-        <tag>字段排序</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>install program</title>
     <url>/2017/11/02/install-program/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2580,6 +2557,29 @@ class QuotesSpider(scrapy.Spider):
         <tag>centos7</tag>
         <tag>laravel5</tag>
         <tag>install</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>laravel-admin 实现字段排序</title>
+    <url>/2017/09/21/laravel-admin-%E5%AE%9E%E7%8E%B0%E5%AD%97%E6%AE%B5%E6%8E%92%E5%BA%8F/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> 排序代码</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">protected function grid()</span><br><span class="line">&#123;</span><br><span class="line">    return Admin::grid(Member::class, function (Grid $grid) &#123;</span><br><span class="line"></span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;id&#39;, &#39;desc&#39;);</span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;balance&#39;, &#39;desc&#39;);</span><br><span class="line"></span><br><span class="line">        $grid-&gt;id(&#39;ID&#39;)-&gt;sortable();</span><br><span class="line"></span><br><span class="line">        $grid-&gt;balance(&#39;余额&#39;)-&gt;sortable();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>laravel-admin</tag>
+        <tag>字段排序</tag>
       </tags>
   </entry>
   <entry>
@@ -2687,6 +2687,70 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>linux centos7.3 lnmp一键安装包集成</title>
+    <url>/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E9%9B%86%E6%88%90/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>一、下载并安装LNMP一键安装包</strong></p>
+<p>安装LNMP稳定版</p>
+<blockquote>
+<p> wget -c <a href="http://soft.vpser.net/lnmp/lnmp1.4.tar.gz">http://soft.vpser.net/lnmp/lnmp1.4.tar.gz</a> &amp;&amp; tar zxf lnmp1.4.tar.gz &amp;&amp; cd lnmp1.4 &amp;&amp; ./install.sh lnmp：</p>
+</blockquote>
+<p>默认安装lnmp可不写，如需要安装LNMPA或LAMP，将./install.sh 后面的参数替换为lnmpa或lamp即可。如需更改网站和数据库目录先修改安装包目录下的 lnmp.conf 文件。</p>
+<blockquote>
+<p> 运行上述LNMP安装命令后，会出现如下提示：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/1.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 输入对应MySQL或MariaDB版本前面的序号，回车进入下一步.：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/2.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 需要设置MySQL的root密码（不输入直接回车将会设置为root）如果输入有错误需要删除时，可以按住Ctrl再按Backspace键进行删除(个别情况下是只需要Backspace键)。输入后回车进入下一步，如下图所示：：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/3.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 询问是否需要启用MySQL InnoDB，InnoDB引擎默认为开启，一般建议开启，直接回车或输入 y ，如果确定确实不需要该引擎可以输入 n，输入完成，回车进入下一步。注意：选择PHP7等高版本时需要自行确认是否与自己的程序兼容。</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/4.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 输入要选择的PHP版本的序号，回车进入下一步，选择是否安装内存优化：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/5.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 再选择Apache版本</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/6.png" alt="ico原来的样子"></p>
+<p>按提示输入对应版本前面的数字序号，回车。</p>
+<p>提示”Press any key to install…or Press Ctrl+c to cancel”后，按回车键确认开始安装。<br>LNMP脚本就会自动安装编译Nginx、MySQL、PHP、phpMyAdmin、Zend Optimizer这几个软件。</p>
+<p>安装时间可能会几十分钟到几个小时不等，主要是机器的配置网速等原因会造成影响。</p>
+<blockquote>
+<p> 安装完成  如果显示Nginx: OK，MySQL: OK，PHP: OK</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/7.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 并且Nginx、MySQL、PHP都是running，80和3306端口都存在，并提示安装使用的时间及Install lnmp V1.4 completed! enjoy it.的话，说明已经安装成功</p>
+</blockquote>
+<p>安装失败</p>
+<blockquote>
+<p> 安装失败</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/8.png" alt="ico原来的样子"></p>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>lnmp</tag>
+        <tag>linux</tag>
+        <tag>centos7.3</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>laravel5.5快速入门 —— 安装配置篇</title>
     <url>/2017/09/15/laravel5.5%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8-%E2%80%94%E2%80%94-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E7%AF%87/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2749,70 +2813,6 @@ class QuotesSpider(scrapy.Spider):
 ]]></content>
       <tags>
         <tag>laravel5.5</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>linux centos7.3 lnmp一键安装包集成</title>
-    <url>/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E9%9B%86%E6%88%90/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>一、下载并安装LNMP一键安装包</strong></p>
-<p>安装LNMP稳定版</p>
-<blockquote>
-<p> wget -c <a href="http://soft.vpser.net/lnmp/lnmp1.4.tar.gz">http://soft.vpser.net/lnmp/lnmp1.4.tar.gz</a> &amp;&amp; tar zxf lnmp1.4.tar.gz &amp;&amp; cd lnmp1.4 &amp;&amp; ./install.sh lnmp：</p>
-</blockquote>
-<p>默认安装lnmp可不写，如需要安装LNMPA或LAMP，将./install.sh 后面的参数替换为lnmpa或lamp即可。如需更改网站和数据库目录先修改安装包目录下的 lnmp.conf 文件。</p>
-<blockquote>
-<p> 运行上述LNMP安装命令后，会出现如下提示：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/1.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 输入对应MySQL或MariaDB版本前面的序号，回车进入下一步.：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/2.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 需要设置MySQL的root密码（不输入直接回车将会设置为root）如果输入有错误需要删除时，可以按住Ctrl再按Backspace键进行删除(个别情况下是只需要Backspace键)。输入后回车进入下一步，如下图所示：：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/3.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 询问是否需要启用MySQL InnoDB，InnoDB引擎默认为开启，一般建议开启，直接回车或输入 y ，如果确定确实不需要该引擎可以输入 n，输入完成，回车进入下一步。注意：选择PHP7等高版本时需要自行确认是否与自己的程序兼容。</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/4.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 输入要选择的PHP版本的序号，回车进入下一步，选择是否安装内存优化：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/5.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 再选择Apache版本</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/6.png" alt="ico原来的样子"></p>
-<p>按提示输入对应版本前面的数字序号，回车。</p>
-<p>提示”Press any key to install…or Press Ctrl+c to cancel”后，按回车键确认开始安装。<br>LNMP脚本就会自动安装编译Nginx、MySQL、PHP、phpMyAdmin、Zend Optimizer这几个软件。</p>
-<p>安装时间可能会几十分钟到几个小时不等，主要是机器的配置网速等原因会造成影响。</p>
-<blockquote>
-<p> 安装完成  如果显示Nginx: OK，MySQL: OK，PHP: OK</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/7.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 并且Nginx、MySQL、PHP都是running，80和3306端口都存在，并提示安装使用的时间及Install lnmp V1.4 completed! enjoy it.的话，说明已经安装成功</p>
-</blockquote>
-<p>安装失败</p>
-<blockquote>
-<p> 安装失败</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/8.png" alt="ico原来的样子"></p>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>linux</tag>
-        <tag>centos7.3</tag>
       </tags>
   </entry>
   <entry>
@@ -3262,7 +3262,7 @@ class QuotesSpider(scrapy.Spider):
 </blockquote>
 <p>二、使用npm下载 web框架express模块</p>
 <blockquote>
-<p>npm install --save <a href="mailto:&#x65;&#x78;&#112;&#114;&#x65;&#115;&#115;&#x40;&#52;&#x2e;&#49;&#53;&#46;&#50;">&#x65;&#x78;&#112;&#114;&#x65;&#115;&#115;&#x40;&#52;&#x2e;&#49;&#53;&#46;&#50;</a></p>
+<p>npm install --save <a href="mailto:&#101;&#x78;&#112;&#x72;&#101;&#x73;&#x73;&#64;&#52;&#46;&#x31;&#x35;&#46;&#50;">&#101;&#x78;&#112;&#x72;&#101;&#x73;&#x73;&#64;&#52;&#46;&#x31;&#x35;&#46;&#50;</a></p>
 </blockquote>
 <p>三、使用npm下载socket.io模块</p>
 <blockquote>
@@ -3324,6 +3324,39 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>vim常用命令</title>
+    <url>/2017/11/21/vim%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<p><strong>vim常用命令</strong> </p>
+<a id="more"></a>
+<blockquote>
+<p>常用命令:</p>
+</blockquote>
+<ul>
+<li>[gg]第一行</li>
+<li>[G]最后一行</li>
+<li>[nG|ngg]到n行</li>
+<li>[u]撤销改动</li>
+<li>[dd]删除一行</li>
+<li>[yy]复制一行</li>
+<li>[i]在光标之前插入</li>
+<li>[a]在光标之后插入</li>
+<li>[$|End]到行尾</li>
+<li>[0|^|Home]到行首</li>
+<li>[o]在当前行下插入一空行</li>
+<li>[dw]删除光标所在的单词</li>
+<li>[daw]删除光标所在的单词,包括空白字符</li>
+<li>[diw]删除光标所在的单词,不包括空白字符</li>
+</ul>
+<blockquote>
+<p>示图如下:</p>
+</blockquote>
+<p><img src="/assets/blogImg/vim/1.png" alt="ico原来的样子"></p>
+]]></content>
+      <tags>
+        <tag>vim</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vue-element-admin的安装&amp;使用</title>
     <url>/2021/09/28/vue-element-admin%E7%9A%84%E5%AE%89%E8%A3%85-%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><strong>vue-element-admin的安装&amp;使用：</strong> </p>
@@ -3370,39 +3403,6 @@ class QuotesSpider(scrapy.Spider):
         <tag>vue</tag>
         <tag>element-ui</tag>
         <tag>vue-element-admin</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vim常用命令</title>
-    <url>/2017/11/21/vim%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<p><strong>vim常用命令</strong> </p>
-<a id="more"></a>
-<blockquote>
-<p>常用命令:</p>
-</blockquote>
-<ul>
-<li>[gg]第一行</li>
-<li>[G]最后一行</li>
-<li>[nG|ngg]到n行</li>
-<li>[u]撤销改动</li>
-<li>[dd]删除一行</li>
-<li>[yy]复制一行</li>
-<li>[i]在光标之前插入</li>
-<li>[a]在光标之后插入</li>
-<li>[$|End]到行尾</li>
-<li>[0|^|Home]到行首</li>
-<li>[o]在当前行下插入一空行</li>
-<li>[dw]删除光标所在的单词</li>
-<li>[daw]删除光标所在的单词,包括空白字符</li>
-<li>[diw]删除光标所在的单词,不包括空白字符</li>
-</ul>
-<blockquote>
-<p>示图如下:</p>
-</blockquote>
-<p><img src="/assets/blogImg/vim/1.png" alt="ico原来的样子"></p>
-]]></content>
-      <tags>
-        <tag>vim</tag>
       </tags>
   </entry>
   <entry>
