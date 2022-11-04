@@ -68,9 +68,6 @@
 <p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>php</tag>
-      </tags>
   </entry>
   <entry>
     <title>Alipay 开放平台支付</title>
@@ -96,10 +93,6 @@
 </blockquote>
 <p>支付宝公钥应用于开发中</p>
 ]]></content>
-      <tags>
-        <tag>Alipay</tag>
-        <tag>开放平台</tag>
-      </tags>
   </entry>
   <entry>
     <title>CentOS 7 安装 Nginx 1.11.x</title>
@@ -129,10 +122,6 @@
 <p>/usr/local/nginx/sbin/nginx -s reload<br>/usr/local/nginx/sbin/nginx -s stop<br>/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>Centos</tag>
-        <tag>Nginx</tag>
-      </tags>
   </entry>
   <entry>
     <title>CentOS 7 安装MySQL5.7</title>
@@ -176,10 +165,6 @@
 <p>ps -aux | grep mysql<br>netstat -apn | grep 3306<br>netstat -apn</p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>Centos</tag>
-        <tag>MySQL</tag>
-      </tags>
   </entry>
   <entry>
     <title>CentOS 7 Git服务器搭建及配置公钥</title>
@@ -245,10 +230,6 @@
 <p>sudo -u www ssh-keygen -R 127.0.0.1<br>sudo -u www git pull origin master</p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>CentOS 7</tag>
-        <tag>git</tag>
-      </tags>
   </entry>
   <entry>
     <title>CentOS 7 搭建SVN服务器</title>
@@ -322,10 +303,6 @@
 <p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ！！！ </p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>CentOS 7</tag>
-        <tag>svn</tag>
-      </tags>
   </entry>
   <entry>
     <title>Centos7下基于laradock部署laravel5.x</title>
@@ -393,12 +370,6 @@
 <p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>laradock</tag>
-        <tag>centos7</tag>
-        <tag>laravel5</tag>
-        <tag>docker</tag>
-      </tags>
   </entry>
   <entry>
     <title>Centos下两种守护进程的配置</title>
@@ -416,9 +387,6 @@
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-node]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D; node &#x2F;home&#x2F;socket&#x2F;stocket.js</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;1</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
 ]]></content>
-      <tags>
-        <tag>Centos</tag>
-      </tags>
   </entry>
   <entry>
     <title>Centos下安装PHP7</title>
@@ -463,10 +431,6 @@
 </blockquote>
 <p>程序中修改以上配置</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ini_set(&quot;display_errors&quot;, 0)</span><br><span class="line">ini_set(&quot;error_reporting&quot;, E_ALL);  </span><br><span class="line">ini_set(&quot;error_log&quot;, &quot;&lt;日志文件名&gt;&quot;)</span><br><span class="line">ini_set(&quot;log_errors&quot;, 1);</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>Centos</tag>
-        <tag>PHP7</tag>
-      </tags>
   </entry>
   <entry>
     <title>Docker下实践ELK(Elasticsearch、Logstash、Kibana)</title>
@@ -503,9 +467,6 @@
 </ul>
 <p><img src="/assets/blogImg/elk1.png" alt="elk"></p>
 ]]></content>
-      <tags>
-        <tag>ELK</tag>
-      </tags>
   </entry>
   <entry>
     <title>Etcd一文</title>
@@ -565,9 +526,6 @@
 </li>
 </ul>
 ]]></content>
-      <tags>
-        <tag>Etcd</tag>
-      </tags>
   </entry>
   <entry>
     <title>Go 语言基础</title>
@@ -626,9 +584,6 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type Vertex struct &#123;</span><br><span class="line">	Lat, Long float64</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var m map[string]Vertex</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	m &#x3D; make(map[string]Vertex)</span><br><span class="line">	m[&quot;Bell Labs&quot;] &#x3D; Vertex&#123;</span><br><span class="line">		40.68433, -74.39967,</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(m[&quot;Bell Labs&quot;])</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ul>
 ]]></content>
-      <tags>
-        <tag>golang</tag>
-      </tags>
   </entry>
   <entry>
     <title>LNMP一键安装包常用命令及配置文件路径</title>
@@ -704,9 +659,6 @@
 <p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>lnmp</tag>
-      </tags>
   </entry>
   <entry>
     <title>Laragon 在 Windows 中搭建 Laravel 开发环境</title>
@@ -832,11 +784,6 @@
 <p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>Laragon</tag>
-        <tag>Laravel</tag>
-        <tag>Windows</tag>
-      </tags>
   </entry>
   <entry>
     <title>Laravel Redis 广播测试</title>
@@ -929,11 +876,6 @@
 <li><strong>Notice</strong><br>安静,安静一下 Enjoy it ~</li>
 </ul>
 ]]></content>
-      <tags>
-        <tag>laravel5.7</tag>
-        <tag>Redis</tag>
-        <tag>广播</tag>
-      </tags>
   </entry>
   <entry>
     <title>Laravel yansongda/laravel-pay</title>
@@ -981,10 +923,6 @@
 <p>若前端框架使用vue、react等 此时后端返回的是form表单需要简单处理下，如下:</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const div &#x3D; document.createElement(&#39;div&#39;) &#x2F;&#x2F; 创建div</span><br><span class="line">div.innerHTML &#x3D; res.data &#x2F;&#x2F; 将返回的form 放入div</span><br><span class="line">document.body.appendChild(div)</span><br><span class="line">document.forms[&#39;alipaysubmit&#39;].submit()</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>laravel5.6</tag>
-        <tag>laravel-pay</tag>
-      </tags>
   </entry>
   <entry>
     <title>Laravel 事件系统</title>
@@ -1034,11 +972,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
 </blockquote>
 <p><img src="/assets/blogImg/event.png" alt="ico原来的样子"></p>
 ]]></content>
-      <tags>
-        <tag>laravel5.7</tag>
-        <tag>Redis</tag>
-        <tag>Event</tag>
-      </tags>
   </entry>
   <entry>
     <title>Laravel 和 Vue 的项目搭建</title>
@@ -1079,10 +1012,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
 </li>
 </ol>
 ]]></content>
-      <tags>
-        <tag>Laravel</tag>
-        <tag>Vue</tag>
-      </tags>
   </entry>
   <entry>
     <title>Linux下安装node.js</title>
@@ -1133,10 +1062,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
 <p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>Linux</tag>
-        <tag>node.js</tag>
-      </tags>
   </entry>
   <entry>
     <title>Linux安装配置守护进程</title>
@@ -1152,10 +1077,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
 </blockquote>
 <p>cd /etc/supervisord.d/<br>vim laravel-worker.ini<br>systemctl start supervisord</p>
 ]]></content>
-      <tags>
-        <tag>linux</tag>
-        <tag>Supervisor</tag>
-      </tags>
   </entry>
   <entry>
     <title>Linux定时任务采集聚合数据api文章</title>
@@ -1186,11 +1107,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
 <p>五、查看结果</p>
 <p><img src="/assets/blogImg/crontab.png" alt="ico原来的样子"></p>
 ]]></content>
-      <tags>
-        <tag>Laravel</tag>
-        <tag>Linux</tag>
-        <tag>crontab</tag>
-      </tags>
   </entry>
   <entry>
     <title>Live 阿里云直播</title>
@@ -1307,9 +1223,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
 <hr>
 <hr>
 ]]></content>
-      <tags>
-        <tag>-Markdown</tag>
-      </tags>
   </entry>
   <entry>
     <title>MySQL出现1030-Got error 28 from storage engine错误</title>
@@ -1328,10 +1241,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -h --max-depth&#x3D;1 | grep G | sort -n</span><br></pre></td></tr></table></figure>
 <p>以G单位排序查看占用磁盘的文件，然后删除没用的日志文件 </p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -s * | sort -nr</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>mysql</tag>
-      </tags>
   </entry>
   <entry>
     <title>MySQL启动错误</title>
@@ -1361,10 +1270,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
 <li>修改在my.cnf 文件，找到 log-bin=mysql-bin 将其启注释掉，以后就不会产生2进制的mysql-bin.0000的日志文件</li>
 </ol>
 ]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>mysql</tag>
-      </tags>
   </entry>
   <entry>
     <title>Nginx 反向代理</title>
@@ -1377,10 +1282,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server_name  www.xxx.com;</span><br><span class="line">...</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">    proxy_pass http:&#x2F;&#x2F;ip[原服务器ip];</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
-      <tags>
-        <tag>nginx</tag>
-        <tag>反向代理</tag>
-      </tags>
   </entry>
   <entry>
     <title>Nginx分发-指定文件名称</title>
@@ -1408,9 +1309,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
 </blockquote>
 <p>That’s it! enjoy :)</p>
 ]]></content>
-      <tags>
-        <tag>nginx</tag>
-      </tags>
   </entry>
   <entry>
     <title>PHP 5.3、5.4、5.5、5.6、7 中的新特性</title>
@@ -1637,10 +1535,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
 <p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>PHP5.3+</tag>
-        <tag>新特性</tag>
-      </tags>
   </entry>
   <entry>
     <title>PHP Socket 基础教程</title>
@@ -1681,10 +1575,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 关闭 sockets</span><br><span class="line">socket_close ( $spawn );</span><br><span class="line">socket_close ( $socket ); </span><br></pre></td></tr></table></figure>
 
 ]]></content>
-      <tags>
-        <tag>php</tag>
-        <tag>socket</tag>
-      </tags>
   </entry>
   <entry>
     <title>Python scrapy入门教程</title>
@@ -1760,10 +1650,6 @@ class QuotesSpider(scrapy.Spider):
 <p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>Python</tag>
-        <tag>scrapy</tag>
-      </tags>
   </entry>
   <entry>
     <title>SELinux 状态</title>
@@ -1777,9 +1663,6 @@ class QuotesSpider(scrapy.Spider):
 <p><img src="/assets/blogImg/reduce-http.jpg" alt="ico原来的样子"></p>
 <p>1、/usr/sbin/sestatus -v      ##如果SELinux status参数为enabled即为开启状态<br>SELinux status:                 enabled<br>2、getenforce                 ##也可以用这个命令检查<br>关闭SELinux：<br>1、临时关闭（不用重启机器）：<br>setenforce 0                  ##设置SELinux 成为permissive模式<br>                              ##setenforce 1 设置SELinux 成为enforcing模式<br>2、修改配置文件需要重启机器：<br>修改/etc/selinux/config 文件<br>将SELINUX=enforcing改为SELINUX=disabled<br>重启机器即可</p>
 ]]></content>
-      <tags>
-        <tag>linux</tag>
-      </tags>
   </entry>
   <entry>
     <title>Swift学习笔记NO.1</title>
@@ -1880,9 +1763,6 @@ class QuotesSpider(scrapy.Spider):
 <p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>Swift</tag>
-      </tags>
   </entry>
   <entry>
     <title>Swift学习笔记NO.2</title>
@@ -2040,10 +1920,6 @@ class QuotesSpider(scrapy.Spider):
 <p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>Swift</tag>
-        <tag>基础语法</tag>
-      </tags>
   </entry>
   <entry>
     <title>AntV 蚂蚁数据可视化G6|Graphin</title>
@@ -2081,9 +1957,6 @@ class QuotesSpider(scrapy.Spider):
 
 <p>完整代码</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot; &#x2F;&gt;</span><br><span class="line">    &lt;title&gt;Tutorial Demo&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &#x2F;* 图的画布容器 *&#x2F;</span><br><span class="line">    &lt;div id&#x3D;&quot;mountNode&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">    &#x2F;* 引入 G6 *&#x2F;</span><br><span class="line">    &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;gw.alipayobjects.com&#x2F;os&#x2F;antv&#x2F;pkg&#x2F;_antv.g6-3.7.1&#x2F;dist&#x2F;g6.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      &#x2F;&#x2F; 定义数据源</span><br><span class="line">      const data &#x3D; &#123;</span><br><span class="line">        &#x2F;&#x2F; 点集</span><br><span class="line">        nodes: [</span><br><span class="line">          &#123;</span><br><span class="line">            id: &#39;node1&#39;,</span><br><span class="line">            x: 100,</span><br><span class="line">            y: 200,</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            id: &#39;node2&#39;,</span><br><span class="line">            x: 300,</span><br><span class="line">            y: 200,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">        &#x2F;&#x2F; 边集</span><br><span class="line">        edges: [</span><br><span class="line">          &#x2F;&#x2F; 表示一条从 node1 节点连接到 node2 节点的边</span><br><span class="line">          &#123;</span><br><span class="line">            source: &#39;node1&#39;,</span><br><span class="line">            target: &#39;node2&#39;,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F; 创建 G6 图实例</span><br><span class="line">      const graph &#x3D; new G6.Graph(&#123;</span><br><span class="line">        container: &#39;mountNode&#39;, &#x2F;&#x2F; 指定图画布的容器 id，与第 9 行的容器对应</span><br><span class="line">        &#x2F;&#x2F; 画布宽高</span><br><span class="line">        width: 800,</span><br><span class="line">        height: 500,</span><br><span class="line">      &#125;);</span><br><span class="line">      &#x2F;&#x2F; 读取数据</span><br><span class="line">      graph.data(data);</span><br><span class="line">      &#x2F;&#x2F; 渲染图</span><br><span class="line">      graph.render();</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>AntV</tag>
-      </tags>
   </entry>
   <entry>
     <title>centos7下lnmp 添加、删除虚拟主机</title>
@@ -2174,11 +2047,6 @@ class QuotesSpider(scrapy.Spider):
 <p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>linux</tag>
-        <tag>centos7.3</tag>
-      </tags>
   </entry>
   <entry>
     <title>docker + redis 部署一主二从三哨兵</title>
@@ -2193,9 +2061,6 @@ class QuotesSpider(scrapy.Spider):
 </ul>
 <p>参考文档 ⚔：<br><a href="https://blog.csdn.net/qq_41773902/article/details/105627708" target="_blank">[ 点我 ]</a> | <a href="https://www.jianshu.com/p/319d0980ff89#comments" target="_blank">[ 点我 ]</a> | <a href="https://www.pianshen.com/article/68951456452/" target="_blank">[ 点我 ]</a></p>
 ]]></content>
-      <tags>
-        <tag>redis</tag>
-      </tags>
   </entry>
   <entry>
     <title>gRPC 的介绍及使用</title>
@@ -2241,9 +2106,6 @@ class QuotesSpider(scrapy.Spider):
 </li>
 </ul>
 ]]></content>
-      <tags>
-        <tag>gRPC</tag>
-      </tags>
   </entry>
   <entry>
     <title>gin-vue-admin的安装及使用</title>
@@ -2274,13 +2136,6 @@ class QuotesSpider(scrapy.Spider):
 </li>
 </ul>
 ]]></content>
-      <tags>
-        <tag>golang</tag>
-        <tag>gin-vue-admin</tag>
-        <tag>vue</tag>
-        <tag>element-ui</tag>
-        <tag>gin</tag>
-      </tags>
   </entry>
   <entry>
     <title>go-zero实战：让微服务Go起来</title>
@@ -2376,9 +2231,6 @@ class QuotesSpider(scrapy.Spider):
 <li>错误处理</li>
 </ul>
 ]]></content>
-      <tags>
-        <tag>go-zero</tag>
-      </tags>
   </entry>
   <entry>
     <title>go-zero的安装及使用</title>
@@ -2495,11 +2347,6 @@ class QuotesSpider(scrapy.Spider):
 </li>
 </ul>
 ]]></content>
-      <tags>
-        <tag>golang</tag>
-        <tag>go-zero</tag>
-        <tag>goctl</tag>
-      </tags>
   </entry>
   <entry>
     <title>install program</title>
@@ -2553,11 +2400,6 @@ class QuotesSpider(scrapy.Spider):
 <p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>centos7</tag>
-        <tag>laravel5</tag>
-        <tag>install</tag>
-      </tags>
   </entry>
   <entry>
     <title>laravel-admin 实现字段排序</title>
@@ -2577,10 +2419,6 @@ class QuotesSpider(scrapy.Spider):
 <p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>laravel-admin</tag>
-        <tag>字段排序</tag>
-      </tags>
   </entry>
   <entry>
     <title>laravel 修改器</title>
@@ -2607,10 +2445,6 @@ class QuotesSpider(scrapy.Spider):
 <p>使用访问器&amp;修改器能快捷方便的应用于日常开发<br>比如：修改、重置默认字段值 等等</p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>laravel5.x</tag>
-        <tag>修改器</tag>
-      </tags>
   </entry>
   <entry>
     <title>laravel 微信公众号项目修改兼容web端</title>
@@ -2645,10 +2479,6 @@ class QuotesSpider(scrapy.Spider):
 <p><img src="/assets/blogImg/webImg/5.png" alt="ico原来的样子"></p>
 <p><strong>ok,微信端现在访问已经兼容web端,enjoy it!!!</strong></p>
 ]]></content>
-      <tags>
-        <tag>laravel</tag>
-        <tag>web-wechat</tag>
-      </tags>
   </entry>
   <entry>
     <title>laravel5.3使用队列</title>
@@ -2681,10 +2511,6 @@ class QuotesSpider(scrapy.Spider):
 <p>当修改变更队列程序后，需要重启队列<br>php artisan queue:restart</p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>laravel5.3</tag>
-        <tag>queue</tag>
-      </tags>
   </entry>
   <entry>
     <title>laravel5.5快速入门 —— 安装配置篇</title>
@@ -2747,9 +2573,6 @@ class QuotesSpider(scrapy.Spider):
 <p>  如若需要 请戳 &lt;a href=’<a href="https://shunhua.github.io/about/&#39;target=&quot;_blank&quot;&gt;[">https://shunhua.github.io/about/&#39;target=&quot;_blank&quot;&gt;[</a> About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>laravel5.5</tag>
-      </tags>
   </entry>
   <entry>
     <title>linux centos7.3 lnmp一键安装包集成</title>
@@ -2809,11 +2632,6 @@ class QuotesSpider(scrapy.Spider):
 <p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>linux</tag>
-        <tag>centos7.3</tag>
-      </tags>
   </entry>
   <entry>
     <title>linux 常用小技巧</title>
@@ -2883,9 +2701,6 @@ class QuotesSpider(scrapy.Spider):
 <p>tail -f xxx.log</p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>linux</tag>
-      </tags>
   </entry>
   <entry>
     <title>linux下安装redis及认证密码</title>
@@ -2909,10 +2724,6 @@ class QuotesSpider(scrapy.Spider):
 <p> ps aux | grep redis</p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>redis</tag>
-      </tags>
   </entry>
   <entry>
     <title>lnmp tp pathinfo问题</title>
@@ -2988,11 +2799,6 @@ class QuotesSpider(scrapy.Spider):
 <p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>centos7.3</tag>
-        <tag>laravel</tag>
-      </tags>
   </entry>
   <entry>
     <title>mysql自定义重置数据表ID值</title>
@@ -3003,9 +2809,6 @@ class QuotesSpider(scrapy.Spider):
 <p> alter table 表名 AUTO_INCREMENT=自定义ID;</p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
   </entry>
   <entry>
     <title>mysql通过.ibd和.frm文件恢复数据</title>
@@ -3058,10 +2861,6 @@ class QuotesSpider(scrapy.Spider):
 <p>source import_tablespace.sql</p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>mysql</tag>
-        <tag>Innodb</tag>
-      </tags>
   </entry>
   <entry>
     <title>nginx 实现负载均衡</title>
@@ -3138,10 +2937,6 @@ class QuotesSpider(scrapy.Spider):
 <p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>nginx</tag>
-        <tag>负载均衡</tag>
-      </tags>
   </entry>
   <entry>
     <title>php 递归拼接一条线会员</title>
@@ -3173,10 +2968,6 @@ class QuotesSpider(scrapy.Spider):
 <p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.<br>   ok,  enjoy it !!!</p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>php</tag>
-        <tag>递归</tag>
-      </tags>
   </entry>
   <entry>
     <title>redis lua的使用</title>
@@ -3245,10 +3036,6 @@ class QuotesSpider(scrapy.Spider):
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; SCRIPT FLUSH</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
 
 ]]></content>
-      <tags>
-        <tag>redis</tag>
-        <tag>lua</tag>
-      </tags>
   </entry>
   <entry>
     <title>sublime text3 安装配置svn 及默认快捷键</title>
@@ -3287,10 +3074,6 @@ class QuotesSpider(scrapy.Spider):
 <p>[<br>{ “keys”: [“alt+u”], “command”: “svn_update” }<br>,{ “keys”: [“alt+c”], “command”: “svn_commit” }<br>,{ “keys”: [“alt+r”], “command”: “svn_revert” }<br>]</p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>svn</tag>
-        <tag>sublime text3</tag>
-      </tags>
   </entry>
   <entry>
     <title>socket.io的使用</title>
@@ -3318,10 +3101,6 @@ class QuotesSpider(scrapy.Spider):
 
 <p>六、执行 node index.js<br>七、浏览器打开localhost:3000</p>
 ]]></content>
-      <tags>
-        <tag>socket.io</tag>
-        <tag>nodejs</tag>
-      </tags>
   </entry>
   <entry>
     <title>vim常用命令</title>
@@ -3352,9 +3131,6 @@ class QuotesSpider(scrapy.Spider):
 </blockquote>
 <p><img src="/assets/blogImg/vim/1.png" alt="ico原来的样子"></p>
 ]]></content>
-      <tags>
-        <tag>vim</tag>
-      </tags>
   </entry>
   <entry>
     <title>vue-element-admin的安装&amp;使用</title>
@@ -3399,11 +3175,6 @@ class QuotesSpider(scrapy.Spider):
 <p>K8s 是 Kubernetes</p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>vue</tag>
-        <tag>element-ui</tag>
-        <tag>vue-element-admin</tag>
-      </tags>
   </entry>
   <entry>
     <title>使用Tailwind CSS新建一个项目</title>
@@ -3453,9 +3224,6 @@ class QuotesSpider(scrapy.Spider):
 <p>babel 简单来说把 JavaScript 中 es2015/2016/2017/2046 的新语法转化为 es5，让低端运行环境(如浏览器和 node )能够认识并执行</p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>Tailwind-CSS</tag>
-      </tags>
   </entry>
   <entry>
     <title>使用git 与github友好交流</title>
@@ -3469,10 +3237,6 @@ class QuotesSpider(scrapy.Spider):
 
 <p>2、本文默认github已注册并添加过 ssh key<br>3、github上新建仓库<br>git add / add *<br>git commit -m<br>git remote add origin <a href="http://xxxx.github.io/">http://xxxx.github.io</a><br>git push -u origin master<br>git pull<br>git rm -r xxx<br>git commit -m ‘’<br>git push -u origin master<br>git  –version</p>
 ]]></content>
-      <tags>
-        <tag>git</tag>
-        <tag>github</tag>
-      </tags>
   </entry>
   <entry>
     <title>发布Laravel扩展包larapay</title>
@@ -3504,10 +3268,6 @@ class QuotesSpider(scrapy.Spider):
 <hr>
 <p>使用 <a href="https://github.com/shunhua/larapay" target="_blank">[ shunhua/larapay ]</a>包</p>
 ]]></content>
-      <tags>
-        <tag>laravel</tag>
-        <tag>composer - 扩展包</tag>
-      </tags>
   </entry>
   <entry>
     <title>发布Laravel扩展包mqtt</title>
@@ -3534,11 +3294,6 @@ class QuotesSpider(scrapy.Spider):
 <p> 目前 tags 为 v1.0</p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>laravel</tag>
-        <tag>composer</tag>
-        <tag>mqtt</tag>
-      </tags>
   </entry>
   <entry>
     <title>实现在Safari一键复制</title>
@@ -3567,10 +3322,6 @@ class QuotesSpider(scrapy.Spider):
 
 
 ]]></content>
-      <tags>
-        <tag>Safari</tag>
-        <tag>Copy</tag>
-      </tags>
   </entry>
   <entry>
     <title>对接银联支付开发文档</title>
@@ -3618,11 +3369,6 @@ class QuotesSpider(scrapy.Spider):
 <p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it !</p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>thinkphp</tag>
-        <tag>银联支付</tag>
-        <tag>b2c网关</tag>
-      </tags>
   </entry>
   <entry>
     <title>开源项目及部署工具</title>
@@ -3663,11 +3409,6 @@ class QuotesSpider(scrapy.Spider):
 <p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>php</tag>
-        <tag>golang</tag>
-        <tag>vue</tag>
-      </tags>
   </entry>
   <entry>
     <title>搭建一套规范的 Vue3.x 项目工程环境</title>
@@ -3713,11 +3454,6 @@ class QuotesSpider(scrapy.Spider):
 
 <p>至此，一个基于 TypeScript + Vite + Vue3 + Vue Router + Vuex + Axios + Stylus/Sass/Less 的前端项目开发环境搭建完毕。</p>
 ]]></content>
-      <tags>
-        <tag>Vue3</tag>
-        <tag>Vite</tag>
-        <tag>TypeScript</tag>
-      </tags>
   </entry>
   <entry>
     <title>有赞vantUI step1</title>
@@ -3755,10 +3491,6 @@ class QuotesSpider(scrapy.Spider):
 <p>npm run dev</p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>vue</tag>
-        <tag>vant</tag>
-      </tags>
   </entry>
   <entry>
     <title>界面化管理部署DNMP</title>
@@ -3780,10 +3512,6 @@ class QuotesSpider(scrapy.Spider):
 <p><img src="/assets/blogImg/p1.png" alt="ico原来的样子"></p>
 <p><img src="/assets/blogImg/p2.png" alt="ico原来的样子"></p>
 ]]></content>
-      <tags>
-        <tag>DNMP</tag>
-        <tag>Portainer</tag>
-      </tags>
   </entry>
   <entry>
     <title>连续轮询数组中的元素[s/m/d]</title>
@@ -3796,10 +3524,6 @@ class QuotesSpider(scrapy.Spider):
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">   public $Randomnotify &#x3D; array(</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid1&#39;,&#39;key&#39;&#x3D;&gt;&#39;key1&#39;),</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid2&#39;,&#39;key&#39;&#x3D;&gt;&#39;key2&#39;),</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid3&#39;,&#39;key&#39;&#x3D;&gt;&#39;key3&#39;),</span><br><span class="line">	...</span><br><span class="line">);</span><br><span class="line">public function dataPollingInterval($list,$polling_time&#x3D;&#39;1m&#39;,$polling_number&#x3D;1) &#123;</span><br><span class="line">    &#x2F;&#x2F; 规划轮询间隔时间的参数:</span><br><span class="line">    $interval &#x3D; false;</span><br><span class="line">	&#x2F;&#x2F; 判断$polling_time 的类型是 秒、分、小时、天 中的哪1种。</span><br><span class="line">    $arg &#x3D; array( </span><br><span class="line">        &#39;s&#39;&#x3D;&gt;1,            &#x2F;&#x2F; 秒</span><br><span class="line">        &#39;m&#39;&#x3D;&gt;60,            &#x2F;&#x2F; 分&#x3D; 60 sec</span><br><span class="line">        &#39;h&#39; &#x3D;&gt;3600,        &#x2F;&#x2F; 时&#x3D; 3600 sec</span><br><span class="line">        &#39;d&#39; &#x3D;&gt; 86400,    &#x2F;&#x2F; 天&#x3D; 86400 sec</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 判断间隔时间的类型，并计算间隔时间</span><br><span class="line">    foreach ($arg as $k &#x3D;&gt; $v) &#123;</span><br><span class="line">        if (false!&#x3D;&#x3D; stripos($polling_time,$k)) &#123;</span><br><span class="line">            $interval &#x3D; intval($polling_time)*$v;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	  &#x2F;&#x2F; 判断间隔时间</span><br><span class="line">    if(!is_int($interval))&#123;  </span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">	&#x2F;&#x2F; 从今年开始的秒数</span><br><span class="line">    $this_year_begin_second &#x3D; strtotime(date(&#39;Y-01-01 01:00:01&#39;, time()));</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 当前秒数 - 今年开始的秒数，得到今年到目前为止的秒数。</span><br><span class="line">    $polling_time &#x3D; time()-$this_year_begin_second;</span><br><span class="line">	</span><br><span class="line">    &#x2F;&#x2F; 从今年到目前为止的秒数，计算得到当前轮数</span><br><span class="line">    $len &#x3D; count($list); &#x2F;&#x2F; 总长度</span><br><span class="line">    $start_index &#x3D; intval($polling_time&#x2F;$interval);</span><br><span class="line">    $start_index &#x3D; $polling_number*$start_index%$len; &#x2F;&#x2F; 轮排数量 * 轮数 , 取余 总数量。</span><br><span class="line">	$res &#x3D; array();</span><br><span class="line">    &#x2F;&#x2F; 将轮数 指向到数组的索引，然后从这个索引开始接着往下循环遍历。</span><br><span class="line">    for ($i&#x3D;0; $i&lt;$len; ++$i) &#123;</span><br><span class="line">        $index&#x3D;$i+$start_index; &#x2F;&#x2F; 索引的变化是根据时间来变</span><br><span class="line">        if ($index&gt;&#x3D;$len) &#123;</span><br><span class="line">            $index&#x3D;$index-$len ;</span><br><span class="line">        &#125;</span><br><span class="line">        $res[]&#x3D;$list[$index]; &#x2F;&#x2F; 存入结果</span><br><span class="line">    &#125;</span><br><span class="line">    return $res[0];</span><br><span class="line">&#125;  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
 ]]></content>
-      <tags>
-        <tag>轮询</tag>
-        <tag>数组</tag>
-      </tags>
   </entry>
   <entry>
     <title>laravel下迁移公众号数据</title>
@@ -3880,11 +3604,6 @@ class QuotesSpider(scrapy.Spider):
 <p>   开始作业程序时，最好确认不影响公众号数据[升级维护…]<br>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>php</tag>
-        <tag>laravel5.x</tag>
-        <tag>公众号</tag>
-      </tags>
   </entry>
   <entry>
     <title>银联电子支付-chinapay</title>
@@ -3911,9 +3630,5 @@ class QuotesSpider(scrapy.Spider):
 </blockquote>
 <p><img src="/assets/blogImg/yl4.png" alt="ico原来的样子"></p>
 ]]></content>
-      <tags>
-        <tag>Chinapay</tag>
-        <tag>银联电子</tag>
-      </tags>
   </entry>
 </search>
