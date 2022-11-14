@@ -96,7 +96,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#x40;&#113;&#113;&#46;&#99;&#x6f;&#109;">&#120;&#x40;&#113;&#113;&#46;&#99;&#x6f;&#109;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#64;&#x71;&#x71;&#46;&#x63;&#x6f;&#109;">&#x78;&#64;&#x71;&#x71;&#46;&#x63;&#x6f;&#109;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -107,7 +107,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#98;&#64;&#x71;&#x71;&#46;&#x63;&#x6f;&#109;">&#98;&#64;&#x71;&#x71;&#46;&#x63;&#x6f;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#x40;&#x71;&#x71;&#46;&#99;&#111;&#109;">&#x62;&#x40;&#x71;&#x71;&#46;&#99;&#111;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -142,6 +142,35 @@
       </tags>
   </entry>
   <entry>
+    <title>Alipay 开放平台支付</title>
+    <url>/2018/10/26/Alipay-%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E6%94%AF%E4%BB%98/</url>
+    <content><![CDATA[<a id="more"></a>
+
+
+<p>参考文档 <a href="https://docs.open.alipay.com/291/" target="_blank">[ 开放平台文档中心 ]</a></p>
+<blockquote>
+<p>生成RSA密钥</p>
+</blockquote>
+<p>a. 应用公钥2048<br>b. 应用私钥2048</p>
+<blockquote>
+<p>上传应用公钥并获取支付宝公钥</p>
+</blockquote>
+<p>支付宝公钥应用于开发中</p>
+<blockquote>
+<p>使用应用私钥生成请求签名</p>
+</blockquote>
+<p>应用私钥应用于开发中</p>
+<blockquote>
+<p>使用支付宝公钥验签</p>
+</blockquote>
+<p>支付宝公钥应用于开发中</p>
+]]></content>
+      <tags>
+        <tag>Alipay</tag>
+        <tag>开放平台</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CentOS 7 安装 Nginx 1.11.x</title>
     <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/</url>
     <content><![CDATA[<p><strong>Centos下安装Nginx</strong> </p>
@@ -172,35 +201,6 @@
       <tags>
         <tag>Centos</tag>
         <tag>Nginx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Alipay 开放平台支付</title>
-    <url>/2018/10/26/Alipay-%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E6%94%AF%E4%BB%98/</url>
-    <content><![CDATA[<a id="more"></a>
-
-
-<p>参考文档 <a href="https://docs.open.alipay.com/291/" target="_blank">[ 开放平台文档中心 ]</a></p>
-<blockquote>
-<p>生成RSA密钥</p>
-</blockquote>
-<p>a. 应用公钥2048<br>b. 应用私钥2048</p>
-<blockquote>
-<p>上传应用公钥并获取支付宝公钥</p>
-</blockquote>
-<p>支付宝公钥应用于开发中</p>
-<blockquote>
-<p>使用应用私钥生成请求签名</p>
-</blockquote>
-<p>应用私钥应用于开发中</p>
-<blockquote>
-<p>使用支付宝公钥验签</p>
-</blockquote>
-<p>支付宝公钥应用于开发中</p>
-]]></content>
-      <tags>
-        <tag>Alipay</tag>
-        <tag>开放平台</tag>
       </tags>
   </entry>
   <entry>
@@ -248,79 +248,6 @@
       <tags>
         <tag>Centos</tag>
         <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Centos7下基于laradock部署laravel5.x</title>
-    <url>/2018/04/09/Centos7%E4%B8%8B%E5%9F%BA%E4%BA%8Elaradock%E9%83%A8%E7%BD%B2laravel5-x/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>一、安装docker</strong></p>
-<p>Go to：<a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/" target="_blank">[ .rpm安装路径 ]</a> <a href="https://docs.docker.com/engine/installation/linux/docker-ce/centos/#install-using-the-repository" target="_blank">[ 官方参考 ]</a><br><img src="/assets/blogImg/laradock/1.png" alt="ico原来的样子"></p>
-<p>打开路径地址，本文默认安装选择最新版，<br><img src="/assets/blogImg/laradock/2.png" alt="ico原来的样子"><br>下载rpm安装包</p>
-<blockquote>
-<p> wget <a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm">https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm</a></p>
-</blockquote>
-<p>安装 Docker CE,执行命令</p>
-<blockquote>
-<p> $ sudo yum install docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm<br>或者 yum install /path/to/package.rpm  </p>
-</blockquote>
-<p>启动docker –hello[docker run hello-world]</p>
-<blockquote>
-<p> systemctl start docker<br>systemctl enable docker 开机启动</p>
-</blockquote>
-<p><strong>二、CentOS 7配置中国镜像</strong></p>
-<p><a href="https://yq.aliyun.com/articles/29941" target="_blank">[ 参考配置原文 ]</a> docker –registry-mirror=<a href="https://registry.docker-cn.com/">https://registry.docker-cn.com</a> daemon [提示找不到registry]</p>
-<ul>
-<li>CentOS的配置方式略微复杂，需要先将默认的配置文件复制出来</li>
-<li>/lib/systemd/system/docker.service -&gt; /etc/systemd/system/docker.service</li>
-<li>然后再将加速器地址添加到配置文件的启动命令</li>
-<li>重启Docker就可以了。</li>
-</ul>
-<blockquote>
-<ul>
-<li>sudo cp -n /lib/systemd/system/docker.service /etc/systemd/system/docker.service</li>
-<li>sudo sed -i “s|ExecStart=/usr/bin/docker daemon|ExecStart=/usr/bin/docker daemon –registry-mirror=<a href="https://registry.docker-cn.com|g&quot;/">https://registry.docker-cn.com|g&quot;</a> /etc/systemd/system/docker.service</li>
-<li>sudo sed -i “s|ExecStart=/usr/bin/dockerd|ExecStart=/usr/bin/dockerd –registry-mirror=<a href="https://registry.docker-cn.com|g&quot;/">https://registry.docker-cn.com|g&quot;</a> /etc/systemd/system/docker.service</li>
-<li>sudo systemctl daemon-reload</li>
-<li>sudo systemctl restart docker  </li>
-</ul>
-</blockquote>
-<p>docker 安装完成！！！</p>
-<p><strong>三、拉取 Laradock</strong></p>
-<ul>
-<li>目录路径[/home/]</li>
-<li>git clone <a href="https://github.com/Laradock/laradock.git">https://github.com/Laradock/laradock.git</a>  </li>
-<li>cp env-example .env </li>
-<li>docker-compose up -d nginx mysql phpmyadmin</li>
-<li>访问phpmyadmin[<a href="http://ip:8080/]%E9%BB%98%E8%AE%A4%E5%80%BC%E4%B8%BA">http://ip:8080/]默认值为</a>  服务器[mysql] 账号[root] 密码[root]</li>
-<li>获取laradock[/home/laradock]后 在同级下创建项目目录[/home/www]</li>
-<li>修改[/home/laradock/.env]APPLICATION=../www/</li>
-<li>[/home/laradock]下使用root用户docker-compose exec workspace bash</li>
-<li>[/home/laradock]下使用laradock用户  docker-compose exec –user=laradock workspace bash</li>
-<li>配置中国镜像 composer config -g repo.packagist composer <a href="https://packagist.phpcomposer.com/">https://packagist.phpcomposer.com</a></li>
-<li>创建laravel composer create-project laravel/laravel my-app</li>
-</ul>
-<blockquote>
-<p> 安装SVN 配置钩子文件到 [/home/www]  </p>
-</blockquote>
-<p><a href="https://lisonghe.com/detail/19" target="_blank">[ svn安装文档参考 ]</a> </p>
-<blockquote>
-<p> 安装SVN成功后,服务器开启端口权限，上传代码,修改数据库配置，导入数据库</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>laradock</tag>
-        <tag>centos7</tag>
-        <tag>laravel5</tag>
-        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -398,6 +325,79 @@
       <tags>
         <tag>CentOS 7</tag>
         <tag>svn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Centos7下基于laradock部署laravel5.x</title>
+    <url>/2018/04/09/Centos7%E4%B8%8B%E5%9F%BA%E4%BA%8Elaradock%E9%83%A8%E7%BD%B2laravel5-x/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>一、安装docker</strong></p>
+<p>Go to：<a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/" target="_blank">[ .rpm安装路径 ]</a> <a href="https://docs.docker.com/engine/installation/linux/docker-ce/centos/#install-using-the-repository" target="_blank">[ 官方参考 ]</a><br><img src="/assets/blogImg/laradock/1.png" alt="ico原来的样子"></p>
+<p>打开路径地址，本文默认安装选择最新版，<br><img src="/assets/blogImg/laradock/2.png" alt="ico原来的样子"><br>下载rpm安装包</p>
+<blockquote>
+<p> wget <a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm">https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm</a></p>
+</blockquote>
+<p>安装 Docker CE,执行命令</p>
+<blockquote>
+<p> $ sudo yum install docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm<br>或者 yum install /path/to/package.rpm  </p>
+</blockquote>
+<p>启动docker –hello[docker run hello-world]</p>
+<blockquote>
+<p> systemctl start docker<br>systemctl enable docker 开机启动</p>
+</blockquote>
+<p><strong>二、CentOS 7配置中国镜像</strong></p>
+<p><a href="https://yq.aliyun.com/articles/29941" target="_blank">[ 参考配置原文 ]</a> docker –registry-mirror=<a href="https://registry.docker-cn.com/">https://registry.docker-cn.com</a> daemon [提示找不到registry]</p>
+<ul>
+<li>CentOS的配置方式略微复杂，需要先将默认的配置文件复制出来</li>
+<li>/lib/systemd/system/docker.service -&gt; /etc/systemd/system/docker.service</li>
+<li>然后再将加速器地址添加到配置文件的启动命令</li>
+<li>重启Docker就可以了。</li>
+</ul>
+<blockquote>
+<ul>
+<li>sudo cp -n /lib/systemd/system/docker.service /etc/systemd/system/docker.service</li>
+<li>sudo sed -i “s|ExecStart=/usr/bin/docker daemon|ExecStart=/usr/bin/docker daemon –registry-mirror=<a href="https://registry.docker-cn.com|g&quot;/">https://registry.docker-cn.com|g&quot;</a> /etc/systemd/system/docker.service</li>
+<li>sudo sed -i “s|ExecStart=/usr/bin/dockerd|ExecStart=/usr/bin/dockerd –registry-mirror=<a href="https://registry.docker-cn.com|g&quot;/">https://registry.docker-cn.com|g&quot;</a> /etc/systemd/system/docker.service</li>
+<li>sudo systemctl daemon-reload</li>
+<li>sudo systemctl restart docker  </li>
+</ul>
+</blockquote>
+<p>docker 安装完成！！！</p>
+<p><strong>三、拉取 Laradock</strong></p>
+<ul>
+<li>目录路径[/home/]</li>
+<li>git clone <a href="https://github.com/Laradock/laradock.git">https://github.com/Laradock/laradock.git</a>  </li>
+<li>cp env-example .env </li>
+<li>docker-compose up -d nginx mysql phpmyadmin</li>
+<li>访问phpmyadmin[<a href="http://ip:8080/]%E9%BB%98%E8%AE%A4%E5%80%BC%E4%B8%BA">http://ip:8080/]默认值为</a>  服务器[mysql] 账号[root] 密码[root]</li>
+<li>获取laradock[/home/laradock]后 在同级下创建项目目录[/home/www]</li>
+<li>修改[/home/laradock/.env]APPLICATION=../www/</li>
+<li>[/home/laradock]下使用root用户docker-compose exec workspace bash</li>
+<li>[/home/laradock]下使用laradock用户  docker-compose exec –user=laradock workspace bash</li>
+<li>配置中国镜像 composer config -g repo.packagist composer <a href="https://packagist.phpcomposer.com/">https://packagist.phpcomposer.com</a></li>
+<li>创建laravel composer create-project laravel/laravel my-app</li>
+</ul>
+<blockquote>
+<p> 安装SVN 配置钩子文件到 [/home/www]  </p>
+</blockquote>
+<p><a href="https://lisonghe.com/detail/19" target="_blank">[ svn安装文档参考 ]</a> </p>
+<blockquote>
+<p> 安装SVN成功后,服务器开启端口权限，上传代码,修改数据库配置，导入数据库</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>laradock</tag>
+        <tag>centos7</tag>
+        <tag>laravel5</tag>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -508,67 +508,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Go 语言基础</title>
-    <url>/2017/11/08/Go-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> 包、变量、函数</p>
-</blockquote>
-<ul>
-<li><p>包<br>每个 Go 程序都是由包组成的。程序运行的入口是包 <code>main</code><br>这个程序使用并导入了包 “fmt” 和 <code>&quot;math/rand&quot;</code>。如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;math&#x2F;rand&quot;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>变量<br>var 语句定义了一个变量的列表 如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var c, python, java bool</span><br><span class="line">var i, j int &#x3D; 1, 2</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	var i int</span><br><span class="line">	&#x2F;*在函数中，&#96;:&#x3D;&#96; 简洁赋值语句在明确类型的地方，可以用于替代 var 定义</span><br><span class="line">	函数外的每个语句都必须以关键字开始（&#96;var&#96;、&#96;func&#96;、等等），&#96;:&#x3D;&#96; 结构不能使用在函数外*&#x2F;</span><br><span class="line">	k :&#x3D; 3</span><br><span class="line">	var c, python, java &#x3D; true, false, &quot;no!&quot;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li><p>函数<br>函数可以没有参数或接受多个参数<br>在这个例子中，<code>add</code> 接受两个 int 类型的参数。如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func add(x int, y int) int &#123;</span><br><span class="line">	return x + y</span><br><span class="line">&#125;</span><br><span class="line">||</span><br><span class="line">func add(x , y int) int &#123;</span><br><span class="line">	return x + y</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<blockquote>
-<p> 流程控制语句</p>
-</blockquote>
-<ul>
-<li><p>for<br>Go 只有一种循环结构——<code>for</code> 循环<br>基本的 for 循环除了没有了 <code>( )</code> 之外（甚至强制不能使用它们）。如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	sum :&#x3D; 0</span><br><span class="line">	for i :&#x3D; 0; i &lt; 10; i++ &#123;</span><br><span class="line">		sum +&#x3D; i</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(sum)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>if<br>if 语句除了没有了 <code>( )</code> 之外（甚至强制不能使用它们）。如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func sqrt(x float64) string &#123;</span><br><span class="line">	if x &lt; 0 &#123;</span><br><span class="line">		return sqrt(-x) + &quot;i&quot;</span><br><span class="line">	&#125;</span><br><span class="line">	if v :&#x3D; math.Pow(x, n); v &lt; lim &#123;</span><br><span class="line">		return v</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		fmt.Printf(&quot;%g &gt;&#x3D; %g\n&quot;, v, lim)</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>switch<br>如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	fmt.Print(&quot;Go runs on &quot;)</span><br><span class="line">	switch os :&#x3D; runtime.GOOS; os &#123;</span><br><span class="line">	case &quot;darwin&quot;:</span><br><span class="line">		fmt.Println(&quot;OS X.&quot;)</span><br><span class="line">	case &quot;linux&quot;:</span><br><span class="line">		fmt.Println(&quot;Linux.&quot;)</span><br><span class="line">	default:</span><br><span class="line">		&#x2F;&#x2F; freebsd, openbsd,</span><br><span class="line">		&#x2F;&#x2F; plan9, windows...</span><br><span class="line">		fmt.Printf(&quot;%s.&quot;, os)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>defer<br>defer 语句会延迟函数的执行直到上层函数返回。<br>延迟调用的参数会立刻生成，但是在上层函数返回前函数都不会被调用。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	defer fmt.Println(&quot;world&quot;)&#x2F;&#x2F;延迟函数</span><br><span class="line">	fmt.Println(&quot;hello&quot;) &#x2F;&#x2F;上层函数</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;hello</span><br><span class="line">&#x2F;&#x2F;wolrd</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<blockquote>
-<p> 复杂类型</p>
-</blockquote>
-<ul>
-<li><p>指针<br>Go 具有指针。 指针保存了变量的内存地址</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	i, j :&#x3D; 42, 2701</span><br><span class="line"></span><br><span class="line">	p :&#x3D; &amp;i         &#x2F;* 生成一个指向 i 的指针 *&#x2F;</span><br><span class="line">	fmt.Println(*p) &#x2F;* 通过指针 p 读取 i    *&#x2F;</span><br><span class="line">	*p &#x3D; 21         &#x2F;* 通过指针 p 设置 i    *&#x2F;</span><br><span class="line">	fmt.Println(i)  &#x2F;* 输出 i &#x3D;21          *&#x2F; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>结构体<br>一个结构体（<code>struct</code>）就是一个字段的集合</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type Vertex struct &#123;</span><br><span class="line">	X int</span><br><span class="line">	Y int</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">v :&#x3D; Vertex&#123;1, 2&#125;</span><br><span class="line">v.X &#x3D; 4</span><br><span class="line">fmt.Println(v.X)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>数组<br>类型 [n]T 是一个有 n 个类型为 T 的值的数组</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	var a [2]string</span><br><span class="line">	a[0] &#x3D; &quot;Hello&quot;</span><br><span class="line">	a[1] &#x3D; &quot;World&quot;</span><br><span class="line">	fmt.Println(a[0], a[1])</span><br><span class="line">	fmt.Println(a)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>slice<br>一个 slice 会指向一个序列的值，并且包含了长度信息<br>s[lo:hi]表示从 lo 到 hi-1 的 slice 元素，含两端。因此<br>s[lo:lo]是空的，而<br>s[lo:lo+1]有一个元素。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	p :&#x3D; []int&#123;2, 3, 5, 7, 11, 13&#125;</span><br><span class="line">	fmt.Println(&quot;p &#x3D;&#x3D;&quot;, p)</span><br><span class="line"></span><br><span class="line">	for i :&#x3D; 0; i &lt; len(p); i++ &#123;</span><br><span class="line">		fmt.Printf(&quot;p[%d] &#x3D;&#x3D; %d\n&quot;, i, p[i])</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>map<br>map 映射键到值</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type Vertex struct &#123;</span><br><span class="line">	Lat, Long float64</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var m map[string]Vertex</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	m &#x3D; make(map[string]Vertex)</span><br><span class="line">	m[&quot;Bell Labs&quot;] &#x3D; Vertex&#123;</span><br><span class="line">		40.68433, -74.39967,</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(m[&quot;Bell Labs&quot;])</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>golang</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Etcd一文</title>
     <url>/2021/11/04/Etcd%E4%B8%80%E6%96%87/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/etcd.png" alt="Etcd"></p>
@@ -628,6 +567,67 @@
 ]]></content>
       <tags>
         <tag>Etcd</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Go 语言基础</title>
+    <url>/2017/11/08/Go-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> 包、变量、函数</p>
+</blockquote>
+<ul>
+<li><p>包<br>每个 Go 程序都是由包组成的。程序运行的入口是包 <code>main</code><br>这个程序使用并导入了包 “fmt” 和 <code>&quot;math/rand&quot;</code>。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;math&#x2F;rand&quot;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>变量<br>var 语句定义了一个变量的列表 如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var c, python, java bool</span><br><span class="line">var i, j int &#x3D; 1, 2</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	var i int</span><br><span class="line">	&#x2F;*在函数中，&#96;:&#x3D;&#96; 简洁赋值语句在明确类型的地方，可以用于替代 var 定义</span><br><span class="line">	函数外的每个语句都必须以关键字开始（&#96;var&#96;、&#96;func&#96;、等等），&#96;:&#x3D;&#96; 结构不能使用在函数外*&#x2F;</span><br><span class="line">	k :&#x3D; 3</span><br><span class="line">	var c, python, java &#x3D; true, false, &quot;no!&quot;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>函数<br>函数可以没有参数或接受多个参数<br>在这个例子中，<code>add</code> 接受两个 int 类型的参数。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func add(x int, y int) int &#123;</span><br><span class="line">	return x + y</span><br><span class="line">&#125;</span><br><span class="line">||</span><br><span class="line">func add(x , y int) int &#123;</span><br><span class="line">	return x + y</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p> 流程控制语句</p>
+</blockquote>
+<ul>
+<li><p>for<br>Go 只有一种循环结构——<code>for</code> 循环<br>基本的 for 循环除了没有了 <code>( )</code> 之外（甚至强制不能使用它们）。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	sum :&#x3D; 0</span><br><span class="line">	for i :&#x3D; 0; i &lt; 10; i++ &#123;</span><br><span class="line">		sum +&#x3D; i</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(sum)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>if<br>if 语句除了没有了 <code>( )</code> 之外（甚至强制不能使用它们）。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func sqrt(x float64) string &#123;</span><br><span class="line">	if x &lt; 0 &#123;</span><br><span class="line">		return sqrt(-x) + &quot;i&quot;</span><br><span class="line">	&#125;</span><br><span class="line">	if v :&#x3D; math.Pow(x, n); v &lt; lim &#123;</span><br><span class="line">		return v</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		fmt.Printf(&quot;%g &gt;&#x3D; %g\n&quot;, v, lim)</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>switch<br>如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	fmt.Print(&quot;Go runs on &quot;)</span><br><span class="line">	switch os :&#x3D; runtime.GOOS; os &#123;</span><br><span class="line">	case &quot;darwin&quot;:</span><br><span class="line">		fmt.Println(&quot;OS X.&quot;)</span><br><span class="line">	case &quot;linux&quot;:</span><br><span class="line">		fmt.Println(&quot;Linux.&quot;)</span><br><span class="line">	default:</span><br><span class="line">		&#x2F;&#x2F; freebsd, openbsd,</span><br><span class="line">		&#x2F;&#x2F; plan9, windows...</span><br><span class="line">		fmt.Printf(&quot;%s.&quot;, os)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>defer<br>defer 语句会延迟函数的执行直到上层函数返回。<br>延迟调用的参数会立刻生成，但是在上层函数返回前函数都不会被调用。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	defer fmt.Println(&quot;world&quot;)&#x2F;&#x2F;延迟函数</span><br><span class="line">	fmt.Println(&quot;hello&quot;) &#x2F;&#x2F;上层函数</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;hello</span><br><span class="line">&#x2F;&#x2F;wolrd</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p> 复杂类型</p>
+</blockquote>
+<ul>
+<li><p>指针<br>Go 具有指针。 指针保存了变量的内存地址</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	i, j :&#x3D; 42, 2701</span><br><span class="line"></span><br><span class="line">	p :&#x3D; &amp;i         &#x2F;* 生成一个指向 i 的指针 *&#x2F;</span><br><span class="line">	fmt.Println(*p) &#x2F;* 通过指针 p 读取 i    *&#x2F;</span><br><span class="line">	*p &#x3D; 21         &#x2F;* 通过指针 p 设置 i    *&#x2F;</span><br><span class="line">	fmt.Println(i)  &#x2F;* 输出 i &#x3D;21          *&#x2F; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>结构体<br>一个结构体（<code>struct</code>）就是一个字段的集合</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type Vertex struct &#123;</span><br><span class="line">	X int</span><br><span class="line">	Y int</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">v :&#x3D; Vertex&#123;1, 2&#125;</span><br><span class="line">v.X &#x3D; 4</span><br><span class="line">fmt.Println(v.X)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数组<br>类型 [n]T 是一个有 n 个类型为 T 的值的数组</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	var a [2]string</span><br><span class="line">	a[0] &#x3D; &quot;Hello&quot;</span><br><span class="line">	a[1] &#x3D; &quot;World&quot;</span><br><span class="line">	fmt.Println(a[0], a[1])</span><br><span class="line">	fmt.Println(a)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>slice<br>一个 slice 会指向一个序列的值，并且包含了长度信息<br>s[lo:hi]表示从 lo 到 hi-1 的 slice 元素，含两端。因此<br>s[lo:lo]是空的，而<br>s[lo:lo+1]有一个元素。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	p :&#x3D; []int&#123;2, 3, 5, 7, 11, 13&#125;</span><br><span class="line">	fmt.Println(&quot;p &#x3D;&#x3D;&quot;, p)</span><br><span class="line"></span><br><span class="line">	for i :&#x3D; 0; i &lt; len(p); i++ &#123;</span><br><span class="line">		fmt.Printf(&quot;p[%d] &#x3D;&#x3D; %d\n&quot;, i, p[i])</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>map<br>map 映射键到值</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type Vertex struct &#123;</span><br><span class="line">	Lat, Long float64</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var m map[string]Vertex</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	m &#x3D; make(map[string]Vertex)</span><br><span class="line">	m[&quot;Bell Labs&quot;] &#x3D; Vertex&#123;</span><br><span class="line">		40.68433, -74.39967,</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(m[&quot;Bell Labs&quot;])</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>golang</tag>
       </tags>
   </entry>
   <entry>
@@ -1158,38 +1158,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Live 阿里云直播</title>
-    <url>/2019/07/04/Live-%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%B4%E6%92%AD/</url>
-    <content><![CDATA[<a id="more"></a>
-<p> <a href="https://help.aliyun.com/document_detail/86866.html?spm=a2c4g.11186623.6.573.72df68123ova0d" target="_blank">[阿里云文档]</a> 具体流程依据文档<br> 需要：备案域名 / 直播云服务器</p>
-<blockquote>
-<p>开通阿里云直播控制台</p>
-</blockquote>
-<p><img src="/assets/aliyun/1.png" alt="ico原来的样子"><br><img src="/assets/aliyun/2.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>直播控制台-概览配置 推流/播流 域名</p>
-</blockquote>
-<p>生成之后解析对应域名的 CNAME 到推流/播流域名上<br><img src="/assets/aliyun/3.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>PC端 OBS/VLC 测试</p>
-</blockquote>
-<p>地址生成器–&gt;生成的 推流/播流 地址相应在 OBS/VLC 上使用即可看到同步直播</p>
-<p><img src="/assets/aliyun/4.png" alt="ico原来的样子"><br><img src="/assets/aliyun/5.png" alt="ico原来的样子"><br><img src="/assets/aliyun/6.png" alt="ico原来的样子"><br><img src="/assets/aliyun/7.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>观看直播 [后续…]</p>
-</blockquote>
-<p> 前面的直播推流配置完成之后，我们需要让用户或者观众看到直播<br> 正常用户观看直播的流程是：登录直播网站 -&gt; 点开直播房间 -&gt; 服务器获取播放地址 -&gt; 用户观看直播<br> 1.创建一个测试直播的控制器</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">namespace App\Http\Controllers;</span><br><span class="line"></span><br><span class="line">use xxx;&#x2F;&#x2F;sdk包</span><br><span class="line"></span><br><span class="line">class LiveController extends Controller</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    public function index()</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; 通过sdk获取直播地址</span><br><span class="line">        $liveurl &#x3D; \xxx\xxx\xxx(&#39;xxx&#39;, &#39;app&#39;, &#39;stream&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>2.页面展示</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 引入 CDN --&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.bootcss.com&#x2F;flv.js&#x2F;1.3.2&#x2F;flv.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;!-- dom --&gt;</span><br><span class="line">&lt;video id&#x3D;&quot;videoElement&quot;&gt;&lt;&#x2F;video&gt;</span><br><span class="line">&lt;!-- js --&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    if (flvjs.isSupported()) &#123;</span><br><span class="line">        var videoElement &#x3D; document.getElementById(&#39;videoElement&#39;);</span><br><span class="line">        var flvPlayer &#x3D; flvjs.createPlayer(&#123;</span><br><span class="line">            type: &#39;flv&#39;,</span><br><span class="line">            url: &#39;&#123;&#123; $liveurl &#125;&#125;&#39;</span><br><span class="line">        &#125;);</span><br><span class="line">        flvPlayer.attachMediaElement(videoElement);</span><br><span class="line">        flvPlayer.load();</span><br><span class="line">        flvPlayer.play();</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><strong>Notice</strong><br>后续通过sdk整合到项目开发中…</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
     <title>Linux定时任务采集聚合数据api文章</title>
     <url>/2019/04/18/Linux%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E9%87%87%E9%9B%86%E8%81%9A%E5%90%88%E6%95%B0%E6%8D%AEapi%E6%96%87%E7%AB%A0/</url>
     <content><![CDATA[<p><strong>Linux定时任务采集文章</strong> </p>
@@ -1223,6 +1191,38 @@ public $queue = &#39;listeners&#39;;</code></pre>
         <tag>Linux</tag>
         <tag>crontab</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Live 阿里云直播</title>
+    <url>/2019/07/04/Live-%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%B4%E6%92%AD/</url>
+    <content><![CDATA[<a id="more"></a>
+<p> <a href="https://help.aliyun.com/document_detail/86866.html?spm=a2c4g.11186623.6.573.72df68123ova0d" target="_blank">[阿里云文档]</a> 具体流程依据文档<br> 需要：备案域名 / 直播云服务器</p>
+<blockquote>
+<p>开通阿里云直播控制台</p>
+</blockquote>
+<p><img src="/assets/aliyun/1.png" alt="ico原来的样子"><br><img src="/assets/aliyun/2.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>直播控制台-概览配置 推流/播流 域名</p>
+</blockquote>
+<p>生成之后解析对应域名的 CNAME 到推流/播流域名上<br><img src="/assets/aliyun/3.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>PC端 OBS/VLC 测试</p>
+</blockquote>
+<p>地址生成器–&gt;生成的 推流/播流 地址相应在 OBS/VLC 上使用即可看到同步直播</p>
+<p><img src="/assets/aliyun/4.png" alt="ico原来的样子"><br><img src="/assets/aliyun/5.png" alt="ico原来的样子"><br><img src="/assets/aliyun/6.png" alt="ico原来的样子"><br><img src="/assets/aliyun/7.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>观看直播 [后续…]</p>
+</blockquote>
+<p> 前面的直播推流配置完成之后，我们需要让用户或者观众看到直播<br> 正常用户观看直播的流程是：登录直播网站 -&gt; 点开直播房间 -&gt; 服务器获取播放地址 -&gt; 用户观看直播<br> 1.创建一个测试直播的控制器</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">namespace App\Http\Controllers;</span><br><span class="line"></span><br><span class="line">use xxx;&#x2F;&#x2F;sdk包</span><br><span class="line"></span><br><span class="line">class LiveController extends Controller</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    public function index()</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; 通过sdk获取直播地址</span><br><span class="line">        $liveurl &#x3D; \xxx\xxx\xxx(&#39;xxx&#39;, &#39;app&#39;, &#39;stream&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.页面展示</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 引入 CDN --&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.bootcss.com&#x2F;flv.js&#x2F;1.3.2&#x2F;flv.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;!-- dom --&gt;</span><br><span class="line">&lt;video id&#x3D;&quot;videoElement&quot;&gt;&lt;&#x2F;video&gt;</span><br><span class="line">&lt;!-- js --&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    if (flvjs.isSupported()) &#123;</span><br><span class="line">        var videoElement &#x3D; document.getElementById(&#39;videoElement&#39;);</span><br><span class="line">        var flvPlayer &#x3D; flvjs.createPlayer(&#123;</span><br><span class="line">            type: &#39;flv&#39;,</span><br><span class="line">            url: &#39;&#123;&#123; $liveurl &#125;&#125;&#39;</span><br><span class="line">        &#125;);</span><br><span class="line">        flvPlayer.attachMediaElement(videoElement);</span><br><span class="line">        flvPlayer.load();</span><br><span class="line">        flvPlayer.play();</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><strong>Notice</strong><br>后续通过sdk整合到项目开发中…</li>
+</ul>
+]]></content>
   </entry>
   <entry>
     <title>Markdown 基本语法</title>
@@ -1334,22 +1334,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Nginx 反向代理</title>
-    <url>/2019/09/19/Nginx-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><a href="https://baishunhua.com/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/" target="_blank">安装nginx</a></p>
-<blockquote>
-<p>高防服务器上 nginx.conf 配置模板</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server_name  www.xxx.com;</span><br><span class="line">...</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">    proxy_pass http:&#x2F;&#x2F;ip[原服务器ip];</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>nginx</tag>
-        <tag>反向代理</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MySQL启动错误</title>
     <url>/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1410,6 +1394,22 @@ public $queue = &#39;listeners&#39;;</code></pre>
 ]]></content>
       <tags>
         <tag>nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nginx 反向代理</title>
+    <url>/2019/09/19/Nginx-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><a href="https://baishunhua.com/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/" target="_blank">安装nginx</a></p>
+<blockquote>
+<p>高防服务器上 nginx.conf 配置模板</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server_name  www.xxx.com;</span><br><span class="line">...</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">    proxy_pass http:&#x2F;&#x2F;ip[原服务器ip];</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>nginx</tag>
+        <tag>反向代理</tag>
       </tags>
   </entry>
   <entry>
@@ -2255,7 +2255,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#x67;&#x69;&#116;&#x40;&#x67;&#105;&#116;&#x68;&#x75;&#98;&#46;&#99;&#x6f;&#x6d;">&#x67;&#x69;&#116;&#x40;&#x67;&#105;&#116;&#x68;&#x75;&#98;&#46;&#99;&#x6f;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#x67;&#105;&#116;&#x40;&#103;&#x69;&#116;&#x68;&#x75;&#98;&#x2e;&#99;&#111;&#109;">&#x67;&#105;&#116;&#x40;&#103;&#x69;&#116;&#x68;&#x75;&#98;&#x2e;&#99;&#111;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -2502,29 +2502,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>laravel-admin 实现字段排序</title>
-    <url>/2017/09/21/laravel-admin-%E5%AE%9E%E7%8E%B0%E5%AD%97%E6%AE%B5%E6%8E%92%E5%BA%8F/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> 排序代码</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">protected function grid()</span><br><span class="line">&#123;</span><br><span class="line">    return Admin::grid(Member::class, function (Grid $grid) &#123;</span><br><span class="line"></span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;id&#39;, &#39;desc&#39;);</span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;balance&#39;, &#39;desc&#39;);</span><br><span class="line"></span><br><span class="line">        $grid-&gt;id(&#39;ID&#39;)-&gt;sortable();</span><br><span class="line"></span><br><span class="line">        $grid-&gt;balance(&#39;余额&#39;)-&gt;sortable();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>laravel-admin</tag>
-        <tag>字段排序</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>install program</title>
     <url>/2017/11/02/install-program/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2580,6 +2557,29 @@ class QuotesSpider(scrapy.Spider):
         <tag>centos7</tag>
         <tag>laravel5</tag>
         <tag>install</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>laravel-admin 实现字段排序</title>
+    <url>/2017/09/21/laravel-admin-%E5%AE%9E%E7%8E%B0%E5%AD%97%E6%AE%B5%E6%8E%92%E5%BA%8F/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> 排序代码</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">protected function grid()</span><br><span class="line">&#123;</span><br><span class="line">    return Admin::grid(Member::class, function (Grid $grid) &#123;</span><br><span class="line"></span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;id&#39;, &#39;desc&#39;);</span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;balance&#39;, &#39;desc&#39;);</span><br><span class="line"></span><br><span class="line">        $grid-&gt;id(&#39;ID&#39;)-&gt;sortable();</span><br><span class="line"></span><br><span class="line">        $grid-&gt;balance(&#39;余额&#39;)-&gt;sortable();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>laravel-admin</tag>
+        <tag>字段排序</tag>
       </tags>
   </entry>
   <entry>
@@ -3008,6 +3008,62 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>mysql通过.ibd和.frm文件恢复数据</title>
+    <url>/2019/12/17/mysql%E9%80%9A%E8%BF%87-ibd%E5%92%8C-frm%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E6%95%B0%E6%8D%AE/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>数据库存储的数据实际上也是存储在文件里的,此类文件只能mysql能读取。</p>
+<p>Myisam 引擎:</p>
+<blockquote>
+<p>xxx.frm 表结构文件<br>xxx.MYD 数据文件<br>xxx.MYI 索引文件</p>
+</blockquote>
+<p>Innodb 引擎:</p>
+<blockquote>
+<p>xxx.ibd 数据和索引文件<br>xxx.frm 表结构文件</p>
+</blockquote>
+<p>此篇环境为Lnmp集成环境下的mysql<br>在/etc/my.conf   datadir = /usr/local/var/mysql/</p>
+<p>简写主要步骤:<br>1.将原先的.ibd文件与原先的.frm文件解除绑定</p>
+<blockquote>
+<p>alter table 表名 discard tablespace;</p>
+</blockquote>
+<p>2.停掉服务，新的.ibd文件覆盖旧的.ibd文件，再开启服务</p>
+<p>3.将新的.ibd文件与.frm文件发生联系</p>
+<blockquote>
+<p>alter table 表名 import tablespace;</p>
+</blockquote>
+<p>类似这种单个表操作,若表很多 可简单分批处理[.ibd、.frm同级目录执行]<br>安装 mysql-utilities</p>
+<blockquote>
+<p>yum -y install mysql-utilities</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    $files &#x3D; glob(&quot;*.ibd&quot;);</span><br><span class="line">    $discardTablespace &#x3D; &#39;&#39;;</span><br><span class="line">    $importTablespace &#x3D; &#39;&#39;;</span><br><span class="line">    $createTable &#x3D; &#39;&#39;;</span><br><span class="line">    foreach ($files as $key &#x3D;&gt; $value) &#123;</span><br><span class="line">        $discardTablespace .&#x3D; &quot;ALTER TABLE &#96;&#123;$value&#125;&#96; DISCARD TABLESPACE;\n&quot;;</span><br><span class="line">        $importTablespace .&#x3D; &quot;ALTER TABLE &#96;&#123;$value&#125;&#96; IMPORT TABLESPACE;\n&quot;;</span><br><span class="line">        &#x2F;&#x2F;恢复表建表语句</span><br><span class="line">        $value &#x3D; substr($value, 0, -3).&#39;frm&#39;;</span><br><span class="line">        $shell &#x3D; &#39;mysqlfrm --server&#x3D;root:数据库密码@localhost:3306 &#39;.$value.&#39; --port&#x3D;3309  --user&#x3D;root | tail -n +12&#39;;</span><br><span class="line">        $output &#x3D; shell_exec($shell);</span><br><span class="line">        $lineCount &#x3D;  substr_count($output, &quot;\n&quot;);</span><br><span class="line">        $arr &#x3D; explode(&quot;\n&quot;, $output);</span><br><span class="line">        $arrCount &#x3D; count($arr);</span><br><span class="line">        $arr &#x3D; array_slice($arr, 0, $arrCount-3);</span><br><span class="line">        $createTable .&#x3D; join(&quot;\n&quot;, $arr).&quot;;\n\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    file_put_contents(&#39;discard_tablespace.sql&#39;, $discardTablespace); &#x2F;&#x2F;用于删除表空间</span><br><span class="line">    file_put_contents(&#39;import_tablespace.sql&#39;, $importTablespace); &#x2F;&#x2F;用于导入新的表空间</span><br><span class="line">    file_put_contents(&#39;structure.sql&#39;, $createTable); &#x2F;&#x2F;用于建表结构</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>php index.php &amp;</p>
+</blockquote>
+<p>生成的文件中可能存在[表名+.ibd]的类表名，可手动修改。</p>
+<p>由于版本库的原因可能存在文件为空(全是分号)</p>
+<blockquote>
+<p>mysqlfrm –diagnostic ./ &gt;&gt; structure.sql</p>
+</blockquote>
+<p>执行完后 检查下sql文件中可能存在<UNKNOW>(varchar(1020))等字符问题 可手动修改完善</p>
+<blockquote>
+<p>source structure.sql</p>
+</blockquote>
+<p>此时执行完后 会生成表结构。</p>
+<p>执行discard_tablespace.sql 解除旧的绑定关系</p>
+<blockquote>
+<p>source discard_tablespace.sql</p>
+</blockquote>
+<p>新的.ibd文件覆盖旧的后 执行导入新的关系</p>
+<blockquote>
+<p>source import_tablespace.sql</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>mysql</tag>
+        <tag>Innodb</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>nginx 实现负载均衡</title>
     <url>/2017/09/21/nginx-%E5%AE%9E%E7%8E%B0%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</url>
     <content><![CDATA[<a id="more"></a>
@@ -3085,62 +3141,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>nginx</tag>
         <tag>负载均衡</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mysql通过.ibd和.frm文件恢复数据</title>
-    <url>/2019/12/17/mysql%E9%80%9A%E8%BF%87-ibd%E5%92%8C-frm%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E6%95%B0%E6%8D%AE/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>数据库存储的数据实际上也是存储在文件里的,此类文件只能mysql能读取。</p>
-<p>Myisam 引擎:</p>
-<blockquote>
-<p>xxx.frm 表结构文件<br>xxx.MYD 数据文件<br>xxx.MYI 索引文件</p>
-</blockquote>
-<p>Innodb 引擎:</p>
-<blockquote>
-<p>xxx.ibd 数据和索引文件<br>xxx.frm 表结构文件</p>
-</blockquote>
-<p>此篇环境为Lnmp集成环境下的mysql<br>在/etc/my.conf   datadir = /usr/local/var/mysql/</p>
-<p>简写主要步骤:<br>1.将原先的.ibd文件与原先的.frm文件解除绑定</p>
-<blockquote>
-<p>alter table 表名 discard tablespace;</p>
-</blockquote>
-<p>2.停掉服务，新的.ibd文件覆盖旧的.ibd文件，再开启服务</p>
-<p>3.将新的.ibd文件与.frm文件发生联系</p>
-<blockquote>
-<p>alter table 表名 import tablespace;</p>
-</blockquote>
-<p>类似这种单个表操作,若表很多 可简单分批处理[.ibd、.frm同级目录执行]<br>安装 mysql-utilities</p>
-<blockquote>
-<p>yum -y install mysql-utilities</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    $files &#x3D; glob(&quot;*.ibd&quot;);</span><br><span class="line">    $discardTablespace &#x3D; &#39;&#39;;</span><br><span class="line">    $importTablespace &#x3D; &#39;&#39;;</span><br><span class="line">    $createTable &#x3D; &#39;&#39;;</span><br><span class="line">    foreach ($files as $key &#x3D;&gt; $value) &#123;</span><br><span class="line">        $discardTablespace .&#x3D; &quot;ALTER TABLE &#96;&#123;$value&#125;&#96; DISCARD TABLESPACE;\n&quot;;</span><br><span class="line">        $importTablespace .&#x3D; &quot;ALTER TABLE &#96;&#123;$value&#125;&#96; IMPORT TABLESPACE;\n&quot;;</span><br><span class="line">        &#x2F;&#x2F;恢复表建表语句</span><br><span class="line">        $value &#x3D; substr($value, 0, -3).&#39;frm&#39;;</span><br><span class="line">        $shell &#x3D; &#39;mysqlfrm --server&#x3D;root:数据库密码@localhost:3306 &#39;.$value.&#39; --port&#x3D;3309  --user&#x3D;root | tail -n +12&#39;;</span><br><span class="line">        $output &#x3D; shell_exec($shell);</span><br><span class="line">        $lineCount &#x3D;  substr_count($output, &quot;\n&quot;);</span><br><span class="line">        $arr &#x3D; explode(&quot;\n&quot;, $output);</span><br><span class="line">        $arrCount &#x3D; count($arr);</span><br><span class="line">        $arr &#x3D; array_slice($arr, 0, $arrCount-3);</span><br><span class="line">        $createTable .&#x3D; join(&quot;\n&quot;, $arr).&quot;;\n\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    file_put_contents(&#39;discard_tablespace.sql&#39;, $discardTablespace); &#x2F;&#x2F;用于删除表空间</span><br><span class="line">    file_put_contents(&#39;import_tablespace.sql&#39;, $importTablespace); &#x2F;&#x2F;用于导入新的表空间</span><br><span class="line">    file_put_contents(&#39;structure.sql&#39;, $createTable); &#x2F;&#x2F;用于建表结构</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>php index.php &amp;</p>
-</blockquote>
-<p>生成的文件中可能存在[表名+.ibd]的类表名，可手动修改。</p>
-<p>由于版本库的原因可能存在文件为空(全是分号)</p>
-<blockquote>
-<p>mysqlfrm –diagnostic ./ &gt;&gt; structure.sql</p>
-</blockquote>
-<p>执行完后 检查下sql文件中可能存在<UNKNOW>(varchar(1020))等字符问题 可手动修改完善</p>
-<blockquote>
-<p>source structure.sql</p>
-</blockquote>
-<p>此时执行完后 会生成表结构。</p>
-<p>执行discard_tablespace.sql 解除旧的绑定关系</p>
-<blockquote>
-<p>source discard_tablespace.sql</p>
-</blockquote>
-<p>新的.ibd文件覆盖旧的后 执行导入新的关系</p>
-<blockquote>
-<p>source import_tablespace.sql</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>mysql</tag>
-        <tag>Innodb</tag>
       </tags>
   </entry>
   <entry>
@@ -3262,7 +3262,7 @@ class QuotesSpider(scrapy.Spider):
 </blockquote>
 <p>二、使用npm下载 web框架express模块</p>
 <blockquote>
-<p>npm install --save <a href="mailto:&#x65;&#120;&#x70;&#114;&#101;&#x73;&#x73;&#x40;&#52;&#46;&#x31;&#53;&#46;&#50;">&#x65;&#120;&#x70;&#114;&#101;&#x73;&#x73;&#x40;&#52;&#46;&#x31;&#53;&#46;&#50;</a></p>
+<p>npm install --save <a href="mailto:&#101;&#120;&#x70;&#x72;&#101;&#x73;&#115;&#x40;&#52;&#46;&#x31;&#x35;&#46;&#50;">&#101;&#120;&#x70;&#x72;&#101;&#x73;&#115;&#x40;&#52;&#46;&#x31;&#x35;&#46;&#50;</a></p>
 </blockquote>
 <p>三、使用npm下载socket.io模块</p>
 <blockquote>
@@ -3279,6 +3279,39 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>socket.io</tag>
         <tag>nodejs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vim常用命令</title>
+    <url>/2017/11/21/vim%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<p><strong>vim常用命令</strong> </p>
+<a id="more"></a>
+<blockquote>
+<p>常用命令:</p>
+</blockquote>
+<ul>
+<li>[gg]第一行</li>
+<li>[G]最后一行</li>
+<li>[nG|ngg]到n行</li>
+<li>[u]撤销改动</li>
+<li>[dd]删除一行</li>
+<li>[yy]复制一行</li>
+<li>[i]在光标之前插入</li>
+<li>[a]在光标之后插入</li>
+<li>[$|End]到行尾</li>
+<li>[0|^|Home]到行首</li>
+<li>[o]在当前行下插入一空行</li>
+<li>[dw]删除光标所在的单词</li>
+<li>[daw]删除光标所在的单词,包括空白字符</li>
+<li>[diw]删除光标所在的单词,不包括空白字符</li>
+</ul>
+<blockquote>
+<p>示图如下:</p>
+</blockquote>
+<p><img src="/assets/blogImg/vim/1.png" alt="ico原来的样子"></p>
+]]></content>
+      <tags>
+        <tag>vim</tag>
       </tags>
   </entry>
   <entry>
@@ -3321,39 +3354,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>svn</tag>
         <tag>sublime text3</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vim常用命令</title>
-    <url>/2017/11/21/vim%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<p><strong>vim常用命令</strong> </p>
-<a id="more"></a>
-<blockquote>
-<p>常用命令:</p>
-</blockquote>
-<ul>
-<li>[gg]第一行</li>
-<li>[G]最后一行</li>
-<li>[nG|ngg]到n行</li>
-<li>[u]撤销改动</li>
-<li>[dd]删除一行</li>
-<li>[yy]复制一行</li>
-<li>[i]在光标之前插入</li>
-<li>[a]在光标之后插入</li>
-<li>[$|End]到行尾</li>
-<li>[0|^|Home]到行首</li>
-<li>[o]在当前行下插入一空行</li>
-<li>[dw]删除光标所在的单词</li>
-<li>[daw]删除光标所在的单词,包括空白字符</li>
-<li>[diw]删除光标所在的单词,不包括空白字符</li>
-</ul>
-<blockquote>
-<p>示图如下:</p>
-</blockquote>
-<p><img src="/assets/blogImg/vim/1.png" alt="ico原来的样子"></p>
-]]></content>
-      <tags>
-        <tag>vim</tag>
       </tags>
   </entry>
   <entry>
@@ -3406,23 +3406,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>使用git 与github友好交流</title>
-    <url>/2017/08/11/%E4%BD%BF%E7%94%A8git-%E4%B8%8Egithub%E5%8F%8B%E5%A5%BD%E4%BA%A4%E6%B5%81/</url>
-    <content><![CDATA[<p>##<strong>本文主要介绍window 端Git 与github友好交流</strong></p>
-<blockquote>
-<p>1、安装window版（32/64）git。 window端安装过程无脑略过—— </p>
-</blockquote>
-<a id="more"></a>
-
-
-<p>2、本文默认github已注册并添加过 ssh key<br>3、github上新建仓库<br>git add / add *<br>git commit -m<br>git remote add origin <a href="http://xxxx.github.io/">http://xxxx.github.io</a><br>git push -u origin master<br>git pull<br>git rm -r xxx<br>git commit -m ‘’<br>git push -u origin master<br>git  –version</p>
-]]></content>
-      <tags>
-        <tag>git</tag>
-        <tag>github</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用Tailwind CSS新建一个项目</title>
     <url>/2021/11/18/%E4%BD%BF%E7%94%A8Tailwind-CSS%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/tailwindcss.png" alt="tailwindcss"></p>
@@ -3472,6 +3455,23 @@ class QuotesSpider(scrapy.Spider):
 ]]></content>
       <tags>
         <tag>Tailwind-CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用git 与github友好交流</title>
+    <url>/2017/08/11/%E4%BD%BF%E7%94%A8git-%E4%B8%8Egithub%E5%8F%8B%E5%A5%BD%E4%BA%A4%E6%B5%81/</url>
+    <content><![CDATA[<p>##<strong>本文主要介绍window 端Git 与github友好交流</strong></p>
+<blockquote>
+<p>1、安装window版（32/64）git。 window端安装过程无脑略过—— </p>
+</blockquote>
+<a id="more"></a>
+
+
+<p>2、本文默认github已注册并添加过 ssh key<br>3、github上新建仓库<br>git add / add *<br>git commit -m<br>git remote add origin <a href="http://xxxx.github.io/">http://xxxx.github.io</a><br>git push -u origin master<br>git pull<br>git rm -r xxx<br>git commit -m ‘’<br>git push -u origin master<br>git  –version</p>
+]]></content>
+      <tags>
+        <tag>git</tag>
+        <tag>github</tag>
       </tags>
   </entry>
   <entry>
@@ -3670,6 +3670,47 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>有赞vantUI step1</title>
+    <url>/2018/04/02/%E6%9C%89%E8%B5%9EvantUI-step1/</url>
+    <content><![CDATA[<p><strong>有赞vantUI学习 step1</strong></p>
+<a id="more"></a>
+<p>1、安装淘宝镜像 </p>
+<blockquote>
+<p>npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></p>
+</blockquote>
+<p>2、安装vue-cli </p>
+<blockquote>
+<p>cnpm install –global vue-cli</p>
+</blockquote>
+<p>3、使用vue-cli安装项目[bsh] </p>
+<blockquote>
+<p>vue init youzan/vue-cli-template-vant bsh</p>
+</blockquote>
+<p>4、安装vantUI</p>
+<blockquote>
+<p>cnpm i vant -S</p>
+</blockquote>
+<p>5、引入组件 推荐使用安装 babel-plugin-import 插件</p>
+<blockquote>
+<p>npm i babel-plugin-import -D</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 在 .babelrc 或 babel-loader 中添加插件配置</span><br><span class="line">&#123;</span><br><span class="line">  &quot;plugins&quot;: [</span><br><span class="line">    [&quot;import&quot;, &#123; &quot;libraryName&quot;: &quot;vant&quot;, &quot;style&quot;: true &#125;]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>6、install dependencies 安装依赖</p>
+<blockquote>
+<p>npm install</p>
+</blockquote>
+<p>7、# serve with hot reload at localhost:8080</p>
+<blockquote>
+<p>npm run dev</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>vue</tag>
+        <tag>vant</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>搭建一套规范的 Vue3.x 项目工程环境</title>
     <url>/2021/11/04/%E6%90%AD%E5%BB%BA%E4%B8%80%E5%A5%97%E8%A7%84%E8%8C%83%E7%9A%84-Vue3-x-%E9%A1%B9%E7%9B%AE%E5%B7%A5%E7%A8%8B%E7%8E%AF%E5%A2%83/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/rabbit.jpg" alt="Vue3.x"></p>
@@ -3742,47 +3783,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>DNMP</tag>
         <tag>Portainer</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>有赞vantUI step1</title>
-    <url>/2018/04/02/%E6%9C%89%E8%B5%9EvantUI-step1/</url>
-    <content><![CDATA[<p><strong>有赞vantUI学习 step1</strong></p>
-<a id="more"></a>
-<p>1、安装淘宝镜像 </p>
-<blockquote>
-<p>npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></p>
-</blockquote>
-<p>2、安装vue-cli </p>
-<blockquote>
-<p>cnpm install –global vue-cli</p>
-</blockquote>
-<p>3、使用vue-cli安装项目[bsh] </p>
-<blockquote>
-<p>vue init youzan/vue-cli-template-vant bsh</p>
-</blockquote>
-<p>4、安装vantUI</p>
-<blockquote>
-<p>cnpm i vant -S</p>
-</blockquote>
-<p>5、引入组件 推荐使用安装 babel-plugin-import 插件</p>
-<blockquote>
-<p>npm i babel-plugin-import -D</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 在 .babelrc 或 babel-loader 中添加插件配置</span><br><span class="line">&#123;</span><br><span class="line">  &quot;plugins&quot;: [</span><br><span class="line">    [&quot;import&quot;, &#123; &quot;libraryName&quot;: &quot;vant&quot;, &quot;style&quot;: true &#125;]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>6、install dependencies 安装依赖</p>
-<blockquote>
-<p>npm install</p>
-</blockquote>
-<p>7、# serve with hot reload at localhost:8080</p>
-<blockquote>
-<p>npm run dev</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>vue</tag>
-        <tag>vant</tag>
       </tags>
   </entry>
   <entry>
