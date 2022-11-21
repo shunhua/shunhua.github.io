@@ -73,36 +73,32 @@
       </tags>
   </entry>
   <entry>
-    <title>CentOS 7 安装 Nginx 1.11.x</title>
-    <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/</url>
-    <content><![CDATA[<p><strong>Centos下安装Nginx</strong> </p>
-<a id="more"></a>
+    <title>Alipay 开放平台支付</title>
+    <url>/2018/10/26/Alipay-%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E6%94%AF%E4%BB%98/</url>
+    <content><![CDATA[<a id="more"></a>
 
-<p>一、准备工作 安装必备工具</p>
+
+<p>参考文档 <a href="https://docs.open.alipay.com/291/" target="_blank">[ 开放平台文档中心 ]</a></p>
 <blockquote>
-<p>yum install -y gcc gcc-c++ autoconf automake<br>yum install -y zlib zlib-devel openssl openssl-devel pcre-devel</p>
+<p>生成RSA密钥</p>
 </blockquote>
-<p>不安装这些依赖库，后面编译的时候会报错，当然你的系统已经有这些包可以跳过。<br>pcre：用来作地址重写的功能。<br>zlib：nginx 的gzip模块,传输数据打包，省流量（但消耗资源）。<br>openssl：提供ssl加密协议。</p>
-<p>二、添加nginx用户</p>
+<p>a. 应用公钥2048<br>b. 应用私钥2048</p>
 <blockquote>
-<p>/usr/sbin/groupadd -f www<br>/usr/sbin/useradd -g www www</p>
+<p>上传应用公钥并获取支付宝公钥</p>
 </blockquote>
-<p>三、nginx文件准备及编译</p>
+<p>支付宝公钥应用于开发中</p>
 <blockquote>
-<p>wget <a href="http://nginx.org/download/nginx-1.11.4.tar.gz">http://nginx.org/download/nginx-1.11.4.tar.gz</a><br>tar -zxvf nginx-1.11.4.tar.gz<br>cd nginx-1.11.4/<br>./configure –user=www –group=www<br>make &amp;&amp; make install</p>
+<p>使用应用私钥生成请求签名</p>
 </blockquote>
-<p>四、开始firewall端口服务</p>
+<p>应用私钥应用于开发中</p>
 <blockquote>
-<p>firewall-cmd  –permanent –zone=public –add-service=http<br>firewall-cmd  –reload</p>
+<p>使用支付宝公钥验签</p>
 </blockquote>
-<p>常用命令</p>
-<blockquote>
-<p>/usr/local/nginx/sbin/nginx -s reload<br>/usr/local/nginx/sbin/nginx -s stop<br>/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</p>
-</blockquote>
+<p>支付宝公钥应用于开发中</p>
 ]]></content>
       <tags>
-        <tag>Centos</tag>
-        <tag>Nginx</tag>
+        <tag>Alipay</tag>
+        <tag>开放平台</tag>
       </tags>
   </entry>
   <entry>
@@ -129,7 +125,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#64;&#x71;&#113;&#46;&#99;&#111;&#109;">&#120;&#64;&#x71;&#113;&#46;&#99;&#111;&#109;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#x40;&#113;&#113;&#46;&#99;&#111;&#x6d;">&#x78;&#x40;&#113;&#113;&#46;&#99;&#111;&#x6d;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -140,7 +136,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#64;&#x71;&#x71;&#x2e;&#x63;&#111;&#x6d;">&#x62;&#64;&#x71;&#x71;&#x2e;&#x63;&#111;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#x40;&#113;&#x71;&#46;&#99;&#111;&#x6d;">&#x62;&#x40;&#113;&#x71;&#46;&#99;&#111;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -172,6 +168,39 @@
       <tags>
         <tag>CentOS 7</tag>
         <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS 7 安装 Nginx 1.11.x</title>
+    <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/</url>
+    <content><![CDATA[<p><strong>Centos下安装Nginx</strong> </p>
+<a id="more"></a>
+
+<p>一、准备工作 安装必备工具</p>
+<blockquote>
+<p>yum install -y gcc gcc-c++ autoconf automake<br>yum install -y zlib zlib-devel openssl openssl-devel pcre-devel</p>
+</blockquote>
+<p>不安装这些依赖库，后面编译的时候会报错，当然你的系统已经有这些包可以跳过。<br>pcre：用来作地址重写的功能。<br>zlib：nginx 的gzip模块,传输数据打包，省流量（但消耗资源）。<br>openssl：提供ssl加密协议。</p>
+<p>二、添加nginx用户</p>
+<blockquote>
+<p>/usr/sbin/groupadd -f www<br>/usr/sbin/useradd -g www www</p>
+</blockquote>
+<p>三、nginx文件准备及编译</p>
+<blockquote>
+<p>wget <a href="http://nginx.org/download/nginx-1.11.4.tar.gz">http://nginx.org/download/nginx-1.11.4.tar.gz</a><br>tar -zxvf nginx-1.11.4.tar.gz<br>cd nginx-1.11.4/<br>./configure –user=www –group=www<br>make &amp;&amp; make install</p>
+</blockquote>
+<p>四、开始firewall端口服务</p>
+<blockquote>
+<p>firewall-cmd  –permanent –zone=public –add-service=http<br>firewall-cmd  –reload</p>
+</blockquote>
+<p>常用命令</p>
+<blockquote>
+<p>/usr/local/nginx/sbin/nginx -s reload<br>/usr/local/nginx/sbin/nginx -s stop<br>/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Centos</tag>
+        <tag>Nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -219,35 +248,6 @@
       <tags>
         <tag>Centos</tag>
         <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Alipay 开放平台支付</title>
-    <url>/2018/10/26/Alipay-%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E6%94%AF%E4%BB%98/</url>
-    <content><![CDATA[<a id="more"></a>
-
-
-<p>参考文档 <a href="https://docs.open.alipay.com/291/" target="_blank">[ 开放平台文档中心 ]</a></p>
-<blockquote>
-<p>生成RSA密钥</p>
-</blockquote>
-<p>a. 应用公钥2048<br>b. 应用私钥2048</p>
-<blockquote>
-<p>上传应用公钥并获取支付宝公钥</p>
-</blockquote>
-<p>支付宝公钥应用于开发中</p>
-<blockquote>
-<p>使用应用私钥生成请求签名</p>
-</blockquote>
-<p>应用私钥应用于开发中</p>
-<blockquote>
-<p>使用支付宝公钥验签</p>
-</blockquote>
-<p>支付宝公钥应用于开发中</p>
-]]></content>
-      <tags>
-        <tag>Alipay</tag>
-        <tag>开放平台</tag>
       </tags>
   </entry>
   <entry>
@@ -1139,25 +1139,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Linux安装配置守护进程</title>
-    <url>/2018/03/09/Linux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> centos 下安装Supervisor</p>
-</blockquote>
-<p>yum install supervisor</p>
-<blockquote>
-<p> 配置Supervisor</p>
-</blockquote>
-<p>cd /etc/supervisord.d/<br>vim laravel-worker.ini<br>systemctl start supervisord</p>
-]]></content>
-      <tags>
-        <tag>linux</tag>
-        <tag>Supervisor</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux定时任务采集聚合数据api文章</title>
     <url>/2019/04/18/Linux%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E9%87%87%E9%9B%86%E8%81%9A%E5%90%88%E6%95%B0%E6%8D%AEapi%E6%96%87%E7%AB%A0/</url>
     <content><![CDATA[<p><strong>Linux定时任务采集文章</strong> </p>
@@ -1190,6 +1171,79 @@ public $queue = &#39;listeners&#39;;</code></pre>
         <tag>Laravel</tag>
         <tag>Linux</tag>
         <tag>crontab</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux安装配置守护进程</title>
+    <url>/2018/03/09/Linux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> centos 下安装Supervisor</p>
+</blockquote>
+<p>yum install supervisor</p>
+<blockquote>
+<p> 配置Supervisor</p>
+</blockquote>
+<p>cd /etc/supervisord.d/<br>vim laravel-worker.ini<br>systemctl start supervisord</p>
+]]></content>
+      <tags>
+        <tag>linux</tag>
+        <tag>Supervisor</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Live 阿里云直播</title>
+    <url>/2019/07/04/Live-%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%B4%E6%92%AD/</url>
+    <content><![CDATA[<a id="more"></a>
+<p> <a href="https://help.aliyun.com/document_detail/86866.html?spm=a2c4g.11186623.6.573.72df68123ova0d" target="_blank">[阿里云文档]</a> 具体流程依据文档<br> 需要：备案域名 / 直播云服务器</p>
+<blockquote>
+<p>开通阿里云直播控制台</p>
+</blockquote>
+<p><img src="/assets/aliyun/1.png" alt="ico原来的样子"><br><img src="/assets/aliyun/2.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>直播控制台-概览配置 推流/播流 域名</p>
+</blockquote>
+<p>生成之后解析对应域名的 CNAME 到推流/播流域名上<br><img src="/assets/aliyun/3.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>PC端 OBS/VLC 测试</p>
+</blockquote>
+<p>地址生成器–&gt;生成的 推流/播流 地址相应在 OBS/VLC 上使用即可看到同步直播</p>
+<p><img src="/assets/aliyun/4.png" alt="ico原来的样子"><br><img src="/assets/aliyun/5.png" alt="ico原来的样子"><br><img src="/assets/aliyun/6.png" alt="ico原来的样子"><br><img src="/assets/aliyun/7.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>观看直播 [后续…]</p>
+</blockquote>
+<p> 前面的直播推流配置完成之后，我们需要让用户或者观众看到直播<br> 正常用户观看直播的流程是：登录直播网站 -&gt; 点开直播房间 -&gt; 服务器获取播放地址 -&gt; 用户观看直播<br> 1.创建一个测试直播的控制器</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">namespace App\Http\Controllers;</span><br><span class="line"></span><br><span class="line">use xxx;&#x2F;&#x2F;sdk包</span><br><span class="line"></span><br><span class="line">class LiveController extends Controller</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    public function index()</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; 通过sdk获取直播地址</span><br><span class="line">        $liveurl &#x3D; \xxx\xxx\xxx(&#39;xxx&#39;, &#39;app&#39;, &#39;stream&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.页面展示</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 引入 CDN --&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.bootcss.com&#x2F;flv.js&#x2F;1.3.2&#x2F;flv.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;!-- dom --&gt;</span><br><span class="line">&lt;video id&#x3D;&quot;videoElement&quot;&gt;&lt;&#x2F;video&gt;</span><br><span class="line">&lt;!-- js --&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    if (flvjs.isSupported()) &#123;</span><br><span class="line">        var videoElement &#x3D; document.getElementById(&#39;videoElement&#39;);</span><br><span class="line">        var flvPlayer &#x3D; flvjs.createPlayer(&#123;</span><br><span class="line">            type: &#39;flv&#39;,</span><br><span class="line">            url: &#39;&#123;&#123; $liveurl &#125;&#125;&#39;</span><br><span class="line">        &#125;);</span><br><span class="line">        flvPlayer.attachMediaElement(videoElement);</span><br><span class="line">        flvPlayer.load();</span><br><span class="line">        flvPlayer.play();</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><strong>Notice</strong><br>后续通过sdk整合到项目开发中…</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>MySQL出现1030-Got error 28 from storage engine错误</title>
+    <url>/2018/11/22/MySQL%E5%87%BA%E7%8E%B01030-Got-error-28-from-storage-engine%E9%94%99%E8%AF%AF/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>一般这种情况都是日志文件太大导致的</p>
+<ul>
+<li>mysql二进制文件 参考文档：<a href="https://baishunhua.com/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/" target="_blank">[ MySQL启动错误 ]</a></li>
+<li>其他日志文件</li>
+</ul>
+<blockquote>
+<p>df -h</p>
+</blockquote>
+<p>查看磁盘使用情况</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -h --max-depth&#x3D;1 | grep G | sort -n</span><br></pre></td></tr></table></figure>
+<p>以G单位排序查看占用磁盘的文件，然后删除没用的日志文件 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -s * | sort -nr</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>lnmp</tag>
+        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -1280,60 +1334,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Live 阿里云直播</title>
-    <url>/2019/07/04/Live-%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%B4%E6%92%AD/</url>
-    <content><![CDATA[<a id="more"></a>
-<p> <a href="https://help.aliyun.com/document_detail/86866.html?spm=a2c4g.11186623.6.573.72df68123ova0d" target="_blank">[阿里云文档]</a> 具体流程依据文档<br> 需要：备案域名 / 直播云服务器</p>
-<blockquote>
-<p>开通阿里云直播控制台</p>
-</blockquote>
-<p><img src="/assets/aliyun/1.png" alt="ico原来的样子"><br><img src="/assets/aliyun/2.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>直播控制台-概览配置 推流/播流 域名</p>
-</blockquote>
-<p>生成之后解析对应域名的 CNAME 到推流/播流域名上<br><img src="/assets/aliyun/3.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>PC端 OBS/VLC 测试</p>
-</blockquote>
-<p>地址生成器–&gt;生成的 推流/播流 地址相应在 OBS/VLC 上使用即可看到同步直播</p>
-<p><img src="/assets/aliyun/4.png" alt="ico原来的样子"><br><img src="/assets/aliyun/5.png" alt="ico原来的样子"><br><img src="/assets/aliyun/6.png" alt="ico原来的样子"><br><img src="/assets/aliyun/7.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>观看直播 [后续…]</p>
-</blockquote>
-<p> 前面的直播推流配置完成之后，我们需要让用户或者观众看到直播<br> 正常用户观看直播的流程是：登录直播网站 -&gt; 点开直播房间 -&gt; 服务器获取播放地址 -&gt; 用户观看直播<br> 1.创建一个测试直播的控制器</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">namespace App\Http\Controllers;</span><br><span class="line"></span><br><span class="line">use xxx;&#x2F;&#x2F;sdk包</span><br><span class="line"></span><br><span class="line">class LiveController extends Controller</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    public function index()</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; 通过sdk获取直播地址</span><br><span class="line">        $liveurl &#x3D; \xxx\xxx\xxx(&#39;xxx&#39;, &#39;app&#39;, &#39;stream&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>2.页面展示</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 引入 CDN --&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.bootcss.com&#x2F;flv.js&#x2F;1.3.2&#x2F;flv.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;!-- dom --&gt;</span><br><span class="line">&lt;video id&#x3D;&quot;videoElement&quot;&gt;&lt;&#x2F;video&gt;</span><br><span class="line">&lt;!-- js --&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    if (flvjs.isSupported()) &#123;</span><br><span class="line">        var videoElement &#x3D; document.getElementById(&#39;videoElement&#39;);</span><br><span class="line">        var flvPlayer &#x3D; flvjs.createPlayer(&#123;</span><br><span class="line">            type: &#39;flv&#39;,</span><br><span class="line">            url: &#39;&#123;&#123; $liveurl &#125;&#125;&#39;</span><br><span class="line">        &#125;);</span><br><span class="line">        flvPlayer.attachMediaElement(videoElement);</span><br><span class="line">        flvPlayer.load();</span><br><span class="line">        flvPlayer.play();</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><strong>Notice</strong><br>后续通过sdk整合到项目开发中…</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
-    <title>MySQL出现1030-Got error 28 from storage engine错误</title>
-    <url>/2018/11/22/MySQL%E5%87%BA%E7%8E%B01030-Got-error-28-from-storage-engine%E9%94%99%E8%AF%AF/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>一般这种情况都是日志文件太大导致的</p>
-<ul>
-<li>mysql二进制文件 参考文档：<a href="https://baishunhua.com/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/" target="_blank">[ MySQL启动错误 ]</a></li>
-<li>其他日志文件</li>
-</ul>
-<blockquote>
-<p>df -h</p>
-</blockquote>
-<p>查看磁盘使用情况</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -h --max-depth&#x3D;1 | grep G | sort -n</span><br></pre></td></tr></table></figure>
-<p>以G单位排序查看占用磁盘的文件，然后删除没用的日志文件 </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -s * | sort -nr</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MySQL启动错误</title>
     <url>/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1367,6 +1367,22 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Nginx 反向代理</title>
+    <url>/2019/09/19/Nginx-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><a href="https://baishunhua.com/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/" target="_blank">安装nginx</a></p>
+<blockquote>
+<p>高防服务器上 nginx.conf 配置模板</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server_name  www.xxx.com;</span><br><span class="line">...</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">    proxy_pass http:&#x2F;&#x2F;ip[原服务器ip];</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>nginx</tag>
+        <tag>反向代理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Nginx分发-指定文件名称</title>
     <url>/2020/12/07/Nginx%E5%88%86%E5%8F%91-%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E5%90%8D%E7%A7%B0/</url>
     <content><![CDATA[<p><strong>Nginx分发-指定文件名称</strong></p>
@@ -1394,22 +1410,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
 ]]></content>
       <tags>
         <tag>nginx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nginx 反向代理</title>
-    <url>/2019/09/19/Nginx-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><a href="https://baishunhua.com/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/" target="_blank">安装nginx</a></p>
-<blockquote>
-<p>高防服务器上 nginx.conf 配置模板</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server_name  www.xxx.com;</span><br><span class="line">...</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">    proxy_pass http:&#x2F;&#x2F;ip[原服务器ip];</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>nginx</tag>
-        <tag>反向代理</tag>
       </tags>
   </entry>
   <entry>
@@ -1687,6 +1687,22 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>SELinux 状态</title>
+    <url>/2017/08/11/SELinux-%E7%8A%B6%E6%80%81/</url>
+    <content><![CDATA[<p>##<strong>查看SELinux状态：</strong></p>
+<blockquote>
+<p>1、/usr/sbin/sestatus -v      ##如果SELinux status参数为enabled即为开启状态—— </p>
+</blockquote>
+<a id="more"></a>
+
+<p><img src="/assets/blogImg/reduce-http.jpg" alt="ico原来的样子"></p>
+<p>1、/usr/sbin/sestatus -v      ##如果SELinux status参数为enabled即为开启状态<br>SELinux status:                 enabled<br>2、getenforce                 ##也可以用这个命令检查<br>关闭SELinux：<br>1、临时关闭（不用重启机器）：<br>setenforce 0                  ##设置SELinux 成为permissive模式<br>                              ##setenforce 1 设置SELinux 成为enforcing模式<br>2、修改配置文件需要重启机器：<br>修改/etc/selinux/config 文件<br>将SELINUX=enforcing改为SELINUX=disabled<br>重启机器即可</p>
+]]></content>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python scrapy入门教程</title>
     <url>/2017/09/26/Python-scrapy%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[<p><strong>Python scrapy入门教程</strong> </p>
@@ -1763,22 +1779,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>Python</tag>
         <tag>scrapy</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SELinux 状态</title>
-    <url>/2017/08/11/SELinux-%E7%8A%B6%E6%80%81/</url>
-    <content><![CDATA[<p>##<strong>查看SELinux状态：</strong></p>
-<blockquote>
-<p>1、/usr/sbin/sestatus -v      ##如果SELinux status参数为enabled即为开启状态—— </p>
-</blockquote>
-<a id="more"></a>
-
-<p><img src="/assets/blogImg/reduce-http.jpg" alt="ico原来的样子"></p>
-<p>1、/usr/sbin/sestatus -v      ##如果SELinux status参数为enabled即为开启状态<br>SELinux status:                 enabled<br>2、getenforce                 ##也可以用这个命令检查<br>关闭SELinux：<br>1、临时关闭（不用重启机器）：<br>setenforce 0                  ##设置SELinux 成为permissive模式<br>                              ##setenforce 1 设置SELinux 成为enforcing模式<br>2、修改配置文件需要重启机器：<br>修改/etc/selinux/config 文件<br>将SELINUX=enforcing改为SELINUX=disabled<br>重启机器即可</p>
-]]></content>
-      <tags>
-        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -2046,6 +2046,23 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>docker + redis 部署一主二从三哨兵</title>
+    <url>/2021/12/06/docker-redis-%E9%83%A8%E7%BD%B2%E4%B8%80%E4%B8%BB%E4%BA%8C%E4%BB%8E%E4%B8%89%E5%93%A8%E5%85%B5/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/redis.png" alt="redis"></p>
+<a id="more"></a>
+
+<p><strong>概述</strong></p>
+<ul>
+<li>在部署redis 的时候，如果redis宕机，缓存将不可用，redis提供了哨兵模式保证redis实现高可用。</li>
+<li>即一台主机两台从机，三台哨兵主机，如果主实例宕机，哨兵将一台从机升级为主机。实现高可用。<br><img src="/assets/blogImg/redis-1.png" alt="redis-1"></li>
+</ul>
+<p>参考文档 ⚔：<br><a href="https://blog.csdn.net/qq_41773902/article/details/105627708" target="_blank">[ 点我 ]</a> | <a href="https://www.jianshu.com/p/319d0980ff89#comments" target="_blank">[ 点我 ]</a> | <a href="https://www.pianshen.com/article/68951456452/" target="_blank">[ 点我 ]</a></p>
+]]></content>
+      <tags>
+        <tag>redis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>centos7下lnmp 添加、删除虚拟主机</title>
     <url>/2017/09/15/centos7%E4%B8%8Blnmp-%E6%B7%BB%E5%8A%A0%E3%80%81%E5%88%A0%E9%99%A4%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2141,46 +2158,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>AntV 蚂蚁数据可视化G6|Graphin</title>
-    <url>/2021/12/01/antV-%E8%9A%82%E8%9A%81%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96G6-Graphin/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/antV-g6.png" alt="AntV"></p>
-<a id="more"></a>
-
-<p>中文官网： <a href="https://antv.gitee.io/zh" target="_blank">[ AntV中文官网 ]</a><br>Github地址： <a href="https://github.com/antvis/g6" target="_blank">[ AntV G6 ]</a><br>参考文档： <a href="https://g6.antv.vision/zh/docs/manual/introduction" target="_blank">[ G6官方文档 ]</a><br><strong>什么是 G6</strong><br>G6 是一个图可视化引擎。它提供了图的绘制、布局、分析、交互、动画等图可视化的基础能力。旨在让关系变得透明，简单。让用户获得关系数据的 Insight。<br><strong>安装 &amp; 引用</strong><br>使用命令行在项目目录下执行以下命令：</p>
-<blockquote>
-<p> npm install –save @antv/g6</p>
-</blockquote>
-<p>创建一个 G6 的关系图仅需要下面几个步骤：</p>
-<ul>
-<li>创建关系图的 HTML 容器；</li>
-<li>数据准备；</li>
-<li>创建关系图；</li>
-<li>配置数据源，渲染。</li>
-</ul>
-<p><strong><em>Step 1 创建容器</em></strong><br>需要在 HTML 中创建一个用于容纳 G6 绘制的图的容器，通常为 div  标签。G6 在绘制时会在该容器下追加 canvas 标签，然后将图绘制在其中。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;mountNode&quot;&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-
-<p><strong><em>Step 2 数据准备</em></strong><br>引入 G6 的数据源为 JSON 格式的对象。该对象中需要有节点（nodes）和边（edges）字段，分别用数组表示：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const data &#x3D; &#123;</span><br><span class="line">  &#x2F;&#x2F; 点集</span><br><span class="line">  nodes: [</span><br><span class="line">    &#123;</span><br><span class="line">      id: &#39;node1&#39;, &#x2F;&#x2F; String，该节点存在则必须，节点的唯一标识</span><br><span class="line">      x: 100, &#x2F;&#x2F; Number，可选，节点位置的 x 值</span><br><span class="line">      y: 200, &#x2F;&#x2F; Number，可选，节点位置的 y 值</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      id: &#39;node2&#39;, &#x2F;&#x2F; String，该节点存在则必须，节点的唯一标识</span><br><span class="line">      x: 300, &#x2F;&#x2F; Number，可选，节点位置的 x 值</span><br><span class="line">      y: 200, &#x2F;&#x2F; Number，可选，节点位置的 y 值</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">  &#x2F;&#x2F; 边集</span><br><span class="line">  edges: [</span><br><span class="line">    &#123;</span><br><span class="line">      source: &#39;node1&#39;, &#x2F;&#x2F; String，必须，起始点 id</span><br><span class="line">      target: &#39;node2&#39;, &#x2F;&#x2F; String，必须，目标点 id</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>注意</p>
-<ul>
-<li>nodes 数组中包含节点对象。每个节点对象中唯一的、必要的 id 以标识不同的节点，x、 y 指定该节点的位置；</li>
-<li>edges 数组中包含边对象。source 和 target 是每条边的必要属性，分别代表了该边的起始点 id 与 目标点 id。</li>
-<li>点和边的其他属性参见链接：内置节点 和 内置边。</li>
-</ul>
-<p><strong><em>Step 3 创建关系图</em></strong><br>创建关系图（实例化）时，至少需要为图设置容器、宽和高。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const graph &#x3D; new G6.Graph(&#123;</span><br><span class="line">  container: &#39;mountNode&#39;, &#x2F;&#x2F; String | HTMLElement，必须，在 Step 1 中创建的容器 id 或容器本身</span><br><span class="line">  width: 800, &#x2F;&#x2F; Number，必须，图的宽度</span><br><span class="line">  height: 500, &#x2F;&#x2F; Number，必须，图的高度</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p><strong><em>Step 4 配置数据源，渲染</em></strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">graph.data(data); &#x2F;&#x2F; 读取 Step 2 中的数据源到图上</span><br><span class="line">graph.render(); &#x2F;&#x2F; 渲染图</span><br></pre></td></tr></table></figure>
-
-<p>完整代码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot; &#x2F;&gt;</span><br><span class="line">    &lt;title&gt;Tutorial Demo&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &#x2F;* 图的画布容器 *&#x2F;</span><br><span class="line">    &lt;div id&#x3D;&quot;mountNode&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">    &#x2F;* 引入 G6 *&#x2F;</span><br><span class="line">    &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;gw.alipayobjects.com&#x2F;os&#x2F;antv&#x2F;pkg&#x2F;_antv.g6-3.7.1&#x2F;dist&#x2F;g6.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      &#x2F;&#x2F; 定义数据源</span><br><span class="line">      const data &#x3D; &#123;</span><br><span class="line">        &#x2F;&#x2F; 点集</span><br><span class="line">        nodes: [</span><br><span class="line">          &#123;</span><br><span class="line">            id: &#39;node1&#39;,</span><br><span class="line">            x: 100,</span><br><span class="line">            y: 200,</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            id: &#39;node2&#39;,</span><br><span class="line">            x: 300,</span><br><span class="line">            y: 200,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">        &#x2F;&#x2F; 边集</span><br><span class="line">        edges: [</span><br><span class="line">          &#x2F;&#x2F; 表示一条从 node1 节点连接到 node2 节点的边</span><br><span class="line">          &#123;</span><br><span class="line">            source: &#39;node1&#39;,</span><br><span class="line">            target: &#39;node2&#39;,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F; 创建 G6 图实例</span><br><span class="line">      const graph &#x3D; new G6.Graph(&#123;</span><br><span class="line">        container: &#39;mountNode&#39;, &#x2F;&#x2F; 指定图画布的容器 id，与第 9 行的容器对应</span><br><span class="line">        &#x2F;&#x2F; 画布宽高</span><br><span class="line">        width: 800,</span><br><span class="line">        height: 500,</span><br><span class="line">      &#125;);</span><br><span class="line">      &#x2F;&#x2F; 读取数据</span><br><span class="line">      graph.data(data);</span><br><span class="line">      &#x2F;&#x2F; 渲染图</span><br><span class="line">      graph.render();</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>AntV</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>gRPC 的介绍及使用</title>
     <url>/2021/12/07/gRPC-%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/grpc.png" alt="grpc"></p>
@@ -2229,23 +2206,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>docker + redis 部署一主二从三哨兵</title>
-    <url>/2021/12/06/docker-redis-%E9%83%A8%E7%BD%B2%E4%B8%80%E4%B8%BB%E4%BA%8C%E4%BB%8E%E4%B8%89%E5%93%A8%E5%85%B5/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/redis.png" alt="redis"></p>
-<a id="more"></a>
-
-<p><strong>概述</strong></p>
-<ul>
-<li>在部署redis 的时候，如果redis宕机，缓存将不可用，redis提供了哨兵模式保证redis实现高可用。</li>
-<li>即一台主机两台从机，三台哨兵主机，如果主实例宕机，哨兵将一台从机升级为主机。实现高可用。<br><img src="/assets/blogImg/redis-1.png" alt="redis-1"></li>
-</ul>
-<p>参考文档 ⚔：<br><a href="https://blog.csdn.net/qq_41773902/article/details/105627708" target="_blank">[ 点我 ]</a> | <a href="https://www.jianshu.com/p/319d0980ff89#comments" target="_blank">[ 点我 ]</a> | <a href="https://www.pianshen.com/article/68951456452/" target="_blank">[ 点我 ]</a></p>
-]]></content>
-      <tags>
-        <tag>redis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>gin-vue-admin的安装及使用</title>
     <url>/2021/10/14/gin-vue-admin%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/diary-5.jpg" alt="gin-vue-admin"></p>
@@ -2255,7 +2215,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#103;&#x69;&#x74;&#x40;&#x67;&#105;&#116;&#x68;&#x75;&#x62;&#46;&#99;&#111;&#109;">&#103;&#x69;&#x74;&#x40;&#x67;&#105;&#116;&#x68;&#x75;&#x62;&#46;&#99;&#111;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#x67;&#x69;&#116;&#x40;&#x67;&#x69;&#116;&#x68;&#117;&#x62;&#x2e;&#x63;&#x6f;&#109;">&#x67;&#x69;&#116;&#x40;&#x67;&#x69;&#116;&#x68;&#117;&#x62;&#x2e;&#x63;&#x6f;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -2687,6 +2647,46 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>AntV 蚂蚁数据可视化G6|Graphin</title>
+    <url>/2021/12/01/antV-%E8%9A%82%E8%9A%81%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96G6-Graphin/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/antV-g6.png" alt="AntV"></p>
+<a id="more"></a>
+
+<p>中文官网： <a href="https://antv.gitee.io/zh" target="_blank">[ AntV中文官网 ]</a><br>Github地址： <a href="https://github.com/antvis/g6" target="_blank">[ AntV G6 ]</a><br>参考文档： <a href="https://g6.antv.vision/zh/docs/manual/introduction" target="_blank">[ G6官方文档 ]</a><br><strong>什么是 G6</strong><br>G6 是一个图可视化引擎。它提供了图的绘制、布局、分析、交互、动画等图可视化的基础能力。旨在让关系变得透明，简单。让用户获得关系数据的 Insight。<br><strong>安装 &amp; 引用</strong><br>使用命令行在项目目录下执行以下命令：</p>
+<blockquote>
+<p> npm install –save @antv/g6</p>
+</blockquote>
+<p>创建一个 G6 的关系图仅需要下面几个步骤：</p>
+<ul>
+<li>创建关系图的 HTML 容器；</li>
+<li>数据准备；</li>
+<li>创建关系图；</li>
+<li>配置数据源，渲染。</li>
+</ul>
+<p><strong><em>Step 1 创建容器</em></strong><br>需要在 HTML 中创建一个用于容纳 G6 绘制的图的容器，通常为 div  标签。G6 在绘制时会在该容器下追加 canvas 标签，然后将图绘制在其中。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;mountNode&quot;&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>Step 2 数据准备</em></strong><br>引入 G6 的数据源为 JSON 格式的对象。该对象中需要有节点（nodes）和边（edges）字段，分别用数组表示：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const data &#x3D; &#123;</span><br><span class="line">  &#x2F;&#x2F; 点集</span><br><span class="line">  nodes: [</span><br><span class="line">    &#123;</span><br><span class="line">      id: &#39;node1&#39;, &#x2F;&#x2F; String，该节点存在则必须，节点的唯一标识</span><br><span class="line">      x: 100, &#x2F;&#x2F; Number，可选，节点位置的 x 值</span><br><span class="line">      y: 200, &#x2F;&#x2F; Number，可选，节点位置的 y 值</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      id: &#39;node2&#39;, &#x2F;&#x2F; String，该节点存在则必须，节点的唯一标识</span><br><span class="line">      x: 300, &#x2F;&#x2F; Number，可选，节点位置的 x 值</span><br><span class="line">      y: 200, &#x2F;&#x2F; Number，可选，节点位置的 y 值</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">  &#x2F;&#x2F; 边集</span><br><span class="line">  edges: [</span><br><span class="line">    &#123;</span><br><span class="line">      source: &#39;node1&#39;, &#x2F;&#x2F; String，必须，起始点 id</span><br><span class="line">      target: &#39;node2&#39;, &#x2F;&#x2F; String，必须，目标点 id</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>注意</p>
+<ul>
+<li>nodes 数组中包含节点对象。每个节点对象中唯一的、必要的 id 以标识不同的节点，x、 y 指定该节点的位置；</li>
+<li>edges 数组中包含边对象。source 和 target 是每条边的必要属性，分别代表了该边的起始点 id 与 目标点 id。</li>
+<li>点和边的其他属性参见链接：内置节点 和 内置边。</li>
+</ul>
+<p><strong><em>Step 3 创建关系图</em></strong><br>创建关系图（实例化）时，至少需要为图设置容器、宽和高。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const graph &#x3D; new G6.Graph(&#123;</span><br><span class="line">  container: &#39;mountNode&#39;, &#x2F;&#x2F; String | HTMLElement，必须，在 Step 1 中创建的容器 id 或容器本身</span><br><span class="line">  width: 800, &#x2F;&#x2F; Number，必须，图的宽度</span><br><span class="line">  height: 500, &#x2F;&#x2F; Number，必须，图的高度</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>Step 4 配置数据源，渲染</em></strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">graph.data(data); &#x2F;&#x2F; 读取 Step 2 中的数据源到图上</span><br><span class="line">graph.render(); &#x2F;&#x2F; 渲染图</span><br></pre></td></tr></table></figure>
+
+<p>完整代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot; &#x2F;&gt;</span><br><span class="line">    &lt;title&gt;Tutorial Demo&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &#x2F;* 图的画布容器 *&#x2F;</span><br><span class="line">    &lt;div id&#x3D;&quot;mountNode&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">    &#x2F;* 引入 G6 *&#x2F;</span><br><span class="line">    &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;gw.alipayobjects.com&#x2F;os&#x2F;antv&#x2F;pkg&#x2F;_antv.g6-3.7.1&#x2F;dist&#x2F;g6.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      &#x2F;&#x2F; 定义数据源</span><br><span class="line">      const data &#x3D; &#123;</span><br><span class="line">        &#x2F;&#x2F; 点集</span><br><span class="line">        nodes: [</span><br><span class="line">          &#123;</span><br><span class="line">            id: &#39;node1&#39;,</span><br><span class="line">            x: 100,</span><br><span class="line">            y: 200,</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            id: &#39;node2&#39;,</span><br><span class="line">            x: 300,</span><br><span class="line">            y: 200,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">        &#x2F;&#x2F; 边集</span><br><span class="line">        edges: [</span><br><span class="line">          &#x2F;&#x2F; 表示一条从 node1 节点连接到 node2 节点的边</span><br><span class="line">          &#123;</span><br><span class="line">            source: &#39;node1&#39;,</span><br><span class="line">            target: &#39;node2&#39;,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F; 创建 G6 图实例</span><br><span class="line">      const graph &#x3D; new G6.Graph(&#123;</span><br><span class="line">        container: &#39;mountNode&#39;, &#x2F;&#x2F; 指定图画布的容器 id，与第 9 行的容器对应</span><br><span class="line">        &#x2F;&#x2F; 画布宽高</span><br><span class="line">        width: 800,</span><br><span class="line">        height: 500,</span><br><span class="line">      &#125;);</span><br><span class="line">      &#x2F;&#x2F; 读取数据</span><br><span class="line">      graph.data(data);</span><br><span class="line">      &#x2F;&#x2F; 渲染图</span><br><span class="line">      graph.render();</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>AntV</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>laravel5.5快速入门 —— 安装配置篇</title>
     <url>/2017/09/15/laravel5.5%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8-%E2%80%94%E2%80%94-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E7%AF%87/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2749,70 +2749,6 @@ class QuotesSpider(scrapy.Spider):
 ]]></content>
       <tags>
         <tag>laravel5.5</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>linux centos7.3 lnmp一键安装包集成</title>
-    <url>/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E9%9B%86%E6%88%90/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>一、下载并安装LNMP一键安装包</strong></p>
-<p>安装LNMP稳定版</p>
-<blockquote>
-<p> wget -c <a href="http://soft.vpser.net/lnmp/lnmp1.4.tar.gz">http://soft.vpser.net/lnmp/lnmp1.4.tar.gz</a> &amp;&amp; tar zxf lnmp1.4.tar.gz &amp;&amp; cd lnmp1.4 &amp;&amp; ./install.sh lnmp：</p>
-</blockquote>
-<p>默认安装lnmp可不写，如需要安装LNMPA或LAMP，将./install.sh 后面的参数替换为lnmpa或lamp即可。如需更改网站和数据库目录先修改安装包目录下的 lnmp.conf 文件。</p>
-<blockquote>
-<p> 运行上述LNMP安装命令后，会出现如下提示：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/1.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 输入对应MySQL或MariaDB版本前面的序号，回车进入下一步.：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/2.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 需要设置MySQL的root密码（不输入直接回车将会设置为root）如果输入有错误需要删除时，可以按住Ctrl再按Backspace键进行删除(个别情况下是只需要Backspace键)。输入后回车进入下一步，如下图所示：：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/3.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 询问是否需要启用MySQL InnoDB，InnoDB引擎默认为开启，一般建议开启，直接回车或输入 y ，如果确定确实不需要该引擎可以输入 n，输入完成，回车进入下一步。注意：选择PHP7等高版本时需要自行确认是否与自己的程序兼容。</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/4.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 输入要选择的PHP版本的序号，回车进入下一步，选择是否安装内存优化：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/5.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 再选择Apache版本</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/6.png" alt="ico原来的样子"></p>
-<p>按提示输入对应版本前面的数字序号，回车。</p>
-<p>提示”Press any key to install…or Press Ctrl+c to cancel”后，按回车键确认开始安装。<br>LNMP脚本就会自动安装编译Nginx、MySQL、PHP、phpMyAdmin、Zend Optimizer这几个软件。</p>
-<p>安装时间可能会几十分钟到几个小时不等，主要是机器的配置网速等原因会造成影响。</p>
-<blockquote>
-<p> 安装完成  如果显示Nginx: OK，MySQL: OK，PHP: OK</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/7.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 并且Nginx、MySQL、PHP都是running，80和3306端口都存在，并提示安装使用的时间及Install lnmp V1.4 completed! enjoy it.的话，说明已经安装成功</p>
-</blockquote>
-<p>安装失败</p>
-<blockquote>
-<p> 安装失败</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/8.png" alt="ico原来的样子"></p>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>linux</tag>
-        <tag>centos7.3</tag>
       </tags>
   </entry>
   <entry>
@@ -2888,6 +2824,27 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>lnmp tp pathinfo问题</title>
+    <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>/usr/local/php/etc/php.ini</p>
+<blockquote>
+<p> cgi.fix_pathinfo=1</p>
+</blockquote>
+<blockquote>
+<p> lnmp restart</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
+  </entry>
+  <entry>
     <title>linux下安装redis及认证密码</title>
     <url>/2018/03/06/linux%E4%B8%8B%E5%AE%89%E8%A3%85redis%E5%8F%8A%E8%AE%A4%E8%AF%81%E5%AF%86%E7%A0%81/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2913,27 +2870,6 @@ class QuotesSpider(scrapy.Spider):
         <tag>lnmp</tag>
         <tag>redis</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>lnmp tp pathinfo问题</title>
-    <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>/usr/local/php/etc/php.ini</p>
-<blockquote>
-<p> cgi.fix_pathinfo=1</p>
-</blockquote>
-<blockquote>
-<p> lnmp restart</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
   </entry>
   <entry>
     <title>lnmp集成环境下部署laravel5.x项目</title>
@@ -3064,6 +3000,70 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>linux centos7.3 lnmp一键安装包集成</title>
+    <url>/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E9%9B%86%E6%88%90/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>一、下载并安装LNMP一键安装包</strong></p>
+<p>安装LNMP稳定版</p>
+<blockquote>
+<p> wget -c <a href="http://soft.vpser.net/lnmp/lnmp1.4.tar.gz">http://soft.vpser.net/lnmp/lnmp1.4.tar.gz</a> &amp;&amp; tar zxf lnmp1.4.tar.gz &amp;&amp; cd lnmp1.4 &amp;&amp; ./install.sh lnmp：</p>
+</blockquote>
+<p>默认安装lnmp可不写，如需要安装LNMPA或LAMP，将./install.sh 后面的参数替换为lnmpa或lamp即可。如需更改网站和数据库目录先修改安装包目录下的 lnmp.conf 文件。</p>
+<blockquote>
+<p> 运行上述LNMP安装命令后，会出现如下提示：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/1.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 输入对应MySQL或MariaDB版本前面的序号，回车进入下一步.：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/2.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 需要设置MySQL的root密码（不输入直接回车将会设置为root）如果输入有错误需要删除时，可以按住Ctrl再按Backspace键进行删除(个别情况下是只需要Backspace键)。输入后回车进入下一步，如下图所示：：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/3.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 询问是否需要启用MySQL InnoDB，InnoDB引擎默认为开启，一般建议开启，直接回车或输入 y ，如果确定确实不需要该引擎可以输入 n，输入完成，回车进入下一步。注意：选择PHP7等高版本时需要自行确认是否与自己的程序兼容。</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/4.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 输入要选择的PHP版本的序号，回车进入下一步，选择是否安装内存优化：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/5.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 再选择Apache版本</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/6.png" alt="ico原来的样子"></p>
+<p>按提示输入对应版本前面的数字序号，回车。</p>
+<p>提示”Press any key to install…or Press Ctrl+c to cancel”后，按回车键确认开始安装。<br>LNMP脚本就会自动安装编译Nginx、MySQL、PHP、phpMyAdmin、Zend Optimizer这几个软件。</p>
+<p>安装时间可能会几十分钟到几个小时不等，主要是机器的配置网速等原因会造成影响。</p>
+<blockquote>
+<p> 安装完成  如果显示Nginx: OK，MySQL: OK，PHP: OK</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/7.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 并且Nginx、MySQL、PHP都是running，80和3306端口都存在，并提示安装使用的时间及Install lnmp V1.4 completed! enjoy it.的话，说明已经安装成功</p>
+</blockquote>
+<p>安装失败</p>
+<blockquote>
+<p> 安装失败</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/8.png" alt="ico原来的样子"></p>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>lnmp</tag>
+        <tag>linux</tag>
+        <tag>centos7.3</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>nginx 实现负载均衡</title>
     <url>/2017/09/21/nginx-%E5%AE%9E%E7%8E%B0%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</url>
     <content><![CDATA[<a id="more"></a>
@@ -3141,41 +3141,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>nginx</tag>
         <tag>负载均衡</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>php 递归拼接一条线会员</title>
-    <url>/2017/09/14/php-%E9%80%92%E5%BD%92%E6%8B%BC%E6%8E%A5%E4%B8%80%E6%9D%A1%E7%BA%BF%E4%BC%9A%E5%91%98/</url>
-    <content><![CDATA[<p><strong>php 递归拼接一条线会员：</strong> </p>
-<a id="more"></a>
-
-<ul>
-<li><strong>PHP使用递归&amp;参数引用</strong></li>
-</ul>
-<blockquote>
-<p> public static function parentIdLine($adminid,&amp;$parentAdmin_strs=’’)<br> {</p>
-<pre><code>       $parent_id = self::find($adminid)-&gt;parent_id;
-       // 构造上级限制
-       $parentids = array(0,1); //主要是限制管理员不拿提成          
-       if (!in_array($parent_id, $parentids) ) &#123;
-          $parentAdmin_strs .= $parent_id.&#39;,&#39;;
-          self::parentIdLine($parent_id,$parentAdmin_strs); 
-       &#125; 
-
-     return $parentAdmin_strs;</code></pre>
-<p>}</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.<br>   ok,  enjoy it !!!</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>php</tag>
-        <tag>递归</tag>
       </tags>
   </entry>
   <entry>
@@ -3262,7 +3227,7 @@ class QuotesSpider(scrapy.Spider):
 </blockquote>
 <p>二、使用npm下载 web框架express模块</p>
 <blockquote>
-<p>npm install --save <a href="mailto:&#x65;&#x78;&#112;&#114;&#101;&#x73;&#115;&#x40;&#x34;&#46;&#x31;&#53;&#x2e;&#50;">&#x65;&#x78;&#112;&#114;&#101;&#x73;&#115;&#x40;&#x34;&#46;&#x31;&#53;&#x2e;&#50;</a></p>
+<p>npm install --save <a href="mailto:&#x65;&#120;&#112;&#x72;&#101;&#x73;&#115;&#64;&#52;&#46;&#x31;&#53;&#x2e;&#x32;">&#x65;&#120;&#112;&#x72;&#101;&#x73;&#115;&#64;&#52;&#46;&#x31;&#53;&#x2e;&#x32;</a></p>
 </blockquote>
 <p>三、使用npm下载socket.io模块</p>
 <blockquote>
@@ -3282,45 +3247,38 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>sublime text3 安装配置svn 及默认快捷键</title>
-    <url>/2017/08/25/sublime-text3-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEsvn-%E5%8F%8A%E9%BB%98%E8%AE%A4%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
-    <content><![CDATA[<p><strong>sublime text3 安装配置svn 及默认快捷键：</strong> </p>
+    <title>php 递归拼接一条线会员</title>
+    <url>/2017/09/14/php-%E9%80%92%E5%BD%92%E6%8B%BC%E6%8E%A5%E4%B8%80%E6%9D%A1%E7%BA%BF%E4%BC%9A%E5%91%98/</url>
+    <content><![CDATA[<p><strong>php 递归拼接一条线会员：</strong> </p>
 <a id="more"></a>
 
 <ul>
-<li><strong>省去安装st3 过程….</strong></li>
+<li><strong>PHP使用递归&amp;参数引用</strong></li>
 </ul>
 <blockquote>
-<ol>
-<li>ctrl+shift+P 调出控制台  然后输入 install package  /  输入install 选择  install package</li>
-<li>输入 svn 选择  TortoiseSVN   选择确定安装。</li>
-<li>等待安装  （左下角有进度表示）。—–&gt;安装成功  插件包里会有svn插件  存在</li>
-<li>安装完成后 会有 提示首页 上面会有 配置 demo</li>
-<li>按照提示操作 </li>
-</ol>
+<p> public static function parentIdLine($adminid,&amp;$parentAdmin_strs=’’)<br> {</p>
+<pre><code>       $parent_id = self::find($adminid)-&gt;parent_id;
+       // 构造上级限制
+       $parentids = array(0,1); //主要是限制管理员不拿提成          
+       if (!in_array($parent_id, $parentids) ) &#123;
+          $parentAdmin_strs .= $parent_id.&#39;,&#39;;
+          self::parentIdLine($parent_id,$parentAdmin_strs); 
+       &#125; 
+
+     return $parentAdmin_strs;</code></pre>
+<p>}</p>
 </blockquote>
+<hr>
 <ul>
-<li><strong>如果你的TortoiseSVN安装时 不是 默认安装地址，需要配置 安装路径</strong></li>
+<li><strong>Notice</strong></li>
 </ul>
 <blockquote>
-<p>“Preferences-&gt;Package Settings-&gt;TortoiseSVN-&gt;Settings - User”  （首选项–&gt;配置—-&gt;TortoiseSVN–&gt;Settings - User）</p>
-</blockquote>
-<ul>
-<li><strong>修改默认路径。</strong></li>
-</ul>
-<blockquote>
-<p>   {<br>    // Auto close update dialog when no errors, conflicts and merges<br>    “autoCloseUpdateDialog”: false,<br>    // Auto close commit dialog when no errors, conflicts and merges<br>    “autoCloseCommitDialog”: true,<br>    “tortoiseproc_path”: “D:\TortoiseSVN\bin\TortoiseProc.exe”   //你自己的路径<br>    }</p>
-</blockquote>
-<ul>
-<li><strong>默认快捷键[^hello]: hi</strong></li>
-</ul>
-<blockquote>
-<p>[<br>{ “keys”: [“alt+u”], “command”: “svn_update” }<br>,{ “keys”: [“alt+c”], “command”: “svn_commit” }<br>,{ “keys”: [“alt+r”], “command”: “svn_revert” }<br>]</p>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.<br>   ok,  enjoy it !!!</p>
 </blockquote>
 ]]></content>
       <tags>
-        <tag>svn</tag>
-        <tag>sublime text3</tag>
+        <tag>php</tag>
+        <tag>递归</tag>
       </tags>
   </entry>
   <entry>
@@ -3458,41 +3416,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>发布Laravel扩展包larapay</title>
-    <url>/2018/12/04/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85larapay/</url>
-    <content><![CDATA[<p><strong>发布Laravel扩展封装支付包larapay</strong> </p>
-<a id="more"></a>
-<p>一、编写扩展包</p>
-<blockquote>
-<p>mkdir -p packages/shunhua/larapay</p>
-</blockquote>
-<p>进入扩展包目录，初始化 composer 配置</p>
-<blockquote>
-<p>composer init</p>
-</blockquote>
-<p>执行之后，项目下生成一个 composer.json 文件：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;name&quot;: &quot;shunhua&#x2F;larapay&quot;,</span><br><span class="line">    &quot;description&quot;: &quot;Alipay,Unicompay&quot;,</span><br><span class="line">    &quot;keywords&quot;: [&quot;Alipay&quot;, &quot;Unicompay&quot;],</span><br><span class="line">    &quot;license&quot;: &quot;MIT&quot;,</span><br><span class="line">    &quot;authors&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;Bsh&quot;,</span><br><span class="line">            &quot;email&quot;: &quot;2399315737@qq.com&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    &quot;require&quot;: &#123;</span><br><span class="line">        &quot;php&quot;: &quot;&gt;&#x3D;5.6.4&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;autoload&quot;: &#123;</span><br><span class="line">        &quot;psr-4&quot;: &#123;</span><br><span class="line">            &quot;Shunhua\\Larapay\\&quot;: &quot;src&#x2F;&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>包目录如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">shunhua&#x2F;larapay</span><br><span class="line">├── src  #存放扩展包所有的逻辑代码</span><br><span class="line">├── doc # 存放文档</span><br><span class="line">├── README.md</span><br><span class="line">├── composer.json</span><br></pre></td></tr></table></figure>
-
-<p>二、扩展包发布</p>
-<ol>
-<li>提交代码到 GitHub<br>首先，需要把扩展包的代码提交到 GitHub 上，记录下 GitHub 版本库的地址，注意是 HTTPS。<br><img src="/assets/blogImg/laravel.png" alt="ico原来的样子"></li>
-<li>把扩展包发布到 Packagist<br>访问 <a href="https://packagist.org/packages/submit" target="_blank">[ Packagist ]</a> 官网，登录后，点击右上角Submit按钮，进入发布向导:<br>此时，将 GitHub 版本库的地址填写至 Repository URL 输入框中，然后点击 Submit 提交按钮，一切顺利，可以看到发布成功</li>
-<li>设置版本信息<br>版本默认是 dev-master，Composer 包的版本号会从 Git 的 tag 中同步过来。<br>.查看本地所有的tag [git tag]<br>.创建一个新的tag[git tag xxx]<br>.查看提交状态[git log –oneline –decorate –graph]</li>
-</ol>
-<blockquote>
-<p>git tag v0.9<br>git push origin –tags<br>git push origin</p>
-</blockquote>
-<hr>
-<p>使用 <a href="https://github.com/shunhua/larapay" target="_blank">[ shunhua/larapay ]</a>包</p>
-]]></content>
-      <tags>
-        <tag>laravel</tag>
-        <tag>composer - 扩展包</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用git 与github友好交流</title>
     <url>/2017/08/11/%E4%BD%BF%E7%94%A8git-%E4%B8%8Egithub%E5%8F%8B%E5%A5%BD%E4%BA%A4%E6%B5%81/</url>
     <content><![CDATA[<p>##<strong>本文主要介绍window 端Git 与github友好交流</strong></p>
@@ -3507,6 +3430,48 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>git</tag>
         <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sublime text3 安装配置svn 及默认快捷键</title>
+    <url>/2017/08/25/sublime-text3-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEsvn-%E5%8F%8A%E9%BB%98%E8%AE%A4%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
+    <content><![CDATA[<p><strong>sublime text3 安装配置svn 及默认快捷键：</strong> </p>
+<a id="more"></a>
+
+<ul>
+<li><strong>省去安装st3 过程….</strong></li>
+</ul>
+<blockquote>
+<ol>
+<li>ctrl+shift+P 调出控制台  然后输入 install package  /  输入install 选择  install package</li>
+<li>输入 svn 选择  TortoiseSVN   选择确定安装。</li>
+<li>等待安装  （左下角有进度表示）。—–&gt;安装成功  插件包里会有svn插件  存在</li>
+<li>安装完成后 会有 提示首页 上面会有 配置 demo</li>
+<li>按照提示操作 </li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>如果你的TortoiseSVN安装时 不是 默认安装地址，需要配置 安装路径</strong></li>
+</ul>
+<blockquote>
+<p>“Preferences-&gt;Package Settings-&gt;TortoiseSVN-&gt;Settings - User”  （首选项–&gt;配置—-&gt;TortoiseSVN–&gt;Settings - User）</p>
+</blockquote>
+<ul>
+<li><strong>修改默认路径。</strong></li>
+</ul>
+<blockquote>
+<p>   {<br>    // Auto close update dialog when no errors, conflicts and merges<br>    “autoCloseUpdateDialog”: false,<br>    // Auto close commit dialog when no errors, conflicts and merges<br>    “autoCloseCommitDialog”: true,<br>    “tortoiseproc_path”: “D:\TortoiseSVN\bin\TortoiseProc.exe”   //你自己的路径<br>    }</p>
+</blockquote>
+<ul>
+<li><strong>默认快捷键[^hello]: hi</strong></li>
+</ul>
+<blockquote>
+<p>[<br>{ “keys”: [“alt+u”], “command”: “svn_update” }<br>,{ “keys”: [“alt+c”], “command”: “svn_commit” }<br>,{ “keys”: [“alt+r”], “command”: “svn_revert” }<br>]</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>svn</tag>
+        <tag>sublime text3</tag>
       </tags>
   </entry>
   <entry>
@@ -3541,87 +3506,38 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>实现在Safari一键复制</title>
-    <url>/2018/10/27/%E5%AE%9E%E7%8E%B0%E5%9C%A8Safari%E4%B8%80%E9%94%AE%E5%A4%8D%E5%88%B6/</url>
-    <content><![CDATA[<p><strong>实现在Safari一键复制</strong></p>
+    <title>发布Laravel扩展包larapay</title>
+    <url>/2018/12/04/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85larapay/</url>
+    <content><![CDATA[<p><strong>发布Laravel扩展封装支付包larapay</strong> </p>
 <a id="more"></a>
-
-<p>参考文档 <a href="https://github.com/zenorocha/clipboard.js" target="_blank">[ clipboard.js ]</a></p>
+<p>一、编写扩展包</p>
 <blockquote>
-<p>传统复制code</p>
+<p>mkdir -p packages/shunhua/larapay</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var Url2&#x3D;document.getElementById(&quot;copy-text&quot;);</span><br><span class="line">Url2.select(); &#x2F;&#x2F; 选择对象</span><br><span class="line">document.execCommand(&quot;Copy&quot;); &#x2F;&#x2F; 执行浏览器复制命令</span><br><span class="line">Message.success(&#39;复制成功&#39;);</span><br></pre></td></tr></table></figure>
-<p>这种复制方式在苹果手机和safari上失效</p>
+<p>进入扩展包目录，初始化 composer 配置</p>
 <blockquote>
-<p>使用 clipboard.js</p>
+<p>composer init</p>
 </blockquote>
-<p>CDN Providers</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">jsDelivr</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;clipboard@2&#x2F;dist&#x2F;clipboard.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">cdnjs</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdnjs.cloudflare.com&#x2F;ajax&#x2F;libs&#x2F;clipboard.js&#x2F;2.0.0&#x2F;clipboard.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<p>执行之后，项目下生成一个 composer.json 文件：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;name&quot;: &quot;shunhua&#x2F;larapay&quot;,</span><br><span class="line">    &quot;description&quot;: &quot;Alipay,Unicompay&quot;,</span><br><span class="line">    &quot;keywords&quot;: [&quot;Alipay&quot;, &quot;Unicompay&quot;],</span><br><span class="line">    &quot;license&quot;: &quot;MIT&quot;,</span><br><span class="line">    &quot;authors&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;Bsh&quot;,</span><br><span class="line">            &quot;email&quot;: &quot;2399315737@qq.com&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    &quot;require&quot;: &#123;</span><br><span class="line">        &quot;php&quot;: &quot;&gt;&#x3D;5.6.4&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;autoload&quot;: &#123;</span><br><span class="line">        &quot;psr-4&quot;: &#123;</span><br><span class="line">            &quot;Shunhua\\Larapay\\&quot;: &quot;src&#x2F;&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>包目录如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">shunhua&#x2F;larapay</span><br><span class="line">├── src  #存放扩展包所有的逻辑代码</span><br><span class="line">├── doc # 存放文档</span><br><span class="line">├── README.md</span><br><span class="line">├── composer.json</span><br></pre></td></tr></table></figure>
 
-<p>html code</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;button class&#x3D;&quot;fuzhi&quot; data-clipboard-demo data-clipboard-action&#x3D;&quot;copy&quot; data-clipboard-text&#x3D;&quot;&#123;&#123;$qr_code&#125;&#125;&quot;  onclick&#x3D;&quot;copyContent();&quot;&gt; 点击复制 &lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
-
-<p>js code</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var clipboard &#x3D; new ClipboardJS(&#39;.fuzhi&#39;);</span><br><span class="line">clipboard.on(&#39;success&#39;, function(e) &#123;</span><br><span class="line">    e.clearSelection();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <tags>
-        <tag>Safari</tag>
-        <tag>Copy</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>对接银联支付开发文档</title>
-    <url>/2017/12/25/%E5%AF%B9%E6%8E%A5%E9%93%B6%E8%81%94%E6%94%AF%E4%BB%98%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/</url>
-    <content><![CDATA[<p><strong>对接银联支付开发文档</strong></p>
-<a id="more"></a>
-
-
+<p>二、扩展包发布</p>
+<ol>
+<li>提交代码到 GitHub<br>首先，需要把扩展包的代码提交到 GitHub 上，记录下 GitHub 版本库的地址，注意是 HTTPS。<br><img src="/assets/blogImg/laravel.png" alt="ico原来的样子"></li>
+<li>把扩展包发布到 Packagist<br>访问 <a href="https://packagist.org/packages/submit" target="_blank">[ Packagist ]</a> 官网，登录后，点击右上角Submit按钮，进入发布向导:<br>此时，将 GitHub 版本库的地址填写至 Repository URL 输入框中，然后点击 Submit 提交按钮，一切顺利，可以看到发布成功</li>
+<li>设置版本信息<br>版本默认是 dev-master，Composer 包的版本号会从 Git 的 tag 中同步过来。<br>.查看本地所有的tag [git tag]<br>.创建一个新的tag[git tag xxx]<br>.查看提交状态[git log –oneline –decorate –graph]</li>
+</ol>
 <blockquote>
-<p>1、证书下载、导出及上传流程</p>
+<p>git tag v0.9<br>git push origin –tags<br>git push origin</p>
 </blockquote>
-<ul>
-<li>在申请完成银联入网后，邮件会收到[商户入网参数信息通知(请注意保密)标识的一封邮件]</li>
-<li>商户服务网站<a href="https://merchant.unionpay.com/" target="_blank">[ 商户服务网站 ]</a></li>
-<li>参考邮件里面的用户名、初始密码[111111] 进行登录商户</li>
-<li>证书下载[IE浏览器]</li>
-<li>cfca下载证书网站<a href="http://cs.cfca.com.cn/" target="_blank">[ cfca ]</a></li>
-<li>下载证书需要邮件里面的 证书参考号、证书授权码</li>
-<li>然后通过邮件附件中的(证书下载、导出及上传流程.docx)文档操作流程</li>
-<li>导出证书需要选择保存位置 证书名称无限制</li>
-</ul>
-<blockquote>
-<p>2、开发包下载及对接</p>
-</blockquote>
-<p>下载：<a href="https://open.unionpay.com/ajweb/help/file" target="_blank">[ 开发包地址 ]</a><br>下载后可以看到开发demo  以下例子version=5.1版本[b2c网关支付=000201]</p>
-<p>───────────<br>示例工程目录结构<br>───────────</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">upacp_demo_b2c</span><br><span class="line">  │</span><br><span class="line">  ├assets ┈┈┈┈┈┈┈┈┈相关资源目录</span><br><span class="line">  │  │  </span><br><span class="line">  │  ├windows开启openssl所需dll文件┈┈┈┈┈windows环境php开启openssl功能所需dll文件</span><br><span class="line">  │  │</span><br><span class="line">  │  ├机构接入需做改动┈┈┈┈┈┈┈┈┈收单机构接入需要做的改动</span><br><span class="line">  │  │      </span><br><span class="line">  │  ├测试环境证书</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├acp_test_enc.cer┈┈┈┈┈┈┈┈┈ 【重要】测试环境敏感信息加密证书（所有商户固定使用同一个） </span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├acp_test_sign.pfx ┈┈┈┈┈┈┈┈┈ 【重要】 测试环境签名私钥证书（所有商户固定使用同一个） </span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├acp_test_root.cer ┈┈┈┈┈┈┈┈┈ 【重要】 测试环境验签公钥证书根证书  （所有商户固定使用同一个） </span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  └acp_test_middle.cer ┈┈┈┈┈┈┈┈┈【重要】 测试环境验签公钥证书中级证书  （所有商户固定使用同一个）  </span><br><span class="line">  │  │  </span><br><span class="line">  │  ├生产环境证书</span><br><span class="line">  │  │  │</span><br><span class="line">  │  │  ├acp_prod_enc.cer┈┈┈┈┈┈┈┈┈【重要】 生产环境敏感信息加密证书（所有商户固定使用同一个）</span><br><span class="line">  │  │  │</span><br><span class="line">  │  │  ├acp_prod_root.cer ┈┈┈┈┈┈┈┈┈【重要】 生产环境验签公钥根证书  （所有商户固定使用同一个）  </span><br><span class="line">  │  │  │</span><br><span class="line">  │  │  └acp_prod_middle.cer ┈┈┈┈┈┈┈┈┈【重要】 生产环境验签公钥中级证书  （所有商户固定使用同一个）  </span><br><span class="line">  │  │  </span><br><span class="line">  │  ├生产环境配置文件</span><br><span class="line">  │  │  │</span><br><span class="line">  │  │  ├acp_sdk.ini.密钥 ┈┈┈┈┈┈┈┈┈ 【重要】 生产环境配置文件样例（密钥方式签名）（使用方式请看文件里的说明）</span><br><span class="line">  │  │  │</span><br><span class="line">  │  │  └acp_sdk.ini.证书 ┈┈┈┈┈┈┈┈┈ 【重要】 生产环境配置文件样例（证书方式签名）（使用方式请看文件里的说明）</span><br><span class="line">  │  │ </span><br><span class="line">  │  ├测试环境配置文件</span><br><span class="line">  │  │  │</span><br><span class="line">  │  │  ├acp_sdk.ini.密钥 ┈┈┈┈┈┈┈┈┈ 【重要】 测试环境配置文件样例（密钥方式签名）（使用方式请看文件里的说明）</span><br><span class="line">  │  │  │</span><br><span class="line">  │  │  └acp_sdk.ini.证书 ┈┈┈┈┈┈┈┈┈ 【重要】 测试环境配置文件样例（证书方式签名）（使用方式请看文件里的说明）</span><br><span class="line">  │  │ </span><br><span class="line">  │  └对账文件样例 </span><br><span class="line">  │     │</span><br><span class="line">  │     └802310048993424_20150905.zip┈┈┈┈┈┈┈┈┈提供的对账文件样例（如果需要可以参考）</span><br><span class="line">  │  </span><br><span class="line">  ├demo ┈┈┈┈┈┈┈┈┈ 示例代码</span><br><span class="line">  │  │  </span><br><span class="line">  │  ├api_01_gateway ┈┈┈┈┈┈┈┈┈ 网关产品</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├BackReceive.php┈┈┈┈┈后台通知处理示例类 </span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├FrontReceive.php┈┈┈┈┈前台通知处理示例类   </span><br><span class="line">  │  │  │    </span><br><span class="line">  │  │  ├EncryptCerUpdateQuery.php ┈┈┈┈┈加密证书更新示例类（后台）         </span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_2_FrontConsume.php┈┈┈┈┈前台跳转银联支付页面示例类（前台）</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_3_ConsumeUndo.php┈┈┈┈┈消费撤销交易示例类 （后台）</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_4_Refund.php┈┈┈┈┈退货交易示例类 （后台）</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_5_Query.php┈┈┈┈┈交易状态查询示例类 （后台）</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_6_FileTransfer.php┈┈┈┈┈对账文件下载示例类 （后台）  </span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_7_1_FrontPreauth.php┈┈┈┈┈前台跳转银联预授权页面示例类（前台）</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_7_2_PreauthUndo.php┈┈┈┈┈预授权撤销交易示例类 （后台）</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_7_3_PreauthFinish.php┈┈┈┈┈预授权完成交易示例类 （后台）</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  └Form_6_7_4_PreauthFinishUndo.php┈┈┈┈┈预授权完成撤销交易示例类 （后台）</span><br><span class="line">  │  │   </span><br><span class="line">  │  ├getdir.php ┈┈┈┈┈获取服务器绝对路径</span><br><span class="line">  │  │   </span><br><span class="line">  │  ├multiCertDemo.php ┈┈┈┈┈多证书demo（证书方式）</span><br><span class="line">  │  │   </span><br><span class="line">  │  └multiKeyDemo.php ┈┈┈┈┈多证书demo(秘钥方式）</span><br><span class="line">  │  </span><br><span class="line">  ├sdk┈┈┈┈┈┈sdk，除了acp_service外的类为内部使用，不用看，acp_sdk.ini为配置文件</span><br><span class="line">  │  │</span><br><span class="line">  │  ├acp_sdk.ini ┈┈┈┈ 配置文件，默认取了“assets&#x2F;测试环境配置文件”文件夹下的证书方式签名配置文件。</span><br><span class="line">  │  │</span><br><span class="line">  │  └acp_service.php ┈┈┈┈┈┈ 全渠道 SDK API类</span><br><span class="line">  │</span><br><span class="line">  ├pages ┈┈┈┈┈┈┈┈┈ demo演示相关页面，内容不重要，未列举</span><br><span class="line">  │</span><br><span class="line">  ├static ┈┈┈┈ demo演示相关js和css，内容不重要，未列举</span><br><span class="line">  │</span><br><span class="line">  └index_01_gateway.php ┈┈┈┈demo演示入口页面</span><br><span class="line"></span><br><span class="line">───────────</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>测试环境下</li>
-</ul>
-<p>注:每个开发包里面都会有测试正式、生产环境证书;<br>在测试环境下 我们首先配置sdk/aco_sdk.ini 配置证书及前后台地址,运行demo  然后若是可以跳转到支付页面，说明正常。</p>
-<ul>
-<li>生产环境下</li>
-</ul>
-<p>注:每个开发包里面都会有测试正式、生产环境证书;<br>在生产环境下 我们首先配置sdk/aco_sdk.ini 配置证书及前后台地址,对接银联  然后若是可以跳转到支付页面，说明正常。</p>
-<ul>
-<li>注意<br>在对接支付需要注意支付金额为分 无小数点<br>在对接过程最好按照demo里的把log日志配置完成 方便技术debug<br>在Linux 环境下 证书需要配置绝对路径且证书路径有可读权限<br>在[IE]浏览器会下载一个商户专属证书[公钥、私钥]公钥上传到商户并开启，私钥在程序里面使用<br>在程序里面共有4个证书acp_prod_enc.cer[加密证书]、acp_prod_root.cer[根证书]、acp_prod_middle.cer[中级证书]、acp_prod_sign.pfx[cfca私钥证书]<br>若生产环境下出现防钓鱼，请联系银联收单机构进行去掉或者加上自己的域名地址或IP地址<br>在生产环境下若有对接支付问题 可联系银联QQ[800033969] 固话[021-38929999转2049]</li>
-</ul>
 <hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it !</p>
-</blockquote>
+<p>使用 <a href="https://github.com/shunhua/larapay" target="_blank">[ shunhua/larapay ]</a>包</p>
 ]]></content>
       <tags>
-        <tag>thinkphp</tag>
-        <tag>银联支付</tag>
-        <tag>b2c网关</tag>
+        <tag>laravel</tag>
+        <tag>composer - 扩展包</tag>
       </tags>
   </entry>
   <entry>
@@ -3667,6 +3583,38 @@ class QuotesSpider(scrapy.Spider):
         <tag>php</tag>
         <tag>golang</tag>
         <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>实现在Safari一键复制</title>
+    <url>/2018/10/27/%E5%AE%9E%E7%8E%B0%E5%9C%A8Safari%E4%B8%80%E9%94%AE%E5%A4%8D%E5%88%B6/</url>
+    <content><![CDATA[<p><strong>实现在Safari一键复制</strong></p>
+<a id="more"></a>
+
+<p>参考文档 <a href="https://github.com/zenorocha/clipboard.js" target="_blank">[ clipboard.js ]</a></p>
+<blockquote>
+<p>传统复制code</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var Url2&#x3D;document.getElementById(&quot;copy-text&quot;);</span><br><span class="line">Url2.select(); &#x2F;&#x2F; 选择对象</span><br><span class="line">document.execCommand(&quot;Copy&quot;); &#x2F;&#x2F; 执行浏览器复制命令</span><br><span class="line">Message.success(&#39;复制成功&#39;);</span><br></pre></td></tr></table></figure>
+<p>这种复制方式在苹果手机和safari上失效</p>
+<blockquote>
+<p>使用 clipboard.js</p>
+</blockquote>
+<p>CDN Providers</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">jsDelivr</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;clipboard@2&#x2F;dist&#x2F;clipboard.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">cdnjs</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdnjs.cloudflare.com&#x2F;ajax&#x2F;libs&#x2F;clipboard.js&#x2F;2.0.0&#x2F;clipboard.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>html code</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;button class&#x3D;&quot;fuzhi&quot; data-clipboard-demo data-clipboard-action&#x3D;&quot;copy&quot; data-clipboard-text&#x3D;&quot;&#123;&#123;$qr_code&#125;&#125;&quot;  onclick&#x3D;&quot;copyContent();&quot;&gt; 点击复制 &lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
+
+<p>js code</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var clipboard &#x3D; new ClipboardJS(&#39;.fuzhi&#39;);</span><br><span class="line">clipboard.on(&#39;success&#39;, function(e) &#123;</span><br><span class="line">    e.clearSelection();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <tags>
+        <tag>Safari</tag>
+        <tag>Copy</tag>
       </tags>
   </entry>
   <entry>
@@ -3717,47 +3665,6 @@ class QuotesSpider(scrapy.Spider):
         <tag>Vue3</tag>
         <tag>Vite</tag>
         <tag>TypeScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>有赞vantUI step1</title>
-    <url>/2018/04/02/%E6%9C%89%E8%B5%9EvantUI-step1/</url>
-    <content><![CDATA[<p><strong>有赞vantUI学习 step1</strong></p>
-<a id="more"></a>
-<p>1、安装淘宝镜像 </p>
-<blockquote>
-<p>npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></p>
-</blockquote>
-<p>2、安装vue-cli </p>
-<blockquote>
-<p>cnpm install –global vue-cli</p>
-</blockquote>
-<p>3、使用vue-cli安装项目[bsh] </p>
-<blockquote>
-<p>vue init youzan/vue-cli-template-vant bsh</p>
-</blockquote>
-<p>4、安装vantUI</p>
-<blockquote>
-<p>cnpm i vant -S</p>
-</blockquote>
-<p>5、引入组件 推荐使用安装 babel-plugin-import 插件</p>
-<blockquote>
-<p>npm i babel-plugin-import -D</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 在 .babelrc 或 babel-loader 中添加插件配置</span><br><span class="line">&#123;</span><br><span class="line">  &quot;plugins&quot;: [</span><br><span class="line">    [&quot;import&quot;, &#123; &quot;libraryName&quot;: &quot;vant&quot;, &quot;style&quot;: true &#125;]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>6、install dependencies 安装依赖</p>
-<blockquote>
-<p>npm install</p>
-</blockquote>
-<p>7、# serve with hot reload at localhost:8080</p>
-<blockquote>
-<p>npm run dev</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>vue</tag>
-        <tag>vant</tag>
       </tags>
   </entry>
   <entry>
@@ -3868,6 +3775,99 @@ class QuotesSpider(scrapy.Spider):
         <tag>php</tag>
         <tag>laravel5.x</tag>
         <tag>公众号</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>对接银联支付开发文档</title>
+    <url>/2017/12/25/%E5%AF%B9%E6%8E%A5%E9%93%B6%E8%81%94%E6%94%AF%E4%BB%98%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/</url>
+    <content><![CDATA[<p><strong>对接银联支付开发文档</strong></p>
+<a id="more"></a>
+
+
+<blockquote>
+<p>1、证书下载、导出及上传流程</p>
+</blockquote>
+<ul>
+<li>在申请完成银联入网后，邮件会收到[商户入网参数信息通知(请注意保密)标识的一封邮件]</li>
+<li>商户服务网站<a href="https://merchant.unionpay.com/" target="_blank">[ 商户服务网站 ]</a></li>
+<li>参考邮件里面的用户名、初始密码[111111] 进行登录商户</li>
+<li>证书下载[IE浏览器]</li>
+<li>cfca下载证书网站<a href="http://cs.cfca.com.cn/" target="_blank">[ cfca ]</a></li>
+<li>下载证书需要邮件里面的 证书参考号、证书授权码</li>
+<li>然后通过邮件附件中的(证书下载、导出及上传流程.docx)文档操作流程</li>
+<li>导出证书需要选择保存位置 证书名称无限制</li>
+</ul>
+<blockquote>
+<p>2、开发包下载及对接</p>
+</blockquote>
+<p>下载：<a href="https://open.unionpay.com/ajweb/help/file" target="_blank">[ 开发包地址 ]</a><br>下载后可以看到开发demo  以下例子version=5.1版本[b2c网关支付=000201]</p>
+<p>───────────<br>示例工程目录结构<br>───────────</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">upacp_demo_b2c</span><br><span class="line">  │</span><br><span class="line">  ├assets ┈┈┈┈┈┈┈┈┈相关资源目录</span><br><span class="line">  │  │  </span><br><span class="line">  │  ├windows开启openssl所需dll文件┈┈┈┈┈windows环境php开启openssl功能所需dll文件</span><br><span class="line">  │  │</span><br><span class="line">  │  ├机构接入需做改动┈┈┈┈┈┈┈┈┈收单机构接入需要做的改动</span><br><span class="line">  │  │      </span><br><span class="line">  │  ├测试环境证书</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├acp_test_enc.cer┈┈┈┈┈┈┈┈┈ 【重要】测试环境敏感信息加密证书（所有商户固定使用同一个） </span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├acp_test_sign.pfx ┈┈┈┈┈┈┈┈┈ 【重要】 测试环境签名私钥证书（所有商户固定使用同一个） </span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├acp_test_root.cer ┈┈┈┈┈┈┈┈┈ 【重要】 测试环境验签公钥证书根证书  （所有商户固定使用同一个） </span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  └acp_test_middle.cer ┈┈┈┈┈┈┈┈┈【重要】 测试环境验签公钥证书中级证书  （所有商户固定使用同一个）  </span><br><span class="line">  │  │  </span><br><span class="line">  │  ├生产环境证书</span><br><span class="line">  │  │  │</span><br><span class="line">  │  │  ├acp_prod_enc.cer┈┈┈┈┈┈┈┈┈【重要】 生产环境敏感信息加密证书（所有商户固定使用同一个）</span><br><span class="line">  │  │  │</span><br><span class="line">  │  │  ├acp_prod_root.cer ┈┈┈┈┈┈┈┈┈【重要】 生产环境验签公钥根证书  （所有商户固定使用同一个）  </span><br><span class="line">  │  │  │</span><br><span class="line">  │  │  └acp_prod_middle.cer ┈┈┈┈┈┈┈┈┈【重要】 生产环境验签公钥中级证书  （所有商户固定使用同一个）  </span><br><span class="line">  │  │  </span><br><span class="line">  │  ├生产环境配置文件</span><br><span class="line">  │  │  │</span><br><span class="line">  │  │  ├acp_sdk.ini.密钥 ┈┈┈┈┈┈┈┈┈ 【重要】 生产环境配置文件样例（密钥方式签名）（使用方式请看文件里的说明）</span><br><span class="line">  │  │  │</span><br><span class="line">  │  │  └acp_sdk.ini.证书 ┈┈┈┈┈┈┈┈┈ 【重要】 生产环境配置文件样例（证书方式签名）（使用方式请看文件里的说明）</span><br><span class="line">  │  │ </span><br><span class="line">  │  ├测试环境配置文件</span><br><span class="line">  │  │  │</span><br><span class="line">  │  │  ├acp_sdk.ini.密钥 ┈┈┈┈┈┈┈┈┈ 【重要】 测试环境配置文件样例（密钥方式签名）（使用方式请看文件里的说明）</span><br><span class="line">  │  │  │</span><br><span class="line">  │  │  └acp_sdk.ini.证书 ┈┈┈┈┈┈┈┈┈ 【重要】 测试环境配置文件样例（证书方式签名）（使用方式请看文件里的说明）</span><br><span class="line">  │  │ </span><br><span class="line">  │  └对账文件样例 </span><br><span class="line">  │     │</span><br><span class="line">  │     └802310048993424_20150905.zip┈┈┈┈┈┈┈┈┈提供的对账文件样例（如果需要可以参考）</span><br><span class="line">  │  </span><br><span class="line">  ├demo ┈┈┈┈┈┈┈┈┈ 示例代码</span><br><span class="line">  │  │  </span><br><span class="line">  │  ├api_01_gateway ┈┈┈┈┈┈┈┈┈ 网关产品</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├BackReceive.php┈┈┈┈┈后台通知处理示例类 </span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├FrontReceive.php┈┈┈┈┈前台通知处理示例类   </span><br><span class="line">  │  │  │    </span><br><span class="line">  │  │  ├EncryptCerUpdateQuery.php ┈┈┈┈┈加密证书更新示例类（后台）         </span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_2_FrontConsume.php┈┈┈┈┈前台跳转银联支付页面示例类（前台）</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_3_ConsumeUndo.php┈┈┈┈┈消费撤销交易示例类 （后台）</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_4_Refund.php┈┈┈┈┈退货交易示例类 （后台）</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_5_Query.php┈┈┈┈┈交易状态查询示例类 （后台）</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_6_FileTransfer.php┈┈┈┈┈对账文件下载示例类 （后台）  </span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_7_1_FrontPreauth.php┈┈┈┈┈前台跳转银联预授权页面示例类（前台）</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_7_2_PreauthUndo.php┈┈┈┈┈预授权撤销交易示例类 （后台）</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_7_3_PreauthFinish.php┈┈┈┈┈预授权完成交易示例类 （后台）</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  └Form_6_7_4_PreauthFinishUndo.php┈┈┈┈┈预授权完成撤销交易示例类 （后台）</span><br><span class="line">  │  │   </span><br><span class="line">  │  ├getdir.php ┈┈┈┈┈获取服务器绝对路径</span><br><span class="line">  │  │   </span><br><span class="line">  │  ├multiCertDemo.php ┈┈┈┈┈多证书demo（证书方式）</span><br><span class="line">  │  │   </span><br><span class="line">  │  └multiKeyDemo.php ┈┈┈┈┈多证书demo(秘钥方式）</span><br><span class="line">  │  </span><br><span class="line">  ├sdk┈┈┈┈┈┈sdk，除了acp_service外的类为内部使用，不用看，acp_sdk.ini为配置文件</span><br><span class="line">  │  │</span><br><span class="line">  │  ├acp_sdk.ini ┈┈┈┈ 配置文件，默认取了“assets&#x2F;测试环境配置文件”文件夹下的证书方式签名配置文件。</span><br><span class="line">  │  │</span><br><span class="line">  │  └acp_service.php ┈┈┈┈┈┈ 全渠道 SDK API类</span><br><span class="line">  │</span><br><span class="line">  ├pages ┈┈┈┈┈┈┈┈┈ demo演示相关页面，内容不重要，未列举</span><br><span class="line">  │</span><br><span class="line">  ├static ┈┈┈┈ demo演示相关js和css，内容不重要，未列举</span><br><span class="line">  │</span><br><span class="line">  └index_01_gateway.php ┈┈┈┈demo演示入口页面</span><br><span class="line"></span><br><span class="line">───────────</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>测试环境下</li>
+</ul>
+<p>注:每个开发包里面都会有测试正式、生产环境证书;<br>在测试环境下 我们首先配置sdk/aco_sdk.ini 配置证书及前后台地址,运行demo  然后若是可以跳转到支付页面，说明正常。</p>
+<ul>
+<li>生产环境下</li>
+</ul>
+<p>注:每个开发包里面都会有测试正式、生产环境证书;<br>在生产环境下 我们首先配置sdk/aco_sdk.ini 配置证书及前后台地址,对接银联  然后若是可以跳转到支付页面，说明正常。</p>
+<ul>
+<li>注意<br>在对接支付需要注意支付金额为分 无小数点<br>在对接过程最好按照demo里的把log日志配置完成 方便技术debug<br>在Linux 环境下 证书需要配置绝对路径且证书路径有可读权限<br>在[IE]浏览器会下载一个商户专属证书[公钥、私钥]公钥上传到商户并开启，私钥在程序里面使用<br>在程序里面共有4个证书acp_prod_enc.cer[加密证书]、acp_prod_root.cer[根证书]、acp_prod_middle.cer[中级证书]、acp_prod_sign.pfx[cfca私钥证书]<br>若生产环境下出现防钓鱼，请联系银联收单机构进行去掉或者加上自己的域名地址或IP地址<br>在生产环境下若有对接支付问题 可联系银联QQ[800033969] 固话[021-38929999转2049]</li>
+</ul>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it !</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>thinkphp</tag>
+        <tag>银联支付</tag>
+        <tag>b2c网关</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>有赞vantUI step1</title>
+    <url>/2018/04/02/%E6%9C%89%E8%B5%9EvantUI-step1/</url>
+    <content><![CDATA[<p><strong>有赞vantUI学习 step1</strong></p>
+<a id="more"></a>
+<p>1、安装淘宝镜像 </p>
+<blockquote>
+<p>npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></p>
+</blockquote>
+<p>2、安装vue-cli </p>
+<blockquote>
+<p>cnpm install –global vue-cli</p>
+</blockquote>
+<p>3、使用vue-cli安装项目[bsh] </p>
+<blockquote>
+<p>vue init youzan/vue-cli-template-vant bsh</p>
+</blockquote>
+<p>4、安装vantUI</p>
+<blockquote>
+<p>cnpm i vant -S</p>
+</blockquote>
+<p>5、引入组件 推荐使用安装 babel-plugin-import 插件</p>
+<blockquote>
+<p>npm i babel-plugin-import -D</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 在 .babelrc 或 babel-loader 中添加插件配置</span><br><span class="line">&#123;</span><br><span class="line">  &quot;plugins&quot;: [</span><br><span class="line">    [&quot;import&quot;, &#123; &quot;libraryName&quot;: &quot;vant&quot;, &quot;style&quot;: true &#125;]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>6、install dependencies 安装依赖</p>
+<blockquote>
+<p>npm install</p>
+</blockquote>
+<p>7、# serve with hot reload at localhost:8080</p>
+<blockquote>
+<p>npm run dev</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>vue</tag>
+        <tag>vant</tag>
       </tags>
   </entry>
   <entry>
