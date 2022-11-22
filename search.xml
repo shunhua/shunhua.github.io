@@ -125,7 +125,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#x40;&#x71;&#113;&#46;&#99;&#111;&#x6d;">&#x78;&#x40;&#x71;&#113;&#46;&#99;&#111;&#x6d;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#x40;&#x71;&#113;&#46;&#x63;&#x6f;&#x6d;">&#x78;&#x40;&#x71;&#113;&#46;&#x63;&#x6f;&#x6d;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -136,7 +136,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#x40;&#113;&#113;&#46;&#x63;&#111;&#109;">&#x62;&#x40;&#113;&#113;&#46;&#x63;&#111;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#98;&#64;&#113;&#113;&#46;&#99;&#111;&#x6d;">&#98;&#64;&#113;&#113;&#46;&#99;&#111;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -168,39 +168,6 @@
       <tags>
         <tag>CentOS 7</tag>
         <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CentOS 7 安装 Nginx 1.11.x</title>
-    <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/</url>
-    <content><![CDATA[<p><strong>Centos下安装Nginx</strong> </p>
-<a id="more"></a>
-
-<p>一、准备工作 安装必备工具</p>
-<blockquote>
-<p>yum install -y gcc gcc-c++ autoconf automake<br>yum install -y zlib zlib-devel openssl openssl-devel pcre-devel</p>
-</blockquote>
-<p>不安装这些依赖库，后面编译的时候会报错，当然你的系统已经有这些包可以跳过。<br>pcre：用来作地址重写的功能。<br>zlib：nginx 的gzip模块,传输数据打包，省流量（但消耗资源）。<br>openssl：提供ssl加密协议。</p>
-<p>二、添加nginx用户</p>
-<blockquote>
-<p>/usr/sbin/groupadd -f www<br>/usr/sbin/useradd -g www www</p>
-</blockquote>
-<p>三、nginx文件准备及编译</p>
-<blockquote>
-<p>wget <a href="http://nginx.org/download/nginx-1.11.4.tar.gz">http://nginx.org/download/nginx-1.11.4.tar.gz</a><br>tar -zxvf nginx-1.11.4.tar.gz<br>cd nginx-1.11.4/<br>./configure –user=www –group=www<br>make &amp;&amp; make install</p>
-</blockquote>
-<p>四、开始firewall端口服务</p>
-<blockquote>
-<p>firewall-cmd  –permanent –zone=public –add-service=http<br>firewall-cmd  –reload</p>
-</blockquote>
-<p>常用命令</p>
-<blockquote>
-<p>/usr/local/nginx/sbin/nginx -s reload<br>/usr/local/nginx/sbin/nginx -s stop<br>/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Centos</tag>
-        <tag>Nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -248,6 +215,39 @@
       <tags>
         <tag>Centos</tag>
         <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS 7 安装 Nginx 1.11.x</title>
+    <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/</url>
+    <content><![CDATA[<p><strong>Centos下安装Nginx</strong> </p>
+<a id="more"></a>
+
+<p>一、准备工作 安装必备工具</p>
+<blockquote>
+<p>yum install -y gcc gcc-c++ autoconf automake<br>yum install -y zlib zlib-devel openssl openssl-devel pcre-devel</p>
+</blockquote>
+<p>不安装这些依赖库，后面编译的时候会报错，当然你的系统已经有这些包可以跳过。<br>pcre：用来作地址重写的功能。<br>zlib：nginx 的gzip模块,传输数据打包，省流量（但消耗资源）。<br>openssl：提供ssl加密协议。</p>
+<p>二、添加nginx用户</p>
+<blockquote>
+<p>/usr/sbin/groupadd -f www<br>/usr/sbin/useradd -g www www</p>
+</blockquote>
+<p>三、nginx文件准备及编译</p>
+<blockquote>
+<p>wget <a href="http://nginx.org/download/nginx-1.11.4.tar.gz">http://nginx.org/download/nginx-1.11.4.tar.gz</a><br>tar -zxvf nginx-1.11.4.tar.gz<br>cd nginx-1.11.4/<br>./configure –user=www –group=www<br>make &amp;&amp; make install</p>
+</blockquote>
+<p>四、开始firewall端口服务</p>
+<blockquote>
+<p>firewall-cmd  –permanent –zone=public –add-service=http<br>firewall-cmd  –reload</p>
+</blockquote>
+<p>常用命令</p>
+<blockquote>
+<p>/usr/local/nginx/sbin/nginx -s reload<br>/usr/local/nginx/sbin/nginx -s stop<br>/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Centos</tag>
+        <tag>Nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -401,26 +401,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Centos下两种守护进程的配置</title>
-    <url>/2018/03/21/Centos%E4%B8%8B%E4%B8%A4%E7%A7%8D%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E7%9A%84%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<a id="more"></a>
-
-
-<blockquote>
-<p>一、php artisan</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-xx]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D;php &#x2F;home&#x2F;wwwroot&#x2F;www.xxx.com&#x2F;artisan queue:work --tries&#x3D;3</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;4</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xxx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>二、执行node js </p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-node]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D; node &#x2F;home&#x2F;socket&#x2F;stocket.js</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;1</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>Centos</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Centos下安装PHP7</title>
     <url>/2018/03/21/Centos%E4%B8%8B%E5%AE%89%E8%A3%85PHP7/</url>
     <content><![CDATA[<a id="more"></a>
@@ -567,6 +547,26 @@
 ]]></content>
       <tags>
         <tag>Etcd</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Centos下两种守护进程的配置</title>
+    <url>/2018/03/21/Centos%E4%B8%8B%E4%B8%A4%E7%A7%8D%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E7%9A%84%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<a id="more"></a>
+
+
+<blockquote>
+<p>一、php artisan</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-xx]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D;php &#x2F;home&#x2F;wwwroot&#x2F;www.xxx.com&#x2F;artisan queue:work --tries&#x3D;3</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;4</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xxx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>二、执行node js </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-node]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D; node &#x2F;home&#x2F;socket&#x2F;stocket.js</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;1</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Centos</tag>
       </tags>
   </entry>
   <entry>
@@ -1085,6 +1085,25 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Linux安装配置守护进程</title>
+    <url>/2018/03/09/Linux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> centos 下安装Supervisor</p>
+</blockquote>
+<p>yum install supervisor</p>
+<blockquote>
+<p> 配置Supervisor</p>
+</blockquote>
+<p>cd /etc/supervisord.d/<br>vim laravel-worker.ini<br>systemctl start supervisord</p>
+]]></content>
+      <tags>
+        <tag>linux</tag>
+        <tag>Supervisor</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux下安装node.js</title>
     <url>/2018/03/21/Linux%E4%B8%8B%E5%AE%89%E8%A3%85node-js/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1136,25 +1155,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       <tags>
         <tag>Linux</tag>
         <tag>node.js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux安装配置守护进程</title>
-    <url>/2018/03/09/Linux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> centos 下安装Supervisor</p>
-</blockquote>
-<p>yum install supervisor</p>
-<blockquote>
-<p> 配置Supervisor</p>
-</blockquote>
-<p>cd /etc/supervisord.d/<br>vim laravel-worker.ini<br>systemctl start supervisord</p>
-]]></content>
-      <tags>
-        <tag>linux</tag>
-        <tag>Supervisor</tag>
       </tags>
   </entry>
   <entry>
@@ -1334,6 +1334,22 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Nginx 反向代理</title>
+    <url>/2019/09/19/Nginx-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><a href="https://baishunhua.com/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/" target="_blank">安装nginx</a></p>
+<blockquote>
+<p>高防服务器上 nginx.conf 配置模板</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server_name  www.xxx.com;</span><br><span class="line">...</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">    proxy_pass http:&#x2F;&#x2F;ip[原服务器ip];</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>nginx</tag>
+        <tag>反向代理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MySQL启动错误</title>
     <url>/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1364,22 +1380,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       <tags>
         <tag>lnmp</tag>
         <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nginx 反向代理</title>
-    <url>/2019/09/19/Nginx-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><a href="https://baishunhua.com/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/" target="_blank">安装nginx</a></p>
-<blockquote>
-<p>高防服务器上 nginx.conf 配置模板</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server_name  www.xxx.com;</span><br><span class="line">...</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">    proxy_pass http:&#x2F;&#x2F;ip[原服务器ip];</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>nginx</tag>
-        <tag>反向代理</tag>
       </tags>
   </entry>
   <entry>
@@ -2086,6 +2086,23 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>docker + redis 部署一主二从三哨兵</title>
+    <url>/2021/12/06/docker-redis-%E9%83%A8%E7%BD%B2%E4%B8%80%E4%B8%BB%E4%BA%8C%E4%BB%8E%E4%B8%89%E5%93%A8%E5%85%B5/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/redis.png" alt="redis"></p>
+<a id="more"></a>
+
+<p><strong>概述</strong></p>
+<ul>
+<li>在部署redis 的时候，如果redis宕机，缓存将不可用，redis提供了哨兵模式保证redis实现高可用。</li>
+<li>即一台主机两台从机，三台哨兵主机，如果主实例宕机，哨兵将一台从机升级为主机。实现高可用。<br><img src="/assets/blogImg/redis-1.png" alt="redis-1"></li>
+</ul>
+<p>参考文档 ⚔：<br><a href="https://blog.csdn.net/qq_41773902/article/details/105627708" target="_blank">[ 点我 ]</a> | <a href="https://www.jianshu.com/p/319d0980ff89#comments" target="_blank">[ 点我 ]</a> | <a href="https://www.pianshen.com/article/68951456452/" target="_blank">[ 点我 ]</a></p>
+]]></content>
+      <tags>
+        <tag>redis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>centos7下lnmp 添加、删除虚拟主机</title>
     <url>/2017/09/15/centos7%E4%B8%8Blnmp-%E6%B7%BB%E5%8A%A0%E3%80%81%E5%88%A0%E9%99%A4%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2181,23 +2198,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>docker + redis 部署一主二从三哨兵</title>
-    <url>/2021/12/06/docker-redis-%E9%83%A8%E7%BD%B2%E4%B8%80%E4%B8%BB%E4%BA%8C%E4%BB%8E%E4%B8%89%E5%93%A8%E5%85%B5/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/redis.png" alt="redis"></p>
-<a id="more"></a>
-
-<p><strong>概述</strong></p>
-<ul>
-<li>在部署redis 的时候，如果redis宕机，缓存将不可用，redis提供了哨兵模式保证redis实现高可用。</li>
-<li>即一台主机两台从机，三台哨兵主机，如果主实例宕机，哨兵将一台从机升级为主机。实现高可用。<br><img src="/assets/blogImg/redis-1.png" alt="redis-1"></li>
-</ul>
-<p>参考文档 ⚔：<br><a href="https://blog.csdn.net/qq_41773902/article/details/105627708" target="_blank">[ 点我 ]</a> | <a href="https://www.jianshu.com/p/319d0980ff89#comments" target="_blank">[ 点我 ]</a> | <a href="https://www.pianshen.com/article/68951456452/" target="_blank">[ 点我 ]</a></p>
-]]></content>
-      <tags>
-        <tag>redis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>gRPC 的介绍及使用</title>
     <url>/2021/12/07/gRPC-%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/grpc.png" alt="grpc"></p>
@@ -2243,43 +2243,6 @@ class QuotesSpider(scrapy.Spider):
 ]]></content>
       <tags>
         <tag>gRPC</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>gin-vue-admin的安装及使用</title>
-    <url>/2021/10/14/gin-vue-admin%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/diary-5.jpg" alt="gin-vue-admin"></p>
-<a id="more"></a>
-
-<p>官网地址： <a href="https://www.gin-vue-admin.com/" target="_blank">[ gin-vue-admin官网 ]</a><br>gitHub： <a href="https://github.com/flipped-aurora/gin-vue-admin" target="_blank">[ gin-vue-admin ]</a></p>
-<ul>
-<li><p>克隆项目</p>
-<blockquote>
-<p>git clone <a href="mailto:&#103;&#105;&#116;&#x40;&#103;&#x69;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#109;">&#103;&#105;&#116;&#x40;&#103;&#x69;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
-</blockquote>
-</li>
-<li><p>进入项目gin目录</p>
-<blockquote>
-<p>cd gin-vue-admin/server<br>go run main.go</p>
-</blockquote>
-</li>
-<li><p>进入项目vue目录</p>
-<blockquote>
-<p>cd gin-vue-admin/web<br>npm i<br>npm run serve</p>
-</blockquote>
-</li>
-<li><p>打开web网站 开始初始化</p>
-</li>
-<li><p>代码生成器</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>golang</tag>
-        <tag>gin-vue-admin</tag>
-        <tag>vue</tag>
-        <tag>element-ui</tag>
-        <tag>gin</tag>
       </tags>
   </entry>
   <entry>
@@ -2378,6 +2341,43 @@ class QuotesSpider(scrapy.Spider):
 ]]></content>
       <tags>
         <tag>go-zero</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>gin-vue-admin的安装及使用</title>
+    <url>/2021/10/14/gin-vue-admin%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/diary-5.jpg" alt="gin-vue-admin"></p>
+<a id="more"></a>
+
+<p>官网地址： <a href="https://www.gin-vue-admin.com/" target="_blank">[ gin-vue-admin官网 ]</a><br>gitHub： <a href="https://github.com/flipped-aurora/gin-vue-admin" target="_blank">[ gin-vue-admin ]</a></p>
+<ul>
+<li><p>克隆项目</p>
+<blockquote>
+<p>git clone <a href="mailto:&#x67;&#x69;&#116;&#x40;&#103;&#x69;&#116;&#x68;&#x75;&#98;&#x2e;&#99;&#x6f;&#x6d;">&#x67;&#x69;&#116;&#x40;&#103;&#x69;&#116;&#x68;&#x75;&#98;&#x2e;&#99;&#x6f;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
+</blockquote>
+</li>
+<li><p>进入项目gin目录</p>
+<blockquote>
+<p>cd gin-vue-admin/server<br>go run main.go</p>
+</blockquote>
+</li>
+<li><p>进入项目vue目录</p>
+<blockquote>
+<p>cd gin-vue-admin/web<br>npm i<br>npm run serve</p>
+</blockquote>
+</li>
+<li><p>打开web网站 开始初始化</p>
+</li>
+<li><p>代码生成器</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>golang</tag>
+        <tag>gin-vue-admin</tag>
+        <tag>vue</tag>
+        <tag>element-ui</tag>
+        <tag>gin</tag>
       </tags>
   </entry>
   <entry>
@@ -2936,62 +2936,16 @@ class QuotesSpider(scrapy.Spider):
 ]]></content>
   </entry>
   <entry>
-    <title>lnmp集成环境下部署laravel5.x项目</title>
-    <url>/2017/09/21/lnmp%E9%9B%86%E6%88%90%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2laravel5-x%E9%A1%B9%E7%9B%AE/</url>
+    <title>mysql自定义重置数据表ID值</title>
+    <url>/2018/10/30/mysql%E8%87%AA%E5%AE%9A%E4%B9%89%E9%87%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E8%A1%A8ID%E5%80%BC/</url>
     <content><![CDATA[<a id="more"></a>
 
-<p><strong>一、安装环境</strong></p>
 <blockquote>
-<p>默认lnmp环境已经安装好，若没安装请去安装。<br>安装参考文档路径：<a href="https://shunhua.github.io/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E9%9B%86%E6%88%90/" target="_blank">[ linux-centos7-3-lnmp一键安装包集成 ]</a></p>
-</blockquote>
-<p><strong>二、部署laravel项目</strong></p>
-<blockquote>
-<p> 安装好lnmp环境后，通过svn、ftp等把项目上传到服务器。[此文默认解析好域名]</p>
-</blockquote>
-<p>cd 进入项目目录下  composer  install 报错如下：</p>
-<blockquote>
-<p> 缺少 fileinfo 扩展   这个插件需要的</p>
-</blockquote>
-<p><img src="/assets/blogImg/laravel/1.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 安装配置fileinfo 插件</p>
-</blockquote>
-<p>解压tar jxvf 文件名.tar.bz2<br>命令如下:</p>
-<blockquote>
-<p> cd lnmp1.4/src/php-7.0.21/ext/fileinfo/<br> (phpize） /usr/local/php/bin/phpize<br> ./configure --with-php-config=/usr/local/php/bin/php-config<br> make &amp;&amp; make install<br> vi /usr/local/php/etc/php.ini<br> extension = fileinfo.so<br> /etc/init.d/php-fpm reload<br> php -m  </p>
-</blockquote>
-<p>若看到PHP模块中存在fileinfo,说明安装扩展完成</p>
-<blockquote>
-<p> composer install 安装  proc_报错</p>
-</blockquote>
-<p><img src="/assets/blogImg/laravel/2.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 禁用函数，去 php.ini [vi /usr/local/php/etc/php.ini] 把 以proc_ 开头的2个函数 取消禁用</p>
-</blockquote>
-<p><img src="/assets/blogImg/laravel/3.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 伪静态设置，lnmp自带的有laravel.conf [vim /usr/local/nginx/conf/laravel.conf],加到server{}中</p>
-</blockquote>
-<p>因为laravel访问地址是：xxx/public下。所以还需要处理跨目录地址</p>
-<blockquote>
-<p>  fastcgi.conf [vim /usr/local/nginx/conf/fastcgi.conf] 把27行的禁用</p>
-</blockquote>
-<p><img src="/assets/blogImg/laravel/4.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 若还不行，请查看目录权限或搜索其他相关问题;<br>ok,现在可以去访问项目地址了。enjoy IT ！！！</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+<p> alter table 表名 AUTO_INCREMENT=自定义ID;</p>
 </blockquote>
 ]]></content>
       <tags>
-        <tag>lnmp</tag>
-        <tag>centos7.3</tag>
-        <tag>laravel</tag>
+        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -3051,51 +3005,62 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>mysql自定义重置数据表ID值</title>
-    <url>/2018/10/30/mysql%E8%87%AA%E5%AE%9A%E4%B9%89%E9%87%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E8%A1%A8ID%E5%80%BC/</url>
+    <title>lnmp集成环境下部署laravel5.x项目</title>
+    <url>/2017/09/21/lnmp%E9%9B%86%E6%88%90%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2laravel5-x%E9%A1%B9%E7%9B%AE/</url>
     <content><![CDATA[<a id="more"></a>
 
+<p><strong>一、安装环境</strong></p>
 <blockquote>
-<p> alter table 表名 AUTO_INCREMENT=自定义ID;</p>
+<p>默认lnmp环境已经安装好，若没安装请去安装。<br>安装参考文档路径：<a href="https://shunhua.github.io/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E9%9B%86%E6%88%90/" target="_blank">[ linux-centos7-3-lnmp一键安装包集成 ]</a></p>
 </blockquote>
-]]></content>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>php 递归拼接一条线会员</title>
-    <url>/2017/09/14/php-%E9%80%92%E5%BD%92%E6%8B%BC%E6%8E%A5%E4%B8%80%E6%9D%A1%E7%BA%BF%E4%BC%9A%E5%91%98/</url>
-    <content><![CDATA[<p><strong>php 递归拼接一条线会员：</strong> </p>
-<a id="more"></a>
-
-<ul>
-<li><strong>PHP使用递归&amp;参数引用</strong></li>
-</ul>
+<p><strong>二、部署laravel项目</strong></p>
 <blockquote>
-<p> public static function parentIdLine($adminid,&amp;$parentAdmin_strs=’’)<br> {</p>
-<pre><code>       $parent_id = self::find($adminid)-&gt;parent_id;
-       // 构造上级限制
-       $parentids = array(0,1); //主要是限制管理员不拿提成          
-       if (!in_array($parent_id, $parentids) ) &#123;
-          $parentAdmin_strs .= $parent_id.&#39;,&#39;;
-          self::parentIdLine($parent_id,$parentAdmin_strs); 
-       &#125; 
-
-     return $parentAdmin_strs;</code></pre>
-<p>}</p>
+<p> 安装好lnmp环境后，通过svn、ftp等把项目上传到服务器。[此文默认解析好域名]</p>
+</blockquote>
+<p>cd 进入项目目录下  composer  install 报错如下：</p>
+<blockquote>
+<p> 缺少 fileinfo 扩展   这个插件需要的</p>
+</blockquote>
+<p><img src="/assets/blogImg/laravel/1.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 安装配置fileinfo 插件</p>
+</blockquote>
+<p>解压tar jxvf 文件名.tar.bz2<br>命令如下:</p>
+<blockquote>
+<p> cd lnmp1.4/src/php-7.0.21/ext/fileinfo/<br> (phpize） /usr/local/php/bin/phpize<br> ./configure --with-php-config=/usr/local/php/bin/php-config<br> make &amp;&amp; make install<br> vi /usr/local/php/etc/php.ini<br> extension = fileinfo.so<br> /etc/init.d/php-fpm reload<br> php -m  </p>
+</blockquote>
+<p>若看到PHP模块中存在fileinfo,说明安装扩展完成</p>
+<blockquote>
+<p> composer install 安装  proc_报错</p>
+</blockquote>
+<p><img src="/assets/blogImg/laravel/2.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 禁用函数，去 php.ini [vi /usr/local/php/etc/php.ini] 把 以proc_ 开头的2个函数 取消禁用</p>
+</blockquote>
+<p><img src="/assets/blogImg/laravel/3.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 伪静态设置，lnmp自带的有laravel.conf [vim /usr/local/nginx/conf/laravel.conf],加到server{}中</p>
+</blockquote>
+<p>因为laravel访问地址是：xxx/public下。所以还需要处理跨目录地址</p>
+<blockquote>
+<p>  fastcgi.conf [vim /usr/local/nginx/conf/fastcgi.conf] 把27行的禁用</p>
+</blockquote>
+<p><img src="/assets/blogImg/laravel/4.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 若还不行，请查看目录权限或搜索其他相关问题;<br>ok,现在可以去访问项目地址了。enjoy IT ！！！</p>
 </blockquote>
 <hr>
 <ul>
 <li><strong>Notice</strong></li>
 </ul>
 <blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.<br>   ok,  enjoy it !!!</p>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
 </blockquote>
 ]]></content>
       <tags>
-        <tag>php</tag>
-        <tag>递归</tag>
+        <tag>lnmp</tag>
+        <tag>centos7.3</tag>
+        <tag>laravel</tag>
       </tags>
   </entry>
   <entry>
@@ -3176,6 +3141,41 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>nginx</tag>
         <tag>负载均衡</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>php 递归拼接一条线会员</title>
+    <url>/2017/09/14/php-%E9%80%92%E5%BD%92%E6%8B%BC%E6%8E%A5%E4%B8%80%E6%9D%A1%E7%BA%BF%E4%BC%9A%E5%91%98/</url>
+    <content><![CDATA[<p><strong>php 递归拼接一条线会员：</strong> </p>
+<a id="more"></a>
+
+<ul>
+<li><strong>PHP使用递归&amp;参数引用</strong></li>
+</ul>
+<blockquote>
+<p> public static function parentIdLine($adminid,&amp;$parentAdmin_strs=’’)<br> {</p>
+<pre><code>       $parent_id = self::find($adminid)-&gt;parent_id;
+       // 构造上级限制
+       $parentids = array(0,1); //主要是限制管理员不拿提成          
+       if (!in_array($parent_id, $parentids) ) &#123;
+          $parentAdmin_strs .= $parent_id.&#39;,&#39;;
+          self::parentIdLine($parent_id,$parentAdmin_strs); 
+       &#125; 
+
+     return $parentAdmin_strs;</code></pre>
+<p>}</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.<br>   ok,  enjoy it !!!</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>php</tag>
+        <tag>递归</tag>
       </tags>
   </entry>
   <entry>
@@ -3262,7 +3262,7 @@ class QuotesSpider(scrapy.Spider):
 </blockquote>
 <p>二、使用npm下载 web框架express模块</p>
 <blockquote>
-<p>npm install --save <a href="mailto:&#101;&#120;&#112;&#114;&#x65;&#x73;&#x73;&#64;&#x34;&#x2e;&#x31;&#53;&#46;&#50;">&#101;&#120;&#112;&#114;&#x65;&#x73;&#x73;&#64;&#x34;&#x2e;&#x31;&#53;&#46;&#50;</a></p>
+<p>npm install --save <a href="mailto:&#101;&#120;&#x70;&#x72;&#101;&#115;&#115;&#64;&#x34;&#46;&#x31;&#x35;&#x2e;&#x32;">&#101;&#120;&#x70;&#x72;&#101;&#115;&#115;&#64;&#x34;&#46;&#x31;&#x35;&#x2e;&#x32;</a></p>
 </blockquote>
 <p>三、使用npm下载socket.io模块</p>
 <blockquote>
@@ -3458,20 +3458,38 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>使用git 与github友好交流</title>
-    <url>/2017/08/11/%E4%BD%BF%E7%94%A8git-%E4%B8%8Egithub%E5%8F%8B%E5%A5%BD%E4%BA%A4%E6%B5%81/</url>
-    <content><![CDATA[<p>##<strong>本文主要介绍window 端Git 与github友好交流</strong></p>
-<blockquote>
-<p>1、安装window版（32/64）git。 window端安装过程无脑略过—— </p>
-</blockquote>
+    <title>发布Laravel扩展包larapay</title>
+    <url>/2018/12/04/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85larapay/</url>
+    <content><![CDATA[<p><strong>发布Laravel扩展封装支付包larapay</strong> </p>
 <a id="more"></a>
+<p>一、编写扩展包</p>
+<blockquote>
+<p>mkdir -p packages/shunhua/larapay</p>
+</blockquote>
+<p>进入扩展包目录，初始化 composer 配置</p>
+<blockquote>
+<p>composer init</p>
+</blockquote>
+<p>执行之后，项目下生成一个 composer.json 文件：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;name&quot;: &quot;shunhua&#x2F;larapay&quot;,</span><br><span class="line">    &quot;description&quot;: &quot;Alipay,Unicompay&quot;,</span><br><span class="line">    &quot;keywords&quot;: [&quot;Alipay&quot;, &quot;Unicompay&quot;],</span><br><span class="line">    &quot;license&quot;: &quot;MIT&quot;,</span><br><span class="line">    &quot;authors&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;Bsh&quot;,</span><br><span class="line">            &quot;email&quot;: &quot;2399315737@qq.com&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    &quot;require&quot;: &#123;</span><br><span class="line">        &quot;php&quot;: &quot;&gt;&#x3D;5.6.4&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;autoload&quot;: &#123;</span><br><span class="line">        &quot;psr-4&quot;: &#123;</span><br><span class="line">            &quot;Shunhua\\Larapay\\&quot;: &quot;src&#x2F;&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>包目录如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">shunhua&#x2F;larapay</span><br><span class="line">├── src  #存放扩展包所有的逻辑代码</span><br><span class="line">├── doc # 存放文档</span><br><span class="line">├── README.md</span><br><span class="line">├── composer.json</span><br></pre></td></tr></table></figure>
 
-
-<p>2、本文默认github已注册并添加过 ssh key<br>3、github上新建仓库<br>git add / add *<br>git commit -m<br>git remote add origin <a href="http://xxxx.github.io/">http://xxxx.github.io</a><br>git push -u origin master<br>git pull<br>git rm -r xxx<br>git commit -m ‘’<br>git push -u origin master<br>git  –version</p>
+<p>二、扩展包发布</p>
+<ol>
+<li>提交代码到 GitHub<br>首先，需要把扩展包的代码提交到 GitHub 上，记录下 GitHub 版本库的地址，注意是 HTTPS。<br><img src="/assets/blogImg/laravel.png" alt="ico原来的样子"></li>
+<li>把扩展包发布到 Packagist<br>访问 <a href="https://packagist.org/packages/submit" target="_blank">[ Packagist ]</a> 官网，登录后，点击右上角Submit按钮，进入发布向导:<br>此时，将 GitHub 版本库的地址填写至 Repository URL 输入框中，然后点击 Submit 提交按钮，一切顺利，可以看到发布成功</li>
+<li>设置版本信息<br>版本默认是 dev-master，Composer 包的版本号会从 Git 的 tag 中同步过来。<br>.查看本地所有的tag [git tag]<br>.创建一个新的tag[git tag xxx]<br>.查看提交状态[git log –oneline –decorate –graph]</li>
+</ol>
+<blockquote>
+<p>git tag v0.9<br>git push origin –tags<br>git push origin</p>
+</blockquote>
+<hr>
+<p>使用 <a href="https://github.com/shunhua/larapay" target="_blank">[ shunhua/larapay ]</a>包</p>
 ]]></content>
       <tags>
-        <tag>git</tag>
-        <tag>github</tag>
+        <tag>laravel</tag>
+        <tag>composer - 扩展包</tag>
       </tags>
   </entry>
   <entry>
@@ -3503,6 +3521,23 @@ class QuotesSpider(scrapy.Spider):
         <tag>laravel</tag>
         <tag>composer</tag>
         <tag>mqtt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用git 与github友好交流</title>
+    <url>/2017/08/11/%E4%BD%BF%E7%94%A8git-%E4%B8%8Egithub%E5%8F%8B%E5%A5%BD%E4%BA%A4%E6%B5%81/</url>
+    <content><![CDATA[<p>##<strong>本文主要介绍window 端Git 与github友好交流</strong></p>
+<blockquote>
+<p>1、安装window版（32/64）git。 window端安装过程无脑略过—— </p>
+</blockquote>
+<a id="more"></a>
+
+
+<p>2、本文默认github已注册并添加过 ssh key<br>3、github上新建仓库<br>git add / add *<br>git commit -m<br>git remote add origin <a href="http://xxxx.github.io/">http://xxxx.github.io</a><br>git push -u origin master<br>git pull<br>git rm -r xxx<br>git commit -m ‘’<br>git push -u origin master<br>git  –version</p>
+]]></content>
+      <tags>
+        <tag>git</tag>
+        <tag>github</tag>
       </tags>
   </entry>
   <entry>
@@ -3632,41 +3667,6 @@ class QuotesSpider(scrapy.Spider):
         <tag>php</tag>
         <tag>golang</tag>
         <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>发布Laravel扩展包larapay</title>
-    <url>/2018/12/04/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85larapay/</url>
-    <content><![CDATA[<p><strong>发布Laravel扩展封装支付包larapay</strong> </p>
-<a id="more"></a>
-<p>一、编写扩展包</p>
-<blockquote>
-<p>mkdir -p packages/shunhua/larapay</p>
-</blockquote>
-<p>进入扩展包目录，初始化 composer 配置</p>
-<blockquote>
-<p>composer init</p>
-</blockquote>
-<p>执行之后，项目下生成一个 composer.json 文件：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;name&quot;: &quot;shunhua&#x2F;larapay&quot;,</span><br><span class="line">    &quot;description&quot;: &quot;Alipay,Unicompay&quot;,</span><br><span class="line">    &quot;keywords&quot;: [&quot;Alipay&quot;, &quot;Unicompay&quot;],</span><br><span class="line">    &quot;license&quot;: &quot;MIT&quot;,</span><br><span class="line">    &quot;authors&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;Bsh&quot;,</span><br><span class="line">            &quot;email&quot;: &quot;2399315737@qq.com&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    &quot;require&quot;: &#123;</span><br><span class="line">        &quot;php&quot;: &quot;&gt;&#x3D;5.6.4&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;autoload&quot;: &#123;</span><br><span class="line">        &quot;psr-4&quot;: &#123;</span><br><span class="line">            &quot;Shunhua\\Larapay\\&quot;: &quot;src&#x2F;&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>包目录如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">shunhua&#x2F;larapay</span><br><span class="line">├── src  #存放扩展包所有的逻辑代码</span><br><span class="line">├── doc # 存放文档</span><br><span class="line">├── README.md</span><br><span class="line">├── composer.json</span><br></pre></td></tr></table></figure>
-
-<p>二、扩展包发布</p>
-<ol>
-<li>提交代码到 GitHub<br>首先，需要把扩展包的代码提交到 GitHub 上，记录下 GitHub 版本库的地址，注意是 HTTPS。<br><img src="/assets/blogImg/laravel.png" alt="ico原来的样子"></li>
-<li>把扩展包发布到 Packagist<br>访问 <a href="https://packagist.org/packages/submit" target="_blank">[ Packagist ]</a> 官网，登录后，点击右上角Submit按钮，进入发布向导:<br>此时，将 GitHub 版本库的地址填写至 Repository URL 输入框中，然后点击 Submit 提交按钮，一切顺利，可以看到发布成功</li>
-<li>设置版本信息<br>版本默认是 dev-master，Composer 包的版本号会从 Git 的 tag 中同步过来。<br>.查看本地所有的tag [git tag]<br>.创建一个新的tag[git tag xxx]<br>.查看提交状态[git log –oneline –decorate –graph]</li>
-</ol>
-<blockquote>
-<p>git tag v0.9<br>git push origin –tags<br>git push origin</p>
-</blockquote>
-<hr>
-<p>使用 <a href="https://github.com/shunhua/larapay" target="_blank">[ shunhua/larapay ]</a>包</p>
-]]></content>
-      <tags>
-        <tag>laravel</tag>
-        <tag>composer - 扩展包</tag>
       </tags>
   </entry>
   <entry>
