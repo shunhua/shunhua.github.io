@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Alipay 开放平台支付</title>
+    <url>/2018/10/26/Alipay-%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E6%94%AF%E4%BB%98/</url>
+    <content><![CDATA[<a id="more"></a>
+
+
+<p>参考文档 <a href="https://docs.open.alipay.com/291/" target="_blank">[ 开放平台文档中心 ]</a></p>
+<blockquote>
+<p>生成RSA密钥</p>
+</blockquote>
+<p>a. 应用公钥2048<br>b. 应用私钥2048</p>
+<blockquote>
+<p>上传应用公钥并获取支付宝公钥</p>
+</blockquote>
+<p>支付宝公钥应用于开发中</p>
+<blockquote>
+<p>使用应用私钥生成请求签名</p>
+</blockquote>
+<p>应用私钥应用于开发中</p>
+<blockquote>
+<p>使用支付宝公钥验签</p>
+</blockquote>
+<p>支付宝公钥应用于开发中</p>
+]]></content>
+      <tags>
+        <tag>Alipay</tag>
+        <tag>开放平台</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>9段PHP实用功能的代码推荐</title>
     <url>/2018/02/24/9%E6%AE%B5PHP%E5%AE%9E%E7%94%A8%E5%8A%9F%E8%83%BD%E7%9A%84%E4%BB%A3%E7%A0%81%E6%8E%A8%E8%8D%90/</url>
     <content><![CDATA[<a id="more"></a>
@@ -73,32 +102,36 @@
       </tags>
   </entry>
   <entry>
-    <title>Alipay 开放平台支付</title>
-    <url>/2018/10/26/Alipay-%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E6%94%AF%E4%BB%98/</url>
-    <content><![CDATA[<a id="more"></a>
+    <title>CentOS 7 安装 Nginx 1.11.x</title>
+    <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/</url>
+    <content><![CDATA[<p><strong>Centos下安装Nginx</strong> </p>
+<a id="more"></a>
 
-
-<p>参考文档 <a href="https://docs.open.alipay.com/291/" target="_blank">[ 开放平台文档中心 ]</a></p>
+<p>一、准备工作 安装必备工具</p>
 <blockquote>
-<p>生成RSA密钥</p>
+<p>yum install -y gcc gcc-c++ autoconf automake<br>yum install -y zlib zlib-devel openssl openssl-devel pcre-devel</p>
 </blockquote>
-<p>a. 应用公钥2048<br>b. 应用私钥2048</p>
+<p>不安装这些依赖库，后面编译的时候会报错，当然你的系统已经有这些包可以跳过。<br>pcre：用来作地址重写的功能。<br>zlib：nginx 的gzip模块,传输数据打包，省流量（但消耗资源）。<br>openssl：提供ssl加密协议。</p>
+<p>二、添加nginx用户</p>
 <blockquote>
-<p>上传应用公钥并获取支付宝公钥</p>
+<p>/usr/sbin/groupadd -f www<br>/usr/sbin/useradd -g www www</p>
 </blockquote>
-<p>支付宝公钥应用于开发中</p>
+<p>三、nginx文件准备及编译</p>
 <blockquote>
-<p>使用应用私钥生成请求签名</p>
+<p>wget <a href="http://nginx.org/download/nginx-1.11.4.tar.gz">http://nginx.org/download/nginx-1.11.4.tar.gz</a><br>tar -zxvf nginx-1.11.4.tar.gz<br>cd nginx-1.11.4/<br>./configure –user=www –group=www<br>make &amp;&amp; make install</p>
 </blockquote>
-<p>应用私钥应用于开发中</p>
+<p>四、开始firewall端口服务</p>
 <blockquote>
-<p>使用支付宝公钥验签</p>
+<p>firewall-cmd  –permanent –zone=public –add-service=http<br>firewall-cmd  –reload</p>
 </blockquote>
-<p>支付宝公钥应用于开发中</p>
+<p>常用命令</p>
+<blockquote>
+<p>/usr/local/nginx/sbin/nginx -s reload<br>/usr/local/nginx/sbin/nginx -s stop<br>/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</p>
+</blockquote>
 ]]></content>
       <tags>
-        <tag>Alipay</tag>
-        <tag>开放平台</tag>
+        <tag>Centos</tag>
+        <tag>Nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -125,7 +158,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#64;&#x71;&#113;&#46;&#x63;&#111;&#x6d;">&#120;&#64;&#x71;&#113;&#46;&#x63;&#111;&#x6d;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#64;&#113;&#x71;&#46;&#x63;&#111;&#109;">&#120;&#64;&#113;&#x71;&#46;&#x63;&#111;&#109;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -136,7 +169,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#64;&#x71;&#x71;&#x2e;&#99;&#111;&#109;">&#x62;&#64;&#x71;&#x71;&#x2e;&#99;&#111;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#x40;&#113;&#x71;&#x2e;&#99;&#111;&#109;">&#x62;&#x40;&#113;&#x71;&#x2e;&#99;&#111;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -168,39 +201,6 @@
       <tags>
         <tag>CentOS 7</tag>
         <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CentOS 7 安装 Nginx 1.11.x</title>
-    <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/</url>
-    <content><![CDATA[<p><strong>Centos下安装Nginx</strong> </p>
-<a id="more"></a>
-
-<p>一、准备工作 安装必备工具</p>
-<blockquote>
-<p>yum install -y gcc gcc-c++ autoconf automake<br>yum install -y zlib zlib-devel openssl openssl-devel pcre-devel</p>
-</blockquote>
-<p>不安装这些依赖库，后面编译的时候会报错，当然你的系统已经有这些包可以跳过。<br>pcre：用来作地址重写的功能。<br>zlib：nginx 的gzip模块,传输数据打包，省流量（但消耗资源）。<br>openssl：提供ssl加密协议。</p>
-<p>二、添加nginx用户</p>
-<blockquote>
-<p>/usr/sbin/groupadd -f www<br>/usr/sbin/useradd -g www www</p>
-</blockquote>
-<p>三、nginx文件准备及编译</p>
-<blockquote>
-<p>wget <a href="http://nginx.org/download/nginx-1.11.4.tar.gz">http://nginx.org/download/nginx-1.11.4.tar.gz</a><br>tar -zxvf nginx-1.11.4.tar.gz<br>cd nginx-1.11.4/<br>./configure –user=www –group=www<br>make &amp;&amp; make install</p>
-</blockquote>
-<p>四、开始firewall端口服务</p>
-<blockquote>
-<p>firewall-cmd  –permanent –zone=public –add-service=http<br>firewall-cmd  –reload</p>
-</blockquote>
-<p>常用命令</p>
-<blockquote>
-<p>/usr/local/nginx/sbin/nginx -s reload<br>/usr/local/nginx/sbin/nginx -s stop<br>/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Centos</tag>
-        <tag>Nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -248,6 +248,79 @@
       <tags>
         <tag>Centos</tag>
         <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Centos7下基于laradock部署laravel5.x</title>
+    <url>/2018/04/09/Centos7%E4%B8%8B%E5%9F%BA%E4%BA%8Elaradock%E9%83%A8%E7%BD%B2laravel5-x/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>一、安装docker</strong></p>
+<p>Go to：<a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/" target="_blank">[ .rpm安装路径 ]</a> <a href="https://docs.docker.com/engine/installation/linux/docker-ce/centos/#install-using-the-repository" target="_blank">[ 官方参考 ]</a><br><img src="/assets/blogImg/laradock/1.png" alt="ico原来的样子"></p>
+<p>打开路径地址，本文默认安装选择最新版，<br><img src="/assets/blogImg/laradock/2.png" alt="ico原来的样子"><br>下载rpm安装包</p>
+<blockquote>
+<p> wget <a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm">https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm</a></p>
+</blockquote>
+<p>安装 Docker CE,执行命令</p>
+<blockquote>
+<p> $ sudo yum install docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm<br>或者 yum install /path/to/package.rpm  </p>
+</blockquote>
+<p>启动docker –hello[docker run hello-world]</p>
+<blockquote>
+<p> systemctl start docker<br>systemctl enable docker 开机启动</p>
+</blockquote>
+<p><strong>二、CentOS 7配置中国镜像</strong></p>
+<p><a href="https://yq.aliyun.com/articles/29941" target="_blank">[ 参考配置原文 ]</a> docker –registry-mirror=<a href="https://registry.docker-cn.com/">https://registry.docker-cn.com</a> daemon [提示找不到registry]</p>
+<ul>
+<li>CentOS的配置方式略微复杂，需要先将默认的配置文件复制出来</li>
+<li>/lib/systemd/system/docker.service -&gt; /etc/systemd/system/docker.service</li>
+<li>然后再将加速器地址添加到配置文件的启动命令</li>
+<li>重启Docker就可以了。</li>
+</ul>
+<blockquote>
+<ul>
+<li>sudo cp -n /lib/systemd/system/docker.service /etc/systemd/system/docker.service</li>
+<li>sudo sed -i “s|ExecStart=/usr/bin/docker daemon|ExecStart=/usr/bin/docker daemon –registry-mirror=<a href="https://registry.docker-cn.com|g&quot;/">https://registry.docker-cn.com|g&quot;</a> /etc/systemd/system/docker.service</li>
+<li>sudo sed -i “s|ExecStart=/usr/bin/dockerd|ExecStart=/usr/bin/dockerd –registry-mirror=<a href="https://registry.docker-cn.com|g&quot;/">https://registry.docker-cn.com|g&quot;</a> /etc/systemd/system/docker.service</li>
+<li>sudo systemctl daemon-reload</li>
+<li>sudo systemctl restart docker  </li>
+</ul>
+</blockquote>
+<p>docker 安装完成！！！</p>
+<p><strong>三、拉取 Laradock</strong></p>
+<ul>
+<li>目录路径[/home/]</li>
+<li>git clone <a href="https://github.com/Laradock/laradock.git">https://github.com/Laradock/laradock.git</a>  </li>
+<li>cp env-example .env </li>
+<li>docker-compose up -d nginx mysql phpmyadmin</li>
+<li>访问phpmyadmin[<a href="http://ip:8080/]%E9%BB%98%E8%AE%A4%E5%80%BC%E4%B8%BA">http://ip:8080/]默认值为</a>  服务器[mysql] 账号[root] 密码[root]</li>
+<li>获取laradock[/home/laradock]后 在同级下创建项目目录[/home/www]</li>
+<li>修改[/home/laradock/.env]APPLICATION=../www/</li>
+<li>[/home/laradock]下使用root用户docker-compose exec workspace bash</li>
+<li>[/home/laradock]下使用laradock用户  docker-compose exec –user=laradock workspace bash</li>
+<li>配置中国镜像 composer config -g repo.packagist composer <a href="https://packagist.phpcomposer.com/">https://packagist.phpcomposer.com</a></li>
+<li>创建laravel composer create-project laravel/laravel my-app</li>
+</ul>
+<blockquote>
+<p> 安装SVN 配置钩子文件到 [/home/www]  </p>
+</blockquote>
+<p><a href="https://lisonghe.com/detail/19" target="_blank">[ svn安装文档参考 ]</a> </p>
+<blockquote>
+<p> 安装SVN成功后,服务器开启端口权限，上传代码,修改数据库配置，导入数据库</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>laradock</tag>
+        <tag>centos7</tag>
+        <tag>laravel5</tag>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -348,6 +421,45 @@
       </tags>
   </entry>
   <entry>
+    <title>Docker下实践ELK(Elasticsearch、Logstash、Kibana)</title>
+    <url>/2021/12/22/Docker%E4%B8%8B%E5%AE%9E%E8%B7%B5ELK-Elasticsearch%E3%80%81Logstash%E3%80%81Kibana/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/elk.png" alt="elk"></p>
+<a id="more"></a>
+
+<p><strong>什么是 ELK</strong><br><a href="https://www.elastic.co/cn/what-is/elk-stack" target="_blank">[ 官方网址 ]</a> | <a href="https://github.com/deviantony/docker-elk" target="_blank">[ Github资源 ]</a><br><img src="/assets/blogImg/elk.svg" alt="elk"></p>
+<ul>
+<li>Elasticsearch</li>
+</ul>
+<blockquote>
+<p>Elasticsearch 是一个分布式的 RESTful 风格的 <code>搜索和数据分析引擎</code>，能够解决不断涌现出的各种用例。作为 Elastic Stack 的核心，它集中<code>存储您的数据</code>，帮助您发现意料之中以及意料之外的情况。</p>
+</blockquote>
+<ul>
+<li>Logstash</li>
+</ul>
+<blockquote>
+<p>Logstash 是开源的服务器端数据处理管道，能够同时 从多个来源 <code>采集数据、转换数据</code>，然后将数据发送到您最喜欢的<code>存储库</code> （存储库是 <code>Elasticsearch</code>）中。</p>
+</blockquote>
+<ul>
+<li>Kibana</li>
+</ul>
+<blockquote>
+<p>Kibana 让您能够<code>可视化 Elasticsearch</code> 中的数据并操作 Elastic Stack。</p>
+</blockquote>
+<p><img src="/assets/blogImg/elk-lu.svg" alt="elk-lu"><br><strong>整体架构流程图：</strong><br><a href="https://excalidraw.com/" target="_blank">[ 画图工具 ]</a></p>
+<ul>
+<li>filebeat: 负责将日志数据传输到 redis</li>
+<li>Redis：暂时进行缓存</li>
+<li>logstash: 收集缓存中的日志数据</li>
+<li>elasticsearch: 负责存储日志数据</li>
+<li>kibana: 负责显示日志的数据</li>
+</ul>
+<p><img src="/assets/blogImg/elk1.png" alt="elk"></p>
+]]></content>
+      <tags>
+        <tag>ELK</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Centos下安装PHP7</title>
     <url>/2018/03/21/Centos%E4%B8%8B%E5%AE%89%E8%A3%85PHP7/</url>
     <content><![CDATA[<a id="more"></a>
@@ -393,118 +505,6 @@
       <tags>
         <tag>Centos</tag>
         <tag>PHP7</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Centos7下基于laradock部署laravel5.x</title>
-    <url>/2018/04/09/Centos7%E4%B8%8B%E5%9F%BA%E4%BA%8Elaradock%E9%83%A8%E7%BD%B2laravel5-x/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>一、安装docker</strong></p>
-<p>Go to：<a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/" target="_blank">[ .rpm安装路径 ]</a> <a href="https://docs.docker.com/engine/installation/linux/docker-ce/centos/#install-using-the-repository" target="_blank">[ 官方参考 ]</a><br><img src="/assets/blogImg/laradock/1.png" alt="ico原来的样子"></p>
-<p>打开路径地址，本文默认安装选择最新版，<br><img src="/assets/blogImg/laradock/2.png" alt="ico原来的样子"><br>下载rpm安装包</p>
-<blockquote>
-<p> wget <a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm">https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm</a></p>
-</blockquote>
-<p>安装 Docker CE,执行命令</p>
-<blockquote>
-<p> $ sudo yum install docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm<br>或者 yum install /path/to/package.rpm  </p>
-</blockquote>
-<p>启动docker –hello[docker run hello-world]</p>
-<blockquote>
-<p> systemctl start docker<br>systemctl enable docker 开机启动</p>
-</blockquote>
-<p><strong>二、CentOS 7配置中国镜像</strong></p>
-<p><a href="https://yq.aliyun.com/articles/29941" target="_blank">[ 参考配置原文 ]</a> docker –registry-mirror=<a href="https://registry.docker-cn.com/">https://registry.docker-cn.com</a> daemon [提示找不到registry]</p>
-<ul>
-<li>CentOS的配置方式略微复杂，需要先将默认的配置文件复制出来</li>
-<li>/lib/systemd/system/docker.service -&gt; /etc/systemd/system/docker.service</li>
-<li>然后再将加速器地址添加到配置文件的启动命令</li>
-<li>重启Docker就可以了。</li>
-</ul>
-<blockquote>
-<ul>
-<li>sudo cp -n /lib/systemd/system/docker.service /etc/systemd/system/docker.service</li>
-<li>sudo sed -i “s|ExecStart=/usr/bin/docker daemon|ExecStart=/usr/bin/docker daemon –registry-mirror=<a href="https://registry.docker-cn.com|g&quot;/">https://registry.docker-cn.com|g&quot;</a> /etc/systemd/system/docker.service</li>
-<li>sudo sed -i “s|ExecStart=/usr/bin/dockerd|ExecStart=/usr/bin/dockerd –registry-mirror=<a href="https://registry.docker-cn.com|g&quot;/">https://registry.docker-cn.com|g&quot;</a> /etc/systemd/system/docker.service</li>
-<li>sudo systemctl daemon-reload</li>
-<li>sudo systemctl restart docker  </li>
-</ul>
-</blockquote>
-<p>docker 安装完成！！！</p>
-<p><strong>三、拉取 Laradock</strong></p>
-<ul>
-<li>目录路径[/home/]</li>
-<li>git clone <a href="https://github.com/Laradock/laradock.git">https://github.com/Laradock/laradock.git</a>  </li>
-<li>cp env-example .env </li>
-<li>docker-compose up -d nginx mysql phpmyadmin</li>
-<li>访问phpmyadmin[<a href="http://ip:8080/]%E9%BB%98%E8%AE%A4%E5%80%BC%E4%B8%BA">http://ip:8080/]默认值为</a>  服务器[mysql] 账号[root] 密码[root]</li>
-<li>获取laradock[/home/laradock]后 在同级下创建项目目录[/home/www]</li>
-<li>修改[/home/laradock/.env]APPLICATION=../www/</li>
-<li>[/home/laradock]下使用root用户docker-compose exec workspace bash</li>
-<li>[/home/laradock]下使用laradock用户  docker-compose exec –user=laradock workspace bash</li>
-<li>配置中国镜像 composer config -g repo.packagist composer <a href="https://packagist.phpcomposer.com/">https://packagist.phpcomposer.com</a></li>
-<li>创建laravel composer create-project laravel/laravel my-app</li>
-</ul>
-<blockquote>
-<p> 安装SVN 配置钩子文件到 [/home/www]  </p>
-</blockquote>
-<p><a href="https://lisonghe.com/detail/19" target="_blank">[ svn安装文档参考 ]</a> </p>
-<blockquote>
-<p> 安装SVN成功后,服务器开启端口权限，上传代码,修改数据库配置，导入数据库</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>laradock</tag>
-        <tag>centos7</tag>
-        <tag>laravel5</tag>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Docker下实践ELK(Elasticsearch、Logstash、Kibana)</title>
-    <url>/2021/12/22/Docker%E4%B8%8B%E5%AE%9E%E8%B7%B5ELK-Elasticsearch%E3%80%81Logstash%E3%80%81Kibana/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/elk.png" alt="elk"></p>
-<a id="more"></a>
-
-<p><strong>什么是 ELK</strong><br><a href="https://www.elastic.co/cn/what-is/elk-stack" target="_blank">[ 官方网址 ]</a> | <a href="https://github.com/deviantony/docker-elk" target="_blank">[ Github资源 ]</a><br><img src="/assets/blogImg/elk.svg" alt="elk"></p>
-<ul>
-<li>Elasticsearch</li>
-</ul>
-<blockquote>
-<p>Elasticsearch 是一个分布式的 RESTful 风格的 <code>搜索和数据分析引擎</code>，能够解决不断涌现出的各种用例。作为 Elastic Stack 的核心，它集中<code>存储您的数据</code>，帮助您发现意料之中以及意料之外的情况。</p>
-</blockquote>
-<ul>
-<li>Logstash</li>
-</ul>
-<blockquote>
-<p>Logstash 是开源的服务器端数据处理管道，能够同时 从多个来源 <code>采集数据、转换数据</code>，然后将数据发送到您最喜欢的<code>存储库</code> （存储库是 <code>Elasticsearch</code>）中。</p>
-</blockquote>
-<ul>
-<li>Kibana</li>
-</ul>
-<blockquote>
-<p>Kibana 让您能够<code>可视化 Elasticsearch</code> 中的数据并操作 Elastic Stack。</p>
-</blockquote>
-<p><img src="/assets/blogImg/elk-lu.svg" alt="elk-lu"><br><strong>整体架构流程图：</strong><br><a href="https://excalidraw.com/" target="_blank">[ 画图工具 ]</a></p>
-<ul>
-<li>filebeat: 负责将日志数据传输到 redis</li>
-<li>Redis：暂时进行缓存</li>
-<li>logstash: 收集缓存中的日志数据</li>
-<li>elasticsearch: 负责存储日志数据</li>
-<li>kibana: 负责显示日志的数据</li>
-</ul>
-<p><img src="/assets/blogImg/elk1.png" alt="elk"></p>
-]]></content>
-      <tags>
-        <tag>ELK</tag>
       </tags>
   </entry>
   <entry>
@@ -1085,6 +1085,25 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Linux安装配置守护进程</title>
+    <url>/2018/03/09/Linux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> centos 下安装Supervisor</p>
+</blockquote>
+<p>yum install supervisor</p>
+<blockquote>
+<p> 配置Supervisor</p>
+</blockquote>
+<p>cd /etc/supervisord.d/<br>vim laravel-worker.ini<br>systemctl start supervisord</p>
+]]></content>
+      <tags>
+        <tag>linux</tag>
+        <tag>Supervisor</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux下安装node.js</title>
     <url>/2018/03/21/Linux%E4%B8%8B%E5%AE%89%E8%A3%85node-js/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1139,38 +1158,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Live 阿里云直播</title>
-    <url>/2019/07/04/Live-%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%B4%E6%92%AD/</url>
-    <content><![CDATA[<a id="more"></a>
-<p> <a href="https://help.aliyun.com/document_detail/86866.html?spm=a2c4g.11186623.6.573.72df68123ova0d" target="_blank">[阿里云文档]</a> 具体流程依据文档<br> 需要：备案域名 / 直播云服务器</p>
-<blockquote>
-<p>开通阿里云直播控制台</p>
-</blockquote>
-<p><img src="/assets/aliyun/1.png" alt="ico原来的样子"><br><img src="/assets/aliyun/2.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>直播控制台-概览配置 推流/播流 域名</p>
-</blockquote>
-<p>生成之后解析对应域名的 CNAME 到推流/播流域名上<br><img src="/assets/aliyun/3.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>PC端 OBS/VLC 测试</p>
-</blockquote>
-<p>地址生成器–&gt;生成的 推流/播流 地址相应在 OBS/VLC 上使用即可看到同步直播</p>
-<p><img src="/assets/aliyun/4.png" alt="ico原来的样子"><br><img src="/assets/aliyun/5.png" alt="ico原来的样子"><br><img src="/assets/aliyun/6.png" alt="ico原来的样子"><br><img src="/assets/aliyun/7.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>观看直播 [后续…]</p>
-</blockquote>
-<p> 前面的直播推流配置完成之后，我们需要让用户或者观众看到直播<br> 正常用户观看直播的流程是：登录直播网站 -&gt; 点开直播房间 -&gt; 服务器获取播放地址 -&gt; 用户观看直播<br> 1.创建一个测试直播的控制器</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">namespace App\Http\Controllers;</span><br><span class="line"></span><br><span class="line">use xxx;&#x2F;&#x2F;sdk包</span><br><span class="line"></span><br><span class="line">class LiveController extends Controller</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    public function index()</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; 通过sdk获取直播地址</span><br><span class="line">        $liveurl &#x3D; \xxx\xxx\xxx(&#39;xxx&#39;, &#39;app&#39;, &#39;stream&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>2.页面展示</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 引入 CDN --&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.bootcss.com&#x2F;flv.js&#x2F;1.3.2&#x2F;flv.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;!-- dom --&gt;</span><br><span class="line">&lt;video id&#x3D;&quot;videoElement&quot;&gt;&lt;&#x2F;video&gt;</span><br><span class="line">&lt;!-- js --&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    if (flvjs.isSupported()) &#123;</span><br><span class="line">        var videoElement &#x3D; document.getElementById(&#39;videoElement&#39;);</span><br><span class="line">        var flvPlayer &#x3D; flvjs.createPlayer(&#123;</span><br><span class="line">            type: &#39;flv&#39;,</span><br><span class="line">            url: &#39;&#123;&#123; $liveurl &#125;&#125;&#39;</span><br><span class="line">        &#125;);</span><br><span class="line">        flvPlayer.attachMediaElement(videoElement);</span><br><span class="line">        flvPlayer.load();</span><br><span class="line">        flvPlayer.play();</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><strong>Notice</strong><br>后续通过sdk整合到项目开发中…</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
     <title>Linux定时任务采集聚合数据api文章</title>
     <url>/2019/04/18/Linux%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E9%87%87%E9%9B%86%E8%81%9A%E5%90%88%E6%95%B0%E6%8D%AEapi%E6%96%87%E7%AB%A0/</url>
     <content><![CDATA[<p><strong>Linux定时任务采集文章</strong> </p>
@@ -1204,6 +1191,38 @@ public $queue = &#39;listeners&#39;;</code></pre>
         <tag>Linux</tag>
         <tag>crontab</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Live 阿里云直播</title>
+    <url>/2019/07/04/Live-%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%B4%E6%92%AD/</url>
+    <content><![CDATA[<a id="more"></a>
+<p> <a href="https://help.aliyun.com/document_detail/86866.html?spm=a2c4g.11186623.6.573.72df68123ova0d" target="_blank">[阿里云文档]</a> 具体流程依据文档<br> 需要：备案域名 / 直播云服务器</p>
+<blockquote>
+<p>开通阿里云直播控制台</p>
+</blockquote>
+<p><img src="/assets/aliyun/1.png" alt="ico原来的样子"><br><img src="/assets/aliyun/2.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>直播控制台-概览配置 推流/播流 域名</p>
+</blockquote>
+<p>生成之后解析对应域名的 CNAME 到推流/播流域名上<br><img src="/assets/aliyun/3.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>PC端 OBS/VLC 测试</p>
+</blockquote>
+<p>地址生成器–&gt;生成的 推流/播流 地址相应在 OBS/VLC 上使用即可看到同步直播</p>
+<p><img src="/assets/aliyun/4.png" alt="ico原来的样子"><br><img src="/assets/aliyun/5.png" alt="ico原来的样子"><br><img src="/assets/aliyun/6.png" alt="ico原来的样子"><br><img src="/assets/aliyun/7.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>观看直播 [后续…]</p>
+</blockquote>
+<p> 前面的直播推流配置完成之后，我们需要让用户或者观众看到直播<br> 正常用户观看直播的流程是：登录直播网站 -&gt; 点开直播房间 -&gt; 服务器获取播放地址 -&gt; 用户观看直播<br> 1.创建一个测试直播的控制器</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">namespace App\Http\Controllers;</span><br><span class="line"></span><br><span class="line">use xxx;&#x2F;&#x2F;sdk包</span><br><span class="line"></span><br><span class="line">class LiveController extends Controller</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    public function index()</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; 通过sdk获取直播地址</span><br><span class="line">        $liveurl &#x3D; \xxx\xxx\xxx(&#39;xxx&#39;, &#39;app&#39;, &#39;stream&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.页面展示</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 引入 CDN --&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.bootcss.com&#x2F;flv.js&#x2F;1.3.2&#x2F;flv.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;!-- dom --&gt;</span><br><span class="line">&lt;video id&#x3D;&quot;videoElement&quot;&gt;&lt;&#x2F;video&gt;</span><br><span class="line">&lt;!-- js --&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    if (flvjs.isSupported()) &#123;</span><br><span class="line">        var videoElement &#x3D; document.getElementById(&#39;videoElement&#39;);</span><br><span class="line">        var flvPlayer &#x3D; flvjs.createPlayer(&#123;</span><br><span class="line">            type: &#39;flv&#39;,</span><br><span class="line">            url: &#39;&#123;&#123; $liveurl &#125;&#125;&#39;</span><br><span class="line">        &#125;);</span><br><span class="line">        flvPlayer.attachMediaElement(videoElement);</span><br><span class="line">        flvPlayer.load();</span><br><span class="line">        flvPlayer.play();</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><strong>Notice</strong><br>后续通过sdk整合到项目开发中…</li>
+</ul>
+]]></content>
   </entry>
   <entry>
     <title>Markdown 基本语法</title>
@@ -1293,25 +1312,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Linux安装配置守护进程</title>
-    <url>/2018/03/09/Linux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> centos 下安装Supervisor</p>
-</blockquote>
-<p>yum install supervisor</p>
-<blockquote>
-<p> 配置Supervisor</p>
-</blockquote>
-<p>cd /etc/supervisord.d/<br>vim laravel-worker.ini<br>systemctl start supervisord</p>
-]]></content>
-      <tags>
-        <tag>linux</tag>
-        <tag>Supervisor</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MySQL出现1030-Got error 28 from storage engine错误</title>
     <url>/2018/11/22/MySQL%E5%87%BA%E7%8E%B01030-Got-error-28-from-storage-engine%E9%94%99%E8%AF%AF/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1331,36 +1331,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       <tags>
         <tag>lnmp</tag>
         <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nginx分发-指定文件名称</title>
-    <url>/2020/12/07/Nginx%E5%88%86%E5%8F%91-%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E5%90%8D%E7%A7%B0/</url>
-    <content><![CDATA[<p><strong>Nginx分发-指定文件名称</strong></p>
-<a id="more"></a>
-
-<p>一般在我们上传完资源文件之后，为了避免文件名冲突，会将文件名改成毫无意义的一段字符<br>其实，nginx是支持下载时重命名的，让文件名更加友好</p>
-<p>eg: xxx.com/storage/uploads/2020-12-07-728632757453485.png?n=test</p>
-<blockquote>
-<p>有后缀：</p>
-</blockquote>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">location</span> <span class="regexp">~* .*\.(txt|jpg|png)(\?.*)?$</span> &#123; </span><br><span class="line">    <span class="attribute">if</span> ($request_uri <span class="regexp">~* ^.*\/(.*)\.(txt|jpg|png)(\?n=([^&amp;]+))$)</span> &#123;</span><br><span class="line">        <span class="attribute">add_header</span> Content-Disposition <span class="string">&quot;attachment;filename=$arg_n.<span class="variable">$2</span>&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>无后缀：</p>
-</blockquote>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">location</span> <span class="regexp">~* [^/]+(?!.*/)</span> &#123;</span><br><span class="line">    <span class="attribute">if</span> ($request_uri <span class="regexp">~* [^/]+(?!.*/)(\?n=([^&amp;]+))$)</span> &#123;</span><br><span class="line">        <span class="attribute">add_header</span> Content-Disposition <span class="string">&quot;attachment;filename=$arg_n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://baishunhua.com/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.</p>
-</blockquote>
-<p>That’s it! enjoy :)</p>
-]]></content>
-      <tags>
-        <tag>nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -1410,6 +1380,36 @@ public $queue = &#39;listeners&#39;;</code></pre>
       <tags>
         <tag>nginx</tag>
         <tag>反向代理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nginx分发-指定文件名称</title>
+    <url>/2020/12/07/Nginx%E5%88%86%E5%8F%91-%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E5%90%8D%E7%A7%B0/</url>
+    <content><![CDATA[<p><strong>Nginx分发-指定文件名称</strong></p>
+<a id="more"></a>
+
+<p>一般在我们上传完资源文件之后，为了避免文件名冲突，会将文件名改成毫无意义的一段字符<br>其实，nginx是支持下载时重命名的，让文件名更加友好</p>
+<p>eg: xxx.com/storage/uploads/2020-12-07-728632757453485.png?n=test</p>
+<blockquote>
+<p>有后缀：</p>
+</blockquote>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">location</span> <span class="regexp">~* .*\.(txt|jpg|png)(\?.*)?$</span> &#123; </span><br><span class="line">    <span class="attribute">if</span> ($request_uri <span class="regexp">~* ^.*\/(.*)\.(txt|jpg|png)(\?n=([^&amp;]+))$)</span> &#123;</span><br><span class="line">        <span class="attribute">add_header</span> Content-Disposition <span class="string">&quot;attachment;filename=$arg_n.<span class="variable">$2</span>&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>无后缀：</p>
+</blockquote>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">location</span> <span class="regexp">~* [^/]+(?!.*/)</span> &#123;</span><br><span class="line">    <span class="attribute">if</span> ($request_uri <span class="regexp">~* [^/]+(?!.*/)(\?n=([^&amp;]+))$)</span> &#123;</span><br><span class="line">        <span class="attribute">add_header</span> Content-Disposition <span class="string">&quot;attachment;filename=$arg_n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://baishunhua.com/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.</p>
+</blockquote>
+<p>That’s it! enjoy :)</p>
+]]></content>
+      <tags>
+        <tag>nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -1643,6 +1643,50 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>PHP Socket 基础教程</title>
+    <url>/2018/03/12/PHP-Socket-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>案例：socket通信演示</strong></p>
+<blockquote>
+<p> 服务器端：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">&#x2F;&#x2F;确保在连接客户端时不会超时</span><br><span class="line">set_time_limit(0);</span><br><span class="line"></span><br><span class="line">$ip &#x3D; &#39;127.0.0.1&#39;;</span><br><span class="line">$port &#x3D; 1935;</span><br><span class="line"></span><br><span class="line">&#x2F;*</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket通信整个过程</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket_create</span><br><span class="line"> *    @socket_bind</span><br><span class="line"> *    @socket_listen</span><br><span class="line"> *    @socket_accept</span><br><span class="line"> *    @socket_read</span><br><span class="line"> *    @socket_write</span><br><span class="line"> *    @socket_close</span><br><span class="line"> +--------------------------------</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;*----------------    以下操作都是手册上的    -------------------*&#x2F;</span><br><span class="line">if(($sock &#x3D; socket_create(AF_INET,SOCK_STREAM,SOL_TCP)) &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_create() 失败的原因是:&quot;.socket_strerror($sock).&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(($ret &#x3D; socket_bind($sock,$ip,$port)) &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_bind() 失败的原因是:&quot;.socket_strerror($ret).&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(($ret &#x3D; socket_listen($sock,4)) &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_listen() 失败的原因是:&quot;.socket_strerror($ret).&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$count &#x3D; 0;</span><br><span class="line"></span><br><span class="line">do &#123;</span><br><span class="line">    if (($msgsock &#x3D; socket_accept($sock)) &lt; 0) &#123;</span><br><span class="line">        echo &quot;socket_accept() failed: reason: &quot; . socket_strerror($msgsock) . &quot;\n&quot;;</span><br><span class="line">        break;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        </span><br><span class="line">        &#x2F;&#x2F;发到客户端</span><br><span class="line">        $msg &#x3D;&quot;测试成功！\n&quot;;</span><br><span class="line">        socket_write($msgsock, $msg, strlen($msg));</span><br><span class="line">        </span><br><span class="line">        echo &quot;测试成功了啊\n&quot;;</span><br><span class="line">        $buf &#x3D; socket_read($msgsock,8192);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        $talkback &#x3D; &quot;收到的信息:$buf\n&quot;;</span><br><span class="line">        echo $talkback;</span><br><span class="line">        </span><br><span class="line">        if(++$count &gt;&#x3D; 5)&#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;;</span><br><span class="line">        </span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;echo $buf;</span><br><span class="line">    socket_close($msgsock);</span><br><span class="line"></span><br><span class="line">&#125; while (true);</span><br><span class="line"></span><br><span class="line">socket_close($sock);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p> 客户端：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(E_ALL);</span><br><span class="line">set_time_limit(0);</span><br><span class="line">echo &quot;&lt;h2&gt;TCP&#x2F;IP Connection&lt;&#x2F;h2&gt;\n&quot;;</span><br><span class="line"></span><br><span class="line">$port &#x3D; 1935;</span><br><span class="line">$ip &#x3D; &quot;127.0.0.1&quot;;</span><br><span class="line"></span><br><span class="line">&#x2F;*</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket连接整个过程</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket_create</span><br><span class="line"> *    @socket_connect</span><br><span class="line"> *    @socket_write</span><br><span class="line"> *    @socket_read</span><br><span class="line"> *    @socket_close</span><br><span class="line"> +--------------------------------</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">$socket &#x3D; socket_create(AF_INET, SOCK_STREAM, SOL_TCP);</span><br><span class="line">if ($socket &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_create() failed: reason: &quot; . socket_strerror($socket) . &quot;\n&quot;;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    echo &quot;OK.\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo &quot;试图连接 &#39;$ip&#39; 端口 &#39;$port&#39;...\n&quot;;</span><br><span class="line">$result &#x3D; socket_connect($socket, $ip, $port);</span><br><span class="line">if ($result &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_connect() failed.\nReason: ($result) &quot; . socket_strerror($result) . &quot;\n&quot;;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    echo &quot;连接OK\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$in &#x3D; &quot;Ho\r\n&quot;;</span><br><span class="line">$in .&#x3D; &quot;first blood\r\n&quot;;</span><br><span class="line">$out &#x3D; &#39;&#39;;</span><br><span class="line"></span><br><span class="line">if(!socket_write($socket, $in, strlen($in))) &#123;</span><br><span class="line">    echo &quot;socket_write() failed: reason: &quot; . socket_strerror($socket) . &quot;\n&quot;;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    echo &quot;发送到服务器信息成功！\n&quot;;</span><br><span class="line">    echo &quot;发送的内容为:&lt;font color&#x3D;&#39;red&#39;&gt;$in&lt;&#x2F;font&gt; &lt;br&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">while($out &#x3D; socket_read($socket, 8192)) &#123;</span><br><span class="line">    echo &quot;接收服务器回传信息成功！\n&quot;;</span><br><span class="line">    echo &quot;接受的内容为:&quot;,$out;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">echo &quot;关闭SOCKET...\n&quot;;</span><br><span class="line">socket_close($socket);</span><br><span class="line">echo &quot;关闭OK\n&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>案例：代码详解</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 设置一些基本的变量</span><br><span class="line">$host &#x3D; &quot;192.168.1.99&quot;;</span><br><span class="line">$port &#x3D; 1234;</span><br><span class="line">&#x2F;&#x2F; 设置超时时间</span><br><span class="line">set_time_limit(0);</span><br><span class="line">&#x2F;&#x2F; 创建一个Socket</span><br><span class="line">$socket &#x3D; socket_create(AF_INET, SOCK_STREAM, 0) or die(&quot;Could not createsocket\n&quot;);</span><br><span class="line">&#x2F;&#x2F;绑定Socket到端口</span><br><span class="line">$result &#x3D; socket_bind($socket, $host, $port) or die(&quot;Could not bind tosocket\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 开始监听链接</span><br><span class="line">$result &#x3D; socket_listen($socket, 3) or die(&quot;Could not set up socketlistener\n&quot;);</span><br><span class="line">&#x2F;&#x2F; accept incoming connections</span><br><span class="line">&#x2F;&#x2F; 另一个Socket来处理通信</span><br><span class="line">$spawn &#x3D; socket_accept($socket) or die(&quot;Could not accept incomingconnection\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 获得客户端的输入</span><br><span class="line">$input &#x3D; socket_read($spawn, 1024) or die(&quot;Could not read input\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 清空输入字符串</span><br><span class="line">$input &#x3D; trim($input);</span><br><span class="line">&#x2F;&#x2F;处理客户端输入并返回结果</span><br><span class="line">$output &#x3D; strrev($input) . &quot;\n&quot;;</span><br><span class="line">socket_write($spawn, $output, strlen ($output)) or die(&quot;Could not write</span><br><span class="line">output\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 关闭sockets</span><br><span class="line">socket_close($spawn);</span><br><span class="line">socket_close($socket);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>1.第一步是建立两个变量来保存Socket运行的服务器的IP地址和端口.你可以设置为你自己的服务器和端口(这个端口可以是1到65535之间的数字),前提是这个端口未被使用.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 设置两个变量</span><br><span class="line">$host  &#x3D;  &quot;192.168.1.99&quot; ;</span><br><span class="line">$port  &#x3D;  1234 ; </span><br></pre></td></tr></table></figure>
+<p>2.在服务器端可以使用set_time_out()函数来确保PHP在等待客户端连接时不会超时</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 超时时间</span><br><span class="line">set_time_limit ( 0 ); 4 ; </span><br></pre></td></tr></table></figure>
+<p>3.在前面的基础上,现在该使用socket_creat()函数创建一个Socket了—这个函数返回一个Socket句柄,这个句柄将用在以后所有的函数中.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 创建Socket</span><br><span class="line">$socket  &#x3D;  socket_create ( AF_INET ,  SOCK_STREAM ,  0 ) or die( &quot;Could not create</span><br><span class="line">socket\n&quot; ); </span><br><span class="line">&#x2F;&#x2F;第一个参数”AF_INET”用来指定域名;</span><br><span class="line">&#x2F;&#x2F;第二个参数”SOCK_STREM”告诉函数将创建一个什么类型的Socket(在这个例子中是TCP类型)</span><br><span class="line">因此,如果你想创建一个UDP Socket的话,你可以使用如下的代码:</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 创建 socket</span><br><span class="line">$socket  &#x3D;  socket_create ( AF_INET ,  SOCK_DGRAM ,  0 ) or die( &quot;Could not create</span><br><span class="line">socket\n&quot; ); </span><br></pre></td></tr></table></figure>
+<p>4.一旦创建了一个Socket句柄,下一步就是指定或者绑定它到指定的地址和端口.这可以通过socket_bind()函数来完成.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 绑定 socket to 指定地址和端口</span><br><span class="line">$result  &#x3D;  socket_bind ( $socket ,  $host ,  $port ) or die( &quot;Could not bind to</span><br><span class="line">socket\n&quot; ); </span><br></pre></td></tr></table></figure>
+<p>5.当Socket被创建好并绑定到一个端口后,就可以开始监听外部的连接了.PHP允许你由socket_listen()函数来开始一个监听,同时你可以指定一个数字(在这个例子中就是第二个参数:3)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 开始监听连接</span><br><span class="line">$result  &#x3D;  socket_listen ( $socket ,  3 ) or die( &quot;Could not set up socket</span><br><span class="line">listener\n&quot; ); </span><br></pre></td></tr></table></figure>
+<p>6.到现在,你的服务器除了等待来自客户端的连接请求外基本上什么也没有做.一旦一个客户端的连接被收到,socket_accept()函数便开始起作用了,它接收连接请求并调用另一个子Socket来处理客户端–服务器间的信息.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;接受请求链接</span><br><span class="line">&#x2F;&#x2F; 调用子socket 处理信息</span><br><span class="line">$spawn  &#x3D;  socket_accept ( $socket ) or die( &quot;Could not accept incoming</span><br><span class="line">connection\n&quot; );</span><br><span class="line">&#x2F;&#x2F;这个子socket现在就可以被随后的客户端–服务器通信所用了. </span><br></pre></td></tr></table></figure>
+<p>7.当一个连接被建立后,服务器就会等待客户端发送一些输入信息,这写信息可以由socket_read()函数来获得,并把它赋值给PHP的$input变量.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 读取客户端输入</span><br><span class="line">$input  &#x3D;  socket_read ( $spawn ,  1024 ) or die( &quot;Could not read input\n&quot; ); </span><br><span class="line">&#x2F;&#x2F;socker_read的第而个参数用以指定读入的字节数,你可以通过它来限制从客户端获取数据的大小.</span><br><span class="line">&#x2F;&#x2F;注意:socket_read函数会一直读取壳户端数据,直到遇见\n,\t或者\0字符.PHP脚本把这写字符看做是输入的结束符.</span><br></pre></td></tr></table></figure>
+<p>8.现在服务器必须处理这些由客户端发来是数据(在这个例子中的处理仅仅包含数据的输入和回传到客户端).这部分可以由socket_write()函数来完成(使得由通信socket发回一个数据流到客户端成为可能)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 处理客户端输入并返回数据</span><br><span class="line">$output  &#x3D;  strrev ( $input ) .  &quot;\n&quot; ;</span><br><span class="line">socket_write ( $spawn ,  $output ,  strlen  ( $output )) or die( &quot;Could not write</span><br><span class="line">output\n&quot; ); </span><br></pre></td></tr></table></figure>
+<p>9.一旦输出被返回到客户端,父/子socket都应通过socket_close()函数来终止</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 关闭 sockets</span><br><span class="line">socket_close ( $spawn );</span><br><span class="line">socket_close ( $socket ); </span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>php</tag>
+        <tag>socket</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python scrapy入门教程</title>
     <url>/2017/09/26/Python-scrapy%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[<p><strong>Python scrapy入门教程</strong> </p>
@@ -1719,50 +1763,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>Python</tag>
         <tag>scrapy</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PHP Socket 基础教程</title>
-    <url>/2018/03/12/PHP-Socket-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>案例：socket通信演示</strong></p>
-<blockquote>
-<p> 服务器端：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">&#x2F;&#x2F;确保在连接客户端时不会超时</span><br><span class="line">set_time_limit(0);</span><br><span class="line"></span><br><span class="line">$ip &#x3D; &#39;127.0.0.1&#39;;</span><br><span class="line">$port &#x3D; 1935;</span><br><span class="line"></span><br><span class="line">&#x2F;*</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket通信整个过程</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket_create</span><br><span class="line"> *    @socket_bind</span><br><span class="line"> *    @socket_listen</span><br><span class="line"> *    @socket_accept</span><br><span class="line"> *    @socket_read</span><br><span class="line"> *    @socket_write</span><br><span class="line"> *    @socket_close</span><br><span class="line"> +--------------------------------</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;*----------------    以下操作都是手册上的    -------------------*&#x2F;</span><br><span class="line">if(($sock &#x3D; socket_create(AF_INET,SOCK_STREAM,SOL_TCP)) &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_create() 失败的原因是:&quot;.socket_strerror($sock).&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(($ret &#x3D; socket_bind($sock,$ip,$port)) &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_bind() 失败的原因是:&quot;.socket_strerror($ret).&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(($ret &#x3D; socket_listen($sock,4)) &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_listen() 失败的原因是:&quot;.socket_strerror($ret).&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$count &#x3D; 0;</span><br><span class="line"></span><br><span class="line">do &#123;</span><br><span class="line">    if (($msgsock &#x3D; socket_accept($sock)) &lt; 0) &#123;</span><br><span class="line">        echo &quot;socket_accept() failed: reason: &quot; . socket_strerror($msgsock) . &quot;\n&quot;;</span><br><span class="line">        break;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        </span><br><span class="line">        &#x2F;&#x2F;发到客户端</span><br><span class="line">        $msg &#x3D;&quot;测试成功！\n&quot;;</span><br><span class="line">        socket_write($msgsock, $msg, strlen($msg));</span><br><span class="line">        </span><br><span class="line">        echo &quot;测试成功了啊\n&quot;;</span><br><span class="line">        $buf &#x3D; socket_read($msgsock,8192);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        $talkback &#x3D; &quot;收到的信息:$buf\n&quot;;</span><br><span class="line">        echo $talkback;</span><br><span class="line">        </span><br><span class="line">        if(++$count &gt;&#x3D; 5)&#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;;</span><br><span class="line">        </span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;echo $buf;</span><br><span class="line">    socket_close($msgsock);</span><br><span class="line"></span><br><span class="line">&#125; while (true);</span><br><span class="line"></span><br><span class="line">socket_close($sock);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-
-
-<blockquote>
-<p> 客户端：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(E_ALL);</span><br><span class="line">set_time_limit(0);</span><br><span class="line">echo &quot;&lt;h2&gt;TCP&#x2F;IP Connection&lt;&#x2F;h2&gt;\n&quot;;</span><br><span class="line"></span><br><span class="line">$port &#x3D; 1935;</span><br><span class="line">$ip &#x3D; &quot;127.0.0.1&quot;;</span><br><span class="line"></span><br><span class="line">&#x2F;*</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket连接整个过程</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket_create</span><br><span class="line"> *    @socket_connect</span><br><span class="line"> *    @socket_write</span><br><span class="line"> *    @socket_read</span><br><span class="line"> *    @socket_close</span><br><span class="line"> +--------------------------------</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">$socket &#x3D; socket_create(AF_INET, SOCK_STREAM, SOL_TCP);</span><br><span class="line">if ($socket &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_create() failed: reason: &quot; . socket_strerror($socket) . &quot;\n&quot;;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    echo &quot;OK.\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo &quot;试图连接 &#39;$ip&#39; 端口 &#39;$port&#39;...\n&quot;;</span><br><span class="line">$result &#x3D; socket_connect($socket, $ip, $port);</span><br><span class="line">if ($result &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_connect() failed.\nReason: ($result) &quot; . socket_strerror($result) . &quot;\n&quot;;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    echo &quot;连接OK\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$in &#x3D; &quot;Ho\r\n&quot;;</span><br><span class="line">$in .&#x3D; &quot;first blood\r\n&quot;;</span><br><span class="line">$out &#x3D; &#39;&#39;;</span><br><span class="line"></span><br><span class="line">if(!socket_write($socket, $in, strlen($in))) &#123;</span><br><span class="line">    echo &quot;socket_write() failed: reason: &quot; . socket_strerror($socket) . &quot;\n&quot;;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    echo &quot;发送到服务器信息成功！\n&quot;;</span><br><span class="line">    echo &quot;发送的内容为:&lt;font color&#x3D;&#39;red&#39;&gt;$in&lt;&#x2F;font&gt; &lt;br&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">while($out &#x3D; socket_read($socket, 8192)) &#123;</span><br><span class="line">    echo &quot;接收服务器回传信息成功！\n&quot;;</span><br><span class="line">    echo &quot;接受的内容为:&quot;,$out;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">echo &quot;关闭SOCKET...\n&quot;;</span><br><span class="line">socket_close($socket);</span><br><span class="line">echo &quot;关闭OK\n&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-
-<p><strong>案例：代码详解</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 设置一些基本的变量</span><br><span class="line">$host &#x3D; &quot;192.168.1.99&quot;;</span><br><span class="line">$port &#x3D; 1234;</span><br><span class="line">&#x2F;&#x2F; 设置超时时间</span><br><span class="line">set_time_limit(0);</span><br><span class="line">&#x2F;&#x2F; 创建一个Socket</span><br><span class="line">$socket &#x3D; socket_create(AF_INET, SOCK_STREAM, 0) or die(&quot;Could not createsocket\n&quot;);</span><br><span class="line">&#x2F;&#x2F;绑定Socket到端口</span><br><span class="line">$result &#x3D; socket_bind($socket, $host, $port) or die(&quot;Could not bind tosocket\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 开始监听链接</span><br><span class="line">$result &#x3D; socket_listen($socket, 3) or die(&quot;Could not set up socketlistener\n&quot;);</span><br><span class="line">&#x2F;&#x2F; accept incoming connections</span><br><span class="line">&#x2F;&#x2F; 另一个Socket来处理通信</span><br><span class="line">$spawn &#x3D; socket_accept($socket) or die(&quot;Could not accept incomingconnection\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 获得客户端的输入</span><br><span class="line">$input &#x3D; socket_read($spawn, 1024) or die(&quot;Could not read input\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 清空输入字符串</span><br><span class="line">$input &#x3D; trim($input);</span><br><span class="line">&#x2F;&#x2F;处理客户端输入并返回结果</span><br><span class="line">$output &#x3D; strrev($input) . &quot;\n&quot;;</span><br><span class="line">socket_write($spawn, $output, strlen ($output)) or die(&quot;Could not write</span><br><span class="line">output\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 关闭sockets</span><br><span class="line">socket_close($spawn);</span><br><span class="line">socket_close($socket);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>1.第一步是建立两个变量来保存Socket运行的服务器的IP地址和端口.你可以设置为你自己的服务器和端口(这个端口可以是1到65535之间的数字),前提是这个端口未被使用.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 设置两个变量</span><br><span class="line">$host  &#x3D;  &quot;192.168.1.99&quot; ;</span><br><span class="line">$port  &#x3D;  1234 ; </span><br></pre></td></tr></table></figure>
-<p>2.在服务器端可以使用set_time_out()函数来确保PHP在等待客户端连接时不会超时</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 超时时间</span><br><span class="line">set_time_limit ( 0 ); 4 ; </span><br></pre></td></tr></table></figure>
-<p>3.在前面的基础上,现在该使用socket_creat()函数创建一个Socket了—这个函数返回一个Socket句柄,这个句柄将用在以后所有的函数中.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 创建Socket</span><br><span class="line">$socket  &#x3D;  socket_create ( AF_INET ,  SOCK_STREAM ,  0 ) or die( &quot;Could not create</span><br><span class="line">socket\n&quot; ); </span><br><span class="line">&#x2F;&#x2F;第一个参数”AF_INET”用来指定域名;</span><br><span class="line">&#x2F;&#x2F;第二个参数”SOCK_STREM”告诉函数将创建一个什么类型的Socket(在这个例子中是TCP类型)</span><br><span class="line">因此,如果你想创建一个UDP Socket的话,你可以使用如下的代码:</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 创建 socket</span><br><span class="line">$socket  &#x3D;  socket_create ( AF_INET ,  SOCK_DGRAM ,  0 ) or die( &quot;Could not create</span><br><span class="line">socket\n&quot; ); </span><br></pre></td></tr></table></figure>
-<p>4.一旦创建了一个Socket句柄,下一步就是指定或者绑定它到指定的地址和端口.这可以通过socket_bind()函数来完成.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 绑定 socket to 指定地址和端口</span><br><span class="line">$result  &#x3D;  socket_bind ( $socket ,  $host ,  $port ) or die( &quot;Could not bind to</span><br><span class="line">socket\n&quot; ); </span><br></pre></td></tr></table></figure>
-<p>5.当Socket被创建好并绑定到一个端口后,就可以开始监听外部的连接了.PHP允许你由socket_listen()函数来开始一个监听,同时你可以指定一个数字(在这个例子中就是第二个参数:3)</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 开始监听连接</span><br><span class="line">$result  &#x3D;  socket_listen ( $socket ,  3 ) or die( &quot;Could not set up socket</span><br><span class="line">listener\n&quot; ); </span><br></pre></td></tr></table></figure>
-<p>6.到现在,你的服务器除了等待来自客户端的连接请求外基本上什么也没有做.一旦一个客户端的连接被收到,socket_accept()函数便开始起作用了,它接收连接请求并调用另一个子Socket来处理客户端–服务器间的信息.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;接受请求链接</span><br><span class="line">&#x2F;&#x2F; 调用子socket 处理信息</span><br><span class="line">$spawn  &#x3D;  socket_accept ( $socket ) or die( &quot;Could not accept incoming</span><br><span class="line">connection\n&quot; );</span><br><span class="line">&#x2F;&#x2F;这个子socket现在就可以被随后的客户端–服务器通信所用了. </span><br></pre></td></tr></table></figure>
-<p>7.当一个连接被建立后,服务器就会等待客户端发送一些输入信息,这写信息可以由socket_read()函数来获得,并把它赋值给PHP的$input变量.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 读取客户端输入</span><br><span class="line">$input  &#x3D;  socket_read ( $spawn ,  1024 ) or die( &quot;Could not read input\n&quot; ); </span><br><span class="line">&#x2F;&#x2F;socker_read的第而个参数用以指定读入的字节数,你可以通过它来限制从客户端获取数据的大小.</span><br><span class="line">&#x2F;&#x2F;注意:socket_read函数会一直读取壳户端数据,直到遇见\n,\t或者\0字符.PHP脚本把这写字符看做是输入的结束符.</span><br></pre></td></tr></table></figure>
-<p>8.现在服务器必须处理这些由客户端发来是数据(在这个例子中的处理仅仅包含数据的输入和回传到客户端).这部分可以由socket_write()函数来完成(使得由通信socket发回一个数据流到客户端成为可能)</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 处理客户端输入并返回数据</span><br><span class="line">$output  &#x3D;  strrev ( $input ) .  &quot;\n&quot; ;</span><br><span class="line">socket_write ( $spawn ,  $output ,  strlen  ( $output )) or die( &quot;Could not write</span><br><span class="line">output\n&quot; ); </span><br></pre></td></tr></table></figure>
-<p>9.一旦输出被返回到客户端,父/子socket都应通过socket_close()函数来终止</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 关闭 sockets</span><br><span class="line">socket_close ( $spawn );</span><br><span class="line">socket_close ( $socket ); </span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>php</tag>
-        <tag>socket</tag>
       </tags>
   </entry>
   <entry>
@@ -2255,7 +2255,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#103;&#105;&#116;&#64;&#x67;&#105;&#116;&#x68;&#117;&#x62;&#x2e;&#x63;&#111;&#109;">&#103;&#105;&#116;&#64;&#x67;&#105;&#116;&#x68;&#117;&#x62;&#x2e;&#x63;&#111;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#x67;&#105;&#116;&#x40;&#103;&#x69;&#116;&#104;&#x75;&#x62;&#46;&#x63;&#111;&#109;">&#x67;&#105;&#116;&#x40;&#103;&#x69;&#116;&#104;&#x75;&#x62;&#46;&#x63;&#111;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -2560,29 +2560,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>laravel-admin 实现字段排序</title>
-    <url>/2017/09/21/laravel-admin-%E5%AE%9E%E7%8E%B0%E5%AD%97%E6%AE%B5%E6%8E%92%E5%BA%8F/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> 排序代码</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">protected function grid()</span><br><span class="line">&#123;</span><br><span class="line">    return Admin::grid(Member::class, function (Grid $grid) &#123;</span><br><span class="line"></span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;id&#39;, &#39;desc&#39;);</span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;balance&#39;, &#39;desc&#39;);</span><br><span class="line"></span><br><span class="line">        $grid-&gt;id(&#39;ID&#39;)-&gt;sortable();</span><br><span class="line"></span><br><span class="line">        $grid-&gt;balance(&#39;余额&#39;)-&gt;sortable();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>laravel-admin</tag>
-        <tag>字段排序</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>laravel 修改器</title>
     <url>/2017/09/14/laravel-%E4%BF%AE%E6%94%B9%E5%99%A8/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2610,6 +2587,29 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>laravel5.x</tag>
         <tag>修改器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>laravel-admin 实现字段排序</title>
+    <url>/2017/09/21/laravel-admin-%E5%AE%9E%E7%8E%B0%E5%AD%97%E6%AE%B5%E6%8E%92%E5%BA%8F/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> 排序代码</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">protected function grid()</span><br><span class="line">&#123;</span><br><span class="line">    return Admin::grid(Member::class, function (Grid $grid) &#123;</span><br><span class="line"></span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;id&#39;, &#39;desc&#39;);</span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;balance&#39;, &#39;desc&#39;);</span><br><span class="line"></span><br><span class="line">        $grid-&gt;id(&#39;ID&#39;)-&gt;sortable();</span><br><span class="line"></span><br><span class="line">        $grid-&gt;balance(&#39;余额&#39;)-&gt;sortable();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>laravel-admin</tag>
+        <tag>字段排序</tag>
       </tags>
   </entry>
   <entry>
@@ -2648,6 +2648,42 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>laravel</tag>
         <tag>web-wechat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>laravel5.3使用队列</title>
+    <url>/2017/09/14/laravel5-3%E4%BD%BF%E7%94%A8%E9%98%9F%E5%88%97/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<ul>
+<li><strong>驱动预备知识</strong></li>
+</ul>
+<blockquote>
+<p> 要使用 database 队列驱动，你需要数据表保存任务信息。要生成创建这些表的迁移，可以运行 Artisan 命令 queue:table，迁移被创建之后，可以使用 migrate 命令生成这些表<br>php artisan queue:table<br>php artisan migrate</p>
+</blockquote>
+<ul>
+<li><strong>创建任务</strong></li>
+</ul>
+<blockquote>
+<p>通常，所有的任务类都保存在 app/Jobs 目录.如果 app/Jobs 不存在，在运行 Artisan 命令 make:job 的时候，它将会自动创建。你可以通过 Artisan CLI 来生成队列任务类：<br>php artisan make:job SendReminderEmail[名称]</p>
+</blockquote>
+<ul>
+<li><strong>延时分发</strong></li>
+</ul>
+<blockquote>
+<p>   $job = (new ProcessPodcast($pocast))<br>   -&gt;delay(Carbon::now()-&gt;addMinutes(10));<br>   dispatch($job);</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>当修改变更队列程序后，需要重启队列<br>php artisan queue:restart</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>laravel5.3</tag>
+        <tag>queue</tag>
       </tags>
   </entry>
   <entry>
@@ -2716,39 +2752,67 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>laravel5.3使用队列</title>
-    <url>/2017/09/14/laravel5-3%E4%BD%BF%E7%94%A8%E9%98%9F%E5%88%97/</url>
+    <title>linux centos7.3 lnmp一键安装包集成</title>
+    <url>/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E9%9B%86%E6%88%90/</url>
     <content><![CDATA[<a id="more"></a>
 
-<ul>
-<li><strong>驱动预备知识</strong></li>
-</ul>
+<p><strong>一、下载并安装LNMP一键安装包</strong></p>
+<p>安装LNMP稳定版</p>
 <blockquote>
-<p> 要使用 database 队列驱动，你需要数据表保存任务信息。要生成创建这些表的迁移，可以运行 Artisan 命令 queue:table，迁移被创建之后，可以使用 migrate 命令生成这些表<br>php artisan queue:table<br>php artisan migrate</p>
+<p> wget -c <a href="http://soft.vpser.net/lnmp/lnmp1.4.tar.gz">http://soft.vpser.net/lnmp/lnmp1.4.tar.gz</a> &amp;&amp; tar zxf lnmp1.4.tar.gz &amp;&amp; cd lnmp1.4 &amp;&amp; ./install.sh lnmp：</p>
 </blockquote>
-<ul>
-<li><strong>创建任务</strong></li>
-</ul>
+<p>默认安装lnmp可不写，如需要安装LNMPA或LAMP，将./install.sh 后面的参数替换为lnmpa或lamp即可。如需更改网站和数据库目录先修改安装包目录下的 lnmp.conf 文件。</p>
 <blockquote>
-<p>通常，所有的任务类都保存在 app/Jobs 目录.如果 app/Jobs 不存在，在运行 Artisan 命令 make:job 的时候，它将会自动创建。你可以通过 Artisan CLI 来生成队列任务类：<br>php artisan make:job SendReminderEmail[名称]</p>
+<p> 运行上述LNMP安装命令后，会出现如下提示：</p>
 </blockquote>
-<ul>
-<li><strong>延时分发</strong></li>
-</ul>
+<p><img src="/assets/blogImg/lnmp/1.png" alt="ico原来的样子"></p>
 <blockquote>
-<p>   $job = (new ProcessPodcast($pocast))<br>   -&gt;delay(Carbon::now()-&gt;addMinutes(10));<br>   dispatch($job);</p>
+<p> 输入对应MySQL或MariaDB版本前面的序号，回车进入下一步.：</p>
 </blockquote>
+<p><img src="/assets/blogImg/lnmp/2.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 需要设置MySQL的root密码（不输入直接回车将会设置为root）如果输入有错误需要删除时，可以按住Ctrl再按Backspace键进行删除(个别情况下是只需要Backspace键)。输入后回车进入下一步，如下图所示：：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/3.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 询问是否需要启用MySQL InnoDB，InnoDB引擎默认为开启，一般建议开启，直接回车或输入 y ，如果确定确实不需要该引擎可以输入 n，输入完成，回车进入下一步。注意：选择PHP7等高版本时需要自行确认是否与自己的程序兼容。</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/4.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 输入要选择的PHP版本的序号，回车进入下一步，选择是否安装内存优化：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/5.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 再选择Apache版本</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/6.png" alt="ico原来的样子"></p>
+<p>按提示输入对应版本前面的数字序号，回车。</p>
+<p>提示”Press any key to install…or Press Ctrl+c to cancel”后，按回车键确认开始安装。<br>LNMP脚本就会自动安装编译Nginx、MySQL、PHP、phpMyAdmin、Zend Optimizer这几个软件。</p>
+<p>安装时间可能会几十分钟到几个小时不等，主要是机器的配置网速等原因会造成影响。</p>
+<blockquote>
+<p> 安装完成  如果显示Nginx: OK，MySQL: OK，PHP: OK</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/7.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 并且Nginx、MySQL、PHP都是running，80和3306端口都存在，并提示安装使用的时间及Install lnmp V1.4 completed! enjoy it.的话，说明已经安装成功</p>
+</blockquote>
+<p>安装失败</p>
+<blockquote>
+<p> 安装失败</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/8.png" alt="ico原来的样子"></p>
 <hr>
 <ul>
 <li><strong>Notice</strong></li>
 </ul>
 <blockquote>
-<p>当修改变更队列程序后，需要重启队列<br>php artisan queue:restart</p>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
 </blockquote>
 ]]></content>
       <tags>
-        <tag>laravel5.3</tag>
-        <tag>queue</tag>
+        <tag>lnmp</tag>
+        <tag>linux</tag>
+        <tag>centos7.3</tag>
       </tags>
   </entry>
   <entry>
@@ -2824,70 +2888,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>linux centos7.3 lnmp一键安装包集成</title>
-    <url>/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E9%9B%86%E6%88%90/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>一、下载并安装LNMP一键安装包</strong></p>
-<p>安装LNMP稳定版</p>
-<blockquote>
-<p> wget -c <a href="http://soft.vpser.net/lnmp/lnmp1.4.tar.gz">http://soft.vpser.net/lnmp/lnmp1.4.tar.gz</a> &amp;&amp; tar zxf lnmp1.4.tar.gz &amp;&amp; cd lnmp1.4 &amp;&amp; ./install.sh lnmp：</p>
-</blockquote>
-<p>默认安装lnmp可不写，如需要安装LNMPA或LAMP，将./install.sh 后面的参数替换为lnmpa或lamp即可。如需更改网站和数据库目录先修改安装包目录下的 lnmp.conf 文件。</p>
-<blockquote>
-<p> 运行上述LNMP安装命令后，会出现如下提示：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/1.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 输入对应MySQL或MariaDB版本前面的序号，回车进入下一步.：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/2.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 需要设置MySQL的root密码（不输入直接回车将会设置为root）如果输入有错误需要删除时，可以按住Ctrl再按Backspace键进行删除(个别情况下是只需要Backspace键)。输入后回车进入下一步，如下图所示：：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/3.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 询问是否需要启用MySQL InnoDB，InnoDB引擎默认为开启，一般建议开启，直接回车或输入 y ，如果确定确实不需要该引擎可以输入 n，输入完成，回车进入下一步。注意：选择PHP7等高版本时需要自行确认是否与自己的程序兼容。</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/4.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 输入要选择的PHP版本的序号，回车进入下一步，选择是否安装内存优化：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/5.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 再选择Apache版本</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/6.png" alt="ico原来的样子"></p>
-<p>按提示输入对应版本前面的数字序号，回车。</p>
-<p>提示”Press any key to install…or Press Ctrl+c to cancel”后，按回车键确认开始安装。<br>LNMP脚本就会自动安装编译Nginx、MySQL、PHP、phpMyAdmin、Zend Optimizer这几个软件。</p>
-<p>安装时间可能会几十分钟到几个小时不等，主要是机器的配置网速等原因会造成影响。</p>
-<blockquote>
-<p> 安装完成  如果显示Nginx: OK，MySQL: OK，PHP: OK</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/7.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 并且Nginx、MySQL、PHP都是running，80和3306端口都存在，并提示安装使用的时间及Install lnmp V1.4 completed! enjoy it.的话，说明已经安装成功</p>
-</blockquote>
-<p>安装失败</p>
-<blockquote>
-<p> 安装失败</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/8.png" alt="ico原来的样子"></p>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>linux</tag>
-        <tag>centos7.3</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>linux下安装redis及认证密码</title>
     <url>/2018/03/06/linux%E4%B8%8B%E5%AE%89%E8%A3%85redis%E5%8F%8A%E8%AE%A4%E8%AF%81%E5%AF%86%E7%A0%81/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2913,6 +2913,27 @@ class QuotesSpider(scrapy.Spider):
         <tag>lnmp</tag>
         <tag>redis</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>lnmp tp pathinfo问题</title>
+    <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>/usr/local/php/etc/php.ini</p>
+<blockquote>
+<p> cgi.fix_pathinfo=1</p>
+</blockquote>
+<blockquote>
+<p> lnmp restart</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
   </entry>
   <entry>
     <title>lnmp集成环境下部署laravel5.x项目</title>
@@ -2974,27 +2995,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>lnmp tp pathinfo问题</title>
-    <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>/usr/local/php/etc/php.ini</p>
-<blockquote>
-<p> cgi.fix_pathinfo=1</p>
-</blockquote>
-<blockquote>
-<p> lnmp restart</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
-  </entry>
-  <entry>
     <title>mysql自定义重置数据表ID值</title>
     <url>/2018/10/30/mysql%E8%87%AA%E5%AE%9A%E4%B9%89%E9%87%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E8%A1%A8ID%E5%80%BC/</url>
     <content><![CDATA[<a id="more"></a>
@@ -3005,6 +3005,62 @@ class QuotesSpider(scrapy.Spider):
 ]]></content>
       <tags>
         <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql通过.ibd和.frm文件恢复数据</title>
+    <url>/2019/12/17/mysql%E9%80%9A%E8%BF%87-ibd%E5%92%8C-frm%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E6%95%B0%E6%8D%AE/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>数据库存储的数据实际上也是存储在文件里的,此类文件只能mysql能读取。</p>
+<p>Myisam 引擎:</p>
+<blockquote>
+<p>xxx.frm 表结构文件<br>xxx.MYD 数据文件<br>xxx.MYI 索引文件</p>
+</blockquote>
+<p>Innodb 引擎:</p>
+<blockquote>
+<p>xxx.ibd 数据和索引文件<br>xxx.frm 表结构文件</p>
+</blockquote>
+<p>此篇环境为Lnmp集成环境下的mysql<br>在/etc/my.conf   datadir = /usr/local/var/mysql/</p>
+<p>简写主要步骤:<br>1.将原先的.ibd文件与原先的.frm文件解除绑定</p>
+<blockquote>
+<p>alter table 表名 discard tablespace;</p>
+</blockquote>
+<p>2.停掉服务，新的.ibd文件覆盖旧的.ibd文件，再开启服务</p>
+<p>3.将新的.ibd文件与.frm文件发生联系</p>
+<blockquote>
+<p>alter table 表名 import tablespace;</p>
+</blockquote>
+<p>类似这种单个表操作,若表很多 可简单分批处理[.ibd、.frm同级目录执行]<br>安装 mysql-utilities</p>
+<blockquote>
+<p>yum -y install mysql-utilities</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    $files &#x3D; glob(&quot;*.ibd&quot;);</span><br><span class="line">    $discardTablespace &#x3D; &#39;&#39;;</span><br><span class="line">    $importTablespace &#x3D; &#39;&#39;;</span><br><span class="line">    $createTable &#x3D; &#39;&#39;;</span><br><span class="line">    foreach ($files as $key &#x3D;&gt; $value) &#123;</span><br><span class="line">        $discardTablespace .&#x3D; &quot;ALTER TABLE &#96;&#123;$value&#125;&#96; DISCARD TABLESPACE;\n&quot;;</span><br><span class="line">        $importTablespace .&#x3D; &quot;ALTER TABLE &#96;&#123;$value&#125;&#96; IMPORT TABLESPACE;\n&quot;;</span><br><span class="line">        &#x2F;&#x2F;恢复表建表语句</span><br><span class="line">        $value &#x3D; substr($value, 0, -3).&#39;frm&#39;;</span><br><span class="line">        $shell &#x3D; &#39;mysqlfrm --server&#x3D;root:数据库密码@localhost:3306 &#39;.$value.&#39; --port&#x3D;3309  --user&#x3D;root | tail -n +12&#39;;</span><br><span class="line">        $output &#x3D; shell_exec($shell);</span><br><span class="line">        $lineCount &#x3D;  substr_count($output, &quot;\n&quot;);</span><br><span class="line">        $arr &#x3D; explode(&quot;\n&quot;, $output);</span><br><span class="line">        $arrCount &#x3D; count($arr);</span><br><span class="line">        $arr &#x3D; array_slice($arr, 0, $arrCount-3);</span><br><span class="line">        $createTable .&#x3D; join(&quot;\n&quot;, $arr).&quot;;\n\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    file_put_contents(&#39;discard_tablespace.sql&#39;, $discardTablespace); &#x2F;&#x2F;用于删除表空间</span><br><span class="line">    file_put_contents(&#39;import_tablespace.sql&#39;, $importTablespace); &#x2F;&#x2F;用于导入新的表空间</span><br><span class="line">    file_put_contents(&#39;structure.sql&#39;, $createTable); &#x2F;&#x2F;用于建表结构</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>php index.php &amp;</p>
+</blockquote>
+<p>生成的文件中可能存在[表名+.ibd]的类表名，可手动修改。</p>
+<p>由于版本库的原因可能存在文件为空(全是分号)</p>
+<blockquote>
+<p>mysqlfrm –diagnostic ./ &gt;&gt; structure.sql</p>
+</blockquote>
+<p>执行完后 检查下sql文件中可能存在<UNKNOW>(varchar(1020))等字符问题 可手动修改完善</p>
+<blockquote>
+<p>source structure.sql</p>
+</blockquote>
+<p>此时执行完后 会生成表结构。</p>
+<p>执行discard_tablespace.sql 解除旧的绑定关系</p>
+<blockquote>
+<p>source discard_tablespace.sql</p>
+</blockquote>
+<p>新的.ibd文件覆盖旧的后 执行导入新的关系</p>
+<blockquote>
+<p>source import_tablespace.sql</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>mysql</tag>
+        <tag>Innodb</tag>
       </tags>
   </entry>
   <entry>
@@ -3085,62 +3141,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>nginx</tag>
         <tag>负载均衡</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mysql通过.ibd和.frm文件恢复数据</title>
-    <url>/2019/12/17/mysql%E9%80%9A%E8%BF%87-ibd%E5%92%8C-frm%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E6%95%B0%E6%8D%AE/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>数据库存储的数据实际上也是存储在文件里的,此类文件只能mysql能读取。</p>
-<p>Myisam 引擎:</p>
-<blockquote>
-<p>xxx.frm 表结构文件<br>xxx.MYD 数据文件<br>xxx.MYI 索引文件</p>
-</blockquote>
-<p>Innodb 引擎:</p>
-<blockquote>
-<p>xxx.ibd 数据和索引文件<br>xxx.frm 表结构文件</p>
-</blockquote>
-<p>此篇环境为Lnmp集成环境下的mysql<br>在/etc/my.conf   datadir = /usr/local/var/mysql/</p>
-<p>简写主要步骤:<br>1.将原先的.ibd文件与原先的.frm文件解除绑定</p>
-<blockquote>
-<p>alter table 表名 discard tablespace;</p>
-</blockquote>
-<p>2.停掉服务，新的.ibd文件覆盖旧的.ibd文件，再开启服务</p>
-<p>3.将新的.ibd文件与.frm文件发生联系</p>
-<blockquote>
-<p>alter table 表名 import tablespace;</p>
-</blockquote>
-<p>类似这种单个表操作,若表很多 可简单分批处理[.ibd、.frm同级目录执行]<br>安装 mysql-utilities</p>
-<blockquote>
-<p>yum -y install mysql-utilities</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    $files &#x3D; glob(&quot;*.ibd&quot;);</span><br><span class="line">    $discardTablespace &#x3D; &#39;&#39;;</span><br><span class="line">    $importTablespace &#x3D; &#39;&#39;;</span><br><span class="line">    $createTable &#x3D; &#39;&#39;;</span><br><span class="line">    foreach ($files as $key &#x3D;&gt; $value) &#123;</span><br><span class="line">        $discardTablespace .&#x3D; &quot;ALTER TABLE &#96;&#123;$value&#125;&#96; DISCARD TABLESPACE;\n&quot;;</span><br><span class="line">        $importTablespace .&#x3D; &quot;ALTER TABLE &#96;&#123;$value&#125;&#96; IMPORT TABLESPACE;\n&quot;;</span><br><span class="line">        &#x2F;&#x2F;恢复表建表语句</span><br><span class="line">        $value &#x3D; substr($value, 0, -3).&#39;frm&#39;;</span><br><span class="line">        $shell &#x3D; &#39;mysqlfrm --server&#x3D;root:数据库密码@localhost:3306 &#39;.$value.&#39; --port&#x3D;3309  --user&#x3D;root | tail -n +12&#39;;</span><br><span class="line">        $output &#x3D; shell_exec($shell);</span><br><span class="line">        $lineCount &#x3D;  substr_count($output, &quot;\n&quot;);</span><br><span class="line">        $arr &#x3D; explode(&quot;\n&quot;, $output);</span><br><span class="line">        $arrCount &#x3D; count($arr);</span><br><span class="line">        $arr &#x3D; array_slice($arr, 0, $arrCount-3);</span><br><span class="line">        $createTable .&#x3D; join(&quot;\n&quot;, $arr).&quot;;\n\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    file_put_contents(&#39;discard_tablespace.sql&#39;, $discardTablespace); &#x2F;&#x2F;用于删除表空间</span><br><span class="line">    file_put_contents(&#39;import_tablespace.sql&#39;, $importTablespace); &#x2F;&#x2F;用于导入新的表空间</span><br><span class="line">    file_put_contents(&#39;structure.sql&#39;, $createTable); &#x2F;&#x2F;用于建表结构</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>php index.php &amp;</p>
-</blockquote>
-<p>生成的文件中可能存在[表名+.ibd]的类表名，可手动修改。</p>
-<p>由于版本库的原因可能存在文件为空(全是分号)</p>
-<blockquote>
-<p>mysqlfrm –diagnostic ./ &gt;&gt; structure.sql</p>
-</blockquote>
-<p>执行完后 检查下sql文件中可能存在<UNKNOW>(varchar(1020))等字符问题 可手动修改完善</p>
-<blockquote>
-<p>source structure.sql</p>
-</blockquote>
-<p>此时执行完后 会生成表结构。</p>
-<p>执行discard_tablespace.sql 解除旧的绑定关系</p>
-<blockquote>
-<p>source discard_tablespace.sql</p>
-</blockquote>
-<p>新的.ibd文件覆盖旧的后 执行导入新的关系</p>
-<blockquote>
-<p>source import_tablespace.sql</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>mysql</tag>
-        <tag>Innodb</tag>
       </tags>
   </entry>
   <entry>
@@ -3262,7 +3262,7 @@ class QuotesSpider(scrapy.Spider):
 </blockquote>
 <p>二、使用npm下载 web框架express模块</p>
 <blockquote>
-<p>npm install --save <a href="mailto:&#101;&#120;&#112;&#114;&#x65;&#x73;&#115;&#x40;&#52;&#x2e;&#x31;&#53;&#46;&#x32;">&#101;&#120;&#112;&#114;&#x65;&#x73;&#115;&#x40;&#52;&#x2e;&#x31;&#53;&#46;&#x32;</a></p>
+<p>npm install --save <a href="mailto:&#101;&#x78;&#112;&#x72;&#x65;&#x73;&#115;&#x40;&#52;&#x2e;&#49;&#53;&#46;&#50;">&#101;&#x78;&#112;&#x72;&#x65;&#x73;&#115;&#x40;&#52;&#x2e;&#49;&#53;&#46;&#50;</a></p>
 </blockquote>
 <p>三、使用npm下载socket.io模块</p>
 <blockquote>
@@ -3670,47 +3670,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>有赞vantUI step1</title>
-    <url>/2018/04/02/%E6%9C%89%E8%B5%9EvantUI-step1/</url>
-    <content><![CDATA[<p><strong>有赞vantUI学习 step1</strong></p>
-<a id="more"></a>
-<p>1、安装淘宝镜像 </p>
-<blockquote>
-<p>npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></p>
-</blockquote>
-<p>2、安装vue-cli </p>
-<blockquote>
-<p>cnpm install –global vue-cli</p>
-</blockquote>
-<p>3、使用vue-cli安装项目[bsh] </p>
-<blockquote>
-<p>vue init youzan/vue-cli-template-vant bsh</p>
-</blockquote>
-<p>4、安装vantUI</p>
-<blockquote>
-<p>cnpm i vant -S</p>
-</blockquote>
-<p>5、引入组件 推荐使用安装 babel-plugin-import 插件</p>
-<blockquote>
-<p>npm i babel-plugin-import -D</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 在 .babelrc 或 babel-loader 中添加插件配置</span><br><span class="line">&#123;</span><br><span class="line">  &quot;plugins&quot;: [</span><br><span class="line">    [&quot;import&quot;, &#123; &quot;libraryName&quot;: &quot;vant&quot;, &quot;style&quot;: true &#125;]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>6、install dependencies 安装依赖</p>
-<blockquote>
-<p>npm install</p>
-</blockquote>
-<p>7、# serve with hot reload at localhost:8080</p>
-<blockquote>
-<p>npm run dev</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>vue</tag>
-        <tag>vant</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>搭建一套规范的 Vue3.x 项目工程环境</title>
     <url>/2021/11/04/%E6%90%AD%E5%BB%BA%E4%B8%80%E5%A5%97%E8%A7%84%E8%8C%83%E7%9A%84-Vue3-x-%E9%A1%B9%E7%9B%AE%E5%B7%A5%E7%A8%8B%E7%8E%AF%E5%A2%83/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/rabbit.jpg" alt="Vue3.x"></p>
@@ -3758,6 +3717,47 @@ class QuotesSpider(scrapy.Spider):
         <tag>Vue3</tag>
         <tag>Vite</tag>
         <tag>TypeScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>有赞vantUI step1</title>
+    <url>/2018/04/02/%E6%9C%89%E8%B5%9EvantUI-step1/</url>
+    <content><![CDATA[<p><strong>有赞vantUI学习 step1</strong></p>
+<a id="more"></a>
+<p>1、安装淘宝镜像 </p>
+<blockquote>
+<p>npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></p>
+</blockquote>
+<p>2、安装vue-cli </p>
+<blockquote>
+<p>cnpm install –global vue-cli</p>
+</blockquote>
+<p>3、使用vue-cli安装项目[bsh] </p>
+<blockquote>
+<p>vue init youzan/vue-cli-template-vant bsh</p>
+</blockquote>
+<p>4、安装vantUI</p>
+<blockquote>
+<p>cnpm i vant -S</p>
+</blockquote>
+<p>5、引入组件 推荐使用安装 babel-plugin-import 插件</p>
+<blockquote>
+<p>npm i babel-plugin-import -D</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 在 .babelrc 或 babel-loader 中添加插件配置</span><br><span class="line">&#123;</span><br><span class="line">  &quot;plugins&quot;: [</span><br><span class="line">    [&quot;import&quot;, &#123; &quot;libraryName&quot;: &quot;vant&quot;, &quot;style&quot;: true &#125;]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>6、install dependencies 安装依赖</p>
+<blockquote>
+<p>npm install</p>
+</blockquote>
+<p>7、# serve with hot reload at localhost:8080</p>
+<blockquote>
+<p>npm run dev</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>vue</tag>
+        <tag>vant</tag>
       </tags>
   </entry>
   <entry>
