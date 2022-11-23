@@ -125,7 +125,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#64;&#113;&#x71;&#46;&#x63;&#x6f;&#x6d;">&#120;&#64;&#113;&#x71;&#46;&#x63;&#x6f;&#x6d;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#64;&#113;&#113;&#x2e;&#x63;&#111;&#109;">&#x78;&#64;&#113;&#113;&#x2e;&#x63;&#111;&#109;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -136,7 +136,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#x40;&#113;&#113;&#46;&#99;&#111;&#109;">&#x62;&#x40;&#113;&#113;&#46;&#99;&#111;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#98;&#x40;&#113;&#113;&#46;&#99;&#x6f;&#109;">&#98;&#x40;&#113;&#113;&#46;&#99;&#x6f;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -401,6 +401,26 @@
       </tags>
   </entry>
   <entry>
+    <title>Centos下两种守护进程的配置</title>
+    <url>/2018/03/21/Centos%E4%B8%8B%E4%B8%A4%E7%A7%8D%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E7%9A%84%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<a id="more"></a>
+
+
+<blockquote>
+<p>一、php artisan</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-xx]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D;php &#x2F;home&#x2F;wwwroot&#x2F;www.xxx.com&#x2F;artisan queue:work --tries&#x3D;3</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;4</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xxx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>二、执行node js </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-node]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D; node &#x2F;home&#x2F;socket&#x2F;stocket.js</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;1</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Centos</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Centos下安装PHP7</title>
     <url>/2018/03/21/Centos%E4%B8%8B%E5%AE%89%E8%A3%85PHP7/</url>
     <content><![CDATA[<a id="more"></a>
@@ -446,26 +466,6 @@
       <tags>
         <tag>Centos</tag>
         <tag>PHP7</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Centos下两种守护进程的配置</title>
-    <url>/2018/03/21/Centos%E4%B8%8B%E4%B8%A4%E7%A7%8D%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E7%9A%84%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<a id="more"></a>
-
-
-<blockquote>
-<p>一、php artisan</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-xx]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D;php &#x2F;home&#x2F;wwwroot&#x2F;www.xxx.com&#x2F;artisan queue:work --tries&#x3D;3</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;4</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xxx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>二、执行node js </p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-node]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D; node &#x2F;home&#x2F;socket&#x2F;stocket.js</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;1</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>Centos</tag>
       </tags>
   </entry>
   <entry>
@@ -936,6 +936,57 @@
       </tags>
   </entry>
   <entry>
+    <title>Laravel yansongda/laravel-pay</title>
+    <url>/2018/09/29/Laravel-yansongda-laravel-pay/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p>运行环境:</p>
+</blockquote>
+<ul>
+<li>php &gt;= 7.0</li>
+<li>composer</li>
+<li>laravel || lumen &gt;= 5.1</li>
+</ul>
+<p><strong>一、安装</strong></p>
+<blockquote>
+<p>composer require yansongda/laravel-pay</p>
+</blockquote>
+<p>添加service provider（如果laravel&lt;5.5 或者 lumen）[5.5以上忽略]</p>
+<p>laravel &lt; 5.5</p>
+<blockquote>
+<p>Yansongda\LaravelPay\PayServiceProvider::class,</p>
+</blockquote>
+<p>lumen</p>
+<blockquote>
+<p>$app-&gt;register(Yansongda\LaravelPay\PayServiceProvider::class);</p>
+</blockquote>
+<p>添加 alias（如果laravel&lt;5.5 或者 lumen）[5.5以上忽略]</p>
+<blockquote>
+<p>‘Pay’ =&gt; Yansongda\LaravelPay\Facades\Pay::class,</p>
+</blockquote>
+<p>配置文件</p>
+<blockquote>
+<p>php artisan vendor:publish –provider=”Yansongda\LaravelPay\PayServiceProvider” –tag=laravel-pay</p>
+</blockquote>
+<p><strong>二、使用[支付宝]</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">use Yansongda\Pay\Pay;</span><br><span class="line"></span><br><span class="line">$config &#x3D; [</span><br><span class="line">    &#39;app_id&#39; &#x3D;&gt; &#39;2016082000295641&#39;,</span><br><span class="line">    &#39;notify_url&#39; &#x3D;&gt; &#39;http:&#x2F;&#x2F;yansongda.cn&#x2F;notify.php&#39;,</span><br><span class="line">    &#39;return_url&#39; &#x3D;&gt; &#39;http:&#x2F;&#x2F;yansongda.cn&#x2F;return.php&#39;,</span><br><span class="line">    &#39;ali_public_key&#39; &#x3D;&gt; &#39;MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuWJKrQ6SWvS6niI+4vEVZiYfjkCfLQfoFI2nCp9ZLDS42QtiL4Ccyx8scgc3nhVwmVRte8f57TFvGhvJD0upT4O5O&#x2F;lRxmTjechXAorirVdAODpOu0mFfQV9y&#x2F;T9o9hHnU+VmO5spoVb3umqpq6D&#x2F;Pt8p25Yk852&#x2F;w01VTIczrXC4QlrbOEe3sr1E9auoC7rgYjjCO6lZUIDjX&#x2F;oBmNXZxhRDrYx4Yf5X7y8FRBFvygIE2FgxV4Yw+SL3QAa2m5MLcbusJpxOml9YVQfP8iSurx41PvvXUMo49JG3BDVernaCYXQCoUJv9fJwbnfZd7J5YByC+5KM4sblJTq7bXZWQIDAQAB&#39;,</span><br><span class="line">    &#39;private_key&#39; &#x3D;&gt; &#39;MIIEpAIBAAKCAQEAs6+F2leOgOrvj9jTeDhb5q46GewOjqLBlGSs&#x2F;bVL4Z3fMr3p+Q1Tux&#x2F;6uogeVi&#x2F;eHd84xvQdfpZ87A1SfoWnEGH5z15yorccxSOwWUI+q8gz51IWqjgZxhWKe31BxNZ+prnQpyeMBtE25fXp5nQZ&#x2F;pftgePyUUvUZRcAUisswntobDQKbwx28VCXw5XB2A+lvYEvxmMv&#x2F;QexYjwKK4M54j435TuC3UctZbnuynSPpOmCu45ZhEYXd4YMsGMdZE5&#x2F;077ZU1aU7wx&#x2F;gk07PiHImEOCDkzqsFo0Buc&#x2F;knGcdOiUDvm2hn2y1XvwjyFOThsqCsQYi4JmwZdRa8kvOf57nwIDAQABAoIBAQCw5QCqln4VTrTvcW+msB1ReX57nJgsNfDLbV2dG8mLYQemBa9833DqDK6iynTLNq69y88ylose33o2TVtEccGp8Dqluv6yUAED14G6LexS43KtrXPgugAtsXE253ZDGUNwUggnN1i0MW2RcMqHdQ9ORDWvJUCeZj&#x2F;AEafgPN8AyiLrZeL07jJz&#x2F;uaRfAuNqkImCVIarKUX3HBCjl9TpuoMjcMhz&#x2F;MsOmQ0agtCatO1eoH1sqv5Odvxb1i59c8Hvq&#x2F;mGEXyRuoiDo05SE6IyXYXr84&#x2F;Nf2xvVNHNQA6kTckj8shSi+HGM4mO1Y4Pbb7XcnxNkT0Inn6oJMSiy56P+CpAoGBAO1O+5FE1ZuVGuLb48cY+0lHCD+nhSBd66B5FrxgPYCkFOQWR7pWyfNDBlmO3SSooQ8TQXA25blrkDxzOAEGX57EPiipXr&#x2F;hy5e+WNoukpy09rsO1TMsvC+v0FXLvZ+TIAkqfnYBgaT56ku7yZ8aFGMwdCPL7WJYAwUIcZX8wZ3dAoGBAMHWplAqhe4bfkGOEEpfs6VvEQxCqYMYVyR65K0rI1LiDZn6Ij8fdVtwMjGKFSZZTspmsqnbbuCE&#x2F;VTyDzF4NpAxdm3cBtZACv1Lpu2Om+aTzhK2PI6WTDVTKAJBYegXaahBCqVbSxieR62IWtmOMjggTtAKWZ1P5LQcRwdkaB2rAoGAWnAPT318Kp7YcDx8whOzMGnxqtCc24jvk2iSUZgb2Dqv+3zCOTF6JUsV0Guxu5bISoZ8GdfSFKf5gBAo97sGFeuUBMsHYPkcLehM1FmLZk1Q+ljcx3P1A&#x2F;ds3kWXLolTXCrlpvNMBSN5NwOKAyhdPK&#x2F;qkvnUrfX8sJ5XK2H4J8ECgYAGIZ0HIiE0Y+g9eJnpUFelXvsCEUW9YNK4065SD&#x2F;BBGedmPHRC3OLgbo8X5A9BNEf6vP7fwpIiRfKhcjqqzOuk6fueA&#x2F;yvYD04v+Da2MzzoS8+hkcqF3T3pta4I4tORRdRfCUzD80zTSZlRc&#x2F;h286Y2eTETd+By1onnFFe2X01mwKBgQDaxo4PBcLL2OyVT5DoXiIdTCJ8KNZL9+kV1aiBuOWxnRgkDjPngslzNa1bK+klGgJNYDbQqohKNn1HeFX3mYNfCUpuSnD2Yag53Dd&#x2F;1DLO+NxzwvTu4D6DCUnMMMBVaF42ig31Bs0jI3JQZVqeeFzSET8fkoFopJf3G6UXlrIEAQ&#x3D;&#x3D;&#39;,</span><br><span class="line">    &#39;http&#39; &#x3D;&gt; [ &#x2F;&#x2F; optional</span><br><span class="line">        &#39;timeout&#39; &#x3D;&gt; 5.0,</span><br><span class="line">        &#39;connect_timeout&#39; &#x3D;&gt; 5.0,</span><br><span class="line">        &#x2F;&#x2F; 更多配置项请参考 [Guzzle](https:&#x2F;&#x2F;guzzle-cn.readthedocs.io&#x2F;zh_CN&#x2F;latest&#x2F;request-options.html)</span><br><span class="line">    ]</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 支付</span><br><span class="line">$order &#x3D; [</span><br><span class="line">    &#39;out_trade_no&#39; &#x3D;&gt; time(),</span><br><span class="line">    &#39;total_amount&#39; &#x3D;&gt; &#39;1&#39;,</span><br><span class="line">    &#39;subject&#39; &#x3D;&gt; &#39;test&#39;,</span><br><span class="line">];</span><br><span class="line">$alipay &#x3D; Pay::alipay($config)-&gt;web($order);</span><br><span class="line"></span><br><span class="line">return $alipay-&gt;send();&#x2F;&#x2F; laravel 框架中请直接 &#96;return $alipay&#96;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 退款</span><br><span class="line">$order &#x3D; [</span><br><span class="line">    &#39;out_trade_no&#39; &#x3D;&gt; &#39;1514027114&#39;,</span><br><span class="line">    &#39;refund_amount&#39; &#x3D;&gt; &#39;0.01&#39;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;refund($order); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 查询</span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;find(&#39;out_trade_no_123456&#39;); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 取消</span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;cancel(&#39;out_trade_no_123456&#39;); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 关闭</span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;close(&#39;out_trade_no_123456&#39;); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 验证服务器数据</span><br><span class="line">$alipay &#x3D; Pay::alipay($config)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 是的，验签就这么简单！</span><br><span class="line">$data &#x3D; $alipay-&gt;verify(); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$data-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line">$alipay-&gt;success()-&gt;send(); &#x2F;&#x2F; 向支付宝服务器确认接收到的数据。laravel 框架中请直接 &#96;return $alipay-&gt;success()&#96;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>若前端框架使用vue、react等 此时后端返回的是form表单需要简单处理下，如下:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const div &#x3D; document.createElement(&#39;div&#39;) &#x2F;&#x2F; 创建div</span><br><span class="line">div.innerHTML &#x3D; res.data &#x2F;&#x2F; 将返回的form 放入div</span><br><span class="line">document.body.appendChild(div)</span><br><span class="line">document.forms[&#39;alipaysubmit&#39;].submit()</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>laravel5.6</tag>
+        <tag>laravel-pay</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Laravel 事件系统</title>
     <url>/2019/04/22/Laravel-%E4%BA%8B%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
     <content><![CDATA[<a id="more"></a>
@@ -987,57 +1038,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
         <tag>laravel5.7</tag>
         <tag>Redis</tag>
         <tag>Event</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Laravel yansongda/laravel-pay</title>
-    <url>/2018/09/29/Laravel-yansongda-laravel-pay/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p>运行环境:</p>
-</blockquote>
-<ul>
-<li>php &gt;= 7.0</li>
-<li>composer</li>
-<li>laravel || lumen &gt;= 5.1</li>
-</ul>
-<p><strong>一、安装</strong></p>
-<blockquote>
-<p>composer require yansongda/laravel-pay</p>
-</blockquote>
-<p>添加service provider（如果laravel&lt;5.5 或者 lumen）[5.5以上忽略]</p>
-<p>laravel &lt; 5.5</p>
-<blockquote>
-<p>Yansongda\LaravelPay\PayServiceProvider::class,</p>
-</blockquote>
-<p>lumen</p>
-<blockquote>
-<p>$app-&gt;register(Yansongda\LaravelPay\PayServiceProvider::class);</p>
-</blockquote>
-<p>添加 alias（如果laravel&lt;5.5 或者 lumen）[5.5以上忽略]</p>
-<blockquote>
-<p>‘Pay’ =&gt; Yansongda\LaravelPay\Facades\Pay::class,</p>
-</blockquote>
-<p>配置文件</p>
-<blockquote>
-<p>php artisan vendor:publish –provider=”Yansongda\LaravelPay\PayServiceProvider” –tag=laravel-pay</p>
-</blockquote>
-<p><strong>二、使用[支付宝]</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">use Yansongda\Pay\Pay;</span><br><span class="line"></span><br><span class="line">$config &#x3D; [</span><br><span class="line">    &#39;app_id&#39; &#x3D;&gt; &#39;2016082000295641&#39;,</span><br><span class="line">    &#39;notify_url&#39; &#x3D;&gt; &#39;http:&#x2F;&#x2F;yansongda.cn&#x2F;notify.php&#39;,</span><br><span class="line">    &#39;return_url&#39; &#x3D;&gt; &#39;http:&#x2F;&#x2F;yansongda.cn&#x2F;return.php&#39;,</span><br><span class="line">    &#39;ali_public_key&#39; &#x3D;&gt; &#39;MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuWJKrQ6SWvS6niI+4vEVZiYfjkCfLQfoFI2nCp9ZLDS42QtiL4Ccyx8scgc3nhVwmVRte8f57TFvGhvJD0upT4O5O&#x2F;lRxmTjechXAorirVdAODpOu0mFfQV9y&#x2F;T9o9hHnU+VmO5spoVb3umqpq6D&#x2F;Pt8p25Yk852&#x2F;w01VTIczrXC4QlrbOEe3sr1E9auoC7rgYjjCO6lZUIDjX&#x2F;oBmNXZxhRDrYx4Yf5X7y8FRBFvygIE2FgxV4Yw+SL3QAa2m5MLcbusJpxOml9YVQfP8iSurx41PvvXUMo49JG3BDVernaCYXQCoUJv9fJwbnfZd7J5YByC+5KM4sblJTq7bXZWQIDAQAB&#39;,</span><br><span class="line">    &#39;private_key&#39; &#x3D;&gt; &#39;MIIEpAIBAAKCAQEAs6+F2leOgOrvj9jTeDhb5q46GewOjqLBlGSs&#x2F;bVL4Z3fMr3p+Q1Tux&#x2F;6uogeVi&#x2F;eHd84xvQdfpZ87A1SfoWnEGH5z15yorccxSOwWUI+q8gz51IWqjgZxhWKe31BxNZ+prnQpyeMBtE25fXp5nQZ&#x2F;pftgePyUUvUZRcAUisswntobDQKbwx28VCXw5XB2A+lvYEvxmMv&#x2F;QexYjwKK4M54j435TuC3UctZbnuynSPpOmCu45ZhEYXd4YMsGMdZE5&#x2F;077ZU1aU7wx&#x2F;gk07PiHImEOCDkzqsFo0Buc&#x2F;knGcdOiUDvm2hn2y1XvwjyFOThsqCsQYi4JmwZdRa8kvOf57nwIDAQABAoIBAQCw5QCqln4VTrTvcW+msB1ReX57nJgsNfDLbV2dG8mLYQemBa9833DqDK6iynTLNq69y88ylose33o2TVtEccGp8Dqluv6yUAED14G6LexS43KtrXPgugAtsXE253ZDGUNwUggnN1i0MW2RcMqHdQ9ORDWvJUCeZj&#x2F;AEafgPN8AyiLrZeL07jJz&#x2F;uaRfAuNqkImCVIarKUX3HBCjl9TpuoMjcMhz&#x2F;MsOmQ0agtCatO1eoH1sqv5Odvxb1i59c8Hvq&#x2F;mGEXyRuoiDo05SE6IyXYXr84&#x2F;Nf2xvVNHNQA6kTckj8shSi+HGM4mO1Y4Pbb7XcnxNkT0Inn6oJMSiy56P+CpAoGBAO1O+5FE1ZuVGuLb48cY+0lHCD+nhSBd66B5FrxgPYCkFOQWR7pWyfNDBlmO3SSooQ8TQXA25blrkDxzOAEGX57EPiipXr&#x2F;hy5e+WNoukpy09rsO1TMsvC+v0FXLvZ+TIAkqfnYBgaT56ku7yZ8aFGMwdCPL7WJYAwUIcZX8wZ3dAoGBAMHWplAqhe4bfkGOEEpfs6VvEQxCqYMYVyR65K0rI1LiDZn6Ij8fdVtwMjGKFSZZTspmsqnbbuCE&#x2F;VTyDzF4NpAxdm3cBtZACv1Lpu2Om+aTzhK2PI6WTDVTKAJBYegXaahBCqVbSxieR62IWtmOMjggTtAKWZ1P5LQcRwdkaB2rAoGAWnAPT318Kp7YcDx8whOzMGnxqtCc24jvk2iSUZgb2Dqv+3zCOTF6JUsV0Guxu5bISoZ8GdfSFKf5gBAo97sGFeuUBMsHYPkcLehM1FmLZk1Q+ljcx3P1A&#x2F;ds3kWXLolTXCrlpvNMBSN5NwOKAyhdPK&#x2F;qkvnUrfX8sJ5XK2H4J8ECgYAGIZ0HIiE0Y+g9eJnpUFelXvsCEUW9YNK4065SD&#x2F;BBGedmPHRC3OLgbo8X5A9BNEf6vP7fwpIiRfKhcjqqzOuk6fueA&#x2F;yvYD04v+Da2MzzoS8+hkcqF3T3pta4I4tORRdRfCUzD80zTSZlRc&#x2F;h286Y2eTETd+By1onnFFe2X01mwKBgQDaxo4PBcLL2OyVT5DoXiIdTCJ8KNZL9+kV1aiBuOWxnRgkDjPngslzNa1bK+klGgJNYDbQqohKNn1HeFX3mYNfCUpuSnD2Yag53Dd&#x2F;1DLO+NxzwvTu4D6DCUnMMMBVaF42ig31Bs0jI3JQZVqeeFzSET8fkoFopJf3G6UXlrIEAQ&#x3D;&#x3D;&#39;,</span><br><span class="line">    &#39;http&#39; &#x3D;&gt; [ &#x2F;&#x2F; optional</span><br><span class="line">        &#39;timeout&#39; &#x3D;&gt; 5.0,</span><br><span class="line">        &#39;connect_timeout&#39; &#x3D;&gt; 5.0,</span><br><span class="line">        &#x2F;&#x2F; 更多配置项请参考 [Guzzle](https:&#x2F;&#x2F;guzzle-cn.readthedocs.io&#x2F;zh_CN&#x2F;latest&#x2F;request-options.html)</span><br><span class="line">    ]</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 支付</span><br><span class="line">$order &#x3D; [</span><br><span class="line">    &#39;out_trade_no&#39; &#x3D;&gt; time(),</span><br><span class="line">    &#39;total_amount&#39; &#x3D;&gt; &#39;1&#39;,</span><br><span class="line">    &#39;subject&#39; &#x3D;&gt; &#39;test&#39;,</span><br><span class="line">];</span><br><span class="line">$alipay &#x3D; Pay::alipay($config)-&gt;web($order);</span><br><span class="line"></span><br><span class="line">return $alipay-&gt;send();&#x2F;&#x2F; laravel 框架中请直接 &#96;return $alipay&#96;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 退款</span><br><span class="line">$order &#x3D; [</span><br><span class="line">    &#39;out_trade_no&#39; &#x3D;&gt; &#39;1514027114&#39;,</span><br><span class="line">    &#39;refund_amount&#39; &#x3D;&gt; &#39;0.01&#39;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;refund($order); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 查询</span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;find(&#39;out_trade_no_123456&#39;); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 取消</span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;cancel(&#39;out_trade_no_123456&#39;); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 关闭</span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;close(&#39;out_trade_no_123456&#39;); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 验证服务器数据</span><br><span class="line">$alipay &#x3D; Pay::alipay($config)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 是的，验签就这么简单！</span><br><span class="line">$data &#x3D; $alipay-&gt;verify(); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$data-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line">$alipay-&gt;success()-&gt;send(); &#x2F;&#x2F; 向支付宝服务器确认接收到的数据。laravel 框架中请直接 &#96;return $alipay-&gt;success()&#96;</span><br></pre></td></tr></table></figure>
-
-
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>若前端框架使用vue、react等 此时后端返回的是form表单需要简单处理下，如下:</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const div &#x3D; document.createElement(&#39;div&#39;) &#x2F;&#x2F; 创建div</span><br><span class="line">div.innerHTML &#x3D; res.data &#x2F;&#x2F; 将返回的form 放入div</span><br><span class="line">document.body.appendChild(div)</span><br><span class="line">document.forms[&#39;alipaysubmit&#39;].submit()</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>laravel5.6</tag>
-        <tag>laravel-pay</tag>
       </tags>
   </entry>
   <entry>
@@ -1155,6 +1155,41 @@ public $queue = &#39;listeners&#39;;</code></pre>
       <tags>
         <tag>linux</tag>
         <tag>Supervisor</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux定时任务采集聚合数据api文章</title>
+    <url>/2019/04/18/Linux%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E9%87%87%E9%9B%86%E8%81%9A%E5%90%88%E6%95%B0%E6%8D%AEapi%E6%96%87%E7%AB%A0/</url>
+    <content><![CDATA[<p><strong>Linux定时任务采集文章</strong> </p>
+<a id="more"></a>
+
+<p>一、<a href="https://learnku.com/docs/laravel/5.7/scheduling/1396" target="_blank">[ Artisan 命令调度-任务调度 ]</a></p>
+<p>二、crond服务</p>
+<p>crontab:</p>
+<blockquote>
+<p>crontab -l //列出crontab<br>crontab -e //编辑crontab<br>crontab -r //删除crontab</p>
+</blockquote>
+<p>服务操作：</p>
+<blockquote>
+<p>service crond start //启动服务<br>  service crond stop //关闭服务<br>  service crond restart //重启服务<br>  service crond reload //重新载入配置<br>  service crond status //查看状态</p>
+</blockquote>
+<p>三、创建crontab</p>
+<blockquote>
+<p>crontab -e </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">* * * * * php &#x2F;home&#x2F;wwwroot&#x2F;wwyl.xxxx.xyz&#x2F;wwyl&#x2F;artisan schedule:run &gt;&gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>四、查看crontab状态并启动</p>
+<blockquote>
+<p>service crond status<br>service crond start </p>
+</blockquote>
+<p>五、查看结果</p>
+<p><img src="/assets/blogImg/crontab.png" alt="ico原来的样子"></p>
+]]></content>
+      <tags>
+        <tag>Laravel</tag>
+        <tag>Linux</tag>
+        <tag>crontab</tag>
       </tags>
   </entry>
   <entry>
@@ -1277,41 +1312,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Linux定时任务采集聚合数据api文章</title>
-    <url>/2019/04/18/Linux%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E9%87%87%E9%9B%86%E8%81%9A%E5%90%88%E6%95%B0%E6%8D%AEapi%E6%96%87%E7%AB%A0/</url>
-    <content><![CDATA[<p><strong>Linux定时任务采集文章</strong> </p>
-<a id="more"></a>
-
-<p>一、<a href="https://learnku.com/docs/laravel/5.7/scheduling/1396" target="_blank">[ Artisan 命令调度-任务调度 ]</a></p>
-<p>二、crond服务</p>
-<p>crontab:</p>
-<blockquote>
-<p>crontab -l //列出crontab<br>crontab -e //编辑crontab<br>crontab -r //删除crontab</p>
-</blockquote>
-<p>服务操作：</p>
-<blockquote>
-<p>service crond start //启动服务<br>  service crond stop //关闭服务<br>  service crond restart //重启服务<br>  service crond reload //重新载入配置<br>  service crond status //查看状态</p>
-</blockquote>
-<p>三、创建crontab</p>
-<blockquote>
-<p>crontab -e </p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">* * * * * php &#x2F;home&#x2F;wwwroot&#x2F;wwyl.xxxx.xyz&#x2F;wwyl&#x2F;artisan schedule:run &gt;&gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
-
-<p>四、查看crontab状态并启动</p>
-<blockquote>
-<p>service crond status<br>service crond start </p>
-</blockquote>
-<p>五、查看结果</p>
-<p><img src="/assets/blogImg/crontab.png" alt="ico原来的样子"></p>
-]]></content>
-      <tags>
-        <tag>Laravel</tag>
-        <tag>Linux</tag>
-        <tag>crontab</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MySQL出现1030-Got error 28 from storage engine错误</title>
     <url>/2018/11/22/MySQL%E5%87%BA%E7%8E%B01030-Got-error-28-from-storage-engine%E9%94%99%E8%AF%AF/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1410,50 +1410,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
 ]]></content>
       <tags>
         <tag>nginx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PHP Socket 基础教程</title>
-    <url>/2018/03/12/PHP-Socket-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>案例：socket通信演示</strong></p>
-<blockquote>
-<p> 服务器端：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">&#x2F;&#x2F;确保在连接客户端时不会超时</span><br><span class="line">set_time_limit(0);</span><br><span class="line"></span><br><span class="line">$ip &#x3D; &#39;127.0.0.1&#39;;</span><br><span class="line">$port &#x3D; 1935;</span><br><span class="line"></span><br><span class="line">&#x2F;*</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket通信整个过程</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket_create</span><br><span class="line"> *    @socket_bind</span><br><span class="line"> *    @socket_listen</span><br><span class="line"> *    @socket_accept</span><br><span class="line"> *    @socket_read</span><br><span class="line"> *    @socket_write</span><br><span class="line"> *    @socket_close</span><br><span class="line"> +--------------------------------</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;*----------------    以下操作都是手册上的    -------------------*&#x2F;</span><br><span class="line">if(($sock &#x3D; socket_create(AF_INET,SOCK_STREAM,SOL_TCP)) &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_create() 失败的原因是:&quot;.socket_strerror($sock).&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(($ret &#x3D; socket_bind($sock,$ip,$port)) &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_bind() 失败的原因是:&quot;.socket_strerror($ret).&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(($ret &#x3D; socket_listen($sock,4)) &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_listen() 失败的原因是:&quot;.socket_strerror($ret).&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$count &#x3D; 0;</span><br><span class="line"></span><br><span class="line">do &#123;</span><br><span class="line">    if (($msgsock &#x3D; socket_accept($sock)) &lt; 0) &#123;</span><br><span class="line">        echo &quot;socket_accept() failed: reason: &quot; . socket_strerror($msgsock) . &quot;\n&quot;;</span><br><span class="line">        break;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        </span><br><span class="line">        &#x2F;&#x2F;发到客户端</span><br><span class="line">        $msg &#x3D;&quot;测试成功！\n&quot;;</span><br><span class="line">        socket_write($msgsock, $msg, strlen($msg));</span><br><span class="line">        </span><br><span class="line">        echo &quot;测试成功了啊\n&quot;;</span><br><span class="line">        $buf &#x3D; socket_read($msgsock,8192);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        $talkback &#x3D; &quot;收到的信息:$buf\n&quot;;</span><br><span class="line">        echo $talkback;</span><br><span class="line">        </span><br><span class="line">        if(++$count &gt;&#x3D; 5)&#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;;</span><br><span class="line">        </span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;echo $buf;</span><br><span class="line">    socket_close($msgsock);</span><br><span class="line"></span><br><span class="line">&#125; while (true);</span><br><span class="line"></span><br><span class="line">socket_close($sock);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-
-
-<blockquote>
-<p> 客户端：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(E_ALL);</span><br><span class="line">set_time_limit(0);</span><br><span class="line">echo &quot;&lt;h2&gt;TCP&#x2F;IP Connection&lt;&#x2F;h2&gt;\n&quot;;</span><br><span class="line"></span><br><span class="line">$port &#x3D; 1935;</span><br><span class="line">$ip &#x3D; &quot;127.0.0.1&quot;;</span><br><span class="line"></span><br><span class="line">&#x2F;*</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket连接整个过程</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket_create</span><br><span class="line"> *    @socket_connect</span><br><span class="line"> *    @socket_write</span><br><span class="line"> *    @socket_read</span><br><span class="line"> *    @socket_close</span><br><span class="line"> +--------------------------------</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">$socket &#x3D; socket_create(AF_INET, SOCK_STREAM, SOL_TCP);</span><br><span class="line">if ($socket &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_create() failed: reason: &quot; . socket_strerror($socket) . &quot;\n&quot;;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    echo &quot;OK.\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo &quot;试图连接 &#39;$ip&#39; 端口 &#39;$port&#39;...\n&quot;;</span><br><span class="line">$result &#x3D; socket_connect($socket, $ip, $port);</span><br><span class="line">if ($result &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_connect() failed.\nReason: ($result) &quot; . socket_strerror($result) . &quot;\n&quot;;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    echo &quot;连接OK\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$in &#x3D; &quot;Ho\r\n&quot;;</span><br><span class="line">$in .&#x3D; &quot;first blood\r\n&quot;;</span><br><span class="line">$out &#x3D; &#39;&#39;;</span><br><span class="line"></span><br><span class="line">if(!socket_write($socket, $in, strlen($in))) &#123;</span><br><span class="line">    echo &quot;socket_write() failed: reason: &quot; . socket_strerror($socket) . &quot;\n&quot;;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    echo &quot;发送到服务器信息成功！\n&quot;;</span><br><span class="line">    echo &quot;发送的内容为:&lt;font color&#x3D;&#39;red&#39;&gt;$in&lt;&#x2F;font&gt; &lt;br&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">while($out &#x3D; socket_read($socket, 8192)) &#123;</span><br><span class="line">    echo &quot;接收服务器回传信息成功！\n&quot;;</span><br><span class="line">    echo &quot;接受的内容为:&quot;,$out;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">echo &quot;关闭SOCKET...\n&quot;;</span><br><span class="line">socket_close($socket);</span><br><span class="line">echo &quot;关闭OK\n&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-
-<p><strong>案例：代码详解</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 设置一些基本的变量</span><br><span class="line">$host &#x3D; &quot;192.168.1.99&quot;;</span><br><span class="line">$port &#x3D; 1234;</span><br><span class="line">&#x2F;&#x2F; 设置超时时间</span><br><span class="line">set_time_limit(0);</span><br><span class="line">&#x2F;&#x2F; 创建一个Socket</span><br><span class="line">$socket &#x3D; socket_create(AF_INET, SOCK_STREAM, 0) or die(&quot;Could not createsocket\n&quot;);</span><br><span class="line">&#x2F;&#x2F;绑定Socket到端口</span><br><span class="line">$result &#x3D; socket_bind($socket, $host, $port) or die(&quot;Could not bind tosocket\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 开始监听链接</span><br><span class="line">$result &#x3D; socket_listen($socket, 3) or die(&quot;Could not set up socketlistener\n&quot;);</span><br><span class="line">&#x2F;&#x2F; accept incoming connections</span><br><span class="line">&#x2F;&#x2F; 另一个Socket来处理通信</span><br><span class="line">$spawn &#x3D; socket_accept($socket) or die(&quot;Could not accept incomingconnection\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 获得客户端的输入</span><br><span class="line">$input &#x3D; socket_read($spawn, 1024) or die(&quot;Could not read input\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 清空输入字符串</span><br><span class="line">$input &#x3D; trim($input);</span><br><span class="line">&#x2F;&#x2F;处理客户端输入并返回结果</span><br><span class="line">$output &#x3D; strrev($input) . &quot;\n&quot;;</span><br><span class="line">socket_write($spawn, $output, strlen ($output)) or die(&quot;Could not write</span><br><span class="line">output\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 关闭sockets</span><br><span class="line">socket_close($spawn);</span><br><span class="line">socket_close($socket);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>1.第一步是建立两个变量来保存Socket运行的服务器的IP地址和端口.你可以设置为你自己的服务器和端口(这个端口可以是1到65535之间的数字),前提是这个端口未被使用.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 设置两个变量</span><br><span class="line">$host  &#x3D;  &quot;192.168.1.99&quot; ;</span><br><span class="line">$port  &#x3D;  1234 ; </span><br></pre></td></tr></table></figure>
-<p>2.在服务器端可以使用set_time_out()函数来确保PHP在等待客户端连接时不会超时</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 超时时间</span><br><span class="line">set_time_limit ( 0 ); 4 ; </span><br></pre></td></tr></table></figure>
-<p>3.在前面的基础上,现在该使用socket_creat()函数创建一个Socket了—这个函数返回一个Socket句柄,这个句柄将用在以后所有的函数中.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 创建Socket</span><br><span class="line">$socket  &#x3D;  socket_create ( AF_INET ,  SOCK_STREAM ,  0 ) or die( &quot;Could not create</span><br><span class="line">socket\n&quot; ); </span><br><span class="line">&#x2F;&#x2F;第一个参数”AF_INET”用来指定域名;</span><br><span class="line">&#x2F;&#x2F;第二个参数”SOCK_STREM”告诉函数将创建一个什么类型的Socket(在这个例子中是TCP类型)</span><br><span class="line">因此,如果你想创建一个UDP Socket的话,你可以使用如下的代码:</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 创建 socket</span><br><span class="line">$socket  &#x3D;  socket_create ( AF_INET ,  SOCK_DGRAM ,  0 ) or die( &quot;Could not create</span><br><span class="line">socket\n&quot; ); </span><br></pre></td></tr></table></figure>
-<p>4.一旦创建了一个Socket句柄,下一步就是指定或者绑定它到指定的地址和端口.这可以通过socket_bind()函数来完成.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 绑定 socket to 指定地址和端口</span><br><span class="line">$result  &#x3D;  socket_bind ( $socket ,  $host ,  $port ) or die( &quot;Could not bind to</span><br><span class="line">socket\n&quot; ); </span><br></pre></td></tr></table></figure>
-<p>5.当Socket被创建好并绑定到一个端口后,就可以开始监听外部的连接了.PHP允许你由socket_listen()函数来开始一个监听,同时你可以指定一个数字(在这个例子中就是第二个参数:3)</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 开始监听连接</span><br><span class="line">$result  &#x3D;  socket_listen ( $socket ,  3 ) or die( &quot;Could not set up socket</span><br><span class="line">listener\n&quot; ); </span><br></pre></td></tr></table></figure>
-<p>6.到现在,你的服务器除了等待来自客户端的连接请求外基本上什么也没有做.一旦一个客户端的连接被收到,socket_accept()函数便开始起作用了,它接收连接请求并调用另一个子Socket来处理客户端–服务器间的信息.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;接受请求链接</span><br><span class="line">&#x2F;&#x2F; 调用子socket 处理信息</span><br><span class="line">$spawn  &#x3D;  socket_accept ( $socket ) or die( &quot;Could not accept incoming</span><br><span class="line">connection\n&quot; );</span><br><span class="line">&#x2F;&#x2F;这个子socket现在就可以被随后的客户端–服务器通信所用了. </span><br></pre></td></tr></table></figure>
-<p>7.当一个连接被建立后,服务器就会等待客户端发送一些输入信息,这写信息可以由socket_read()函数来获得,并把它赋值给PHP的$input变量.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 读取客户端输入</span><br><span class="line">$input  &#x3D;  socket_read ( $spawn ,  1024 ) or die( &quot;Could not read input\n&quot; ); </span><br><span class="line">&#x2F;&#x2F;socker_read的第而个参数用以指定读入的字节数,你可以通过它来限制从客户端获取数据的大小.</span><br><span class="line">&#x2F;&#x2F;注意:socket_read函数会一直读取壳户端数据,直到遇见\n,\t或者\0字符.PHP脚本把这写字符看做是输入的结束符.</span><br></pre></td></tr></table></figure>
-<p>8.现在服务器必须处理这些由客户端发来是数据(在这个例子中的处理仅仅包含数据的输入和回传到客户端).这部分可以由socket_write()函数来完成(使得由通信socket发回一个数据流到客户端成为可能)</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 处理客户端输入并返回数据</span><br><span class="line">$output  &#x3D;  strrev ( $input ) .  &quot;\n&quot; ;</span><br><span class="line">socket_write ( $spawn ,  $output ,  strlen  ( $output )) or die( &quot;Could not write</span><br><span class="line">output\n&quot; ); </span><br></pre></td></tr></table></figure>
-<p>9.一旦输出被返回到客户端,父/子socket都应通过socket_close()函数来终止</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 关闭 sockets</span><br><span class="line">socket_close ( $spawn );</span><br><span class="line">socket_close ( $socket ); </span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>php</tag>
-        <tag>socket</tag>
       </tags>
   </entry>
   <entry>
@@ -1684,6 +1640,50 @@ public $queue = &#39;listeners&#39;;</code></pre>
       <tags>
         <tag>PHP5.3+</tag>
         <tag>新特性</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PHP Socket 基础教程</title>
+    <url>/2018/03/12/PHP-Socket-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>案例：socket通信演示</strong></p>
+<blockquote>
+<p> 服务器端：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">&#x2F;&#x2F;确保在连接客户端时不会超时</span><br><span class="line">set_time_limit(0);</span><br><span class="line"></span><br><span class="line">$ip &#x3D; &#39;127.0.0.1&#39;;</span><br><span class="line">$port &#x3D; 1935;</span><br><span class="line"></span><br><span class="line">&#x2F;*</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket通信整个过程</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket_create</span><br><span class="line"> *    @socket_bind</span><br><span class="line"> *    @socket_listen</span><br><span class="line"> *    @socket_accept</span><br><span class="line"> *    @socket_read</span><br><span class="line"> *    @socket_write</span><br><span class="line"> *    @socket_close</span><br><span class="line"> +--------------------------------</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;*----------------    以下操作都是手册上的    -------------------*&#x2F;</span><br><span class="line">if(($sock &#x3D; socket_create(AF_INET,SOCK_STREAM,SOL_TCP)) &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_create() 失败的原因是:&quot;.socket_strerror($sock).&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(($ret &#x3D; socket_bind($sock,$ip,$port)) &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_bind() 失败的原因是:&quot;.socket_strerror($ret).&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(($ret &#x3D; socket_listen($sock,4)) &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_listen() 失败的原因是:&quot;.socket_strerror($ret).&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$count &#x3D; 0;</span><br><span class="line"></span><br><span class="line">do &#123;</span><br><span class="line">    if (($msgsock &#x3D; socket_accept($sock)) &lt; 0) &#123;</span><br><span class="line">        echo &quot;socket_accept() failed: reason: &quot; . socket_strerror($msgsock) . &quot;\n&quot;;</span><br><span class="line">        break;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        </span><br><span class="line">        &#x2F;&#x2F;发到客户端</span><br><span class="line">        $msg &#x3D;&quot;测试成功！\n&quot;;</span><br><span class="line">        socket_write($msgsock, $msg, strlen($msg));</span><br><span class="line">        </span><br><span class="line">        echo &quot;测试成功了啊\n&quot;;</span><br><span class="line">        $buf &#x3D; socket_read($msgsock,8192);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        $talkback &#x3D; &quot;收到的信息:$buf\n&quot;;</span><br><span class="line">        echo $talkback;</span><br><span class="line">        </span><br><span class="line">        if(++$count &gt;&#x3D; 5)&#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;;</span><br><span class="line">        </span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;echo $buf;</span><br><span class="line">    socket_close($msgsock);</span><br><span class="line"></span><br><span class="line">&#125; while (true);</span><br><span class="line"></span><br><span class="line">socket_close($sock);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p> 客户端：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(E_ALL);</span><br><span class="line">set_time_limit(0);</span><br><span class="line">echo &quot;&lt;h2&gt;TCP&#x2F;IP Connection&lt;&#x2F;h2&gt;\n&quot;;</span><br><span class="line"></span><br><span class="line">$port &#x3D; 1935;</span><br><span class="line">$ip &#x3D; &quot;127.0.0.1&quot;;</span><br><span class="line"></span><br><span class="line">&#x2F;*</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket连接整个过程</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket_create</span><br><span class="line"> *    @socket_connect</span><br><span class="line"> *    @socket_write</span><br><span class="line"> *    @socket_read</span><br><span class="line"> *    @socket_close</span><br><span class="line"> +--------------------------------</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">$socket &#x3D; socket_create(AF_INET, SOCK_STREAM, SOL_TCP);</span><br><span class="line">if ($socket &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_create() failed: reason: &quot; . socket_strerror($socket) . &quot;\n&quot;;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    echo &quot;OK.\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo &quot;试图连接 &#39;$ip&#39; 端口 &#39;$port&#39;...\n&quot;;</span><br><span class="line">$result &#x3D; socket_connect($socket, $ip, $port);</span><br><span class="line">if ($result &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_connect() failed.\nReason: ($result) &quot; . socket_strerror($result) . &quot;\n&quot;;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    echo &quot;连接OK\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$in &#x3D; &quot;Ho\r\n&quot;;</span><br><span class="line">$in .&#x3D; &quot;first blood\r\n&quot;;</span><br><span class="line">$out &#x3D; &#39;&#39;;</span><br><span class="line"></span><br><span class="line">if(!socket_write($socket, $in, strlen($in))) &#123;</span><br><span class="line">    echo &quot;socket_write() failed: reason: &quot; . socket_strerror($socket) . &quot;\n&quot;;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    echo &quot;发送到服务器信息成功！\n&quot;;</span><br><span class="line">    echo &quot;发送的内容为:&lt;font color&#x3D;&#39;red&#39;&gt;$in&lt;&#x2F;font&gt; &lt;br&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">while($out &#x3D; socket_read($socket, 8192)) &#123;</span><br><span class="line">    echo &quot;接收服务器回传信息成功！\n&quot;;</span><br><span class="line">    echo &quot;接受的内容为:&quot;,$out;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">echo &quot;关闭SOCKET...\n&quot;;</span><br><span class="line">socket_close($socket);</span><br><span class="line">echo &quot;关闭OK\n&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>案例：代码详解</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 设置一些基本的变量</span><br><span class="line">$host &#x3D; &quot;192.168.1.99&quot;;</span><br><span class="line">$port &#x3D; 1234;</span><br><span class="line">&#x2F;&#x2F; 设置超时时间</span><br><span class="line">set_time_limit(0);</span><br><span class="line">&#x2F;&#x2F; 创建一个Socket</span><br><span class="line">$socket &#x3D; socket_create(AF_INET, SOCK_STREAM, 0) or die(&quot;Could not createsocket\n&quot;);</span><br><span class="line">&#x2F;&#x2F;绑定Socket到端口</span><br><span class="line">$result &#x3D; socket_bind($socket, $host, $port) or die(&quot;Could not bind tosocket\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 开始监听链接</span><br><span class="line">$result &#x3D; socket_listen($socket, 3) or die(&quot;Could not set up socketlistener\n&quot;);</span><br><span class="line">&#x2F;&#x2F; accept incoming connections</span><br><span class="line">&#x2F;&#x2F; 另一个Socket来处理通信</span><br><span class="line">$spawn &#x3D; socket_accept($socket) or die(&quot;Could not accept incomingconnection\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 获得客户端的输入</span><br><span class="line">$input &#x3D; socket_read($spawn, 1024) or die(&quot;Could not read input\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 清空输入字符串</span><br><span class="line">$input &#x3D; trim($input);</span><br><span class="line">&#x2F;&#x2F;处理客户端输入并返回结果</span><br><span class="line">$output &#x3D; strrev($input) . &quot;\n&quot;;</span><br><span class="line">socket_write($spawn, $output, strlen ($output)) or die(&quot;Could not write</span><br><span class="line">output\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 关闭sockets</span><br><span class="line">socket_close($spawn);</span><br><span class="line">socket_close($socket);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>1.第一步是建立两个变量来保存Socket运行的服务器的IP地址和端口.你可以设置为你自己的服务器和端口(这个端口可以是1到65535之间的数字),前提是这个端口未被使用.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 设置两个变量</span><br><span class="line">$host  &#x3D;  &quot;192.168.1.99&quot; ;</span><br><span class="line">$port  &#x3D;  1234 ; </span><br></pre></td></tr></table></figure>
+<p>2.在服务器端可以使用set_time_out()函数来确保PHP在等待客户端连接时不会超时</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 超时时间</span><br><span class="line">set_time_limit ( 0 ); 4 ; </span><br></pre></td></tr></table></figure>
+<p>3.在前面的基础上,现在该使用socket_creat()函数创建一个Socket了—这个函数返回一个Socket句柄,这个句柄将用在以后所有的函数中.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 创建Socket</span><br><span class="line">$socket  &#x3D;  socket_create ( AF_INET ,  SOCK_STREAM ,  0 ) or die( &quot;Could not create</span><br><span class="line">socket\n&quot; ); </span><br><span class="line">&#x2F;&#x2F;第一个参数”AF_INET”用来指定域名;</span><br><span class="line">&#x2F;&#x2F;第二个参数”SOCK_STREM”告诉函数将创建一个什么类型的Socket(在这个例子中是TCP类型)</span><br><span class="line">因此,如果你想创建一个UDP Socket的话,你可以使用如下的代码:</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 创建 socket</span><br><span class="line">$socket  &#x3D;  socket_create ( AF_INET ,  SOCK_DGRAM ,  0 ) or die( &quot;Could not create</span><br><span class="line">socket\n&quot; ); </span><br></pre></td></tr></table></figure>
+<p>4.一旦创建了一个Socket句柄,下一步就是指定或者绑定它到指定的地址和端口.这可以通过socket_bind()函数来完成.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 绑定 socket to 指定地址和端口</span><br><span class="line">$result  &#x3D;  socket_bind ( $socket ,  $host ,  $port ) or die( &quot;Could not bind to</span><br><span class="line">socket\n&quot; ); </span><br></pre></td></tr></table></figure>
+<p>5.当Socket被创建好并绑定到一个端口后,就可以开始监听外部的连接了.PHP允许你由socket_listen()函数来开始一个监听,同时你可以指定一个数字(在这个例子中就是第二个参数:3)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 开始监听连接</span><br><span class="line">$result  &#x3D;  socket_listen ( $socket ,  3 ) or die( &quot;Could not set up socket</span><br><span class="line">listener\n&quot; ); </span><br></pre></td></tr></table></figure>
+<p>6.到现在,你的服务器除了等待来自客户端的连接请求外基本上什么也没有做.一旦一个客户端的连接被收到,socket_accept()函数便开始起作用了,它接收连接请求并调用另一个子Socket来处理客户端–服务器间的信息.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;接受请求链接</span><br><span class="line">&#x2F;&#x2F; 调用子socket 处理信息</span><br><span class="line">$spawn  &#x3D;  socket_accept ( $socket ) or die( &quot;Could not accept incoming</span><br><span class="line">connection\n&quot; );</span><br><span class="line">&#x2F;&#x2F;这个子socket现在就可以被随后的客户端–服务器通信所用了. </span><br></pre></td></tr></table></figure>
+<p>7.当一个连接被建立后,服务器就会等待客户端发送一些输入信息,这写信息可以由socket_read()函数来获得,并把它赋值给PHP的$input变量.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 读取客户端输入</span><br><span class="line">$input  &#x3D;  socket_read ( $spawn ,  1024 ) or die( &quot;Could not read input\n&quot; ); </span><br><span class="line">&#x2F;&#x2F;socker_read的第而个参数用以指定读入的字节数,你可以通过它来限制从客户端获取数据的大小.</span><br><span class="line">&#x2F;&#x2F;注意:socket_read函数会一直读取壳户端数据,直到遇见\n,\t或者\0字符.PHP脚本把这写字符看做是输入的结束符.</span><br></pre></td></tr></table></figure>
+<p>8.现在服务器必须处理这些由客户端发来是数据(在这个例子中的处理仅仅包含数据的输入和回传到客户端).这部分可以由socket_write()函数来完成(使得由通信socket发回一个数据流到客户端成为可能)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 处理客户端输入并返回数据</span><br><span class="line">$output  &#x3D;  strrev ( $input ) .  &quot;\n&quot; ;</span><br><span class="line">socket_write ( $spawn ,  $output ,  strlen  ( $output )) or die( &quot;Could not write</span><br><span class="line">output\n&quot; ); </span><br></pre></td></tr></table></figure>
+<p>9.一旦输出被返回到客户端,父/子socket都应通过socket_close()函数来终止</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 关闭 sockets</span><br><span class="line">socket_close ( $spawn );</span><br><span class="line">socket_close ( $socket ); </span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>php</tag>
+        <tag>socket</tag>
       </tags>
   </entry>
   <entry>
@@ -2198,6 +2198,43 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>gin-vue-admin的安装及使用</title>
+    <url>/2021/10/14/gin-vue-admin%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/diary-5.jpg" alt="gin-vue-admin"></p>
+<a id="more"></a>
+
+<p>官网地址： <a href="https://www.gin-vue-admin.com/" target="_blank">[ gin-vue-admin官网 ]</a><br>gitHub： <a href="https://github.com/flipped-aurora/gin-vue-admin" target="_blank">[ gin-vue-admin ]</a></p>
+<ul>
+<li><p>克隆项目</p>
+<blockquote>
+<p>git clone <a href="mailto:&#x67;&#105;&#116;&#x40;&#x67;&#105;&#x74;&#104;&#x75;&#98;&#x2e;&#99;&#111;&#109;">&#x67;&#105;&#116;&#x40;&#x67;&#105;&#x74;&#104;&#x75;&#98;&#x2e;&#99;&#111;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
+</blockquote>
+</li>
+<li><p>进入项目gin目录</p>
+<blockquote>
+<p>cd gin-vue-admin/server<br>go run main.go</p>
+</blockquote>
+</li>
+<li><p>进入项目vue目录</p>
+<blockquote>
+<p>cd gin-vue-admin/web<br>npm i<br>npm run serve</p>
+</blockquote>
+</li>
+<li><p>打开web网站 开始初始化</p>
+</li>
+<li><p>代码生成器</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>golang</tag>
+        <tag>gin-vue-admin</tag>
+        <tag>vue</tag>
+        <tag>element-ui</tag>
+        <tag>gin</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>gRPC 的介绍及使用</title>
     <url>/2021/12/07/gRPC-%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/grpc.png" alt="grpc"></p>
@@ -2243,43 +2280,6 @@ class QuotesSpider(scrapy.Spider):
 ]]></content>
       <tags>
         <tag>gRPC</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>gin-vue-admin的安装及使用</title>
-    <url>/2021/10/14/gin-vue-admin%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/diary-5.jpg" alt="gin-vue-admin"></p>
-<a id="more"></a>
-
-<p>官网地址： <a href="https://www.gin-vue-admin.com/" target="_blank">[ gin-vue-admin官网 ]</a><br>gitHub： <a href="https://github.com/flipped-aurora/gin-vue-admin" target="_blank">[ gin-vue-admin ]</a></p>
-<ul>
-<li><p>克隆项目</p>
-<blockquote>
-<p>git clone <a href="mailto:&#x67;&#x69;&#116;&#64;&#x67;&#105;&#x74;&#104;&#117;&#x62;&#46;&#x63;&#111;&#109;">&#x67;&#x69;&#116;&#64;&#x67;&#105;&#x74;&#104;&#117;&#x62;&#46;&#x63;&#111;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
-</blockquote>
-</li>
-<li><p>进入项目gin目录</p>
-<blockquote>
-<p>cd gin-vue-admin/server<br>go run main.go</p>
-</blockquote>
-</li>
-<li><p>进入项目vue目录</p>
-<blockquote>
-<p>cd gin-vue-admin/web<br>npm i<br>npm run serve</p>
-</blockquote>
-</li>
-<li><p>打开web网站 开始初始化</p>
-</li>
-<li><p>代码生成器</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>golang</tag>
-        <tag>gin-vue-admin</tag>
-        <tag>vue</tag>
-        <tag>element-ui</tag>
-        <tag>gin</tag>
       </tags>
   </entry>
   <entry>
@@ -2583,6 +2583,74 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>laravel 修改器</title>
+    <url>/2017/09/14/laravel-%E4%BF%AE%E6%94%B9%E5%99%A8/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<ul>
+<li><strong>定义修改器</strong></li>
+</ul>
+<blockquote>
+<p> 要定义一个修改器，需要在模型中定义setFooAttribute 方法，其中 Foo 是你想要访问的字段（使用驼峰式命名规则）接下来让我们为 first  name属性定义一个修改器，当我们为模型上的 first_name 赋值时该修改器会被自动调用：<br>public function setFirstNameAttribute($value)<br>{<br>  $this-&gt;attributes[‘first_name’] = strtolower($value);<br>}</p>
+</blockquote>
+<ul>
+<li><strong>定义访问器</strong></li>
+</ul>
+<blockquote>
+<p>通要定义一个访问器，需要在模型中创建一个getFooAttribute 方法，其中 Foo 是你想要访问的字段名（使用驼峰式命名规则）。在本例中，我们将会为 first name 属性定义一个访问器，该访问器在获取 first_name 的值时被 Eloquent 自动调用：<br> public function getFirstNameAttribute($value)<br> {<br>   return ucfirst($value);<br> }</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>使用访问器&amp;修改器能快捷方便的应用于日常开发<br>比如：修改、重置默认字段值 等等</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>laravel5.x</tag>
+        <tag>修改器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>laravel 微信公众号项目修改兼容web端</title>
+    <url>/2017/08/30/laravel-%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E9%A1%B9%E7%9B%AE%E4%BF%AE%E6%94%B9%E5%85%BC%E5%AE%B9web%E7%AB%AF/</url>
+    <content><![CDATA[<blockquote>
+<p>1、新增中间件及注册中间件</p>
+</blockquote>
+<a id="more"></a>
+
+
+<blockquote>
+<blockquote>
+<p>使用php artisan 命令<br>命令：php artisan make:middleware BeforeCheckMiddleware</p>
+</blockquote>
+</blockquote>
+<p><img src="/assets/blogImg/webImg/1.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>2、新新增中间件及注册中间件（一）</p>
+</blockquote>
+<p><img src="/assets/blogImg/webImg/2.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>3、新增中间件及注册中间件（二）</p>
+</blockquote>
+<p><img src="/assets/blogImg/webImg/3.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>4、配置config/wechat.php (可无)</p>
+</blockquote>
+<p><img src="/assets/blogImg/webImg/4.PNG" alt="ico原来的样子"></p>
+<blockquote>
+<p>5、其他修改及改动文件汇总</p>
+</blockquote>
+<p><img src="/assets/blogImg/webImg/5.png" alt="ico原来的样子"></p>
+<p><strong>ok,微信端现在访问已经兼容web端,enjoy it!!!</strong></p>
+]]></content>
+      <tags>
+        <tag>laravel</tag>
+        <tag>web-wechat</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>laravel5.3使用队列</title>
     <url>/2017/09/14/laravel5-3%E4%BD%BF%E7%94%A8%E9%98%9F%E5%88%97/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2684,44 +2752,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>laravel 微信公众号项目修改兼容web端</title>
-    <url>/2017/08/30/laravel-%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E9%A1%B9%E7%9B%AE%E4%BF%AE%E6%94%B9%E5%85%BC%E5%AE%B9web%E7%AB%AF/</url>
-    <content><![CDATA[<blockquote>
-<p>1、新增中间件及注册中间件</p>
-</blockquote>
-<a id="more"></a>
-
-
-<blockquote>
-<blockquote>
-<p>使用php artisan 命令<br>命令：php artisan make:middleware BeforeCheckMiddleware</p>
-</blockquote>
-</blockquote>
-<p><img src="/assets/blogImg/webImg/1.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>2、新新增中间件及注册中间件（一）</p>
-</blockquote>
-<p><img src="/assets/blogImg/webImg/2.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>3、新增中间件及注册中间件（二）</p>
-</blockquote>
-<p><img src="/assets/blogImg/webImg/3.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>4、配置config/wechat.php (可无)</p>
-</blockquote>
-<p><img src="/assets/blogImg/webImg/4.PNG" alt="ico原来的样子"></p>
-<blockquote>
-<p>5、其他修改及改动文件汇总</p>
-</blockquote>
-<p><img src="/assets/blogImg/webImg/5.png" alt="ico原来的样子"></p>
-<p><strong>ok,微信端现在访问已经兼容web端,enjoy it!!!</strong></p>
-]]></content>
-      <tags>
-        <tag>laravel</tag>
-        <tag>web-wechat</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>linux centos7.3 lnmp一键安装包集成</title>
     <url>/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E9%9B%86%E6%88%90/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2783,36 +2813,6 @@ class QuotesSpider(scrapy.Spider):
         <tag>lnmp</tag>
         <tag>linux</tag>
         <tag>centos7.3</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>laravel 修改器</title>
-    <url>/2017/09/14/laravel-%E4%BF%AE%E6%94%B9%E5%99%A8/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<ul>
-<li><strong>定义修改器</strong></li>
-</ul>
-<blockquote>
-<p> 要定义一个修改器，需要在模型中定义setFooAttribute 方法，其中 Foo 是你想要访问的字段（使用驼峰式命名规则）接下来让我们为 first  name属性定义一个修改器，当我们为模型上的 first_name 赋值时该修改器会被自动调用：<br>public function setFirstNameAttribute($value)<br>{<br>  $this-&gt;attributes[‘first_name’] = strtolower($value);<br>}</p>
-</blockquote>
-<ul>
-<li><strong>定义访问器</strong></li>
-</ul>
-<blockquote>
-<p>通要定义一个访问器，需要在模型中创建一个getFooAttribute 方法，其中 Foo 是你想要访问的字段名（使用驼峰式命名规则）。在本例中，我们将会为 first name 属性定义一个访问器，该访问器在获取 first_name 的值时被 Eloquent 自动调用：<br> public function getFirstNameAttribute($value)<br> {<br>   return ucfirst($value);<br> }</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>使用访问器&amp;修改器能快捷方便的应用于日常开发<br>比如：修改、重置默认字段值 等等</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>laravel5.x</tag>
-        <tag>修改器</tag>
       </tags>
   </entry>
   <entry>
@@ -3262,7 +3262,7 @@ class QuotesSpider(scrapy.Spider):
 </blockquote>
 <p>二、使用npm下载 web框架express模块</p>
 <blockquote>
-<p>npm install --save <a href="mailto:&#x65;&#120;&#112;&#x72;&#101;&#115;&#x73;&#x40;&#52;&#46;&#49;&#53;&#46;&#x32;">&#x65;&#120;&#112;&#x72;&#101;&#115;&#x73;&#x40;&#52;&#46;&#49;&#53;&#46;&#x32;</a></p>
+<p>npm install --save <a href="mailto:&#101;&#120;&#112;&#114;&#101;&#115;&#115;&#64;&#x34;&#46;&#x31;&#x35;&#46;&#x32;">&#101;&#120;&#112;&#114;&#101;&#115;&#115;&#64;&#x34;&#46;&#x31;&#x35;&#46;&#x32;</a></p>
 </blockquote>
 <p>三、使用npm下载socket.io模块</p>
 <blockquote>
@@ -3625,51 +3625,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>开源项目及部署工具</title>
-    <url>/2021/10/19/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E5%8F%8A%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/diary-6.jpg" alt="开源项目"></p>
-<a id="more"></a>
-
-<blockquote>
-<p>   一、部署工具</p>
-</blockquote>
-<ul>
-<li>dnmp： <a href="https://github.com/shunhua/dnmp" target="_blank">[ dnmp ]</a></li>
-<li>lnmp： <a href="https://lnmp.org/install.html" target="_blank">[ lnmp ]</a></li>
-<li>bt： <a href="https://www.bt.cn/btcode.html" target="_blank">[ 宝塔 ]</a></li>
-<li>laradock： <a href="http://laradock.io/" target="_blank">[ laradock ]</a></li>
-</ul>
-<blockquote>
-<p>   二、开源项目</p>
-</blockquote>
-<ul>
-<li>dcat-admin： <a href="https://github.com/jqhph/dcat-admin" target="_blank">[ dcat-admin ]</a></li>
-<li>laravel-admin： <a href="https://github.com/z-song/laravel-admin" target="_blank">[ laravel-admin ]</a></li>
-<li>go-zero： <a href="https://github.com/zeromicro/go-zero" target="_blank">[ go-zero ]</a></li>
-<li>zero-admin： <a href="https://github.com/feihua/zero-admin" target="_blank">[ zero-admin ]</a></li>
-<li>go-admin： <a href="https://github.com/go-admin-team/go-admin" target="_blank">[ go-admin ]</a></li>
-<li>vue-element-admin： <a href="https://github.com/PanJiaChen/vue-element-admin" target="_blank">[ vue-element-admin ]</a></li>
-<li>gin-vue-admin： <a href="https://github.com/flipped-aurora/gin-vue-admin" target="_blank">[ gin-vue-admin ]</a></li>
-</ul>
-<blockquote>
-<p>   三、涉及框架</p>
-</blockquote>
-<ul>
-<li>laravel： <a href="https://laravel.com/" target="_blank">[ laravel ]</a></li>
-<li>gin： <a href="https://github.com/gin-gonic/gin" target="_blank">[ gin ]</a></li>
-<li>element： <a href="https://element-plus.gitee.io/zh-CN/" target="_blank">[ element-ui ]</a></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>php</tag>
-        <tag>golang</tag>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>搭建一套规范的 Vue3.x 项目工程环境</title>
     <url>/2021/11/04/%E6%90%AD%E5%BB%BA%E4%B8%80%E5%A5%97%E8%A7%84%E8%8C%83%E7%9A%84-Vue3-x-%E9%A1%B9%E7%9B%AE%E5%B7%A5%E7%A8%8B%E7%8E%AF%E5%A2%83/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/rabbit.jpg" alt="Vue3.x"></p>
@@ -3717,6 +3672,51 @@ class QuotesSpider(scrapy.Spider):
         <tag>Vue3</tag>
         <tag>Vite</tag>
         <tag>TypeScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>开源项目及部署工具</title>
+    <url>/2021/10/19/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E5%8F%8A%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/diary-6.jpg" alt="开源项目"></p>
+<a id="more"></a>
+
+<blockquote>
+<p>   一、部署工具</p>
+</blockquote>
+<ul>
+<li>dnmp： <a href="https://github.com/shunhua/dnmp" target="_blank">[ dnmp ]</a></li>
+<li>lnmp： <a href="https://lnmp.org/install.html" target="_blank">[ lnmp ]</a></li>
+<li>bt： <a href="https://www.bt.cn/btcode.html" target="_blank">[ 宝塔 ]</a></li>
+<li>laradock： <a href="http://laradock.io/" target="_blank">[ laradock ]</a></li>
+</ul>
+<blockquote>
+<p>   二、开源项目</p>
+</blockquote>
+<ul>
+<li>dcat-admin： <a href="https://github.com/jqhph/dcat-admin" target="_blank">[ dcat-admin ]</a></li>
+<li>laravel-admin： <a href="https://github.com/z-song/laravel-admin" target="_blank">[ laravel-admin ]</a></li>
+<li>go-zero： <a href="https://github.com/zeromicro/go-zero" target="_blank">[ go-zero ]</a></li>
+<li>zero-admin： <a href="https://github.com/feihua/zero-admin" target="_blank">[ zero-admin ]</a></li>
+<li>go-admin： <a href="https://github.com/go-admin-team/go-admin" target="_blank">[ go-admin ]</a></li>
+<li>vue-element-admin： <a href="https://github.com/PanJiaChen/vue-element-admin" target="_blank">[ vue-element-admin ]</a></li>
+<li>gin-vue-admin： <a href="https://github.com/flipped-aurora/gin-vue-admin" target="_blank">[ gin-vue-admin ]</a></li>
+</ul>
+<blockquote>
+<p>   三、涉及框架</p>
+</blockquote>
+<ul>
+<li>laravel： <a href="https://laravel.com/" target="_blank">[ laravel ]</a></li>
+<li>gin： <a href="https://github.com/gin-gonic/gin" target="_blank">[ gin ]</a></li>
+<li>element： <a href="https://element-plus.gitee.io/zh-CN/" target="_blank">[ element-ui ]</a></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>php</tag>
+        <tag>golang</tag>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -3783,22 +3783,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>DNMP</tag>
         <tag>Portainer</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>连续轮询数组中的元素[s/m/d]</title>
-    <url>/2017/12/27/%E8%BF%9E%E7%BB%AD%E8%BD%AE%E8%AF%A2%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0-s-m-d/</url>
-    <content><![CDATA[<p>##<strong>连续轮询数组中的元素[s/m/d]</strong></p>
-<a id="more"></a>
-
-<blockquote>
-<p>实现在任何时间段连续轮询出数组中的元素—— </p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">   public $Randomnotify &#x3D; array(</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid1&#39;,&#39;key&#39;&#x3D;&gt;&#39;key1&#39;),</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid2&#39;,&#39;key&#39;&#x3D;&gt;&#39;key2&#39;),</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid3&#39;,&#39;key&#39;&#x3D;&gt;&#39;key3&#39;),</span><br><span class="line">	...</span><br><span class="line">);</span><br><span class="line">public function dataPollingInterval($list,$polling_time&#x3D;&#39;1m&#39;,$polling_number&#x3D;1) &#123;</span><br><span class="line">    &#x2F;&#x2F; 规划轮询间隔时间的参数:</span><br><span class="line">    $interval &#x3D; false;</span><br><span class="line">	&#x2F;&#x2F; 判断$polling_time 的类型是 秒、分、小时、天 中的哪1种。</span><br><span class="line">    $arg &#x3D; array( </span><br><span class="line">        &#39;s&#39;&#x3D;&gt;1,            &#x2F;&#x2F; 秒</span><br><span class="line">        &#39;m&#39;&#x3D;&gt;60,            &#x2F;&#x2F; 分&#x3D; 60 sec</span><br><span class="line">        &#39;h&#39; &#x3D;&gt;3600,        &#x2F;&#x2F; 时&#x3D; 3600 sec</span><br><span class="line">        &#39;d&#39; &#x3D;&gt; 86400,    &#x2F;&#x2F; 天&#x3D; 86400 sec</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 判断间隔时间的类型，并计算间隔时间</span><br><span class="line">    foreach ($arg as $k &#x3D;&gt; $v) &#123;</span><br><span class="line">        if (false!&#x3D;&#x3D; stripos($polling_time,$k)) &#123;</span><br><span class="line">            $interval &#x3D; intval($polling_time)*$v;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	  &#x2F;&#x2F; 判断间隔时间</span><br><span class="line">    if(!is_int($interval))&#123;  </span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">	&#x2F;&#x2F; 从今年开始的秒数</span><br><span class="line">    $this_year_begin_second &#x3D; strtotime(date(&#39;Y-01-01 01:00:01&#39;, time()));</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 当前秒数 - 今年开始的秒数，得到今年到目前为止的秒数。</span><br><span class="line">    $polling_time &#x3D; time()-$this_year_begin_second;</span><br><span class="line">	</span><br><span class="line">    &#x2F;&#x2F; 从今年到目前为止的秒数，计算得到当前轮数</span><br><span class="line">    $len &#x3D; count($list); &#x2F;&#x2F; 总长度</span><br><span class="line">    $start_index &#x3D; intval($polling_time&#x2F;$interval);</span><br><span class="line">    $start_index &#x3D; $polling_number*$start_index%$len; &#x2F;&#x2F; 轮排数量 * 轮数 , 取余 总数量。</span><br><span class="line">	$res &#x3D; array();</span><br><span class="line">    &#x2F;&#x2F; 将轮数 指向到数组的索引，然后从这个索引开始接着往下循环遍历。</span><br><span class="line">    for ($i&#x3D;0; $i&lt;$len; ++$i) &#123;</span><br><span class="line">        $index&#x3D;$i+$start_index; &#x2F;&#x2F; 索引的变化是根据时间来变</span><br><span class="line">        if ($index&gt;&#x3D;$len) &#123;</span><br><span class="line">            $index&#x3D;$index-$len ;</span><br><span class="line">        &#125;</span><br><span class="line">        $res[]&#x3D;$list[$index]; &#x2F;&#x2F; 存入结果</span><br><span class="line">    &#125;</span><br><span class="line">    return $res[0];</span><br><span class="line">&#125;  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>轮询</tag>
-        <tag>数组</tag>
       </tags>
   </entry>
   <entry>
@@ -3884,6 +3868,22 @@ class QuotesSpider(scrapy.Spider):
         <tag>php</tag>
         <tag>laravel5.x</tag>
         <tag>公众号</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>连续轮询数组中的元素[s/m/d]</title>
+    <url>/2017/12/27/%E8%BF%9E%E7%BB%AD%E8%BD%AE%E8%AF%A2%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0-s-m-d/</url>
+    <content><![CDATA[<p>##<strong>连续轮询数组中的元素[s/m/d]</strong></p>
+<a id="more"></a>
+
+<blockquote>
+<p>实现在任何时间段连续轮询出数组中的元素—— </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">   public $Randomnotify &#x3D; array(</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid1&#39;,&#39;key&#39;&#x3D;&gt;&#39;key1&#39;),</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid2&#39;,&#39;key&#39;&#x3D;&gt;&#39;key2&#39;),</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid3&#39;,&#39;key&#39;&#x3D;&gt;&#39;key3&#39;),</span><br><span class="line">	...</span><br><span class="line">);</span><br><span class="line">public function dataPollingInterval($list,$polling_time&#x3D;&#39;1m&#39;,$polling_number&#x3D;1) &#123;</span><br><span class="line">    &#x2F;&#x2F; 规划轮询间隔时间的参数:</span><br><span class="line">    $interval &#x3D; false;</span><br><span class="line">	&#x2F;&#x2F; 判断$polling_time 的类型是 秒、分、小时、天 中的哪1种。</span><br><span class="line">    $arg &#x3D; array( </span><br><span class="line">        &#39;s&#39;&#x3D;&gt;1,            &#x2F;&#x2F; 秒</span><br><span class="line">        &#39;m&#39;&#x3D;&gt;60,            &#x2F;&#x2F; 分&#x3D; 60 sec</span><br><span class="line">        &#39;h&#39; &#x3D;&gt;3600,        &#x2F;&#x2F; 时&#x3D; 3600 sec</span><br><span class="line">        &#39;d&#39; &#x3D;&gt; 86400,    &#x2F;&#x2F; 天&#x3D; 86400 sec</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 判断间隔时间的类型，并计算间隔时间</span><br><span class="line">    foreach ($arg as $k &#x3D;&gt; $v) &#123;</span><br><span class="line">        if (false!&#x3D;&#x3D; stripos($polling_time,$k)) &#123;</span><br><span class="line">            $interval &#x3D; intval($polling_time)*$v;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	  &#x2F;&#x2F; 判断间隔时间</span><br><span class="line">    if(!is_int($interval))&#123;  </span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">	&#x2F;&#x2F; 从今年开始的秒数</span><br><span class="line">    $this_year_begin_second &#x3D; strtotime(date(&#39;Y-01-01 01:00:01&#39;, time()));</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 当前秒数 - 今年开始的秒数，得到今年到目前为止的秒数。</span><br><span class="line">    $polling_time &#x3D; time()-$this_year_begin_second;</span><br><span class="line">	</span><br><span class="line">    &#x2F;&#x2F; 从今年到目前为止的秒数，计算得到当前轮数</span><br><span class="line">    $len &#x3D; count($list); &#x2F;&#x2F; 总长度</span><br><span class="line">    $start_index &#x3D; intval($polling_time&#x2F;$interval);</span><br><span class="line">    $start_index &#x3D; $polling_number*$start_index%$len; &#x2F;&#x2F; 轮排数量 * 轮数 , 取余 总数量。</span><br><span class="line">	$res &#x3D; array();</span><br><span class="line">    &#x2F;&#x2F; 将轮数 指向到数组的索引，然后从这个索引开始接着往下循环遍历。</span><br><span class="line">    for ($i&#x3D;0; $i&lt;$len; ++$i) &#123;</span><br><span class="line">        $index&#x3D;$i+$start_index; &#x2F;&#x2F; 索引的变化是根据时间来变</span><br><span class="line">        if ($index&gt;&#x3D;$len) &#123;</span><br><span class="line">            $index&#x3D;$index-$len ;</span><br><span class="line">        &#125;</span><br><span class="line">        $res[]&#x3D;$list[$index]; &#x2F;&#x2F; 存入结果</span><br><span class="line">    &#125;</span><br><span class="line">    return $res[0];</span><br><span class="line">&#125;  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>轮询</tag>
+        <tag>数组</tag>
       </tags>
   </entry>
   <entry>
