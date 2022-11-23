@@ -125,7 +125,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#64;&#113;&#x71;&#46;&#99;&#111;&#109;">&#x78;&#64;&#113;&#x71;&#46;&#99;&#111;&#109;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#x40;&#113;&#113;&#46;&#99;&#x6f;&#x6d;">&#120;&#x40;&#113;&#113;&#46;&#99;&#x6f;&#x6d;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -136,7 +136,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#98;&#64;&#113;&#113;&#46;&#99;&#111;&#109;">&#98;&#64;&#113;&#113;&#46;&#99;&#111;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#x40;&#x71;&#113;&#x2e;&#x63;&#x6f;&#109;">&#x62;&#x40;&#x71;&#113;&#x2e;&#x63;&#x6f;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -508,129 +508,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Etcd一文</title>
-    <url>/2021/11/04/Etcd%E4%B8%80%E6%96%87/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/etcd.png" alt="Etcd"></p>
-<a id="more"></a>
-<p><strong>一、概述</strong></p>
-<blockquote>
-<p>背景：近期k8s应用中etcd的功能存在一些困惑，对其进行来单独的学习，能更深入理解k8s中的的一些特性。</p>
-</blockquote>
-<ul>
-<li>简单：安装配置简单，而且提供了HTTP API进行交互，使用也很简单</li>
-<li>安全：支持SSL证书验证</li>
-<li>快速：根据官方提供的benchmark数据，单实例支持每秒2k+读操作</li>
-<li>可靠：采用raft算法，实现分布式系统数据的可用性和一致性</li>
-</ul>
-<p><strong>二、应用场景</strong></p>
-<ul>
-<li>服务注册与发现</li>
-<li>消息发布与订阅</li>
-<li>负载均衡</li>
-<li>分部署通知与协调</li>
-<li>分布式锁</li>
-<li>分布式队列</li>
-<li>集群与监控与Leader选举</li>
-</ul>
-<p><strong>三、安装部署</strong></p>
-<p>推荐使用yum安装方式</p>
-<blockquote>
-<p>hostnamectl set-hostname etcd-1<br>wget <a href="http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm">http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</a><br>rpm -ivh epel-release-latest-7.noarch.rpm</p>
-<h1 id="yum-仓库中的etcd版本为3-3-11，如果需要最新版本的etcd可以进行二进制安装"><a href="#yum-仓库中的etcd版本为3-3-11，如果需要最新版本的etcd可以进行二进制安装" class="headerlink" title="yum 仓库中的etcd版本为3.3.11，如果需要最新版本的etcd可以进行二进制安装"></a>yum 仓库中的etcd版本为3.3.11，如果需要最新版本的etcd可以进行二进制安装</h1><p>yum -y install etcd<br>systemctl enable etcd</p>
-</blockquote>
-<p><strong>四、简单使用</strong></p>
-<p>1、增加 set</p>
-<blockquote>
-<p>$ etcdctl set /testdir/testkey “Hello world”<br>Hello world</p>
-</blockquote>
-<p>2、删除 rm</p>
-<blockquote>
-<p>$ etcdctl rm /testdir/testkey<br>PrevNode.Value: Hello</p>
-</blockquote>
-<p>3、更新 update</p>
-<blockquote>
-<p>etcdctl update /testdir/testkey “Hello”<br>Hello</p>
-</blockquote>
-<p>4、查询 get</p>
-<blockquote>
-<p>etcdctl get /testdir/testkey<br>Hello world</p>
-</blockquote>
-<p><strong>五、总结</strong></p>
-<ul>
-<li><p>etcd 默认只保存 1000 个历史事件，所以不适合有大量更新操作的场景，这样会导致数据的丢失。 etcd 典型的应用场景是配置管理和服务发现，这些场景都是读多写少的。</p>
-</li>
-<li><p>相比于 zookeeper，etcd 使用起来要简单很多。不过要实现真正的服务发现功能，etcd 还需要和其他工具（比如 registrator、confd 等）一起使用来实现服务的自动注册和更新。</p>
-</li>
-<li><p>目前 etcd 还没有图形化的工具。 </p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Etcd</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Go 语言基础</title>
-    <url>/2017/11/08/Go-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> 包、变量、函数</p>
-</blockquote>
-<ul>
-<li><p>包<br>每个 Go 程序都是由包组成的。程序运行的入口是包 <code>main</code><br>这个程序使用并导入了包 “fmt” 和 <code>&quot;math/rand&quot;</code>。如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;math&#x2F;rand&quot;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>变量<br>var 语句定义了一个变量的列表 如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var c, python, java bool</span><br><span class="line">var i, j int &#x3D; 1, 2</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	var i int</span><br><span class="line">	&#x2F;*在函数中，&#96;:&#x3D;&#96; 简洁赋值语句在明确类型的地方，可以用于替代 var 定义</span><br><span class="line">	函数外的每个语句都必须以关键字开始（&#96;var&#96;、&#96;func&#96;、等等），&#96;:&#x3D;&#96; 结构不能使用在函数外*&#x2F;</span><br><span class="line">	k :&#x3D; 3</span><br><span class="line">	var c, python, java &#x3D; true, false, &quot;no!&quot;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li><p>函数<br>函数可以没有参数或接受多个参数<br>在这个例子中，<code>add</code> 接受两个 int 类型的参数。如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func add(x int, y int) int &#123;</span><br><span class="line">	return x + y</span><br><span class="line">&#125;</span><br><span class="line">||</span><br><span class="line">func add(x , y int) int &#123;</span><br><span class="line">	return x + y</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<blockquote>
-<p> 流程控制语句</p>
-</blockquote>
-<ul>
-<li><p>for<br>Go 只有一种循环结构——<code>for</code> 循环<br>基本的 for 循环除了没有了 <code>( )</code> 之外（甚至强制不能使用它们）。如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	sum :&#x3D; 0</span><br><span class="line">	for i :&#x3D; 0; i &lt; 10; i++ &#123;</span><br><span class="line">		sum +&#x3D; i</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(sum)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>if<br>if 语句除了没有了 <code>( )</code> 之外（甚至强制不能使用它们）。如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func sqrt(x float64) string &#123;</span><br><span class="line">	if x &lt; 0 &#123;</span><br><span class="line">		return sqrt(-x) + &quot;i&quot;</span><br><span class="line">	&#125;</span><br><span class="line">	if v :&#x3D; math.Pow(x, n); v &lt; lim &#123;</span><br><span class="line">		return v</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		fmt.Printf(&quot;%g &gt;&#x3D; %g\n&quot;, v, lim)</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>switch<br>如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	fmt.Print(&quot;Go runs on &quot;)</span><br><span class="line">	switch os :&#x3D; runtime.GOOS; os &#123;</span><br><span class="line">	case &quot;darwin&quot;:</span><br><span class="line">		fmt.Println(&quot;OS X.&quot;)</span><br><span class="line">	case &quot;linux&quot;:</span><br><span class="line">		fmt.Println(&quot;Linux.&quot;)</span><br><span class="line">	default:</span><br><span class="line">		&#x2F;&#x2F; freebsd, openbsd,</span><br><span class="line">		&#x2F;&#x2F; plan9, windows...</span><br><span class="line">		fmt.Printf(&quot;%s.&quot;, os)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>defer<br>defer 语句会延迟函数的执行直到上层函数返回。<br>延迟调用的参数会立刻生成，但是在上层函数返回前函数都不会被调用。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	defer fmt.Println(&quot;world&quot;)&#x2F;&#x2F;延迟函数</span><br><span class="line">	fmt.Println(&quot;hello&quot;) &#x2F;&#x2F;上层函数</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;hello</span><br><span class="line">&#x2F;&#x2F;wolrd</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<blockquote>
-<p> 复杂类型</p>
-</blockquote>
-<ul>
-<li><p>指针<br>Go 具有指针。 指针保存了变量的内存地址</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	i, j :&#x3D; 42, 2701</span><br><span class="line"></span><br><span class="line">	p :&#x3D; &amp;i         &#x2F;* 生成一个指向 i 的指针 *&#x2F;</span><br><span class="line">	fmt.Println(*p) &#x2F;* 通过指针 p 读取 i    *&#x2F;</span><br><span class="line">	*p &#x3D; 21         &#x2F;* 通过指针 p 设置 i    *&#x2F;</span><br><span class="line">	fmt.Println(i)  &#x2F;* 输出 i &#x3D;21          *&#x2F; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>结构体<br>一个结构体（<code>struct</code>）就是一个字段的集合</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type Vertex struct &#123;</span><br><span class="line">	X int</span><br><span class="line">	Y int</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">v :&#x3D; Vertex&#123;1, 2&#125;</span><br><span class="line">v.X &#x3D; 4</span><br><span class="line">fmt.Println(v.X)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>数组<br>类型 [n]T 是一个有 n 个类型为 T 的值的数组</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	var a [2]string</span><br><span class="line">	a[0] &#x3D; &quot;Hello&quot;</span><br><span class="line">	a[1] &#x3D; &quot;World&quot;</span><br><span class="line">	fmt.Println(a[0], a[1])</span><br><span class="line">	fmt.Println(a)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>slice<br>一个 slice 会指向一个序列的值，并且包含了长度信息<br>s[lo:hi]表示从 lo 到 hi-1 的 slice 元素，含两端。因此<br>s[lo:lo]是空的，而<br>s[lo:lo+1]有一个元素。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	p :&#x3D; []int&#123;2, 3, 5, 7, 11, 13&#125;</span><br><span class="line">	fmt.Println(&quot;p &#x3D;&#x3D;&quot;, p)</span><br><span class="line"></span><br><span class="line">	for i :&#x3D; 0; i &lt; len(p); i++ &#123;</span><br><span class="line">		fmt.Printf(&quot;p[%d] &#x3D;&#x3D; %d\n&quot;, i, p[i])</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>map<br>map 映射键到值</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type Vertex struct &#123;</span><br><span class="line">	Lat, Long float64</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var m map[string]Vertex</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	m &#x3D; make(map[string]Vertex)</span><br><span class="line">	m[&quot;Bell Labs&quot;] &#x3D; Vertex&#123;</span><br><span class="line">		40.68433, -74.39967,</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(m[&quot;Bell Labs&quot;])</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>golang</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LNMP一键安装包常用命令及配置文件路径</title>
     <url>/2017/12/06/LNMP%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84/</url>
     <content><![CDATA[<a id="more"></a>
@@ -706,6 +583,68 @@
 ]]></content>
       <tags>
         <tag>lnmp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Etcd一文</title>
+    <url>/2021/11/04/Etcd%E4%B8%80%E6%96%87/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/etcd.png" alt="Etcd"></p>
+<a id="more"></a>
+<p><strong>一、概述</strong></p>
+<blockquote>
+<p>背景：近期k8s应用中etcd的功能存在一些困惑，对其进行来单独的学习，能更深入理解k8s中的的一些特性。</p>
+</blockquote>
+<ul>
+<li>简单：安装配置简单，而且提供了HTTP API进行交互，使用也很简单</li>
+<li>安全：支持SSL证书验证</li>
+<li>快速：根据官方提供的benchmark数据，单实例支持每秒2k+读操作</li>
+<li>可靠：采用raft算法，实现分布式系统数据的可用性和一致性</li>
+</ul>
+<p><strong>二、应用场景</strong></p>
+<ul>
+<li>服务注册与发现</li>
+<li>消息发布与订阅</li>
+<li>负载均衡</li>
+<li>分部署通知与协调</li>
+<li>分布式锁</li>
+<li>分布式队列</li>
+<li>集群与监控与Leader选举</li>
+</ul>
+<p><strong>三、安装部署</strong></p>
+<p>推荐使用yum安装方式</p>
+<blockquote>
+<p>hostnamectl set-hostname etcd-1<br>wget <a href="http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm">http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</a><br>rpm -ivh epel-release-latest-7.noarch.rpm</p>
+<h1 id="yum-仓库中的etcd版本为3-3-11，如果需要最新版本的etcd可以进行二进制安装"><a href="#yum-仓库中的etcd版本为3-3-11，如果需要最新版本的etcd可以进行二进制安装" class="headerlink" title="yum 仓库中的etcd版本为3.3.11，如果需要最新版本的etcd可以进行二进制安装"></a>yum 仓库中的etcd版本为3.3.11，如果需要最新版本的etcd可以进行二进制安装</h1><p>yum -y install etcd<br>systemctl enable etcd</p>
+</blockquote>
+<p><strong>四、简单使用</strong></p>
+<p>1、增加 set</p>
+<blockquote>
+<p>$ etcdctl set /testdir/testkey “Hello world”<br>Hello world</p>
+</blockquote>
+<p>2、删除 rm</p>
+<blockquote>
+<p>$ etcdctl rm /testdir/testkey<br>PrevNode.Value: Hello</p>
+</blockquote>
+<p>3、更新 update</p>
+<blockquote>
+<p>etcdctl update /testdir/testkey “Hello”<br>Hello</p>
+</blockquote>
+<p>4、查询 get</p>
+<blockquote>
+<p>etcdctl get /testdir/testkey<br>Hello world</p>
+</blockquote>
+<p><strong>五、总结</strong></p>
+<ul>
+<li><p>etcd 默认只保存 1000 个历史事件，所以不适合有大量更新操作的场景，这样会导致数据的丢失。 etcd 典型的应用场景是配置管理和服务发现，这些场景都是读多写少的。</p>
+</li>
+<li><p>相比于 zookeeper，etcd 使用起来要简单很多。不过要实现真正的服务发现功能，etcd 还需要和其他工具（比如 registrator、confd 等）一起使用来实现服务的自动注册和更新。</p>
+</li>
+<li><p>目前 etcd 还没有图形化的工具。 </p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Etcd</tag>
       </tags>
   </entry>
   <entry>
@@ -836,6 +775,67 @@
         <tag>Laragon</tag>
         <tag>Laravel</tag>
         <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Go 语言基础</title>
+    <url>/2017/11/08/Go-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> 包、变量、函数</p>
+</blockquote>
+<ul>
+<li><p>包<br>每个 Go 程序都是由包组成的。程序运行的入口是包 <code>main</code><br>这个程序使用并导入了包 “fmt” 和 <code>&quot;math/rand&quot;</code>。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;math&#x2F;rand&quot;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>变量<br>var 语句定义了一个变量的列表 如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var c, python, java bool</span><br><span class="line">var i, j int &#x3D; 1, 2</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	var i int</span><br><span class="line">	&#x2F;*在函数中，&#96;:&#x3D;&#96; 简洁赋值语句在明确类型的地方，可以用于替代 var 定义</span><br><span class="line">	函数外的每个语句都必须以关键字开始（&#96;var&#96;、&#96;func&#96;、等等），&#96;:&#x3D;&#96; 结构不能使用在函数外*&#x2F;</span><br><span class="line">	k :&#x3D; 3</span><br><span class="line">	var c, python, java &#x3D; true, false, &quot;no!&quot;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>函数<br>函数可以没有参数或接受多个参数<br>在这个例子中，<code>add</code> 接受两个 int 类型的参数。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func add(x int, y int) int &#123;</span><br><span class="line">	return x + y</span><br><span class="line">&#125;</span><br><span class="line">||</span><br><span class="line">func add(x , y int) int &#123;</span><br><span class="line">	return x + y</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p> 流程控制语句</p>
+</blockquote>
+<ul>
+<li><p>for<br>Go 只有一种循环结构——<code>for</code> 循环<br>基本的 for 循环除了没有了 <code>( )</code> 之外（甚至强制不能使用它们）。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	sum :&#x3D; 0</span><br><span class="line">	for i :&#x3D; 0; i &lt; 10; i++ &#123;</span><br><span class="line">		sum +&#x3D; i</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(sum)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>if<br>if 语句除了没有了 <code>( )</code> 之外（甚至强制不能使用它们）。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func sqrt(x float64) string &#123;</span><br><span class="line">	if x &lt; 0 &#123;</span><br><span class="line">		return sqrt(-x) + &quot;i&quot;</span><br><span class="line">	&#125;</span><br><span class="line">	if v :&#x3D; math.Pow(x, n); v &lt; lim &#123;</span><br><span class="line">		return v</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		fmt.Printf(&quot;%g &gt;&#x3D; %g\n&quot;, v, lim)</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>switch<br>如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	fmt.Print(&quot;Go runs on &quot;)</span><br><span class="line">	switch os :&#x3D; runtime.GOOS; os &#123;</span><br><span class="line">	case &quot;darwin&quot;:</span><br><span class="line">		fmt.Println(&quot;OS X.&quot;)</span><br><span class="line">	case &quot;linux&quot;:</span><br><span class="line">		fmt.Println(&quot;Linux.&quot;)</span><br><span class="line">	default:</span><br><span class="line">		&#x2F;&#x2F; freebsd, openbsd,</span><br><span class="line">		&#x2F;&#x2F; plan9, windows...</span><br><span class="line">		fmt.Printf(&quot;%s.&quot;, os)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>defer<br>defer 语句会延迟函数的执行直到上层函数返回。<br>延迟调用的参数会立刻生成，但是在上层函数返回前函数都不会被调用。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	defer fmt.Println(&quot;world&quot;)&#x2F;&#x2F;延迟函数</span><br><span class="line">	fmt.Println(&quot;hello&quot;) &#x2F;&#x2F;上层函数</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;hello</span><br><span class="line">&#x2F;&#x2F;wolrd</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p> 复杂类型</p>
+</blockquote>
+<ul>
+<li><p>指针<br>Go 具有指针。 指针保存了变量的内存地址</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	i, j :&#x3D; 42, 2701</span><br><span class="line"></span><br><span class="line">	p :&#x3D; &amp;i         &#x2F;* 生成一个指向 i 的指针 *&#x2F;</span><br><span class="line">	fmt.Println(*p) &#x2F;* 通过指针 p 读取 i    *&#x2F;</span><br><span class="line">	*p &#x3D; 21         &#x2F;* 通过指针 p 设置 i    *&#x2F;</span><br><span class="line">	fmt.Println(i)  &#x2F;* 输出 i &#x3D;21          *&#x2F; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>结构体<br>一个结构体（<code>struct</code>）就是一个字段的集合</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type Vertex struct &#123;</span><br><span class="line">	X int</span><br><span class="line">	Y int</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">v :&#x3D; Vertex&#123;1, 2&#125;</span><br><span class="line">v.X &#x3D; 4</span><br><span class="line">fmt.Println(v.X)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数组<br>类型 [n]T 是一个有 n 个类型为 T 的值的数组</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	var a [2]string</span><br><span class="line">	a[0] &#x3D; &quot;Hello&quot;</span><br><span class="line">	a[1] &#x3D; &quot;World&quot;</span><br><span class="line">	fmt.Println(a[0], a[1])</span><br><span class="line">	fmt.Println(a)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>slice<br>一个 slice 会指向一个序列的值，并且包含了长度信息<br>s[lo:hi]表示从 lo 到 hi-1 的 slice 元素，含两端。因此<br>s[lo:lo]是空的，而<br>s[lo:lo+1]有一个元素。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	p :&#x3D; []int&#123;2, 3, 5, 7, 11, 13&#125;</span><br><span class="line">	fmt.Println(&quot;p &#x3D;&#x3D;&quot;, p)</span><br><span class="line"></span><br><span class="line">	for i :&#x3D; 0; i &lt; len(p); i++ &#123;</span><br><span class="line">		fmt.Printf(&quot;p[%d] &#x3D;&#x3D; %d\n&quot;, i, p[i])</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>map<br>map 映射键到值</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type Vertex struct &#123;</span><br><span class="line">	Lat, Long float64</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var m map[string]Vertex</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	m &#x3D; make(map[string]Vertex)</span><br><span class="line">	m[&quot;Bell Labs&quot;] &#x3D; Vertex&#123;</span><br><span class="line">		40.68433, -74.39967,</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(m[&quot;Bell Labs&quot;])</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>golang</tag>
       </tags>
   </entry>
   <entry>
@@ -1139,6 +1139,25 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Linux安装配置守护进程</title>
+    <url>/2018/03/09/Linux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> centos 下安装Supervisor</p>
+</blockquote>
+<p>yum install supervisor</p>
+<blockquote>
+<p> 配置Supervisor</p>
+</blockquote>
+<p>cd /etc/supervisord.d/<br>vim laravel-worker.ini<br>systemctl start supervisord</p>
+]]></content>
+      <tags>
+        <tag>linux</tag>
+        <tag>Supervisor</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux定时任务采集聚合数据api文章</title>
     <url>/2019/04/18/Linux%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E9%87%87%E9%9B%86%E8%81%9A%E5%90%88%E6%95%B0%E6%8D%AEapi%E6%96%87%E7%AB%A0/</url>
     <content><![CDATA[<p><strong>Linux定时任务采集文章</strong> </p>
@@ -1171,25 +1190,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
         <tag>Laravel</tag>
         <tag>Linux</tag>
         <tag>crontab</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux安装配置守护进程</title>
-    <url>/2018/03/09/Linux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> centos 下安装Supervisor</p>
-</blockquote>
-<p>yum install supervisor</p>
-<blockquote>
-<p> 配置Supervisor</p>
-</blockquote>
-<p>cd /etc/supervisord.d/<br>vim laravel-worker.ini<br>systemctl start supervisord</p>
-]]></content>
-      <tags>
-        <tag>linux</tag>
-        <tag>Supervisor</tag>
       </tags>
   </entry>
   <entry>
@@ -1312,44 +1312,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>MySQL出现1030-Got error 28 from storage engine错误</title>
-    <url>/2018/11/22/MySQL%E5%87%BA%E7%8E%B01030-Got-error-28-from-storage-engine%E9%94%99%E8%AF%AF/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>一般这种情况都是日志文件太大导致的</p>
-<ul>
-<li>mysql二进制文件 参考文档：<a href="https://baishunhua.com/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/" target="_blank">[ MySQL启动错误 ]</a></li>
-<li>其他日志文件</li>
-</ul>
-<blockquote>
-<p>df -h</p>
-</blockquote>
-<p>查看磁盘使用情况</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -h --max-depth&#x3D;1 | grep G | sort -n</span><br></pre></td></tr></table></figure>
-<p>以G单位排序查看占用磁盘的文件，然后删除没用的日志文件 </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -s * | sort -nr</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nginx 反向代理</title>
-    <url>/2019/09/19/Nginx-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><a href="https://baishunhua.com/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/" target="_blank">安装nginx</a></p>
-<blockquote>
-<p>高防服务器上 nginx.conf 配置模板</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server_name  www.xxx.com;</span><br><span class="line">...</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">    proxy_pass http:&#x2F;&#x2F;ip[原服务器ip];</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>nginx</tag>
-        <tag>反向代理</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MySQL启动错误</title>
     <url>/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1377,6 +1339,44 @@ public $queue = &#39;listeners&#39;;</code></pre>
 <li>修改在my.cnf 文件，找到 log-bin=mysql-bin 将其启注释掉，以后就不会产生2进制的mysql-bin.0000的日志文件</li>
 </ol>
 ]]></content>
+      <tags>
+        <tag>lnmp</tag>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nginx 反向代理</title>
+    <url>/2019/09/19/Nginx-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><a href="https://baishunhua.com/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/" target="_blank">安装nginx</a></p>
+<blockquote>
+<p>高防服务器上 nginx.conf 配置模板</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server_name  www.xxx.com;</span><br><span class="line">...</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">    proxy_pass http:&#x2F;&#x2F;ip[原服务器ip];</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>nginx</tag>
+        <tag>反向代理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL出现1030-Got error 28 from storage engine错误</title>
+    <url>/2018/11/22/MySQL%E5%87%BA%E7%8E%B01030-Got-error-28-from-storage-engine%E9%94%99%E8%AF%AF/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>一般这种情况都是日志文件太大导致的</p>
+<ul>
+<li>mysql二进制文件 参考文档：<a href="https://baishunhua.com/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/" target="_blank">[ MySQL启动错误 ]</a></li>
+<li>其他日志文件</li>
+</ul>
+<blockquote>
+<p>df -h</p>
+</blockquote>
+<p>查看磁盘使用情况</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -h --max-depth&#x3D;1 | grep G | sort -n</span><br></pre></td></tr></table></figure>
+<p>以G单位排序查看占用磁盘的文件，然后删除没用的日志文件 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -s * | sort -nr</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>lnmp</tag>
         <tag>mysql</tag>
@@ -1782,109 +1782,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>Swift学习笔记NO.1</title>
-    <url>/2017/09/25/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0NO-1/</url>
-    <content><![CDATA[<p><strong>Swift学习笔记NO.1</strong> </p>
-<a id="more"></a>
-
-<p><strong>Swift 教程</strong></p>
-<blockquote>
-<p> Swift 是一种支持多编程范式和编译式的开源编程语言,苹果于2014年WWDC（苹果开发者大会）发布，用于开发 iOS，OS X 和 watchOS 应用程序。<br>Swift 结合了 C 和 Objective-C 的优点并且不受 C 兼容性的限制。<br>Swift 在 Mac OS 和 iOS 平台可以和 Object-C 使用相同的运行环境。<br>2015年6月8日，苹果于WWDC 2015上宣布，Swift将开放源代码，包括编译器和标准库。</p>
-</blockquote>
-<p>第一个 Swift 程序当然从输出 “Hello, World!” 开始</p>
-<blockquote>
-<p> 代码如下所示：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var myString &#x3D; &quot;Hello, World!&quot;</span><br><span class="line">print(myString)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p> 实例解析：</p>
-</blockquote>
-<ul>
-<li>var myString = “Hello, World!” : 使用 var 关键字定义一个变量 myString，值为 Hello, World!</li>
-<li>print : 输出变量的值</li>
-</ul>
-<p><strong>Swift 环境搭建</strong></p>
-<blockquote>
-<p> Swift是一门开源的编程语言，该语言用于开发OS X和iOS应用程序。<br>在正式开发应用程序前，我们需要搭建Swift开发环境，以便更好友好的使用各种开发工具和语言进行快速应用开发。由于Swift开发环境需要在OS X系统中运行，因此其环境的搭建将不同于Windows环境，下面就一起来学习一下swift开发环境的搭建方法。</p>
-</blockquote>
-<p>成功搭建swift开发环境的前题：</p>
-<ul>
-<li>必须拥有一台苹果电脑。因为集成开发环境XCode只能运行在OS X系统上。</li>
-<li>电脑系统必须在OS 10.9.3及以上。</li>
-<li>电脑必须安装Xcode集成开发环境。</li>
-</ul>
-<blockquote>
-<p> Swift 开发工具Xcode下载</p>
-</blockquote>
-<ul>
-<li><a href="https://swift.org/download/#latest-development-snapshots" target="_blank">[ Swift 源代码下载 ]</a></li>
-<li><a href="https://developer.apple.com/xcode/download/" target="_blank">[ Swift开发工具官网地址 ]</a></li>
-<li><a href="http://rj.baidu.com/soft/detail/40233.html" target="_blank">[ Swift 开发工具百度软件中心下载（国内比较快） ]</a></li>
-</ul>
-<p>下载完成后，双击下载的 dmg 文件安装，安装完成后我们将 Xcode 图标踢移动到应用文件夹。<br> <img src="/assets/blogImg/swift/xcode2.jpg" alt="ico原来的样子"></p>
-<blockquote>
-<p> 第一个 Swift 程序</p>
-</blockquote>
-<p>Xcode 安装完成后，我们就可以开始编写 Swift 代码了。<br>接下来我们在应用文件夹打开 Xcode，打开后在屏幕顶部选择 File =&gt; New =&gt; Playground。<br><img src="/assets/blogImg/swift/xc1.jpg" alt="ico原来的样子"></p>
-<blockquote>
-<p> 接着 为 playground 设置一个名字并选择 iOS 平台。</p>
-</blockquote>
-<p><img src="/assets/blogImg/swift/xc2.jpg" alt="ico原来的样子"></p>
-<blockquote>
-<p> Swift 的 playground 就像是一个可交互的文档，它是用来练手学swift的，写一句代码出一行结果（右侧），可以实时查看代码结果，是学习swift语言的利器！</p>
-</blockquote>
-<p><img src="/assets/blogImg/swift/xc3.jpg" alt="ico原来的样子"> </p>
-<p>以下是 Swift Playground 窗口默认的代码：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import UIKit</span><br><span class="line">var str &#x3D; &quot;Hello, playground&quot;</span><br></pre></td></tr></table></figure>
-<p>如果你想创建 OS x 程序，需要导入 Cocoa 包 import Cocoa 代码如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line">var str &#x3D; &quot;Hello, playground&quot;</span><br></pre></td></tr></table></figure>
-
-<p><strong>创建第一个项目</strong></p>
-<blockquote>
-<p> 1、打开 xcode 工具，选择 File =&gt; New =&gt; Project</p>
-</blockquote>
-<p><img src="/assets/blogImg/swift/xc4.jpg" alt="ico原来的样子"> </p>
-<blockquote>
-<p> 2、我们选择一个”Single View Application”，并点击”next”，创建一个简单示例app应用。</p>
-</blockquote>
-<p><img src="/assets/blogImg/swift/xc5.jpg" alt="ico原来的样子"> </p>
-<blockquote>
-<p> 3、接着我们输入项目名称（ProductName),公司名称（Organization Name),公司标识前缀名（Organization identifier) 还要选择开发语言(Language),选择设备（Devices)。<br>其中Language有两个选项：Objective-c和swift，因为我们是学习swift当然选择swift项了。 点击”Next”下一步。</p>
-</blockquote>
-<p><img src="/assets/blogImg/swift/xc6.jpg" alt="ico原来的样子"> </p>
-<blockquote>
-<p> 4、选择存放的目录，如果要使用Git源代码管理，将勾上Source Control的create git repository on My Mac. 点击create创建项目。</p>
-</blockquote>
-<p><img src="/assets/blogImg/swift/xc7.jpg" alt="ico原来的样子"> </p>
-<blockquote>
-<p> 5、项目创建后，默认生成了一个示例文件，可以看到swift将oc中的h和m文件合并成了一个文件（即swift后缀名文件). Main.storyboard相当于xib文件，有比xib更多的功能。</p>
-</blockquote>
-<p><img src="/assets/blogImg/swift/xc8.jpg" alt="ico原来的样子"> </p>
-<blockquote>
-<p> 6、打开main.storyboard,默认看到一个简单的空白的应用界面，大小为平板界面大小。 如果开发都只需要开发兼容iphone手机的app,那么可以把Use Auto Layout的勾去掉（默认为勾上）。</p>
-</blockquote>
-<p><img src="/assets/blogImg/swift/xc9.jpg" alt="ico原来的样子"> </p>
-<blockquote>
-<p> 7、弹出了一个对话框，让我们选择界面尺寸，iPhone或都 iPad。我们选择iPhone的尺寸。</p>
-</blockquote>
-<p><img src="/assets/blogImg/swift/xc10.jpg" alt="ico原来的样子"> </p>
-<blockquote>
-<p> 8、我们为界面添加点内容，在右下方找到Text控件，将它拖入storyboard上，并双击写入文本”Hello World!”。</p>
-</blockquote>
-<p><img src="/assets/blogImg/swift/xc11.jpg" alt="ico原来的样子"> </p>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Swift</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Swift学习笔记NO.2</title>
     <url>/2017/09/25/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0NO-2/</url>
     <content><![CDATA[<p><strong>Swift学习笔记NO.2</strong> </p>
@@ -2043,6 +1940,109 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>Swift</tag>
         <tag>基础语法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Swift学习笔记NO.1</title>
+    <url>/2017/09/25/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0NO-1/</url>
+    <content><![CDATA[<p><strong>Swift学习笔记NO.1</strong> </p>
+<a id="more"></a>
+
+<p><strong>Swift 教程</strong></p>
+<blockquote>
+<p> Swift 是一种支持多编程范式和编译式的开源编程语言,苹果于2014年WWDC（苹果开发者大会）发布，用于开发 iOS，OS X 和 watchOS 应用程序。<br>Swift 结合了 C 和 Objective-C 的优点并且不受 C 兼容性的限制。<br>Swift 在 Mac OS 和 iOS 平台可以和 Object-C 使用相同的运行环境。<br>2015年6月8日，苹果于WWDC 2015上宣布，Swift将开放源代码，包括编译器和标准库。</p>
+</blockquote>
+<p>第一个 Swift 程序当然从输出 “Hello, World!” 开始</p>
+<blockquote>
+<p> 代码如下所示：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var myString &#x3D; &quot;Hello, World!&quot;</span><br><span class="line">print(myString)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> 实例解析：</p>
+</blockquote>
+<ul>
+<li>var myString = “Hello, World!” : 使用 var 关键字定义一个变量 myString，值为 Hello, World!</li>
+<li>print : 输出变量的值</li>
+</ul>
+<p><strong>Swift 环境搭建</strong></p>
+<blockquote>
+<p> Swift是一门开源的编程语言，该语言用于开发OS X和iOS应用程序。<br>在正式开发应用程序前，我们需要搭建Swift开发环境，以便更好友好的使用各种开发工具和语言进行快速应用开发。由于Swift开发环境需要在OS X系统中运行，因此其环境的搭建将不同于Windows环境，下面就一起来学习一下swift开发环境的搭建方法。</p>
+</blockquote>
+<p>成功搭建swift开发环境的前题：</p>
+<ul>
+<li>必须拥有一台苹果电脑。因为集成开发环境XCode只能运行在OS X系统上。</li>
+<li>电脑系统必须在OS 10.9.3及以上。</li>
+<li>电脑必须安装Xcode集成开发环境。</li>
+</ul>
+<blockquote>
+<p> Swift 开发工具Xcode下载</p>
+</blockquote>
+<ul>
+<li><a href="https://swift.org/download/#latest-development-snapshots" target="_blank">[ Swift 源代码下载 ]</a></li>
+<li><a href="https://developer.apple.com/xcode/download/" target="_blank">[ Swift开发工具官网地址 ]</a></li>
+<li><a href="http://rj.baidu.com/soft/detail/40233.html" target="_blank">[ Swift 开发工具百度软件中心下载（国内比较快） ]</a></li>
+</ul>
+<p>下载完成后，双击下载的 dmg 文件安装，安装完成后我们将 Xcode 图标踢移动到应用文件夹。<br> <img src="/assets/blogImg/swift/xcode2.jpg" alt="ico原来的样子"></p>
+<blockquote>
+<p> 第一个 Swift 程序</p>
+</blockquote>
+<p>Xcode 安装完成后，我们就可以开始编写 Swift 代码了。<br>接下来我们在应用文件夹打开 Xcode，打开后在屏幕顶部选择 File =&gt; New =&gt; Playground。<br><img src="/assets/blogImg/swift/xc1.jpg" alt="ico原来的样子"></p>
+<blockquote>
+<p> 接着 为 playground 设置一个名字并选择 iOS 平台。</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc2.jpg" alt="ico原来的样子"></p>
+<blockquote>
+<p> Swift 的 playground 就像是一个可交互的文档，它是用来练手学swift的，写一句代码出一行结果（右侧），可以实时查看代码结果，是学习swift语言的利器！</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc3.jpg" alt="ico原来的样子"> </p>
+<p>以下是 Swift Playground 窗口默认的代码：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import UIKit</span><br><span class="line">var str &#x3D; &quot;Hello, playground&quot;</span><br></pre></td></tr></table></figure>
+<p>如果你想创建 OS x 程序，需要导入 Cocoa 包 import Cocoa 代码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line">var str &#x3D; &quot;Hello, playground&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>创建第一个项目</strong></p>
+<blockquote>
+<p> 1、打开 xcode 工具，选择 File =&gt; New =&gt; Project</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc4.jpg" alt="ico原来的样子"> </p>
+<blockquote>
+<p> 2、我们选择一个”Single View Application”，并点击”next”，创建一个简单示例app应用。</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc5.jpg" alt="ico原来的样子"> </p>
+<blockquote>
+<p> 3、接着我们输入项目名称（ProductName),公司名称（Organization Name),公司标识前缀名（Organization identifier) 还要选择开发语言(Language),选择设备（Devices)。<br>其中Language有两个选项：Objective-c和swift，因为我们是学习swift当然选择swift项了。 点击”Next”下一步。</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc6.jpg" alt="ico原来的样子"> </p>
+<blockquote>
+<p> 4、选择存放的目录，如果要使用Git源代码管理，将勾上Source Control的create git repository on My Mac. 点击create创建项目。</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc7.jpg" alt="ico原来的样子"> </p>
+<blockquote>
+<p> 5、项目创建后，默认生成了一个示例文件，可以看到swift将oc中的h和m文件合并成了一个文件（即swift后缀名文件). Main.storyboard相当于xib文件，有比xib更多的功能。</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc8.jpg" alt="ico原来的样子"> </p>
+<blockquote>
+<p> 6、打开main.storyboard,默认看到一个简单的空白的应用界面，大小为平板界面大小。 如果开发都只需要开发兼容iphone手机的app,那么可以把Use Auto Layout的勾去掉（默认为勾上）。</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc9.jpg" alt="ico原来的样子"> </p>
+<blockquote>
+<p> 7、弹出了一个对话框，让我们选择界面尺寸，iPhone或都 iPad。我们选择iPhone的尺寸。</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc10.jpg" alt="ico原来的样子"> </p>
+<blockquote>
+<p> 8、我们为界面添加点内容，在右下方找到Text控件，将它拖入storyboard上，并双击写入文本”Hello World!”。</p>
+</blockquote>
+<p><img src="/assets/blogImg/swift/xc11.jpg" alt="ico原来的样子"> </p>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -2255,7 +2255,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#x67;&#105;&#116;&#64;&#x67;&#105;&#116;&#104;&#x75;&#98;&#x2e;&#x63;&#111;&#x6d;">&#x67;&#105;&#116;&#64;&#x67;&#105;&#116;&#104;&#x75;&#98;&#x2e;&#x63;&#111;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#103;&#x69;&#116;&#x40;&#103;&#105;&#116;&#104;&#x75;&#98;&#x2e;&#x63;&#111;&#109;">&#103;&#x69;&#116;&#x40;&#103;&#105;&#116;&#104;&#x75;&#98;&#x2e;&#x63;&#111;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -2381,64 +2381,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>install program</title>
-    <url>/2017/11/02/install-program/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> 安装项目及配置svn</p>
-</blockquote>
-<ul>
-<li>lnmp vhost add</li>
-<li>mkdir -p /home/svn/repos</li>
-<li>svnadmin create /home/svn/repos/</li>
-<li>cd /home/svn/repos/conf</li>
-<li>vi passwd</li>
-<li>vim authz</li>
-<li>vim svnserve.conf</li>
-<li>cd ../hooks/</li>
-<li>cp post-commit.tmpl post-commit</li>
-<li>chmod +x post-commit</li>
-<li>vim post-commit</li>
-<li>cd /home/wwwroot/<a href="http://www.xxxx.cn/">www.xxxx.cn/</a></li>
-<li>svn co svn://127.0.0.1/repos ./</li>
-</ul>
-<blockquote>
-<p> 配置、修改</p>
-</blockquote>
-<ul>
-<li>vim /usr/local/nginx/conf/vhost/<a href="http://www.xxxx.cn.conf/">www.xxxx.cn.conf</a></li>
-<li>/etc/init.d/nginx restart</li>
-<li>vim /home/wwwroot/mnzr.xiazhiweizhi.cn/config/queue.php</li>
-<li>cd /etc/supervisord.d/</li>
-<li>cp laravel-worker-zr.ini laravel-worker-mnzr.ini</li>
-<li>chmod -R 777 bootstrap/cache/ storage/ public/upload/</li>
-<li>chown -R www:www ../mnzr.xiazhiweizhi.cn/</li>
-<li>supervisorctl status</li>
-<li>supervisorctl reread</li>
-<li>supervisorctl update</li>
-<li>supervisorctl restart laravel-worker-xxx:*</li>
-<li>composer require simplesoftwareio/simple-qrcode</li>
-<li>history |grep composer</li>
-<li>composer install</li>
-<li>php artisan storage:link</li>
-<li>php artisan passport:keys</li>
-</ul>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>centos7</tag>
-        <tag>laravel5</tag>
-        <tag>install</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>go-zero的安装及使用</title>
     <url>/2021/09/08/go-zero%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><strong>go-zero的安装及使用</strong> </p>
@@ -2557,6 +2499,64 @@ class QuotesSpider(scrapy.Spider):
         <tag>golang</tag>
         <tag>go-zero</tag>
         <tag>goctl</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>install program</title>
+    <url>/2017/11/02/install-program/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> 安装项目及配置svn</p>
+</blockquote>
+<ul>
+<li>lnmp vhost add</li>
+<li>mkdir -p /home/svn/repos</li>
+<li>svnadmin create /home/svn/repos/</li>
+<li>cd /home/svn/repos/conf</li>
+<li>vi passwd</li>
+<li>vim authz</li>
+<li>vim svnserve.conf</li>
+<li>cd ../hooks/</li>
+<li>cp post-commit.tmpl post-commit</li>
+<li>chmod +x post-commit</li>
+<li>vim post-commit</li>
+<li>cd /home/wwwroot/<a href="http://www.xxxx.cn/">www.xxxx.cn/</a></li>
+<li>svn co svn://127.0.0.1/repos ./</li>
+</ul>
+<blockquote>
+<p> 配置、修改</p>
+</blockquote>
+<ul>
+<li>vim /usr/local/nginx/conf/vhost/<a href="http://www.xxxx.cn.conf/">www.xxxx.cn.conf</a></li>
+<li>/etc/init.d/nginx restart</li>
+<li>vim /home/wwwroot/mnzr.xiazhiweizhi.cn/config/queue.php</li>
+<li>cd /etc/supervisord.d/</li>
+<li>cp laravel-worker-zr.ini laravel-worker-mnzr.ini</li>
+<li>chmod -R 777 bootstrap/cache/ storage/ public/upload/</li>
+<li>chown -R www:www ../mnzr.xiazhiweizhi.cn/</li>
+<li>supervisorctl status</li>
+<li>supervisorctl reread</li>
+<li>supervisorctl update</li>
+<li>supervisorctl restart laravel-worker-xxx:*</li>
+<li>composer require simplesoftwareio/simple-qrcode</li>
+<li>history |grep composer</li>
+<li>composer install</li>
+<li>php artisan storage:link</li>
+<li>php artisan passport:keys</li>
+</ul>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>centos7</tag>
+        <tag>laravel5</tag>
+        <tag>install</tag>
       </tags>
   </entry>
   <entry>
@@ -2687,6 +2687,71 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>laravel5.5快速入门 —— 安装配置篇</title>
+    <url>/2017/09/15/laravel5.5%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8-%E2%80%94%E2%80%94-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E7%AF%87/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>一、服务器要求</strong></p>
+<blockquote>
+<p>Laravel 框架对PHP版本和扩展有一定要求，不过这些要求 Homestead 都已经满足了，不过如果你没有使用 Homestead 的话（那真是一件很遗憾的事情），有必要了解下这些以便确认自己的环境满足要求：</p>
+</blockquote>
+<ul>
+<li> PHP &gt;= 7.0.0</li>
+<li> PHP OpenSSL 扩展</li>
+<li> PHP PDO 扩展</li>
+<li> PHP Mbstring 扩展</li>
+<li> PHP Tokenizer 扩展</li>
+<li> PHP XML 扩展</li>
+</ul>
+<blockquote>
+<p> 满足以上需求之后，就可以开始安装 Laravel 了。</p>
+</blockquote>
+<p><strong>二、安装 Laravel</strong></p>
+<blockquote>
+<p>Laravel 使用 <a href="http://www.phpcomposer.com/" target="_blank">[ Composer ]</a> 管理依赖，所以，安装之前确保已经在机器上安装了 Composer。</p>
+</blockquote>
+<ul>
+<li> PHP &gt;= 7.0.0</li>
+<li> PHP OpenSSL 扩展</li>
+<li> PHP PDO 扩展</li>
+<li> PHP Mbstring 扩展</li>
+<li> PHP Tokenizer 扩展</li>
+<li> PHP XML 扩展</li>
+</ul>
+<blockquote>
+<p> 满足以上需求之后，就可以开始安装 Laravel 了。</p>
+</blockquote>
+<p>通过 Laravel 安装器</p>
+<p>首先，通过 Composer 安装 Laravel 安装器：</p>
+<blockquote>
+<p> composer global require “laravel/installer”</p>
+</blockquote>
+<p>确保 $HOME/.composer/vendor/bin 在系统路径中</p>
+<p>安装完成后，通过简单的 laravel new 命令即可在当前目录下创建一个新的 Laravel 应用，例如，laravel new blog 将会创建一个名为 blog 的新应用，且包含所有 Laravel 依赖。该安装方法比通过 Composer 安装要快很多：</p>
+<blockquote>
+<p> laravel new blog</p>
+</blockquote>
+<p>如果之前已经安装过旧版本的 Laravel 安装器，需要更新后才能安装最新的 Laravel 5.5 框架应用：</p>
+<blockquote>
+<p> composer global update</p>
+</blockquote>
+<p>通过 Composer Create-Project<br>你还可以在终端中通过 Composer 的 create-project 命令来安装 Laravel 应用：</p>
+<blockquote>
+<p> composer create-project –prefer-dist laravel/laravel blog</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>  如若需要 请戳 &lt;a href=’<a href="https://shunhua.github.io/about/&#39;target=&quot;_blank&quot;&gt;[">https://shunhua.github.io/about/&#39;target=&quot;_blank&quot;&gt;[</a> About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>laravel5.5</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>linux centos7.3 lnmp一键安装包集成</title>
     <url>/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E9%9B%86%E6%88%90/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2751,68 +2816,30 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>laravel5.5快速入门 —— 安装配置篇</title>
-    <url>/2017/09/15/laravel5.5%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8-%E2%80%94%E2%80%94-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E7%AF%87/</url>
+    <title>linux下安装redis及认证密码</title>
+    <url>/2018/03/06/linux%E4%B8%8B%E5%AE%89%E8%A3%85redis%E5%8F%8A%E8%AE%A4%E8%AF%81%E5%AF%86%E7%A0%81/</url>
     <content><![CDATA[<a id="more"></a>
 
-<p><strong>一、服务器要求</strong></p>
+<p><strong>一、安装 redis</strong><br>进入lnmp解压后的目录，执行</p>
 <blockquote>
-<p>Laravel 框架对PHP版本和扩展有一定要求，不过这些要求 Homestead 都已经满足了，不过如果你没有使用 Homestead 的话（那真是一件很遗憾的事情），有必要了解下这些以便确认自己的环境满足要求：</p>
+<p> ./addons.sh install redis </p>
 </blockquote>
-<ul>
-<li> PHP &gt;= 7.0.0</li>
-<li> PHP OpenSSL 扩展</li>
-<li> PHP PDO 扩展</li>
-<li> PHP Mbstring 扩展</li>
-<li> PHP Tokenizer 扩展</li>
-<li> PHP XML 扩展</li>
-</ul>
+<p><strong>二、redis 设置认证密码</strong><br>requirepass foobared去掉#注释，将foobared改为自己的密码然后保存，重启服务</p>
 <blockquote>
-<p> 满足以上需求之后，就可以开始安装 Laravel 了。</p>
+<p> vim /usr/local/redis/etc/redis.conf</p>
 </blockquote>
-<p><strong>二、安装 Laravel</strong></p>
+<p><strong>三、redis 状态管理</strong></p>
 <blockquote>
-<p>Laravel 使用 <a href="http://www.phpcomposer.com/" target="_blank">[ Composer ]</a> 管理依赖，所以，安装之前确保已经在机器上安装了 Composer。</p>
+<p> /etc/init.d/redis {start|stop|restart|kill}</p>
 </blockquote>
-<ul>
-<li> PHP &gt;= 7.0.0</li>
-<li> PHP OpenSSL 扩展</li>
-<li> PHP PDO 扩展</li>
-<li> PHP Mbstring 扩展</li>
-<li> PHP Tokenizer 扩展</li>
-<li> PHP XML 扩展</li>
-</ul>
+<p><strong>四、查看 redis 启动情况</strong></p>
 <blockquote>
-<p> 满足以上需求之后，就可以开始安装 Laravel 了。</p>
-</blockquote>
-<p>通过 Laravel 安装器</p>
-<p>首先，通过 Composer 安装 Laravel 安装器：</p>
-<blockquote>
-<p> composer global require “laravel/installer”</p>
-</blockquote>
-<p>确保 $HOME/.composer/vendor/bin 在系统路径中</p>
-<p>安装完成后，通过简单的 laravel new 命令即可在当前目录下创建一个新的 Laravel 应用，例如，laravel new blog 将会创建一个名为 blog 的新应用，且包含所有 Laravel 依赖。该安装方法比通过 Composer 安装要快很多：</p>
-<blockquote>
-<p> laravel new blog</p>
-</blockquote>
-<p>如果之前已经安装过旧版本的 Laravel 安装器，需要更新后才能安装最新的 Laravel 5.5 框架应用：</p>
-<blockquote>
-<p> composer global update</p>
-</blockquote>
-<p>通过 Composer Create-Project<br>你还可以在终端中通过 Composer 的 create-project 命令来安装 Laravel 应用：</p>
-<blockquote>
-<p> composer create-project –prefer-dist laravel/laravel blog</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>  如若需要 请戳 &lt;a href=’<a href="https://shunhua.github.io/about/&#39;target=&quot;_blank&quot;&gt;[">https://shunhua.github.io/about/&#39;target=&quot;_blank&quot;&gt;[</a> About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+<p> ps aux | grep redis</p>
 </blockquote>
 ]]></content>
       <tags>
-        <tag>laravel5.5</tag>
+        <tag>lnmp</tag>
+        <tag>redis</tag>
       </tags>
   </entry>
   <entry>
@@ -2885,33 +2912,6 @@ class QuotesSpider(scrapy.Spider):
 ]]></content>
       <tags>
         <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>linux下安装redis及认证密码</title>
-    <url>/2018/03/06/linux%E4%B8%8B%E5%AE%89%E8%A3%85redis%E5%8F%8A%E8%AE%A4%E8%AF%81%E5%AF%86%E7%A0%81/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>一、安装 redis</strong><br>进入lnmp解压后的目录，执行</p>
-<blockquote>
-<p> ./addons.sh install redis </p>
-</blockquote>
-<p><strong>二、redis 设置认证密码</strong><br>requirepass foobared去掉#注释，将foobared改为自己的密码然后保存，重启服务</p>
-<blockquote>
-<p> vim /usr/local/redis/etc/redis.conf</p>
-</blockquote>
-<p><strong>三、redis 状态管理</strong></p>
-<blockquote>
-<p> /etc/init.d/redis {start|stop|restart|kill}</p>
-</blockquote>
-<p><strong>四、查看 redis 启动情况</strong></p>
-<blockquote>
-<p> ps aux | grep redis</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>redis</tag>
       </tags>
   </entry>
   <entry>
@@ -3251,6 +3251,37 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>socket.io的使用</title>
+    <url>/2018/03/28/socket-io%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><strong>socket.io的基础教程</strong> </p>
+<a id="more"></a>
+
+<p>一、安装nodejs [默认安装][<a href="https://nodejs.org/en/download/" target="_blank">下载nodejs</a>]<br>新建文件夹[socket],在目录下执行以下代码<br>nodejs中用npm初始化来创建package.json</p>
+<blockquote>
+<p> npm init</p>
+</blockquote>
+<p>二、使用npm下载 web框架express模块</p>
+<blockquote>
+<p>npm install --save <a href="mailto:&#x65;&#120;&#x70;&#114;&#101;&#115;&#115;&#x40;&#x34;&#x2e;&#49;&#53;&#46;&#50;">&#x65;&#120;&#x70;&#114;&#101;&#115;&#115;&#x40;&#x34;&#x2e;&#49;&#53;&#46;&#50;</a></p>
+</blockquote>
+<p>三、使用npm下载socket.io模块</p>
+<blockquote>
+<p>npm install --save socket.io</p>
+</blockquote>
+<p>四、新建index.js 代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var app &#x3D; require(&#39;express&#39;)();</span><br><span class="line">var http &#x3D; require(&#39;http&#39;).Server(app);</span><br><span class="line">var io &#x3D; require(&#39;socket.io&#39;)(http);</span><br><span class="line"></span><br><span class="line">app.get(&#39;&#x2F;&#39;, function(req, res)&#123;</span><br><span class="line">  res.sendFile(__dirname + &#39;&#x2F;index.html&#39;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">io.on(&#39;connection&#39;, function(socket)&#123;</span><br><span class="line">  socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">     io.emit(&#39;bsh&#39;, msg);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.listen(3000, function()&#123;</span><br><span class="line">  console.log(&#39;listening on *:3000&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>五、新建index.html 代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Socket.IO chat&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      * &#123; margin: 0; padding: 0; box-sizing: border-box; &#125;</span><br><span class="line">      body &#123; font: 13px Helvetica, Arial; &#125;</span><br><span class="line">      form &#123; background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; &#125;</span><br><span class="line">      form input &#123; border: 0; padding: 10px; width: 90%; margin-right: .5%; &#125;</span><br><span class="line">      form button &#123; width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; &#125;</span><br><span class="line">      #messages &#123; list-style-type: none; margin: 0; padding: 0; &#125;</span><br><span class="line">      #messages li &#123; padding: 5px 10px; &#125;</span><br><span class="line">      #messages li:nth-child(odd) &#123; background: #eee; &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.1.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  $(function () &#123;</span><br><span class="line">    var socket &#x3D; io();</span><br><span class="line">    $(&#39;form&#39;).submit(function()&#123;</span><br><span class="line">      socket.emit(&#39;bsh&#39;, $(&#39;#m&#39;).val());</span><br><span class="line">      $(&#39;#m&#39;).val(&#39;&#39;);</span><br><span class="line">      return false;</span><br><span class="line">    &#125;);</span><br><span class="line">    socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">      $(&#39;#messages&#39;).append($(&#39;&lt;li&gt;&#39;).text(msg));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;ul id&#x3D;&quot;messages&quot;&gt;&lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;form action&#x3D;&quot;&quot;&gt;</span><br><span class="line">      &lt;input id&#x3D;&quot;m&quot; autocomplete&#x3D;&quot;off&quot; &#x2F;&gt;&lt;button&gt;Send&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>六、执行 node index.js<br>七、浏览器打开localhost:3000</p>
+]]></content>
+      <tags>
+        <tag>socket.io</tag>
+        <tag>nodejs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sublime text3 安装配置svn 及默认快捷键</title>
     <url>/2017/08/25/sublime-text3-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEsvn-%E5%8F%8A%E9%BB%98%E8%AE%A4%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
     <content><![CDATA[<p><strong>sublime text3 安装配置svn 及默认快捷键：</strong> </p>
@@ -3375,37 +3406,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>socket.io的使用</title>
-    <url>/2018/03/28/socket-io%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><strong>socket.io的基础教程</strong> </p>
-<a id="more"></a>
-
-<p>一、安装nodejs [默认安装][<a href="https://nodejs.org/en/download/" target="_blank">下载nodejs</a>]<br>新建文件夹[socket],在目录下执行以下代码<br>nodejs中用npm初始化来创建package.json</p>
-<blockquote>
-<p> npm init</p>
-</blockquote>
-<p>二、使用npm下载 web框架express模块</p>
-<blockquote>
-<p>npm install --save <a href="mailto:&#101;&#x78;&#112;&#x72;&#x65;&#x73;&#115;&#x40;&#52;&#46;&#49;&#x35;&#x2e;&#x32;">&#101;&#x78;&#112;&#x72;&#x65;&#x73;&#115;&#x40;&#52;&#46;&#49;&#x35;&#x2e;&#x32;</a></p>
-</blockquote>
-<p>三、使用npm下载socket.io模块</p>
-<blockquote>
-<p>npm install --save socket.io</p>
-</blockquote>
-<p>四、新建index.js 代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var app &#x3D; require(&#39;express&#39;)();</span><br><span class="line">var http &#x3D; require(&#39;http&#39;).Server(app);</span><br><span class="line">var io &#x3D; require(&#39;socket.io&#39;)(http);</span><br><span class="line"></span><br><span class="line">app.get(&#39;&#x2F;&#39;, function(req, res)&#123;</span><br><span class="line">  res.sendFile(__dirname + &#39;&#x2F;index.html&#39;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">io.on(&#39;connection&#39;, function(socket)&#123;</span><br><span class="line">  socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">     io.emit(&#39;bsh&#39;, msg);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.listen(3000, function()&#123;</span><br><span class="line">  console.log(&#39;listening on *:3000&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>五、新建index.html 代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Socket.IO chat&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      * &#123; margin: 0; padding: 0; box-sizing: border-box; &#125;</span><br><span class="line">      body &#123; font: 13px Helvetica, Arial; &#125;</span><br><span class="line">      form &#123; background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; &#125;</span><br><span class="line">      form input &#123; border: 0; padding: 10px; width: 90%; margin-right: .5%; &#125;</span><br><span class="line">      form button &#123; width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; &#125;</span><br><span class="line">      #messages &#123; list-style-type: none; margin: 0; padding: 0; &#125;</span><br><span class="line">      #messages li &#123; padding: 5px 10px; &#125;</span><br><span class="line">      #messages li:nth-child(odd) &#123; background: #eee; &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.1.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  $(function () &#123;</span><br><span class="line">    var socket &#x3D; io();</span><br><span class="line">    $(&#39;form&#39;).submit(function()&#123;</span><br><span class="line">      socket.emit(&#39;bsh&#39;, $(&#39;#m&#39;).val());</span><br><span class="line">      $(&#39;#m&#39;).val(&#39;&#39;);</span><br><span class="line">      return false;</span><br><span class="line">    &#125;);</span><br><span class="line">    socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">      $(&#39;#messages&#39;).append($(&#39;&lt;li&gt;&#39;).text(msg));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;ul id&#x3D;&quot;messages&quot;&gt;&lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;form action&#x3D;&quot;&quot;&gt;</span><br><span class="line">      &lt;input id&#x3D;&quot;m&quot; autocomplete&#x3D;&quot;off&quot; &#x2F;&gt;&lt;button&gt;Send&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-
-<p>六、执行 node index.js<br>七、浏览器打开localhost:3000</p>
-]]></content>
-      <tags>
-        <tag>socket.io</tag>
-        <tag>nodejs</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用Tailwind CSS新建一个项目</title>
     <url>/2021/11/18/%E4%BD%BF%E7%94%A8Tailwind-CSS%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/tailwindcss.png" alt="tailwindcss"></p>
@@ -3458,23 +3458,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>使用git 与github友好交流</title>
-    <url>/2017/08/11/%E4%BD%BF%E7%94%A8git-%E4%B8%8Egithub%E5%8F%8B%E5%A5%BD%E4%BA%A4%E6%B5%81/</url>
-    <content><![CDATA[<p>##<strong>本文主要介绍window 端Git 与github友好交流</strong></p>
-<blockquote>
-<p>1、安装window版（32/64）git。 window端安装过程无脑略过—— </p>
-</blockquote>
-<a id="more"></a>
-
-
-<p>2、本文默认github已注册并添加过 ssh key<br>3、github上新建仓库<br>git add / add *<br>git commit -m<br>git remote add origin <a href="http://xxxx.github.io/">http://xxxx.github.io</a><br>git push -u origin master<br>git pull<br>git rm -r xxx<br>git commit -m ‘’<br>git push -u origin master<br>git  –version</p>
-]]></content>
-      <tags>
-        <tag>git</tag>
-        <tag>github</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>发布Laravel扩展包larapay</title>
     <url>/2018/12/04/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85larapay/</url>
     <content><![CDATA[<p><strong>发布Laravel扩展封装支付包larapay</strong> </p>
@@ -3507,6 +3490,23 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>laravel</tag>
         <tag>composer - 扩展包</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用git 与github友好交流</title>
+    <url>/2017/08/11/%E4%BD%BF%E7%94%A8git-%E4%B8%8Egithub%E5%8F%8B%E5%A5%BD%E4%BA%A4%E6%B5%81/</url>
+    <content><![CDATA[<p>##<strong>本文主要介绍window 端Git 与github友好交流</strong></p>
+<blockquote>
+<p>1、安装window版（32/64）git。 window端安装过程无脑略过—— </p>
+</blockquote>
+<a id="more"></a>
+
+
+<p>2、本文默认github已注册并添加过 ssh key<br>3、github上新建仓库<br>git add / add *<br>git commit -m<br>git remote add origin <a href="http://xxxx.github.io/">http://xxxx.github.io</a><br>git push -u origin master<br>git pull<br>git rm -r xxx<br>git commit -m ‘’<br>git push -u origin master<br>git  –version</p>
+]]></content>
+      <tags>
+        <tag>git</tag>
+        <tag>github</tag>
       </tags>
   </entry>
   <entry>
@@ -3570,58 +3570,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>Safari</tag>
         <tag>Copy</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>对接银联支付开发文档</title>
-    <url>/2017/12/25/%E5%AF%B9%E6%8E%A5%E9%93%B6%E8%81%94%E6%94%AF%E4%BB%98%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/</url>
-    <content><![CDATA[<p><strong>对接银联支付开发文档</strong></p>
-<a id="more"></a>
-
-
-<blockquote>
-<p>1、证书下载、导出及上传流程</p>
-</blockquote>
-<ul>
-<li>在申请完成银联入网后，邮件会收到[商户入网参数信息通知(请注意保密)标识的一封邮件]</li>
-<li>商户服务网站<a href="https://merchant.unionpay.com/" target="_blank">[ 商户服务网站 ]</a></li>
-<li>参考邮件里面的用户名、初始密码[111111] 进行登录商户</li>
-<li>证书下载[IE浏览器]</li>
-<li>cfca下载证书网站<a href="http://cs.cfca.com.cn/" target="_blank">[ cfca ]</a></li>
-<li>下载证书需要邮件里面的 证书参考号、证书授权码</li>
-<li>然后通过邮件附件中的(证书下载、导出及上传流程.docx)文档操作流程</li>
-<li>导出证书需要选择保存位置 证书名称无限制</li>
-</ul>
-<blockquote>
-<p>2、开发包下载及对接</p>
-</blockquote>
-<p>下载：<a href="https://open.unionpay.com/ajweb/help/file" target="_blank">[ 开发包地址 ]</a><br>下载后可以看到开发demo  以下例子version=5.1版本[b2c网关支付=000201]</p>
-<p>───────────<br>示例工程目录结构<br>───────────</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">upacp_demo_b2c</span><br><span class="line">  │</span><br><span class="line">  ├assets ┈┈┈┈┈┈┈┈┈相关资源目录</span><br><span class="line">  │  │  </span><br><span class="line">  │  ├windows开启openssl所需dll文件┈┈┈┈┈windows环境php开启openssl功能所需dll文件</span><br><span class="line">  │  │</span><br><span class="line">  │  ├机构接入需做改动┈┈┈┈┈┈┈┈┈收单机构接入需要做的改动</span><br><span class="line">  │  │      </span><br><span class="line">  │  ├测试环境证书</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├acp_test_enc.cer┈┈┈┈┈┈┈┈┈ 【重要】测试环境敏感信息加密证书（所有商户固定使用同一个） </span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├acp_test_sign.pfx ┈┈┈┈┈┈┈┈┈ 【重要】 测试环境签名私钥证书（所有商户固定使用同一个） </span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├acp_test_root.cer ┈┈┈┈┈┈┈┈┈ 【重要】 测试环境验签公钥证书根证书  （所有商户固定使用同一个） </span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  └acp_test_middle.cer ┈┈┈┈┈┈┈┈┈【重要】 测试环境验签公钥证书中级证书  （所有商户固定使用同一个）  </span><br><span class="line">  │  │  </span><br><span class="line">  │  ├生产环境证书</span><br><span class="line">  │  │  │</span><br><span class="line">  │  │  ├acp_prod_enc.cer┈┈┈┈┈┈┈┈┈【重要】 生产环境敏感信息加密证书（所有商户固定使用同一个）</span><br><span class="line">  │  │  │</span><br><span class="line">  │  │  ├acp_prod_root.cer ┈┈┈┈┈┈┈┈┈【重要】 生产环境验签公钥根证书  （所有商户固定使用同一个）  </span><br><span class="line">  │  │  │</span><br><span class="line">  │  │  └acp_prod_middle.cer ┈┈┈┈┈┈┈┈┈【重要】 生产环境验签公钥中级证书  （所有商户固定使用同一个）  </span><br><span class="line">  │  │  </span><br><span class="line">  │  ├生产环境配置文件</span><br><span class="line">  │  │  │</span><br><span class="line">  │  │  ├acp_sdk.ini.密钥 ┈┈┈┈┈┈┈┈┈ 【重要】 生产环境配置文件样例（密钥方式签名）（使用方式请看文件里的说明）</span><br><span class="line">  │  │  │</span><br><span class="line">  │  │  └acp_sdk.ini.证书 ┈┈┈┈┈┈┈┈┈ 【重要】 生产环境配置文件样例（证书方式签名）（使用方式请看文件里的说明）</span><br><span class="line">  │  │ </span><br><span class="line">  │  ├测试环境配置文件</span><br><span class="line">  │  │  │</span><br><span class="line">  │  │  ├acp_sdk.ini.密钥 ┈┈┈┈┈┈┈┈┈ 【重要】 测试环境配置文件样例（密钥方式签名）（使用方式请看文件里的说明）</span><br><span class="line">  │  │  │</span><br><span class="line">  │  │  └acp_sdk.ini.证书 ┈┈┈┈┈┈┈┈┈ 【重要】 测试环境配置文件样例（证书方式签名）（使用方式请看文件里的说明）</span><br><span class="line">  │  │ </span><br><span class="line">  │  └对账文件样例 </span><br><span class="line">  │     │</span><br><span class="line">  │     └802310048993424_20150905.zip┈┈┈┈┈┈┈┈┈提供的对账文件样例（如果需要可以参考）</span><br><span class="line">  │  </span><br><span class="line">  ├demo ┈┈┈┈┈┈┈┈┈ 示例代码</span><br><span class="line">  │  │  </span><br><span class="line">  │  ├api_01_gateway ┈┈┈┈┈┈┈┈┈ 网关产品</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├BackReceive.php┈┈┈┈┈后台通知处理示例类 </span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├FrontReceive.php┈┈┈┈┈前台通知处理示例类   </span><br><span class="line">  │  │  │    </span><br><span class="line">  │  │  ├EncryptCerUpdateQuery.php ┈┈┈┈┈加密证书更新示例类（后台）         </span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_2_FrontConsume.php┈┈┈┈┈前台跳转银联支付页面示例类（前台）</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_3_ConsumeUndo.php┈┈┈┈┈消费撤销交易示例类 （后台）</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_4_Refund.php┈┈┈┈┈退货交易示例类 （后台）</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_5_Query.php┈┈┈┈┈交易状态查询示例类 （后台）</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_6_FileTransfer.php┈┈┈┈┈对账文件下载示例类 （后台）  </span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_7_1_FrontPreauth.php┈┈┈┈┈前台跳转银联预授权页面示例类（前台）</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_7_2_PreauthUndo.php┈┈┈┈┈预授权撤销交易示例类 （后台）</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_7_3_PreauthFinish.php┈┈┈┈┈预授权完成交易示例类 （后台）</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  └Form_6_7_4_PreauthFinishUndo.php┈┈┈┈┈预授权完成撤销交易示例类 （后台）</span><br><span class="line">  │  │   </span><br><span class="line">  │  ├getdir.php ┈┈┈┈┈获取服务器绝对路径</span><br><span class="line">  │  │   </span><br><span class="line">  │  ├multiCertDemo.php ┈┈┈┈┈多证书demo（证书方式）</span><br><span class="line">  │  │   </span><br><span class="line">  │  └multiKeyDemo.php ┈┈┈┈┈多证书demo(秘钥方式）</span><br><span class="line">  │  </span><br><span class="line">  ├sdk┈┈┈┈┈┈sdk，除了acp_service外的类为内部使用，不用看，acp_sdk.ini为配置文件</span><br><span class="line">  │  │</span><br><span class="line">  │  ├acp_sdk.ini ┈┈┈┈ 配置文件，默认取了“assets&#x2F;测试环境配置文件”文件夹下的证书方式签名配置文件。</span><br><span class="line">  │  │</span><br><span class="line">  │  └acp_service.php ┈┈┈┈┈┈ 全渠道 SDK API类</span><br><span class="line">  │</span><br><span class="line">  ├pages ┈┈┈┈┈┈┈┈┈ demo演示相关页面，内容不重要，未列举</span><br><span class="line">  │</span><br><span class="line">  ├static ┈┈┈┈ demo演示相关js和css，内容不重要，未列举</span><br><span class="line">  │</span><br><span class="line">  └index_01_gateway.php ┈┈┈┈demo演示入口页面</span><br><span class="line"></span><br><span class="line">───────────</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>测试环境下</li>
-</ul>
-<p>注:每个开发包里面都会有测试正式、生产环境证书;<br>在测试环境下 我们首先配置sdk/aco_sdk.ini 配置证书及前后台地址,运行demo  然后若是可以跳转到支付页面，说明正常。</p>
-<ul>
-<li>生产环境下</li>
-</ul>
-<p>注:每个开发包里面都会有测试正式、生产环境证书;<br>在生产环境下 我们首先配置sdk/aco_sdk.ini 配置证书及前后台地址,对接银联  然后若是可以跳转到支付页面，说明正常。</p>
-<ul>
-<li>注意<br>在对接支付需要注意支付金额为分 无小数点<br>在对接过程最好按照demo里的把log日志配置完成 方便技术debug<br>在Linux 环境下 证书需要配置绝对路径且证书路径有可读权限<br>在[IE]浏览器会下载一个商户专属证书[公钥、私钥]公钥上传到商户并开启，私钥在程序里面使用<br>在程序里面共有4个证书acp_prod_enc.cer[加密证书]、acp_prod_root.cer[根证书]、acp_prod_middle.cer[中级证书]、acp_prod_sign.pfx[cfca私钥证书]<br>若生产环境下出现防钓鱼，请联系银联收单机构进行去掉或者加上自己的域名地址或IP地址<br>在生产环境下若有对接支付问题 可联系银联QQ[800033969] 固话[021-38929999转2049]</li>
-</ul>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it !</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>thinkphp</tag>
-        <tag>银联支付</tag>
-        <tag>b2c网关</tag>
       </tags>
   </entry>
   <entry>
@@ -3717,6 +3665,58 @@ class QuotesSpider(scrapy.Spider):
         <tag>Vue3</tag>
         <tag>Vite</tag>
         <tag>TypeScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>对接银联支付开发文档</title>
+    <url>/2017/12/25/%E5%AF%B9%E6%8E%A5%E9%93%B6%E8%81%94%E6%94%AF%E4%BB%98%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/</url>
+    <content><![CDATA[<p><strong>对接银联支付开发文档</strong></p>
+<a id="more"></a>
+
+
+<blockquote>
+<p>1、证书下载、导出及上传流程</p>
+</blockquote>
+<ul>
+<li>在申请完成银联入网后，邮件会收到[商户入网参数信息通知(请注意保密)标识的一封邮件]</li>
+<li>商户服务网站<a href="https://merchant.unionpay.com/" target="_blank">[ 商户服务网站 ]</a></li>
+<li>参考邮件里面的用户名、初始密码[111111] 进行登录商户</li>
+<li>证书下载[IE浏览器]</li>
+<li>cfca下载证书网站<a href="http://cs.cfca.com.cn/" target="_blank">[ cfca ]</a></li>
+<li>下载证书需要邮件里面的 证书参考号、证书授权码</li>
+<li>然后通过邮件附件中的(证书下载、导出及上传流程.docx)文档操作流程</li>
+<li>导出证书需要选择保存位置 证书名称无限制</li>
+</ul>
+<blockquote>
+<p>2、开发包下载及对接</p>
+</blockquote>
+<p>下载：<a href="https://open.unionpay.com/ajweb/help/file" target="_blank">[ 开发包地址 ]</a><br>下载后可以看到开发demo  以下例子version=5.1版本[b2c网关支付=000201]</p>
+<p>───────────<br>示例工程目录结构<br>───────────</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">upacp_demo_b2c</span><br><span class="line">  │</span><br><span class="line">  ├assets ┈┈┈┈┈┈┈┈┈相关资源目录</span><br><span class="line">  │  │  </span><br><span class="line">  │  ├windows开启openssl所需dll文件┈┈┈┈┈windows环境php开启openssl功能所需dll文件</span><br><span class="line">  │  │</span><br><span class="line">  │  ├机构接入需做改动┈┈┈┈┈┈┈┈┈收单机构接入需要做的改动</span><br><span class="line">  │  │      </span><br><span class="line">  │  ├测试环境证书</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├acp_test_enc.cer┈┈┈┈┈┈┈┈┈ 【重要】测试环境敏感信息加密证书（所有商户固定使用同一个） </span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├acp_test_sign.pfx ┈┈┈┈┈┈┈┈┈ 【重要】 测试环境签名私钥证书（所有商户固定使用同一个） </span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├acp_test_root.cer ┈┈┈┈┈┈┈┈┈ 【重要】 测试环境验签公钥证书根证书  （所有商户固定使用同一个） </span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  └acp_test_middle.cer ┈┈┈┈┈┈┈┈┈【重要】 测试环境验签公钥证书中级证书  （所有商户固定使用同一个）  </span><br><span class="line">  │  │  </span><br><span class="line">  │  ├生产环境证书</span><br><span class="line">  │  │  │</span><br><span class="line">  │  │  ├acp_prod_enc.cer┈┈┈┈┈┈┈┈┈【重要】 生产环境敏感信息加密证书（所有商户固定使用同一个）</span><br><span class="line">  │  │  │</span><br><span class="line">  │  │  ├acp_prod_root.cer ┈┈┈┈┈┈┈┈┈【重要】 生产环境验签公钥根证书  （所有商户固定使用同一个）  </span><br><span class="line">  │  │  │</span><br><span class="line">  │  │  └acp_prod_middle.cer ┈┈┈┈┈┈┈┈┈【重要】 生产环境验签公钥中级证书  （所有商户固定使用同一个）  </span><br><span class="line">  │  │  </span><br><span class="line">  │  ├生产环境配置文件</span><br><span class="line">  │  │  │</span><br><span class="line">  │  │  ├acp_sdk.ini.密钥 ┈┈┈┈┈┈┈┈┈ 【重要】 生产环境配置文件样例（密钥方式签名）（使用方式请看文件里的说明）</span><br><span class="line">  │  │  │</span><br><span class="line">  │  │  └acp_sdk.ini.证书 ┈┈┈┈┈┈┈┈┈ 【重要】 生产环境配置文件样例（证书方式签名）（使用方式请看文件里的说明）</span><br><span class="line">  │  │ </span><br><span class="line">  │  ├测试环境配置文件</span><br><span class="line">  │  │  │</span><br><span class="line">  │  │  ├acp_sdk.ini.密钥 ┈┈┈┈┈┈┈┈┈ 【重要】 测试环境配置文件样例（密钥方式签名）（使用方式请看文件里的说明）</span><br><span class="line">  │  │  │</span><br><span class="line">  │  │  └acp_sdk.ini.证书 ┈┈┈┈┈┈┈┈┈ 【重要】 测试环境配置文件样例（证书方式签名）（使用方式请看文件里的说明）</span><br><span class="line">  │  │ </span><br><span class="line">  │  └对账文件样例 </span><br><span class="line">  │     │</span><br><span class="line">  │     └802310048993424_20150905.zip┈┈┈┈┈┈┈┈┈提供的对账文件样例（如果需要可以参考）</span><br><span class="line">  │  </span><br><span class="line">  ├demo ┈┈┈┈┈┈┈┈┈ 示例代码</span><br><span class="line">  │  │  </span><br><span class="line">  │  ├api_01_gateway ┈┈┈┈┈┈┈┈┈ 网关产品</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├BackReceive.php┈┈┈┈┈后台通知处理示例类 </span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├FrontReceive.php┈┈┈┈┈前台通知处理示例类   </span><br><span class="line">  │  │  │    </span><br><span class="line">  │  │  ├EncryptCerUpdateQuery.php ┈┈┈┈┈加密证书更新示例类（后台）         </span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_2_FrontConsume.php┈┈┈┈┈前台跳转银联支付页面示例类（前台）</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_3_ConsumeUndo.php┈┈┈┈┈消费撤销交易示例类 （后台）</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_4_Refund.php┈┈┈┈┈退货交易示例类 （后台）</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_5_Query.php┈┈┈┈┈交易状态查询示例类 （后台）</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_6_FileTransfer.php┈┈┈┈┈对账文件下载示例类 （后台）  </span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_7_1_FrontPreauth.php┈┈┈┈┈前台跳转银联预授权页面示例类（前台）</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_7_2_PreauthUndo.php┈┈┈┈┈预授权撤销交易示例类 （后台）</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  ├Form_6_7_3_PreauthFinish.php┈┈┈┈┈预授权完成交易示例类 （后台）</span><br><span class="line">  │  │  │  </span><br><span class="line">  │  │  └Form_6_7_4_PreauthFinishUndo.php┈┈┈┈┈预授权完成撤销交易示例类 （后台）</span><br><span class="line">  │  │   </span><br><span class="line">  │  ├getdir.php ┈┈┈┈┈获取服务器绝对路径</span><br><span class="line">  │  │   </span><br><span class="line">  │  ├multiCertDemo.php ┈┈┈┈┈多证书demo（证书方式）</span><br><span class="line">  │  │   </span><br><span class="line">  │  └multiKeyDemo.php ┈┈┈┈┈多证书demo(秘钥方式）</span><br><span class="line">  │  </span><br><span class="line">  ├sdk┈┈┈┈┈┈sdk，除了acp_service外的类为内部使用，不用看，acp_sdk.ini为配置文件</span><br><span class="line">  │  │</span><br><span class="line">  │  ├acp_sdk.ini ┈┈┈┈ 配置文件，默认取了“assets&#x2F;测试环境配置文件”文件夹下的证书方式签名配置文件。</span><br><span class="line">  │  │</span><br><span class="line">  │  └acp_service.php ┈┈┈┈┈┈ 全渠道 SDK API类</span><br><span class="line">  │</span><br><span class="line">  ├pages ┈┈┈┈┈┈┈┈┈ demo演示相关页面，内容不重要，未列举</span><br><span class="line">  │</span><br><span class="line">  ├static ┈┈┈┈ demo演示相关js和css，内容不重要，未列举</span><br><span class="line">  │</span><br><span class="line">  └index_01_gateway.php ┈┈┈┈demo演示入口页面</span><br><span class="line"></span><br><span class="line">───────────</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>测试环境下</li>
+</ul>
+<p>注:每个开发包里面都会有测试正式、生产环境证书;<br>在测试环境下 我们首先配置sdk/aco_sdk.ini 配置证书及前后台地址,运行demo  然后若是可以跳转到支付页面，说明正常。</p>
+<ul>
+<li>生产环境下</li>
+</ul>
+<p>注:每个开发包里面都会有测试正式、生产环境证书;<br>在生产环境下 我们首先配置sdk/aco_sdk.ini 配置证书及前后台地址,对接银联  然后若是可以跳转到支付页面，说明正常。</p>
+<ul>
+<li>注意<br>在对接支付需要注意支付金额为分 无小数点<br>在对接过程最好按照demo里的把log日志配置完成 方便技术debug<br>在Linux 环境下 证书需要配置绝对路径且证书路径有可读权限<br>在[IE]浏览器会下载一个商户专属证书[公钥、私钥]公钥上传到商户并开启，私钥在程序里面使用<br>在程序里面共有4个证书acp_prod_enc.cer[加密证书]、acp_prod_root.cer[根证书]、acp_prod_middle.cer[中级证书]、acp_prod_sign.pfx[cfca私钥证书]<br>若生产环境下出现防钓鱼，请联系银联收单机构进行去掉或者加上自己的域名地址或IP地址<br>在生产环境下若有对接支付问题 可联系银联QQ[800033969] 固话[021-38929999转2049]</li>
+</ul>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it !</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>thinkphp</tag>
+        <tag>银联支付</tag>
+        <tag>b2c网关</tag>
       </tags>
   </entry>
   <entry>
