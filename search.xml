@@ -125,7 +125,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#x40;&#x71;&#113;&#46;&#x63;&#111;&#109;">&#120;&#x40;&#x71;&#113;&#46;&#x63;&#111;&#109;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#64;&#113;&#x71;&#46;&#99;&#x6f;&#x6d;">&#120;&#64;&#113;&#x71;&#46;&#99;&#x6f;&#x6d;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -136,7 +136,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#x40;&#x71;&#x71;&#46;&#x63;&#111;&#x6d;">&#x62;&#x40;&#x71;&#x71;&#46;&#x63;&#111;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#98;&#64;&#x71;&#113;&#x2e;&#99;&#x6f;&#109;">&#98;&#64;&#x71;&#113;&#x2e;&#99;&#x6f;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -1225,28 +1225,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
 ]]></content>
   </entry>
   <entry>
-    <title>MySQL出现1030-Got error 28 from storage engine错误</title>
-    <url>/2018/11/22/MySQL%E5%87%BA%E7%8E%B01030-Got-error-28-from-storage-engine%E9%94%99%E8%AF%AF/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>一般这种情况都是日志文件太大导致的</p>
-<ul>
-<li>mysql二进制文件 参考文档：<a href="https://baishunhua.com/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/" target="_blank">[ MySQL启动错误 ]</a></li>
-<li>其他日志文件</li>
-</ul>
-<blockquote>
-<p>df -h</p>
-</blockquote>
-<p>查看磁盘使用情况</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -h --max-depth&#x3D;1 | grep G | sort -n</span><br></pre></td></tr></table></figure>
-<p>以G单位排序查看占用磁盘的文件，然后删除没用的日志文件 </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -s * | sort -nr</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Markdown 基本语法</title>
     <url>/2017/08/11/Markdown-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</url>
     <content><![CDATA[<p><strong>^本文主要介绍markdown</strong></p>
@@ -1331,6 +1309,28 @@ public $queue = &#39;listeners&#39;;</code></pre>
 ]]></content>
       <tags>
         <tag>-Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL出现1030-Got error 28 from storage engine错误</title>
+    <url>/2018/11/22/MySQL%E5%87%BA%E7%8E%B01030-Got-error-28-from-storage-engine%E9%94%99%E8%AF%AF/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>一般这种情况都是日志文件太大导致的</p>
+<ul>
+<li>mysql二进制文件 参考文档：<a href="https://baishunhua.com/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/" target="_blank">[ MySQL启动错误 ]</a></li>
+<li>其他日志文件</li>
+</ul>
+<blockquote>
+<p>df -h</p>
+</blockquote>
+<p>查看磁盘使用情况</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -h --max-depth&#x3D;1 | grep G | sort -n</span><br></pre></td></tr></table></figure>
+<p>以G单位排序查看占用磁盘的文件，然后删除没用的日志文件 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -s * | sort -nr</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>lnmp</tag>
+        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -2255,7 +2255,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#x67;&#x69;&#x74;&#x40;&#x67;&#105;&#x74;&#104;&#117;&#x62;&#x2e;&#x63;&#111;&#109;">&#x67;&#x69;&#x74;&#x40;&#x67;&#105;&#x74;&#104;&#117;&#x62;&#x2e;&#x63;&#111;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#x67;&#105;&#x74;&#64;&#103;&#105;&#x74;&#104;&#117;&#98;&#x2e;&#99;&#x6f;&#109;">&#x67;&#105;&#x74;&#64;&#103;&#105;&#x74;&#104;&#117;&#98;&#x2e;&#99;&#x6f;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -2560,29 +2560,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>laravel-admin 实现字段排序</title>
-    <url>/2017/09/21/laravel-admin-%E5%AE%9E%E7%8E%B0%E5%AD%97%E6%AE%B5%E6%8E%92%E5%BA%8F/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> 排序代码</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">protected function grid()</span><br><span class="line">&#123;</span><br><span class="line">    return Admin::grid(Member::class, function (Grid $grid) &#123;</span><br><span class="line"></span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;id&#39;, &#39;desc&#39;);</span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;balance&#39;, &#39;desc&#39;);</span><br><span class="line"></span><br><span class="line">        $grid-&gt;id(&#39;ID&#39;)-&gt;sortable();</span><br><span class="line"></span><br><span class="line">        $grid-&gt;balance(&#39;余额&#39;)-&gt;sortable();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>laravel-admin</tag>
-        <tag>字段排序</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>laravel 修改器</title>
     <url>/2017/09/14/laravel-%E4%BF%AE%E6%94%B9%E5%99%A8/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2610,6 +2587,65 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>laravel5.x</tag>
         <tag>修改器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>laravel-admin 实现字段排序</title>
+    <url>/2017/09/21/laravel-admin-%E5%AE%9E%E7%8E%B0%E5%AD%97%E6%AE%B5%E6%8E%92%E5%BA%8F/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> 排序代码</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">protected function grid()</span><br><span class="line">&#123;</span><br><span class="line">    return Admin::grid(Member::class, function (Grid $grid) &#123;</span><br><span class="line"></span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;id&#39;, &#39;desc&#39;);</span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;balance&#39;, &#39;desc&#39;);</span><br><span class="line"></span><br><span class="line">        $grid-&gt;id(&#39;ID&#39;)-&gt;sortable();</span><br><span class="line"></span><br><span class="line">        $grid-&gt;balance(&#39;余额&#39;)-&gt;sortable();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>laravel-admin</tag>
+        <tag>字段排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>laravel5.3使用队列</title>
+    <url>/2017/09/14/laravel5-3%E4%BD%BF%E7%94%A8%E9%98%9F%E5%88%97/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<ul>
+<li><strong>驱动预备知识</strong></li>
+</ul>
+<blockquote>
+<p> 要使用 database 队列驱动，你需要数据表保存任务信息。要生成创建这些表的迁移，可以运行 Artisan 命令 queue:table，迁移被创建之后，可以使用 migrate 命令生成这些表<br>php artisan queue:table<br>php artisan migrate</p>
+</blockquote>
+<ul>
+<li><strong>创建任务</strong></li>
+</ul>
+<blockquote>
+<p>通常，所有的任务类都保存在 app/Jobs 目录.如果 app/Jobs 不存在，在运行 Artisan 命令 make:job 的时候，它将会自动创建。你可以通过 Artisan CLI 来生成队列任务类：<br>php artisan make:job SendReminderEmail[名称]</p>
+</blockquote>
+<ul>
+<li><strong>延时分发</strong></li>
+</ul>
+<blockquote>
+<p>   $job = (new ProcessPodcast($pocast))<br>   -&gt;delay(Carbon::now()-&gt;addMinutes(10));<br>   dispatch($job);</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>当修改变更队列程序后，需要重启队列<br>php artisan queue:restart</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>laravel5.3</tag>
+        <tag>queue</tag>
       </tags>
   </entry>
   <entry>
@@ -2648,42 +2684,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>laravel</tag>
         <tag>web-wechat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>laravel5.3使用队列</title>
-    <url>/2017/09/14/laravel5-3%E4%BD%BF%E7%94%A8%E9%98%9F%E5%88%97/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<ul>
-<li><strong>驱动预备知识</strong></li>
-</ul>
-<blockquote>
-<p> 要使用 database 队列驱动，你需要数据表保存任务信息。要生成创建这些表的迁移，可以运行 Artisan 命令 queue:table，迁移被创建之后，可以使用 migrate 命令生成这些表<br>php artisan queue:table<br>php artisan migrate</p>
-</blockquote>
-<ul>
-<li><strong>创建任务</strong></li>
-</ul>
-<blockquote>
-<p>通常，所有的任务类都保存在 app/Jobs 目录.如果 app/Jobs 不存在，在运行 Artisan 命令 make:job 的时候，它将会自动创建。你可以通过 Artisan CLI 来生成队列任务类：<br>php artisan make:job SendReminderEmail[名称]</p>
-</blockquote>
-<ul>
-<li><strong>延时分发</strong></li>
-</ul>
-<blockquote>
-<p>   $job = (new ProcessPodcast($pocast))<br>   -&gt;delay(Carbon::now()-&gt;addMinutes(10));<br>   dispatch($job);</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>当修改变更队列程序后，需要重启队列<br>php artisan queue:restart</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>laravel5.3</tag>
-        <tag>queue</tag>
       </tags>
   </entry>
   <entry>
@@ -2749,70 +2749,6 @@ class QuotesSpider(scrapy.Spider):
 ]]></content>
       <tags>
         <tag>laravel5.5</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>linux centos7.3 lnmp一键安装包集成</title>
-    <url>/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E9%9B%86%E6%88%90/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>一、下载并安装LNMP一键安装包</strong></p>
-<p>安装LNMP稳定版</p>
-<blockquote>
-<p> wget -c <a href="http://soft.vpser.net/lnmp/lnmp1.4.tar.gz">http://soft.vpser.net/lnmp/lnmp1.4.tar.gz</a> &amp;&amp; tar zxf lnmp1.4.tar.gz &amp;&amp; cd lnmp1.4 &amp;&amp; ./install.sh lnmp：</p>
-</blockquote>
-<p>默认安装lnmp可不写，如需要安装LNMPA或LAMP，将./install.sh 后面的参数替换为lnmpa或lamp即可。如需更改网站和数据库目录先修改安装包目录下的 lnmp.conf 文件。</p>
-<blockquote>
-<p> 运行上述LNMP安装命令后，会出现如下提示：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/1.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 输入对应MySQL或MariaDB版本前面的序号，回车进入下一步.：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/2.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 需要设置MySQL的root密码（不输入直接回车将会设置为root）如果输入有错误需要删除时，可以按住Ctrl再按Backspace键进行删除(个别情况下是只需要Backspace键)。输入后回车进入下一步，如下图所示：：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/3.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 询问是否需要启用MySQL InnoDB，InnoDB引擎默认为开启，一般建议开启，直接回车或输入 y ，如果确定确实不需要该引擎可以输入 n，输入完成，回车进入下一步。注意：选择PHP7等高版本时需要自行确认是否与自己的程序兼容。</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/4.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 输入要选择的PHP版本的序号，回车进入下一步，选择是否安装内存优化：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/5.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 再选择Apache版本</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/6.png" alt="ico原来的样子"></p>
-<p>按提示输入对应版本前面的数字序号，回车。</p>
-<p>提示”Press any key to install…or Press Ctrl+c to cancel”后，按回车键确认开始安装。<br>LNMP脚本就会自动安装编译Nginx、MySQL、PHP、phpMyAdmin、Zend Optimizer这几个软件。</p>
-<p>安装时间可能会几十分钟到几个小时不等，主要是机器的配置网速等原因会造成影响。</p>
-<blockquote>
-<p> 安装完成  如果显示Nginx: OK，MySQL: OK，PHP: OK</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/7.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 并且Nginx、MySQL、PHP都是running，80和3306端口都存在，并提示安装使用的时间及Install lnmp V1.4 completed! enjoy it.的话，说明已经安装成功</p>
-</blockquote>
-<p>安装失败</p>
-<blockquote>
-<p> 安装失败</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/8.png" alt="ico原来的样子"></p>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>linux</tag>
-        <tag>centos7.3</tag>
       </tags>
   </entry>
   <entry>
@@ -2885,6 +2821,70 @@ class QuotesSpider(scrapy.Spider):
 ]]></content>
       <tags>
         <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux centos7.3 lnmp一键安装包集成</title>
+    <url>/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E9%9B%86%E6%88%90/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>一、下载并安装LNMP一键安装包</strong></p>
+<p>安装LNMP稳定版</p>
+<blockquote>
+<p> wget -c <a href="http://soft.vpser.net/lnmp/lnmp1.4.tar.gz">http://soft.vpser.net/lnmp/lnmp1.4.tar.gz</a> &amp;&amp; tar zxf lnmp1.4.tar.gz &amp;&amp; cd lnmp1.4 &amp;&amp; ./install.sh lnmp：</p>
+</blockquote>
+<p>默认安装lnmp可不写，如需要安装LNMPA或LAMP，将./install.sh 后面的参数替换为lnmpa或lamp即可。如需更改网站和数据库目录先修改安装包目录下的 lnmp.conf 文件。</p>
+<blockquote>
+<p> 运行上述LNMP安装命令后，会出现如下提示：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/1.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 输入对应MySQL或MariaDB版本前面的序号，回车进入下一步.：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/2.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 需要设置MySQL的root密码（不输入直接回车将会设置为root）如果输入有错误需要删除时，可以按住Ctrl再按Backspace键进行删除(个别情况下是只需要Backspace键)。输入后回车进入下一步，如下图所示：：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/3.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 询问是否需要启用MySQL InnoDB，InnoDB引擎默认为开启，一般建议开启，直接回车或输入 y ，如果确定确实不需要该引擎可以输入 n，输入完成，回车进入下一步。注意：选择PHP7等高版本时需要自行确认是否与自己的程序兼容。</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/4.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 输入要选择的PHP版本的序号，回车进入下一步，选择是否安装内存优化：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/5.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 再选择Apache版本</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/6.png" alt="ico原来的样子"></p>
+<p>按提示输入对应版本前面的数字序号，回车。</p>
+<p>提示”Press any key to install…or Press Ctrl+c to cancel”后，按回车键确认开始安装。<br>LNMP脚本就会自动安装编译Nginx、MySQL、PHP、phpMyAdmin、Zend Optimizer这几个软件。</p>
+<p>安装时间可能会几十分钟到几个小时不等，主要是机器的配置网速等原因会造成影响。</p>
+<blockquote>
+<p> 安装完成  如果显示Nginx: OK，MySQL: OK，PHP: OK</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/7.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 并且Nginx、MySQL、PHP都是running，80和3306端口都存在，并提示安装使用的时间及Install lnmp V1.4 completed! enjoy it.的话，说明已经安装成功</p>
+</blockquote>
+<p>安装失败</p>
+<blockquote>
+<p> 安装失败</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/8.png" alt="ico原来的样子"></p>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>lnmp</tag>
+        <tag>linux</tag>
+        <tag>centos7.3</tag>
       </tags>
   </entry>
   <entry>
@@ -3262,7 +3262,7 @@ class QuotesSpider(scrapy.Spider):
 </blockquote>
 <p>二、使用npm下载 web框架express模块</p>
 <blockquote>
-<p>npm install --save <a href="mailto:&#x65;&#x78;&#112;&#114;&#x65;&#115;&#x73;&#x40;&#52;&#46;&#x31;&#x35;&#x2e;&#x32;">&#x65;&#x78;&#112;&#114;&#x65;&#115;&#x73;&#x40;&#52;&#46;&#x31;&#x35;&#x2e;&#x32;</a></p>
+<p>npm install --save <a href="mailto:&#x65;&#120;&#112;&#114;&#x65;&#x73;&#115;&#64;&#x34;&#46;&#49;&#x35;&#46;&#50;">&#x65;&#120;&#112;&#114;&#x65;&#x73;&#115;&#64;&#x34;&#46;&#49;&#x35;&#46;&#50;</a></p>
 </blockquote>
 <p>三、使用npm下载socket.io模块</p>
 <blockquote>
@@ -3720,6 +3720,31 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>界面化管理部署DNMP</title>
+    <url>/2021/01/21/%E7%95%8C%E9%9D%A2%E5%8C%96%E7%AE%A1%E7%90%86%E9%83%A8%E7%BD%B2DNMP/</url>
+    <content><![CDATA[<p><strong>界面化管理部署DNMP</strong></p>
+<a id="more"></a>
+
+<p>github: <a href="https://github.com/shunhua/dnmp" target="_blank">[ shunhua/dnmp ]</a></p>
+<blockquote>
+<p>docker-compose up -d</p>
+</blockquote>
+<p>docker 容器启动后 Portainer默认端口：9000</p>
+<blockquote>
+<p>localhost:9000</p>
+</blockquote>
+<p>打开 Portainer, 首次需要创建账户。</p>
+<p>最终效果如下图 :</p>
+<p><img src="/assets/blogImg/p0.png" alt="ico原来的样子"></p>
+<p><img src="/assets/blogImg/p1.png" alt="ico原来的样子"></p>
+<p><img src="/assets/blogImg/p2.png" alt="ico原来的样子"></p>
+]]></content>
+      <tags>
+        <tag>DNMP</tag>
+        <tag>Portainer</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>有赞vantUI step1</title>
     <url>/2018/04/02/%E6%9C%89%E8%B5%9EvantUI-step1/</url>
     <content><![CDATA[<p><strong>有赞vantUI学习 step1</strong></p>
@@ -3761,28 +3786,19 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>界面化管理部署DNMP</title>
-    <url>/2021/01/21/%E7%95%8C%E9%9D%A2%E5%8C%96%E7%AE%A1%E7%90%86%E9%83%A8%E7%BD%B2DNMP/</url>
-    <content><![CDATA[<p><strong>界面化管理部署DNMP</strong></p>
+    <title>连续轮询数组中的元素[s/m/d]</title>
+    <url>/2017/12/27/%E8%BF%9E%E7%BB%AD%E8%BD%AE%E8%AF%A2%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0-s-m-d/</url>
+    <content><![CDATA[<p>##<strong>连续轮询数组中的元素[s/m/d]</strong></p>
 <a id="more"></a>
 
-<p>github: <a href="https://github.com/shunhua/dnmp" target="_blank">[ shunhua/dnmp ]</a></p>
 <blockquote>
-<p>docker-compose up -d</p>
+<p>实现在任何时间段连续轮询出数组中的元素—— </p>
 </blockquote>
-<p>docker 容器启动后 Portainer默认端口：9000</p>
-<blockquote>
-<p>localhost:9000</p>
-</blockquote>
-<p>打开 Portainer, 首次需要创建账户。</p>
-<p>最终效果如下图 :</p>
-<p><img src="/assets/blogImg/p0.png" alt="ico原来的样子"></p>
-<p><img src="/assets/blogImg/p1.png" alt="ico原来的样子"></p>
-<p><img src="/assets/blogImg/p2.png" alt="ico原来的样子"></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">   public $Randomnotify &#x3D; array(</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid1&#39;,&#39;key&#39;&#x3D;&gt;&#39;key1&#39;),</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid2&#39;,&#39;key&#39;&#x3D;&gt;&#39;key2&#39;),</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid3&#39;,&#39;key&#39;&#x3D;&gt;&#39;key3&#39;),</span><br><span class="line">	...</span><br><span class="line">);</span><br><span class="line">public function dataPollingInterval($list,$polling_time&#x3D;&#39;1m&#39;,$polling_number&#x3D;1) &#123;</span><br><span class="line">    &#x2F;&#x2F; 规划轮询间隔时间的参数:</span><br><span class="line">    $interval &#x3D; false;</span><br><span class="line">	&#x2F;&#x2F; 判断$polling_time 的类型是 秒、分、小时、天 中的哪1种。</span><br><span class="line">    $arg &#x3D; array( </span><br><span class="line">        &#39;s&#39;&#x3D;&gt;1,            &#x2F;&#x2F; 秒</span><br><span class="line">        &#39;m&#39;&#x3D;&gt;60,            &#x2F;&#x2F; 分&#x3D; 60 sec</span><br><span class="line">        &#39;h&#39; &#x3D;&gt;3600,        &#x2F;&#x2F; 时&#x3D; 3600 sec</span><br><span class="line">        &#39;d&#39; &#x3D;&gt; 86400,    &#x2F;&#x2F; 天&#x3D; 86400 sec</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 判断间隔时间的类型，并计算间隔时间</span><br><span class="line">    foreach ($arg as $k &#x3D;&gt; $v) &#123;</span><br><span class="line">        if (false!&#x3D;&#x3D; stripos($polling_time,$k)) &#123;</span><br><span class="line">            $interval &#x3D; intval($polling_time)*$v;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	  &#x2F;&#x2F; 判断间隔时间</span><br><span class="line">    if(!is_int($interval))&#123;  </span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">	&#x2F;&#x2F; 从今年开始的秒数</span><br><span class="line">    $this_year_begin_second &#x3D; strtotime(date(&#39;Y-01-01 01:00:01&#39;, time()));</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 当前秒数 - 今年开始的秒数，得到今年到目前为止的秒数。</span><br><span class="line">    $polling_time &#x3D; time()-$this_year_begin_second;</span><br><span class="line">	</span><br><span class="line">    &#x2F;&#x2F; 从今年到目前为止的秒数，计算得到当前轮数</span><br><span class="line">    $len &#x3D; count($list); &#x2F;&#x2F; 总长度</span><br><span class="line">    $start_index &#x3D; intval($polling_time&#x2F;$interval);</span><br><span class="line">    $start_index &#x3D; $polling_number*$start_index%$len; &#x2F;&#x2F; 轮排数量 * 轮数 , 取余 总数量。</span><br><span class="line">	$res &#x3D; array();</span><br><span class="line">    &#x2F;&#x2F; 将轮数 指向到数组的索引，然后从这个索引开始接着往下循环遍历。</span><br><span class="line">    for ($i&#x3D;0; $i&lt;$len; ++$i) &#123;</span><br><span class="line">        $index&#x3D;$i+$start_index; &#x2F;&#x2F; 索引的变化是根据时间来变</span><br><span class="line">        if ($index&gt;&#x3D;$len) &#123;</span><br><span class="line">            $index&#x3D;$index-$len ;</span><br><span class="line">        &#125;</span><br><span class="line">        $res[]&#x3D;$list[$index]; &#x2F;&#x2F; 存入结果</span><br><span class="line">    &#125;</span><br><span class="line">    return $res[0];</span><br><span class="line">&#125;  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
-        <tag>DNMP</tag>
-        <tag>Portainer</tag>
+        <tag>轮询</tag>
+        <tag>数组</tag>
       </tags>
   </entry>
   <entry>
@@ -3868,22 +3884,6 @@ class QuotesSpider(scrapy.Spider):
         <tag>php</tag>
         <tag>laravel5.x</tag>
         <tag>公众号</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>连续轮询数组中的元素[s/m/d]</title>
-    <url>/2017/12/27/%E8%BF%9E%E7%BB%AD%E8%BD%AE%E8%AF%A2%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0-s-m-d/</url>
-    <content><![CDATA[<p>##<strong>连续轮询数组中的元素[s/m/d]</strong></p>
-<a id="more"></a>
-
-<blockquote>
-<p>实现在任何时间段连续轮询出数组中的元素—— </p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">   public $Randomnotify &#x3D; array(</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid1&#39;,&#39;key&#39;&#x3D;&gt;&#39;key1&#39;),</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid2&#39;,&#39;key&#39;&#x3D;&gt;&#39;key2&#39;),</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid3&#39;,&#39;key&#39;&#x3D;&gt;&#39;key3&#39;),</span><br><span class="line">	...</span><br><span class="line">);</span><br><span class="line">public function dataPollingInterval($list,$polling_time&#x3D;&#39;1m&#39;,$polling_number&#x3D;1) &#123;</span><br><span class="line">    &#x2F;&#x2F; 规划轮询间隔时间的参数:</span><br><span class="line">    $interval &#x3D; false;</span><br><span class="line">	&#x2F;&#x2F; 判断$polling_time 的类型是 秒、分、小时、天 中的哪1种。</span><br><span class="line">    $arg &#x3D; array( </span><br><span class="line">        &#39;s&#39;&#x3D;&gt;1,            &#x2F;&#x2F; 秒</span><br><span class="line">        &#39;m&#39;&#x3D;&gt;60,            &#x2F;&#x2F; 分&#x3D; 60 sec</span><br><span class="line">        &#39;h&#39; &#x3D;&gt;3600,        &#x2F;&#x2F; 时&#x3D; 3600 sec</span><br><span class="line">        &#39;d&#39; &#x3D;&gt; 86400,    &#x2F;&#x2F; 天&#x3D; 86400 sec</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 判断间隔时间的类型，并计算间隔时间</span><br><span class="line">    foreach ($arg as $k &#x3D;&gt; $v) &#123;</span><br><span class="line">        if (false!&#x3D;&#x3D; stripos($polling_time,$k)) &#123;</span><br><span class="line">            $interval &#x3D; intval($polling_time)*$v;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	  &#x2F;&#x2F; 判断间隔时间</span><br><span class="line">    if(!is_int($interval))&#123;  </span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">	&#x2F;&#x2F; 从今年开始的秒数</span><br><span class="line">    $this_year_begin_second &#x3D; strtotime(date(&#39;Y-01-01 01:00:01&#39;, time()));</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 当前秒数 - 今年开始的秒数，得到今年到目前为止的秒数。</span><br><span class="line">    $polling_time &#x3D; time()-$this_year_begin_second;</span><br><span class="line">	</span><br><span class="line">    &#x2F;&#x2F; 从今年到目前为止的秒数，计算得到当前轮数</span><br><span class="line">    $len &#x3D; count($list); &#x2F;&#x2F; 总长度</span><br><span class="line">    $start_index &#x3D; intval($polling_time&#x2F;$interval);</span><br><span class="line">    $start_index &#x3D; $polling_number*$start_index%$len; &#x2F;&#x2F; 轮排数量 * 轮数 , 取余 总数量。</span><br><span class="line">	$res &#x3D; array();</span><br><span class="line">    &#x2F;&#x2F; 将轮数 指向到数组的索引，然后从这个索引开始接着往下循环遍历。</span><br><span class="line">    for ($i&#x3D;0; $i&lt;$len; ++$i) &#123;</span><br><span class="line">        $index&#x3D;$i+$start_index; &#x2F;&#x2F; 索引的变化是根据时间来变</span><br><span class="line">        if ($index&gt;&#x3D;$len) &#123;</span><br><span class="line">            $index&#x3D;$index-$len ;</span><br><span class="line">        &#125;</span><br><span class="line">        $res[]&#x3D;$list[$index]; &#x2F;&#x2F; 存入结果</span><br><span class="line">    &#125;</span><br><span class="line">    return $res[0];</span><br><span class="line">&#125;  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>轮询</tag>
-        <tag>数组</tag>
       </tags>
   </entry>
   <entry>
