@@ -102,39 +102,6 @@
       </tags>
   </entry>
   <entry>
-    <title>CentOS 7 安装 Nginx 1.11.x</title>
-    <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/</url>
-    <content><![CDATA[<p><strong>Centos下安装Nginx</strong> </p>
-<a id="more"></a>
-
-<p>一、准备工作 安装必备工具</p>
-<blockquote>
-<p>yum install -y gcc gcc-c++ autoconf automake<br>yum install -y zlib zlib-devel openssl openssl-devel pcre-devel</p>
-</blockquote>
-<p>不安装这些依赖库，后面编译的时候会报错，当然你的系统已经有这些包可以跳过。<br>pcre：用来作地址重写的功能。<br>zlib：nginx 的gzip模块,传输数据打包，省流量（但消耗资源）。<br>openssl：提供ssl加密协议。</p>
-<p>二、添加nginx用户</p>
-<blockquote>
-<p>/usr/sbin/groupadd -f www<br>/usr/sbin/useradd -g www www</p>
-</blockquote>
-<p>三、nginx文件准备及编译</p>
-<blockquote>
-<p>wget <a href="http://nginx.org/download/nginx-1.11.4.tar.gz">http://nginx.org/download/nginx-1.11.4.tar.gz</a><br>tar -zxvf nginx-1.11.4.tar.gz<br>cd nginx-1.11.4/<br>./configure –user=www –group=www<br>make &amp;&amp; make install</p>
-</blockquote>
-<p>四、开始firewall端口服务</p>
-<blockquote>
-<p>firewall-cmd  –permanent –zone=public –add-service=http<br>firewall-cmd  –reload</p>
-</blockquote>
-<p>常用命令</p>
-<blockquote>
-<p>/usr/local/nginx/sbin/nginx -s reload<br>/usr/local/nginx/sbin/nginx -s stop<br>/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Centos</tag>
-        <tag>Nginx</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CentOS 7 Git服务器搭建及配置公钥</title>
     <url>/2018/04/08/CentOS-7-Git%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E5%85%AC%E9%92%A5/</url>
     <content><![CDATA[<a id="more"></a>
@@ -158,7 +125,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#64;&#x71;&#x71;&#46;&#x63;&#111;&#x6d;">&#x78;&#64;&#x71;&#x71;&#46;&#x63;&#111;&#x6d;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#64;&#113;&#x71;&#46;&#x63;&#111;&#109;">&#120;&#64;&#113;&#x71;&#46;&#x63;&#111;&#109;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -169,7 +136,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#64;&#113;&#113;&#x2e;&#99;&#111;&#109;">&#x62;&#64;&#113;&#113;&#x2e;&#99;&#111;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#x40;&#x71;&#x71;&#46;&#99;&#x6f;&#x6d;">&#x62;&#x40;&#x71;&#x71;&#46;&#99;&#x6f;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -201,6 +168,39 @@
       <tags>
         <tag>CentOS 7</tag>
         <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS 7 安装 Nginx 1.11.x</title>
+    <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/</url>
+    <content><![CDATA[<p><strong>Centos下安装Nginx</strong> </p>
+<a id="more"></a>
+
+<p>一、准备工作 安装必备工具</p>
+<blockquote>
+<p>yum install -y gcc gcc-c++ autoconf automake<br>yum install -y zlib zlib-devel openssl openssl-devel pcre-devel</p>
+</blockquote>
+<p>不安装这些依赖库，后面编译的时候会报错，当然你的系统已经有这些包可以跳过。<br>pcre：用来作地址重写的功能。<br>zlib：nginx 的gzip模块,传输数据打包，省流量（但消耗资源）。<br>openssl：提供ssl加密协议。</p>
+<p>二、添加nginx用户</p>
+<blockquote>
+<p>/usr/sbin/groupadd -f www<br>/usr/sbin/useradd -g www www</p>
+</blockquote>
+<p>三、nginx文件准备及编译</p>
+<blockquote>
+<p>wget <a href="http://nginx.org/download/nginx-1.11.4.tar.gz">http://nginx.org/download/nginx-1.11.4.tar.gz</a><br>tar -zxvf nginx-1.11.4.tar.gz<br>cd nginx-1.11.4/<br>./configure –user=www –group=www<br>make &amp;&amp; make install</p>
+</blockquote>
+<p>四、开始firewall端口服务</p>
+<blockquote>
+<p>firewall-cmd  –permanent –zone=public –add-service=http<br>firewall-cmd  –reload</p>
+</blockquote>
+<p>常用命令</p>
+<blockquote>
+<p>/usr/local/nginx/sbin/nginx -s reload<br>/usr/local/nginx/sbin/nginx -s stop<br>/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Centos</tag>
+        <tag>Nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -248,6 +248,83 @@
       <tags>
         <tag>Centos</tag>
         <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS 7 搭建SVN服务器</title>
+    <url>/2017/09/14/CentOS-7-%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
+    <content><![CDATA[<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CentOS 7 搭建SVN服务器</strong> </p>
+<a id="more"></a>
+
+
+<p><strong>一、安装subversion</strong></p>
+<blockquote>
+<p> yum -y install subversion</p>
+</blockquote>
+<p><strong>二、配置svn</strong></p>
+<p>a.建立仓库[repos]</p>
+<blockquote>
+<p> mkdir -p /home/svn/repos<br> svnadmin create /home/svn/repos/<br> cd /home/svn/repos/conf</p>
+</blockquote>
+<p>b.添加用户</p>
+<blockquote>
+<p>vi passwd</p>
+</blockquote>
+<p>例：添加</p>
+<blockquote>
+<p> test = 123456  </p>
+</blockquote>
+<p>c.添加用户权限</p>
+<blockquote>
+<p>vim authz</p>
+</blockquote>
+<p>添加</p>
+<blockquote>
+<p>[/]<br>test = rw</p>
+</blockquote>
+<p>d.配置文件</p>
+<blockquote>
+<p>vim svnserve.conf</p>
+</blockquote>
+<p>修改配置[启用]</p>
+<blockquote>
+<p>anon-access = none<br>auth-access = write       # 授权用户可写<br>password-db = passwd      # 使用哪个文件作为账号文件<br>authz-db = authz            # 使用哪个文件作为权限文件<br>realm = /home/svn/repos   # 认证空间名，版本库所在目录</p>
+</blockquote>
+<p>e.启动svn</p>
+<blockquote>
+<p>svnserve -d -r /home/svn   # 启动svn版本库<br>svnserve -d -r /home/svn/repos   # 启动svn版本库<br>killall svnserve   # 停止SVN命令</p>
+</blockquote>
+<p><strong>三.钩子文件</strong></p>
+<p>1.钩子配置</p>
+<blockquote>
+<p>cd ../hooks/<br>cp post-commit.tmpl post-commit<br>chmod +x post-commit<br>vim post-commit</p>
+</blockquote>
+<p>2.钩子脚本修改</p>
+<blockquote>
+<p>WEBPATH=”/home/wwwroot/test/“ # 网站目录<br>export.UTF-8<br>svn update $WEBPATH –username[test] username –password password[123456] –no-auth-cache</p>
+</blockquote>
+<p>3.拉取文件[在有副本的目录下]</p>
+<blockquote>
+<p>svn co svn://127.0.0.1/ ./<br>若拉取文件报错,请在有副本目录下拉取一下,然后把隐藏的文件夹 .svn文件放到需要拉取的目录下 就Ok了.</p>
+</blockquote>
+<p>4.拉取单个文件</p>
+<blockquote>
+<p>svn up laravel.log</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   本地拉取时  checkout地址 svn://ip/repos</p>
+</blockquote>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ！！！ </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>CentOS 7</tag>
+        <tag>svn</tag>
       </tags>
   </entry>
   <entry>
@@ -392,6 +469,45 @@
       </tags>
   </entry>
   <entry>
+    <title>Docker下实践ELK(Elasticsearch、Logstash、Kibana)</title>
+    <url>/2021/12/22/Docker%E4%B8%8B%E5%AE%9E%E8%B7%B5ELK-Elasticsearch%E3%80%81Logstash%E3%80%81Kibana/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/elk.png" alt="elk"></p>
+<a id="more"></a>
+
+<p><strong>什么是 ELK</strong><br><a href="https://www.elastic.co/cn/what-is/elk-stack" target="_blank">[ 官方网址 ]</a> | <a href="https://github.com/deviantony/docker-elk" target="_blank">[ Github资源 ]</a><br><img src="/assets/blogImg/elk.svg" alt="elk"></p>
+<ul>
+<li>Elasticsearch</li>
+</ul>
+<blockquote>
+<p>Elasticsearch 是一个分布式的 RESTful 风格的 <code>搜索和数据分析引擎</code>，能够解决不断涌现出的各种用例。作为 Elastic Stack 的核心，它集中<code>存储您的数据</code>，帮助您发现意料之中以及意料之外的情况。</p>
+</blockquote>
+<ul>
+<li>Logstash</li>
+</ul>
+<blockquote>
+<p>Logstash 是开源的服务器端数据处理管道，能够同时 从多个来源 <code>采集数据、转换数据</code>，然后将数据发送到您最喜欢的<code>存储库</code> （存储库是 <code>Elasticsearch</code>）中。</p>
+</blockquote>
+<ul>
+<li>Kibana</li>
+</ul>
+<blockquote>
+<p>Kibana 让您能够<code>可视化 Elasticsearch</code> 中的数据并操作 Elastic Stack。</p>
+</blockquote>
+<p><img src="/assets/blogImg/elk-lu.svg" alt="elk-lu"><br><strong>整体架构流程图：</strong><br><a href="https://excalidraw.com/" target="_blank">[ 画图工具 ]</a></p>
+<ul>
+<li>filebeat: 负责将日志数据传输到 redis</li>
+<li>Redis：暂时进行缓存</li>
+<li>logstash: 收集缓存中的日志数据</li>
+<li>elasticsearch: 负责存储日志数据</li>
+<li>kibana: 负责显示日志的数据</li>
+</ul>
+<p><img src="/assets/blogImg/elk1.png" alt="elk"></p>
+]]></content>
+      <tags>
+        <tag>ELK</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Etcd一文</title>
     <url>/2021/11/04/Etcd%E4%B8%80%E6%96%87/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/etcd.png" alt="Etcd"></p>
@@ -451,122 +567,6 @@
 ]]></content>
       <tags>
         <tag>Etcd</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CentOS 7 搭建SVN服务器</title>
-    <url>/2017/09/14/CentOS-7-%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
-    <content><![CDATA[<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CentOS 7 搭建SVN服务器</strong> </p>
-<a id="more"></a>
-
-
-<p><strong>一、安装subversion</strong></p>
-<blockquote>
-<p> yum -y install subversion</p>
-</blockquote>
-<p><strong>二、配置svn</strong></p>
-<p>a.建立仓库[repos]</p>
-<blockquote>
-<p> mkdir -p /home/svn/repos<br> svnadmin create /home/svn/repos/<br> cd /home/svn/repos/conf</p>
-</blockquote>
-<p>b.添加用户</p>
-<blockquote>
-<p>vi passwd</p>
-</blockquote>
-<p>例：添加</p>
-<blockquote>
-<p> test = 123456  </p>
-</blockquote>
-<p>c.添加用户权限</p>
-<blockquote>
-<p>vim authz</p>
-</blockquote>
-<p>添加</p>
-<blockquote>
-<p>[/]<br>test = rw</p>
-</blockquote>
-<p>d.配置文件</p>
-<blockquote>
-<p>vim svnserve.conf</p>
-</blockquote>
-<p>修改配置[启用]</p>
-<blockquote>
-<p>anon-access = none<br>auth-access = write       # 授权用户可写<br>password-db = passwd      # 使用哪个文件作为账号文件<br>authz-db = authz            # 使用哪个文件作为权限文件<br>realm = /home/svn/repos   # 认证空间名，版本库所在目录</p>
-</blockquote>
-<p>e.启动svn</p>
-<blockquote>
-<p>svnserve -d -r /home/svn   # 启动svn版本库<br>svnserve -d -r /home/svn/repos   # 启动svn版本库<br>killall svnserve   # 停止SVN命令</p>
-</blockquote>
-<p><strong>三.钩子文件</strong></p>
-<p>1.钩子配置</p>
-<blockquote>
-<p>cd ../hooks/<br>cp post-commit.tmpl post-commit<br>chmod +x post-commit<br>vim post-commit</p>
-</blockquote>
-<p>2.钩子脚本修改</p>
-<blockquote>
-<p>WEBPATH=”/home/wwwroot/test/“ # 网站目录<br>export.UTF-8<br>svn update $WEBPATH –username[test] username –password password[123456] –no-auth-cache</p>
-</blockquote>
-<p>3.拉取文件[在有副本的目录下]</p>
-<blockquote>
-<p>svn co svn://127.0.0.1/ ./<br>若拉取文件报错,请在有副本目录下拉取一下,然后把隐藏的文件夹 .svn文件放到需要拉取的目录下 就Ok了.</p>
-</blockquote>
-<p>4.拉取单个文件</p>
-<blockquote>
-<p>svn up laravel.log</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   本地拉取时  checkout地址 svn://ip/repos</p>
-</blockquote>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ！！！ </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>CentOS 7</tag>
-        <tag>svn</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Docker下实践ELK(Elasticsearch、Logstash、Kibana)</title>
-    <url>/2021/12/22/Docker%E4%B8%8B%E5%AE%9E%E8%B7%B5ELK-Elasticsearch%E3%80%81Logstash%E3%80%81Kibana/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/elk.png" alt="elk"></p>
-<a id="more"></a>
-
-<p><strong>什么是 ELK</strong><br><a href="https://www.elastic.co/cn/what-is/elk-stack" target="_blank">[ 官方网址 ]</a> | <a href="https://github.com/deviantony/docker-elk" target="_blank">[ Github资源 ]</a><br><img src="/assets/blogImg/elk.svg" alt="elk"></p>
-<ul>
-<li>Elasticsearch</li>
-</ul>
-<blockquote>
-<p>Elasticsearch 是一个分布式的 RESTful 风格的 <code>搜索和数据分析引擎</code>，能够解决不断涌现出的各种用例。作为 Elastic Stack 的核心，它集中<code>存储您的数据</code>，帮助您发现意料之中以及意料之外的情况。</p>
-</blockquote>
-<ul>
-<li>Logstash</li>
-</ul>
-<blockquote>
-<p>Logstash 是开源的服务器端数据处理管道，能够同时 从多个来源 <code>采集数据、转换数据</code>，然后将数据发送到您最喜欢的<code>存储库</code> （存储库是 <code>Elasticsearch</code>）中。</p>
-</blockquote>
-<ul>
-<li>Kibana</li>
-</ul>
-<blockquote>
-<p>Kibana 让您能够<code>可视化 Elasticsearch</code> 中的数据并操作 Elastic Stack。</p>
-</blockquote>
-<p><img src="/assets/blogImg/elk-lu.svg" alt="elk-lu"><br><strong>整体架构流程图：</strong><br><a href="https://excalidraw.com/" target="_blank">[ 画图工具 ]</a></p>
-<ul>
-<li>filebeat: 负责将日志数据传输到 redis</li>
-<li>Redis：暂时进行缓存</li>
-<li>logstash: 收集缓存中的日志数据</li>
-<li>elasticsearch: 负责存储日志数据</li>
-<li>kibana: 负责显示日志的数据</li>
-</ul>
-<p><img src="/assets/blogImg/elk1.png" alt="elk"></p>
-]]></content>
-      <tags>
-        <tag>ELK</tag>
       </tags>
   </entry>
   <entry>
@@ -1225,28 +1225,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
 ]]></content>
   </entry>
   <entry>
-    <title>MySQL出现1030-Got error 28 from storage engine错误</title>
-    <url>/2018/11/22/MySQL%E5%87%BA%E7%8E%B01030-Got-error-28-from-storage-engine%E9%94%99%E8%AF%AF/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>一般这种情况都是日志文件太大导致的</p>
-<ul>
-<li>mysql二进制文件 参考文档：<a href="https://baishunhua.com/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/" target="_blank">[ MySQL启动错误 ]</a></li>
-<li>其他日志文件</li>
-</ul>
-<blockquote>
-<p>df -h</p>
-</blockquote>
-<p>查看磁盘使用情况</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -h --max-depth&#x3D;1 | grep G | sort -n</span><br></pre></td></tr></table></figure>
-<p>以G单位排序查看占用磁盘的文件，然后删除没用的日志文件 </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -s * | sort -nr</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Markdown 基本语法</title>
     <url>/2017/08/11/Markdown-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</url>
     <content><![CDATA[<p><strong>^本文主要介绍markdown</strong></p>
@@ -1331,6 +1309,28 @@ public $queue = &#39;listeners&#39;;</code></pre>
 ]]></content>
       <tags>
         <tag>-Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL出现1030-Got error 28 from storage engine错误</title>
+    <url>/2018/11/22/MySQL%E5%87%BA%E7%8E%B01030-Got-error-28-from-storage-engine%E9%94%99%E8%AF%AF/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>一般这种情况都是日志文件太大导致的</p>
+<ul>
+<li>mysql二进制文件 参考文档：<a href="https://baishunhua.com/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/" target="_blank">[ MySQL启动错误 ]</a></li>
+<li>其他日志文件</li>
+</ul>
+<blockquote>
+<p>df -h</p>
+</blockquote>
+<p>查看磁盘使用情况</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -h --max-depth&#x3D;1 | grep G | sort -n</span><br></pre></td></tr></table></figure>
+<p>以G单位排序查看占用磁盘的文件，然后删除没用的日志文件 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -s * | sort -nr</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>lnmp</tag>
+        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -2255,7 +2255,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#103;&#105;&#x74;&#64;&#x67;&#x69;&#116;&#x68;&#x75;&#98;&#46;&#99;&#111;&#x6d;">&#103;&#105;&#x74;&#64;&#x67;&#x69;&#116;&#x68;&#x75;&#98;&#46;&#99;&#111;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#x67;&#x69;&#116;&#64;&#103;&#x69;&#116;&#x68;&#117;&#98;&#46;&#99;&#x6f;&#109;">&#x67;&#x69;&#116;&#64;&#103;&#x69;&#116;&#x68;&#117;&#98;&#46;&#99;&#x6f;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -2613,44 +2613,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>laravel 微信公众号项目修改兼容web端</title>
-    <url>/2017/08/30/laravel-%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E9%A1%B9%E7%9B%AE%E4%BF%AE%E6%94%B9%E5%85%BC%E5%AE%B9web%E7%AB%AF/</url>
-    <content><![CDATA[<blockquote>
-<p>1、新增中间件及注册中间件</p>
-</blockquote>
-<a id="more"></a>
-
-
-<blockquote>
-<blockquote>
-<p>使用php artisan 命令<br>命令：php artisan make:middleware BeforeCheckMiddleware</p>
-</blockquote>
-</blockquote>
-<p><img src="/assets/blogImg/webImg/1.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>2、新新增中间件及注册中间件（一）</p>
-</blockquote>
-<p><img src="/assets/blogImg/webImg/2.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>3、新增中间件及注册中间件（二）</p>
-</blockquote>
-<p><img src="/assets/blogImg/webImg/3.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>4、配置config/wechat.php (可无)</p>
-</blockquote>
-<p><img src="/assets/blogImg/webImg/4.PNG" alt="ico原来的样子"></p>
-<blockquote>
-<p>5、其他修改及改动文件汇总</p>
-</blockquote>
-<p><img src="/assets/blogImg/webImg/5.png" alt="ico原来的样子"></p>
-<p><strong>ok,微信端现在访问已经兼容web端,enjoy it!!!</strong></p>
-]]></content>
-      <tags>
-        <tag>laravel</tag>
-        <tag>web-wechat</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>laravel5.3使用队列</title>
     <url>/2017/09/14/laravel5-3%E4%BD%BF%E7%94%A8%E9%98%9F%E5%88%97/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2752,75 +2714,41 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>linux 常用小技巧</title>
-    <url>/2022/01/12/linux-%E5%B8%B8%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/linux.png" alt="linux"></p>
+    <title>laravel 微信公众号项目修改兼容web端</title>
+    <url>/2017/08/30/laravel-%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E9%A1%B9%E7%9B%AE%E4%BF%AE%E6%94%B9%E5%85%BC%E5%AE%B9web%E7%AB%AF/</url>
+    <content><![CDATA[<blockquote>
+<p>1、新增中间件及注册中间件</p>
+</blockquote>
 <a id="more"></a>
 
-<p><strong>1、查看历史记录</strong></p>
+
 <blockquote>
-<p>Ctrl + R </p>
-</blockquote>
-<p>例如，我查找 docker 这个命令，就可以用 Ctrl + R，按回车，然后只输入 doc 即可。<br>继续按下 Ctrl + R 组合键，可以继续向前搜索匹配命令。<br>多次按下 Ctrl + R 组合键，可以继续向前搜索匹配命令。</p>
 <blockquote>
-<p> !{command} </p>
+<p>使用php artisan 命令<br>命令：php artisan make:middleware BeforeCheckMiddleware</p>
 </blockquote>
-<p>就像!ls执行你的最后一个<code>ls -lrt</code>，<code>!vim</code>将在不输入完整命令的情况下打开您的最终文件。</p>
+</blockquote>
+<p><img src="/assets/blogImg/webImg/1.png" alt="ico原来的样子"></p>
 <blockquote>
-<p>history  </p>
+<p>2、新新增中间件及注册中间件（一）</p>
 </blockquote>
-<ul>
-<li>.bash_history 文件中可以查看 history 命令记录</li>
-</ul>
+<p><img src="/assets/blogImg/webImg/2.png" alt="ico原来的样子"></p>
 <blockquote>
-<p>history -c </p>
+<p>3、新增中间件及注册中间件（二）</p>
 </blockquote>
-<ul>
-<li>命令前加一个空格，就不会被 history 保存到历史记录</li>
-</ul>
+<p><img src="/assets/blogImg/webImg/3.png" alt="ico原来的样子"></p>
 <blockquote>
-<p>history | grep “关键字”</p>
+<p>4、配置config/wechat.php (可无)</p>
 </blockquote>
-<p>您将从 Linux 机器上的历史记录中获取该命令。</p>
-<p><strong>2、追踪及调试</strong></p>
+<p><img src="/assets/blogImg/webImg/4.PNG" alt="ico原来的样子"></p>
 <blockquote>
-<p>strace </p>
+<p>5、其他修改及改动文件汇总</p>
 </blockquote>
-<ul>
-<li>-f 跟踪由fork调用所产生的子进程. </li>
-<li>-c 统计每一系统调用的所执行的时间,次数和出错的次数等. </li>
-<li>-p pid 跟踪指定的进程pid. </li>
-</ul>
-<blockquote>
-<p>gdb </p>
-</blockquote>
-<ul>
-<li>-p pid 跟踪指定的进程pid. </li>
-</ul>
-<p><strong>3、查看基本信息</strong></p>
-<p>cpu的相关信息 </p>
-<blockquote>
-<p>lscpu     </p>
-</blockquote>
-<p>虚拟机信息</p>
-<blockquote>
-<p>hostnamectl         </p>
-</blockquote>
-<p>查看日历</p>
-<blockquote>
-<p>cal                 </p>
-</blockquote>
-<p><strong>4、快速清空文件</strong></p>
-<blockquote>
-<p>$ &gt; xxx.log</p>
-</blockquote>
-<p><strong>5、动态实时查看日志</strong></p>
-<blockquote>
-<p>tail -f xxx.log</p>
-</blockquote>
+<p><img src="/assets/blogImg/webImg/5.png" alt="ico原来的样子"></p>
+<p><strong>ok,微信端现在访问已经兼容web端,enjoy it!!!</strong></p>
 ]]></content>
       <tags>
-        <tag>linux</tag>
+        <tag>laravel</tag>
+        <tag>web-wechat</tag>
       </tags>
   </entry>
   <entry>
@@ -2915,25 +2843,76 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>lnmp tp pathinfo问题</title>
-    <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<a id="more"></a>
+    <title>linux 常用小技巧</title>
+    <url>/2022/01/12/linux-%E5%B8%B8%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/linux.png" alt="linux"></p>
+<a id="more"></a>
 
-<p>/usr/local/php/etc/php.ini</p>
+<p><strong>1、查看历史记录</strong></p>
 <blockquote>
-<p> cgi.fix_pathinfo=1</p>
+<p>Ctrl + R </p>
 </blockquote>
+<p>例如，我查找 docker 这个命令，就可以用 Ctrl + R，按回车，然后只输入 doc 即可。<br>继续按下 Ctrl + R 组合键，可以继续向前搜索匹配命令。<br>多次按下 Ctrl + R 组合键，可以继续向前搜索匹配命令。</p>
 <blockquote>
-<p> lnmp restart</p>
+<p> !{command} </p>
 </blockquote>
-<hr>
+<p>就像!ls执行你的最后一个<code>ls -lrt</code>，<code>!vim</code>将在不输入完整命令的情况下打开您的最终文件。</p>
+<blockquote>
+<p>history  </p>
+</blockquote>
 <ul>
-<li><strong>Notice</strong></li>
+<li>.bash_history 文件中可以查看 history 命令记录</li>
 </ul>
 <blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+<p>history -c </p>
+</blockquote>
+<ul>
+<li>命令前加一个空格，就不会被 history 保存到历史记录</li>
+</ul>
+<blockquote>
+<p>history | grep “关键字”</p>
+</blockquote>
+<p>您将从 Linux 机器上的历史记录中获取该命令。</p>
+<p><strong>2、追踪及调试</strong></p>
+<blockquote>
+<p>strace </p>
+</blockquote>
+<ul>
+<li>-f 跟踪由fork调用所产生的子进程. </li>
+<li>-c 统计每一系统调用的所执行的时间,次数和出错的次数等. </li>
+<li>-p pid 跟踪指定的进程pid. </li>
+</ul>
+<blockquote>
+<p>gdb </p>
+</blockquote>
+<ul>
+<li>-p pid 跟踪指定的进程pid. </li>
+</ul>
+<p><strong>3、查看基本信息</strong></p>
+<p>cpu的相关信息 </p>
+<blockquote>
+<p>lscpu     </p>
+</blockquote>
+<p>虚拟机信息</p>
+<blockquote>
+<p>hostnamectl         </p>
+</blockquote>
+<p>查看日历</p>
+<blockquote>
+<p>cal                 </p>
+</blockquote>
+<p><strong>4、快速清空文件</strong></p>
+<blockquote>
+<p>$ &gt; xxx.log</p>
+</blockquote>
+<p><strong>5、动态实时查看日志</strong></p>
+<blockquote>
+<p>tail -f xxx.log</p>
 </blockquote>
 ]]></content>
+      <tags>
+        <tag>linux</tag>
+      </tags>
   </entry>
   <entry>
     <title>lnmp集成环境下部署laravel5.x项目</title>
@@ -2995,6 +2974,40 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>mysql自定义重置数据表ID值</title>
+    <url>/2018/10/30/mysql%E8%87%AA%E5%AE%9A%E4%B9%89%E9%87%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E8%A1%A8ID%E5%80%BC/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> alter table 表名 AUTO_INCREMENT=自定义ID;</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>lnmp tp pathinfo问题</title>
+    <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>/usr/local/php/etc/php.ini</p>
+<blockquote>
+<p> cgi.fix_pathinfo=1</p>
+</blockquote>
+<blockquote>
+<p> lnmp restart</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
+  </entry>
+  <entry>
     <title>mysql通过.ibd和.frm文件恢复数据</title>
     <url>/2019/12/17/mysql%E9%80%9A%E8%BF%87-ibd%E5%92%8C-frm%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E6%95%B0%E6%8D%AE/</url>
     <content><![CDATA[<a id="more"></a>
@@ -3048,19 +3061,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>mysql</tag>
         <tag>Innodb</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mysql自定义重置数据表ID值</title>
-    <url>/2018/10/30/mysql%E8%87%AA%E5%AE%9A%E4%B9%89%E9%87%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E8%A1%A8ID%E5%80%BC/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> alter table 表名 AUTO_INCREMENT=自定义ID;</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -3262,7 +3262,7 @@ class QuotesSpider(scrapy.Spider):
 </blockquote>
 <p>二、使用npm下载 web框架express模块</p>
 <blockquote>
-<p>npm install --save <a href="mailto:&#x65;&#120;&#x70;&#114;&#101;&#x73;&#x73;&#64;&#52;&#x2e;&#x31;&#53;&#46;&#50;">&#x65;&#120;&#x70;&#114;&#101;&#x73;&#x73;&#64;&#52;&#x2e;&#x31;&#53;&#46;&#50;</a></p>
+<p>npm install --save <a href="mailto:&#101;&#x78;&#112;&#x72;&#101;&#x73;&#x73;&#64;&#52;&#46;&#49;&#53;&#x2e;&#50;">&#101;&#x78;&#112;&#x72;&#101;&#x73;&#x73;&#64;&#52;&#46;&#49;&#53;&#x2e;&#50;</a></p>
 </blockquote>
 <p>三、使用npm下载socket.io模块</p>
 <blockquote>
@@ -3406,23 +3406,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>使用git 与github友好交流</title>
-    <url>/2017/08/11/%E4%BD%BF%E7%94%A8git-%E4%B8%8Egithub%E5%8F%8B%E5%A5%BD%E4%BA%A4%E6%B5%81/</url>
-    <content><![CDATA[<p>##<strong>本文主要介绍window 端Git 与github友好交流</strong></p>
-<blockquote>
-<p>1、安装window版（32/64）git。 window端安装过程无脑略过—— </p>
-</blockquote>
-<a id="more"></a>
-
-
-<p>2、本文默认github已注册并添加过 ssh key<br>3、github上新建仓库<br>git add / add *<br>git commit -m<br>git remote add origin <a href="http://xxxx.github.io/">http://xxxx.github.io</a><br>git push -u origin master<br>git pull<br>git rm -r xxx<br>git commit -m ‘’<br>git push -u origin master<br>git  –version</p>
-]]></content>
-      <tags>
-        <tag>git</tag>
-        <tag>github</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用Tailwind CSS新建一个项目</title>
     <url>/2021/11/18/%E4%BD%BF%E7%94%A8Tailwind-CSS%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/tailwindcss.png" alt="tailwindcss"></p>
@@ -3472,6 +3455,23 @@ class QuotesSpider(scrapy.Spider):
 ]]></content>
       <tags>
         <tag>Tailwind-CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用git 与github友好交流</title>
+    <url>/2017/08/11/%E4%BD%BF%E7%94%A8git-%E4%B8%8Egithub%E5%8F%8B%E5%A5%BD%E4%BA%A4%E6%B5%81/</url>
+    <content><![CDATA[<p>##<strong>本文主要介绍window 端Git 与github友好交流</strong></p>
+<blockquote>
+<p>1、安装window版（32/64）git。 window端安装过程无脑略过—— </p>
+</blockquote>
+<a id="more"></a>
+
+
+<p>2、本文默认github已注册并添加过 ssh key<br>3、github上新建仓库<br>git add / add *<br>git commit -m<br>git remote add origin <a href="http://xxxx.github.io/">http://xxxx.github.io</a><br>git push -u origin master<br>git pull<br>git rm -r xxx<br>git commit -m ‘’<br>git push -u origin master<br>git  –version</p>
+]]></content>
+      <tags>
+        <tag>git</tag>
+        <tag>github</tag>
       </tags>
   </entry>
   <entry>
