@@ -1,35 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Alipay 开放平台支付</title>
-    <url>/2018/10/26/Alipay-%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E6%94%AF%E4%BB%98/</url>
-    <content><![CDATA[<a id="more"></a>
-
-
-<p>参考文档 <a href="https://docs.open.alipay.com/291/" target="_blank">[ 开放平台文档中心 ]</a></p>
-<blockquote>
-<p>生成RSA密钥</p>
-</blockquote>
-<p>a. 应用公钥2048<br>b. 应用私钥2048</p>
-<blockquote>
-<p>上传应用公钥并获取支付宝公钥</p>
-</blockquote>
-<p>支付宝公钥应用于开发中</p>
-<blockquote>
-<p>使用应用私钥生成请求签名</p>
-</blockquote>
-<p>应用私钥应用于开发中</p>
-<blockquote>
-<p>使用支付宝公钥验签</p>
-</blockquote>
-<p>支付宝公钥应用于开发中</p>
-]]></content>
-      <tags>
-        <tag>Alipay</tag>
-        <tag>开放平台</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>9段PHP实用功能的代码推荐</title>
     <url>/2018/02/24/9%E6%AE%B5PHP%E5%AE%9E%E7%94%A8%E5%8A%9F%E8%83%BD%E7%9A%84%E4%BB%A3%E7%A0%81%E6%8E%A8%E8%8D%90/</url>
     <content><![CDATA[<a id="more"></a>
@@ -102,6 +73,35 @@
       </tags>
   </entry>
   <entry>
+    <title>Alipay 开放平台支付</title>
+    <url>/2018/10/26/Alipay-%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E6%94%AF%E4%BB%98/</url>
+    <content><![CDATA[<a id="more"></a>
+
+
+<p>参考文档 <a href="https://docs.open.alipay.com/291/" target="_blank">[ 开放平台文档中心 ]</a></p>
+<blockquote>
+<p>生成RSA密钥</p>
+</blockquote>
+<p>a. 应用公钥2048<br>b. 应用私钥2048</p>
+<blockquote>
+<p>上传应用公钥并获取支付宝公钥</p>
+</blockquote>
+<p>支付宝公钥应用于开发中</p>
+<blockquote>
+<p>使用应用私钥生成请求签名</p>
+</blockquote>
+<p>应用私钥应用于开发中</p>
+<blockquote>
+<p>使用支付宝公钥验签</p>
+</blockquote>
+<p>支付宝公钥应用于开发中</p>
+]]></content>
+      <tags>
+        <tag>Alipay</tag>
+        <tag>开放平台</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CentOS 7 Git服务器搭建及配置公钥</title>
     <url>/2018/04/08/CentOS-7-Git%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E5%85%AC%E9%92%A5/</url>
     <content><![CDATA[<a id="more"></a>
@@ -125,7 +125,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#x40;&#113;&#113;&#x2e;&#x63;&#111;&#x6d;">&#120;&#x40;&#113;&#113;&#x2e;&#x63;&#111;&#x6d;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#x40;&#x71;&#x71;&#x2e;&#x63;&#111;&#x6d;">&#x78;&#x40;&#x71;&#x71;&#x2e;&#x63;&#111;&#x6d;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -136,7 +136,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#98;&#x40;&#113;&#113;&#x2e;&#99;&#x6f;&#109;">&#98;&#x40;&#113;&#113;&#x2e;&#99;&#x6f;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#98;&#x40;&#x71;&#x71;&#x2e;&#x63;&#111;&#x6d;">&#98;&#x40;&#x71;&#x71;&#x2e;&#x63;&#111;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -168,163 +168,6 @@
       <tags>
         <tag>CentOS 7</tag>
         <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CentOS 7 安装 Nginx 1.11.x</title>
-    <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/</url>
-    <content><![CDATA[<p><strong>Centos下安装Nginx</strong> </p>
-<a id="more"></a>
-
-<p>一、准备工作 安装必备工具</p>
-<blockquote>
-<p>yum install -y gcc gcc-c++ autoconf automake<br>yum install -y zlib zlib-devel openssl openssl-devel pcre-devel</p>
-</blockquote>
-<p>不安装这些依赖库，后面编译的时候会报错，当然你的系统已经有这些包可以跳过。<br>pcre：用来作地址重写的功能。<br>zlib：nginx 的gzip模块,传输数据打包，省流量（但消耗资源）。<br>openssl：提供ssl加密协议。</p>
-<p>二、添加nginx用户</p>
-<blockquote>
-<p>/usr/sbin/groupadd -f www<br>/usr/sbin/useradd -g www www</p>
-</blockquote>
-<p>三、nginx文件准备及编译</p>
-<blockquote>
-<p>wget <a href="http://nginx.org/download/nginx-1.11.4.tar.gz">http://nginx.org/download/nginx-1.11.4.tar.gz</a><br>tar -zxvf nginx-1.11.4.tar.gz<br>cd nginx-1.11.4/<br>./configure –user=www –group=www<br>make &amp;&amp; make install</p>
-</blockquote>
-<p>四、开始firewall端口服务</p>
-<blockquote>
-<p>firewall-cmd  –permanent –zone=public –add-service=http<br>firewall-cmd  –reload</p>
-</blockquote>
-<p>常用命令</p>
-<blockquote>
-<p>/usr/local/nginx/sbin/nginx -s reload<br>/usr/local/nginx/sbin/nginx -s stop<br>/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Centos</tag>
-        <tag>Nginx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CentOS 7 安装MySQL5.7</title>
-    <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85MySQL5-7/</url>
-    <content><![CDATA[<p><strong>Centos下安装MySQL</strong> </p>
-<a id="more"></a>
-<p>官方mysql.com 支持我们使用yum的方式安装mysql 5.7最新版。所以大家根本无需手工编译安装（除非你需要）。CentOS7的yum源中默认好像是没有mysql的。为了解决这个问题，我们要先下载mysql的repo源。<br>一、下载mysql的repo源</p>
-<blockquote>
-<p>wget <a href="http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm">http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm</a></p>
-</blockquote>
-<p>二、 安装mysql57-community-release-el7-9.noarch.rpm包</p>
-<blockquote>
-<p>rpm -ivh mysql57-community-release-el7-9.noarch.rpm</p>
-</blockquote>
-<p>三、 安装mysql （下载需要一段时间)</p>
-<blockquote>
-<p>yum install mysql-community-server</p>
-</blockquote>
-<p>四、启动mysql</p>
-<blockquote>
-<p>systemctl start mysqld<br>systemctl enable mysqld.service</p>
-</blockquote>
-<p>五、第一次启动后，mysql5.7 会生成一个随机root密码 （MySQL 5.7.6以上）</p>
-<blockquote>
-<p>grep ‘temporary passwor’ /var/log/mysqld.log</p>
-</blockquote>
-<p>修改root密码</p>
-<blockquote>
-<p>ALTER USER USER() IDENTIFIED BY ‘123456’;</p>
-</blockquote>
-<p>外网访问</p>
-<blockquote>
-<p>mysql -u root -p  # 首次登录会修改密码<br>GRANT ALL PRIVILEGES ON <em>.</em> TO ‘root’@’%’ IDENTIFIED BY ‘your_root_password’ WITH GRANT OPTION;</p>
-</blockquote>
-<p>删除mysql</p>
-<blockquote>
-<p>rpm -qa|grep mysql；<br>yum remove packages</p>
-</blockquote>
-<p>端口查看</p>
-<blockquote>
-<p>ps -aux | grep mysql<br>netstat -apn | grep 3306<br>netstat -apn</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Centos</tag>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CentOS 7 搭建SVN服务器</title>
-    <url>/2017/09/14/CentOS-7-%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
-    <content><![CDATA[<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CentOS 7 搭建SVN服务器</strong> </p>
-<a id="more"></a>
-
-
-<p><strong>一、安装subversion</strong></p>
-<blockquote>
-<p> yum -y install subversion</p>
-</blockquote>
-<p><strong>二、配置svn</strong></p>
-<p>a.建立仓库[repos]</p>
-<blockquote>
-<p> mkdir -p /home/svn/repos<br> svnadmin create /home/svn/repos/<br> cd /home/svn/repos/conf</p>
-</blockquote>
-<p>b.添加用户</p>
-<blockquote>
-<p>vi passwd</p>
-</blockquote>
-<p>例：添加</p>
-<blockquote>
-<p> test = 123456  </p>
-</blockquote>
-<p>c.添加用户权限</p>
-<blockquote>
-<p>vim authz</p>
-</blockquote>
-<p>添加</p>
-<blockquote>
-<p>[/]<br>test = rw</p>
-</blockquote>
-<p>d.配置文件</p>
-<blockquote>
-<p>vim svnserve.conf</p>
-</blockquote>
-<p>修改配置[启用]</p>
-<blockquote>
-<p>anon-access = none<br>auth-access = write       # 授权用户可写<br>password-db = passwd      # 使用哪个文件作为账号文件<br>authz-db = authz            # 使用哪个文件作为权限文件<br>realm = /home/svn/repos   # 认证空间名，版本库所在目录</p>
-</blockquote>
-<p>e.启动svn</p>
-<blockquote>
-<p>svnserve -d -r /home/svn   # 启动svn版本库<br>svnserve -d -r /home/svn/repos   # 启动svn版本库<br>killall svnserve   # 停止SVN命令</p>
-</blockquote>
-<p><strong>三.钩子文件</strong></p>
-<p>1.钩子配置</p>
-<blockquote>
-<p>cd ../hooks/<br>cp post-commit.tmpl post-commit<br>chmod +x post-commit<br>vim post-commit</p>
-</blockquote>
-<p>2.钩子脚本修改</p>
-<blockquote>
-<p>WEBPATH=”/home/wwwroot/test/“ # 网站目录<br>export.UTF-8<br>svn update $WEBPATH –username[test] username –password password[123456] –no-auth-cache</p>
-</blockquote>
-<p>3.拉取文件[在有副本的目录下]</p>
-<blockquote>
-<p>svn co svn://127.0.0.1/ ./<br>若拉取文件报错,请在有副本目录下拉取一下,然后把隐藏的文件夹 .svn文件放到需要拉取的目录下 就Ok了.</p>
-</blockquote>
-<p>4.拉取单个文件</p>
-<blockquote>
-<p>svn up laravel.log</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   本地拉取时  checkout地址 svn://ip/repos</p>
-</blockquote>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ！！！ </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>CentOS 7</tag>
-        <tag>svn</tag>
       </tags>
   </entry>
   <entry>
@@ -466,6 +309,39 @@
       <tags>
         <tag>Centos</tag>
         <tag>PHP7</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS 7 安装 Nginx 1.11.x</title>
+    <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/</url>
+    <content><![CDATA[<p><strong>Centos下安装Nginx</strong> </p>
+<a id="more"></a>
+
+<p>一、准备工作 安装必备工具</p>
+<blockquote>
+<p>yum install -y gcc gcc-c++ autoconf automake<br>yum install -y zlib zlib-devel openssl openssl-devel pcre-devel</p>
+</blockquote>
+<p>不安装这些依赖库，后面编译的时候会报错，当然你的系统已经有这些包可以跳过。<br>pcre：用来作地址重写的功能。<br>zlib：nginx 的gzip模块,传输数据打包，省流量（但消耗资源）。<br>openssl：提供ssl加密协议。</p>
+<p>二、添加nginx用户</p>
+<blockquote>
+<p>/usr/sbin/groupadd -f www<br>/usr/sbin/useradd -g www www</p>
+</blockquote>
+<p>三、nginx文件准备及编译</p>
+<blockquote>
+<p>wget <a href="http://nginx.org/download/nginx-1.11.4.tar.gz">http://nginx.org/download/nginx-1.11.4.tar.gz</a><br>tar -zxvf nginx-1.11.4.tar.gz<br>cd nginx-1.11.4/<br>./configure –user=www –group=www<br>make &amp;&amp; make install</p>
+</blockquote>
+<p>四、开始firewall端口服务</p>
+<blockquote>
+<p>firewall-cmd  –permanent –zone=public –add-service=http<br>firewall-cmd  –reload</p>
+</blockquote>
+<p>常用命令</p>
+<blockquote>
+<p>/usr/local/nginx/sbin/nginx -s reload<br>/usr/local/nginx/sbin/nginx -s stop<br>/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Centos</tag>
+        <tag>Nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -709,103 +585,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Laravel Redis 广播测试</title>
-    <url>/2019/04/19/Laravel-Redis-%E5%B9%BF%E6%92%AD%E6%B5%8B%E8%AF%95/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p> 附上 <a href="https://github.com/shunhua/laravel-echo" target="_blank">[Github]</a> 地址 </p>
-<p> 一、项目搭建<br> a.安装laravel</p>
-<blockquote>
-<p>composer create-project –prefer-dist laravel/laravel echo</p>
-</blockquote>
-<p> b.配置mysql 数据库</p>
-<blockquote>
-<p>php artisan migrate</p>
-</blockquote>
-<p>  c.快速认证</p>
-<blockquote>
-<p>php artisan make:auth</p>
-</blockquote>
-<p> 本文仅使用了 redis 的广播驱动 测试环境 win10<br> 二、安装redis 并启动</p>
-<blockquote>
-<p>redis-server.exe</p>
-</blockquote>
-<p><img src="/assets/blogImg/guangbo/redis.png" alt="ico原来的样子"><br>测试redis 连接成功<br><img src="/assets/blogImg/guangbo/redis1.png" alt="ico原来的样子"></p>
-<p>a.配置文件 .env 中配置以下代码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">BROADCAST_DRIVER&#x3D;redis</span><br></pre></td></tr></table></figure>
-<p>b.广播服务提供者  config/app.php 配置文件中 providers 数组中打开注释</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">App\Providers\BroadcastServiceProvider::class,</span><br></pre></td></tr></table></figure>
-<p>c.CSRF 令牌[后续视图中添加]</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;csrf-token&quot; content&#x3D;&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</span><br></pre></td></tr></table></figure>
-<p>d.安装 Predis 库</p>
-<blockquote>
-<p>composer require predis/predis</p>
-</blockquote>
-<p>三、安装 Laravel Echo</p>
-<p>a.通过 npm 包管理器安装 Echo</p>
-<blockquote>
-<p>npm install<br>   npm install -g laravel-echo-server</p>
-</blockquote>
-<p>b.初始化 laravel-echo-server</p>
-<blockquote>
-<p>laravel-echo-server init</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 是否在开发模式下运行此服务器（y&#x2F;n） 输入y</span><br><span class="line">? Do you want to run this server in development mode? (y&#x2F;N) </span><br><span class="line">&#x2F;&#x2F; 设置服务器的端口 默认 6001 输入 6001就可以了 或者你想要的</span><br><span class="line">? Which port would you like to serve from? (6001)</span><br><span class="line">&#x2F;&#x2F; 想用的数据库  选择 redis</span><br><span class="line">? Which database would you like to use to store presence channel members? (Use arrow keys)</span><br><span class="line">❯ redis </span><br><span class="line">  sqlite </span><br><span class="line">&#x2F;&#x2F;   这里输入 你的laravel  项目的访问域名</span><br><span class="line">? Enter the host of your Laravel authentication server. (http:&#x2F;&#x2F;localhost) </span><br><span class="line">&#x2F;&#x2F; 选择 网络协议 http</span><br><span class="line">? Will you be serving on http or https? (Use arrow keys)</span><br><span class="line">❯ http </span><br><span class="line">  https </span><br><span class="line">&#x2F;&#x2F; 您想为HTTP API生成客户端ID&#x2F;密钥吗 N</span><br><span class="line">? Do you want to generate a client ID&#x2F;Key for HTTP API? (y&#x2F;N) </span><br><span class="line">&#x2F;&#x2F; 要设置对API的跨域访问吗？（y&#x2F;n）N</span><br><span class="line">Configuration file saved. Run laravel-echo-server start to run server.</span><br></pre></td></tr></table></figure>
-<p>设置完成后 项目根目录 下 会生成 laravel-echo-server.json 文件 这里面就是刚才的配置<br><img src="/assets/blogImg/guangbo/echo.png" alt="ico原来的样子"><br>执行命令启动 服务 出现如下 则启动成功</p>
-<blockquote>
-<p>laravel-echo-server start</p>
-</blockquote>
-<p><img src="/assets/blogImg/guangbo/echo1.png" alt="ico原来的样子"></p>
-<p>四、频道<br>频道Channel、PrivateChannel 或 PresenceChannel 的实例。Channel 实例表示任何用户都可以订阅的公开频道，而 PrivateChannels 和 PresenceChannels 则表示需要 频道授权 的私有频道：<br>a.创建事件</p>
-<blockquote>
-<p>php artisan make:event PublicMessageEvent </p>
-</blockquote>
-<p>文件生成目录 app/Events</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public $message;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Create a new event instance.</span><br><span class="line"> *</span><br><span class="line"> * @param User $user</span><br><span class="line"> * @param string $message</span><br><span class="line"> *&#x2F;</span><br><span class="line">public function __construct(string $message)</span><br><span class="line">&#123;</span><br><span class="line">    $this-&gt;message &#x3D; $message;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Get the channels the event should broadcast on.</span><br><span class="line"> *</span><br><span class="line"> * @return \Illuminate\Broadcasting\Channel|array</span><br><span class="line"> *&#x2F;</span><br><span class="line">public function broadcastOn()</span><br><span class="line">&#123;</span><br><span class="line">    return new Channel(&#39;push&#39;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Laravel 默认会使用事件的类名作为广播名称来广播事件，自定义：</span><br><span class="line">public function broadcastAs()</span><br><span class="line">&#123;</span><br><span class="line">    return &#39;push.message&#39;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;想更细粒度地控制广播数据:</span><br><span class="line">public function broadcastWith()</span><br><span class="line">&#123;</span><br><span class="line">    return [&#39;message&#39; &#x3D;&gt; $this-&gt;message,&#39;status&#39; &#x3D;&gt; &#39;okok&#39;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; laravel-echo-server 1.5 版本的 需要添加 否则Laravel echo channel listen 不监听事件</span><br><span class="line">public function handle()</span><br><span class="line">&#123;</span><br><span class="line">    broadcast(new push());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>b.添加路由</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">use App\Events\PublicMessageEvent;</span><br><span class="line"> Route::get(&#39;&#x2F;echo&#39;, function () &#123;</span><br><span class="line">    return view(&#39;echo&#39;);</span><br><span class="line"> &#125;);</span><br><span class="line"></span><br><span class="line">Route::get(&#39;&#x2F;push&#x2F;&#123;message&#125;&#39;, function ($message) &#123;</span><br><span class="line">    broadcast(new PublicMessageEvent($message));</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>五、前端视图<br>a.安装 laravel-echo</p>
-<blockquote>
-<p>npm install laravel-echo</p>
-</blockquote>
-<p>编辑 resource/js/bootstrap.js 添加如下代码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Echo from &quot;laravel-echo&quot;</span><br><span class="line"></span><br><span class="line">window.Echo &#x3D; new Echo(&#123;</span><br><span class="line">    broadcaster: &#39;socket.io&#39;,</span><br><span class="line">    host: window.location.hostname + &#39;:6001&#39;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>编辑 resource/js/app.js 添加如下代码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Echo.channel(&#39;push&#39;)</span><br><span class="line">    .listen(&#39;.push.message&#39;, (e) &#x3D;&gt; &#123;</span><br><span class="line">        alert(e.message)</span><br><span class="line">        console.log(e);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-<p>创建 echo.blade.php head 中加上</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;csrf-token&quot; content&#x3D;&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;&#x2F;&#x2F;&#123;&#123; Request::getHost() &#125;&#125;:6001&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;&#x2F;js&#x2F;app.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-<p>编译 js 文件 </p>
-<blockquote>
-<p>npm run watch</p>
-</blockquote>
-<p>浏览器访问 项目域名 /echo<br>浏览器访问 项目域名 /push/这是一个测试广播[what can i say]<br>echo 页面 会自动弹出<br><img src="/assets/blogImg/guangbo/echo2.png" alt="ico原来的样子"><br><img src="/assets/blogImg/guangbo/echo4.png" alt="ico原来的样子"><br><img src="/assets/blogImg/guangbo/echo5.png" alt="ico原来的样子"><br>到这 广播 发布到公共频道就完成了</p>
-<hr>
-<p>私有频道 PrivateChannel</p>
-<blockquote>
-<p>php artisan make:event PrivateMessageEvent</p>
-</blockquote>
-<p>PrivateMessageEvent 中 写入 以下内容</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public $message;</span><br><span class="line">   public $user;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * Create a new event instance.</span><br><span class="line">    *</span><br><span class="line">    * @param User $user</span><br><span class="line">    * @param string $message</span><br><span class="line">    *&#x2F;</span><br><span class="line">   public function __construct(User $user, string $message)</span><br><span class="line">   &#123;</span><br><span class="line">       $this-&gt;user &#x3D; $user;</span><br><span class="line">       $this-&gt;message &#x3D; $message;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * Get the channels the event should broadcast on.</span><br><span class="line">    *</span><br><span class="line">    * @return \Illuminate\Broadcasting\Channel|array</span><br><span class="line">    *&#x2F;</span><br><span class="line">   public function broadcastOn()</span><br><span class="line">   &#123;</span><br><span class="line">       return new PrivateChannel(&#39;privatePush.&#39; . $this-&gt;user-&gt;id);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;&#x2F;想更细粒度地控制广播数据:</span><br><span class="line">   public function broadcastWith()</span><br><span class="line">   &#123;</span><br><span class="line">       return [&#39;message&#39; &#x3D;&gt; $this-&gt;message,&#39;status&#39; &#x3D;&gt; &#39;okok&#39;];</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p>添加发布广播到私有频道 触发路由 routes/web 测试时记得新增下用户</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Route::get(&#39;&#x2F;privatePush&#x2F;&#123;message&#125;&#x2F;&#123;id&#125;&#39;, function ($message, $id) &#123;</span><br><span class="line">    $user &#x3D; \App\User::find($id);</span><br><span class="line">    if (empty($user)) return &#39;无此用户&#39;;</span><br><span class="line">    broadcast(new PrivateMessageEvent($user, $message));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>echo.blade.php 中加入</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    @if(!empty(Auth::user()))</span><br><span class="line">        window.id &#x3D; &quot;&#123;&#123;Auth::user()-&gt;id&#125;&#125;&quot;</span><br><span class="line">    @endif</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-<p>app.js</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Echo.private(&#39;privatePush.&#39; + window.id)</span><br><span class="line">    .listen(&#39;PrivateMessageEvent&#39;, (e) &#x3D;&gt; &#123;</span><br><span class="line">        alert(&#39;qweqwe&#39;)</span><br><span class="line">        console.log(e);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><strong>Notice</strong><br>安静,安静一下 Enjoy it ~</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>laravel5.7</tag>
-        <tag>Redis</tag>
-        <tag>广播</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Laragon 在 Windows 中搭建 Laravel 开发环境</title>
     <url>/2017/09/15/Laragon-%E5%9C%A8-Windows-%E4%B8%AD%E6%90%AD%E5%BB%BA-Laravel-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</url>
     <content><![CDATA[<a id="more"></a>
@@ -936,6 +715,103 @@
       </tags>
   </entry>
   <entry>
+    <title>Laravel Redis 广播测试</title>
+    <url>/2019/04/19/Laravel-Redis-%E5%B9%BF%E6%92%AD%E6%B5%8B%E8%AF%95/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p> 附上 <a href="https://github.com/shunhua/laravel-echo" target="_blank">[Github]</a> 地址 </p>
+<p> 一、项目搭建<br> a.安装laravel</p>
+<blockquote>
+<p>composer create-project –prefer-dist laravel/laravel echo</p>
+</blockquote>
+<p> b.配置mysql 数据库</p>
+<blockquote>
+<p>php artisan migrate</p>
+</blockquote>
+<p>  c.快速认证</p>
+<blockquote>
+<p>php artisan make:auth</p>
+</blockquote>
+<p> 本文仅使用了 redis 的广播驱动 测试环境 win10<br> 二、安装redis 并启动</p>
+<blockquote>
+<p>redis-server.exe</p>
+</blockquote>
+<p><img src="/assets/blogImg/guangbo/redis.png" alt="ico原来的样子"><br>测试redis 连接成功<br><img src="/assets/blogImg/guangbo/redis1.png" alt="ico原来的样子"></p>
+<p>a.配置文件 .env 中配置以下代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">BROADCAST_DRIVER&#x3D;redis</span><br></pre></td></tr></table></figure>
+<p>b.广播服务提供者  config/app.php 配置文件中 providers 数组中打开注释</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">App\Providers\BroadcastServiceProvider::class,</span><br></pre></td></tr></table></figure>
+<p>c.CSRF 令牌[后续视图中添加]</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;csrf-token&quot; content&#x3D;&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>d.安装 Predis 库</p>
+<blockquote>
+<p>composer require predis/predis</p>
+</blockquote>
+<p>三、安装 Laravel Echo</p>
+<p>a.通过 npm 包管理器安装 Echo</p>
+<blockquote>
+<p>npm install<br>   npm install -g laravel-echo-server</p>
+</blockquote>
+<p>b.初始化 laravel-echo-server</p>
+<blockquote>
+<p>laravel-echo-server init</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 是否在开发模式下运行此服务器（y&#x2F;n） 输入y</span><br><span class="line">? Do you want to run this server in development mode? (y&#x2F;N) </span><br><span class="line">&#x2F;&#x2F; 设置服务器的端口 默认 6001 输入 6001就可以了 或者你想要的</span><br><span class="line">? Which port would you like to serve from? (6001)</span><br><span class="line">&#x2F;&#x2F; 想用的数据库  选择 redis</span><br><span class="line">? Which database would you like to use to store presence channel members? (Use arrow keys)</span><br><span class="line">❯ redis </span><br><span class="line">  sqlite </span><br><span class="line">&#x2F;&#x2F;   这里输入 你的laravel  项目的访问域名</span><br><span class="line">? Enter the host of your Laravel authentication server. (http:&#x2F;&#x2F;localhost) </span><br><span class="line">&#x2F;&#x2F; 选择 网络协议 http</span><br><span class="line">? Will you be serving on http or https? (Use arrow keys)</span><br><span class="line">❯ http </span><br><span class="line">  https </span><br><span class="line">&#x2F;&#x2F; 您想为HTTP API生成客户端ID&#x2F;密钥吗 N</span><br><span class="line">? Do you want to generate a client ID&#x2F;Key for HTTP API? (y&#x2F;N) </span><br><span class="line">&#x2F;&#x2F; 要设置对API的跨域访问吗？（y&#x2F;n）N</span><br><span class="line">Configuration file saved. Run laravel-echo-server start to run server.</span><br></pre></td></tr></table></figure>
+<p>设置完成后 项目根目录 下 会生成 laravel-echo-server.json 文件 这里面就是刚才的配置<br><img src="/assets/blogImg/guangbo/echo.png" alt="ico原来的样子"><br>执行命令启动 服务 出现如下 则启动成功</p>
+<blockquote>
+<p>laravel-echo-server start</p>
+</blockquote>
+<p><img src="/assets/blogImg/guangbo/echo1.png" alt="ico原来的样子"></p>
+<p>四、频道<br>频道Channel、PrivateChannel 或 PresenceChannel 的实例。Channel 实例表示任何用户都可以订阅的公开频道，而 PrivateChannels 和 PresenceChannels 则表示需要 频道授权 的私有频道：<br>a.创建事件</p>
+<blockquote>
+<p>php artisan make:event PublicMessageEvent </p>
+</blockquote>
+<p>文件生成目录 app/Events</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public $message;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Create a new event instance.</span><br><span class="line"> *</span><br><span class="line"> * @param User $user</span><br><span class="line"> * @param string $message</span><br><span class="line"> *&#x2F;</span><br><span class="line">public function __construct(string $message)</span><br><span class="line">&#123;</span><br><span class="line">    $this-&gt;message &#x3D; $message;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Get the channels the event should broadcast on.</span><br><span class="line"> *</span><br><span class="line"> * @return \Illuminate\Broadcasting\Channel|array</span><br><span class="line"> *&#x2F;</span><br><span class="line">public function broadcastOn()</span><br><span class="line">&#123;</span><br><span class="line">    return new Channel(&#39;push&#39;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Laravel 默认会使用事件的类名作为广播名称来广播事件，自定义：</span><br><span class="line">public function broadcastAs()</span><br><span class="line">&#123;</span><br><span class="line">    return &#39;push.message&#39;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;想更细粒度地控制广播数据:</span><br><span class="line">public function broadcastWith()</span><br><span class="line">&#123;</span><br><span class="line">    return [&#39;message&#39; &#x3D;&gt; $this-&gt;message,&#39;status&#39; &#x3D;&gt; &#39;okok&#39;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; laravel-echo-server 1.5 版本的 需要添加 否则Laravel echo channel listen 不监听事件</span><br><span class="line">public function handle()</span><br><span class="line">&#123;</span><br><span class="line">    broadcast(new push());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>b.添加路由</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">use App\Events\PublicMessageEvent;</span><br><span class="line"> Route::get(&#39;&#x2F;echo&#39;, function () &#123;</span><br><span class="line">    return view(&#39;echo&#39;);</span><br><span class="line"> &#125;);</span><br><span class="line"></span><br><span class="line">Route::get(&#39;&#x2F;push&#x2F;&#123;message&#125;&#39;, function ($message) &#123;</span><br><span class="line">    broadcast(new PublicMessageEvent($message));</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>五、前端视图<br>a.安装 laravel-echo</p>
+<blockquote>
+<p>npm install laravel-echo</p>
+</blockquote>
+<p>编辑 resource/js/bootstrap.js 添加如下代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Echo from &quot;laravel-echo&quot;</span><br><span class="line"></span><br><span class="line">window.Echo &#x3D; new Echo(&#123;</span><br><span class="line">    broadcaster: &#39;socket.io&#39;,</span><br><span class="line">    host: window.location.hostname + &#39;:6001&#39;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>编辑 resource/js/app.js 添加如下代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Echo.channel(&#39;push&#39;)</span><br><span class="line">    .listen(&#39;.push.message&#39;, (e) &#x3D;&gt; &#123;</span><br><span class="line">        alert(e.message)</span><br><span class="line">        console.log(e);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>创建 echo.blade.php head 中加上</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;csrf-token&quot; content&#x3D;&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;&#x2F;&#x2F;&#123;&#123; Request::getHost() &#125;&#125;:6001&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;&#x2F;js&#x2F;app.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<p>编译 js 文件 </p>
+<blockquote>
+<p>npm run watch</p>
+</blockquote>
+<p>浏览器访问 项目域名 /echo<br>浏览器访问 项目域名 /push/这是一个测试广播[what can i say]<br>echo 页面 会自动弹出<br><img src="/assets/blogImg/guangbo/echo2.png" alt="ico原来的样子"><br><img src="/assets/blogImg/guangbo/echo4.png" alt="ico原来的样子"><br><img src="/assets/blogImg/guangbo/echo5.png" alt="ico原来的样子"><br>到这 广播 发布到公共频道就完成了</p>
+<hr>
+<p>私有频道 PrivateChannel</p>
+<blockquote>
+<p>php artisan make:event PrivateMessageEvent</p>
+</blockquote>
+<p>PrivateMessageEvent 中 写入 以下内容</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public $message;</span><br><span class="line">   public $user;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * Create a new event instance.</span><br><span class="line">    *</span><br><span class="line">    * @param User $user</span><br><span class="line">    * @param string $message</span><br><span class="line">    *&#x2F;</span><br><span class="line">   public function __construct(User $user, string $message)</span><br><span class="line">   &#123;</span><br><span class="line">       $this-&gt;user &#x3D; $user;</span><br><span class="line">       $this-&gt;message &#x3D; $message;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * Get the channels the event should broadcast on.</span><br><span class="line">    *</span><br><span class="line">    * @return \Illuminate\Broadcasting\Channel|array</span><br><span class="line">    *&#x2F;</span><br><span class="line">   public function broadcastOn()</span><br><span class="line">   &#123;</span><br><span class="line">       return new PrivateChannel(&#39;privatePush.&#39; . $this-&gt;user-&gt;id);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;&#x2F;想更细粒度地控制广播数据:</span><br><span class="line">   public function broadcastWith()</span><br><span class="line">   &#123;</span><br><span class="line">       return [&#39;message&#39; &#x3D;&gt; $this-&gt;message,&#39;status&#39; &#x3D;&gt; &#39;okok&#39;];</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>添加发布广播到私有频道 触发路由 routes/web 测试时记得新增下用户</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Route::get(&#39;&#x2F;privatePush&#x2F;&#123;message&#125;&#x2F;&#123;id&#125;&#39;, function ($message, $id) &#123;</span><br><span class="line">    $user &#x3D; \App\User::find($id);</span><br><span class="line">    if (empty($user)) return &#39;无此用户&#39;;</span><br><span class="line">    broadcast(new PrivateMessageEvent($user, $message));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>echo.blade.php 中加入</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    @if(!empty(Auth::user()))</span><br><span class="line">        window.id &#x3D; &quot;&#123;&#123;Auth::user()-&gt;id&#125;&#125;&quot;</span><br><span class="line">    @endif</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<p>app.js</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Echo.private(&#39;privatePush.&#39; + window.id)</span><br><span class="line">    .listen(&#39;PrivateMessageEvent&#39;, (e) &#x3D;&gt; &#123;</span><br><span class="line">        alert(&#39;qweqwe&#39;)</span><br><span class="line">        console.log(e);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><strong>Notice</strong><br>安静,安静一下 Enjoy it ~</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>laravel5.7</tag>
+        <tag>Redis</tag>
+        <tag>广播</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Laravel yansongda/laravel-pay</title>
     <url>/2018/09/29/Laravel-yansongda-laravel-pay/</url>
     <content><![CDATA[<a id="more"></a>
@@ -984,6 +860,53 @@
       <tags>
         <tag>laravel5.6</tag>
         <tag>laravel-pay</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS 7 安装MySQL5.7</title>
+    <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85MySQL5-7/</url>
+    <content><![CDATA[<p><strong>Centos下安装MySQL</strong> </p>
+<a id="more"></a>
+<p>官方mysql.com 支持我们使用yum的方式安装mysql 5.7最新版。所以大家根本无需手工编译安装（除非你需要）。CentOS7的yum源中默认好像是没有mysql的。为了解决这个问题，我们要先下载mysql的repo源。<br>一、下载mysql的repo源</p>
+<blockquote>
+<p>wget <a href="http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm">http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm</a></p>
+</blockquote>
+<p>二、 安装mysql57-community-release-el7-9.noarch.rpm包</p>
+<blockquote>
+<p>rpm -ivh mysql57-community-release-el7-9.noarch.rpm</p>
+</blockquote>
+<p>三、 安装mysql （下载需要一段时间)</p>
+<blockquote>
+<p>yum install mysql-community-server</p>
+</blockquote>
+<p>四、启动mysql</p>
+<blockquote>
+<p>systemctl start mysqld<br>systemctl enable mysqld.service</p>
+</blockquote>
+<p>五、第一次启动后，mysql5.7 会生成一个随机root密码 （MySQL 5.7.6以上）</p>
+<blockquote>
+<p>grep ‘temporary passwor’ /var/log/mysqld.log</p>
+</blockquote>
+<p>修改root密码</p>
+<blockquote>
+<p>ALTER USER USER() IDENTIFIED BY ‘123456’;</p>
+</blockquote>
+<p>外网访问</p>
+<blockquote>
+<p>mysql -u root -p  # 首次登录会修改密码<br>GRANT ALL PRIVILEGES ON <em>.</em> TO ‘root’@’%’ IDENTIFIED BY ‘your_root_password’ WITH GRANT OPTION;</p>
+</blockquote>
+<p>删除mysql</p>
+<blockquote>
+<p>rpm -qa|grep mysql；<br>yum remove packages</p>
+</blockquote>
+<p>端口查看</p>
+<blockquote>
+<p>ps -aux | grep mysql<br>netstat -apn | grep 3306<br>netstat -apn</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Centos</tag>
+        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
@@ -1041,50 +964,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Laravel 和 Vue 的项目搭建</title>
-    <url>/2018/11/02/Laravel-%E5%92%8C-Vue-%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>一、Laravel创建项目</strong> </p>
-<blockquote>
-<p>composer create-project –prefer-dist laravel/laravel laravel-vue</p>
-</blockquote>
-<p><strong>二、扩展包</strong> </p>
-<blockquote>
-<p>npm install<br>npm install vue-router iview</p>
-</blockquote>
-<p><strong>三、前端结构搭建</strong><br>vue前端的文件结构在 /recources/js 目录[laravel5.7]，vue能够渲染主要是两个操作</p>
-<ul>
-<li>vue 挂载到页面的节点中</li>
-<li>vue-router 处理路由，渲染对应的组件</li>
-</ul>
-<p>code流程  </p>
-<ol>
-<li><p>创建 web 路由<br>在 /routes/web.php 中新建一个访问我们挂载着vue页面的路由。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Route::get(&#39;&#x2F;&#39;, function () &#123;</span><br><span class="line">    return view(&#39;welcome&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编辑welcome.blade.php<br>在 resource/views 新建 welcome.blade.php,代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0, maximum-scale&#x3D;1.0, minimum-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;csrf-token&quot; content&#x3D;&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</span><br><span class="line">  &lt;title&gt;&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;&#123;&#123; mix(&#39;css&#x2F;app.css&#39;) &#125;&#125;&quot;&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body ontouchstart&gt;</span><br><span class="line">  &lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#123;&#123; mix(&#39;js&#x2F;app.js&#39;) &#125;&#125;&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改 /recources/js/app.js</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">require(&#39;.&#x2F;bootstrap&#39;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 导入扩展包</span><br><span class="line">window.Vue &#x3D; require(&#39;vue&#39;);</span><br><span class="line"></span><br><span class="line">import App from &#39;.&#x2F;components&#x2F;app.vue&#39;</span><br><span class="line">import VueRouter from &#39;vue-router&#39;;</span><br><span class="line">import iView from &#39;iview&#39;;</span><br><span class="line">import &#39;iview&#x2F;dist&#x2F;styles&#x2F;iview.css&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 导入vue</span><br><span class="line">Vue.use(iView);</span><br><span class="line">Vue.use(VueRouter);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 路由配置</span><br><span class="line">const RouterConfig &#x3D; &#123;</span><br><span class="line">    routes: [</span><br><span class="line">        &#x2F;&#x2F; ExampleComponent laravel默认的示例组件</span><br><span class="line">        &#123; path: &#39;&#x2F;&#39;, component: require(&#39;.&#x2F;components&#x2F;ExampleComponent.vue&#39;) &#125;,</span><br><span class="line">        &#123; path: &#39;&#x2F;bsh&#39;, component: require(&#39;.&#x2F;components&#x2F;bsh.vue&#39;) &#125;,</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br><span class="line">const router &#x3D; new VueRouter(RouterConfig);</span><br><span class="line"></span><br><span class="line">const app &#x3D; new Vue(&#123;</span><br><span class="line">    el: &#39;#app&#39;,</span><br><span class="line">    router: router,</span><br><span class="line">    render: h &#x3D;&gt; h(App)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>建立 Layout<br>在 /recources/js/components/ 新建 app.vue, 将 iview 的 layout 代码搬过来：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;style scoped&gt;</span><br><span class="line">  .layout-con&#123;</span><br><span class="line">    height: 100%;</span><br><span class="line">    width: 100%;</span><br><span class="line">  &#125;</span><br><span class="line">  .menu-item span&#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    width: 69px;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    vertical-align: bottom;</span><br><span class="line">    transition: width .2s ease .2s;</span><br><span class="line">  &#125;</span><br><span class="line">  .menu-item i&#123;</span><br><span class="line">    transform: translateX(0px);</span><br><span class="line">    transition: font-size .2s ease, transform .2s ease;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">    font-size: 16px;</span><br><span class="line">  &#125;</span><br><span class="line">  .collapsed-menu span&#123;</span><br><span class="line">    width: 0px;</span><br><span class="line">    transition: width .2s ease;</span><br><span class="line">  &#125;</span><br><span class="line">  .collapsed-menu i&#123;</span><br><span class="line">    transform: translateX(5px);</span><br><span class="line">    transition: font-size .2s ease .2s, transform .2s ease .2s;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">    font-size: 22px;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;layout&quot;&gt;</span><br><span class="line">    &lt;Layout :style&#x3D;&quot;&#123;minHeight: &#39;100vh&#39;&#125;&quot;&gt;</span><br><span class="line">      &lt;Sider collapsible :collapsed-width&#x3D;&quot;78&quot; v-model&#x3D;&quot;isCollapsed&quot;&gt;</span><br><span class="line">        &lt;Menu active-name&#x3D;&quot;1-2&quot; theme&#x3D;&quot;dark&quot; width&#x3D;&quot;auto&quot; :class&#x3D;&quot;menuitemClasses&quot;&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-1&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;ios-navigate&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 1&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-2&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;search&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 2&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-3&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;settings&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 3&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">        &lt;&#x2F;Menu&gt;</span><br><span class="line">      &lt;&#x2F;Sider&gt;</span><br><span class="line">      &lt;Layout&gt;</span><br><span class="line">        &lt;Header :style&#x3D;&quot;&#123;background: &#39;#fff&#39;, boxShadow: &#39;0 2px 3px 2px rgba(0,0,0,.1)&#39;&#125;&quot;&gt;&lt;&#x2F;Header&gt;</span><br><span class="line">        &lt;Content :style&#x3D;&quot;&#123;padding: &#39;0 16px 16px&#39;&#125;&quot;&gt;</span><br><span class="line">          &lt;Breadcrumb :style&#x3D;&quot;&#123;margin: &#39;16px 0&#39;&#125;&quot;&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Home&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Components&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Layout&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">          &lt;&#x2F;Breadcrumb&gt;</span><br><span class="line">          &lt;Card&gt;</span><br><span class="line">            &lt;div style&#x3D;&quot;height: 600px&quot;&gt;&lt;router-view&gt;&lt;&#x2F;router-view&gt;&lt;&#x2F;div&gt;</span><br><span class="line">          &lt;&#x2F;Card&gt;</span><br><span class="line">        &lt;&#x2F;Content&gt;</span><br><span class="line">      &lt;&#x2F;Layout&gt;</span><br><span class="line">    &lt;&#x2F;Layout&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">    data () &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        isCollapsed: false</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line">      menuitemClasses: function () &#123;</span><br><span class="line">        return [</span><br><span class="line">          &#39;menu-item&#39;,</span><br><span class="line">          this.isCollapsed ? &#39;collapsed-menu&#39; : &#39;&#39;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>添加组件<br>路由访问的组件会渲染到 app.vue中的[router-view]<br>然后修改组件 /recources/js/components/bsh.vue 的内容：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;Tabs&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;macOS&quot; icon&#x3D;&quot;social-apple&quot;&gt;标签一的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;Windows&quot; icon&#x3D;&quot;social-windows&quot;&gt;标签二的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;Linux&quot; icon&#x3D;&quot;social-tux&quot;&gt;标签三的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">    &lt;&#x2F;Tabs&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>编译运行<br>常用的编译命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 本地环境编译</span><br><span class="line">npm run dev</span><br><span class="line"></span><br><span class="line"># 本地环境编译 + 监控文件修改</span><br><span class="line">npm run watch</span><br><span class="line"></span><br><span class="line"># 生产环境编译</span><br><span class="line">npm run prod</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>Laravel</tag>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux下安装node.js</title>
     <url>/2018/03/21/Linux%E4%B8%8B%E5%AE%89%E8%A3%85node-js/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1139,25 +1018,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Linux安装配置守护进程</title>
-    <url>/2018/03/09/Linux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> centos 下安装Supervisor</p>
-</blockquote>
-<p>yum install supervisor</p>
-<blockquote>
-<p> 配置Supervisor</p>
-</blockquote>
-<p>cd /etc/supervisord.d/<br>vim laravel-worker.ini<br>systemctl start supervisord</p>
-]]></content>
-      <tags>
-        <tag>linux</tag>
-        <tag>Supervisor</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux定时任务采集聚合数据api文章</title>
     <url>/2019/04/18/Linux%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E9%87%87%E9%9B%86%E8%81%9A%E5%90%88%E6%95%B0%E6%8D%AEapi%E6%96%87%E7%AB%A0/</url>
     <content><![CDATA[<p><strong>Linux定时任务采集文章</strong> </p>
@@ -1190,6 +1050,146 @@ public $queue = &#39;listeners&#39;;</code></pre>
         <tag>Laravel</tag>
         <tag>Linux</tag>
         <tag>crontab</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS 7 搭建SVN服务器</title>
+    <url>/2017/09/14/CentOS-7-%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
+    <content><![CDATA[<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CentOS 7 搭建SVN服务器</strong> </p>
+<a id="more"></a>
+
+
+<p><strong>一、安装subversion</strong></p>
+<blockquote>
+<p> yum -y install subversion</p>
+</blockquote>
+<p><strong>二、配置svn</strong></p>
+<p>a.建立仓库[repos]</p>
+<blockquote>
+<p> mkdir -p /home/svn/repos<br> svnadmin create /home/svn/repos/<br> cd /home/svn/repos/conf</p>
+</blockquote>
+<p>b.添加用户</p>
+<blockquote>
+<p>vi passwd</p>
+</blockquote>
+<p>例：添加</p>
+<blockquote>
+<p> test = 123456  </p>
+</blockquote>
+<p>c.添加用户权限</p>
+<blockquote>
+<p>vim authz</p>
+</blockquote>
+<p>添加</p>
+<blockquote>
+<p>[/]<br>test = rw</p>
+</blockquote>
+<p>d.配置文件</p>
+<blockquote>
+<p>vim svnserve.conf</p>
+</blockquote>
+<p>修改配置[启用]</p>
+<blockquote>
+<p>anon-access = none<br>auth-access = write       # 授权用户可写<br>password-db = passwd      # 使用哪个文件作为账号文件<br>authz-db = authz            # 使用哪个文件作为权限文件<br>realm = /home/svn/repos   # 认证空间名，版本库所在目录</p>
+</blockquote>
+<p>e.启动svn</p>
+<blockquote>
+<p>svnserve -d -r /home/svn   # 启动svn版本库<br>svnserve -d -r /home/svn/repos   # 启动svn版本库<br>killall svnserve   # 停止SVN命令</p>
+</blockquote>
+<p><strong>三.钩子文件</strong></p>
+<p>1.钩子配置</p>
+<blockquote>
+<p>cd ../hooks/<br>cp post-commit.tmpl post-commit<br>chmod +x post-commit<br>vim post-commit</p>
+</blockquote>
+<p>2.钩子脚本修改</p>
+<blockquote>
+<p>WEBPATH=”/home/wwwroot/test/“ # 网站目录<br>export.UTF-8<br>svn update $WEBPATH –username[test] username –password password[123456] –no-auth-cache</p>
+</blockquote>
+<p>3.拉取文件[在有副本的目录下]</p>
+<blockquote>
+<p>svn co svn://127.0.0.1/ ./<br>若拉取文件报错,请在有副本目录下拉取一下,然后把隐藏的文件夹 .svn文件放到需要拉取的目录下 就Ok了.</p>
+</blockquote>
+<p>4.拉取单个文件</p>
+<blockquote>
+<p>svn up laravel.log</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   本地拉取时  checkout地址 svn://ip/repos</p>
+</blockquote>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ！！！ </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>CentOS 7</tag>
+        <tag>svn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux安装配置守护进程</title>
+    <url>/2018/03/09/Linux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> centos 下安装Supervisor</p>
+</blockquote>
+<p>yum install supervisor</p>
+<blockquote>
+<p> 配置Supervisor</p>
+</blockquote>
+<p>cd /etc/supervisord.d/<br>vim laravel-worker.ini<br>systemctl start supervisord</p>
+]]></content>
+      <tags>
+        <tag>linux</tag>
+        <tag>Supervisor</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Laravel 和 Vue 的项目搭建</title>
+    <url>/2018/11/02/Laravel-%E5%92%8C-Vue-%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>一、Laravel创建项目</strong> </p>
+<blockquote>
+<p>composer create-project –prefer-dist laravel/laravel laravel-vue</p>
+</blockquote>
+<p><strong>二、扩展包</strong> </p>
+<blockquote>
+<p>npm install<br>npm install vue-router iview</p>
+</blockquote>
+<p><strong>三、前端结构搭建</strong><br>vue前端的文件结构在 /recources/js 目录[laravel5.7]，vue能够渲染主要是两个操作</p>
+<ul>
+<li>vue 挂载到页面的节点中</li>
+<li>vue-router 处理路由，渲染对应的组件</li>
+</ul>
+<p>code流程  </p>
+<ol>
+<li><p>创建 web 路由<br>在 /routes/web.php 中新建一个访问我们挂载着vue页面的路由。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Route::get(&#39;&#x2F;&#39;, function () &#123;</span><br><span class="line">    return view(&#39;welcome&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑welcome.blade.php<br>在 resource/views 新建 welcome.blade.php,代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0, maximum-scale&#x3D;1.0, minimum-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;csrf-token&quot; content&#x3D;&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</span><br><span class="line">  &lt;title&gt;&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;&#123;&#123; mix(&#39;css&#x2F;app.css&#39;) &#125;&#125;&quot;&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body ontouchstart&gt;</span><br><span class="line">  &lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#123;&#123; mix(&#39;js&#x2F;app.js&#39;) &#125;&#125;&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改 /recources/js/app.js</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">require(&#39;.&#x2F;bootstrap&#39;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 导入扩展包</span><br><span class="line">window.Vue &#x3D; require(&#39;vue&#39;);</span><br><span class="line"></span><br><span class="line">import App from &#39;.&#x2F;components&#x2F;app.vue&#39;</span><br><span class="line">import VueRouter from &#39;vue-router&#39;;</span><br><span class="line">import iView from &#39;iview&#39;;</span><br><span class="line">import &#39;iview&#x2F;dist&#x2F;styles&#x2F;iview.css&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 导入vue</span><br><span class="line">Vue.use(iView);</span><br><span class="line">Vue.use(VueRouter);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 路由配置</span><br><span class="line">const RouterConfig &#x3D; &#123;</span><br><span class="line">    routes: [</span><br><span class="line">        &#x2F;&#x2F; ExampleComponent laravel默认的示例组件</span><br><span class="line">        &#123; path: &#39;&#x2F;&#39;, component: require(&#39;.&#x2F;components&#x2F;ExampleComponent.vue&#39;) &#125;,</span><br><span class="line">        &#123; path: &#39;&#x2F;bsh&#39;, component: require(&#39;.&#x2F;components&#x2F;bsh.vue&#39;) &#125;,</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br><span class="line">const router &#x3D; new VueRouter(RouterConfig);</span><br><span class="line"></span><br><span class="line">const app &#x3D; new Vue(&#123;</span><br><span class="line">    el: &#39;#app&#39;,</span><br><span class="line">    router: router,</span><br><span class="line">    render: h &#x3D;&gt; h(App)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>建立 Layout<br>在 /recources/js/components/ 新建 app.vue, 将 iview 的 layout 代码搬过来：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;style scoped&gt;</span><br><span class="line">  .layout-con&#123;</span><br><span class="line">    height: 100%;</span><br><span class="line">    width: 100%;</span><br><span class="line">  &#125;</span><br><span class="line">  .menu-item span&#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    width: 69px;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    vertical-align: bottom;</span><br><span class="line">    transition: width .2s ease .2s;</span><br><span class="line">  &#125;</span><br><span class="line">  .menu-item i&#123;</span><br><span class="line">    transform: translateX(0px);</span><br><span class="line">    transition: font-size .2s ease, transform .2s ease;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">    font-size: 16px;</span><br><span class="line">  &#125;</span><br><span class="line">  .collapsed-menu span&#123;</span><br><span class="line">    width: 0px;</span><br><span class="line">    transition: width .2s ease;</span><br><span class="line">  &#125;</span><br><span class="line">  .collapsed-menu i&#123;</span><br><span class="line">    transform: translateX(5px);</span><br><span class="line">    transition: font-size .2s ease .2s, transform .2s ease .2s;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">    font-size: 22px;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;layout&quot;&gt;</span><br><span class="line">    &lt;Layout :style&#x3D;&quot;&#123;minHeight: &#39;100vh&#39;&#125;&quot;&gt;</span><br><span class="line">      &lt;Sider collapsible :collapsed-width&#x3D;&quot;78&quot; v-model&#x3D;&quot;isCollapsed&quot;&gt;</span><br><span class="line">        &lt;Menu active-name&#x3D;&quot;1-2&quot; theme&#x3D;&quot;dark&quot; width&#x3D;&quot;auto&quot; :class&#x3D;&quot;menuitemClasses&quot;&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-1&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;ios-navigate&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 1&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-2&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;search&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 2&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-3&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;settings&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 3&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">        &lt;&#x2F;Menu&gt;</span><br><span class="line">      &lt;&#x2F;Sider&gt;</span><br><span class="line">      &lt;Layout&gt;</span><br><span class="line">        &lt;Header :style&#x3D;&quot;&#123;background: &#39;#fff&#39;, boxShadow: &#39;0 2px 3px 2px rgba(0,0,0,.1)&#39;&#125;&quot;&gt;&lt;&#x2F;Header&gt;</span><br><span class="line">        &lt;Content :style&#x3D;&quot;&#123;padding: &#39;0 16px 16px&#39;&#125;&quot;&gt;</span><br><span class="line">          &lt;Breadcrumb :style&#x3D;&quot;&#123;margin: &#39;16px 0&#39;&#125;&quot;&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Home&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Components&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Layout&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">          &lt;&#x2F;Breadcrumb&gt;</span><br><span class="line">          &lt;Card&gt;</span><br><span class="line">            &lt;div style&#x3D;&quot;height: 600px&quot;&gt;&lt;router-view&gt;&lt;&#x2F;router-view&gt;&lt;&#x2F;div&gt;</span><br><span class="line">          &lt;&#x2F;Card&gt;</span><br><span class="line">        &lt;&#x2F;Content&gt;</span><br><span class="line">      &lt;&#x2F;Layout&gt;</span><br><span class="line">    &lt;&#x2F;Layout&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">    data () &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        isCollapsed: false</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line">      menuitemClasses: function () &#123;</span><br><span class="line">        return [</span><br><span class="line">          &#39;menu-item&#39;,</span><br><span class="line">          this.isCollapsed ? &#39;collapsed-menu&#39; : &#39;&#39;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>添加组件<br>路由访问的组件会渲染到 app.vue中的[router-view]<br>然后修改组件 /recources/js/components/bsh.vue 的内容：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;Tabs&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;macOS&quot; icon&#x3D;&quot;social-apple&quot;&gt;标签一的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;Windows&quot; icon&#x3D;&quot;social-windows&quot;&gt;标签二的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;Linux&quot; icon&#x3D;&quot;social-tux&quot;&gt;标签三的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">    &lt;&#x2F;Tabs&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>编译运行<br>常用的编译命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 本地环境编译</span><br><span class="line">npm run dev</span><br><span class="line"></span><br><span class="line"># 本地环境编译 + 监控文件修改</span><br><span class="line">npm run watch</span><br><span class="line"></span><br><span class="line"># 生产环境编译</span><br><span class="line">npm run prod</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>Laravel</tag>
+        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -1410,50 +1410,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
 ]]></content>
       <tags>
         <tag>nginx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PHP Socket 基础教程</title>
-    <url>/2018/03/12/PHP-Socket-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>案例：socket通信演示</strong></p>
-<blockquote>
-<p> 服务器端：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">&#x2F;&#x2F;确保在连接客户端时不会超时</span><br><span class="line">set_time_limit(0);</span><br><span class="line"></span><br><span class="line">$ip &#x3D; &#39;127.0.0.1&#39;;</span><br><span class="line">$port &#x3D; 1935;</span><br><span class="line"></span><br><span class="line">&#x2F;*</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket通信整个过程</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket_create</span><br><span class="line"> *    @socket_bind</span><br><span class="line"> *    @socket_listen</span><br><span class="line"> *    @socket_accept</span><br><span class="line"> *    @socket_read</span><br><span class="line"> *    @socket_write</span><br><span class="line"> *    @socket_close</span><br><span class="line"> +--------------------------------</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;*----------------    以下操作都是手册上的    -------------------*&#x2F;</span><br><span class="line">if(($sock &#x3D; socket_create(AF_INET,SOCK_STREAM,SOL_TCP)) &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_create() 失败的原因是:&quot;.socket_strerror($sock).&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(($ret &#x3D; socket_bind($sock,$ip,$port)) &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_bind() 失败的原因是:&quot;.socket_strerror($ret).&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(($ret &#x3D; socket_listen($sock,4)) &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_listen() 失败的原因是:&quot;.socket_strerror($ret).&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$count &#x3D; 0;</span><br><span class="line"></span><br><span class="line">do &#123;</span><br><span class="line">    if (($msgsock &#x3D; socket_accept($sock)) &lt; 0) &#123;</span><br><span class="line">        echo &quot;socket_accept() failed: reason: &quot; . socket_strerror($msgsock) . &quot;\n&quot;;</span><br><span class="line">        break;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        </span><br><span class="line">        &#x2F;&#x2F;发到客户端</span><br><span class="line">        $msg &#x3D;&quot;测试成功！\n&quot;;</span><br><span class="line">        socket_write($msgsock, $msg, strlen($msg));</span><br><span class="line">        </span><br><span class="line">        echo &quot;测试成功了啊\n&quot;;</span><br><span class="line">        $buf &#x3D; socket_read($msgsock,8192);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        $talkback &#x3D; &quot;收到的信息:$buf\n&quot;;</span><br><span class="line">        echo $talkback;</span><br><span class="line">        </span><br><span class="line">        if(++$count &gt;&#x3D; 5)&#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;;</span><br><span class="line">        </span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;echo $buf;</span><br><span class="line">    socket_close($msgsock);</span><br><span class="line"></span><br><span class="line">&#125; while (true);</span><br><span class="line"></span><br><span class="line">socket_close($sock);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-
-
-<blockquote>
-<p> 客户端：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(E_ALL);</span><br><span class="line">set_time_limit(0);</span><br><span class="line">echo &quot;&lt;h2&gt;TCP&#x2F;IP Connection&lt;&#x2F;h2&gt;\n&quot;;</span><br><span class="line"></span><br><span class="line">$port &#x3D; 1935;</span><br><span class="line">$ip &#x3D; &quot;127.0.0.1&quot;;</span><br><span class="line"></span><br><span class="line">&#x2F;*</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket连接整个过程</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket_create</span><br><span class="line"> *    @socket_connect</span><br><span class="line"> *    @socket_write</span><br><span class="line"> *    @socket_read</span><br><span class="line"> *    @socket_close</span><br><span class="line"> +--------------------------------</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">$socket &#x3D; socket_create(AF_INET, SOCK_STREAM, SOL_TCP);</span><br><span class="line">if ($socket &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_create() failed: reason: &quot; . socket_strerror($socket) . &quot;\n&quot;;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    echo &quot;OK.\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo &quot;试图连接 &#39;$ip&#39; 端口 &#39;$port&#39;...\n&quot;;</span><br><span class="line">$result &#x3D; socket_connect($socket, $ip, $port);</span><br><span class="line">if ($result &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_connect() failed.\nReason: ($result) &quot; . socket_strerror($result) . &quot;\n&quot;;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    echo &quot;连接OK\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$in &#x3D; &quot;Ho\r\n&quot;;</span><br><span class="line">$in .&#x3D; &quot;first blood\r\n&quot;;</span><br><span class="line">$out &#x3D; &#39;&#39;;</span><br><span class="line"></span><br><span class="line">if(!socket_write($socket, $in, strlen($in))) &#123;</span><br><span class="line">    echo &quot;socket_write() failed: reason: &quot; . socket_strerror($socket) . &quot;\n&quot;;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    echo &quot;发送到服务器信息成功！\n&quot;;</span><br><span class="line">    echo &quot;发送的内容为:&lt;font color&#x3D;&#39;red&#39;&gt;$in&lt;&#x2F;font&gt; &lt;br&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">while($out &#x3D; socket_read($socket, 8192)) &#123;</span><br><span class="line">    echo &quot;接收服务器回传信息成功！\n&quot;;</span><br><span class="line">    echo &quot;接受的内容为:&quot;,$out;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">echo &quot;关闭SOCKET...\n&quot;;</span><br><span class="line">socket_close($socket);</span><br><span class="line">echo &quot;关闭OK\n&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-
-<p><strong>案例：代码详解</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 设置一些基本的变量</span><br><span class="line">$host &#x3D; &quot;192.168.1.99&quot;;</span><br><span class="line">$port &#x3D; 1234;</span><br><span class="line">&#x2F;&#x2F; 设置超时时间</span><br><span class="line">set_time_limit(0);</span><br><span class="line">&#x2F;&#x2F; 创建一个Socket</span><br><span class="line">$socket &#x3D; socket_create(AF_INET, SOCK_STREAM, 0) or die(&quot;Could not createsocket\n&quot;);</span><br><span class="line">&#x2F;&#x2F;绑定Socket到端口</span><br><span class="line">$result &#x3D; socket_bind($socket, $host, $port) or die(&quot;Could not bind tosocket\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 开始监听链接</span><br><span class="line">$result &#x3D; socket_listen($socket, 3) or die(&quot;Could not set up socketlistener\n&quot;);</span><br><span class="line">&#x2F;&#x2F; accept incoming connections</span><br><span class="line">&#x2F;&#x2F; 另一个Socket来处理通信</span><br><span class="line">$spawn &#x3D; socket_accept($socket) or die(&quot;Could not accept incomingconnection\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 获得客户端的输入</span><br><span class="line">$input &#x3D; socket_read($spawn, 1024) or die(&quot;Could not read input\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 清空输入字符串</span><br><span class="line">$input &#x3D; trim($input);</span><br><span class="line">&#x2F;&#x2F;处理客户端输入并返回结果</span><br><span class="line">$output &#x3D; strrev($input) . &quot;\n&quot;;</span><br><span class="line">socket_write($spawn, $output, strlen ($output)) or die(&quot;Could not write</span><br><span class="line">output\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 关闭sockets</span><br><span class="line">socket_close($spawn);</span><br><span class="line">socket_close($socket);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>1.第一步是建立两个变量来保存Socket运行的服务器的IP地址和端口.你可以设置为你自己的服务器和端口(这个端口可以是1到65535之间的数字),前提是这个端口未被使用.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 设置两个变量</span><br><span class="line">$host  &#x3D;  &quot;192.168.1.99&quot; ;</span><br><span class="line">$port  &#x3D;  1234 ; </span><br></pre></td></tr></table></figure>
-<p>2.在服务器端可以使用set_time_out()函数来确保PHP在等待客户端连接时不会超时</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 超时时间</span><br><span class="line">set_time_limit ( 0 ); 4 ; </span><br></pre></td></tr></table></figure>
-<p>3.在前面的基础上,现在该使用socket_creat()函数创建一个Socket了—这个函数返回一个Socket句柄,这个句柄将用在以后所有的函数中.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 创建Socket</span><br><span class="line">$socket  &#x3D;  socket_create ( AF_INET ,  SOCK_STREAM ,  0 ) or die( &quot;Could not create</span><br><span class="line">socket\n&quot; ); </span><br><span class="line">&#x2F;&#x2F;第一个参数”AF_INET”用来指定域名;</span><br><span class="line">&#x2F;&#x2F;第二个参数”SOCK_STREM”告诉函数将创建一个什么类型的Socket(在这个例子中是TCP类型)</span><br><span class="line">因此,如果你想创建一个UDP Socket的话,你可以使用如下的代码:</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 创建 socket</span><br><span class="line">$socket  &#x3D;  socket_create ( AF_INET ,  SOCK_DGRAM ,  0 ) or die( &quot;Could not create</span><br><span class="line">socket\n&quot; ); </span><br></pre></td></tr></table></figure>
-<p>4.一旦创建了一个Socket句柄,下一步就是指定或者绑定它到指定的地址和端口.这可以通过socket_bind()函数来完成.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 绑定 socket to 指定地址和端口</span><br><span class="line">$result  &#x3D;  socket_bind ( $socket ,  $host ,  $port ) or die( &quot;Could not bind to</span><br><span class="line">socket\n&quot; ); </span><br></pre></td></tr></table></figure>
-<p>5.当Socket被创建好并绑定到一个端口后,就可以开始监听外部的连接了.PHP允许你由socket_listen()函数来开始一个监听,同时你可以指定一个数字(在这个例子中就是第二个参数:3)</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 开始监听连接</span><br><span class="line">$result  &#x3D;  socket_listen ( $socket ,  3 ) or die( &quot;Could not set up socket</span><br><span class="line">listener\n&quot; ); </span><br></pre></td></tr></table></figure>
-<p>6.到现在,你的服务器除了等待来自客户端的连接请求外基本上什么也没有做.一旦一个客户端的连接被收到,socket_accept()函数便开始起作用了,它接收连接请求并调用另一个子Socket来处理客户端–服务器间的信息.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;接受请求链接</span><br><span class="line">&#x2F;&#x2F; 调用子socket 处理信息</span><br><span class="line">$spawn  &#x3D;  socket_accept ( $socket ) or die( &quot;Could not accept incoming</span><br><span class="line">connection\n&quot; );</span><br><span class="line">&#x2F;&#x2F;这个子socket现在就可以被随后的客户端–服务器通信所用了. </span><br></pre></td></tr></table></figure>
-<p>7.当一个连接被建立后,服务器就会等待客户端发送一些输入信息,这写信息可以由socket_read()函数来获得,并把它赋值给PHP的$input变量.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 读取客户端输入</span><br><span class="line">$input  &#x3D;  socket_read ( $spawn ,  1024 ) or die( &quot;Could not read input\n&quot; ); </span><br><span class="line">&#x2F;&#x2F;socker_read的第而个参数用以指定读入的字节数,你可以通过它来限制从客户端获取数据的大小.</span><br><span class="line">&#x2F;&#x2F;注意:socket_read函数会一直读取壳户端数据,直到遇见\n,\t或者\0字符.PHP脚本把这写字符看做是输入的结束符.</span><br></pre></td></tr></table></figure>
-<p>8.现在服务器必须处理这些由客户端发来是数据(在这个例子中的处理仅仅包含数据的输入和回传到客户端).这部分可以由socket_write()函数来完成(使得由通信socket发回一个数据流到客户端成为可能)</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 处理客户端输入并返回数据</span><br><span class="line">$output  &#x3D;  strrev ( $input ) .  &quot;\n&quot; ;</span><br><span class="line">socket_write ( $spawn ,  $output ,  strlen  ( $output )) or die( &quot;Could not write</span><br><span class="line">output\n&quot; ); </span><br></pre></td></tr></table></figure>
-<p>9.一旦输出被返回到客户端,父/子socket都应通过socket_close()函数来终止</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 关闭 sockets</span><br><span class="line">socket_close ( $spawn );</span><br><span class="line">socket_close ( $socket ); </span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>php</tag>
-        <tag>socket</tag>
       </tags>
   </entry>
   <entry>
@@ -1687,6 +1643,50 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>PHP Socket 基础教程</title>
+    <url>/2018/03/12/PHP-Socket-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>案例：socket通信演示</strong></p>
+<blockquote>
+<p> 服务器端：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">&#x2F;&#x2F;确保在连接客户端时不会超时</span><br><span class="line">set_time_limit(0);</span><br><span class="line"></span><br><span class="line">$ip &#x3D; &#39;127.0.0.1&#39;;</span><br><span class="line">$port &#x3D; 1935;</span><br><span class="line"></span><br><span class="line">&#x2F;*</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket通信整个过程</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket_create</span><br><span class="line"> *    @socket_bind</span><br><span class="line"> *    @socket_listen</span><br><span class="line"> *    @socket_accept</span><br><span class="line"> *    @socket_read</span><br><span class="line"> *    @socket_write</span><br><span class="line"> *    @socket_close</span><br><span class="line"> +--------------------------------</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;*----------------    以下操作都是手册上的    -------------------*&#x2F;</span><br><span class="line">if(($sock &#x3D; socket_create(AF_INET,SOCK_STREAM,SOL_TCP)) &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_create() 失败的原因是:&quot;.socket_strerror($sock).&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(($ret &#x3D; socket_bind($sock,$ip,$port)) &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_bind() 失败的原因是:&quot;.socket_strerror($ret).&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(($ret &#x3D; socket_listen($sock,4)) &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_listen() 失败的原因是:&quot;.socket_strerror($ret).&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$count &#x3D; 0;</span><br><span class="line"></span><br><span class="line">do &#123;</span><br><span class="line">    if (($msgsock &#x3D; socket_accept($sock)) &lt; 0) &#123;</span><br><span class="line">        echo &quot;socket_accept() failed: reason: &quot; . socket_strerror($msgsock) . &quot;\n&quot;;</span><br><span class="line">        break;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        </span><br><span class="line">        &#x2F;&#x2F;发到客户端</span><br><span class="line">        $msg &#x3D;&quot;测试成功！\n&quot;;</span><br><span class="line">        socket_write($msgsock, $msg, strlen($msg));</span><br><span class="line">        </span><br><span class="line">        echo &quot;测试成功了啊\n&quot;;</span><br><span class="line">        $buf &#x3D; socket_read($msgsock,8192);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        $talkback &#x3D; &quot;收到的信息:$buf\n&quot;;</span><br><span class="line">        echo $talkback;</span><br><span class="line">        </span><br><span class="line">        if(++$count &gt;&#x3D; 5)&#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;;</span><br><span class="line">        </span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;echo $buf;</span><br><span class="line">    socket_close($msgsock);</span><br><span class="line"></span><br><span class="line">&#125; while (true);</span><br><span class="line"></span><br><span class="line">socket_close($sock);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p> 客户端：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(E_ALL);</span><br><span class="line">set_time_limit(0);</span><br><span class="line">echo &quot;&lt;h2&gt;TCP&#x2F;IP Connection&lt;&#x2F;h2&gt;\n&quot;;</span><br><span class="line"></span><br><span class="line">$port &#x3D; 1935;</span><br><span class="line">$ip &#x3D; &quot;127.0.0.1&quot;;</span><br><span class="line"></span><br><span class="line">&#x2F;*</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket连接整个过程</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket_create</span><br><span class="line"> *    @socket_connect</span><br><span class="line"> *    @socket_write</span><br><span class="line"> *    @socket_read</span><br><span class="line"> *    @socket_close</span><br><span class="line"> +--------------------------------</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">$socket &#x3D; socket_create(AF_INET, SOCK_STREAM, SOL_TCP);</span><br><span class="line">if ($socket &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_create() failed: reason: &quot; . socket_strerror($socket) . &quot;\n&quot;;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    echo &quot;OK.\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo &quot;试图连接 &#39;$ip&#39; 端口 &#39;$port&#39;...\n&quot;;</span><br><span class="line">$result &#x3D; socket_connect($socket, $ip, $port);</span><br><span class="line">if ($result &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_connect() failed.\nReason: ($result) &quot; . socket_strerror($result) . &quot;\n&quot;;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    echo &quot;连接OK\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$in &#x3D; &quot;Ho\r\n&quot;;</span><br><span class="line">$in .&#x3D; &quot;first blood\r\n&quot;;</span><br><span class="line">$out &#x3D; &#39;&#39;;</span><br><span class="line"></span><br><span class="line">if(!socket_write($socket, $in, strlen($in))) &#123;</span><br><span class="line">    echo &quot;socket_write() failed: reason: &quot; . socket_strerror($socket) . &quot;\n&quot;;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    echo &quot;发送到服务器信息成功！\n&quot;;</span><br><span class="line">    echo &quot;发送的内容为:&lt;font color&#x3D;&#39;red&#39;&gt;$in&lt;&#x2F;font&gt; &lt;br&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">while($out &#x3D; socket_read($socket, 8192)) &#123;</span><br><span class="line">    echo &quot;接收服务器回传信息成功！\n&quot;;</span><br><span class="line">    echo &quot;接受的内容为:&quot;,$out;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">echo &quot;关闭SOCKET...\n&quot;;</span><br><span class="line">socket_close($socket);</span><br><span class="line">echo &quot;关闭OK\n&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>案例：代码详解</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 设置一些基本的变量</span><br><span class="line">$host &#x3D; &quot;192.168.1.99&quot;;</span><br><span class="line">$port &#x3D; 1234;</span><br><span class="line">&#x2F;&#x2F; 设置超时时间</span><br><span class="line">set_time_limit(0);</span><br><span class="line">&#x2F;&#x2F; 创建一个Socket</span><br><span class="line">$socket &#x3D; socket_create(AF_INET, SOCK_STREAM, 0) or die(&quot;Could not createsocket\n&quot;);</span><br><span class="line">&#x2F;&#x2F;绑定Socket到端口</span><br><span class="line">$result &#x3D; socket_bind($socket, $host, $port) or die(&quot;Could not bind tosocket\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 开始监听链接</span><br><span class="line">$result &#x3D; socket_listen($socket, 3) or die(&quot;Could not set up socketlistener\n&quot;);</span><br><span class="line">&#x2F;&#x2F; accept incoming connections</span><br><span class="line">&#x2F;&#x2F; 另一个Socket来处理通信</span><br><span class="line">$spawn &#x3D; socket_accept($socket) or die(&quot;Could not accept incomingconnection\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 获得客户端的输入</span><br><span class="line">$input &#x3D; socket_read($spawn, 1024) or die(&quot;Could not read input\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 清空输入字符串</span><br><span class="line">$input &#x3D; trim($input);</span><br><span class="line">&#x2F;&#x2F;处理客户端输入并返回结果</span><br><span class="line">$output &#x3D; strrev($input) . &quot;\n&quot;;</span><br><span class="line">socket_write($spawn, $output, strlen ($output)) or die(&quot;Could not write</span><br><span class="line">output\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 关闭sockets</span><br><span class="line">socket_close($spawn);</span><br><span class="line">socket_close($socket);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>1.第一步是建立两个变量来保存Socket运行的服务器的IP地址和端口.你可以设置为你自己的服务器和端口(这个端口可以是1到65535之间的数字),前提是这个端口未被使用.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 设置两个变量</span><br><span class="line">$host  &#x3D;  &quot;192.168.1.99&quot; ;</span><br><span class="line">$port  &#x3D;  1234 ; </span><br></pre></td></tr></table></figure>
+<p>2.在服务器端可以使用set_time_out()函数来确保PHP在等待客户端连接时不会超时</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 超时时间</span><br><span class="line">set_time_limit ( 0 ); 4 ; </span><br></pre></td></tr></table></figure>
+<p>3.在前面的基础上,现在该使用socket_creat()函数创建一个Socket了—这个函数返回一个Socket句柄,这个句柄将用在以后所有的函数中.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 创建Socket</span><br><span class="line">$socket  &#x3D;  socket_create ( AF_INET ,  SOCK_STREAM ,  0 ) or die( &quot;Could not create</span><br><span class="line">socket\n&quot; ); </span><br><span class="line">&#x2F;&#x2F;第一个参数”AF_INET”用来指定域名;</span><br><span class="line">&#x2F;&#x2F;第二个参数”SOCK_STREM”告诉函数将创建一个什么类型的Socket(在这个例子中是TCP类型)</span><br><span class="line">因此,如果你想创建一个UDP Socket的话,你可以使用如下的代码:</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 创建 socket</span><br><span class="line">$socket  &#x3D;  socket_create ( AF_INET ,  SOCK_DGRAM ,  0 ) or die( &quot;Could not create</span><br><span class="line">socket\n&quot; ); </span><br></pre></td></tr></table></figure>
+<p>4.一旦创建了一个Socket句柄,下一步就是指定或者绑定它到指定的地址和端口.这可以通过socket_bind()函数来完成.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 绑定 socket to 指定地址和端口</span><br><span class="line">$result  &#x3D;  socket_bind ( $socket ,  $host ,  $port ) or die( &quot;Could not bind to</span><br><span class="line">socket\n&quot; ); </span><br></pre></td></tr></table></figure>
+<p>5.当Socket被创建好并绑定到一个端口后,就可以开始监听外部的连接了.PHP允许你由socket_listen()函数来开始一个监听,同时你可以指定一个数字(在这个例子中就是第二个参数:3)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 开始监听连接</span><br><span class="line">$result  &#x3D;  socket_listen ( $socket ,  3 ) or die( &quot;Could not set up socket</span><br><span class="line">listener\n&quot; ); </span><br></pre></td></tr></table></figure>
+<p>6.到现在,你的服务器除了等待来自客户端的连接请求外基本上什么也没有做.一旦一个客户端的连接被收到,socket_accept()函数便开始起作用了,它接收连接请求并调用另一个子Socket来处理客户端–服务器间的信息.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;接受请求链接</span><br><span class="line">&#x2F;&#x2F; 调用子socket 处理信息</span><br><span class="line">$spawn  &#x3D;  socket_accept ( $socket ) or die( &quot;Could not accept incoming</span><br><span class="line">connection\n&quot; );</span><br><span class="line">&#x2F;&#x2F;这个子socket现在就可以被随后的客户端–服务器通信所用了. </span><br></pre></td></tr></table></figure>
+<p>7.当一个连接被建立后,服务器就会等待客户端发送一些输入信息,这写信息可以由socket_read()函数来获得,并把它赋值给PHP的$input变量.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 读取客户端输入</span><br><span class="line">$input  &#x3D;  socket_read ( $spawn ,  1024 ) or die( &quot;Could not read input\n&quot; ); </span><br><span class="line">&#x2F;&#x2F;socker_read的第而个参数用以指定读入的字节数,你可以通过它来限制从客户端获取数据的大小.</span><br><span class="line">&#x2F;&#x2F;注意:socket_read函数会一直读取壳户端数据,直到遇见\n,\t或者\0字符.PHP脚本把这写字符看做是输入的结束符.</span><br></pre></td></tr></table></figure>
+<p>8.现在服务器必须处理这些由客户端发来是数据(在这个例子中的处理仅仅包含数据的输入和回传到客户端).这部分可以由socket_write()函数来完成(使得由通信socket发回一个数据流到客户端成为可能)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 处理客户端输入并返回数据</span><br><span class="line">$output  &#x3D;  strrev ( $input ) .  &quot;\n&quot; ;</span><br><span class="line">socket_write ( $spawn ,  $output ,  strlen  ( $output )) or die( &quot;Could not write</span><br><span class="line">output\n&quot; ); </span><br></pre></td></tr></table></figure>
+<p>9.一旦输出被返回到客户端,父/子socket都应通过socket_close()函数来终止</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 关闭 sockets</span><br><span class="line">socket_close ( $spawn );</span><br><span class="line">socket_close ( $socket ); </span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>php</tag>
+        <tag>socket</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SELinux 状态</title>
     <url>/2017/08/11/SELinux-%E7%8A%B6%E6%80%81/</url>
     <content><![CDATA[<p>##<strong>查看SELinux状态：</strong></p>
@@ -1700,167 +1700,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
 ]]></content>
       <tags>
         <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Swift学习笔记NO.2</title>
-    <url>/2017/09/25/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0NO-2/</url>
-    <content><![CDATA[<p><strong>Swift学习笔记NO.2</strong> </p>
-<a id="more"></a>
-
-<p><strong>Swift 基本语法</strong></p>
-<blockquote>
-<p> 在上一章节中我们已经讲到如何创建 Swift 语言的 “Hello, World!” 程序。现在我们来复习下。<br>如果创建的是 OS X playground 需要引入 Cocoa ：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">var myString &#x3D; &quot;Hello, World!&quot;</span><br><span class="line">print(myString)</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p> 如果我们想创建 iOS playground 则需要引入 UIKit :</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import UIKit</span><br><span class="line">var myString &#x3D; &quot;Hello, World!&quot;</span><br><span class="line">print(myString)</span><br></pre></td></tr></table></figure>
-
-<p><strong>Swift 数据类型</strong></p>
-<blockquote>
-<p> 实例：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; varA 会被推测为 Int 类型 </span><br><span class="line">var varA &#x3D; 42</span><br><span class="line">print(varA)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; varB 会被推测为 Double 类型  </span><br><span class="line">var varB &#x3D; 3.14159</span><br><span class="line">print(varB)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; varC 也会被推测为 Double 类型   </span><br><span class="line">var varC &#x3D; 3 + 0.14159</span><br><span class="line">print(varC)</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p> 执行以上代码，输出结果为：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">42</span><br><span class="line">3.14159</span><br><span class="line">3.14159</span><br></pre></td></tr></table></figure>
-
-<p><strong>Swift 变量</strong></p>
-<blockquote>
-<p> 变量声明意思是告诉编译器在内存中的哪个位置上为变量创建多大的存储空间。<br>在使用变量前，你需要使用 var 关键字声明它，如下所示：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">var varA &#x3D; 42</span><br><span class="line">print(varA)</span><br><span class="line"></span><br><span class="line">var varB:Float</span><br><span class="line"></span><br><span class="line">varB &#x3D; 3.14159</span><br><span class="line">print(varB)</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p> 执行以上代码，输出结果为：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">42</span><br><span class="line">3.14159</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p> 变量输出</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">var name &#x3D; &quot;菜鸟教程&quot;</span><br><span class="line">var site &#x3D; &quot;http:&#x2F;&#x2F;www.runoob.com&quot;</span><br><span class="line"></span><br><span class="line">print(&quot;\(name)的官网地址为：\(site)&quot;)</span><br></pre></td></tr></table></figure>
-
-<p><strong>Swift 可选(Optionals)类型</strong></p>
-<blockquote>
-<p> Swift 的可选（Optional）类型，用于处理值缺失的情况。可选表示”那儿有一个值，并且它等于 x “或者”那儿没有值”。<br>Swfit语言定义后缀？作为命名类型Optional的简写，换句话说，以下两种声明是相等的：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var optionalInteger: Int?</span><br><span class="line">var optionalInteger: Optional&lt;Int&gt;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p> 执行以上代码，输出结果为：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">42</span><br><span class="line">3.14159</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p> 实例输出</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">var myString:String? &#x3D; nil</span><br><span class="line"></span><br><span class="line">if myString !&#x3D; nil &#123;</span><br><span class="line">    print(myString)</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    print(&quot;字符串为 nil&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>Swift 常量</strong></p>
-<blockquote>
-<p> 常量一旦设定，在程序运行时就无法改变其值。<br>常量可以是任何的数据类型如：整型常量，浮点型常量，字符常量或字符串常量。同样也有枚举类型的常量：<br>常量类似于变量，区别在于常量的值一旦设定就不能改变，而变量的值可以随意更改。<br>常量使用关键字 let 来声明，语法如下：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">let constA &#x3D; 42</span><br><span class="line">print(constA)</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p> 执行以上代码，输出结果为：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">42</span><br></pre></td></tr></table></figure>
-
-<p><strong>Swift 运算符</strong></p>
-<blockquote>
-<p> 运算符是一个符号，用于告诉编译器执行一个数学或逻辑运算。<br>Swift 提供了以下几种运算符：算术运算符、比较运算符、逻辑运算符、位运算符、赋值运算符、区间运算符、其他运算符</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">var A &#x3D; 10</span><br><span class="line">var B &#x3D; 20</span><br><span class="line"></span><br><span class="line">print(&quot;A + B 结果为：\(A + B)&quot;)</span><br><span class="line">print(&quot;A - B 结果为：\(A - B)&quot;)</span><br><span class="line">print(&quot;A * B 结果为：\(A * B)&quot;)</span><br><span class="line">print(&quot;B &#x2F; A 结果为：\(B &#x2F; A)&quot;)</span><br><span class="line">A +&#x3D; 1   &#x2F;&#x2F; 类似 A++</span><br><span class="line">print(&quot;A +&#x3D; 1 后 A 的值为 \(A)&quot;)</span><br><span class="line">B -&#x3D; 1   &#x2F;&#x2F; 类似 B--</span><br><span class="line">print(&quot;B -&#x3D; 1 后 B 的值为 \(B)&quot;)</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p> 执行以上代码，输出结果为：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">A + B 结果为：30</span><br><span class="line">A - B 结果为：-10</span><br><span class="line">A * B 结果为：200</span><br><span class="line">B &#x2F; A 结果为：2</span><br><span class="line">A +&#x3D; 1 后 A 的值为 11</span><br><span class="line">B -&#x3D; 1 后 B 的值为 19</span><br></pre></td></tr></table></figure>
-
-<p><strong>Swift 条件语句</strong></p>
-<blockquote>
-<p> 运算符是一个符号，用于告诉编译器执行一个数学或逻辑运算。<br>Swift 提供了以下几种运算符：算术运算符、比较运算符、逻辑运算符、位运算符、赋值运算符、区间运算符、其他运算符</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if boolean_expression &#123;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>Swift 循环</strong></p>
-<blockquote>
-<p> Swift for-in 循环用于遍历一个集合里面的所有元素，例如由数字表示的区间、数组中的元素、字符串中的字符。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for index in var &#123;</span><br><span class="line">   循环体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>Swift 字符串</strong></p>
-<blockquote>
-<p> 可以通过使用字符串字面量或 String 类的实例来创建一个字符串：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 使用字符串字面量</span><br><span class="line">var stringA &#x3D; &quot;Hello, World!&quot;</span><br><span class="line">print( stringA )</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; String 实例化</span><br><span class="line">var stringB &#x3D; String(&quot;Hello, World!&quot;)</span><br><span class="line">print( stringB )</span><br></pre></td></tr></table></figure>
-
-<p><strong>Swift 字符(Character)</strong></p>
-<blockquote>
-<p> Swift 的字符是一个单一的字符字符串字面量，数据类型为 Character</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">let char1: Character &#x3D; &quot;A&quot;</span><br><span class="line">let char2: Character &#x3D; &quot;B&quot;</span><br><span class="line"></span><br><span class="line">print(&quot;char1 的值为 \(char1)&quot;)</span><br><span class="line">print(&quot;char2 的值为 \(char2)&quot;)</span><br></pre></td></tr></table></figure>
-
-<p><strong>Swift 数组</strong></p>
-<blockquote>
-<p> 我们可以使用构造语法来创建一个由特定数据类型构成的空数组：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line">var someInts &#x3D; [Int](repeating: 10, count: 3)</span><br><span class="line">var someVar &#x3D; someInts[0]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">var someInts &#x3D; [Int]()</span><br><span class="line"></span><br><span class="line">someInts.append(20)</span><br><span class="line">someInts.append(30)</span><br><span class="line">someInts +&#x3D; [40]</span><br><span class="line"></span><br><span class="line">var someVar &#x3D; someInts[0]</span><br><span class="line"></span><br><span class="line">print( &quot;第一个元素的值 \(someVar)&quot; )</span><br><span class="line">print( &quot;第二个元素的值 \(someInts[1])&quot; )</span><br><span class="line">print( &quot;第三个元素的值 \(someInts[2])&quot; )</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><strong>Swift 字典</strong></p>
-<blockquote>
-<p> 我们可以使用构造语法来创建一个由特定数据类型构成的空数组：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">var someDict:[Int:String] &#x3D; [1:&quot;One&quot;, 2:&quot;Two&quot;, 3:&quot;Three&quot;]</span><br><span class="line"></span><br><span class="line">var someVar &#x3D; someDict[1]</span><br><span class="line"></span><br><span class="line">print( &quot;key &#x3D; 1 的值为 \(someVar)&quot; )</span><br><span class="line">print( &quot;key &#x3D; 2 的值为 \(someDict[2])&quot; )</span><br><span class="line">print( &quot;key &#x3D; 3 的值为 \(someDict[3])&quot; )</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><strong>Swift 函数</strong></p>
-<blockquote>
-<p> Swift 定义函数使用关键字 func。：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">func runoob(site: String) -&gt; String &#123;</span><br><span class="line">    return (site)</span><br><span class="line">&#125;</span><br><span class="line">print(runoob(site: &quot;www.runoob.com&quot;))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><strong>Swift 闭包</strong></p>
-<blockquote>
-<p> 闭包(Closures)是自包含的功能代码块，可以在代码中使用或者用来作为参数传值。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">let divide &#x3D; &#123;(val1: Int, val2: Int) -&gt; Int in </span><br><span class="line">   return val1 &#x2F; val2 </span><br><span class="line">&#125;</span><br><span class="line">let result &#x3D; divide(200, 20)</span><br><span class="line">print (result)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><strong>Swift 枚举</strong></p>
-<blockquote>
-<p> 枚举简单的说也是一种数据类型，只不过是这种数据类型只包含自定义的特定数据，它是一组有共同特性的数据的集合</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 定义枚举</span><br><span class="line">enum DaysofaWeek &#123;</span><br><span class="line">    case Sunday</span><br><span class="line">    case Monday</span><br><span class="line">    case TUESDAY</span><br><span class="line">    case WEDNESDAY</span><br><span class="line">    case THURSDAY</span><br><span class="line">    case FRIDAY</span><br><span class="line">    case Saturday</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var weekDay &#x3D; DaysofaWeek.THURSDAY</span><br><span class="line">weekDay &#x3D; .THURSDAY</span><br><span class="line">switch weekDay</span><br><span class="line">&#123;</span><br><span class="line">case .Sunday:</span><br><span class="line">    print(&quot;星期天&quot;)</span><br><span class="line">case .Monday:</span><br><span class="line">    print(&quot;星期一&quot;)</span><br><span class="line">case .TUESDAY:</span><br><span class="line">    print(&quot;星期二&quot;)</span><br><span class="line">case .WEDNESDAY:</span><br><span class="line">    print(&quot;星期三&quot;)</span><br><span class="line">case .THURSDAY:</span><br><span class="line">    print(&quot;星期四&quot;)</span><br><span class="line">case .FRIDAY:</span><br><span class="line">    print(&quot;星期五&quot;)</span><br><span class="line">case .Saturday:</span><br><span class="line">    print(&quot;星期六&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><strong>Swift 结构体</strong></p>
-<blockquote>
-<p> Swift 结构体是构建代码所用的一种通用且灵活的构造体</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">struct studentMarks &#123;</span><br><span class="line">   var mark1 &#x3D; 100</span><br><span class="line">   var mark2 &#x3D; 78</span><br><span class="line">   var mark3 &#x3D; 98</span><br><span class="line">&#125;</span><br><span class="line">let marks &#x3D; studentMarks()</span><br><span class="line">print(&quot;Mark1 是 \(marks.mark1)&quot;)</span><br><span class="line">print(&quot;Mark2 是 \(marks.mark2)&quot;)</span><br><span class="line">print(&quot;Mark3 是 \(marks.mark3)&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><strong>Swift 类</strong></p>
-<blockquote>
-<p> Swift 类是构建代码所用的一种通用且灵活的构造体。<br>我们可以为类定义属性（常量、变量）和方法。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">class MarksStruct &#123;</span><br><span class="line">   var mark: Int</span><br><span class="line">   init(mark: Int) &#123;</span><br><span class="line">      self.mark &#x3D; mark</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class studentMarks &#123;</span><br><span class="line">   var mark1 &#x3D; 300</span><br><span class="line">   var mark2 &#x3D; 400</span><br><span class="line">   var mark3 &#x3D; 900</span><br><span class="line">&#125;</span><br><span class="line">let marks &#x3D; studentMarks()</span><br><span class="line">print(&quot;Mark1 is \(marks.mark1)&quot;)</span><br><span class="line">print(&quot;Mark2 is \(marks.mark2)&quot;)</span><br><span class="line">print(&quot;Mark3 is \(marks.mark3)&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Swift</tag>
-        <tag>基础语法</tag>
       </tags>
   </entry>
   <entry>
@@ -2043,6 +1882,167 @@ class QuotesSpider(scrapy.Spider):
 ]]></content>
       <tags>
         <tag>Swift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Swift学习笔记NO.2</title>
+    <url>/2017/09/25/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0NO-2/</url>
+    <content><![CDATA[<p><strong>Swift学习笔记NO.2</strong> </p>
+<a id="more"></a>
+
+<p><strong>Swift 基本语法</strong></p>
+<blockquote>
+<p> 在上一章节中我们已经讲到如何创建 Swift 语言的 “Hello, World!” 程序。现在我们来复习下。<br>如果创建的是 OS X playground 需要引入 Cocoa ：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">var myString &#x3D; &quot;Hello, World!&quot;</span><br><span class="line">print(myString)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 如果我们想创建 iOS playground 则需要引入 UIKit :</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import UIKit</span><br><span class="line">var myString &#x3D; &quot;Hello, World!&quot;</span><br><span class="line">print(myString)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 数据类型</strong></p>
+<blockquote>
+<p> 实例：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; varA 会被推测为 Int 类型 </span><br><span class="line">var varA &#x3D; 42</span><br><span class="line">print(varA)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; varB 会被推测为 Double 类型  </span><br><span class="line">var varB &#x3D; 3.14159</span><br><span class="line">print(varB)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; varC 也会被推测为 Double 类型   </span><br><span class="line">var varC &#x3D; 3 + 0.14159</span><br><span class="line">print(varC)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 执行以上代码，输出结果为：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">42</span><br><span class="line">3.14159</span><br><span class="line">3.14159</span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 变量</strong></p>
+<blockquote>
+<p> 变量声明意思是告诉编译器在内存中的哪个位置上为变量创建多大的存储空间。<br>在使用变量前，你需要使用 var 关键字声明它，如下所示：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">var varA &#x3D; 42</span><br><span class="line">print(varA)</span><br><span class="line"></span><br><span class="line">var varB:Float</span><br><span class="line"></span><br><span class="line">varB &#x3D; 3.14159</span><br><span class="line">print(varB)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 执行以上代码，输出结果为：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">42</span><br><span class="line">3.14159</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 变量输出</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">var name &#x3D; &quot;菜鸟教程&quot;</span><br><span class="line">var site &#x3D; &quot;http:&#x2F;&#x2F;www.runoob.com&quot;</span><br><span class="line"></span><br><span class="line">print(&quot;\(name)的官网地址为：\(site)&quot;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 可选(Optionals)类型</strong></p>
+<blockquote>
+<p> Swift 的可选（Optional）类型，用于处理值缺失的情况。可选表示”那儿有一个值，并且它等于 x “或者”那儿没有值”。<br>Swfit语言定义后缀？作为命名类型Optional的简写，换句话说，以下两种声明是相等的：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var optionalInteger: Int?</span><br><span class="line">var optionalInteger: Optional&lt;Int&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 执行以上代码，输出结果为：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">42</span><br><span class="line">3.14159</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 实例输出</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">var myString:String? &#x3D; nil</span><br><span class="line"></span><br><span class="line">if myString !&#x3D; nil &#123;</span><br><span class="line">    print(myString)</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    print(&quot;字符串为 nil&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 常量</strong></p>
+<blockquote>
+<p> 常量一旦设定，在程序运行时就无法改变其值。<br>常量可以是任何的数据类型如：整型常量，浮点型常量，字符常量或字符串常量。同样也有枚举类型的常量：<br>常量类似于变量，区别在于常量的值一旦设定就不能改变，而变量的值可以随意更改。<br>常量使用关键字 let 来声明，语法如下：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">let constA &#x3D; 42</span><br><span class="line">print(constA)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 执行以上代码，输出结果为：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">42</span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 运算符</strong></p>
+<blockquote>
+<p> 运算符是一个符号，用于告诉编译器执行一个数学或逻辑运算。<br>Swift 提供了以下几种运算符：算术运算符、比较运算符、逻辑运算符、位运算符、赋值运算符、区间运算符、其他运算符</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">var A &#x3D; 10</span><br><span class="line">var B &#x3D; 20</span><br><span class="line"></span><br><span class="line">print(&quot;A + B 结果为：\(A + B)&quot;)</span><br><span class="line">print(&quot;A - B 结果为：\(A - B)&quot;)</span><br><span class="line">print(&quot;A * B 结果为：\(A * B)&quot;)</span><br><span class="line">print(&quot;B &#x2F; A 结果为：\(B &#x2F; A)&quot;)</span><br><span class="line">A +&#x3D; 1   &#x2F;&#x2F; 类似 A++</span><br><span class="line">print(&quot;A +&#x3D; 1 后 A 的值为 \(A)&quot;)</span><br><span class="line">B -&#x3D; 1   &#x2F;&#x2F; 类似 B--</span><br><span class="line">print(&quot;B -&#x3D; 1 后 B 的值为 \(B)&quot;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 执行以上代码，输出结果为：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">A + B 结果为：30</span><br><span class="line">A - B 结果为：-10</span><br><span class="line">A * B 结果为：200</span><br><span class="line">B &#x2F; A 结果为：2</span><br><span class="line">A +&#x3D; 1 后 A 的值为 11</span><br><span class="line">B -&#x3D; 1 后 B 的值为 19</span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 条件语句</strong></p>
+<blockquote>
+<p> 运算符是一个符号，用于告诉编译器执行一个数学或逻辑运算。<br>Swift 提供了以下几种运算符：算术运算符、比较运算符、逻辑运算符、位运算符、赋值运算符、区间运算符、其他运算符</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if boolean_expression &#123;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 循环</strong></p>
+<blockquote>
+<p> Swift for-in 循环用于遍历一个集合里面的所有元素，例如由数字表示的区间、数组中的元素、字符串中的字符。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for index in var &#123;</span><br><span class="line">   循环体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 字符串</strong></p>
+<blockquote>
+<p> 可以通过使用字符串字面量或 String 类的实例来创建一个字符串：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 使用字符串字面量</span><br><span class="line">var stringA &#x3D; &quot;Hello, World!&quot;</span><br><span class="line">print( stringA )</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; String 实例化</span><br><span class="line">var stringB &#x3D; String(&quot;Hello, World!&quot;)</span><br><span class="line">print( stringB )</span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 字符(Character)</strong></p>
+<blockquote>
+<p> Swift 的字符是一个单一的字符字符串字面量，数据类型为 Character</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">let char1: Character &#x3D; &quot;A&quot;</span><br><span class="line">let char2: Character &#x3D; &quot;B&quot;</span><br><span class="line"></span><br><span class="line">print(&quot;char1 的值为 \(char1)&quot;)</span><br><span class="line">print(&quot;char2 的值为 \(char2)&quot;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 数组</strong></p>
+<blockquote>
+<p> 我们可以使用构造语法来创建一个由特定数据类型构成的空数组：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line">var someInts &#x3D; [Int](repeating: 10, count: 3)</span><br><span class="line">var someVar &#x3D; someInts[0]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">var someInts &#x3D; [Int]()</span><br><span class="line"></span><br><span class="line">someInts.append(20)</span><br><span class="line">someInts.append(30)</span><br><span class="line">someInts +&#x3D; [40]</span><br><span class="line"></span><br><span class="line">var someVar &#x3D; someInts[0]</span><br><span class="line"></span><br><span class="line">print( &quot;第一个元素的值 \(someVar)&quot; )</span><br><span class="line">print( &quot;第二个元素的值 \(someInts[1])&quot; )</span><br><span class="line">print( &quot;第三个元素的值 \(someInts[2])&quot; )</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 字典</strong></p>
+<blockquote>
+<p> 我们可以使用构造语法来创建一个由特定数据类型构成的空数组：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">var someDict:[Int:String] &#x3D; [1:&quot;One&quot;, 2:&quot;Two&quot;, 3:&quot;Three&quot;]</span><br><span class="line"></span><br><span class="line">var someVar &#x3D; someDict[1]</span><br><span class="line"></span><br><span class="line">print( &quot;key &#x3D; 1 的值为 \(someVar)&quot; )</span><br><span class="line">print( &quot;key &#x3D; 2 的值为 \(someDict[2])&quot; )</span><br><span class="line">print( &quot;key &#x3D; 3 的值为 \(someDict[3])&quot; )</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 函数</strong></p>
+<blockquote>
+<p> Swift 定义函数使用关键字 func。：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">func runoob(site: String) -&gt; String &#123;</span><br><span class="line">    return (site)</span><br><span class="line">&#125;</span><br><span class="line">print(runoob(site: &quot;www.runoob.com&quot;))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 闭包</strong></p>
+<blockquote>
+<p> 闭包(Closures)是自包含的功能代码块，可以在代码中使用或者用来作为参数传值。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">let divide &#x3D; &#123;(val1: Int, val2: Int) -&gt; Int in </span><br><span class="line">   return val1 &#x2F; val2 </span><br><span class="line">&#125;</span><br><span class="line">let result &#x3D; divide(200, 20)</span><br><span class="line">print (result)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 枚举</strong></p>
+<blockquote>
+<p> 枚举简单的说也是一种数据类型，只不过是这种数据类型只包含自定义的特定数据，它是一组有共同特性的数据的集合</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 定义枚举</span><br><span class="line">enum DaysofaWeek &#123;</span><br><span class="line">    case Sunday</span><br><span class="line">    case Monday</span><br><span class="line">    case TUESDAY</span><br><span class="line">    case WEDNESDAY</span><br><span class="line">    case THURSDAY</span><br><span class="line">    case FRIDAY</span><br><span class="line">    case Saturday</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var weekDay &#x3D; DaysofaWeek.THURSDAY</span><br><span class="line">weekDay &#x3D; .THURSDAY</span><br><span class="line">switch weekDay</span><br><span class="line">&#123;</span><br><span class="line">case .Sunday:</span><br><span class="line">    print(&quot;星期天&quot;)</span><br><span class="line">case .Monday:</span><br><span class="line">    print(&quot;星期一&quot;)</span><br><span class="line">case .TUESDAY:</span><br><span class="line">    print(&quot;星期二&quot;)</span><br><span class="line">case .WEDNESDAY:</span><br><span class="line">    print(&quot;星期三&quot;)</span><br><span class="line">case .THURSDAY:</span><br><span class="line">    print(&quot;星期四&quot;)</span><br><span class="line">case .FRIDAY:</span><br><span class="line">    print(&quot;星期五&quot;)</span><br><span class="line">case .Saturday:</span><br><span class="line">    print(&quot;星期六&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 结构体</strong></p>
+<blockquote>
+<p> Swift 结构体是构建代码所用的一种通用且灵活的构造体</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">struct studentMarks &#123;</span><br><span class="line">   var mark1 &#x3D; 100</span><br><span class="line">   var mark2 &#x3D; 78</span><br><span class="line">   var mark3 &#x3D; 98</span><br><span class="line">&#125;</span><br><span class="line">let marks &#x3D; studentMarks()</span><br><span class="line">print(&quot;Mark1 是 \(marks.mark1)&quot;)</span><br><span class="line">print(&quot;Mark2 是 \(marks.mark2)&quot;)</span><br><span class="line">print(&quot;Mark3 是 \(marks.mark3)&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>Swift 类</strong></p>
+<blockquote>
+<p> Swift 类是构建代码所用的一种通用且灵活的构造体。<br>我们可以为类定义属性（常量、变量）和方法。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Cocoa</span><br><span class="line"></span><br><span class="line">class MarksStruct &#123;</span><br><span class="line">   var mark: Int</span><br><span class="line">   init(mark: Int) &#123;</span><br><span class="line">      self.mark &#x3D; mark</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class studentMarks &#123;</span><br><span class="line">   var mark1 &#x3D; 300</span><br><span class="line">   var mark2 &#x3D; 400</span><br><span class="line">   var mark3 &#x3D; 900</span><br><span class="line">&#125;</span><br><span class="line">let marks &#x3D; studentMarks()</span><br><span class="line">print(&quot;Mark1 is \(marks.mark1)&quot;)</span><br><span class="line">print(&quot;Mark2 is \(marks.mark2)&quot;)</span><br><span class="line">print(&quot;Mark3 is \(marks.mark3)&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Swift</tag>
+        <tag>基础语法</tag>
       </tags>
   </entry>
   <entry>
@@ -2255,7 +2255,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#103;&#x69;&#x74;&#x40;&#x67;&#105;&#x74;&#104;&#x75;&#x62;&#46;&#99;&#x6f;&#109;">&#103;&#x69;&#x74;&#x40;&#x67;&#105;&#x74;&#104;&#x75;&#x62;&#46;&#99;&#x6f;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#103;&#x69;&#116;&#x40;&#103;&#x69;&#116;&#104;&#x75;&#98;&#x2e;&#99;&#x6f;&#109;">&#103;&#x69;&#116;&#x40;&#103;&#x69;&#116;&#104;&#x75;&#98;&#x2e;&#99;&#x6f;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -2381,64 +2381,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>install program</title>
-    <url>/2017/11/02/install-program/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> 安装项目及配置svn</p>
-</blockquote>
-<ul>
-<li>lnmp vhost add</li>
-<li>mkdir -p /home/svn/repos</li>
-<li>svnadmin create /home/svn/repos/</li>
-<li>cd /home/svn/repos/conf</li>
-<li>vi passwd</li>
-<li>vim authz</li>
-<li>vim svnserve.conf</li>
-<li>cd ../hooks/</li>
-<li>cp post-commit.tmpl post-commit</li>
-<li>chmod +x post-commit</li>
-<li>vim post-commit</li>
-<li>cd /home/wwwroot/<a href="http://www.xxxx.cn/">www.xxxx.cn/</a></li>
-<li>svn co svn://127.0.0.1/repos ./</li>
-</ul>
-<blockquote>
-<p> 配置、修改</p>
-</blockquote>
-<ul>
-<li>vim /usr/local/nginx/conf/vhost/<a href="http://www.xxxx.cn.conf/">www.xxxx.cn.conf</a></li>
-<li>/etc/init.d/nginx restart</li>
-<li>vim /home/wwwroot/mnzr.xiazhiweizhi.cn/config/queue.php</li>
-<li>cd /etc/supervisord.d/</li>
-<li>cp laravel-worker-zr.ini laravel-worker-mnzr.ini</li>
-<li>chmod -R 777 bootstrap/cache/ storage/ public/upload/</li>
-<li>chown -R www:www ../mnzr.xiazhiweizhi.cn/</li>
-<li>supervisorctl status</li>
-<li>supervisorctl reread</li>
-<li>supervisorctl update</li>
-<li>supervisorctl restart laravel-worker-xxx:*</li>
-<li>composer require simplesoftwareio/simple-qrcode</li>
-<li>history |grep composer</li>
-<li>composer install</li>
-<li>php artisan storage:link</li>
-<li>php artisan passport:keys</li>
-</ul>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>centos7</tag>
-        <tag>laravel5</tag>
-        <tag>install</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>go-zero的安装及使用</title>
     <url>/2021/09/08/go-zero%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><strong>go-zero的安装及使用</strong> </p>
@@ -2557,6 +2499,64 @@ class QuotesSpider(scrapy.Spider):
         <tag>golang</tag>
         <tag>go-zero</tag>
         <tag>goctl</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>install program</title>
+    <url>/2017/11/02/install-program/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> 安装项目及配置svn</p>
+</blockquote>
+<ul>
+<li>lnmp vhost add</li>
+<li>mkdir -p /home/svn/repos</li>
+<li>svnadmin create /home/svn/repos/</li>
+<li>cd /home/svn/repos/conf</li>
+<li>vi passwd</li>
+<li>vim authz</li>
+<li>vim svnserve.conf</li>
+<li>cd ../hooks/</li>
+<li>cp post-commit.tmpl post-commit</li>
+<li>chmod +x post-commit</li>
+<li>vim post-commit</li>
+<li>cd /home/wwwroot/<a href="http://www.xxxx.cn/">www.xxxx.cn/</a></li>
+<li>svn co svn://127.0.0.1/repos ./</li>
+</ul>
+<blockquote>
+<p> 配置、修改</p>
+</blockquote>
+<ul>
+<li>vim /usr/local/nginx/conf/vhost/<a href="http://www.xxxx.cn.conf/">www.xxxx.cn.conf</a></li>
+<li>/etc/init.d/nginx restart</li>
+<li>vim /home/wwwroot/mnzr.xiazhiweizhi.cn/config/queue.php</li>
+<li>cd /etc/supervisord.d/</li>
+<li>cp laravel-worker-zr.ini laravel-worker-mnzr.ini</li>
+<li>chmod -R 777 bootstrap/cache/ storage/ public/upload/</li>
+<li>chown -R www:www ../mnzr.xiazhiweizhi.cn/</li>
+<li>supervisorctl status</li>
+<li>supervisorctl reread</li>
+<li>supervisorctl update</li>
+<li>supervisorctl restart laravel-worker-xxx:*</li>
+<li>composer require simplesoftwareio/simple-qrcode</li>
+<li>history |grep composer</li>
+<li>composer install</li>
+<li>php artisan storage:link</li>
+<li>php artisan passport:keys</li>
+</ul>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>centos7</tag>
+        <tag>laravel5</tag>
+        <tag>install</tag>
       </tags>
   </entry>
   <entry>
@@ -2816,54 +2816,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>linux下安装redis及认证密码</title>
-    <url>/2018/03/06/linux%E4%B8%8B%E5%AE%89%E8%A3%85redis%E5%8F%8A%E8%AE%A4%E8%AF%81%E5%AF%86%E7%A0%81/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>一、安装 redis</strong><br>进入lnmp解压后的目录，执行</p>
-<blockquote>
-<p> ./addons.sh install redis </p>
-</blockquote>
-<p><strong>二、redis 设置认证密码</strong><br>requirepass foobared去掉#注释，将foobared改为自己的密码然后保存，重启服务</p>
-<blockquote>
-<p> vim /usr/local/redis/etc/redis.conf</p>
-</blockquote>
-<p><strong>三、redis 状态管理</strong></p>
-<blockquote>
-<p> /etc/init.d/redis {start|stop|restart|kill}</p>
-</blockquote>
-<p><strong>四、查看 redis 启动情况</strong></p>
-<blockquote>
-<p> ps aux | grep redis</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>lnmp tp pathinfo问题</title>
-    <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>/usr/local/php/etc/php.ini</p>
-<blockquote>
-<p> cgi.fix_pathinfo=1</p>
-</blockquote>
-<blockquote>
-<p> lnmp restart</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
-  </entry>
-  <entry>
     <title>linux 常用小技巧</title>
     <url>/2022/01/12/linux-%E5%B8%B8%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/linux.png" alt="linux"></p>
@@ -2936,17 +2888,52 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>mysql自定义重置数据表ID值</title>
-    <url>/2018/10/30/mysql%E8%87%AA%E5%AE%9A%E4%B9%89%E9%87%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E8%A1%A8ID%E5%80%BC/</url>
+    <title>linux下安装redis及认证密码</title>
+    <url>/2018/03/06/linux%E4%B8%8B%E5%AE%89%E8%A3%85redis%E5%8F%8A%E8%AE%A4%E8%AF%81%E5%AF%86%E7%A0%81/</url>
     <content><![CDATA[<a id="more"></a>
 
+<p><strong>一、安装 redis</strong><br>进入lnmp解压后的目录，执行</p>
 <blockquote>
-<p> alter table 表名 AUTO_INCREMENT=自定义ID;</p>
+<p> ./addons.sh install redis </p>
+</blockquote>
+<p><strong>二、redis 设置认证密码</strong><br>requirepass foobared去掉#注释，将foobared改为自己的密码然后保存，重启服务</p>
+<blockquote>
+<p> vim /usr/local/redis/etc/redis.conf</p>
+</blockquote>
+<p><strong>三、redis 状态管理</strong></p>
+<blockquote>
+<p> /etc/init.d/redis {start|stop|restart|kill}</p>
+</blockquote>
+<p><strong>四、查看 redis 启动情况</strong></p>
+<blockquote>
+<p> ps aux | grep redis</p>
 </blockquote>
 ]]></content>
       <tags>
-        <tag>mysql</tag>
+        <tag>lnmp</tag>
+        <tag>redis</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>lnmp tp pathinfo问题</title>
+    <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>/usr/local/php/etc/php.ini</p>
+<blockquote>
+<p> cgi.fix_pathinfo=1</p>
+</blockquote>
+<blockquote>
+<p> lnmp restart</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
   </entry>
   <entry>
     <title>lnmp集成环境下部署laravel5.x项目</title>
@@ -3005,6 +2992,19 @@ class QuotesSpider(scrapy.Spider):
         <tag>lnmp</tag>
         <tag>centos7.3</tag>
         <tag>laravel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql自定义重置数据表ID值</title>
+    <url>/2018/10/30/mysql%E8%87%AA%E5%AE%9A%E4%B9%89%E9%87%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E8%A1%A8ID%E5%80%BC/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> alter table 表名 AUTO_INCREMENT=自定义ID;</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -3179,79 +3179,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>sublime text3 安装配置svn 及默认快捷键</title>
-    <url>/2017/08/25/sublime-text3-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEsvn-%E5%8F%8A%E9%BB%98%E8%AE%A4%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
-    <content><![CDATA[<p><strong>sublime text3 安装配置svn 及默认快捷键：</strong> </p>
-<a id="more"></a>
-
-<ul>
-<li><strong>省去安装st3 过程….</strong></li>
-</ul>
-<blockquote>
-<ol>
-<li>ctrl+shift+P 调出控制台  然后输入 install package  /  输入install 选择  install package</li>
-<li>输入 svn 选择  TortoiseSVN   选择确定安装。</li>
-<li>等待安装  （左下角有进度表示）。—–&gt;安装成功  插件包里会有svn插件  存在</li>
-<li>安装完成后 会有 提示首页 上面会有 配置 demo</li>
-<li>按照提示操作 </li>
-</ol>
-</blockquote>
-<ul>
-<li><strong>如果你的TortoiseSVN安装时 不是 默认安装地址，需要配置 安装路径</strong></li>
-</ul>
-<blockquote>
-<p>“Preferences-&gt;Package Settings-&gt;TortoiseSVN-&gt;Settings - User”  （首选项–&gt;配置—-&gt;TortoiseSVN–&gt;Settings - User）</p>
-</blockquote>
-<ul>
-<li><strong>修改默认路径。</strong></li>
-</ul>
-<blockquote>
-<p>   {<br>    // Auto close update dialog when no errors, conflicts and merges<br>    “autoCloseUpdateDialog”: false,<br>    // Auto close commit dialog when no errors, conflicts and merges<br>    “autoCloseCommitDialog”: true,<br>    “tortoiseproc_path”: “D:\TortoiseSVN\bin\TortoiseProc.exe”   //你自己的路径<br>    }</p>
-</blockquote>
-<ul>
-<li><strong>默认快捷键[^hello]: hi</strong></li>
-</ul>
-<blockquote>
-<p>[<br>{ “keys”: [“alt+u”], “command”: “svn_update” }<br>,{ “keys”: [“alt+c”], “command”: “svn_commit” }<br>,{ “keys”: [“alt+r”], “command”: “svn_revert” }<br>]</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>svn</tag>
-        <tag>sublime text3</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>socket.io的使用</title>
-    <url>/2018/03/28/socket-io%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><strong>socket.io的基础教程</strong> </p>
-<a id="more"></a>
-
-<p>一、安装nodejs [默认安装][<a href="https://nodejs.org/en/download/" target="_blank">下载nodejs</a>]<br>新建文件夹[socket],在目录下执行以下代码<br>nodejs中用npm初始化来创建package.json</p>
-<blockquote>
-<p> npm init</p>
-</blockquote>
-<p>二、使用npm下载 web框架express模块</p>
-<blockquote>
-<p>npm install --save <a href="mailto:&#x65;&#120;&#x70;&#114;&#x65;&#115;&#115;&#x40;&#52;&#x2e;&#x31;&#53;&#46;&#x32;">&#x65;&#120;&#x70;&#114;&#x65;&#115;&#115;&#x40;&#52;&#x2e;&#x31;&#53;&#46;&#x32;</a></p>
-</blockquote>
-<p>三、使用npm下载socket.io模块</p>
-<blockquote>
-<p>npm install --save socket.io</p>
-</blockquote>
-<p>四、新建index.js 代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var app &#x3D; require(&#39;express&#39;)();</span><br><span class="line">var http &#x3D; require(&#39;http&#39;).Server(app);</span><br><span class="line">var io &#x3D; require(&#39;socket.io&#39;)(http);</span><br><span class="line"></span><br><span class="line">app.get(&#39;&#x2F;&#39;, function(req, res)&#123;</span><br><span class="line">  res.sendFile(__dirname + &#39;&#x2F;index.html&#39;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">io.on(&#39;connection&#39;, function(socket)&#123;</span><br><span class="line">  socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">     io.emit(&#39;bsh&#39;, msg);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.listen(3000, function()&#123;</span><br><span class="line">  console.log(&#39;listening on *:3000&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>五、新建index.html 代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Socket.IO chat&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      * &#123; margin: 0; padding: 0; box-sizing: border-box; &#125;</span><br><span class="line">      body &#123; font: 13px Helvetica, Arial; &#125;</span><br><span class="line">      form &#123; background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; &#125;</span><br><span class="line">      form input &#123; border: 0; padding: 10px; width: 90%; margin-right: .5%; &#125;</span><br><span class="line">      form button &#123; width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; &#125;</span><br><span class="line">      #messages &#123; list-style-type: none; margin: 0; padding: 0; &#125;</span><br><span class="line">      #messages li &#123; padding: 5px 10px; &#125;</span><br><span class="line">      #messages li:nth-child(odd) &#123; background: #eee; &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.1.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  $(function () &#123;</span><br><span class="line">    var socket &#x3D; io();</span><br><span class="line">    $(&#39;form&#39;).submit(function()&#123;</span><br><span class="line">      socket.emit(&#39;bsh&#39;, $(&#39;#m&#39;).val());</span><br><span class="line">      $(&#39;#m&#39;).val(&#39;&#39;);</span><br><span class="line">      return false;</span><br><span class="line">    &#125;);</span><br><span class="line">    socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">      $(&#39;#messages&#39;).append($(&#39;&lt;li&gt;&#39;).text(msg));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;ul id&#x3D;&quot;messages&quot;&gt;&lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;form action&#x3D;&quot;&quot;&gt;</span><br><span class="line">      &lt;input id&#x3D;&quot;m&quot; autocomplete&#x3D;&quot;off&quot; &#x2F;&gt;&lt;button&gt;Send&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-
-<p>六、执行 node index.js<br>七、浏览器打开localhost:3000</p>
-]]></content>
-      <tags>
-        <tag>socket.io</tag>
-        <tag>nodejs</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>redis lua的使用</title>
     <url>/2022/01/13/redis-lua%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/lua.png" alt="lua"></p>
@@ -3321,6 +3248,79 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>redis</tag>
         <tag>lua</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>socket.io的使用</title>
+    <url>/2018/03/28/socket-io%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><strong>socket.io的基础教程</strong> </p>
+<a id="more"></a>
+
+<p>一、安装nodejs [默认安装][<a href="https://nodejs.org/en/download/" target="_blank">下载nodejs</a>]<br>新建文件夹[socket],在目录下执行以下代码<br>nodejs中用npm初始化来创建package.json</p>
+<blockquote>
+<p> npm init</p>
+</blockquote>
+<p>二、使用npm下载 web框架express模块</p>
+<blockquote>
+<p>npm install --save <a href="mailto:&#101;&#120;&#x70;&#x72;&#x65;&#x73;&#115;&#64;&#x34;&#x2e;&#x31;&#53;&#x2e;&#50;">&#101;&#120;&#x70;&#x72;&#x65;&#x73;&#115;&#64;&#x34;&#x2e;&#x31;&#53;&#x2e;&#50;</a></p>
+</blockquote>
+<p>三、使用npm下载socket.io模块</p>
+<blockquote>
+<p>npm install --save socket.io</p>
+</blockquote>
+<p>四、新建index.js 代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var app &#x3D; require(&#39;express&#39;)();</span><br><span class="line">var http &#x3D; require(&#39;http&#39;).Server(app);</span><br><span class="line">var io &#x3D; require(&#39;socket.io&#39;)(http);</span><br><span class="line"></span><br><span class="line">app.get(&#39;&#x2F;&#39;, function(req, res)&#123;</span><br><span class="line">  res.sendFile(__dirname + &#39;&#x2F;index.html&#39;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">io.on(&#39;connection&#39;, function(socket)&#123;</span><br><span class="line">  socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">     io.emit(&#39;bsh&#39;, msg);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.listen(3000, function()&#123;</span><br><span class="line">  console.log(&#39;listening on *:3000&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>五、新建index.html 代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Socket.IO chat&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      * &#123; margin: 0; padding: 0; box-sizing: border-box; &#125;</span><br><span class="line">      body &#123; font: 13px Helvetica, Arial; &#125;</span><br><span class="line">      form &#123; background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; &#125;</span><br><span class="line">      form input &#123; border: 0; padding: 10px; width: 90%; margin-right: .5%; &#125;</span><br><span class="line">      form button &#123; width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; &#125;</span><br><span class="line">      #messages &#123; list-style-type: none; margin: 0; padding: 0; &#125;</span><br><span class="line">      #messages li &#123; padding: 5px 10px; &#125;</span><br><span class="line">      #messages li:nth-child(odd) &#123; background: #eee; &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.1.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  $(function () &#123;</span><br><span class="line">    var socket &#x3D; io();</span><br><span class="line">    $(&#39;form&#39;).submit(function()&#123;</span><br><span class="line">      socket.emit(&#39;bsh&#39;, $(&#39;#m&#39;).val());</span><br><span class="line">      $(&#39;#m&#39;).val(&#39;&#39;);</span><br><span class="line">      return false;</span><br><span class="line">    &#125;);</span><br><span class="line">    socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">      $(&#39;#messages&#39;).append($(&#39;&lt;li&gt;&#39;).text(msg));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;ul id&#x3D;&quot;messages&quot;&gt;&lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;form action&#x3D;&quot;&quot;&gt;</span><br><span class="line">      &lt;input id&#x3D;&quot;m&quot; autocomplete&#x3D;&quot;off&quot; &#x2F;&gt;&lt;button&gt;Send&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>六、执行 node index.js<br>七、浏览器打开localhost:3000</p>
+]]></content>
+      <tags>
+        <tag>socket.io</tag>
+        <tag>nodejs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sublime text3 安装配置svn 及默认快捷键</title>
+    <url>/2017/08/25/sublime-text3-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEsvn-%E5%8F%8A%E9%BB%98%E8%AE%A4%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
+    <content><![CDATA[<p><strong>sublime text3 安装配置svn 及默认快捷键：</strong> </p>
+<a id="more"></a>
+
+<ul>
+<li><strong>省去安装st3 过程….</strong></li>
+</ul>
+<blockquote>
+<ol>
+<li>ctrl+shift+P 调出控制台  然后输入 install package  /  输入install 选择  install package</li>
+<li>输入 svn 选择  TortoiseSVN   选择确定安装。</li>
+<li>等待安装  （左下角有进度表示）。—–&gt;安装成功  插件包里会有svn插件  存在</li>
+<li>安装完成后 会有 提示首页 上面会有 配置 demo</li>
+<li>按照提示操作 </li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>如果你的TortoiseSVN安装时 不是 默认安装地址，需要配置 安装路径</strong></li>
+</ul>
+<blockquote>
+<p>“Preferences-&gt;Package Settings-&gt;TortoiseSVN-&gt;Settings - User”  （首选项–&gt;配置—-&gt;TortoiseSVN–&gt;Settings - User）</p>
+</blockquote>
+<ul>
+<li><strong>修改默认路径。</strong></li>
+</ul>
+<blockquote>
+<p>   {<br>    // Auto close update dialog when no errors, conflicts and merges<br>    “autoCloseUpdateDialog”: false,<br>    // Auto close commit dialog when no errors, conflicts and merges<br>    “autoCloseCommitDialog”: true,<br>    “tortoiseproc_path”: “D:\TortoiseSVN\bin\TortoiseProc.exe”   //你自己的路径<br>    }</p>
+</blockquote>
+<ul>
+<li><strong>默认快捷键[^hello]: hi</strong></li>
+</ul>
+<blockquote>
+<p>[<br>{ “keys”: [“alt+u”], “command”: “svn_update” }<br>,{ “keys”: [“alt+c”], “command”: “svn_commit” }<br>,{ “keys”: [“alt+r”], “command”: “svn_revert” }<br>]</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>svn</tag>
+        <tag>sublime text3</tag>
       </tags>
   </entry>
   <entry>
@@ -3510,38 +3510,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>实现在Safari一键复制</title>
-    <url>/2018/10/27/%E5%AE%9E%E7%8E%B0%E5%9C%A8Safari%E4%B8%80%E9%94%AE%E5%A4%8D%E5%88%B6/</url>
-    <content><![CDATA[<p><strong>实现在Safari一键复制</strong></p>
-<a id="more"></a>
-
-<p>参考文档 <a href="https://github.com/zenorocha/clipboard.js" target="_blank">[ clipboard.js ]</a></p>
-<blockquote>
-<p>传统复制code</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var Url2&#x3D;document.getElementById(&quot;copy-text&quot;);</span><br><span class="line">Url2.select(); &#x2F;&#x2F; 选择对象</span><br><span class="line">document.execCommand(&quot;Copy&quot;); &#x2F;&#x2F; 执行浏览器复制命令</span><br><span class="line">Message.success(&#39;复制成功&#39;);</span><br></pre></td></tr></table></figure>
-<p>这种复制方式在苹果手机和safari上失效</p>
-<blockquote>
-<p>使用 clipboard.js</p>
-</blockquote>
-<p>CDN Providers</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">jsDelivr</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;clipboard@2&#x2F;dist&#x2F;clipboard.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">cdnjs</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdnjs.cloudflare.com&#x2F;ajax&#x2F;libs&#x2F;clipboard.js&#x2F;2.0.0&#x2F;clipboard.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>html code</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;button class&#x3D;&quot;fuzhi&quot; data-clipboard-demo data-clipboard-action&#x3D;&quot;copy&quot; data-clipboard-text&#x3D;&quot;&#123;&#123;$qr_code&#125;&#125;&quot;  onclick&#x3D;&quot;copyContent();&quot;&gt; 点击复制 &lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
-
-<p>js code</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var clipboard &#x3D; new ClipboardJS(&#39;.fuzhi&#39;);</span><br><span class="line">clipboard.on(&#39;success&#39;, function(e) &#123;</span><br><span class="line">    e.clearSelection();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <tags>
-        <tag>Safari</tag>
-        <tag>Copy</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>发布Laravel扩展包mqtt</title>
     <url>/2021/02/01/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85mqtt/</url>
     <content><![CDATA[<p><strong>发布Laravel扩展包mqtt</strong> </p>
@@ -3573,48 +3541,35 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>开源项目及部署工具</title>
-    <url>/2021/10/19/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E5%8F%8A%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/diary-6.jpg" alt="开源项目"></p>
+    <title>实现在Safari一键复制</title>
+    <url>/2018/10/27/%E5%AE%9E%E7%8E%B0%E5%9C%A8Safari%E4%B8%80%E9%94%AE%E5%A4%8D%E5%88%B6/</url>
+    <content><![CDATA[<p><strong>实现在Safari一键复制</strong></p>
 <a id="more"></a>
 
+<p>参考文档 <a href="https://github.com/zenorocha/clipboard.js" target="_blank">[ clipboard.js ]</a></p>
 <blockquote>
-<p>   一、部署工具</p>
+<p>传统复制code</p>
 </blockquote>
-<ul>
-<li>dnmp： <a href="https://github.com/shunhua/dnmp" target="_blank">[ dnmp ]</a></li>
-<li>lnmp： <a href="https://lnmp.org/install.html" target="_blank">[ lnmp ]</a></li>
-<li>bt： <a href="https://www.bt.cn/btcode.html" target="_blank">[ 宝塔 ]</a></li>
-<li>laradock： <a href="http://laradock.io/" target="_blank">[ laradock ]</a></li>
-</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var Url2&#x3D;document.getElementById(&quot;copy-text&quot;);</span><br><span class="line">Url2.select(); &#x2F;&#x2F; 选择对象</span><br><span class="line">document.execCommand(&quot;Copy&quot;); &#x2F;&#x2F; 执行浏览器复制命令</span><br><span class="line">Message.success(&#39;复制成功&#39;);</span><br></pre></td></tr></table></figure>
+<p>这种复制方式在苹果手机和safari上失效</p>
 <blockquote>
-<p>   二、开源项目</p>
+<p>使用 clipboard.js</p>
 </blockquote>
-<ul>
-<li>dcat-admin： <a href="https://github.com/jqhph/dcat-admin" target="_blank">[ dcat-admin ]</a></li>
-<li>laravel-admin： <a href="https://github.com/z-song/laravel-admin" target="_blank">[ laravel-admin ]</a></li>
-<li>go-zero： <a href="https://github.com/zeromicro/go-zero" target="_blank">[ go-zero ]</a></li>
-<li>zero-admin： <a href="https://github.com/feihua/zero-admin" target="_blank">[ zero-admin ]</a></li>
-<li>go-admin： <a href="https://github.com/go-admin-team/go-admin" target="_blank">[ go-admin ]</a></li>
-<li>vue-element-admin： <a href="https://github.com/PanJiaChen/vue-element-admin" target="_blank">[ vue-element-admin ]</a></li>
-<li>gin-vue-admin： <a href="https://github.com/flipped-aurora/gin-vue-admin" target="_blank">[ gin-vue-admin ]</a></li>
-</ul>
-<blockquote>
-<p>   三、涉及框架</p>
-</blockquote>
-<ul>
-<li>laravel： <a href="https://laravel.com/" target="_blank">[ laravel ]</a></li>
-<li>gin： <a href="https://github.com/gin-gonic/gin" target="_blank">[ gin ]</a></li>
-<li>element： <a href="https://element-plus.gitee.io/zh-CN/" target="_blank">[ element-ui ]</a></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
+<p>CDN Providers</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">jsDelivr</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;clipboard@2&#x2F;dist&#x2F;clipboard.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">cdnjs</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdnjs.cloudflare.com&#x2F;ajax&#x2F;libs&#x2F;clipboard.js&#x2F;2.0.0&#x2F;clipboard.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>html code</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;button class&#x3D;&quot;fuzhi&quot; data-clipboard-demo data-clipboard-action&#x3D;&quot;copy&quot; data-clipboard-text&#x3D;&quot;&#123;&#123;$qr_code&#125;&#125;&quot;  onclick&#x3D;&quot;copyContent();&quot;&gt; 点击复制 &lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
+
+<p>js code</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var clipboard &#x3D; new ClipboardJS(&#39;.fuzhi&#39;);</span><br><span class="line">clipboard.on(&#39;success&#39;, function(e) &#123;</span><br><span class="line">    e.clearSelection();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
 ]]></content>
       <tags>
-        <tag>php</tag>
-        <tag>golang</tag>
-        <tag>vue</tag>
+        <tag>Safari</tag>
+        <tag>Copy</tag>
       </tags>
   </entry>
   <entry>
@@ -3670,6 +3625,51 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>开源项目及部署工具</title>
+    <url>/2021/10/19/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E5%8F%8A%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/diary-6.jpg" alt="开源项目"></p>
+<a id="more"></a>
+
+<blockquote>
+<p>   一、部署工具</p>
+</blockquote>
+<ul>
+<li>dnmp： <a href="https://github.com/shunhua/dnmp" target="_blank">[ dnmp ]</a></li>
+<li>lnmp： <a href="https://lnmp.org/install.html" target="_blank">[ lnmp ]</a></li>
+<li>bt： <a href="https://www.bt.cn/btcode.html" target="_blank">[ 宝塔 ]</a></li>
+<li>laradock： <a href="http://laradock.io/" target="_blank">[ laradock ]</a></li>
+</ul>
+<blockquote>
+<p>   二、开源项目</p>
+</blockquote>
+<ul>
+<li>dcat-admin： <a href="https://github.com/jqhph/dcat-admin" target="_blank">[ dcat-admin ]</a></li>
+<li>laravel-admin： <a href="https://github.com/z-song/laravel-admin" target="_blank">[ laravel-admin ]</a></li>
+<li>go-zero： <a href="https://github.com/zeromicro/go-zero" target="_blank">[ go-zero ]</a></li>
+<li>zero-admin： <a href="https://github.com/feihua/zero-admin" target="_blank">[ zero-admin ]</a></li>
+<li>go-admin： <a href="https://github.com/go-admin-team/go-admin" target="_blank">[ go-admin ]</a></li>
+<li>vue-element-admin： <a href="https://github.com/PanJiaChen/vue-element-admin" target="_blank">[ vue-element-admin ]</a></li>
+<li>gin-vue-admin： <a href="https://github.com/flipped-aurora/gin-vue-admin" target="_blank">[ gin-vue-admin ]</a></li>
+</ul>
+<blockquote>
+<p>   三、涉及框架</p>
+</blockquote>
+<ul>
+<li>laravel： <a href="https://laravel.com/" target="_blank">[ laravel ]</a></li>
+<li>gin： <a href="https://github.com/gin-gonic/gin" target="_blank">[ gin ]</a></li>
+<li>element： <a href="https://element-plus.gitee.io/zh-CN/" target="_blank">[ element-ui ]</a></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>php</tag>
+        <tag>golang</tag>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>搭建一套规范的 Vue3.x 项目工程环境</title>
     <url>/2021/11/04/%E6%90%AD%E5%BB%BA%E4%B8%80%E5%A5%97%E8%A7%84%E8%8C%83%E7%9A%84-Vue3-x-%E9%A1%B9%E7%9B%AE%E5%B7%A5%E7%A8%8B%E7%8E%AF%E5%A2%83/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/rabbit.jpg" alt="Vue3.x"></p>
@@ -3720,31 +3720,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>界面化管理部署DNMP</title>
-    <url>/2021/01/21/%E7%95%8C%E9%9D%A2%E5%8C%96%E7%AE%A1%E7%90%86%E9%83%A8%E7%BD%B2DNMP/</url>
-    <content><![CDATA[<p><strong>界面化管理部署DNMP</strong></p>
-<a id="more"></a>
-
-<p>github: <a href="https://github.com/shunhua/dnmp" target="_blank">[ shunhua/dnmp ]</a></p>
-<blockquote>
-<p>docker-compose up -d</p>
-</blockquote>
-<p>docker 容器启动后 Portainer默认端口：9000</p>
-<blockquote>
-<p>localhost:9000</p>
-</blockquote>
-<p>打开 Portainer, 首次需要创建账户。</p>
-<p>最终效果如下图 :</p>
-<p><img src="/assets/blogImg/p0.png" alt="ico原来的样子"></p>
-<p><img src="/assets/blogImg/p1.png" alt="ico原来的样子"></p>
-<p><img src="/assets/blogImg/p2.png" alt="ico原来的样子"></p>
-]]></content>
-      <tags>
-        <tag>DNMP</tag>
-        <tag>Portainer</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>有赞vantUI step1</title>
     <url>/2018/04/02/%E6%9C%89%E8%B5%9EvantUI-step1/</url>
     <content><![CDATA[<p><strong>有赞vantUI学习 step1</strong></p>
@@ -3783,6 +3758,31 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>vue</tag>
         <tag>vant</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>界面化管理部署DNMP</title>
+    <url>/2021/01/21/%E7%95%8C%E9%9D%A2%E5%8C%96%E7%AE%A1%E7%90%86%E9%83%A8%E7%BD%B2DNMP/</url>
+    <content><![CDATA[<p><strong>界面化管理部署DNMP</strong></p>
+<a id="more"></a>
+
+<p>github: <a href="https://github.com/shunhua/dnmp" target="_blank">[ shunhua/dnmp ]</a></p>
+<blockquote>
+<p>docker-compose up -d</p>
+</blockquote>
+<p>docker 容器启动后 Portainer默认端口：9000</p>
+<blockquote>
+<p>localhost:9000</p>
+</blockquote>
+<p>打开 Portainer, 首次需要创建账户。</p>
+<p>最终效果如下图 :</p>
+<p><img src="/assets/blogImg/p0.png" alt="ico原来的样子"></p>
+<p><img src="/assets/blogImg/p1.png" alt="ico原来的样子"></p>
+<p><img src="/assets/blogImg/p2.png" alt="ico原来的样子"></p>
+]]></content>
+      <tags>
+        <tag>DNMP</tag>
+        <tag>Portainer</tag>
       </tags>
   </entry>
   <entry>
