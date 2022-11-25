@@ -125,7 +125,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#64;&#113;&#x71;&#46;&#x63;&#111;&#109;">&#120;&#64;&#113;&#x71;&#46;&#x63;&#111;&#109;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#x40;&#113;&#x71;&#x2e;&#99;&#x6f;&#x6d;">&#x78;&#x40;&#113;&#x71;&#x2e;&#99;&#x6f;&#x6d;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -136,7 +136,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#x40;&#113;&#113;&#46;&#x63;&#x6f;&#x6d;">&#x62;&#x40;&#113;&#113;&#46;&#x63;&#x6f;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#98;&#x40;&#113;&#113;&#46;&#x63;&#x6f;&#109;">&#98;&#x40;&#113;&#113;&#46;&#x63;&#x6f;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -936,50 +936,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Laravel 和 Vue 的项目搭建</title>
-    <url>/2018/11/02/Laravel-%E5%92%8C-Vue-%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>一、Laravel创建项目</strong> </p>
-<blockquote>
-<p>composer create-project –prefer-dist laravel/laravel laravel-vue</p>
-</blockquote>
-<p><strong>二、扩展包</strong> </p>
-<blockquote>
-<p>npm install<br>npm install vue-router iview</p>
-</blockquote>
-<p><strong>三、前端结构搭建</strong><br>vue前端的文件结构在 /recources/js 目录[laravel5.7]，vue能够渲染主要是两个操作</p>
-<ul>
-<li>vue 挂载到页面的节点中</li>
-<li>vue-router 处理路由，渲染对应的组件</li>
-</ul>
-<p>code流程  </p>
-<ol>
-<li><p>创建 web 路由<br>在 /routes/web.php 中新建一个访问我们挂载着vue页面的路由。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Route::get(&#39;&#x2F;&#39;, function () &#123;</span><br><span class="line">    return view(&#39;welcome&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编辑welcome.blade.php<br>在 resource/views 新建 welcome.blade.php,代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0, maximum-scale&#x3D;1.0, minimum-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;csrf-token&quot; content&#x3D;&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</span><br><span class="line">  &lt;title&gt;&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;&#123;&#123; mix(&#39;css&#x2F;app.css&#39;) &#125;&#125;&quot;&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body ontouchstart&gt;</span><br><span class="line">  &lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#123;&#123; mix(&#39;js&#x2F;app.js&#39;) &#125;&#125;&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改 /recources/js/app.js</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">require(&#39;.&#x2F;bootstrap&#39;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 导入扩展包</span><br><span class="line">window.Vue &#x3D; require(&#39;vue&#39;);</span><br><span class="line"></span><br><span class="line">import App from &#39;.&#x2F;components&#x2F;app.vue&#39;</span><br><span class="line">import VueRouter from &#39;vue-router&#39;;</span><br><span class="line">import iView from &#39;iview&#39;;</span><br><span class="line">import &#39;iview&#x2F;dist&#x2F;styles&#x2F;iview.css&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 导入vue</span><br><span class="line">Vue.use(iView);</span><br><span class="line">Vue.use(VueRouter);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 路由配置</span><br><span class="line">const RouterConfig &#x3D; &#123;</span><br><span class="line">    routes: [</span><br><span class="line">        &#x2F;&#x2F; ExampleComponent laravel默认的示例组件</span><br><span class="line">        &#123; path: &#39;&#x2F;&#39;, component: require(&#39;.&#x2F;components&#x2F;ExampleComponent.vue&#39;) &#125;,</span><br><span class="line">        &#123; path: &#39;&#x2F;bsh&#39;, component: require(&#39;.&#x2F;components&#x2F;bsh.vue&#39;) &#125;,</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br><span class="line">const router &#x3D; new VueRouter(RouterConfig);</span><br><span class="line"></span><br><span class="line">const app &#x3D; new Vue(&#123;</span><br><span class="line">    el: &#39;#app&#39;,</span><br><span class="line">    router: router,</span><br><span class="line">    render: h &#x3D;&gt; h(App)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>建立 Layout<br>在 /recources/js/components/ 新建 app.vue, 将 iview 的 layout 代码搬过来：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;style scoped&gt;</span><br><span class="line">  .layout-con&#123;</span><br><span class="line">    height: 100%;</span><br><span class="line">    width: 100%;</span><br><span class="line">  &#125;</span><br><span class="line">  .menu-item span&#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    width: 69px;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    vertical-align: bottom;</span><br><span class="line">    transition: width .2s ease .2s;</span><br><span class="line">  &#125;</span><br><span class="line">  .menu-item i&#123;</span><br><span class="line">    transform: translateX(0px);</span><br><span class="line">    transition: font-size .2s ease, transform .2s ease;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">    font-size: 16px;</span><br><span class="line">  &#125;</span><br><span class="line">  .collapsed-menu span&#123;</span><br><span class="line">    width: 0px;</span><br><span class="line">    transition: width .2s ease;</span><br><span class="line">  &#125;</span><br><span class="line">  .collapsed-menu i&#123;</span><br><span class="line">    transform: translateX(5px);</span><br><span class="line">    transition: font-size .2s ease .2s, transform .2s ease .2s;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">    font-size: 22px;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;layout&quot;&gt;</span><br><span class="line">    &lt;Layout :style&#x3D;&quot;&#123;minHeight: &#39;100vh&#39;&#125;&quot;&gt;</span><br><span class="line">      &lt;Sider collapsible :collapsed-width&#x3D;&quot;78&quot; v-model&#x3D;&quot;isCollapsed&quot;&gt;</span><br><span class="line">        &lt;Menu active-name&#x3D;&quot;1-2&quot; theme&#x3D;&quot;dark&quot; width&#x3D;&quot;auto&quot; :class&#x3D;&quot;menuitemClasses&quot;&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-1&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;ios-navigate&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 1&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-2&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;search&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 2&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-3&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;settings&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 3&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">        &lt;&#x2F;Menu&gt;</span><br><span class="line">      &lt;&#x2F;Sider&gt;</span><br><span class="line">      &lt;Layout&gt;</span><br><span class="line">        &lt;Header :style&#x3D;&quot;&#123;background: &#39;#fff&#39;, boxShadow: &#39;0 2px 3px 2px rgba(0,0,0,.1)&#39;&#125;&quot;&gt;&lt;&#x2F;Header&gt;</span><br><span class="line">        &lt;Content :style&#x3D;&quot;&#123;padding: &#39;0 16px 16px&#39;&#125;&quot;&gt;</span><br><span class="line">          &lt;Breadcrumb :style&#x3D;&quot;&#123;margin: &#39;16px 0&#39;&#125;&quot;&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Home&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Components&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Layout&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">          &lt;&#x2F;Breadcrumb&gt;</span><br><span class="line">          &lt;Card&gt;</span><br><span class="line">            &lt;div style&#x3D;&quot;height: 600px&quot;&gt;&lt;router-view&gt;&lt;&#x2F;router-view&gt;&lt;&#x2F;div&gt;</span><br><span class="line">          &lt;&#x2F;Card&gt;</span><br><span class="line">        &lt;&#x2F;Content&gt;</span><br><span class="line">      &lt;&#x2F;Layout&gt;</span><br><span class="line">    &lt;&#x2F;Layout&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">    data () &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        isCollapsed: false</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line">      menuitemClasses: function () &#123;</span><br><span class="line">        return [</span><br><span class="line">          &#39;menu-item&#39;,</span><br><span class="line">          this.isCollapsed ? &#39;collapsed-menu&#39; : &#39;&#39;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>添加组件<br>路由访问的组件会渲染到 app.vue中的[router-view]<br>然后修改组件 /recources/js/components/bsh.vue 的内容：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;Tabs&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;macOS&quot; icon&#x3D;&quot;social-apple&quot;&gt;标签一的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;Windows&quot; icon&#x3D;&quot;social-windows&quot;&gt;标签二的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;Linux&quot; icon&#x3D;&quot;social-tux&quot;&gt;标签三的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">    &lt;&#x2F;Tabs&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>编译运行<br>常用的编译命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 本地环境编译</span><br><span class="line">npm run dev</span><br><span class="line"></span><br><span class="line"># 本地环境编译 + 监控文件修改</span><br><span class="line">npm run watch</span><br><span class="line"></span><br><span class="line"># 生产环境编译</span><br><span class="line">npm run prod</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>Laravel</tag>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Laravel yansongda/laravel-pay</title>
     <url>/2018/09/29/Laravel-yansongda-laravel-pay/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1082,6 +1038,50 @@ public $queue = &#39;listeners&#39;;</code></pre>
         <tag>laravel5.7</tag>
         <tag>Redis</tag>
         <tag>Event</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Laravel 和 Vue 的项目搭建</title>
+    <url>/2018/11/02/Laravel-%E5%92%8C-Vue-%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>一、Laravel创建项目</strong> </p>
+<blockquote>
+<p>composer create-project –prefer-dist laravel/laravel laravel-vue</p>
+</blockquote>
+<p><strong>二、扩展包</strong> </p>
+<blockquote>
+<p>npm install<br>npm install vue-router iview</p>
+</blockquote>
+<p><strong>三、前端结构搭建</strong><br>vue前端的文件结构在 /recources/js 目录[laravel5.7]，vue能够渲染主要是两个操作</p>
+<ul>
+<li>vue 挂载到页面的节点中</li>
+<li>vue-router 处理路由，渲染对应的组件</li>
+</ul>
+<p>code流程  </p>
+<ol>
+<li><p>创建 web 路由<br>在 /routes/web.php 中新建一个访问我们挂载着vue页面的路由。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Route::get(&#39;&#x2F;&#39;, function () &#123;</span><br><span class="line">    return view(&#39;welcome&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑welcome.blade.php<br>在 resource/views 新建 welcome.blade.php,代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0, maximum-scale&#x3D;1.0, minimum-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;csrf-token&quot; content&#x3D;&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</span><br><span class="line">  &lt;title&gt;&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;&#123;&#123; mix(&#39;css&#x2F;app.css&#39;) &#125;&#125;&quot;&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body ontouchstart&gt;</span><br><span class="line">  &lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#123;&#123; mix(&#39;js&#x2F;app.js&#39;) &#125;&#125;&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改 /recources/js/app.js</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">require(&#39;.&#x2F;bootstrap&#39;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 导入扩展包</span><br><span class="line">window.Vue &#x3D; require(&#39;vue&#39;);</span><br><span class="line"></span><br><span class="line">import App from &#39;.&#x2F;components&#x2F;app.vue&#39;</span><br><span class="line">import VueRouter from &#39;vue-router&#39;;</span><br><span class="line">import iView from &#39;iview&#39;;</span><br><span class="line">import &#39;iview&#x2F;dist&#x2F;styles&#x2F;iview.css&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 导入vue</span><br><span class="line">Vue.use(iView);</span><br><span class="line">Vue.use(VueRouter);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 路由配置</span><br><span class="line">const RouterConfig &#x3D; &#123;</span><br><span class="line">    routes: [</span><br><span class="line">        &#x2F;&#x2F; ExampleComponent laravel默认的示例组件</span><br><span class="line">        &#123; path: &#39;&#x2F;&#39;, component: require(&#39;.&#x2F;components&#x2F;ExampleComponent.vue&#39;) &#125;,</span><br><span class="line">        &#123; path: &#39;&#x2F;bsh&#39;, component: require(&#39;.&#x2F;components&#x2F;bsh.vue&#39;) &#125;,</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br><span class="line">const router &#x3D; new VueRouter(RouterConfig);</span><br><span class="line"></span><br><span class="line">const app &#x3D; new Vue(&#123;</span><br><span class="line">    el: &#39;#app&#39;,</span><br><span class="line">    router: router,</span><br><span class="line">    render: h &#x3D;&gt; h(App)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>建立 Layout<br>在 /recources/js/components/ 新建 app.vue, 将 iview 的 layout 代码搬过来：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;style scoped&gt;</span><br><span class="line">  .layout-con&#123;</span><br><span class="line">    height: 100%;</span><br><span class="line">    width: 100%;</span><br><span class="line">  &#125;</span><br><span class="line">  .menu-item span&#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    width: 69px;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    vertical-align: bottom;</span><br><span class="line">    transition: width .2s ease .2s;</span><br><span class="line">  &#125;</span><br><span class="line">  .menu-item i&#123;</span><br><span class="line">    transform: translateX(0px);</span><br><span class="line">    transition: font-size .2s ease, transform .2s ease;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">    font-size: 16px;</span><br><span class="line">  &#125;</span><br><span class="line">  .collapsed-menu span&#123;</span><br><span class="line">    width: 0px;</span><br><span class="line">    transition: width .2s ease;</span><br><span class="line">  &#125;</span><br><span class="line">  .collapsed-menu i&#123;</span><br><span class="line">    transform: translateX(5px);</span><br><span class="line">    transition: font-size .2s ease .2s, transform .2s ease .2s;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">    font-size: 22px;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;layout&quot;&gt;</span><br><span class="line">    &lt;Layout :style&#x3D;&quot;&#123;minHeight: &#39;100vh&#39;&#125;&quot;&gt;</span><br><span class="line">      &lt;Sider collapsible :collapsed-width&#x3D;&quot;78&quot; v-model&#x3D;&quot;isCollapsed&quot;&gt;</span><br><span class="line">        &lt;Menu active-name&#x3D;&quot;1-2&quot; theme&#x3D;&quot;dark&quot; width&#x3D;&quot;auto&quot; :class&#x3D;&quot;menuitemClasses&quot;&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-1&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;ios-navigate&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 1&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-2&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;search&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 2&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-3&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;settings&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 3&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">        &lt;&#x2F;Menu&gt;</span><br><span class="line">      &lt;&#x2F;Sider&gt;</span><br><span class="line">      &lt;Layout&gt;</span><br><span class="line">        &lt;Header :style&#x3D;&quot;&#123;background: &#39;#fff&#39;, boxShadow: &#39;0 2px 3px 2px rgba(0,0,0,.1)&#39;&#125;&quot;&gt;&lt;&#x2F;Header&gt;</span><br><span class="line">        &lt;Content :style&#x3D;&quot;&#123;padding: &#39;0 16px 16px&#39;&#125;&quot;&gt;</span><br><span class="line">          &lt;Breadcrumb :style&#x3D;&quot;&#123;margin: &#39;16px 0&#39;&#125;&quot;&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Home&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Components&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Layout&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">          &lt;&#x2F;Breadcrumb&gt;</span><br><span class="line">          &lt;Card&gt;</span><br><span class="line">            &lt;div style&#x3D;&quot;height: 600px&quot;&gt;&lt;router-view&gt;&lt;&#x2F;router-view&gt;&lt;&#x2F;div&gt;</span><br><span class="line">          &lt;&#x2F;Card&gt;</span><br><span class="line">        &lt;&#x2F;Content&gt;</span><br><span class="line">      &lt;&#x2F;Layout&gt;</span><br><span class="line">    &lt;&#x2F;Layout&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">    data () &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        isCollapsed: false</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line">      menuitemClasses: function () &#123;</span><br><span class="line">        return [</span><br><span class="line">          &#39;menu-item&#39;,</span><br><span class="line">          this.isCollapsed ? &#39;collapsed-menu&#39; : &#39;&#39;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>添加组件<br>路由访问的组件会渲染到 app.vue中的[router-view]<br>然后修改组件 /recources/js/components/bsh.vue 的内容：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;Tabs&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;macOS&quot; icon&#x3D;&quot;social-apple&quot;&gt;标签一的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;Windows&quot; icon&#x3D;&quot;social-windows&quot;&gt;标签二的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;Linux&quot; icon&#x3D;&quot;social-tux&quot;&gt;标签三的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">    &lt;&#x2F;Tabs&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>编译运行<br>常用的编译命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 本地环境编译</span><br><span class="line">npm run dev</span><br><span class="line"></span><br><span class="line"># 本地环境编译 + 监控文件修改</span><br><span class="line">npm run watch</span><br><span class="line"></span><br><span class="line"># 生产环境编译</span><br><span class="line">npm run prod</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>Laravel</tag>
+        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -1885,46 +1885,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>AntV 蚂蚁数据可视化G6|Graphin</title>
-    <url>/2021/12/01/antV-%E8%9A%82%E8%9A%81%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96G6-Graphin/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/antV-g6.png" alt="AntV"></p>
-<a id="more"></a>
-
-<p>中文官网： <a href="https://antv.gitee.io/zh" target="_blank">[ AntV中文官网 ]</a><br>Github地址： <a href="https://github.com/antvis/g6" target="_blank">[ AntV G6 ]</a><br>参考文档： <a href="https://g6.antv.vision/zh/docs/manual/introduction" target="_blank">[ G6官方文档 ]</a><br><strong>什么是 G6</strong><br>G6 是一个图可视化引擎。它提供了图的绘制、布局、分析、交互、动画等图可视化的基础能力。旨在让关系变得透明，简单。让用户获得关系数据的 Insight。<br><strong>安装 &amp; 引用</strong><br>使用命令行在项目目录下执行以下命令：</p>
-<blockquote>
-<p> npm install –save @antv/g6</p>
-</blockquote>
-<p>创建一个 G6 的关系图仅需要下面几个步骤：</p>
-<ul>
-<li>创建关系图的 HTML 容器；</li>
-<li>数据准备；</li>
-<li>创建关系图；</li>
-<li>配置数据源，渲染。</li>
-</ul>
-<p><strong><em>Step 1 创建容器</em></strong><br>需要在 HTML 中创建一个用于容纳 G6 绘制的图的容器，通常为 div  标签。G6 在绘制时会在该容器下追加 canvas 标签，然后将图绘制在其中。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;mountNode&quot;&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-
-<p><strong><em>Step 2 数据准备</em></strong><br>引入 G6 的数据源为 JSON 格式的对象。该对象中需要有节点（nodes）和边（edges）字段，分别用数组表示：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const data &#x3D; &#123;</span><br><span class="line">  &#x2F;&#x2F; 点集</span><br><span class="line">  nodes: [</span><br><span class="line">    &#123;</span><br><span class="line">      id: &#39;node1&#39;, &#x2F;&#x2F; String，该节点存在则必须，节点的唯一标识</span><br><span class="line">      x: 100, &#x2F;&#x2F; Number，可选，节点位置的 x 值</span><br><span class="line">      y: 200, &#x2F;&#x2F; Number，可选，节点位置的 y 值</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      id: &#39;node2&#39;, &#x2F;&#x2F; String，该节点存在则必须，节点的唯一标识</span><br><span class="line">      x: 300, &#x2F;&#x2F; Number，可选，节点位置的 x 值</span><br><span class="line">      y: 200, &#x2F;&#x2F; Number，可选，节点位置的 y 值</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">  &#x2F;&#x2F; 边集</span><br><span class="line">  edges: [</span><br><span class="line">    &#123;</span><br><span class="line">      source: &#39;node1&#39;, &#x2F;&#x2F; String，必须，起始点 id</span><br><span class="line">      target: &#39;node2&#39;, &#x2F;&#x2F; String，必须，目标点 id</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>注意</p>
-<ul>
-<li>nodes 数组中包含节点对象。每个节点对象中唯一的、必要的 id 以标识不同的节点，x、 y 指定该节点的位置；</li>
-<li>edges 数组中包含边对象。source 和 target 是每条边的必要属性，分别代表了该边的起始点 id 与 目标点 id。</li>
-<li>点和边的其他属性参见链接：内置节点 和 内置边。</li>
-</ul>
-<p><strong><em>Step 3 创建关系图</em></strong><br>创建关系图（实例化）时，至少需要为图设置容器、宽和高。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const graph &#x3D; new G6.Graph(&#123;</span><br><span class="line">  container: &#39;mountNode&#39;, &#x2F;&#x2F; String | HTMLElement，必须，在 Step 1 中创建的容器 id 或容器本身</span><br><span class="line">  width: 800, &#x2F;&#x2F; Number，必须，图的宽度</span><br><span class="line">  height: 500, &#x2F;&#x2F; Number，必须，图的高度</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p><strong><em>Step 4 配置数据源，渲染</em></strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">graph.data(data); &#x2F;&#x2F; 读取 Step 2 中的数据源到图上</span><br><span class="line">graph.render(); &#x2F;&#x2F; 渲染图</span><br></pre></td></tr></table></figure>
-
-<p>完整代码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot; &#x2F;&gt;</span><br><span class="line">    &lt;title&gt;Tutorial Demo&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &#x2F;* 图的画布容器 *&#x2F;</span><br><span class="line">    &lt;div id&#x3D;&quot;mountNode&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">    &#x2F;* 引入 G6 *&#x2F;</span><br><span class="line">    &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;gw.alipayobjects.com&#x2F;os&#x2F;antv&#x2F;pkg&#x2F;_antv.g6-3.7.1&#x2F;dist&#x2F;g6.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      &#x2F;&#x2F; 定义数据源</span><br><span class="line">      const data &#x3D; &#123;</span><br><span class="line">        &#x2F;&#x2F; 点集</span><br><span class="line">        nodes: [</span><br><span class="line">          &#123;</span><br><span class="line">            id: &#39;node1&#39;,</span><br><span class="line">            x: 100,</span><br><span class="line">            y: 200,</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            id: &#39;node2&#39;,</span><br><span class="line">            x: 300,</span><br><span class="line">            y: 200,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">        &#x2F;&#x2F; 边集</span><br><span class="line">        edges: [</span><br><span class="line">          &#x2F;&#x2F; 表示一条从 node1 节点连接到 node2 节点的边</span><br><span class="line">          &#123;</span><br><span class="line">            source: &#39;node1&#39;,</span><br><span class="line">            target: &#39;node2&#39;,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F; 创建 G6 图实例</span><br><span class="line">      const graph &#x3D; new G6.Graph(&#123;</span><br><span class="line">        container: &#39;mountNode&#39;, &#x2F;&#x2F; 指定图画布的容器 id，与第 9 行的容器对应</span><br><span class="line">        &#x2F;&#x2F; 画布宽高</span><br><span class="line">        width: 800,</span><br><span class="line">        height: 500,</span><br><span class="line">      &#125;);</span><br><span class="line">      &#x2F;&#x2F; 读取数据</span><br><span class="line">      graph.data(data);</span><br><span class="line">      &#x2F;&#x2F; 渲染图</span><br><span class="line">      graph.render();</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>AntV</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Swift学习笔记NO.2</title>
     <url>/2017/09/25/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0NO-2/</url>
     <content><![CDATA[<p><strong>Swift学习笔记NO.2</strong> </p>
@@ -2083,6 +2043,46 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>Swift</tag>
         <tag>基础语法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AntV 蚂蚁数据可视化G6|Graphin</title>
+    <url>/2021/12/01/antV-%E8%9A%82%E8%9A%81%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96G6-Graphin/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/antV-g6.png" alt="AntV"></p>
+<a id="more"></a>
+
+<p>中文官网： <a href="https://antv.gitee.io/zh" target="_blank">[ AntV中文官网 ]</a><br>Github地址： <a href="https://github.com/antvis/g6" target="_blank">[ AntV G6 ]</a><br>参考文档： <a href="https://g6.antv.vision/zh/docs/manual/introduction" target="_blank">[ G6官方文档 ]</a><br><strong>什么是 G6</strong><br>G6 是一个图可视化引擎。它提供了图的绘制、布局、分析、交互、动画等图可视化的基础能力。旨在让关系变得透明，简单。让用户获得关系数据的 Insight。<br><strong>安装 &amp; 引用</strong><br>使用命令行在项目目录下执行以下命令：</p>
+<blockquote>
+<p> npm install –save @antv/g6</p>
+</blockquote>
+<p>创建一个 G6 的关系图仅需要下面几个步骤：</p>
+<ul>
+<li>创建关系图的 HTML 容器；</li>
+<li>数据准备；</li>
+<li>创建关系图；</li>
+<li>配置数据源，渲染。</li>
+</ul>
+<p><strong><em>Step 1 创建容器</em></strong><br>需要在 HTML 中创建一个用于容纳 G6 绘制的图的容器，通常为 div  标签。G6 在绘制时会在该容器下追加 canvas 标签，然后将图绘制在其中。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;mountNode&quot;&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>Step 2 数据准备</em></strong><br>引入 G6 的数据源为 JSON 格式的对象。该对象中需要有节点（nodes）和边（edges）字段，分别用数组表示：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const data &#x3D; &#123;</span><br><span class="line">  &#x2F;&#x2F; 点集</span><br><span class="line">  nodes: [</span><br><span class="line">    &#123;</span><br><span class="line">      id: &#39;node1&#39;, &#x2F;&#x2F; String，该节点存在则必须，节点的唯一标识</span><br><span class="line">      x: 100, &#x2F;&#x2F; Number，可选，节点位置的 x 值</span><br><span class="line">      y: 200, &#x2F;&#x2F; Number，可选，节点位置的 y 值</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      id: &#39;node2&#39;, &#x2F;&#x2F; String，该节点存在则必须，节点的唯一标识</span><br><span class="line">      x: 300, &#x2F;&#x2F; Number，可选，节点位置的 x 值</span><br><span class="line">      y: 200, &#x2F;&#x2F; Number，可选，节点位置的 y 值</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">  &#x2F;&#x2F; 边集</span><br><span class="line">  edges: [</span><br><span class="line">    &#123;</span><br><span class="line">      source: &#39;node1&#39;, &#x2F;&#x2F; String，必须，起始点 id</span><br><span class="line">      target: &#39;node2&#39;, &#x2F;&#x2F; String，必须，目标点 id</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>注意</p>
+<ul>
+<li>nodes 数组中包含节点对象。每个节点对象中唯一的、必要的 id 以标识不同的节点，x、 y 指定该节点的位置；</li>
+<li>edges 数组中包含边对象。source 和 target 是每条边的必要属性，分别代表了该边的起始点 id 与 目标点 id。</li>
+<li>点和边的其他属性参见链接：内置节点 和 内置边。</li>
+</ul>
+<p><strong><em>Step 3 创建关系图</em></strong><br>创建关系图（实例化）时，至少需要为图设置容器、宽和高。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const graph &#x3D; new G6.Graph(&#123;</span><br><span class="line">  container: &#39;mountNode&#39;, &#x2F;&#x2F; String | HTMLElement，必须，在 Step 1 中创建的容器 id 或容器本身</span><br><span class="line">  width: 800, &#x2F;&#x2F; Number，必须，图的宽度</span><br><span class="line">  height: 500, &#x2F;&#x2F; Number，必须，图的高度</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>Step 4 配置数据源，渲染</em></strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">graph.data(data); &#x2F;&#x2F; 读取 Step 2 中的数据源到图上</span><br><span class="line">graph.render(); &#x2F;&#x2F; 渲染图</span><br></pre></td></tr></table></figure>
+
+<p>完整代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot; &#x2F;&gt;</span><br><span class="line">    &lt;title&gt;Tutorial Demo&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &#x2F;* 图的画布容器 *&#x2F;</span><br><span class="line">    &lt;div id&#x3D;&quot;mountNode&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">    &#x2F;* 引入 G6 *&#x2F;</span><br><span class="line">    &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;gw.alipayobjects.com&#x2F;os&#x2F;antv&#x2F;pkg&#x2F;_antv.g6-3.7.1&#x2F;dist&#x2F;g6.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      &#x2F;&#x2F; 定义数据源</span><br><span class="line">      const data &#x3D; &#123;</span><br><span class="line">        &#x2F;&#x2F; 点集</span><br><span class="line">        nodes: [</span><br><span class="line">          &#123;</span><br><span class="line">            id: &#39;node1&#39;,</span><br><span class="line">            x: 100,</span><br><span class="line">            y: 200,</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            id: &#39;node2&#39;,</span><br><span class="line">            x: 300,</span><br><span class="line">            y: 200,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">        &#x2F;&#x2F; 边集</span><br><span class="line">        edges: [</span><br><span class="line">          &#x2F;&#x2F; 表示一条从 node1 节点连接到 node2 节点的边</span><br><span class="line">          &#123;</span><br><span class="line">            source: &#39;node1&#39;,</span><br><span class="line">            target: &#39;node2&#39;,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F; 创建 G6 图实例</span><br><span class="line">      const graph &#x3D; new G6.Graph(&#123;</span><br><span class="line">        container: &#39;mountNode&#39;, &#x2F;&#x2F; 指定图画布的容器 id，与第 9 行的容器对应</span><br><span class="line">        &#x2F;&#x2F; 画布宽高</span><br><span class="line">        width: 800,</span><br><span class="line">        height: 500,</span><br><span class="line">      &#125;);</span><br><span class="line">      &#x2F;&#x2F; 读取数据</span><br><span class="line">      graph.data(data);</span><br><span class="line">      &#x2F;&#x2F; 渲染图</span><br><span class="line">      graph.render();</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>AntV</tag>
       </tags>
   </entry>
   <entry>
@@ -2246,6 +2246,127 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>go-zero的安装及使用</title>
+    <url>/2021/09/08/go-zero%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><strong>go-zero的安装及使用</strong> </p>
+<a id="more"></a>
+<p><img src="/assets/blogImg/go-zero.webp" alt="ico原来的样子"></p>
+<p><strong>一、linux 安装Go</strong></p>
+<ul>
+<li><p>下载<a href="https://dl.google.com/go/go1.15.1.darwin-amd64.pkg" target="_blank">[ Go for Linux ]</a></p>
+</li>
+<li><p>解压压缩包至/usr/local</p>
+<blockquote>
+<p>  $ tar -C /usr/local -xzf go1.15.8.linux-amd64.tar.gz</p>
+</blockquote>
+</li>
+<li><p>添加/usr/local/go/bin到环境变量</p>
+<blockquote>
+<p>  $ $HOME/.profile<br>  export PATH=$PATH:/usr/local/go/bin<br>  $ source $HOME/.profile</p>
+</blockquote>
+</li>
+<li><p>验证安装结果</p>
+<blockquote>
+<p>  $ go version<br>  go version go1.15.1 linux/amd64</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>二、Go Module</strong></p>
+<ul>
+<li><p>查看GO111MODULE开启情况</p>
+<blockquote>
+<p>  $ go env GO111MODULE</p>
+</blockquote>
+</li>
+<li><p>开启GO111MODULE，如果已开启（即执行go env GO111MODULE结果为on）请跳过</p>
+<blockquote>
+<p>  $ go env -w GO111MODULE=”on”</p>
+</blockquote>
+</li>
+<li><p>设置GOPROXY</p>
+<blockquote>
+<p>  $ go env -w GOPROXY=<a href="https://goproxy.cn/">https://goproxy.cn</a></p>
+</blockquote>
+</li>
+<li><p>设置GOMODCACHE</p>
+<blockquote>
+<p>  $ go env GOMODCACHE<br>如果目录不为空或者/dev/null，请跳过。<br>  go env -w GOMODCACHE=$GOPATH/pkg/mod</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>三、Goctl安装</strong></p>
+<ul>
+<li><p>安装及下载</p>
+<blockquote>
+<p>  GO111MODULE=on GOPROXY=<a href="https://goproxy.cn/,direct">https://goproxy.cn/,direct</a> go get -u github.com/tal-tech/go-zero/tools/goctl</p>
+</blockquote>
+</li>
+<li><p>安装结果验证</p>
+<blockquote>
+<p>  $ goctl -v</p>
+</blockquote>
+</li>
+<li><p>protoc &amp; protoc-gen-go安装</p>
+</li>
+</ul>
+<p>1.protoc</p>
+<ul>
+<li><p>进入<a href="https://github.com/protocolbuffers/protobuf/releases" target="_blank">[ protobuf release ]</a> 页面，选择适合自己操作系统的压缩包文件</p>
+</li>
+<li><p>解压protoc-3.14.0-osx-x86_64.zip并进入protoc-3.14.0-osx-x86_64</p>
+<blockquote>
+<p>  $ cd protoc-3.14.0-osx-x86_64/bin</p>
+</blockquote>
+</li>
+<li><p>将启动的protoc二进制文件移动到被添加到环境变量的任意path下，如$GOPATH/bin，这里不建议直接将其和系统的以下path放在一起</p>
+<blockquote>
+<p>  $ mv protoc $GOPATH/bin</p>
+</blockquote>
+</li>
+<li><p>验证安装结果</p>
+<blockquote>
+<p>  $ protoc –version</p>
+</blockquote>
+</li>
+</ul>
+<p>2.protoc-gen-go</p>
+<ul>
+<li>下载安装protoc-gen-go<blockquote>
+<p>  $ go get -u github.com/golang/protobuf/protoc-gen-go@v1.3.2<br>  go: found github.com/golang/protobuf/protoc-gen-go in github.com/golang/protobuf v1.4.3<br>  go: google.golang.org/protobuf upgrade =&gt; v1.25.0</p>
+</blockquote>
+</li>
+</ul>
+<p>3.etcd安装 (ZooKeeper区别)</p>
+<ul>
+<li>高一致性 发现服务 配置共享</li>
+<li>后续 使用kq异步队列包 go-queue会接触到(主要是kafka[zookeeper]异步推送消息)</li>
+</ul>
+<p><strong>四、使用goctl(go control)创建服务</strong></p>
+<ul>
+<li><p>快速创建服务</p>
+<blockquote>
+<p>goctl api new greet</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── etc</span><br><span class="line">│   └── greet-api.yaml</span><br><span class="line">├── greet.api</span><br><span class="line">├── greet.go</span><br><span class="line">└── internal</span><br><span class="line">    ├── config</span><br><span class="line">    │   └── config.go</span><br><span class="line">    ├── handler</span><br><span class="line">    │   ├── greethandler.go</span><br><span class="line">    │   └── routes.go</span><br><span class="line">    ├── logic</span><br><span class="line">    │   └── greetlogic.go</span><br><span class="line">    ├── svc</span><br><span class="line">    │   └── servicecontext.go</span><br><span class="line">    └── types</span><br><span class="line">        └── types.go</span><br></pre></td></tr></table></figure></li>
+<li><p>api 网关层</p>
+<blockquote>
+<p>goctl api -o blog.api</p>
+</blockquote>
+</li>
+<li><p>rpc 服务</p>
+<blockquote>
+<p>goctl rpc template -o user.proto<br>goctl rpc proto -src user.proto -dir . </p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>golang</tag>
+        <tag>go-zero</tag>
+        <tag>goctl</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>gin-vue-admin的安装及使用</title>
     <url>/2021/10/14/gin-vue-admin%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/diary-5.jpg" alt="gin-vue-admin"></p>
@@ -2255,7 +2376,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#103;&#x69;&#x74;&#x40;&#x67;&#105;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#111;&#109;">&#103;&#x69;&#x74;&#x40;&#x67;&#105;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#111;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#103;&#105;&#116;&#64;&#103;&#105;&#116;&#x68;&#117;&#98;&#x2e;&#99;&#x6f;&#109;">&#103;&#105;&#116;&#64;&#103;&#105;&#116;&#x68;&#117;&#98;&#x2e;&#99;&#x6f;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -2381,150 +2502,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>go-zero的安装及使用</title>
-    <url>/2021/09/08/go-zero%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><strong>go-zero的安装及使用</strong> </p>
-<a id="more"></a>
-<p><img src="/assets/blogImg/go-zero.webp" alt="ico原来的样子"></p>
-<p><strong>一、linux 安装Go</strong></p>
-<ul>
-<li><p>下载<a href="https://dl.google.com/go/go1.15.1.darwin-amd64.pkg" target="_blank">[ Go for Linux ]</a></p>
-</li>
-<li><p>解压压缩包至/usr/local</p>
-<blockquote>
-<p>  $ tar -C /usr/local -xzf go1.15.8.linux-amd64.tar.gz</p>
-</blockquote>
-</li>
-<li><p>添加/usr/local/go/bin到环境变量</p>
-<blockquote>
-<p>  $ $HOME/.profile<br>  export PATH=$PATH:/usr/local/go/bin<br>  $ source $HOME/.profile</p>
-</blockquote>
-</li>
-<li><p>验证安装结果</p>
-<blockquote>
-<p>  $ go version<br>  go version go1.15.1 linux/amd64</p>
-</blockquote>
-</li>
-</ul>
-<p><strong>二、Go Module</strong></p>
-<ul>
-<li><p>查看GO111MODULE开启情况</p>
-<blockquote>
-<p>  $ go env GO111MODULE</p>
-</blockquote>
-</li>
-<li><p>开启GO111MODULE，如果已开启（即执行go env GO111MODULE结果为on）请跳过</p>
-<blockquote>
-<p>  $ go env -w GO111MODULE=”on”</p>
-</blockquote>
-</li>
-<li><p>设置GOPROXY</p>
-<blockquote>
-<p>  $ go env -w GOPROXY=<a href="https://goproxy.cn/">https://goproxy.cn</a></p>
-</blockquote>
-</li>
-<li><p>设置GOMODCACHE</p>
-<blockquote>
-<p>  $ go env GOMODCACHE<br>如果目录不为空或者/dev/null，请跳过。<br>  go env -w GOMODCACHE=$GOPATH/pkg/mod</p>
-</blockquote>
-</li>
-</ul>
-<p><strong>三、Goctl安装</strong></p>
-<ul>
-<li><p>安装及下载</p>
-<blockquote>
-<p>  GO111MODULE=on GOPROXY=<a href="https://goproxy.cn/,direct">https://goproxy.cn/,direct</a> go get -u github.com/tal-tech/go-zero/tools/goctl</p>
-</blockquote>
-</li>
-<li><p>安装结果验证</p>
-<blockquote>
-<p>  $ goctl -v</p>
-</blockquote>
-</li>
-<li><p>protoc &amp; protoc-gen-go安装</p>
-</li>
-</ul>
-<p>1.protoc</p>
-<ul>
-<li><p>进入<a href="https://github.com/protocolbuffers/protobuf/releases" target="_blank">[ protobuf release ]</a> 页面，选择适合自己操作系统的压缩包文件</p>
-</li>
-<li><p>解压protoc-3.14.0-osx-x86_64.zip并进入protoc-3.14.0-osx-x86_64</p>
-<blockquote>
-<p>  $ cd protoc-3.14.0-osx-x86_64/bin</p>
-</blockquote>
-</li>
-<li><p>将启动的protoc二进制文件移动到被添加到环境变量的任意path下，如$GOPATH/bin，这里不建议直接将其和系统的以下path放在一起</p>
-<blockquote>
-<p>  $ mv protoc $GOPATH/bin</p>
-</blockquote>
-</li>
-<li><p>验证安装结果</p>
-<blockquote>
-<p>  $ protoc –version</p>
-</blockquote>
-</li>
-</ul>
-<p>2.protoc-gen-go</p>
-<ul>
-<li>下载安装protoc-gen-go<blockquote>
-<p>  $ go get -u github.com/golang/protobuf/protoc-gen-go@v1.3.2<br>  go: found github.com/golang/protobuf/protoc-gen-go in github.com/golang/protobuf v1.4.3<br>  go: google.golang.org/protobuf upgrade =&gt; v1.25.0</p>
-</blockquote>
-</li>
-</ul>
-<p>3.etcd安装 (ZooKeeper区别)</p>
-<ul>
-<li>高一致性 发现服务 配置共享</li>
-<li>后续 使用kq异步队列包 go-queue会接触到(主要是kafka[zookeeper]异步推送消息)</li>
-</ul>
-<p><strong>四、使用goctl(go control)创建服务</strong></p>
-<ul>
-<li><p>快速创建服务</p>
-<blockquote>
-<p>goctl api new greet</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── etc</span><br><span class="line">│   └── greet-api.yaml</span><br><span class="line">├── greet.api</span><br><span class="line">├── greet.go</span><br><span class="line">└── internal</span><br><span class="line">    ├── config</span><br><span class="line">    │   └── config.go</span><br><span class="line">    ├── handler</span><br><span class="line">    │   ├── greethandler.go</span><br><span class="line">    │   └── routes.go</span><br><span class="line">    ├── logic</span><br><span class="line">    │   └── greetlogic.go</span><br><span class="line">    ├── svc</span><br><span class="line">    │   └── servicecontext.go</span><br><span class="line">    └── types</span><br><span class="line">        └── types.go</span><br></pre></td></tr></table></figure></li>
-<li><p>api 网关层</p>
-<blockquote>
-<p>goctl api -o blog.api</p>
-</blockquote>
-</li>
-<li><p>rpc 服务</p>
-<blockquote>
-<p>goctl rpc template -o user.proto<br>goctl rpc proto -src user.proto -dir . </p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>golang</tag>
-        <tag>go-zero</tag>
-        <tag>goctl</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>laravel-admin 实现字段排序</title>
-    <url>/2017/09/21/laravel-admin-%E5%AE%9E%E7%8E%B0%E5%AD%97%E6%AE%B5%E6%8E%92%E5%BA%8F/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> 排序代码</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">protected function grid()</span><br><span class="line">&#123;</span><br><span class="line">    return Admin::grid(Member::class, function (Grid $grid) &#123;</span><br><span class="line"></span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;id&#39;, &#39;desc&#39;);</span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;balance&#39;, &#39;desc&#39;);</span><br><span class="line"></span><br><span class="line">        $grid-&gt;id(&#39;ID&#39;)-&gt;sortable();</span><br><span class="line"></span><br><span class="line">        $grid-&gt;balance(&#39;余额&#39;)-&gt;sortable();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>laravel-admin</tag>
-        <tag>字段排序</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>install program</title>
     <url>/2017/11/02/install-program/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2613,6 +2590,29 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>laravel-admin 实现字段排序</title>
+    <url>/2017/09/21/laravel-admin-%E5%AE%9E%E7%8E%B0%E5%AD%97%E6%AE%B5%E6%8E%92%E5%BA%8F/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> 排序代码</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">protected function grid()</span><br><span class="line">&#123;</span><br><span class="line">    return Admin::grid(Member::class, function (Grid $grid) &#123;</span><br><span class="line"></span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;id&#39;, &#39;desc&#39;);</span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;balance&#39;, &#39;desc&#39;);</span><br><span class="line"></span><br><span class="line">        $grid-&gt;id(&#39;ID&#39;)-&gt;sortable();</span><br><span class="line"></span><br><span class="line">        $grid-&gt;balance(&#39;余额&#39;)-&gt;sortable();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>laravel-admin</tag>
+        <tag>字段排序</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>laravel 微信公众号项目修改兼容web端</title>
     <url>/2017/08/30/laravel-%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E9%A1%B9%E7%9B%AE%E4%BF%AE%E6%94%B9%E5%85%BC%E5%AE%B9web%E7%AB%AF/</url>
     <content><![CDATA[<blockquote>
@@ -2687,68 +2687,67 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>laravel5.5快速入门 —— 安装配置篇</title>
-    <url>/2017/09/15/laravel5.5%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8-%E2%80%94%E2%80%94-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E7%AF%87/</url>
+    <title>linux centos7.3 lnmp一键安装包集成</title>
+    <url>/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E9%9B%86%E6%88%90/</url>
     <content><![CDATA[<a id="more"></a>
 
-<p><strong>一、服务器要求</strong></p>
+<p><strong>一、下载并安装LNMP一键安装包</strong></p>
+<p>安装LNMP稳定版</p>
 <blockquote>
-<p>Laravel 框架对PHP版本和扩展有一定要求，不过这些要求 Homestead 都已经满足了，不过如果你没有使用 Homestead 的话（那真是一件很遗憾的事情），有必要了解下这些以便确认自己的环境满足要求：</p>
+<p> wget -c <a href="http://soft.vpser.net/lnmp/lnmp1.4.tar.gz">http://soft.vpser.net/lnmp/lnmp1.4.tar.gz</a> &amp;&amp; tar zxf lnmp1.4.tar.gz &amp;&amp; cd lnmp1.4 &amp;&amp; ./install.sh lnmp：</p>
 </blockquote>
-<ul>
-<li> PHP &gt;= 7.0.0</li>
-<li> PHP OpenSSL 扩展</li>
-<li> PHP PDO 扩展</li>
-<li> PHP Mbstring 扩展</li>
-<li> PHP Tokenizer 扩展</li>
-<li> PHP XML 扩展</li>
-</ul>
+<p>默认安装lnmp可不写，如需要安装LNMPA或LAMP，将./install.sh 后面的参数替换为lnmpa或lamp即可。如需更改网站和数据库目录先修改安装包目录下的 lnmp.conf 文件。</p>
 <blockquote>
-<p> 满足以上需求之后，就可以开始安装 Laravel 了。</p>
+<p> 运行上述LNMP安装命令后，会出现如下提示：</p>
 </blockquote>
-<p><strong>二、安装 Laravel</strong></p>
+<p><img src="/assets/blogImg/lnmp/1.png" alt="ico原来的样子"></p>
 <blockquote>
-<p>Laravel 使用 <a href="http://www.phpcomposer.com/" target="_blank">[ Composer ]</a> 管理依赖，所以，安装之前确保已经在机器上安装了 Composer。</p>
+<p> 输入对应MySQL或MariaDB版本前面的序号，回车进入下一步.：</p>
 </blockquote>
-<ul>
-<li> PHP &gt;= 7.0.0</li>
-<li> PHP OpenSSL 扩展</li>
-<li> PHP PDO 扩展</li>
-<li> PHP Mbstring 扩展</li>
-<li> PHP Tokenizer 扩展</li>
-<li> PHP XML 扩展</li>
-</ul>
+<p><img src="/assets/blogImg/lnmp/2.png" alt="ico原来的样子"></p>
 <blockquote>
-<p> 满足以上需求之后，就可以开始安装 Laravel 了。</p>
+<p> 需要设置MySQL的root密码（不输入直接回车将会设置为root）如果输入有错误需要删除时，可以按住Ctrl再按Backspace键进行删除(个别情况下是只需要Backspace键)。输入后回车进入下一步，如下图所示：：</p>
 </blockquote>
-<p>通过 Laravel 安装器</p>
-<p>首先，通过 Composer 安装 Laravel 安装器：</p>
+<p><img src="/assets/blogImg/lnmp/3.png" alt="ico原来的样子"></p>
 <blockquote>
-<p> composer global require “laravel/installer”</p>
+<p> 询问是否需要启用MySQL InnoDB，InnoDB引擎默认为开启，一般建议开启，直接回车或输入 y ，如果确定确实不需要该引擎可以输入 n，输入完成，回车进入下一步。注意：选择PHP7等高版本时需要自行确认是否与自己的程序兼容。</p>
 </blockquote>
-<p>确保 $HOME/.composer/vendor/bin 在系统路径中</p>
-<p>安装完成后，通过简单的 laravel new 命令即可在当前目录下创建一个新的 Laravel 应用，例如，laravel new blog 将会创建一个名为 blog 的新应用，且包含所有 Laravel 依赖。该安装方法比通过 Composer 安装要快很多：</p>
+<p><img src="/assets/blogImg/lnmp/4.png" alt="ico原来的样子"></p>
 <blockquote>
-<p> laravel new blog</p>
+<p> 输入要选择的PHP版本的序号，回车进入下一步，选择是否安装内存优化：</p>
 </blockquote>
-<p>如果之前已经安装过旧版本的 Laravel 安装器，需要更新后才能安装最新的 Laravel 5.5 框架应用：</p>
+<p><img src="/assets/blogImg/lnmp/5.png" alt="ico原来的样子"></p>
 <blockquote>
-<p> composer global update</p>
+<p> 再选择Apache版本</p>
 </blockquote>
-<p>通过 Composer Create-Project<br>你还可以在终端中通过 Composer 的 create-project 命令来安装 Laravel 应用：</p>
+<p><img src="/assets/blogImg/lnmp/6.png" alt="ico原来的样子"></p>
+<p>按提示输入对应版本前面的数字序号，回车。</p>
+<p>提示”Press any key to install…or Press Ctrl+c to cancel”后，按回车键确认开始安装。<br>LNMP脚本就会自动安装编译Nginx、MySQL、PHP、phpMyAdmin、Zend Optimizer这几个软件。</p>
+<p>安装时间可能会几十分钟到几个小时不等，主要是机器的配置网速等原因会造成影响。</p>
 <blockquote>
-<p> composer create-project –prefer-dist laravel/laravel blog</p>
+<p> 安装完成  如果显示Nginx: OK，MySQL: OK，PHP: OK</p>
 </blockquote>
+<p><img src="/assets/blogImg/lnmp/7.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 并且Nginx、MySQL、PHP都是running，80和3306端口都存在，并提示安装使用的时间及Install lnmp V1.4 completed! enjoy it.的话，说明已经安装成功</p>
+</blockquote>
+<p>安装失败</p>
+<blockquote>
+<p> 安装失败</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/8.png" alt="ico原来的样子"></p>
 <hr>
 <ul>
 <li><strong>Notice</strong></li>
 </ul>
 <blockquote>
-<p>  如若需要 请戳 &lt;a href=’<a href="https://shunhua.github.io/about/&#39;target=&quot;_blank&quot;&gt;[">https://shunhua.github.io/about/&#39;target=&quot;_blank&quot;&gt;[</a> About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
 </blockquote>
 ]]></content>
       <tags>
-        <tag>laravel5.5</tag>
+        <tag>lnmp</tag>
+        <tag>linux</tag>
+        <tag>centos7.3</tag>
       </tags>
   </entry>
   <entry>
@@ -2824,67 +2823,68 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>linux centos7.3 lnmp一键安装包集成</title>
-    <url>/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E9%9B%86%E6%88%90/</url>
+    <title>laravel5.5快速入门 —— 安装配置篇</title>
+    <url>/2017/09/15/laravel5.5%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8-%E2%80%94%E2%80%94-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E7%AF%87/</url>
     <content><![CDATA[<a id="more"></a>
 
-<p><strong>一、下载并安装LNMP一键安装包</strong></p>
-<p>安装LNMP稳定版</p>
+<p><strong>一、服务器要求</strong></p>
 <blockquote>
-<p> wget -c <a href="http://soft.vpser.net/lnmp/lnmp1.4.tar.gz">http://soft.vpser.net/lnmp/lnmp1.4.tar.gz</a> &amp;&amp; tar zxf lnmp1.4.tar.gz &amp;&amp; cd lnmp1.4 &amp;&amp; ./install.sh lnmp：</p>
+<p>Laravel 框架对PHP版本和扩展有一定要求，不过这些要求 Homestead 都已经满足了，不过如果你没有使用 Homestead 的话（那真是一件很遗憾的事情），有必要了解下这些以便确认自己的环境满足要求：</p>
 </blockquote>
-<p>默认安装lnmp可不写，如需要安装LNMPA或LAMP，将./install.sh 后面的参数替换为lnmpa或lamp即可。如需更改网站和数据库目录先修改安装包目录下的 lnmp.conf 文件。</p>
+<ul>
+<li> PHP &gt;= 7.0.0</li>
+<li> PHP OpenSSL 扩展</li>
+<li> PHP PDO 扩展</li>
+<li> PHP Mbstring 扩展</li>
+<li> PHP Tokenizer 扩展</li>
+<li> PHP XML 扩展</li>
+</ul>
 <blockquote>
-<p> 运行上述LNMP安装命令后，会出现如下提示：</p>
+<p> 满足以上需求之后，就可以开始安装 Laravel 了。</p>
 </blockquote>
-<p><img src="/assets/blogImg/lnmp/1.png" alt="ico原来的样子"></p>
+<p><strong>二、安装 Laravel</strong></p>
 <blockquote>
-<p> 输入对应MySQL或MariaDB版本前面的序号，回车进入下一步.：</p>
+<p>Laravel 使用 <a href="http://www.phpcomposer.com/" target="_blank">[ Composer ]</a> 管理依赖，所以，安装之前确保已经在机器上安装了 Composer。</p>
 </blockquote>
-<p><img src="/assets/blogImg/lnmp/2.png" alt="ico原来的样子"></p>
+<ul>
+<li> PHP &gt;= 7.0.0</li>
+<li> PHP OpenSSL 扩展</li>
+<li> PHP PDO 扩展</li>
+<li> PHP Mbstring 扩展</li>
+<li> PHP Tokenizer 扩展</li>
+<li> PHP XML 扩展</li>
+</ul>
 <blockquote>
-<p> 需要设置MySQL的root密码（不输入直接回车将会设置为root）如果输入有错误需要删除时，可以按住Ctrl再按Backspace键进行删除(个别情况下是只需要Backspace键)。输入后回车进入下一步，如下图所示：：</p>
+<p> 满足以上需求之后，就可以开始安装 Laravel 了。</p>
 </blockquote>
-<p><img src="/assets/blogImg/lnmp/3.png" alt="ico原来的样子"></p>
+<p>通过 Laravel 安装器</p>
+<p>首先，通过 Composer 安装 Laravel 安装器：</p>
 <blockquote>
-<p> 询问是否需要启用MySQL InnoDB，InnoDB引擎默认为开启，一般建议开启，直接回车或输入 y ，如果确定确实不需要该引擎可以输入 n，输入完成，回车进入下一步。注意：选择PHP7等高版本时需要自行确认是否与自己的程序兼容。</p>
+<p> composer global require “laravel/installer”</p>
 </blockquote>
-<p><img src="/assets/blogImg/lnmp/4.png" alt="ico原来的样子"></p>
+<p>确保 $HOME/.composer/vendor/bin 在系统路径中</p>
+<p>安装完成后，通过简单的 laravel new 命令即可在当前目录下创建一个新的 Laravel 应用，例如，laravel new blog 将会创建一个名为 blog 的新应用，且包含所有 Laravel 依赖。该安装方法比通过 Composer 安装要快很多：</p>
 <blockquote>
-<p> 输入要选择的PHP版本的序号，回车进入下一步，选择是否安装内存优化：</p>
+<p> laravel new blog</p>
 </blockquote>
-<p><img src="/assets/blogImg/lnmp/5.png" alt="ico原来的样子"></p>
+<p>如果之前已经安装过旧版本的 Laravel 安装器，需要更新后才能安装最新的 Laravel 5.5 框架应用：</p>
 <blockquote>
-<p> 再选择Apache版本</p>
+<p> composer global update</p>
 </blockquote>
-<p><img src="/assets/blogImg/lnmp/6.png" alt="ico原来的样子"></p>
-<p>按提示输入对应版本前面的数字序号，回车。</p>
-<p>提示”Press any key to install…or Press Ctrl+c to cancel”后，按回车键确认开始安装。<br>LNMP脚本就会自动安装编译Nginx、MySQL、PHP、phpMyAdmin、Zend Optimizer这几个软件。</p>
-<p>安装时间可能会几十分钟到几个小时不等，主要是机器的配置网速等原因会造成影响。</p>
+<p>通过 Composer Create-Project<br>你还可以在终端中通过 Composer 的 create-project 命令来安装 Laravel 应用：</p>
 <blockquote>
-<p> 安装完成  如果显示Nginx: OK，MySQL: OK，PHP: OK</p>
+<p> composer create-project –prefer-dist laravel/laravel blog</p>
 </blockquote>
-<p><img src="/assets/blogImg/lnmp/7.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 并且Nginx、MySQL、PHP都是running，80和3306端口都存在，并提示安装使用的时间及Install lnmp V1.4 completed! enjoy it.的话，说明已经安装成功</p>
-</blockquote>
-<p>安装失败</p>
-<blockquote>
-<p> 安装失败</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/8.png" alt="ico原来的样子"></p>
 <hr>
 <ul>
 <li><strong>Notice</strong></li>
 </ul>
 <blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+<p>  如若需要 请戳 &lt;a href=’<a href="https://shunhua.github.io/about/&#39;target=&quot;_blank&quot;&gt;[">https://shunhua.github.io/about/&#39;target=&quot;_blank&quot;&gt;[</a> About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
 </blockquote>
 ]]></content>
       <tags>
-        <tag>lnmp</tag>
-        <tag>linux</tag>
-        <tag>centos7.3</tag>
+        <tag>laravel5.5</tag>
       </tags>
   </entry>
   <entry>
@@ -3251,6 +3251,37 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>socket.io的使用</title>
+    <url>/2018/03/28/socket-io%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><strong>socket.io的基础教程</strong> </p>
+<a id="more"></a>
+
+<p>一、安装nodejs [默认安装][<a href="https://nodejs.org/en/download/" target="_blank">下载nodejs</a>]<br>新建文件夹[socket],在目录下执行以下代码<br>nodejs中用npm初始化来创建package.json</p>
+<blockquote>
+<p> npm init</p>
+</blockquote>
+<p>二、使用npm下载 web框架express模块</p>
+<blockquote>
+<p>npm install --save <a href="mailto:&#x65;&#x78;&#x70;&#x72;&#101;&#115;&#x73;&#64;&#x34;&#x2e;&#49;&#x35;&#x2e;&#x32;">&#x65;&#x78;&#x70;&#x72;&#101;&#115;&#x73;&#64;&#x34;&#x2e;&#49;&#x35;&#x2e;&#x32;</a></p>
+</blockquote>
+<p>三、使用npm下载socket.io模块</p>
+<blockquote>
+<p>npm install --save socket.io</p>
+</blockquote>
+<p>四、新建index.js 代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var app &#x3D; require(&#39;express&#39;)();</span><br><span class="line">var http &#x3D; require(&#39;http&#39;).Server(app);</span><br><span class="line">var io &#x3D; require(&#39;socket.io&#39;)(http);</span><br><span class="line"></span><br><span class="line">app.get(&#39;&#x2F;&#39;, function(req, res)&#123;</span><br><span class="line">  res.sendFile(__dirname + &#39;&#x2F;index.html&#39;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">io.on(&#39;connection&#39;, function(socket)&#123;</span><br><span class="line">  socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">     io.emit(&#39;bsh&#39;, msg);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.listen(3000, function()&#123;</span><br><span class="line">  console.log(&#39;listening on *:3000&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>五、新建index.html 代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Socket.IO chat&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      * &#123; margin: 0; padding: 0; box-sizing: border-box; &#125;</span><br><span class="line">      body &#123; font: 13px Helvetica, Arial; &#125;</span><br><span class="line">      form &#123; background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; &#125;</span><br><span class="line">      form input &#123; border: 0; padding: 10px; width: 90%; margin-right: .5%; &#125;</span><br><span class="line">      form button &#123; width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; &#125;</span><br><span class="line">      #messages &#123; list-style-type: none; margin: 0; padding: 0; &#125;</span><br><span class="line">      #messages li &#123; padding: 5px 10px; &#125;</span><br><span class="line">      #messages li:nth-child(odd) &#123; background: #eee; &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.1.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  $(function () &#123;</span><br><span class="line">    var socket &#x3D; io();</span><br><span class="line">    $(&#39;form&#39;).submit(function()&#123;</span><br><span class="line">      socket.emit(&#39;bsh&#39;, $(&#39;#m&#39;).val());</span><br><span class="line">      $(&#39;#m&#39;).val(&#39;&#39;);</span><br><span class="line">      return false;</span><br><span class="line">    &#125;);</span><br><span class="line">    socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">      $(&#39;#messages&#39;).append($(&#39;&lt;li&gt;&#39;).text(msg));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;ul id&#x3D;&quot;messages&quot;&gt;&lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;form action&#x3D;&quot;&quot;&gt;</span><br><span class="line">      &lt;input id&#x3D;&quot;m&quot; autocomplete&#x3D;&quot;off&quot; &#x2F;&gt;&lt;button&gt;Send&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>六、执行 node index.js<br>七、浏览器打开localhost:3000</p>
+]]></content>
+      <tags>
+        <tag>socket.io</tag>
+        <tag>nodejs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sublime text3 安装配置svn 及默认快捷键</title>
     <url>/2017/08/25/sublime-text3-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEsvn-%E5%8F%8A%E9%BB%98%E8%AE%A4%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
     <content><![CDATA[<p><strong>sublime text3 安装配置svn 及默认快捷键：</strong> </p>
@@ -3290,37 +3321,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>svn</tag>
         <tag>sublime text3</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>socket.io的使用</title>
-    <url>/2018/03/28/socket-io%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><strong>socket.io的基础教程</strong> </p>
-<a id="more"></a>
-
-<p>一、安装nodejs [默认安装][<a href="https://nodejs.org/en/download/" target="_blank">下载nodejs</a>]<br>新建文件夹[socket],在目录下执行以下代码<br>nodejs中用npm初始化来创建package.json</p>
-<blockquote>
-<p> npm init</p>
-</blockquote>
-<p>二、使用npm下载 web框架express模块</p>
-<blockquote>
-<p>npm install --save <a href="mailto:&#101;&#x78;&#x70;&#114;&#101;&#115;&#115;&#x40;&#x34;&#x2e;&#x31;&#x35;&#46;&#50;">&#101;&#x78;&#x70;&#114;&#101;&#115;&#115;&#x40;&#x34;&#x2e;&#x31;&#x35;&#46;&#50;</a></p>
-</blockquote>
-<p>三、使用npm下载socket.io模块</p>
-<blockquote>
-<p>npm install --save socket.io</p>
-</blockquote>
-<p>四、新建index.js 代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var app &#x3D; require(&#39;express&#39;)();</span><br><span class="line">var http &#x3D; require(&#39;http&#39;).Server(app);</span><br><span class="line">var io &#x3D; require(&#39;socket.io&#39;)(http);</span><br><span class="line"></span><br><span class="line">app.get(&#39;&#x2F;&#39;, function(req, res)&#123;</span><br><span class="line">  res.sendFile(__dirname + &#39;&#x2F;index.html&#39;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">io.on(&#39;connection&#39;, function(socket)&#123;</span><br><span class="line">  socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">     io.emit(&#39;bsh&#39;, msg);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.listen(3000, function()&#123;</span><br><span class="line">  console.log(&#39;listening on *:3000&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>五、新建index.html 代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Socket.IO chat&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      * &#123; margin: 0; padding: 0; box-sizing: border-box; &#125;</span><br><span class="line">      body &#123; font: 13px Helvetica, Arial; &#125;</span><br><span class="line">      form &#123; background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; &#125;</span><br><span class="line">      form input &#123; border: 0; padding: 10px; width: 90%; margin-right: .5%; &#125;</span><br><span class="line">      form button &#123; width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; &#125;</span><br><span class="line">      #messages &#123; list-style-type: none; margin: 0; padding: 0; &#125;</span><br><span class="line">      #messages li &#123; padding: 5px 10px; &#125;</span><br><span class="line">      #messages li:nth-child(odd) &#123; background: #eee; &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.1.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  $(function () &#123;</span><br><span class="line">    var socket &#x3D; io();</span><br><span class="line">    $(&#39;form&#39;).submit(function()&#123;</span><br><span class="line">      socket.emit(&#39;bsh&#39;, $(&#39;#m&#39;).val());</span><br><span class="line">      $(&#39;#m&#39;).val(&#39;&#39;);</span><br><span class="line">      return false;</span><br><span class="line">    &#125;);</span><br><span class="line">    socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">      $(&#39;#messages&#39;).append($(&#39;&lt;li&gt;&#39;).text(msg));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;ul id&#x3D;&quot;messages&quot;&gt;&lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;form action&#x3D;&quot;&quot;&gt;</span><br><span class="line">      &lt;input id&#x3D;&quot;m&quot; autocomplete&#x3D;&quot;off&quot; &#x2F;&gt;&lt;button&gt;Send&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-
-<p>六、执行 node index.js<br>七、浏览器打开localhost:3000</p>
-]]></content>
-      <tags>
-        <tag>socket.io</tag>
-        <tag>nodejs</tag>
       </tags>
   </entry>
   <entry>
@@ -3458,6 +3458,23 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>使用git 与github友好交流</title>
+    <url>/2017/08/11/%E4%BD%BF%E7%94%A8git-%E4%B8%8Egithub%E5%8F%8B%E5%A5%BD%E4%BA%A4%E6%B5%81/</url>
+    <content><![CDATA[<p>##<strong>本文主要介绍window 端Git 与github友好交流</strong></p>
+<blockquote>
+<p>1、安装window版（32/64）git。 window端安装过程无脑略过—— </p>
+</blockquote>
+<a id="more"></a>
+
+
+<p>2、本文默认github已注册并添加过 ssh key<br>3、github上新建仓库<br>git add / add *<br>git commit -m<br>git remote add origin <a href="http://xxxx.github.io/">http://xxxx.github.io</a><br>git push -u origin master<br>git pull<br>git rm -r xxx<br>git commit -m ‘’<br>git push -u origin master<br>git  –version</p>
+]]></content>
+      <tags>
+        <tag>git</tag>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>发布Laravel扩展包larapay</title>
     <url>/2018/12/04/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85larapay/</url>
     <content><![CDATA[<p><strong>发布Laravel扩展封装支付包larapay</strong> </p>
@@ -3490,23 +3507,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>laravel</tag>
         <tag>composer - 扩展包</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用git 与github友好交流</title>
-    <url>/2017/08/11/%E4%BD%BF%E7%94%A8git-%E4%B8%8Egithub%E5%8F%8B%E5%A5%BD%E4%BA%A4%E6%B5%81/</url>
-    <content><![CDATA[<p>##<strong>本文主要介绍window 端Git 与github友好交流</strong></p>
-<blockquote>
-<p>1、安装window版（32/64）git。 window端安装过程无脑略过—— </p>
-</blockquote>
-<a id="more"></a>
-
-
-<p>2、本文默认github已注册并添加过 ssh key<br>3、github上新建仓库<br>git add / add *<br>git commit -m<br>git remote add origin <a href="http://xxxx.github.io/">http://xxxx.github.io</a><br>git push -u origin master<br>git pull<br>git rm -r xxx<br>git commit -m ‘’<br>git push -u origin master<br>git  –version</p>
-]]></content>
-      <tags>
-        <tag>git</tag>
-        <tag>github</tag>
       </tags>
   </entry>
   <entry>
@@ -3625,51 +3625,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>开源项目及部署工具</title>
-    <url>/2021/10/19/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E5%8F%8A%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/diary-6.jpg" alt="开源项目"></p>
-<a id="more"></a>
-
-<blockquote>
-<p>   一、部署工具</p>
-</blockquote>
-<ul>
-<li>dnmp： <a href="https://github.com/shunhua/dnmp" target="_blank">[ dnmp ]</a></li>
-<li>lnmp： <a href="https://lnmp.org/install.html" target="_blank">[ lnmp ]</a></li>
-<li>bt： <a href="https://www.bt.cn/btcode.html" target="_blank">[ 宝塔 ]</a></li>
-<li>laradock： <a href="http://laradock.io/" target="_blank">[ laradock ]</a></li>
-</ul>
-<blockquote>
-<p>   二、开源项目</p>
-</blockquote>
-<ul>
-<li>dcat-admin： <a href="https://github.com/jqhph/dcat-admin" target="_blank">[ dcat-admin ]</a></li>
-<li>laravel-admin： <a href="https://github.com/z-song/laravel-admin" target="_blank">[ laravel-admin ]</a></li>
-<li>go-zero： <a href="https://github.com/zeromicro/go-zero" target="_blank">[ go-zero ]</a></li>
-<li>zero-admin： <a href="https://github.com/feihua/zero-admin" target="_blank">[ zero-admin ]</a></li>
-<li>go-admin： <a href="https://github.com/go-admin-team/go-admin" target="_blank">[ go-admin ]</a></li>
-<li>vue-element-admin： <a href="https://github.com/PanJiaChen/vue-element-admin" target="_blank">[ vue-element-admin ]</a></li>
-<li>gin-vue-admin： <a href="https://github.com/flipped-aurora/gin-vue-admin" target="_blank">[ gin-vue-admin ]</a></li>
-</ul>
-<blockquote>
-<p>   三、涉及框架</p>
-</blockquote>
-<ul>
-<li>laravel： <a href="https://laravel.com/" target="_blank">[ laravel ]</a></li>
-<li>gin： <a href="https://github.com/gin-gonic/gin" target="_blank">[ gin ]</a></li>
-<li>element： <a href="https://element-plus.gitee.io/zh-CN/" target="_blank">[ element-ui ]</a></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>php</tag>
-        <tag>golang</tag>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>搭建一套规范的 Vue3.x 项目工程环境</title>
     <url>/2021/11/04/%E6%90%AD%E5%BB%BA%E4%B8%80%E5%A5%97%E8%A7%84%E8%8C%83%E7%9A%84-Vue3-x-%E9%A1%B9%E7%9B%AE%E5%B7%A5%E7%A8%8B%E7%8E%AF%E5%A2%83/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/rabbit.jpg" alt="Vue3.x"></p>
@@ -3717,6 +3672,51 @@ class QuotesSpider(scrapy.Spider):
         <tag>Vue3</tag>
         <tag>Vite</tag>
         <tag>TypeScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>开源项目及部署工具</title>
+    <url>/2021/10/19/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E5%8F%8A%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/diary-6.jpg" alt="开源项目"></p>
+<a id="more"></a>
+
+<blockquote>
+<p>   一、部署工具</p>
+</blockquote>
+<ul>
+<li>dnmp： <a href="https://github.com/shunhua/dnmp" target="_blank">[ dnmp ]</a></li>
+<li>lnmp： <a href="https://lnmp.org/install.html" target="_blank">[ lnmp ]</a></li>
+<li>bt： <a href="https://www.bt.cn/btcode.html" target="_blank">[ 宝塔 ]</a></li>
+<li>laradock： <a href="http://laradock.io/" target="_blank">[ laradock ]</a></li>
+</ul>
+<blockquote>
+<p>   二、开源项目</p>
+</blockquote>
+<ul>
+<li>dcat-admin： <a href="https://github.com/jqhph/dcat-admin" target="_blank">[ dcat-admin ]</a></li>
+<li>laravel-admin： <a href="https://github.com/z-song/laravel-admin" target="_blank">[ laravel-admin ]</a></li>
+<li>go-zero： <a href="https://github.com/zeromicro/go-zero" target="_blank">[ go-zero ]</a></li>
+<li>zero-admin： <a href="https://github.com/feihua/zero-admin" target="_blank">[ zero-admin ]</a></li>
+<li>go-admin： <a href="https://github.com/go-admin-team/go-admin" target="_blank">[ go-admin ]</a></li>
+<li>vue-element-admin： <a href="https://github.com/PanJiaChen/vue-element-admin" target="_blank">[ vue-element-admin ]</a></li>
+<li>gin-vue-admin： <a href="https://github.com/flipped-aurora/gin-vue-admin" target="_blank">[ gin-vue-admin ]</a></li>
+</ul>
+<blockquote>
+<p>   三、涉及框架</p>
+</blockquote>
+<ul>
+<li>laravel： <a href="https://laravel.com/" target="_blank">[ laravel ]</a></li>
+<li>gin： <a href="https://github.com/gin-gonic/gin" target="_blank">[ gin ]</a></li>
+<li>element： <a href="https://element-plus.gitee.io/zh-CN/" target="_blank">[ element-ui ]</a></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>php</tag>
+        <tag>golang</tag>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
