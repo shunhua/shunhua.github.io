@@ -125,7 +125,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#x40;&#113;&#x71;&#46;&#99;&#111;&#x6d;">&#120;&#x40;&#113;&#x71;&#46;&#99;&#111;&#x6d;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#x40;&#113;&#x71;&#x2e;&#99;&#x6f;&#109;">&#x78;&#x40;&#113;&#x71;&#x2e;&#99;&#x6f;&#109;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -136,7 +136,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#98;&#x40;&#x71;&#113;&#46;&#99;&#111;&#109;">&#98;&#x40;&#x71;&#113;&#46;&#99;&#111;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#x40;&#113;&#x71;&#x2e;&#99;&#x6f;&#x6d;">&#x62;&#x40;&#113;&#x71;&#x2e;&#99;&#x6f;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -201,6 +201,53 @@
       <tags>
         <tag>Centos</tag>
         <tag>Nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS 7 安装MySQL5.7</title>
+    <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85MySQL5-7/</url>
+    <content><![CDATA[<p><strong>Centos下安装MySQL</strong> </p>
+<a id="more"></a>
+<p>官方mysql.com 支持我们使用yum的方式安装mysql 5.7最新版。所以大家根本无需手工编译安装（除非你需要）。CentOS7的yum源中默认好像是没有mysql的。为了解决这个问题，我们要先下载mysql的repo源。<br>一、下载mysql的repo源</p>
+<blockquote>
+<p>wget <a href="http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm">http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm</a></p>
+</blockquote>
+<p>二、 安装mysql57-community-release-el7-9.noarch.rpm包</p>
+<blockquote>
+<p>rpm -ivh mysql57-community-release-el7-9.noarch.rpm</p>
+</blockquote>
+<p>三、 安装mysql （下载需要一段时间)</p>
+<blockquote>
+<p>yum install mysql-community-server</p>
+</blockquote>
+<p>四、启动mysql</p>
+<blockquote>
+<p>systemctl start mysqld<br>systemctl enable mysqld.service</p>
+</blockquote>
+<p>五、第一次启动后，mysql5.7 会生成一个随机root密码 （MySQL 5.7.6以上）</p>
+<blockquote>
+<p>grep ‘temporary passwor’ /var/log/mysqld.log</p>
+</blockquote>
+<p>修改root密码</p>
+<blockquote>
+<p>ALTER USER USER() IDENTIFIED BY ‘123456’;</p>
+</blockquote>
+<p>外网访问</p>
+<blockquote>
+<p>mysql -u root -p  # 首次登录会修改密码<br>GRANT ALL PRIVILEGES ON <em>.</em> TO ‘root’@’%’ IDENTIFIED BY ‘your_root_password’ WITH GRANT OPTION;</p>
+</blockquote>
+<p>删除mysql</p>
+<blockquote>
+<p>rpm -qa|grep mysql；<br>yum remove packages</p>
+</blockquote>
+<p>端口查看</p>
+<blockquote>
+<p>ps -aux | grep mysql<br>netstat -apn | grep 3306<br>netstat -apn</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Centos</tag>
+        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
@@ -278,53 +325,6 @@
       <tags>
         <tag>CentOS 7</tag>
         <tag>svn</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CentOS 7 安装MySQL5.7</title>
-    <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85MySQL5-7/</url>
-    <content><![CDATA[<p><strong>Centos下安装MySQL</strong> </p>
-<a id="more"></a>
-<p>官方mysql.com 支持我们使用yum的方式安装mysql 5.7最新版。所以大家根本无需手工编译安装（除非你需要）。CentOS7的yum源中默认好像是没有mysql的。为了解决这个问题，我们要先下载mysql的repo源。<br>一、下载mysql的repo源</p>
-<blockquote>
-<p>wget <a href="http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm">http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm</a></p>
-</blockquote>
-<p>二、 安装mysql57-community-release-el7-9.noarch.rpm包</p>
-<blockquote>
-<p>rpm -ivh mysql57-community-release-el7-9.noarch.rpm</p>
-</blockquote>
-<p>三、 安装mysql （下载需要一段时间)</p>
-<blockquote>
-<p>yum install mysql-community-server</p>
-</blockquote>
-<p>四、启动mysql</p>
-<blockquote>
-<p>systemctl start mysqld<br>systemctl enable mysqld.service</p>
-</blockquote>
-<p>五、第一次启动后，mysql5.7 会生成一个随机root密码 （MySQL 5.7.6以上）</p>
-<blockquote>
-<p>grep ‘temporary passwor’ /var/log/mysqld.log</p>
-</blockquote>
-<p>修改root密码</p>
-<blockquote>
-<p>ALTER USER USER() IDENTIFIED BY ‘123456’;</p>
-</blockquote>
-<p>外网访问</p>
-<blockquote>
-<p>mysql -u root -p  # 首次登录会修改密码<br>GRANT ALL PRIVILEGES ON <em>.</em> TO ‘root’@’%’ IDENTIFIED BY ‘your_root_password’ WITH GRANT OPTION;</p>
-</blockquote>
-<p>删除mysql</p>
-<blockquote>
-<p>rpm -qa|grep mysql；<br>yum remove packages</p>
-</blockquote>
-<p>端口查看</p>
-<blockquote>
-<p>ps -aux | grep mysql<br>netstat -apn | grep 3306<br>netstat -apn</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Centos</tag>
-        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
@@ -508,65 +508,64 @@
       </tags>
   </entry>
   <entry>
-    <title>Etcd一文</title>
-    <url>/2021/11/04/Etcd%E4%B8%80%E6%96%87/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/etcd.png" alt="Etcd"></p>
-<a id="more"></a>
-<p><strong>一、概述</strong></p>
+    <title>Go 语言基础</title>
+    <url>/2017/11/08/Go-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<a id="more"></a>
+
 <blockquote>
-<p>背景：近期k8s应用中etcd的功能存在一些困惑，对其进行来单独的学习，能更深入理解k8s中的的一些特性。</p>
+<p> 包、变量、函数</p>
 </blockquote>
 <ul>
-<li>简单：安装配置简单，而且提供了HTTP API进行交互，使用也很简单</li>
-<li>安全：支持SSL证书验证</li>
-<li>快速：根据官方提供的benchmark数据，单实例支持每秒2k+读操作</li>
-<li>可靠：采用raft算法，实现分布式系统数据的可用性和一致性</li>
+<li><p>包<br>每个 Go 程序都是由包组成的。程序运行的入口是包 <code>main</code><br>这个程序使用并导入了包 “fmt” 和 <code>&quot;math/rand&quot;</code>。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;math&#x2F;rand&quot;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>变量<br>var 语句定义了一个变量的列表 如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var c, python, java bool</span><br><span class="line">var i, j int &#x3D; 1, 2</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	var i int</span><br><span class="line">	&#x2F;*在函数中，&#96;:&#x3D;&#96; 简洁赋值语句在明确类型的地方，可以用于替代 var 定义</span><br><span class="line">	函数外的每个语句都必须以关键字开始（&#96;var&#96;、&#96;func&#96;、等等），&#96;:&#x3D;&#96; 结构不能使用在函数外*&#x2F;</span><br><span class="line">	k :&#x3D; 3</span><br><span class="line">	var c, python, java &#x3D; true, false, &quot;no!&quot;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>函数<br>函数可以没有参数或接受多个参数<br>在这个例子中，<code>add</code> 接受两个 int 类型的参数。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func add(x int, y int) int &#123;</span><br><span class="line">	return x + y</span><br><span class="line">&#125;</span><br><span class="line">||</span><br><span class="line">func add(x , y int) int &#123;</span><br><span class="line">	return x + y</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</li>
 </ul>
-<p><strong>二、应用场景</strong></p>
+<blockquote>
+<p> 流程控制语句</p>
+</blockquote>
 <ul>
-<li>服务注册与发现</li>
-<li>消息发布与订阅</li>
-<li>负载均衡</li>
-<li>分部署通知与协调</li>
-<li>分布式锁</li>
-<li>分布式队列</li>
-<li>集群与监控与Leader选举</li>
+<li><p>for<br>Go 只有一种循环结构——<code>for</code> 循环<br>基本的 for 循环除了没有了 <code>( )</code> 之外（甚至强制不能使用它们）。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	sum :&#x3D; 0</span><br><span class="line">	for i :&#x3D; 0; i &lt; 10; i++ &#123;</span><br><span class="line">		sum +&#x3D; i</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(sum)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>if<br>if 语句除了没有了 <code>( )</code> 之外（甚至强制不能使用它们）。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func sqrt(x float64) string &#123;</span><br><span class="line">	if x &lt; 0 &#123;</span><br><span class="line">		return sqrt(-x) + &quot;i&quot;</span><br><span class="line">	&#125;</span><br><span class="line">	if v :&#x3D; math.Pow(x, n); v &lt; lim &#123;</span><br><span class="line">		return v</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		fmt.Printf(&quot;%g &gt;&#x3D; %g\n&quot;, v, lim)</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>switch<br>如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	fmt.Print(&quot;Go runs on &quot;)</span><br><span class="line">	switch os :&#x3D; runtime.GOOS; os &#123;</span><br><span class="line">	case &quot;darwin&quot;:</span><br><span class="line">		fmt.Println(&quot;OS X.&quot;)</span><br><span class="line">	case &quot;linux&quot;:</span><br><span class="line">		fmt.Println(&quot;Linux.&quot;)</span><br><span class="line">	default:</span><br><span class="line">		&#x2F;&#x2F; freebsd, openbsd,</span><br><span class="line">		&#x2F;&#x2F; plan9, windows...</span><br><span class="line">		fmt.Printf(&quot;%s.&quot;, os)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>defer<br>defer 语句会延迟函数的执行直到上层函数返回。<br>延迟调用的参数会立刻生成，但是在上层函数返回前函数都不会被调用。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	defer fmt.Println(&quot;world&quot;)&#x2F;&#x2F;延迟函数</span><br><span class="line">	fmt.Println(&quot;hello&quot;) &#x2F;&#x2F;上层函数</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;hello</span><br><span class="line">&#x2F;&#x2F;wolrd</span><br></pre></td></tr></table></figure>
+
+</li>
 </ul>
-<p><strong>三、安装部署</strong></p>
-<p>推荐使用yum安装方式</p>
 <blockquote>
-<p>hostnamectl set-hostname etcd-1<br>wget <a href="http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm">http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</a><br>rpm -ivh epel-release-latest-7.noarch.rpm</p>
-<h1 id="yum-仓库中的etcd版本为3-3-11，如果需要最新版本的etcd可以进行二进制安装"><a href="#yum-仓库中的etcd版本为3-3-11，如果需要最新版本的etcd可以进行二进制安装" class="headerlink" title="yum 仓库中的etcd版本为3.3.11，如果需要最新版本的etcd可以进行二进制安装"></a>yum 仓库中的etcd版本为3.3.11，如果需要最新版本的etcd可以进行二进制安装</h1><p>yum -y install etcd<br>systemctl enable etcd</p>
+<p> 复杂类型</p>
 </blockquote>
-<p><strong>四、简单使用</strong></p>
-<p>1、增加 set</p>
-<blockquote>
-<p>$ etcdctl set /testdir/testkey “Hello world”<br>Hello world</p>
-</blockquote>
-<p>2、删除 rm</p>
-<blockquote>
-<p>$ etcdctl rm /testdir/testkey<br>PrevNode.Value: Hello</p>
-</blockquote>
-<p>3、更新 update</p>
-<blockquote>
-<p>etcdctl update /testdir/testkey “Hello”<br>Hello</p>
-</blockquote>
-<p>4、查询 get</p>
-<blockquote>
-<p>etcdctl get /testdir/testkey<br>Hello world</p>
-</blockquote>
-<p><strong>五、总结</strong></p>
 <ul>
-<li><p>etcd 默认只保存 1000 个历史事件，所以不适合有大量更新操作的场景，这样会导致数据的丢失。 etcd 典型的应用场景是配置管理和服务发现，这些场景都是读多写少的。</p>
+<li><p>指针<br>Go 具有指针。 指针保存了变量的内存地址</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	i, j :&#x3D; 42, 2701</span><br><span class="line"></span><br><span class="line">	p :&#x3D; &amp;i         &#x2F;* 生成一个指向 i 的指针 *&#x2F;</span><br><span class="line">	fmt.Println(*p) &#x2F;* 通过指针 p 读取 i    *&#x2F;</span><br><span class="line">	*p &#x3D; 21         &#x2F;* 通过指针 p 设置 i    *&#x2F;</span><br><span class="line">	fmt.Println(i)  &#x2F;* 输出 i &#x3D;21          *&#x2F; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>相比于 zookeeper，etcd 使用起来要简单很多。不过要实现真正的服务发现功能，etcd 还需要和其他工具（比如 registrator、confd 等）一起使用来实现服务的自动注册和更新。</p>
+<li><p>结构体<br>一个结构体（<code>struct</code>）就是一个字段的集合</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type Vertex struct &#123;</span><br><span class="line">	X int</span><br><span class="line">	Y int</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">v :&#x3D; Vertex&#123;1, 2&#125;</span><br><span class="line">v.X &#x3D; 4</span><br><span class="line">fmt.Println(v.X)</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>目前 etcd 还没有图形化的工具。 </p>
+<li><p>数组<br>类型 [n]T 是一个有 n 个类型为 T 的值的数组</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	var a [2]string</span><br><span class="line">	a[0] &#x3D; &quot;Hello&quot;</span><br><span class="line">	a[1] &#x3D; &quot;World&quot;</span><br><span class="line">	fmt.Println(a[0], a[1])</span><br><span class="line">	fmt.Println(a)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 </li>
+<li><p>slice<br>一个 slice 会指向一个序列的值，并且包含了长度信息<br>s[lo:hi]表示从 lo 到 hi-1 的 slice 元素，含两端。因此<br>s[lo:lo]是空的，而<br>s[lo:lo+1]有一个元素。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	p :&#x3D; []int&#123;2, 3, 5, 7, 11, 13&#125;</span><br><span class="line">	fmt.Println(&quot;p &#x3D;&#x3D;&quot;, p)</span><br><span class="line"></span><br><span class="line">	for i :&#x3D; 0; i &lt; len(p); i++ &#123;</span><br><span class="line">		fmt.Printf(&quot;p[%d] &#x3D;&#x3D; %d\n&quot;, i, p[i])</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>map<br>map 映射键到值</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type Vertex struct &#123;</span><br><span class="line">	Lat, Long float64</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var m map[string]Vertex</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	m &#x3D; make(map[string]Vertex)</span><br><span class="line">	m[&quot;Bell Labs&quot;] &#x3D; Vertex&#123;</span><br><span class="line">		40.68433, -74.39967,</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(m[&quot;Bell Labs&quot;])</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ul>
 ]]></content>
       <tags>
-        <tag>Etcd</tag>
+        <tag>golang</tag>
       </tags>
   </entry>
   <entry>
@@ -648,64 +647,65 @@
       </tags>
   </entry>
   <entry>
-    <title>Go 语言基础</title>
-    <url>/2017/11/08/Go-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<a id="more"></a>
-
+    <title>Etcd一文</title>
+    <url>/2021/11/04/Etcd%E4%B8%80%E6%96%87/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/etcd.png" alt="Etcd"></p>
+<a id="more"></a>
+<p><strong>一、概述</strong></p>
 <blockquote>
-<p> 包、变量、函数</p>
+<p>背景：近期k8s应用中etcd的功能存在一些困惑，对其进行来单独的学习，能更深入理解k8s中的的一些特性。</p>
 </blockquote>
 <ul>
-<li><p>包<br>每个 Go 程序都是由包组成的。程序运行的入口是包 <code>main</code><br>这个程序使用并导入了包 “fmt” 和 <code>&quot;math/rand&quot;</code>。如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;math&#x2F;rand&quot;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>变量<br>var 语句定义了一个变量的列表 如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var c, python, java bool</span><br><span class="line">var i, j int &#x3D; 1, 2</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	var i int</span><br><span class="line">	&#x2F;*在函数中，&#96;:&#x3D;&#96; 简洁赋值语句在明确类型的地方，可以用于替代 var 定义</span><br><span class="line">	函数外的每个语句都必须以关键字开始（&#96;var&#96;、&#96;func&#96;、等等），&#96;:&#x3D;&#96; 结构不能使用在函数外*&#x2F;</span><br><span class="line">	k :&#x3D; 3</span><br><span class="line">	var c, python, java &#x3D; true, false, &quot;no!&quot;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li><p>函数<br>函数可以没有参数或接受多个参数<br>在这个例子中，<code>add</code> 接受两个 int 类型的参数。如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func add(x int, y int) int &#123;</span><br><span class="line">	return x + y</span><br><span class="line">&#125;</span><br><span class="line">||</span><br><span class="line">func add(x , y int) int &#123;</span><br><span class="line">	return x + y</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-</li>
+<li>简单：安装配置简单，而且提供了HTTP API进行交互，使用也很简单</li>
+<li>安全：支持SSL证书验证</li>
+<li>快速：根据官方提供的benchmark数据，单实例支持每秒2k+读操作</li>
+<li>可靠：采用raft算法，实现分布式系统数据的可用性和一致性</li>
 </ul>
-<blockquote>
-<p> 流程控制语句</p>
-</blockquote>
+<p><strong>二、应用场景</strong></p>
 <ul>
-<li><p>for<br>Go 只有一种循环结构——<code>for</code> 循环<br>基本的 for 循环除了没有了 <code>( )</code> 之外（甚至强制不能使用它们）。如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	sum :&#x3D; 0</span><br><span class="line">	for i :&#x3D; 0; i &lt; 10; i++ &#123;</span><br><span class="line">		sum +&#x3D; i</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(sum)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>if<br>if 语句除了没有了 <code>( )</code> 之外（甚至强制不能使用它们）。如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func sqrt(x float64) string &#123;</span><br><span class="line">	if x &lt; 0 &#123;</span><br><span class="line">		return sqrt(-x) + &quot;i&quot;</span><br><span class="line">	&#125;</span><br><span class="line">	if v :&#x3D; math.Pow(x, n); v &lt; lim &#123;</span><br><span class="line">		return v</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		fmt.Printf(&quot;%g &gt;&#x3D; %g\n&quot;, v, lim)</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>switch<br>如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	fmt.Print(&quot;Go runs on &quot;)</span><br><span class="line">	switch os :&#x3D; runtime.GOOS; os &#123;</span><br><span class="line">	case &quot;darwin&quot;:</span><br><span class="line">		fmt.Println(&quot;OS X.&quot;)</span><br><span class="line">	case &quot;linux&quot;:</span><br><span class="line">		fmt.Println(&quot;Linux.&quot;)</span><br><span class="line">	default:</span><br><span class="line">		&#x2F;&#x2F; freebsd, openbsd,</span><br><span class="line">		&#x2F;&#x2F; plan9, windows...</span><br><span class="line">		fmt.Printf(&quot;%s.&quot;, os)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>defer<br>defer 语句会延迟函数的执行直到上层函数返回。<br>延迟调用的参数会立刻生成，但是在上层函数返回前函数都不会被调用。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	defer fmt.Println(&quot;world&quot;)&#x2F;&#x2F;延迟函数</span><br><span class="line">	fmt.Println(&quot;hello&quot;) &#x2F;&#x2F;上层函数</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;hello</span><br><span class="line">&#x2F;&#x2F;wolrd</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>服务注册与发现</li>
+<li>消息发布与订阅</li>
+<li>负载均衡</li>
+<li>分部署通知与协调</li>
+<li>分布式锁</li>
+<li>分布式队列</li>
+<li>集群与监控与Leader选举</li>
 </ul>
+<p><strong>三、安装部署</strong></p>
+<p>推荐使用yum安装方式</p>
 <blockquote>
-<p> 复杂类型</p>
+<p>hostnamectl set-hostname etcd-1<br>wget <a href="http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm">http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</a><br>rpm -ivh epel-release-latest-7.noarch.rpm</p>
+<h1 id="yum-仓库中的etcd版本为3-3-11，如果需要最新版本的etcd可以进行二进制安装"><a href="#yum-仓库中的etcd版本为3-3-11，如果需要最新版本的etcd可以进行二进制安装" class="headerlink" title="yum 仓库中的etcd版本为3.3.11，如果需要最新版本的etcd可以进行二进制安装"></a>yum 仓库中的etcd版本为3.3.11，如果需要最新版本的etcd可以进行二进制安装</h1><p>yum -y install etcd<br>systemctl enable etcd</p>
 </blockquote>
+<p><strong>四、简单使用</strong></p>
+<p>1、增加 set</p>
+<blockquote>
+<p>$ etcdctl set /testdir/testkey “Hello world”<br>Hello world</p>
+</blockquote>
+<p>2、删除 rm</p>
+<blockquote>
+<p>$ etcdctl rm /testdir/testkey<br>PrevNode.Value: Hello</p>
+</blockquote>
+<p>3、更新 update</p>
+<blockquote>
+<p>etcdctl update /testdir/testkey “Hello”<br>Hello</p>
+</blockquote>
+<p>4、查询 get</p>
+<blockquote>
+<p>etcdctl get /testdir/testkey<br>Hello world</p>
+</blockquote>
+<p><strong>五、总结</strong></p>
 <ul>
-<li><p>指针<br>Go 具有指针。 指针保存了变量的内存地址</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	i, j :&#x3D; 42, 2701</span><br><span class="line"></span><br><span class="line">	p :&#x3D; &amp;i         &#x2F;* 生成一个指向 i 的指针 *&#x2F;</span><br><span class="line">	fmt.Println(*p) &#x2F;* 通过指针 p 读取 i    *&#x2F;</span><br><span class="line">	*p &#x3D; 21         &#x2F;* 通过指针 p 设置 i    *&#x2F;</span><br><span class="line">	fmt.Println(i)  &#x2F;* 输出 i &#x3D;21          *&#x2F; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><p>etcd 默认只保存 1000 个历史事件，所以不适合有大量更新操作的场景，这样会导致数据的丢失。 etcd 典型的应用场景是配置管理和服务发现，这些场景都是读多写少的。</p>
 </li>
-<li><p>结构体<br>一个结构体（<code>struct</code>）就是一个字段的集合</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type Vertex struct &#123;</span><br><span class="line">	X int</span><br><span class="line">	Y int</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">v :&#x3D; Vertex&#123;1, 2&#125;</span><br><span class="line">v.X &#x3D; 4</span><br><span class="line">fmt.Println(v.X)</span><br></pre></td></tr></table></figure>
+<li><p>相比于 zookeeper，etcd 使用起来要简单很多。不过要实现真正的服务发现功能，etcd 还需要和其他工具（比如 registrator、confd 等）一起使用来实现服务的自动注册和更新。</p>
 </li>
-<li><p>数组<br>类型 [n]T 是一个有 n 个类型为 T 的值的数组</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	var a [2]string</span><br><span class="line">	a[0] &#x3D; &quot;Hello&quot;</span><br><span class="line">	a[1] &#x3D; &quot;World&quot;</span><br><span class="line">	fmt.Println(a[0], a[1])</span><br><span class="line">	fmt.Println(a)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<li><p>目前 etcd 还没有图形化的工具。 </p>
 </li>
-<li><p>slice<br>一个 slice 会指向一个序列的值，并且包含了长度信息<br>s[lo:hi]表示从 lo 到 hi-1 的 slice 元素，含两端。因此<br>s[lo:lo]是空的，而<br>s[lo:lo+1]有一个元素。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	p :&#x3D; []int&#123;2, 3, 5, 7, 11, 13&#125;</span><br><span class="line">	fmt.Println(&quot;p &#x3D;&#x3D;&quot;, p)</span><br><span class="line"></span><br><span class="line">	for i :&#x3D; 0; i &lt; len(p); i++ &#123;</span><br><span class="line">		fmt.Printf(&quot;p[%d] &#x3D;&#x3D; %d\n&quot;, i, p[i])</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>map<br>map 映射键到值</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type Vertex struct &#123;</span><br><span class="line">	Lat, Long float64</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var m map[string]Vertex</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	m &#x3D; make(map[string]Vertex)</span><br><span class="line">	m[&quot;Bell Labs&quot;] &#x3D; Vertex&#123;</span><br><span class="line">		40.68433, -74.39967,</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(m[&quot;Bell Labs&quot;])</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ul>
 ]]></content>
       <tags>
-        <tag>golang</tag>
+        <tag>Etcd</tag>
       </tags>
   </entry>
   <entry>
@@ -1085,6 +1085,25 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Linux安装配置守护进程</title>
+    <url>/2018/03/09/Linux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> centos 下安装Supervisor</p>
+</blockquote>
+<p>yum install supervisor</p>
+<blockquote>
+<p> 配置Supervisor</p>
+</blockquote>
+<p>cd /etc/supervisord.d/<br>vim laravel-worker.ini<br>systemctl start supervisord</p>
+]]></content>
+      <tags>
+        <tag>linux</tag>
+        <tag>Supervisor</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux下安装node.js</title>
     <url>/2018/03/21/Linux%E4%B8%8B%E5%AE%89%E8%A3%85node-js/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1139,25 +1158,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Linux安装配置守护进程</title>
-    <url>/2018/03/09/Linux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> centos 下安装Supervisor</p>
-</blockquote>
-<p>yum install supervisor</p>
-<blockquote>
-<p> 配置Supervisor</p>
-</blockquote>
-<p>cd /etc/supervisord.d/<br>vim laravel-worker.ini<br>systemctl start supervisord</p>
-]]></content>
-      <tags>
-        <tag>linux</tag>
-        <tag>Supervisor</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux定时任务采集聚合数据api文章</title>
     <url>/2019/04/18/Linux%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E9%87%87%E9%9B%86%E8%81%9A%E5%90%88%E6%95%B0%E6%8D%AEapi%E6%96%87%E7%AB%A0/</url>
     <content><![CDATA[<p><strong>Linux定时任务采集文章</strong> </p>
@@ -1191,6 +1191,38 @@ public $queue = &#39;listeners&#39;;</code></pre>
         <tag>Linux</tag>
         <tag>crontab</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Live 阿里云直播</title>
+    <url>/2019/07/04/Live-%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%B4%E6%92%AD/</url>
+    <content><![CDATA[<a id="more"></a>
+<p> <a href="https://help.aliyun.com/document_detail/86866.html?spm=a2c4g.11186623.6.573.72df68123ova0d" target="_blank">[阿里云文档]</a> 具体流程依据文档<br> 需要：备案域名 / 直播云服务器</p>
+<blockquote>
+<p>开通阿里云直播控制台</p>
+</blockquote>
+<p><img src="/assets/aliyun/1.png" alt="ico原来的样子"><br><img src="/assets/aliyun/2.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>直播控制台-概览配置 推流/播流 域名</p>
+</blockquote>
+<p>生成之后解析对应域名的 CNAME 到推流/播流域名上<br><img src="/assets/aliyun/3.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>PC端 OBS/VLC 测试</p>
+</blockquote>
+<p>地址生成器–&gt;生成的 推流/播流 地址相应在 OBS/VLC 上使用即可看到同步直播</p>
+<p><img src="/assets/aliyun/4.png" alt="ico原来的样子"><br><img src="/assets/aliyun/5.png" alt="ico原来的样子"><br><img src="/assets/aliyun/6.png" alt="ico原来的样子"><br><img src="/assets/aliyun/7.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>观看直播 [后续…]</p>
+</blockquote>
+<p> 前面的直播推流配置完成之后，我们需要让用户或者观众看到直播<br> 正常用户观看直播的流程是：登录直播网站 -&gt; 点开直播房间 -&gt; 服务器获取播放地址 -&gt; 用户观看直播<br> 1.创建一个测试直播的控制器</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">namespace App\Http\Controllers;</span><br><span class="line"></span><br><span class="line">use xxx;&#x2F;&#x2F;sdk包</span><br><span class="line"></span><br><span class="line">class LiveController extends Controller</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    public function index()</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; 通过sdk获取直播地址</span><br><span class="line">        $liveurl &#x3D; \xxx\xxx\xxx(&#39;xxx&#39;, &#39;app&#39;, &#39;stream&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.页面展示</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 引入 CDN --&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.bootcss.com&#x2F;flv.js&#x2F;1.3.2&#x2F;flv.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;!-- dom --&gt;</span><br><span class="line">&lt;video id&#x3D;&quot;videoElement&quot;&gt;&lt;&#x2F;video&gt;</span><br><span class="line">&lt;!-- js --&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    if (flvjs.isSupported()) &#123;</span><br><span class="line">        var videoElement &#x3D; document.getElementById(&#39;videoElement&#39;);</span><br><span class="line">        var flvPlayer &#x3D; flvjs.createPlayer(&#123;</span><br><span class="line">            type: &#39;flv&#39;,</span><br><span class="line">            url: &#39;&#123;&#123; $liveurl &#125;&#125;&#39;</span><br><span class="line">        &#125;);</span><br><span class="line">        flvPlayer.attachMediaElement(videoElement);</span><br><span class="line">        flvPlayer.load();</span><br><span class="line">        flvPlayer.play();</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><strong>Notice</strong><br>后续通过sdk整合到项目开发中…</li>
+</ul>
+]]></content>
   </entry>
   <entry>
     <title>Markdown 基本语法</title>
@@ -1280,36 +1312,26 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Live 阿里云直播</title>
-    <url>/2019/07/04/Live-%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%B4%E6%92%AD/</url>
+    <title>MySQL出现1030-Got error 28 from storage engine错误</title>
+    <url>/2018/11/22/MySQL%E5%87%BA%E7%8E%B01030-Got-error-28-from-storage-engine%E9%94%99%E8%AF%AF/</url>
     <content><![CDATA[<a id="more"></a>
-<p> <a href="https://help.aliyun.com/document_detail/86866.html?spm=a2c4g.11186623.6.573.72df68123ova0d" target="_blank">[阿里云文档]</a> 具体流程依据文档<br> 需要：备案域名 / 直播云服务器</p>
-<blockquote>
-<p>开通阿里云直播控制台</p>
-</blockquote>
-<p><img src="/assets/aliyun/1.png" alt="ico原来的样子"><br><img src="/assets/aliyun/2.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>直播控制台-概览配置 推流/播流 域名</p>
-</blockquote>
-<p>生成之后解析对应域名的 CNAME 到推流/播流域名上<br><img src="/assets/aliyun/3.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>PC端 OBS/VLC 测试</p>
-</blockquote>
-<p>地址生成器–&gt;生成的 推流/播流 地址相应在 OBS/VLC 上使用即可看到同步直播</p>
-<p><img src="/assets/aliyun/4.png" alt="ico原来的样子"><br><img src="/assets/aliyun/5.png" alt="ico原来的样子"><br><img src="/assets/aliyun/6.png" alt="ico原来的样子"><br><img src="/assets/aliyun/7.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>观看直播 [后续…]</p>
-</blockquote>
-<p> 前面的直播推流配置完成之后，我们需要让用户或者观众看到直播<br> 正常用户观看直播的流程是：登录直播网站 -&gt; 点开直播房间 -&gt; 服务器获取播放地址 -&gt; 用户观看直播<br> 1.创建一个测试直播的控制器</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">namespace App\Http\Controllers;</span><br><span class="line"></span><br><span class="line">use xxx;&#x2F;&#x2F;sdk包</span><br><span class="line"></span><br><span class="line">class LiveController extends Controller</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    public function index()</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; 通过sdk获取直播地址</span><br><span class="line">        $liveurl &#x3D; \xxx\xxx\xxx(&#39;xxx&#39;, &#39;app&#39;, &#39;stream&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>2.页面展示</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 引入 CDN --&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.bootcss.com&#x2F;flv.js&#x2F;1.3.2&#x2F;flv.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;!-- dom --&gt;</span><br><span class="line">&lt;video id&#x3D;&quot;videoElement&quot;&gt;&lt;&#x2F;video&gt;</span><br><span class="line">&lt;!-- js --&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    if (flvjs.isSupported()) &#123;</span><br><span class="line">        var videoElement &#x3D; document.getElementById(&#39;videoElement&#39;);</span><br><span class="line">        var flvPlayer &#x3D; flvjs.createPlayer(&#123;</span><br><span class="line">            type: &#39;flv&#39;,</span><br><span class="line">            url: &#39;&#123;&#123; $liveurl &#125;&#125;&#39;</span><br><span class="line">        &#125;);</span><br><span class="line">        flvPlayer.attachMediaElement(videoElement);</span><br><span class="line">        flvPlayer.load();</span><br><span class="line">        flvPlayer.play();</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
 
-<hr>
+<p>一般这种情况都是日志文件太大导致的</p>
 <ul>
-<li><strong>Notice</strong><br>后续通过sdk整合到项目开发中…</li>
+<li>mysql二进制文件 参考文档：<a href="https://baishunhua.com/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/" target="_blank">[ MySQL启动错误 ]</a></li>
+<li>其他日志文件</li>
 </ul>
-]]></content>
+<blockquote>
+<p>df -h</p>
+</blockquote>
+<p>查看磁盘使用情况</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -h --max-depth&#x3D;1 | grep G | sort -n</span><br></pre></td></tr></table></figure>
+<p>以G单位排序查看占用磁盘的文件，然后删除没用的日志文件 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -s * | sort -nr</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>lnmp</tag>
+        <tag>mysql</tag>
+      </tags>
   </entry>
   <entry>
     <title>MySQL启动错误</title>
@@ -1361,28 +1383,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>MySQL出现1030-Got error 28 from storage engine错误</title>
-    <url>/2018/11/22/MySQL%E5%87%BA%E7%8E%B01030-Got-error-28-from-storage-engine%E9%94%99%E8%AF%AF/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>一般这种情况都是日志文件太大导致的</p>
-<ul>
-<li>mysql二进制文件 参考文档：<a href="https://baishunhua.com/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/" target="_blank">[ MySQL启动错误 ]</a></li>
-<li>其他日志文件</li>
-</ul>
-<blockquote>
-<p>df -h</p>
-</blockquote>
-<p>查看磁盘使用情况</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -h --max-depth&#x3D;1 | grep G | sort -n</span><br></pre></td></tr></table></figure>
-<p>以G单位排序查看占用磁盘的文件，然后删除没用的日志文件 </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -s * | sort -nr</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Nginx分发-指定文件名称</title>
     <url>/2020/12/07/Nginx%E5%88%86%E5%8F%91-%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E5%90%8D%E7%A7%B0/</url>
     <content><![CDATA[<p><strong>Nginx分发-指定文件名称</strong></p>
@@ -1410,85 +1410,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
 ]]></content>
       <tags>
         <tag>nginx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python scrapy入门教程</title>
-    <url>/2017/09/26/Python-scrapy%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<p><strong>Python scrapy入门教程</strong> </p>
-<a id="more"></a>
-
-<p><strong>Python 安装</strong></p>
-<p>Python下载地址：<a href="https://www.python.org/downloads/windows/" target="_blank">[ Python-Downloads ]</a> </p>
-<p>如果您已经熟悉 Python 包的安装，您可以从 PyPI 安装 Scrapy 及其依赖：</p>
-<blockquote>
-<p> pip install Scrapy</p>
-</blockquote>
-<p>win32api问题解决<br>安装pywin32地址：<a href="http://sourceforge.net/projects/pywin32/" target="_blank">[ 安装pywin32 ]</a> </p>
-<blockquote>
-<p> No module named win32api问题解决</p>
-</blockquote>
-<p>请确保下载与系统（win32或amd64）匹配的版本</p>
-<blockquote>
-<p> 引导完成以下任务</p>
-</blockquote>
-<ul>
-<li>创建一个新的 Scrapy 项目</li>
-<li>编写 爬虫 以抓取网站并提取数据</li>
-<li>使用命令行导出已爬取的数据</li>
-<li>将爬虫更改为递归跟进链接</li>
-<li>使用爬虫参数</li>
-</ul>
-<p>在开始爬取之前，您必须设置一个新的Scrapy项目。进入您要存储代码的目录，并运行如下命令：</p>
-<blockquote>
-<p> scrapy startproject tutorial</p>
-</blockquote>
-<p>这将创建一个具有以下内容的 tutorial 目录：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tutorial&#x2F;</span><br><span class="line">    scrapy.cfg            # 部署配置文件</span><br><span class="line"></span><br><span class="line">    tutorial&#x2F;             # 项目的 Python 模块，您将从这里加入您的代码</span><br><span class="line">        __init__.py</span><br><span class="line"></span><br><span class="line">        items.py          # 项目的 item 定义文件</span><br><span class="line"></span><br><span class="line">        pipelines.py      # 项目的 pipelines 文件</span><br><span class="line"></span><br><span class="line">        settings.py       # 项目的 settings 文件</span><br><span class="line"></span><br><span class="line">        spiders&#x2F;          # 放置spider代码的目录.</span><br><span class="line">            __init__.py</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p> 我们的第一个爬虫</p>
-</blockquote>
-<p>爬虫是您定义的类，Scrapy用它从网站（或一组网站）中抓取信息。它们必须子类化 scrapy.Spider 并定义初始请求，可选地如何跟踪页面中的链接，以及如何解析下载的页面内容以提取数据。</p>
-<p>这是我们第一个爬虫的代码。将其保存在项目中的 tutorial / spiders 目录下名为 shunhua_spider.py 的文件中：</p>
-<pre><code>import scrapy
-
-class QuotesSpider(scrapy.Spider):
-    name = &quot;shunhua&quot;
-
-    def start_requests(self):
-        urls = [
-            &#39;https://shunhua.github.io/&#39;,
-            &#39;https://shunhua.github.io/page/2/&#39;,
-        ]
-        for url in urls:
-            yield scrapy.Request(url=url, callback=self.parse)
-
-    def parse(self, response):
-        page = response.url.split(&quot;/&quot;)[-2]
-        filename = &#39;shunhua-%s.html&#39; % page
-        with open(filename, &#39;wb&#39;) as f:
-            f.write(response.body)
-        self.log(&#39;Saved file %s&#39; % filename)
-</code></pre>
-<blockquote>
-<p> 如何运行我们的爬虫 </p>
-</blockquote>
-<p>要让我们的蜘蛛工作，进入项目的根目录并运行： </p>
-<blockquote>
-<p> scrapy crawl shunhua </p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Python</tag>
-        <tag>scrapy</tag>
       </tags>
   </entry>
   <entry>
@@ -1722,22 +1643,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>SELinux 状态</title>
-    <url>/2017/08/11/SELinux-%E7%8A%B6%E6%80%81/</url>
-    <content><![CDATA[<p>##<strong>查看SELinux状态：</strong></p>
-<blockquote>
-<p>1、/usr/sbin/sestatus -v      ##如果SELinux status参数为enabled即为开启状态—— </p>
-</blockquote>
-<a id="more"></a>
-
-<p><img src="/assets/blogImg/reduce-http.jpg" alt="ico原来的样子"></p>
-<p>1、/usr/sbin/sestatus -v      ##如果SELinux status参数为enabled即为开启状态<br>SELinux status:                 enabled<br>2、getenforce                 ##也可以用这个命令检查<br>关闭SELinux：<br>1、临时关闭（不用重启机器）：<br>setenforce 0                  ##设置SELinux 成为permissive模式<br>                              ##setenforce 1 设置SELinux 成为enforcing模式<br>2、修改配置文件需要重启机器：<br>修改/etc/selinux/config 文件<br>将SELINUX=enforcing改为SELINUX=disabled<br>重启机器即可</p>
-]]></content>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>PHP Socket 基础教程</title>
     <url>/2018/03/12/PHP-Socket-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1779,6 +1684,101 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>php</tag>
         <tag>socket</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python scrapy入门教程</title>
+    <url>/2017/09/26/Python-scrapy%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<p><strong>Python scrapy入门教程</strong> </p>
+<a id="more"></a>
+
+<p><strong>Python 安装</strong></p>
+<p>Python下载地址：<a href="https://www.python.org/downloads/windows/" target="_blank">[ Python-Downloads ]</a> </p>
+<p>如果您已经熟悉 Python 包的安装，您可以从 PyPI 安装 Scrapy 及其依赖：</p>
+<blockquote>
+<p> pip install Scrapy</p>
+</blockquote>
+<p>win32api问题解决<br>安装pywin32地址：<a href="http://sourceforge.net/projects/pywin32/" target="_blank">[ 安装pywin32 ]</a> </p>
+<blockquote>
+<p> No module named win32api问题解决</p>
+</blockquote>
+<p>请确保下载与系统（win32或amd64）匹配的版本</p>
+<blockquote>
+<p> 引导完成以下任务</p>
+</blockquote>
+<ul>
+<li>创建一个新的 Scrapy 项目</li>
+<li>编写 爬虫 以抓取网站并提取数据</li>
+<li>使用命令行导出已爬取的数据</li>
+<li>将爬虫更改为递归跟进链接</li>
+<li>使用爬虫参数</li>
+</ul>
+<p>在开始爬取之前，您必须设置一个新的Scrapy项目。进入您要存储代码的目录，并运行如下命令：</p>
+<blockquote>
+<p> scrapy startproject tutorial</p>
+</blockquote>
+<p>这将创建一个具有以下内容的 tutorial 目录：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tutorial&#x2F;</span><br><span class="line">    scrapy.cfg            # 部署配置文件</span><br><span class="line"></span><br><span class="line">    tutorial&#x2F;             # 项目的 Python 模块，您将从这里加入您的代码</span><br><span class="line">        __init__.py</span><br><span class="line"></span><br><span class="line">        items.py          # 项目的 item 定义文件</span><br><span class="line"></span><br><span class="line">        pipelines.py      # 项目的 pipelines 文件</span><br><span class="line"></span><br><span class="line">        settings.py       # 项目的 settings 文件</span><br><span class="line"></span><br><span class="line">        spiders&#x2F;          # 放置spider代码的目录.</span><br><span class="line">            __init__.py</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 我们的第一个爬虫</p>
+</blockquote>
+<p>爬虫是您定义的类，Scrapy用它从网站（或一组网站）中抓取信息。它们必须子类化 scrapy.Spider 并定义初始请求，可选地如何跟踪页面中的链接，以及如何解析下载的页面内容以提取数据。</p>
+<p>这是我们第一个爬虫的代码。将其保存在项目中的 tutorial / spiders 目录下名为 shunhua_spider.py 的文件中：</p>
+<pre><code>import scrapy
+
+class QuotesSpider(scrapy.Spider):
+    name = &quot;shunhua&quot;
+
+    def start_requests(self):
+        urls = [
+            &#39;https://shunhua.github.io/&#39;,
+            &#39;https://shunhua.github.io/page/2/&#39;,
+        ]
+        for url in urls:
+            yield scrapy.Request(url=url, callback=self.parse)
+
+    def parse(self, response):
+        page = response.url.split(&quot;/&quot;)[-2]
+        filename = &#39;shunhua-%s.html&#39; % page
+        with open(filename, &#39;wb&#39;) as f:
+            f.write(response.body)
+        self.log(&#39;Saved file %s&#39; % filename)
+</code></pre>
+<blockquote>
+<p> 如何运行我们的爬虫 </p>
+</blockquote>
+<p>要让我们的蜘蛛工作，进入项目的根目录并运行： </p>
+<blockquote>
+<p> scrapy crawl shunhua </p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Python</tag>
+        <tag>scrapy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SELinux 状态</title>
+    <url>/2017/08/11/SELinux-%E7%8A%B6%E6%80%81/</url>
+    <content><![CDATA[<p>##<strong>查看SELinux状态：</strong></p>
+<blockquote>
+<p>1、/usr/sbin/sestatus -v      ##如果SELinux status参数为enabled即为开启状态—— </p>
+</blockquote>
+<a id="more"></a>
+
+<p><img src="/assets/blogImg/reduce-http.jpg" alt="ico原来的样子"></p>
+<p>1、/usr/sbin/sestatus -v      ##如果SELinux status参数为enabled即为开启状态<br>SELinux status:                 enabled<br>2、getenforce                 ##也可以用这个命令检查<br>关闭SELinux：<br>1、临时关闭（不用重启机器）：<br>setenforce 0                  ##设置SELinux 成为permissive模式<br>                              ##setenforce 1 设置SELinux 成为enforcing模式<br>2、修改配置文件需要重启机器：<br>修改/etc/selinux/config 文件<br>将SELINUX=enforcing改为SELINUX=disabled<br>重启机器即可</p>
+]]></content>
+      <tags>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -2086,71 +2086,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>docker + redis 部署一主二从三哨兵</title>
-    <url>/2021/12/06/docker-redis-%E9%83%A8%E7%BD%B2%E4%B8%80%E4%B8%BB%E4%BA%8C%E4%BB%8E%E4%B8%89%E5%93%A8%E5%85%B5/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/redis.png" alt="redis"></p>
-<a id="more"></a>
-
-<p><strong>概述</strong></p>
-<ul>
-<li>在部署redis 的时候，如果redis宕机，缓存将不可用，redis提供了哨兵模式保证redis实现高可用。</li>
-<li>即一台主机两台从机，三台哨兵主机，如果主实例宕机，哨兵将一台从机升级为主机。实现高可用。<br><img src="/assets/blogImg/redis-1.png" alt="redis-1"></li>
-</ul>
-<p>参考文档 ⚔：<br><a href="https://blog.csdn.net/qq_41773902/article/details/105627708" target="_blank">[ 点我 ]</a> | <a href="https://www.jianshu.com/p/319d0980ff89#comments" target="_blank">[ 点我 ]</a> | <a href="https://www.pianshen.com/article/68951456452/" target="_blank">[ 点我 ]</a></p>
-]]></content>
-      <tags>
-        <tag>redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>gRPC 的介绍及使用</title>
-    <url>/2021/12/07/gRPC-%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/grpc.png" alt="grpc"></p>
-<a id="more"></a>
-
-
-<p>我们将介绍 <code>Go</code> 语言中最流行的 RPC 框架：<code>gRPC (google RPC)</code>。</p>
-<p><strong>gRPC 简介</strong></p>
-<p>RPC 代指远程过程调用 <code>(Remote Procedure Call)</code> 就是允许程序调用另一个地址空间（通常是共享网络的另一台机器上）的过程或函数，且不需要显式编码这个远程调用的细节 通俗来说就是调用其他进程内的方法，并且获得对应的返回值。</p>
-<p><code>gRPC</code> 是一个现代的、高性能、开源的和语言无关的通用RPC框架，基于 <code>HTTP2</code> 协议设计，序列化使用PB(Protocol Buffer)，<code>PB</code> 是一种语言无关的高性能序列化框架，基于 <code>HTTP2+PB</code> 保证了的高性能。</p>
-<p>整个 <code>gRPC</code> 调用基本上会包括以下 3 点：</p>
-<ul>
-<li>通讯协议 (HTTP2)</li>
-<li>寻址</li>
-<li>数据序列化 (Protobuf) proto3声明文件-&gt;protoc</li>
-</ul>
-<p><strong>安装相关依赖</strong><br>1.下载安装 <a href="https://golang.google.cn/dl/" target="_blank">[ go ]</a></p>
-<blockquote>
-<p>go version</p>
-</blockquote>
-<p>2.下载安装 <a href="https://github.com/protocolbuffers/protobuf/releases" target="_blank">[ protoc ]</a><br>在 gRPC 开发中，需要与 Protobuf 配合，在编写了.proto 文件后，我们会需要到一个编译器，就是 protoc。</p>
-<blockquote>
-<p>protoc –version</p>
-</blockquote>
-<p>3.安装相关依赖包</p>
-<ul>
-<li><p>安装 <code>golang</code> 的 <code>proto</code> 工具包</p>
-<blockquote>
-<p>go get -u github.com/golang/protobuf/proto</p>
-</blockquote>
-</li>
-<li><p>安装 <code>goalng</code> 的 <code>proto</code> 编译支持</p>
-<blockquote>
-<p>go get -u github.com/golang/protobuf/protoc-gen-go</p>
-</blockquote>
-</li>
-<li><p>安装 <code>gRPC</code> 包</p>
-<blockquote>
-<p>go get -u google.golang.org/grpc</p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>gRPC</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>centos7下lnmp 添加、删除虚拟主机</title>
     <url>/2017/09/15/centos7%E4%B8%8Blnmp-%E6%B7%BB%E5%8A%A0%E3%80%81%E5%88%A0%E9%99%A4%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2246,6 +2181,71 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>gRPC 的介绍及使用</title>
+    <url>/2021/12/07/gRPC-%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/grpc.png" alt="grpc"></p>
+<a id="more"></a>
+
+
+<p>我们将介绍 <code>Go</code> 语言中最流行的 RPC 框架：<code>gRPC (google RPC)</code>。</p>
+<p><strong>gRPC 简介</strong></p>
+<p>RPC 代指远程过程调用 <code>(Remote Procedure Call)</code> 就是允许程序调用另一个地址空间（通常是共享网络的另一台机器上）的过程或函数，且不需要显式编码这个远程调用的细节 通俗来说就是调用其他进程内的方法，并且获得对应的返回值。</p>
+<p><code>gRPC</code> 是一个现代的、高性能、开源的和语言无关的通用RPC框架，基于 <code>HTTP2</code> 协议设计，序列化使用PB(Protocol Buffer)，<code>PB</code> 是一种语言无关的高性能序列化框架，基于 <code>HTTP2+PB</code> 保证了的高性能。</p>
+<p>整个 <code>gRPC</code> 调用基本上会包括以下 3 点：</p>
+<ul>
+<li>通讯协议 (HTTP2)</li>
+<li>寻址</li>
+<li>数据序列化 (Protobuf) proto3声明文件-&gt;protoc</li>
+</ul>
+<p><strong>安装相关依赖</strong><br>1.下载安装 <a href="https://golang.google.cn/dl/" target="_blank">[ go ]</a></p>
+<blockquote>
+<p>go version</p>
+</blockquote>
+<p>2.下载安装 <a href="https://github.com/protocolbuffers/protobuf/releases" target="_blank">[ protoc ]</a><br>在 gRPC 开发中，需要与 Protobuf 配合，在编写了.proto 文件后，我们会需要到一个编译器，就是 protoc。</p>
+<blockquote>
+<p>protoc –version</p>
+</blockquote>
+<p>3.安装相关依赖包</p>
+<ul>
+<li><p>安装 <code>golang</code> 的 <code>proto</code> 工具包</p>
+<blockquote>
+<p>go get -u github.com/golang/protobuf/proto</p>
+</blockquote>
+</li>
+<li><p>安装 <code>goalng</code> 的 <code>proto</code> 编译支持</p>
+<blockquote>
+<p>go get -u github.com/golang/protobuf/protoc-gen-go</p>
+</blockquote>
+</li>
+<li><p>安装 <code>gRPC</code> 包</p>
+<blockquote>
+<p>go get -u google.golang.org/grpc</p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>gRPC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker + redis 部署一主二从三哨兵</title>
+    <url>/2021/12/06/docker-redis-%E9%83%A8%E7%BD%B2%E4%B8%80%E4%B8%BB%E4%BA%8C%E4%BB%8E%E4%B8%89%E5%93%A8%E5%85%B5/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/redis.png" alt="redis"></p>
+<a id="more"></a>
+
+<p><strong>概述</strong></p>
+<ul>
+<li>在部署redis 的时候，如果redis宕机，缓存将不可用，redis提供了哨兵模式保证redis实现高可用。</li>
+<li>即一台主机两台从机，三台哨兵主机，如果主实例宕机，哨兵将一台从机升级为主机。实现高可用。<br><img src="/assets/blogImg/redis-1.png" alt="redis-1"></li>
+</ul>
+<p>参考文档 ⚔：<br><a href="https://blog.csdn.net/qq_41773902/article/details/105627708" target="_blank">[ 点我 ]</a> | <a href="https://www.jianshu.com/p/319d0980ff89#comments" target="_blank">[ 点我 ]</a> | <a href="https://www.pianshen.com/article/68951456452/" target="_blank">[ 点我 ]</a></p>
+]]></content>
+      <tags>
+        <tag>redis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>gin-vue-admin的安装及使用</title>
     <url>/2021/10/14/gin-vue-admin%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/diary-5.jpg" alt="gin-vue-admin"></p>
@@ -2255,7 +2255,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#x67;&#x69;&#116;&#x40;&#x67;&#x69;&#116;&#104;&#x75;&#x62;&#46;&#x63;&#111;&#x6d;">&#x67;&#x69;&#116;&#x40;&#x67;&#x69;&#116;&#104;&#x75;&#x62;&#46;&#x63;&#111;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#x67;&#105;&#x74;&#x40;&#x67;&#105;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#x6d;">&#x67;&#105;&#x74;&#x40;&#x67;&#105;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -2888,27 +2888,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>lnmp tp pathinfo问题</title>
-    <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>/usr/local/php/etc/php.ini</p>
-<blockquote>
-<p> cgi.fix_pathinfo=1</p>
-</blockquote>
-<blockquote>
-<p> lnmp restart</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
-  </entry>
-  <entry>
     <title>linux下安装redis及认证密码</title>
     <url>/2018/03/06/linux%E4%B8%8B%E5%AE%89%E8%A3%85redis%E5%8F%8A%E8%AE%A4%E8%AF%81%E5%AF%86%E7%A0%81/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2934,6 +2913,27 @@ class QuotesSpider(scrapy.Spider):
         <tag>lnmp</tag>
         <tag>redis</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>lnmp tp pathinfo问题</title>
+    <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>/usr/local/php/etc/php.ini</p>
+<blockquote>
+<p> cgi.fix_pathinfo=1</p>
+</blockquote>
+<blockquote>
+<p> lnmp restart</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
   </entry>
   <entry>
     <title>lnmp集成环境下部署laravel5.x项目</title>
@@ -3262,7 +3262,7 @@ class QuotesSpider(scrapy.Spider):
 </blockquote>
 <p>二、使用npm下载 web框架express模块</p>
 <blockquote>
-<p>npm install --save <a href="mailto:&#101;&#120;&#112;&#x72;&#x65;&#115;&#x73;&#64;&#52;&#x2e;&#x31;&#x35;&#x2e;&#x32;">&#101;&#120;&#112;&#x72;&#x65;&#115;&#x73;&#64;&#52;&#x2e;&#x31;&#x35;&#x2e;&#x32;</a></p>
+<p>npm install --save <a href="mailto:&#x65;&#x78;&#x70;&#114;&#101;&#x73;&#x73;&#64;&#x34;&#46;&#x31;&#53;&#x2e;&#50;">&#x65;&#x78;&#x70;&#114;&#101;&#x73;&#x73;&#64;&#x34;&#46;&#x31;&#53;&#x2e;&#50;</a></p>
 </blockquote>
 <p>三、使用npm下载socket.io模块</p>
 <blockquote>
@@ -3786,22 +3786,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>连续轮询数组中的元素[s/m/d]</title>
-    <url>/2017/12/27/%E8%BF%9E%E7%BB%AD%E8%BD%AE%E8%AF%A2%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0-s-m-d/</url>
-    <content><![CDATA[<p>##<strong>连续轮询数组中的元素[s/m/d]</strong></p>
-<a id="more"></a>
-
-<blockquote>
-<p>实现在任何时间段连续轮询出数组中的元素—— </p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">   public $Randomnotify &#x3D; array(</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid1&#39;,&#39;key&#39;&#x3D;&gt;&#39;key1&#39;),</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid2&#39;,&#39;key&#39;&#x3D;&gt;&#39;key2&#39;),</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid3&#39;,&#39;key&#39;&#x3D;&gt;&#39;key3&#39;),</span><br><span class="line">	...</span><br><span class="line">);</span><br><span class="line">public function dataPollingInterval($list,$polling_time&#x3D;&#39;1m&#39;,$polling_number&#x3D;1) &#123;</span><br><span class="line">    &#x2F;&#x2F; 规划轮询间隔时间的参数:</span><br><span class="line">    $interval &#x3D; false;</span><br><span class="line">	&#x2F;&#x2F; 判断$polling_time 的类型是 秒、分、小时、天 中的哪1种。</span><br><span class="line">    $arg &#x3D; array( </span><br><span class="line">        &#39;s&#39;&#x3D;&gt;1,            &#x2F;&#x2F; 秒</span><br><span class="line">        &#39;m&#39;&#x3D;&gt;60,            &#x2F;&#x2F; 分&#x3D; 60 sec</span><br><span class="line">        &#39;h&#39; &#x3D;&gt;3600,        &#x2F;&#x2F; 时&#x3D; 3600 sec</span><br><span class="line">        &#39;d&#39; &#x3D;&gt; 86400,    &#x2F;&#x2F; 天&#x3D; 86400 sec</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 判断间隔时间的类型，并计算间隔时间</span><br><span class="line">    foreach ($arg as $k &#x3D;&gt; $v) &#123;</span><br><span class="line">        if (false!&#x3D;&#x3D; stripos($polling_time,$k)) &#123;</span><br><span class="line">            $interval &#x3D; intval($polling_time)*$v;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	  &#x2F;&#x2F; 判断间隔时间</span><br><span class="line">    if(!is_int($interval))&#123;  </span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">	&#x2F;&#x2F; 从今年开始的秒数</span><br><span class="line">    $this_year_begin_second &#x3D; strtotime(date(&#39;Y-01-01 01:00:01&#39;, time()));</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 当前秒数 - 今年开始的秒数，得到今年到目前为止的秒数。</span><br><span class="line">    $polling_time &#x3D; time()-$this_year_begin_second;</span><br><span class="line">	</span><br><span class="line">    &#x2F;&#x2F; 从今年到目前为止的秒数，计算得到当前轮数</span><br><span class="line">    $len &#x3D; count($list); &#x2F;&#x2F; 总长度</span><br><span class="line">    $start_index &#x3D; intval($polling_time&#x2F;$interval);</span><br><span class="line">    $start_index &#x3D; $polling_number*$start_index%$len; &#x2F;&#x2F; 轮排数量 * 轮数 , 取余 总数量。</span><br><span class="line">	$res &#x3D; array();</span><br><span class="line">    &#x2F;&#x2F; 将轮数 指向到数组的索引，然后从这个索引开始接着往下循环遍历。</span><br><span class="line">    for ($i&#x3D;0; $i&lt;$len; ++$i) &#123;</span><br><span class="line">        $index&#x3D;$i+$start_index; &#x2F;&#x2F; 索引的变化是根据时间来变</span><br><span class="line">        if ($index&gt;&#x3D;$len) &#123;</span><br><span class="line">            $index&#x3D;$index-$len ;</span><br><span class="line">        &#125;</span><br><span class="line">        $res[]&#x3D;$list[$index]; &#x2F;&#x2F; 存入结果</span><br><span class="line">    &#125;</span><br><span class="line">    return $res[0];</span><br><span class="line">&#125;  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>轮询</tag>
-        <tag>数组</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>laravel下迁移公众号数据</title>
     <url>/2017/09/14/%E8%BF%81%E7%A7%BB%E5%85%AC%E4%BC%97%E5%8F%B7%E6%95%B0%E6%8D%AE/</url>
     <content><![CDATA[<p><strong>php laravel5.x下迁移公众号数据：</strong> </p>
@@ -3884,6 +3868,22 @@ class QuotesSpider(scrapy.Spider):
         <tag>php</tag>
         <tag>laravel5.x</tag>
         <tag>公众号</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>连续轮询数组中的元素[s/m/d]</title>
+    <url>/2017/12/27/%E8%BF%9E%E7%BB%AD%E8%BD%AE%E8%AF%A2%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0-s-m-d/</url>
+    <content><![CDATA[<p>##<strong>连续轮询数组中的元素[s/m/d]</strong></p>
+<a id="more"></a>
+
+<blockquote>
+<p>实现在任何时间段连续轮询出数组中的元素—— </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">   public $Randomnotify &#x3D; array(</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid1&#39;,&#39;key&#39;&#x3D;&gt;&#39;key1&#39;),</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid2&#39;,&#39;key&#39;&#x3D;&gt;&#39;key2&#39;),</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid3&#39;,&#39;key&#39;&#x3D;&gt;&#39;key3&#39;),</span><br><span class="line">	...</span><br><span class="line">);</span><br><span class="line">public function dataPollingInterval($list,$polling_time&#x3D;&#39;1m&#39;,$polling_number&#x3D;1) &#123;</span><br><span class="line">    &#x2F;&#x2F; 规划轮询间隔时间的参数:</span><br><span class="line">    $interval &#x3D; false;</span><br><span class="line">	&#x2F;&#x2F; 判断$polling_time 的类型是 秒、分、小时、天 中的哪1种。</span><br><span class="line">    $arg &#x3D; array( </span><br><span class="line">        &#39;s&#39;&#x3D;&gt;1,            &#x2F;&#x2F; 秒</span><br><span class="line">        &#39;m&#39;&#x3D;&gt;60,            &#x2F;&#x2F; 分&#x3D; 60 sec</span><br><span class="line">        &#39;h&#39; &#x3D;&gt;3600,        &#x2F;&#x2F; 时&#x3D; 3600 sec</span><br><span class="line">        &#39;d&#39; &#x3D;&gt; 86400,    &#x2F;&#x2F; 天&#x3D; 86400 sec</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 判断间隔时间的类型，并计算间隔时间</span><br><span class="line">    foreach ($arg as $k &#x3D;&gt; $v) &#123;</span><br><span class="line">        if (false!&#x3D;&#x3D; stripos($polling_time,$k)) &#123;</span><br><span class="line">            $interval &#x3D; intval($polling_time)*$v;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	  &#x2F;&#x2F; 判断间隔时间</span><br><span class="line">    if(!is_int($interval))&#123;  </span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">	&#x2F;&#x2F; 从今年开始的秒数</span><br><span class="line">    $this_year_begin_second &#x3D; strtotime(date(&#39;Y-01-01 01:00:01&#39;, time()));</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 当前秒数 - 今年开始的秒数，得到今年到目前为止的秒数。</span><br><span class="line">    $polling_time &#x3D; time()-$this_year_begin_second;</span><br><span class="line">	</span><br><span class="line">    &#x2F;&#x2F; 从今年到目前为止的秒数，计算得到当前轮数</span><br><span class="line">    $len &#x3D; count($list); &#x2F;&#x2F; 总长度</span><br><span class="line">    $start_index &#x3D; intval($polling_time&#x2F;$interval);</span><br><span class="line">    $start_index &#x3D; $polling_number*$start_index%$len; &#x2F;&#x2F; 轮排数量 * 轮数 , 取余 总数量。</span><br><span class="line">	$res &#x3D; array();</span><br><span class="line">    &#x2F;&#x2F; 将轮数 指向到数组的索引，然后从这个索引开始接着往下循环遍历。</span><br><span class="line">    for ($i&#x3D;0; $i&lt;$len; ++$i) &#123;</span><br><span class="line">        $index&#x3D;$i+$start_index; &#x2F;&#x2F; 索引的变化是根据时间来变</span><br><span class="line">        if ($index&gt;&#x3D;$len) &#123;</span><br><span class="line">            $index&#x3D;$index-$len ;</span><br><span class="line">        &#125;</span><br><span class="line">        $res[]&#x3D;$list[$index]; &#x2F;&#x2F; 存入结果</span><br><span class="line">    &#125;</span><br><span class="line">    return $res[0];</span><br><span class="line">&#125;  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>轮询</tag>
+        <tag>数组</tag>
       </tags>
   </entry>
   <entry>
