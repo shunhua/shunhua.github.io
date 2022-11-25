@@ -125,7 +125,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#64;&#113;&#113;&#46;&#99;&#x6f;&#109;">&#120;&#64;&#113;&#113;&#46;&#99;&#x6f;&#109;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#64;&#113;&#113;&#46;&#99;&#x6f;&#x6d;">&#120;&#64;&#113;&#113;&#46;&#99;&#x6f;&#x6d;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -204,6 +204,53 @@
       </tags>
   </entry>
   <entry>
+    <title>CentOS 7 安装MySQL5.7</title>
+    <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85MySQL5-7/</url>
+    <content><![CDATA[<p><strong>Centos下安装MySQL</strong> </p>
+<a id="more"></a>
+<p>官方mysql.com 支持我们使用yum的方式安装mysql 5.7最新版。所以大家根本无需手工编译安装（除非你需要）。CentOS7的yum源中默认好像是没有mysql的。为了解决这个问题，我们要先下载mysql的repo源。<br>一、下载mysql的repo源</p>
+<blockquote>
+<p>wget <a href="http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm">http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm</a></p>
+</blockquote>
+<p>二、 安装mysql57-community-release-el7-9.noarch.rpm包</p>
+<blockquote>
+<p>rpm -ivh mysql57-community-release-el7-9.noarch.rpm</p>
+</blockquote>
+<p>三、 安装mysql （下载需要一段时间)</p>
+<blockquote>
+<p>yum install mysql-community-server</p>
+</blockquote>
+<p>四、启动mysql</p>
+<blockquote>
+<p>systemctl start mysqld<br>systemctl enable mysqld.service</p>
+</blockquote>
+<p>五、第一次启动后，mysql5.7 会生成一个随机root密码 （MySQL 5.7.6以上）</p>
+<blockquote>
+<p>grep ‘temporary passwor’ /var/log/mysqld.log</p>
+</blockquote>
+<p>修改root密码</p>
+<blockquote>
+<p>ALTER USER USER() IDENTIFIED BY ‘123456’;</p>
+</blockquote>
+<p>外网访问</p>
+<blockquote>
+<p>mysql -u root -p  # 首次登录会修改密码<br>GRANT ALL PRIVILEGES ON <em>.</em> TO ‘root’@’%’ IDENTIFIED BY ‘your_root_password’ WITH GRANT OPTION;</p>
+</blockquote>
+<p>删除mysql</p>
+<blockquote>
+<p>rpm -qa|grep mysql；<br>yum remove packages</p>
+</blockquote>
+<p>端口查看</p>
+<blockquote>
+<p>ps -aux | grep mysql<br>netstat -apn | grep 3306<br>netstat -apn</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Centos</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CentOS 7 搭建SVN服务器</title>
     <url>/2017/09/14/CentOS-7-%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
     <content><![CDATA[<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CentOS 7 搭建SVN服务器</strong> </p>
@@ -278,53 +325,6 @@
       <tags>
         <tag>CentOS 7</tag>
         <tag>svn</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CentOS 7 安装MySQL5.7</title>
-    <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85MySQL5-7/</url>
-    <content><![CDATA[<p><strong>Centos下安装MySQL</strong> </p>
-<a id="more"></a>
-<p>官方mysql.com 支持我们使用yum的方式安装mysql 5.7最新版。所以大家根本无需手工编译安装（除非你需要）。CentOS7的yum源中默认好像是没有mysql的。为了解决这个问题，我们要先下载mysql的repo源。<br>一、下载mysql的repo源</p>
-<blockquote>
-<p>wget <a href="http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm">http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm</a></p>
-</blockquote>
-<p>二、 安装mysql57-community-release-el7-9.noarch.rpm包</p>
-<blockquote>
-<p>rpm -ivh mysql57-community-release-el7-9.noarch.rpm</p>
-</blockquote>
-<p>三、 安装mysql （下载需要一段时间)</p>
-<blockquote>
-<p>yum install mysql-community-server</p>
-</blockquote>
-<p>四、启动mysql</p>
-<blockquote>
-<p>systemctl start mysqld<br>systemctl enable mysqld.service</p>
-</blockquote>
-<p>五、第一次启动后，mysql5.7 会生成一个随机root密码 （MySQL 5.7.6以上）</p>
-<blockquote>
-<p>grep ‘temporary passwor’ /var/log/mysqld.log</p>
-</blockquote>
-<p>修改root密码</p>
-<blockquote>
-<p>ALTER USER USER() IDENTIFIED BY ‘123456’;</p>
-</blockquote>
-<p>外网访问</p>
-<blockquote>
-<p>mysql -u root -p  # 首次登录会修改密码<br>GRANT ALL PRIVILEGES ON <em>.</em> TO ‘root’@’%’ IDENTIFIED BY ‘your_root_password’ WITH GRANT OPTION;</p>
-</blockquote>
-<p>删除mysql</p>
-<blockquote>
-<p>rpm -qa|grep mysql；<br>yum remove packages</p>
-</blockquote>
-<p>端口查看</p>
-<blockquote>
-<p>ps -aux | grep mysql<br>netstat -apn | grep 3306<br>netstat -apn</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Centos</tag>
-        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
@@ -1225,28 +1225,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
 ]]></content>
   </entry>
   <entry>
-    <title>MySQL出现1030-Got error 28 from storage engine错误</title>
-    <url>/2018/11/22/MySQL%E5%87%BA%E7%8E%B01030-Got-error-28-from-storage-engine%E9%94%99%E8%AF%AF/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>一般这种情况都是日志文件太大导致的</p>
-<ul>
-<li>mysql二进制文件 参考文档：<a href="https://baishunhua.com/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/" target="_blank">[ MySQL启动错误 ]</a></li>
-<li>其他日志文件</li>
-</ul>
-<blockquote>
-<p>df -h</p>
-</blockquote>
-<p>查看磁盘使用情况</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -h --max-depth&#x3D;1 | grep G | sort -n</span><br></pre></td></tr></table></figure>
-<p>以G单位排序查看占用磁盘的文件，然后删除没用的日志文件 </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -s * | sort -nr</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Markdown 基本语法</title>
     <url>/2017/08/11/Markdown-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</url>
     <content><![CDATA[<p><strong>^本文主要介绍markdown</strong></p>
@@ -1331,6 +1309,28 @@ public $queue = &#39;listeners&#39;;</code></pre>
 ]]></content>
       <tags>
         <tag>-Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL出现1030-Got error 28 from storage engine错误</title>
+    <url>/2018/11/22/MySQL%E5%87%BA%E7%8E%B01030-Got-error-28-from-storage-engine%E9%94%99%E8%AF%AF/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>一般这种情况都是日志文件太大导致的</p>
+<ul>
+<li>mysql二进制文件 参考文档：<a href="https://baishunhua.com/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/" target="_blank">[ MySQL启动错误 ]</a></li>
+<li>其他日志文件</li>
+</ul>
+<blockquote>
+<p>df -h</p>
+</blockquote>
+<p>查看磁盘使用情况</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -h --max-depth&#x3D;1 | grep G | sort -n</span><br></pre></td></tr></table></figure>
+<p>以G单位排序查看占用磁盘的文件，然后删除没用的日志文件 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">du -s * | sort -nr</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>lnmp</tag>
+        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -1766,22 +1766,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>SELinux 状态</title>
-    <url>/2017/08/11/SELinux-%E7%8A%B6%E6%80%81/</url>
-    <content><![CDATA[<p>##<strong>查看SELinux状态：</strong></p>
-<blockquote>
-<p>1、/usr/sbin/sestatus -v      ##如果SELinux status参数为enabled即为开启状态—— </p>
-</blockquote>
-<a id="more"></a>
-
-<p><img src="/assets/blogImg/reduce-http.jpg" alt="ico原来的样子"></p>
-<p>1、/usr/sbin/sestatus -v      ##如果SELinux status参数为enabled即为开启状态<br>SELinux status:                 enabled<br>2、getenforce                 ##也可以用这个命令检查<br>关闭SELinux：<br>1、临时关闭（不用重启机器）：<br>setenforce 0                  ##设置SELinux 成为permissive模式<br>                              ##setenforce 1 设置SELinux 成为enforcing模式<br>2、修改配置文件需要重启机器：<br>修改/etc/selinux/config 文件<br>将SELINUX=enforcing改为SELINUX=disabled<br>重启机器即可</p>
-]]></content>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Swift学习笔记NO.1</title>
     <url>/2017/09/25/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0NO-1/</url>
     <content><![CDATA[<p><strong>Swift学习笔记NO.1</strong> </p>
@@ -1882,6 +1866,22 @@ class QuotesSpider(scrapy.Spider):
 ]]></content>
       <tags>
         <tag>Swift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SELinux 状态</title>
+    <url>/2017/08/11/SELinux-%E7%8A%B6%E6%80%81/</url>
+    <content><![CDATA[<p>##<strong>查看SELinux状态：</strong></p>
+<blockquote>
+<p>1、/usr/sbin/sestatus -v      ##如果SELinux status参数为enabled即为开启状态—— </p>
+</blockquote>
+<a id="more"></a>
+
+<p><img src="/assets/blogImg/reduce-http.jpg" alt="ico原来的样子"></p>
+<p>1、/usr/sbin/sestatus -v      ##如果SELinux status参数为enabled即为开启状态<br>SELinux status:                 enabled<br>2、getenforce                 ##也可以用这个命令检查<br>关闭SELinux：<br>1、临时关闭（不用重启机器）：<br>setenforce 0                  ##设置SELinux 成为permissive模式<br>                              ##setenforce 1 设置SELinux 成为enforcing模式<br>2、修改配置文件需要重启机器：<br>修改/etc/selinux/config 文件<br>将SELINUX=enforcing改为SELINUX=disabled<br>重启机器即可</p>
+]]></content>
+      <tags>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -2086,6 +2086,101 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>centos7下lnmp 添加、删除虚拟主机</title>
+    <url>/2017/09/15/centos7%E4%B8%8Blnmp-%E6%B7%BB%E5%8A%A0%E3%80%81%E5%88%A0%E9%99%A4%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>添加网站(虚拟主机</strong></p>
+<blockquote>
+<p> 执行：lnmp vhost add 出现如下界面：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-1.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 这里要输入要添加网站的域名，我们已添加<a href="http://www.vpser.net域名为例,如上图提示后输入域名/">www.vpser.net域名为例，如上图提示后输入域名</a> <a href="http://www.vpser.net/">www.vpser.net</a> 回车后提示：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-2.png" alt="ico原来的样子"></p>
+<p>这里询问是否添加更多域名，直接再输入要绑定的域名，这里我们将 vpser.net 也绑上，多个域名空格隔开，如不需要绑其他域名就直接回车。：</p>
+<blockquote>
+<p> 下面需要设置网站的目录：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-3.png" alt="ico原来的样子"></p>
+<p>网站目录不存在的话会创建目录。也可以输入已经存在的目录或要设置的目录（注意如要输入必须是全路径即以/开头的完整路径！！！）。不输入直接回车的话，采用默认目录：/home/wwwroot/域名</p>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-4.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 伪静态可以使URL更加简洁也利于SEO，如程序支持并且需要设置伪静态的话，如启用输入 y ，不启用输入 n 回车(注意LNMPA或LAMP模式没有该选择项！)</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-5.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 默认已经有了discuz、discuzx、discuzx2(Discuz X二级目录)、wordpress、wp2(WordPress二级目录)、typecho、typecho2(Typecho二级目录)、sablog、emlog、dabr、phpwind、、dedecms、drupal、ecshop、shopex等常用的Nginx伪静态配置文件，可以直接输入名称进行使用，如果是二级目录则需要对应配置文件里的二级目录的名称。</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-6.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 这一步是设置日志，如启用日志输入 y ，不启用输入 n 回车</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-7.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 如果启用需要再输入要设置的日志的名称，默认日志目录为：/home/wwwlogs/ 默认文件名为：域名.log 回车确认后，会询问是否添加数据库和数据库用户。</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-8.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 如果需要添加数据库输入 y ，不添加数据库输入 n 回车。</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-9.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 如果要添加，需要先验证MySQL的root密码(注：输入密码将不显示)<br>提示Enter database name: 后输入要创建的数据库名称，要创建的数据库用户名会和数据库同名，回车确认。</p>
+</blockquote>
+<p>提示Please enter password for mysql user 数据库名: 后输入要设置的密码，回车确认。</p>
+<p>如果安装了FTP服务器会询问是否添加FTP账号</p>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-10.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 如果需要添加输入 y ，不添加输入 n 回车</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-11.png" alt="ico原来的样子"></p>
+<p>提示Enter ftp account name: 后输入要创建的FTP账号名称，回车确认。<br>提示Enter password for ftp account FTP账号: 后输入要设置的密码，回车确认。</p>
+<blockquote>
+<p> 接下来是1.4新增的添加SSL功能</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-12.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 如果需要添加输入 y ，不添加输入 n 回车。<br>选择了添加SSL会提示</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-13.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 添加成功会提示添加的域名、目录、伪静态、日志、数据库、FTP等相关信息，如下图：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-info.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> LNMPA或LAMP可以直接使用网站根目录下放.htaccess 来设置伪静态规则(具体规则可以去程序官网网站找google百度)，但是在LNMP下，需要使用Nginx伪静态规则。<br>伪静态可以随时添加或删除，如果添加完虚拟主机后忘记或没有添加伪静态，可以通过修改配置文件来添加伪静态。<br>虚拟主机配置文件在：/usr/local/nginx/conf/vhost/域名.conf<br>伪静态规则文件需要放在/usr/local/nginx/conf/ 下面。<br>编辑虚拟主机配置文件，可以使用vi、nano或winscp，后2个工具对新手来说简单些。<br>例如前面我们添加的虚拟主机，打开后前半部分配置会显示如下：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp-rewrite-modify.png" alt="ico原来的样子"></p>
+<hr>
+<blockquote>
+<p> 列出网站(虚拟主机) 执行：lnmp vhost list</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp-1.2-vhost-list.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 删除网站(虚拟主机) 执行：lnmp vhost del</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp-1.2-vhost-del.png" alt="ico原来的样子"></p>
+<p>删除网站会先列出当前已有虚拟主机，按提示输入要删除的虚拟主机域名 回车确认。</p>
+<blockquote>
+<p> LNMP默认网站配置文件：/usr/local/nginx/conf/nginx.conf</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>lnmp</tag>
+        <tag>linux</tag>
+        <tag>centos7.3</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker + redis 部署一主二从三哨兵</title>
     <url>/2021/12/06/docker-redis-%E9%83%A8%E7%BD%B2%E4%B8%80%E4%B8%BB%E4%BA%8C%E4%BB%8E%E4%B8%89%E5%93%A8%E5%85%B5/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/redis.png" alt="redis"></p>
@@ -2160,7 +2255,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#x67;&#x69;&#x74;&#64;&#103;&#x69;&#116;&#x68;&#117;&#98;&#46;&#99;&#x6f;&#109;">&#x67;&#x69;&#x74;&#64;&#103;&#x69;&#116;&#x68;&#117;&#98;&#46;&#99;&#x6f;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#x67;&#x69;&#116;&#64;&#103;&#105;&#116;&#104;&#x75;&#98;&#x2e;&#x63;&#111;&#x6d;">&#x67;&#x69;&#116;&#64;&#103;&#105;&#116;&#104;&#x75;&#98;&#x2e;&#x63;&#111;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -2283,101 +2378,6 @@ class QuotesSpider(scrapy.Spider):
 ]]></content>
       <tags>
         <tag>go-zero</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>centos7下lnmp 添加、删除虚拟主机</title>
-    <url>/2017/09/15/centos7%E4%B8%8Blnmp-%E6%B7%BB%E5%8A%A0%E3%80%81%E5%88%A0%E9%99%A4%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>添加网站(虚拟主机</strong></p>
-<blockquote>
-<p> 执行：lnmp vhost add 出现如下界面：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-1.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 这里要输入要添加网站的域名，我们已添加<a href="http://www.vpser.net域名为例,如上图提示后输入域名/">www.vpser.net域名为例，如上图提示后输入域名</a> <a href="http://www.vpser.net/">www.vpser.net</a> 回车后提示：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-2.png" alt="ico原来的样子"></p>
-<p>这里询问是否添加更多域名，直接再输入要绑定的域名，这里我们将 vpser.net 也绑上，多个域名空格隔开，如不需要绑其他域名就直接回车。：</p>
-<blockquote>
-<p> 下面需要设置网站的目录：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-3.png" alt="ico原来的样子"></p>
-<p>网站目录不存在的话会创建目录。也可以输入已经存在的目录或要设置的目录（注意如要输入必须是全路径即以/开头的完整路径！！！）。不输入直接回车的话，采用默认目录：/home/wwwroot/域名</p>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-4.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 伪静态可以使URL更加简洁也利于SEO，如程序支持并且需要设置伪静态的话，如启用输入 y ，不启用输入 n 回车(注意LNMPA或LAMP模式没有该选择项！)</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-5.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 默认已经有了discuz、discuzx、discuzx2(Discuz X二级目录)、wordpress、wp2(WordPress二级目录)、typecho、typecho2(Typecho二级目录)、sablog、emlog、dabr、phpwind、、dedecms、drupal、ecshop、shopex等常用的Nginx伪静态配置文件，可以直接输入名称进行使用，如果是二级目录则需要对应配置文件里的二级目录的名称。</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-6.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 这一步是设置日志，如启用日志输入 y ，不启用输入 n 回车</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-7.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 如果启用需要再输入要设置的日志的名称，默认日志目录为：/home/wwwlogs/ 默认文件名为：域名.log 回车确认后，会询问是否添加数据库和数据库用户。</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-8.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 如果需要添加数据库输入 y ，不添加数据库输入 n 回车。</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-9.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 如果要添加，需要先验证MySQL的root密码(注：输入密码将不显示)<br>提示Enter database name: 后输入要创建的数据库名称，要创建的数据库用户名会和数据库同名，回车确认。</p>
-</blockquote>
-<p>提示Please enter password for mysql user 数据库名: 后输入要设置的密码，回车确认。</p>
-<p>如果安装了FTP服务器会询问是否添加FTP账号</p>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-10.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 如果需要添加输入 y ，不添加输入 n 回车</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-11.png" alt="ico原来的样子"></p>
-<p>提示Enter ftp account name: 后输入要创建的FTP账号名称，回车确认。<br>提示Enter password for ftp account FTP账号: 后输入要设置的密码，回车确认。</p>
-<blockquote>
-<p> 接下来是1.4新增的添加SSL功能</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-12.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 如果需要添加输入 y ，不添加输入 n 回车。<br>选择了添加SSL会提示</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-13.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 添加成功会提示添加的域名、目录、伪静态、日志、数据库、FTP等相关信息，如下图：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-info.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> LNMPA或LAMP可以直接使用网站根目录下放.htaccess 来设置伪静态规则(具体规则可以去程序官网网站找google百度)，但是在LNMP下，需要使用Nginx伪静态规则。<br>伪静态可以随时添加或删除，如果添加完虚拟主机后忘记或没有添加伪静态，可以通过修改配置文件来添加伪静态。<br>虚拟主机配置文件在：/usr/local/nginx/conf/vhost/域名.conf<br>伪静态规则文件需要放在/usr/local/nginx/conf/ 下面。<br>编辑虚拟主机配置文件，可以使用vi、nano或winscp，后2个工具对新手来说简单些。<br>例如前面我们添加的虚拟主机，打开后前半部分配置会显示如下：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp-rewrite-modify.png" alt="ico原来的样子"></p>
-<hr>
-<blockquote>
-<p> 列出网站(虚拟主机) 执行：lnmp vhost list</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp-1.2-vhost-list.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 删除网站(虚拟主机) 执行：lnmp vhost del</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp-1.2-vhost-del.png" alt="ico原来的样子"></p>
-<p>删除网站会先列出当前已有虚拟主机，按提示输入要删除的虚拟主机域名 回车确认。</p>
-<blockquote>
-<p> LNMP默认网站配置文件：/usr/local/nginx/conf/nginx.conf</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>linux</tag>
-        <tag>centos7.3</tag>
       </tags>
   </entry>
   <entry>
@@ -2816,6 +2816,78 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>linux 常用小技巧</title>
+    <url>/2022/01/12/linux-%E5%B8%B8%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/linux.png" alt="linux"></p>
+<a id="more"></a>
+
+<p><strong>1、查看历史记录</strong></p>
+<blockquote>
+<p>Ctrl + R </p>
+</blockquote>
+<p>例如，我查找 docker 这个命令，就可以用 Ctrl + R，按回车，然后只输入 doc 即可。<br>继续按下 Ctrl + R 组合键，可以继续向前搜索匹配命令。<br>多次按下 Ctrl + R 组合键，可以继续向前搜索匹配命令。</p>
+<blockquote>
+<p> !{command} </p>
+</blockquote>
+<p>就像!ls执行你的最后一个<code>ls -lrt</code>，<code>!vim</code>将在不输入完整命令的情况下打开您的最终文件。</p>
+<blockquote>
+<p>history  </p>
+</blockquote>
+<ul>
+<li>.bash_history 文件中可以查看 history 命令记录</li>
+</ul>
+<blockquote>
+<p>history -c </p>
+</blockquote>
+<ul>
+<li>命令前加一个空格，就不会被 history 保存到历史记录</li>
+</ul>
+<blockquote>
+<p>history | grep “关键字”</p>
+</blockquote>
+<p>您将从 Linux 机器上的历史记录中获取该命令。</p>
+<p><strong>2、追踪及调试</strong></p>
+<blockquote>
+<p>strace </p>
+</blockquote>
+<ul>
+<li>-f 跟踪由fork调用所产生的子进程. </li>
+<li>-c 统计每一系统调用的所执行的时间,次数和出错的次数等. </li>
+<li>-p pid 跟踪指定的进程pid. </li>
+</ul>
+<blockquote>
+<p>gdb </p>
+</blockquote>
+<ul>
+<li>-p pid 跟踪指定的进程pid. </li>
+</ul>
+<p><strong>3、查看基本信息</strong></p>
+<p>cpu的相关信息 </p>
+<blockquote>
+<p>lscpu     </p>
+</blockquote>
+<p>虚拟机信息</p>
+<blockquote>
+<p>hostnamectl         </p>
+</blockquote>
+<p>查看日历</p>
+<blockquote>
+<p>cal                 </p>
+</blockquote>
+<p><strong>4、快速清空文件</strong></p>
+<blockquote>
+<p>$ &gt; xxx.log</p>
+</blockquote>
+<p><strong>5、动态实时查看日志</strong></p>
+<blockquote>
+<p>tail -f xxx.log</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>linux下安装redis及认证密码</title>
     <url>/2018/03/06/linux%E4%B8%8B%E5%AE%89%E8%A3%85redis%E5%8F%8A%E8%AE%A4%E8%AF%81%E5%AF%86%E7%A0%81/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2920,78 +2992,6 @@ class QuotesSpider(scrapy.Spider):
         <tag>lnmp</tag>
         <tag>centos7.3</tag>
         <tag>laravel</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>linux 常用小技巧</title>
-    <url>/2022/01/12/linux-%E5%B8%B8%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/linux.png" alt="linux"></p>
-<a id="more"></a>
-
-<p><strong>1、查看历史记录</strong></p>
-<blockquote>
-<p>Ctrl + R </p>
-</blockquote>
-<p>例如，我查找 docker 这个命令，就可以用 Ctrl + R，按回车，然后只输入 doc 即可。<br>继续按下 Ctrl + R 组合键，可以继续向前搜索匹配命令。<br>多次按下 Ctrl + R 组合键，可以继续向前搜索匹配命令。</p>
-<blockquote>
-<p> !{command} </p>
-</blockquote>
-<p>就像!ls执行你的最后一个<code>ls -lrt</code>，<code>!vim</code>将在不输入完整命令的情况下打开您的最终文件。</p>
-<blockquote>
-<p>history  </p>
-</blockquote>
-<ul>
-<li>.bash_history 文件中可以查看 history 命令记录</li>
-</ul>
-<blockquote>
-<p>history -c </p>
-</blockquote>
-<ul>
-<li>命令前加一个空格，就不会被 history 保存到历史记录</li>
-</ul>
-<blockquote>
-<p>history | grep “关键字”</p>
-</blockquote>
-<p>您将从 Linux 机器上的历史记录中获取该命令。</p>
-<p><strong>2、追踪及调试</strong></p>
-<blockquote>
-<p>strace </p>
-</blockquote>
-<ul>
-<li>-f 跟踪由fork调用所产生的子进程. </li>
-<li>-c 统计每一系统调用的所执行的时间,次数和出错的次数等. </li>
-<li>-p pid 跟踪指定的进程pid. </li>
-</ul>
-<blockquote>
-<p>gdb </p>
-</blockquote>
-<ul>
-<li>-p pid 跟踪指定的进程pid. </li>
-</ul>
-<p><strong>3、查看基本信息</strong></p>
-<p>cpu的相关信息 </p>
-<blockquote>
-<p>lscpu     </p>
-</blockquote>
-<p>虚拟机信息</p>
-<blockquote>
-<p>hostnamectl         </p>
-</blockquote>
-<p>查看日历</p>
-<blockquote>
-<p>cal                 </p>
-</blockquote>
-<p><strong>4、快速清空文件</strong></p>
-<blockquote>
-<p>$ &gt; xxx.log</p>
-</blockquote>
-<p><strong>5、动态实时查看日志</strong></p>
-<blockquote>
-<p>tail -f xxx.log</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -3262,7 +3262,7 @@ class QuotesSpider(scrapy.Spider):
 </blockquote>
 <p>二、使用npm下载 web框架express模块</p>
 <blockquote>
-<p>npm install --save <a href="mailto:&#x65;&#x78;&#112;&#x72;&#101;&#x73;&#x73;&#64;&#x34;&#46;&#x31;&#x35;&#46;&#x32;">&#x65;&#x78;&#112;&#x72;&#101;&#x73;&#x73;&#64;&#x34;&#46;&#x31;&#x35;&#46;&#x32;</a></p>
+<p>npm install --save <a href="mailto:&#x65;&#120;&#112;&#114;&#x65;&#x73;&#x73;&#64;&#52;&#x2e;&#49;&#x35;&#x2e;&#50;">&#x65;&#120;&#112;&#114;&#x65;&#x73;&#x73;&#64;&#52;&#x2e;&#49;&#x35;&#x2e;&#50;</a></p>
 </blockquote>
 <p>三、使用npm下载socket.io模块</p>
 <blockquote>
@@ -3541,6 +3541,38 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>实现在Safari一键复制</title>
+    <url>/2018/10/27/%E5%AE%9E%E7%8E%B0%E5%9C%A8Safari%E4%B8%80%E9%94%AE%E5%A4%8D%E5%88%B6/</url>
+    <content><![CDATA[<p><strong>实现在Safari一键复制</strong></p>
+<a id="more"></a>
+
+<p>参考文档 <a href="https://github.com/zenorocha/clipboard.js" target="_blank">[ clipboard.js ]</a></p>
+<blockquote>
+<p>传统复制code</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var Url2&#x3D;document.getElementById(&quot;copy-text&quot;);</span><br><span class="line">Url2.select(); &#x2F;&#x2F; 选择对象</span><br><span class="line">document.execCommand(&quot;Copy&quot;); &#x2F;&#x2F; 执行浏览器复制命令</span><br><span class="line">Message.success(&#39;复制成功&#39;);</span><br></pre></td></tr></table></figure>
+<p>这种复制方式在苹果手机和safari上失效</p>
+<blockquote>
+<p>使用 clipboard.js</p>
+</blockquote>
+<p>CDN Providers</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">jsDelivr</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;clipboard@2&#x2F;dist&#x2F;clipboard.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">cdnjs</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdnjs.cloudflare.com&#x2F;ajax&#x2F;libs&#x2F;clipboard.js&#x2F;2.0.0&#x2F;clipboard.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>html code</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;button class&#x3D;&quot;fuzhi&quot; data-clipboard-demo data-clipboard-action&#x3D;&quot;copy&quot; data-clipboard-text&#x3D;&quot;&#123;&#123;$qr_code&#125;&#125;&quot;  onclick&#x3D;&quot;copyContent();&quot;&gt; 点击复制 &lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
+
+<p>js code</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var clipboard &#x3D; new ClipboardJS(&#39;.fuzhi&#39;);</span><br><span class="line">clipboard.on(&#39;success&#39;, function(e) &#123;</span><br><span class="line">    e.clearSelection();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <tags>
+        <tag>Safari</tag>
+        <tag>Copy</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>对接银联支付开发文档</title>
     <url>/2017/12/25/%E5%AF%B9%E6%8E%A5%E9%93%B6%E8%81%94%E6%94%AF%E4%BB%98%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/</url>
     <content><![CDATA[<p><strong>对接银联支付开发文档</strong></p>
@@ -3590,38 +3622,6 @@ class QuotesSpider(scrapy.Spider):
         <tag>thinkphp</tag>
         <tag>银联支付</tag>
         <tag>b2c网关</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>实现在Safari一键复制</title>
-    <url>/2018/10/27/%E5%AE%9E%E7%8E%B0%E5%9C%A8Safari%E4%B8%80%E9%94%AE%E5%A4%8D%E5%88%B6/</url>
-    <content><![CDATA[<p><strong>实现在Safari一键复制</strong></p>
-<a id="more"></a>
-
-<p>参考文档 <a href="https://github.com/zenorocha/clipboard.js" target="_blank">[ clipboard.js ]</a></p>
-<blockquote>
-<p>传统复制code</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var Url2&#x3D;document.getElementById(&quot;copy-text&quot;);</span><br><span class="line">Url2.select(); &#x2F;&#x2F; 选择对象</span><br><span class="line">document.execCommand(&quot;Copy&quot;); &#x2F;&#x2F; 执行浏览器复制命令</span><br><span class="line">Message.success(&#39;复制成功&#39;);</span><br></pre></td></tr></table></figure>
-<p>这种复制方式在苹果手机和safari上失效</p>
-<blockquote>
-<p>使用 clipboard.js</p>
-</blockquote>
-<p>CDN Providers</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">jsDelivr</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;clipboard@2&#x2F;dist&#x2F;clipboard.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">cdnjs</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdnjs.cloudflare.com&#x2F;ajax&#x2F;libs&#x2F;clipboard.js&#x2F;2.0.0&#x2F;clipboard.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>html code</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;button class&#x3D;&quot;fuzhi&quot; data-clipboard-demo data-clipboard-action&#x3D;&quot;copy&quot; data-clipboard-text&#x3D;&quot;&#123;&#123;$qr_code&#125;&#125;&quot;  onclick&#x3D;&quot;copyContent();&quot;&gt; 点击复制 &lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
-
-<p>js code</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var clipboard &#x3D; new ClipboardJS(&#39;.fuzhi&#39;);</span><br><span class="line">clipboard.on(&#39;success&#39;, function(e) &#123;</span><br><span class="line">    e.clearSelection();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <tags>
-        <tag>Safari</tag>
-        <tag>Copy</tag>
       </tags>
   </entry>
   <entry>
@@ -3685,235 +3685,4 @@ class QuotesSpider(scrapy.Spider):
 <li>npm run dev</li>
 </ul>
 <p>修改 Vite 配置文件 vite.config.ts</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import &#123; defineConfig &#125; from &#39;vite&#39;</span><br><span class="line">import vue from &#39;@vitejs&#x2F;plugin-vue&#39;</span><br><span class="line">&#x2F;&#x2F; 如果编辑器提示 path 模块找不到，则可以安装一下 @types&#x2F;node -&gt; npm i @types&#x2F;node -D</span><br><span class="line">import &#123; resolve &#125; from &#39;path&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; https:&#x2F;&#x2F;vitejs.dev&#x2F;config&#x2F;</span><br><span class="line">export default defineConfig(&#123;</span><br><span class="line">  plugins: [vue()],</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    alias: &#123;</span><br><span class="line">      &#39;@&#39;: resolve(__dirname, &#39;src&#39;) &#x2F;&#x2F; 设置 &#96;@&#96; 指向 &#96;src&#96; 目录</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  base: &#39;.&#x2F;&#39;, &#x2F;&#x2F; 设置打包路径</span><br><span class="line">  server: &#123;</span><br><span class="line">    port: 4000, &#x2F;&#x2F; 设置服务启动端口号</span><br><span class="line">    open: true, &#x2F;&#x2F; 设置服务启动时是否自动打开浏览器</span><br><span class="line">    cors: true &#x2F;&#x2F; 允许跨域</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 设置代理，根据我们项目实际情况配置</span><br><span class="line">    &#x2F;&#x2F; proxy: &#123;</span><br><span class="line">    &#x2F;&#x2F;   &#39;&#x2F;api&#39;: &#123;</span><br><span class="line">    &#x2F;&#x2F;     target: &#39;http:&#x2F;&#x2F;xxx.xxx.xxx.xxx:8000&#39;,</span><br><span class="line">    &#x2F;&#x2F;     changeOrigin: true,</span><br><span class="line">    &#x2F;&#x2F;     secure: false,</span><br><span class="line">    &#x2F;&#x2F;     rewrite: (path) &#x3D;&gt; path.replace(&#39;&#x2F;api&#x2F;&#39;, &#39;&#x2F;&#39;)</span><br><span class="line">    &#x2F;&#x2F;   &#125;</span><br><span class="line">    &#x2F;&#x2F; &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>规范目录结构</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">├── publish&#x2F;</span><br><span class="line">└── src&#x2F;</span><br><span class="line">    ├── assets&#x2F;                    &#x2F;&#x2F; 静态资源目录</span><br><span class="line">    ├── common&#x2F;                    &#x2F;&#x2F; 通用类库目录</span><br><span class="line">    ├── components&#x2F;                &#x2F;&#x2F; 公共组件目录</span><br><span class="line">    ├── router&#x2F;                    &#x2F;&#x2F; 路由配置目录</span><br><span class="line">    ├── store&#x2F;                     &#x2F;&#x2F; 状态管理目录</span><br><span class="line">    ├── style&#x2F;                     &#x2F;&#x2F; 通用 CSS 目录</span><br><span class="line">    ├── utils&#x2F;                     &#x2F;&#x2F; 工具函数目录</span><br><span class="line">    ├── views&#x2F;                     &#x2F;&#x2F; 页面组件目录</span><br><span class="line">    ├── App.vue</span><br><span class="line">    ├── main.ts</span><br><span class="line">    ├── shims-vue.d.ts</span><br><span class="line">├── tests&#x2F;                         &#x2F;&#x2F; 单元测试目录</span><br><span class="line">├── index.html</span><br><span class="line">├── tsconfig.json                  &#x2F;&#x2F; TypeScript 配置文件</span><br><span class="line">├── vite.config.ts                 &#x2F;&#x2F; Vite 配置文件</span><br><span class="line">└── package.json</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>二、集成路由工具 Vue Router</p>
-<blockquote>
-<p>npm i vue-router@4</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> └── src&#x2F;</span><br><span class="line">     ├── router&#x2F;</span><br><span class="line">         ├── index.ts  &#x2F;&#x2F; 路由配置文件</span><br><span class="line">&lt;!-- src&#x2F;router&#x2F;index.ts --&gt;</span><br><span class="line">import &#123;</span><br><span class="line">  createRouter,</span><br><span class="line">  createWebHashHistory,</span><br><span class="line">  RouteRecordRaw</span><br><span class="line">&#125; from &#39;vue-router&#39;</span><br><span class="line">import Home from &#39;@&#x2F;views&#x2F;home.vue&#39;</span><br><span class="line">import Vuex from &#39;@&#x2F;views&#x2F;vuex.vue&#39;</span><br><span class="line"></span><br><span class="line">const routes: Array&lt;RouteRecordRaw&gt; &#x3D; [</span><br><span class="line">  &#123;</span><br><span class="line">    path: &#39;&#x2F;&#39;,</span><br><span class="line">    name: &#39;Home&#39;,</span><br><span class="line">    component: Home</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: &#39;&#x2F;vuex&#39;,</span><br><span class="line">    name: &#39;Vuex&#39;,</span><br><span class="line">    component: Vuex</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: &#39;&#x2F;axios&#39;,</span><br><span class="line">    name: &#39;Axios&#39;,</span><br><span class="line">    component: () &#x3D;&gt; import(&#39;@&#x2F;views&#x2F;axios.vue&#39;) &#x2F;&#x2F; 懒加载组件</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">const router &#x3D; createRouter(&#123;</span><br><span class="line">  history: createWebHashHistory(),</span><br><span class="line">  routes</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">export default router</span><br><span class="line"></span><br><span class="line">&lt;!-- main.ts --&gt;</span><br><span class="line">import &#123; createApp &#125; from &#39;vue&#39;</span><br><span class="line">import App from &#39;.&#x2F;App.vue&#39;</span><br><span class="line"></span><br><span class="line">import router from &#39;.&#x2F;router&#x2F;index&#39;</span><br><span class="line"></span><br><span class="line">createApp(App).use(router).mount(&#39;#app&#39;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>三、集成状态管理工具 Vuex</p>
-<blockquote>
-<p>npm i vuex@next</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">└── src&#x2F;</span><br><span class="line">    ├── store&#x2F;</span><br><span class="line">        ├── index.ts  &#x2F;&#x2F; store 配置文件</span><br><span class="line">&lt;!-- src&#x2F;store&#x2F;index.ts --&gt;</span><br><span class="line">import &#123; createStore &#125; from &#39;vuex&#39;</span><br><span class="line"></span><br><span class="line">const defaultState &#x3D; &#123;</span><br><span class="line">  count: 0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Create a new store instance.</span><br><span class="line">export default createStore(&#123;</span><br><span class="line">  state() &#123;</span><br><span class="line">    return defaultState</span><br><span class="line">  &#125;,</span><br><span class="line">  mutations: &#123;</span><br><span class="line">    increment(state: typeof defaultState) &#123;</span><br><span class="line">      state.count++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  actions: &#123;</span><br><span class="line">    increment(context) &#123;</span><br><span class="line">      context.commit(&#39;increment&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  getters: &#123;</span><br><span class="line">    double(state: typeof defaultState) &#123;</span><br><span class="line">      return 2 * state.count</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;!-- main.ts --&gt;</span><br><span class="line">import &#123; createApp &#125; from &#39;vue&#39;</span><br><span class="line">import App from &#39;.&#x2F;App.vue&#39;</span><br><span class="line"></span><br><span class="line">import store from &#39;.&#x2F;store&#x2F;index&#39;</span><br><span class="line"></span><br><span class="line">createApp(App).use(store).mount(&#39;#app&#39;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>四、集成 HTTP 工具 Axios</p>
-<blockquote>
-<p>npm i axios</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">└── src&#x2F;</span><br><span class="line">    ├── utils&#x2F;</span><br><span class="line">        ├── axios.ts  &#x2F;&#x2F; Axios 配置文件</span><br><span class="line">&lt;!-- src&#x2F;utils&#x2F;axios.ts --&gt;</span><br><span class="line">import Axios from &#39;axios&#39;</span><br><span class="line">import &#123; ElMessage &#125; from &#39;element-plus&#39;</span><br><span class="line"></span><br><span class="line">const baseURL &#x3D; &#39;https:&#x2F;&#x2F;xx.xx.com&#39;</span><br><span class="line"></span><br><span class="line">const axios &#x3D; Axios.create(&#123;</span><br><span class="line">  baseURL,</span><br><span class="line">  timeout: 20000 &#x2F;&#x2F; 请求超时 20s</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 前置拦截器（发起请求之前的拦截）</span><br><span class="line">axios.interceptors.request.use(</span><br><span class="line">  (response) &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 根据你的项目实际情况来对 config 做处理</span><br><span class="line">     * 这里对 config 不做任何处理，直接返回</span><br><span class="line">     *&#x2F;</span><br><span class="line">    return response</span><br><span class="line">  &#125;,</span><br><span class="line">  (error) &#x3D;&gt; &#123;</span><br><span class="line">    return Promise.reject(error)</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 后置拦截器（获取到响应时的拦截）</span><br><span class="line">axios.interceptors.response.use(</span><br><span class="line">  (response) &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 根据你的项目实际情况来对 response 和 error 做处理</span><br><span class="line">     * 这里对 response 和 error 不做任何处理，直接返回</span><br><span class="line">     *&#x2F;</span><br><span class="line">    return response</span><br><span class="line">  &#125;,</span><br><span class="line">  (error) &#x3D;&gt; &#123;</span><br><span class="line">    if (error.response &amp;&amp; error.response.data) &#123;</span><br><span class="line">      const code &#x3D; error.response.status</span><br><span class="line">      const msg &#x3D; error.response.data.message</span><br><span class="line">      ElMessage.error(&#96;Code: $&#123;code&#125;, Message: $&#123;msg&#125;&#96;)</span><br><span class="line">      console.error(&#96;[Axios Error]&#96;, error.response)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      ElMessage.error(&#96;$&#123;error&#125;&#96;)</span><br><span class="line">    &#125;</span><br><span class="line">    return Promise.reject(error)</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">export default axios</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>使用 axios</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">  import &#123; defineComponent &#125; from &#39;vue&#39;</span><br><span class="line">  import axios from &#39;..&#x2F;utils&#x2F;axios&#39;</span><br><span class="line"></span><br><span class="line">  export default defineComponent(&#123;</span><br><span class="line">    setup() &#123;</span><br><span class="line">      axios</span><br><span class="line">        .get(&#39;&#x2F;users&#x2F;XPoet&#39;)</span><br><span class="line">        .then((res) &#x3D;&gt; &#123;</span><br><span class="line">          console.log(&#39;res: &#39;, res)</span><br><span class="line">        &#125;)</span><br><span class="line">        .catch((err) &#x3D;&gt; &#123;</span><br><span class="line">          console.log(&#39;err: &#39;, err)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>至此，一个基于 TypeScript + Vite + Vue3 + Vue Router + Vuex + Axios + Stylus/Sass/Less 的前端项目开发环境搭建完毕。</p>
-]]></content>
-      <tags>
-        <tag>Vue3</tag>
-        <tag>Vite</tag>
-        <tag>TypeScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>有赞vantUI step1</title>
-    <url>/2018/04/02/%E6%9C%89%E8%B5%9EvantUI-step1/</url>
-    <content><![CDATA[<p><strong>有赞vantUI学习 step1</strong></p>
-<a id="more"></a>
-<p>1、安装淘宝镜像 </p>
-<blockquote>
-<p>npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></p>
-</blockquote>
-<p>2、安装vue-cli </p>
-<blockquote>
-<p>cnpm install –global vue-cli</p>
-</blockquote>
-<p>3、使用vue-cli安装项目[bsh] </p>
-<blockquote>
-<p>vue init youzan/vue-cli-template-vant bsh</p>
-</blockquote>
-<p>4、安装vantUI</p>
-<blockquote>
-<p>cnpm i vant -S</p>
-</blockquote>
-<p>5、引入组件 推荐使用安装 babel-plugin-import 插件</p>
-<blockquote>
-<p>npm i babel-plugin-import -D</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 在 .babelrc 或 babel-loader 中添加插件配置</span><br><span class="line">&#123;</span><br><span class="line">  &quot;plugins&quot;: [</span><br><span class="line">    [&quot;import&quot;, &#123; &quot;libraryName&quot;: &quot;vant&quot;, &quot;style&quot;: true &#125;]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>6、install dependencies 安装依赖</p>
-<blockquote>
-<p>npm install</p>
-</blockquote>
-<p>7、# serve with hot reload at localhost:8080</p>
-<blockquote>
-<p>npm run dev</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>vue</tag>
-        <tag>vant</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>界面化管理部署DNMP</title>
-    <url>/2021/01/21/%E7%95%8C%E9%9D%A2%E5%8C%96%E7%AE%A1%E7%90%86%E9%83%A8%E7%BD%B2DNMP/</url>
-    <content><![CDATA[<p><strong>界面化管理部署DNMP</strong></p>
-<a id="more"></a>
-
-<p>github: <a href="https://github.com/shunhua/dnmp" target="_blank">[ shunhua/dnmp ]</a></p>
-<blockquote>
-<p>docker-compose up -d</p>
-</blockquote>
-<p>docker 容器启动后 Portainer默认端口：9000</p>
-<blockquote>
-<p>localhost:9000</p>
-</blockquote>
-<p>打开 Portainer, 首次需要创建账户。</p>
-<p>最终效果如下图 :</p>
-<p><img src="/assets/blogImg/p0.png" alt="ico原来的样子"></p>
-<p><img src="/assets/blogImg/p1.png" alt="ico原来的样子"></p>
-<p><img src="/assets/blogImg/p2.png" alt="ico原来的样子"></p>
-]]></content>
-      <tags>
-        <tag>DNMP</tag>
-        <tag>Portainer</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>laravel下迁移公众号数据</title>
-    <url>/2017/09/14/%E8%BF%81%E7%A7%BB%E5%85%AC%E4%BC%97%E5%8F%B7%E6%95%B0%E6%8D%AE/</url>
-    <content><![CDATA[<p><strong>php laravel5.x下迁移公众号数据：</strong> </p>
-<a id="more"></a>
-
-<ul>
-<li><strong>公众号及数据备好</strong></li>
-</ul>
-<blockquote>
-<p> 本文通过唯一会员标识[手机号]绑定会员</p>
-</blockquote>
-<p>a.  <strong>数据库添加[is_bd=是否绑定]</strong><br>b.  <strong>通过会员输入手机号判断验证是否存在未绑定的同一手机会员</strong><br>c.  <strong>若存在，需要绑定;js判断处理跳转至绑定页</strong><br>d.  <strong>绑定页输入相应手机信息后，php通过数据库更新is_bd=0&amp;tel=tel的openID值</strong><br>e.  <strong>需要绑定的会员信息更新完成后，若需要可删除无用的openID的那条会员信息</strong></p>
-<ul>
-<li> <strong>跳转绑定页面</strong></li>
-</ul>
-<blockquote>
-<pre><code> /**
-  * 绑定会员
-  */
- public function bangding()
- &#123;
-     $photo = Request::input(&#39;photo&#39;);
-     return view(&#39;home.member.bangding&#39;,compact(&#39;photo&#39;));
- &#125;</code></pre>
-</blockquote>
-<ul>
-<li> <strong>通过手机号发送验证码绑定</strong></li>
-</ul>
-<blockquote>
-<pre><code>  /**
-  * 绑定时发送短信
-  */
- public function bdsendSms()
- &#123;
-     $phone = Request::input(&#39;phone&#39;);
-     $memberinfo = MemberModel::where(&#39;phone&#39;, $phone)-&gt;where(&#39;is_bd&#39;, 0)-&gt;first();
-     if (!$memberinfo) &#123;
-        return responseJson(&#39;[你输入的手机号未找到或已绑定]&#39;, FALSE);
-     &#125;
-     $this-&gt;memberProcess-&gt;sendSms($phone);
-     return responseJson(&#39;&#39;, TRUE);
- &#125;</code></pre>
-</blockquote>
-<ul>
-<li> <strong>绑定会员及更新openID&amp;删除垃圾会员</strong></li>
-</ul>
-<blockquote>
-<pre><code>  /**
-      * 绑定时处理老会员
-      */
-     public function bdsaveMember()
-     &#123;
-         $tel = Request::input(&#39;tel&#39;);
-         $SMSCode = Request::input(&#39;SMSCode&#39;);
-         $user = session(&#39;wechat.oauth_user&#39;);//当前登录者
-         // 检测短信验证码
-         if (!$this-&gt;memberProcess-&gt;checkSms($SMSCode)) &#123;
-             return responseJson(&#39;验证码错误&#39;);
-         &#125;
-         $data=MemberModel::where(&#39;phone&#39;, $tel)-&gt;where(&#39;is_bd&#39;, 0)-&gt;orderBy(&#39;balance&#39;, &#39;desc&#39;)-&gt;first();
-         if ($data) &#123;
-             $data-&gt;openid=$user-&gt;id;
-             $data-&gt;is_bd=1;
-             $data-&gt;save();
-             MemberModel::whereNull(&#39;phone&#39;)-&gt;where(&#39;openid&#39;, $user-&gt;id)-&gt;delete();
-         &#125;
-
-         return responseJson(&#39;&#39;, TRUE);
-     &#125;</code></pre>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   开始作业程序时，最好确认不影响公众号数据[升级维护…]<br>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>php</tag>
-        <tag>laravel5.x</tag>
-        <tag>公众号</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>连续轮询数组中的元素[s/m/d]</title>
-    <url>/2017/12/27/%E8%BF%9E%E7%BB%AD%E8%BD%AE%E8%AF%A2%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0-s-m-d/</url>
-    <content><![CDATA[<p>##<strong>连续轮询数组中的元素[s/m/d]</strong></p>
-<a id="more"></a>
-
-<blockquote>
-<p>实现在任何时间段连续轮询出数组中的元素—— </p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">   public $Randomnotify &#x3D; array(</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid1&#39;,&#39;key&#39;&#x3D;&gt;&#39;key1&#39;),</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid2&#39;,&#39;key&#39;&#x3D;&gt;&#39;key2&#39;),</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid3&#39;,&#39;key&#39;&#x3D;&gt;&#39;key3&#39;),</span><br><span class="line">	...</span><br><span class="line">);</span><br><span class="line">public function dataPollingInterval($list,$polling_time&#x3D;&#39;1m&#39;,$polling_number&#x3D;1) &#123;</span><br><span class="line">    &#x2F;&#x2F; 规划轮询间隔时间的参数:</span><br><span class="line">    $interval &#x3D; false;</span><br><span class="line">	&#x2F;&#x2F; 判断$polling_time 的类型是 秒、分、小时、天 中的哪1种。</span><br><span class="line">    $arg &#x3D; array( </span><br><span class="line">        &#39;s&#39;&#x3D;&gt;1,            &#x2F;&#x2F; 秒</span><br><span class="line">        &#39;m&#39;&#x3D;&gt;60,            &#x2F;&#x2F; 分&#x3D; 60 sec</span><br><span class="line">        &#39;h&#39; &#x3D;&gt;3600,        &#x2F;&#x2F; 时&#x3D; 3600 sec</span><br><span class="line">        &#39;d&#39; &#x3D;&gt; 86400,    &#x2F;&#x2F; 天&#x3D; 86400 sec</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 判断间隔时间的类型，并计算间隔时间</span><br><span class="line">    foreach ($arg as $k &#x3D;&gt; $v) &#123;</span><br><span class="line">        if (false!&#x3D;&#x3D; stripos($polling_time,$k)) &#123;</span><br><span class="line">            $interval &#x3D; intval($polling_time)*$v;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	  &#x2F;&#x2F; 判断间隔时间</span><br><span class="line">    if(!is_int($interval))&#123;  </span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">	&#x2F;&#x2F; 从今年开始的秒数</span><br><span class="line">    $this_year_begin_second &#x3D; strtotime(date(&#39;Y-01-01 01:00:01&#39;, time()));</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 当前秒数 - 今年开始的秒数，得到今年到目前为止的秒数。</span><br><span class="line">    $polling_time &#x3D; time()-$this_year_begin_second;</span><br><span class="line">	</span><br><span class="line">    &#x2F;&#x2F; 从今年到目前为止的秒数，计算得到当前轮数</span><br><span class="line">    $len &#x3D; count($list); &#x2F;&#x2F; 总长度</span><br><span class="line">    $start_index &#x3D; intval($polling_time&#x2F;$interval);</span><br><span class="line">    $start_index &#x3D; $polling_number*$start_index%$len; &#x2F;&#x2F; 轮排数量 * 轮数 , 取余 总数量。</span><br><span class="line">	$res &#x3D; array();</span><br><span class="line">    &#x2F;&#x2F; 将轮数 指向到数组的索引，然后从这个索引开始接着往下循环遍历。</span><br><span class="line">    for ($i&#x3D;0; $i&lt;$len; ++$i) &#123;</span><br><span class="line">        $index&#x3D;$i+$start_index; &#x2F;&#x2F; 索引的变化是根据时间来变</span><br><span class="line">        if ($index&gt;&#x3D;$len) &#123;</span><br><span class="line">            $index&#x3D;$index-$len ;</span><br><span class="line">        &#125;</span><br><span class="line">        $res[]&#x3D;$list[$index]; &#x2F;&#x2F; 存入结果</span><br><span class="line">    &#125;</span><br><span class="line">    return $res[0];</span><br><span class="line">&#125;  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>轮询</tag>
-        <tag>数组</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>银联电子支付-chinapay</title>
-    <url>/2018/08/01/%E9%93%B6%E8%81%94%E7%94%B5%E5%AD%90%E6%94%AF%E4%BB%98-chinapay/</url>
-    <content><![CDATA[<p><strong>银联电子支付对接流程</strong></p>
-<a id="more"></a>
-
-<blockquote>
-<p> 申请好商户后查看银联邮件 </p>
-</blockquote>
-<p><img src="/assets/blogImg/yl1.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 根据邮件中的商户信息登录商户管理系统</p>
-</blockquote>
-<p>证书操作参考 邮件中的《企业门户控台证书申请操作指引.docx》</p>
-<p><img src="/assets/blogImg/yl2.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 登录商户管理系统后申请交易证书</p>
-</blockquote>
-<p><img src="/assets/blogImg/yl3.png" alt="ico原来的样子"></p>
-<p>交易证书申请成功之后，激活证书，根据证书文档 导出交易证书私钥</p>
-<blockquote>
-<p> 下载sdk及配置证书路径</p>
-</blockquote>
-<p><img src="/assets/blogImg/yl4.png" alt="ico原来的样子"></p>
-]]></content>
-      <tags>
-        <tag>Chinapay</tag>
-        <tag>银联电子</tag>
-      </tags>
-  </entry>
-</search>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import &#123; defineConfig &#125; from &#39;vite&#39;</span><br><span class="line">import vue from &#39;@vitejs&#x2F;plugin-vue&#39;</span><br><span class="line">&#x2F;&#x2F; 如果编辑器提示 path 模块找不到，则可以安装一下 @types&#x2F;node -&gt; npm i @types&#x2F;node -D</span><br><span class="line">import &#123; resolve &#125; from &#39;path&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; https:&#x2F;&#x2F;vitejs.dev&#x2F;config&#x2F;</span><br><span class="line">export default defineConfig(&#123;</span><br><span class="line">  plugins: [vue()],</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    alias: &#123;</span><br><span class="line">      &#39;@&#39;: resolve(__dirname, &#39;src&#39;) &#x2F;&#x2F; 设置 &#96;@&#96; 指向 &#96;src&#96; 目录</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  base: &#39;.&#x2F;&#39;, &#x2F;&#x2F; 设置打包路径</span><br><span class="line">  server: &#123;</span><br><span class="line">    port: 4000, &#x2F;&#x2F; 设置服务启动端口号</span><br><span class="line">    open: true, &#x2F;&#x2F; 设置服务启动时是否自动打开浏览器</span><br><span class="line">    cors: true &#x2F;&#x2F; 允许跨域</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 设置代理，根据我们项目实际情况配置</span><br><span class="line">    &#x2F;&#x2F; proxy: &#123;</span><br><span class="line">    &#x2F;&#x2F;   &#39;&#x2F;api&#39;: &#123;</span><br><span class="line">    &#x2F;&#x2F;     target: &#39;http:&#x2F;&#x2F;xxx.xxx.xxx.xxx:8000&#39;,</span><br><span class="line">    &#x2F;&#x2F;     changeOrigin: true,</span><br><span class="line">    &#x2F;&#x2F;     secure: false,</span><br><span class="line">    &#x2F;&#x2F;     rewrite: (path) &#x3D;&gt; path.replace(&#39;&#x2F;api&#x2F;&#39;, &#39;&#x2F;&#39;)</span><br><span class="line">    &#x2F;&#x2F;   &#125;
