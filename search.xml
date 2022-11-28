@@ -125,7 +125,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#64;&#x71;&#x71;&#x2e;&#99;&#x6f;&#109;">&#120;&#64;&#x71;&#x71;&#x2e;&#99;&#x6f;&#109;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#x40;&#113;&#113;&#46;&#x63;&#x6f;&#x6d;">&#x78;&#x40;&#113;&#113;&#46;&#x63;&#x6f;&#x6d;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -136,7 +136,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#98;&#x40;&#113;&#x71;&#x2e;&#99;&#x6f;&#109;">&#98;&#x40;&#113;&#x71;&#x2e;&#99;&#x6f;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#98;&#x40;&#x71;&#113;&#x2e;&#x63;&#111;&#109;">&#98;&#x40;&#x71;&#113;&#x2e;&#x63;&#111;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -328,6 +328,26 @@
       </tags>
   </entry>
   <entry>
+    <title>Centos下两种守护进程的配置</title>
+    <url>/2018/03/21/Centos%E4%B8%8B%E4%B8%A4%E7%A7%8D%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E7%9A%84%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<a id="more"></a>
+
+
+<blockquote>
+<p>一、php artisan</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-xx]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D;php &#x2F;home&#x2F;wwwroot&#x2F;www.xxx.com&#x2F;artisan queue:work --tries&#x3D;3</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;4</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xxx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>二、执行node js </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-node]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D; node &#x2F;home&#x2F;socket&#x2F;stocket.js</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;1</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Centos</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Centos7下基于laradock部署laravel5.x</title>
     <url>/2018/04/09/Centos7%E4%B8%8B%E5%9F%BA%E4%BA%8Elaradock%E9%83%A8%E7%BD%B2laravel5-x/</url>
     <content><![CDATA[<a id="more"></a>
@@ -401,26 +421,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Centos下两种守护进程的配置</title>
-    <url>/2018/03/21/Centos%E4%B8%8B%E4%B8%A4%E7%A7%8D%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E7%9A%84%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<a id="more"></a>
-
-
-<blockquote>
-<p>一、php artisan</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-xx]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D;php &#x2F;home&#x2F;wwwroot&#x2F;www.xxx.com&#x2F;artisan queue:work --tries&#x3D;3</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;4</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xxx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>二、执行node js </p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[program:laravel-worker-node]</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">command&#x3D; node &#x2F;home&#x2F;socket&#x2F;stocket.js</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;1</span><br><span class="line">redirect_stderr&#x3D;true</span><br><span class="line">stdout_logfile&#x3D;&#x2F;home&#x2F;wwwroot&#x2F;www.xx.com&#x2F;storage&#x2F;logs&#x2F;worker.log</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>Centos</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Centos下安装PHP7</title>
     <url>/2018/03/21/Centos%E4%B8%8B%E5%AE%89%E8%A3%85PHP7/</url>
     <content><![CDATA[<a id="more"></a>
@@ -466,45 +466,6 @@
       <tags>
         <tag>Centos</tag>
         <tag>PHP7</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Docker下实践ELK(Elasticsearch、Logstash、Kibana)</title>
-    <url>/2021/12/22/Docker%E4%B8%8B%E5%AE%9E%E8%B7%B5ELK-Elasticsearch%E3%80%81Logstash%E3%80%81Kibana/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/elk.png" alt="elk"></p>
-<a id="more"></a>
-
-<p><strong>什么是 ELK</strong><br><a href="https://www.elastic.co/cn/what-is/elk-stack" target="_blank">[ 官方网址 ]</a> | <a href="https://github.com/deviantony/docker-elk" target="_blank">[ Github资源 ]</a><br><img src="/assets/blogImg/elk.svg" alt="elk"></p>
-<ul>
-<li>Elasticsearch</li>
-</ul>
-<blockquote>
-<p>Elasticsearch 是一个分布式的 RESTful 风格的 <code>搜索和数据分析引擎</code>，能够解决不断涌现出的各种用例。作为 Elastic Stack 的核心，它集中<code>存储您的数据</code>，帮助您发现意料之中以及意料之外的情况。</p>
-</blockquote>
-<ul>
-<li>Logstash</li>
-</ul>
-<blockquote>
-<p>Logstash 是开源的服务器端数据处理管道，能够同时 从多个来源 <code>采集数据、转换数据</code>，然后将数据发送到您最喜欢的<code>存储库</code> （存储库是 <code>Elasticsearch</code>）中。</p>
-</blockquote>
-<ul>
-<li>Kibana</li>
-</ul>
-<blockquote>
-<p>Kibana 让您能够<code>可视化 Elasticsearch</code> 中的数据并操作 Elastic Stack。</p>
-</blockquote>
-<p><img src="/assets/blogImg/elk-lu.svg" alt="elk-lu"><br><strong>整体架构流程图：</strong><br><a href="https://excalidraw.com/" target="_blank">[ 画图工具 ]</a></p>
-<ul>
-<li>filebeat: 负责将日志数据传输到 redis</li>
-<li>Redis：暂时进行缓存</li>
-<li>logstash: 收集缓存中的日志数据</li>
-<li>elasticsearch: 负责存储日志数据</li>
-<li>kibana: 负责显示日志的数据</li>
-</ul>
-<p><img src="/assets/blogImg/elk1.png" alt="elk"></p>
-]]></content>
-      <tags>
-        <tag>ELK</tag>
       </tags>
   </entry>
   <entry>
@@ -567,6 +528,45 @@
 ]]></content>
       <tags>
         <tag>Etcd</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Docker下实践ELK(Elasticsearch、Logstash、Kibana)</title>
+    <url>/2021/12/22/Docker%E4%B8%8B%E5%AE%9E%E8%B7%B5ELK-Elasticsearch%E3%80%81Logstash%E3%80%81Kibana/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/elk.png" alt="elk"></p>
+<a id="more"></a>
+
+<p><strong>什么是 ELK</strong><br><a href="https://www.elastic.co/cn/what-is/elk-stack" target="_blank">[ 官方网址 ]</a> | <a href="https://github.com/deviantony/docker-elk" target="_blank">[ Github资源 ]</a><br><img src="/assets/blogImg/elk.svg" alt="elk"></p>
+<ul>
+<li>Elasticsearch</li>
+</ul>
+<blockquote>
+<p>Elasticsearch 是一个分布式的 RESTful 风格的 <code>搜索和数据分析引擎</code>，能够解决不断涌现出的各种用例。作为 Elastic Stack 的核心，它集中<code>存储您的数据</code>，帮助您发现意料之中以及意料之外的情况。</p>
+</blockquote>
+<ul>
+<li>Logstash</li>
+</ul>
+<blockquote>
+<p>Logstash 是开源的服务器端数据处理管道，能够同时 从多个来源 <code>采集数据、转换数据</code>，然后将数据发送到您最喜欢的<code>存储库</code> （存储库是 <code>Elasticsearch</code>）中。</p>
+</blockquote>
+<ul>
+<li>Kibana</li>
+</ul>
+<blockquote>
+<p>Kibana 让您能够<code>可视化 Elasticsearch</code> 中的数据并操作 Elastic Stack。</p>
+</blockquote>
+<p><img src="/assets/blogImg/elk-lu.svg" alt="elk-lu"><br><strong>整体架构流程图：</strong><br><a href="https://excalidraw.com/" target="_blank">[ 画图工具 ]</a></p>
+<ul>
+<li>filebeat: 负责将日志数据传输到 redis</li>
+<li>Redis：暂时进行缓存</li>
+<li>logstash: 收集缓存中的日志数据</li>
+<li>elasticsearch: 负责存储日志数据</li>
+<li>kibana: 负责显示日志的数据</li>
+</ul>
+<p><img src="/assets/blogImg/elk1.png" alt="elk"></p>
+]]></content>
+      <tags>
+        <tag>ELK</tag>
       </tags>
   </entry>
   <entry>
@@ -1139,6 +1139,25 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Linux安装配置守护进程</title>
+    <url>/2018/03/09/Linux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> centos 下安装Supervisor</p>
+</blockquote>
+<p>yum install supervisor</p>
+<blockquote>
+<p> 配置Supervisor</p>
+</blockquote>
+<p>cd /etc/supervisord.d/<br>vim laravel-worker.ini<br>systemctl start supervisord</p>
+]]></content>
+      <tags>
+        <tag>linux</tag>
+        <tag>Supervisor</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux定时任务采集聚合数据api文章</title>
     <url>/2019/04/18/Linux%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E9%87%87%E9%9B%86%E8%81%9A%E5%90%88%E6%95%B0%E6%8D%AEapi%E6%96%87%E7%AB%A0/</url>
     <content><![CDATA[<p><strong>Linux定时任务采集文章</strong> </p>
@@ -1171,25 +1190,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
         <tag>Laravel</tag>
         <tag>Linux</tag>
         <tag>crontab</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux安装配置守护进程</title>
-    <url>/2018/03/09/Linux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> centos 下安装Supervisor</p>
-</blockquote>
-<p>yum install supervisor</p>
-<blockquote>
-<p> 配置Supervisor</p>
-</blockquote>
-<p>cd /etc/supervisord.d/<br>vim laravel-worker.ini<br>systemctl start supervisord</p>
-]]></content>
-      <tags>
-        <tag>linux</tag>
-        <tag>Supervisor</tag>
       </tags>
   </entry>
   <entry>
@@ -2255,7 +2255,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#103;&#105;&#x74;&#x40;&#x67;&#x69;&#116;&#x68;&#x75;&#x62;&#46;&#x63;&#111;&#x6d;">&#103;&#105;&#x74;&#x40;&#x67;&#x69;&#116;&#x68;&#x75;&#x62;&#46;&#x63;&#111;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#x67;&#x69;&#116;&#64;&#103;&#105;&#116;&#104;&#117;&#x62;&#x2e;&#99;&#111;&#x6d;">&#x67;&#x69;&#116;&#64;&#103;&#105;&#116;&#104;&#117;&#x62;&#x2e;&#99;&#111;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -2915,27 +2915,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>lnmp tp pathinfo问题</title>
-    <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>/usr/local/php/etc/php.ini</p>
-<blockquote>
-<p> cgi.fix_pathinfo=1</p>
-</blockquote>
-<blockquote>
-<p> lnmp restart</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
-  </entry>
-  <entry>
     <title>lnmp集成环境下部署laravel5.x项目</title>
     <url>/2017/09/21/lnmp%E9%9B%86%E6%88%90%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2laravel5-x%E9%A1%B9%E7%9B%AE/</url>
     <content><![CDATA[<a id="more"></a>
@@ -3008,84 +2987,25 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>nginx 实现负载均衡</title>
-    <url>/2017/09/21/nginx-%E5%AE%9E%E7%8E%B0%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</url>
+    <title>lnmp tp pathinfo问题</title>
+    <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<a id="more"></a>
 
+<p>/usr/local/php/etc/php.ini</p>
 <blockquote>
-<p> nginx支持的四种负载均衡策略</p>
+<p> cgi.fix_pathinfo=1</p>
 </blockquote>
-<ul>
-<li> 轮询：将请求依次轮询发给每个服务器。</li>
-<li> 最少链接：将请求发送给持有最少活动链接的服务器。</li>
-<li> ip哈希：通过哈希函数决定请求发送给哪个服务器。</li>
-<li> 权重：服务器的权重越高，处理请求的概率越大。</li>
-</ul>
 <blockquote>
-<p> 1.轮询负载均衡</p>
+<p> lnmp restart</p>
 </blockquote>
-<p>在nginx.conf配置文件中添加如下配置</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http &#123;</span><br><span class="line"> upstream CashServers &#123;</span><br><span class="line">     server 192.168.1.252;</span><br><span class="line">     server 192.168.1.253;</span><br><span class="line"> &#125;</span><br><span class="line"> server &#123;</span><br><span class="line">     listen 80;</span><br><span class="line">     location &#x2F; &#123;</span><br><span class="line">         proxy_pass http:&#x2F;&#x2F;CashServers;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>注意：</p>
-<ul>
-<li> 缺省配置就是轮询策略;</li>
-<li> nginx负载均衡支持http和https协议，只需要修改 proxy_pass后协议即可;</li>
-<li> nginx支持FastCGI, uwsgi, SCGI,memcached的负载均衡,只需将 proxy_pass改为fastcgi_pass, uwsgi_pass, scgi_pass,memcached_pass即可。</li>
-<li> 此策略适合服务器配置相当，无状态且短平快的服务使用。</li>
-</ul>
-<blockquote>
-<p> 2.最少链接负载均衡</p>
-</blockquote>
-<p>在nginx.conf配置文件中添加如下配置</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">   upstream CashServers &#123;</span><br><span class="line">       least_conn;</span><br><span class="line">         server 192.168.1.252;</span><br><span class="line">         server 192.168.1.253;</span><br><span class="line">   &#125;</span><br><span class="line">   server &#123;</span><br><span class="line">         listen 80;</span><br><span class="line">         location &#x2F; &#123;</span><br><span class="line">             proxy_pass http:&#x2F;&#x2F;CashServers;</span><br><span class="line">         &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>注意：</p>
-<ul>
-<li> 最少链接负载均衡通过least_conn指令定义;</li>
-<li> 此负载均衡策略适合请求处理时间长短不一造成服务器过载的情况;</li>
-</ul>
-<blockquote>
-<p> 3.ip哈希负载均衡</p>
-</blockquote>
-<p>在nginx.conf配置文件中添加如下配置</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  http &#123;</span><br><span class="line">    upstream CashServers &#123;</span><br><span class="line">        ip_hash;</span><br><span class="line">        server 192.168.1.252;</span><br><span class="line">        server 192.168.1.253;</span><br><span class="line">    &#125;</span><br><span class="line">    server &#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        location &#x2F; &#123;</span><br><span class="line">            proxy_pass http:&#x2F;&#x2F;CashServers;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>注意：</p>
-<ul>
-<li> ip哈希负载均衡使用ip_hash指令定义;</li>
-<li> nginx使用请求客户端的ip地址进行哈希计算，确保使用同一个服务器响应请求;</li>
-<li> 此策略适合有状态服务，比如session;</li>
-</ul>
-<blockquote>
-<p> 4.权重负载均衡</p>
-</blockquote>
-<p>在nginx.conf配置文件中添加如下配置</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    upstream CashServers &#123;   </span><br><span class="line">        server 192.168.1.252 weight&#x3D;1;   </span><br><span class="line">        server 192.168.1.253 weight&#x3D;2;</span><br><span class="line">    &#125;</span><br><span class="line">    server &#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        location &#x2F; &#123;</span><br><span class="line">            proxy_pass http:&#x2F;&#x2F;CashServers;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>注意：</p>
-<ul>
-<li> 权重负载均衡需要使用weight指令定义;</li>
-<li> 权重越高分配到需要处理的请求越多;</li>
-<li> 此策略可以与最少链接负载和ip哈希策略结合使用;</li>
-<li> 此策略比较适合服务器的硬件配置差别比较大的情况;</li>
-</ul>
-<blockquote>
-<p> 健康检测</p>
-</blockquote>
-<p>nginx内置了针对服务器的健康检测机制，如果特定服务器请求失败，则nginx即可进行标记待下次就不会请求分配给它。max_fails定义失败指定次数后进行标记服务器不可用。</p>
 <hr>
 <ul>
 <li><strong>Notice</strong></li>
 </ul>
 <blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>nginx</tag>
-        <tag>负载均衡</tag>
-      </tags>
   </entry>
   <entry>
     <title>mysql通过.ibd和.frm文件恢复数据</title>
@@ -3251,6 +3171,86 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>nginx 实现负载均衡</title>
+    <url>/2017/09/21/nginx-%E5%AE%9E%E7%8E%B0%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> nginx支持的四种负载均衡策略</p>
+</blockquote>
+<ul>
+<li> 轮询：将请求依次轮询发给每个服务器。</li>
+<li> 最少链接：将请求发送给持有最少活动链接的服务器。</li>
+<li> ip哈希：通过哈希函数决定请求发送给哪个服务器。</li>
+<li> 权重：服务器的权重越高，处理请求的概率越大。</li>
+</ul>
+<blockquote>
+<p> 1.轮询负载均衡</p>
+</blockquote>
+<p>在nginx.conf配置文件中添加如下配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http &#123;</span><br><span class="line"> upstream CashServers &#123;</span><br><span class="line">     server 192.168.1.252;</span><br><span class="line">     server 192.168.1.253;</span><br><span class="line"> &#125;</span><br><span class="line"> server &#123;</span><br><span class="line">     listen 80;</span><br><span class="line">     location &#x2F; &#123;</span><br><span class="line">         proxy_pass http:&#x2F;&#x2F;CashServers;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<ul>
+<li> 缺省配置就是轮询策略;</li>
+<li> nginx负载均衡支持http和https协议，只需要修改 proxy_pass后协议即可;</li>
+<li> nginx支持FastCGI, uwsgi, SCGI,memcached的负载均衡,只需将 proxy_pass改为fastcgi_pass, uwsgi_pass, scgi_pass,memcached_pass即可。</li>
+<li> 此策略适合服务器配置相当，无状态且短平快的服务使用。</li>
+</ul>
+<blockquote>
+<p> 2.最少链接负载均衡</p>
+</blockquote>
+<p>在nginx.conf配置文件中添加如下配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">   upstream CashServers &#123;</span><br><span class="line">       least_conn;</span><br><span class="line">         server 192.168.1.252;</span><br><span class="line">         server 192.168.1.253;</span><br><span class="line">   &#125;</span><br><span class="line">   server &#123;</span><br><span class="line">         listen 80;</span><br><span class="line">         location &#x2F; &#123;</span><br><span class="line">             proxy_pass http:&#x2F;&#x2F;CashServers;</span><br><span class="line">         &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<ul>
+<li> 最少链接负载均衡通过least_conn指令定义;</li>
+<li> 此负载均衡策略适合请求处理时间长短不一造成服务器过载的情况;</li>
+</ul>
+<blockquote>
+<p> 3.ip哈希负载均衡</p>
+</blockquote>
+<p>在nginx.conf配置文件中添加如下配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  http &#123;</span><br><span class="line">    upstream CashServers &#123;</span><br><span class="line">        ip_hash;</span><br><span class="line">        server 192.168.1.252;</span><br><span class="line">        server 192.168.1.253;</span><br><span class="line">    &#125;</span><br><span class="line">    server &#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        location &#x2F; &#123;</span><br><span class="line">            proxy_pass http:&#x2F;&#x2F;CashServers;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<ul>
+<li> ip哈希负载均衡使用ip_hash指令定义;</li>
+<li> nginx使用请求客户端的ip地址进行哈希计算，确保使用同一个服务器响应请求;</li>
+<li> 此策略适合有状态服务，比如session;</li>
+</ul>
+<blockquote>
+<p> 4.权重负载均衡</p>
+</blockquote>
+<p>在nginx.conf配置文件中添加如下配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    upstream CashServers &#123;   </span><br><span class="line">        server 192.168.1.252 weight&#x3D;1;   </span><br><span class="line">        server 192.168.1.253 weight&#x3D;2;</span><br><span class="line">    &#125;</span><br><span class="line">    server &#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        location &#x2F; &#123;</span><br><span class="line">            proxy_pass http:&#x2F;&#x2F;CashServers;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<ul>
+<li> 权重负载均衡需要使用weight指令定义;</li>
+<li> 权重越高分配到需要处理的请求越多;</li>
+<li> 此策略可以与最少链接负载和ip哈希策略结合使用;</li>
+<li> 此策略比较适合服务器的硬件配置差别比较大的情况;</li>
+</ul>
+<blockquote>
+<p> 健康检测</p>
+</blockquote>
+<p>nginx内置了针对服务器的健康检测机制，如果特定服务器请求失败，则nginx即可进行标记待下次就不会请求分配给它。max_fails定义失败指定次数后进行标记服务器不可用。</p>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>nginx</tag>
+        <tag>负载均衡</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>socket.io的使用</title>
     <url>/2018/03/28/socket-io%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><strong>socket.io的基础教程</strong> </p>
@@ -3262,7 +3262,7 @@ class QuotesSpider(scrapy.Spider):
 </blockquote>
 <p>二、使用npm下载 web框架express模块</p>
 <blockquote>
-<p>npm install --save <a href="mailto:&#x65;&#120;&#x70;&#114;&#101;&#x73;&#x73;&#x40;&#x34;&#46;&#49;&#53;&#x2e;&#x32;">&#x65;&#120;&#x70;&#114;&#101;&#x73;&#x73;&#x40;&#x34;&#46;&#49;&#53;&#x2e;&#x32;</a></p>
+<p>npm install --save <a href="mailto:&#x65;&#120;&#x70;&#114;&#101;&#115;&#x73;&#64;&#52;&#x2e;&#49;&#53;&#46;&#50;">&#x65;&#120;&#x70;&#114;&#101;&#115;&#x73;&#64;&#52;&#x2e;&#49;&#53;&#46;&#50;</a></p>
 </blockquote>
 <p>三、使用npm下载socket.io模块</p>
 <blockquote>
@@ -3720,118 +3720,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>有赞vantUI step1</title>
-    <url>/2018/04/02/%E6%9C%89%E8%B5%9EvantUI-step1/</url>
-    <content><![CDATA[<p><strong>有赞vantUI学习 step1</strong></p>
-<a id="more"></a>
-<p>1、安装淘宝镜像 </p>
-<blockquote>
-<p>npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></p>
-</blockquote>
-<p>2、安装vue-cli </p>
-<blockquote>
-<p>cnpm install –global vue-cli</p>
-</blockquote>
-<p>3、使用vue-cli安装项目[bsh] </p>
-<blockquote>
-<p>vue init youzan/vue-cli-template-vant bsh</p>
-</blockquote>
-<p>4、安装vantUI</p>
-<blockquote>
-<p>cnpm i vant -S</p>
-</blockquote>
-<p>5、引入组件 推荐使用安装 babel-plugin-import 插件</p>
-<blockquote>
-<p>npm i babel-plugin-import -D</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 在 .babelrc 或 babel-loader 中添加插件配置</span><br><span class="line">&#123;</span><br><span class="line">  &quot;plugins&quot;: [</span><br><span class="line">    [&quot;import&quot;, &#123; &quot;libraryName&quot;: &quot;vant&quot;, &quot;style&quot;: true &#125;]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>6、install dependencies 安装依赖</p>
-<blockquote>
-<p>npm install</p>
-</blockquote>
-<p>7、# serve with hot reload at localhost:8080</p>
-<blockquote>
-<p>npm run dev</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>vue</tag>
-        <tag>vant</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>界面化管理部署DNMP</title>
-    <url>/2021/01/21/%E7%95%8C%E9%9D%A2%E5%8C%96%E7%AE%A1%E7%90%86%E9%83%A8%E7%BD%B2DNMP/</url>
-    <content><![CDATA[<p><strong>界面化管理部署DNMP</strong></p>
-<a id="more"></a>
-
-<p>github: <a href="https://github.com/shunhua/dnmp" target="_blank">[ shunhua/dnmp ]</a></p>
-<blockquote>
-<p>docker-compose up -d</p>
-</blockquote>
-<p>docker 容器启动后 Portainer默认端口：9000</p>
-<blockquote>
-<p>localhost:9000</p>
-</blockquote>
-<p>打开 Portainer, 首次需要创建账户。</p>
-<p>最终效果如下图 :</p>
-<p><img src="/assets/blogImg/p0.png" alt="ico原来的样子"></p>
-<p><img src="/assets/blogImg/p1.png" alt="ico原来的样子"></p>
-<p><img src="/assets/blogImg/p2.png" alt="ico原来的样子"></p>
-]]></content>
-      <tags>
-        <tag>DNMP</tag>
-        <tag>Portainer</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>连续轮询数组中的元素[s/m/d]</title>
-    <url>/2017/12/27/%E8%BF%9E%E7%BB%AD%E8%BD%AE%E8%AF%A2%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0-s-m-d/</url>
-    <content><![CDATA[<p>##<strong>连续轮询数组中的元素[s/m/d]</strong></p>
-<a id="more"></a>
-
-<blockquote>
-<p>实现在任何时间段连续轮询出数组中的元素—— </p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">   public $Randomnotify &#x3D; array(</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid1&#39;,&#39;key&#39;&#x3D;&gt;&#39;key1&#39;),</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid2&#39;,&#39;key&#39;&#x3D;&gt;&#39;key2&#39;),</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid3&#39;,&#39;key&#39;&#x3D;&gt;&#39;key3&#39;),</span><br><span class="line">	...</span><br><span class="line">);</span><br><span class="line">public function dataPollingInterval($list,$polling_time&#x3D;&#39;1m&#39;,$polling_number&#x3D;1) &#123;</span><br><span class="line">    &#x2F;&#x2F; 规划轮询间隔时间的参数:</span><br><span class="line">    $interval &#x3D; false;</span><br><span class="line">	&#x2F;&#x2F; 判断$polling_time 的类型是 秒、分、小时、天 中的哪1种。</span><br><span class="line">    $arg &#x3D; array( </span><br><span class="line">        &#39;s&#39;&#x3D;&gt;1,            &#x2F;&#x2F; 秒</span><br><span class="line">        &#39;m&#39;&#x3D;&gt;60,            &#x2F;&#x2F; 分&#x3D; 60 sec</span><br><span class="line">        &#39;h&#39; &#x3D;&gt;3600,        &#x2F;&#x2F; 时&#x3D; 3600 sec</span><br><span class="line">        &#39;d&#39; &#x3D;&gt; 86400,    &#x2F;&#x2F; 天&#x3D; 86400 sec</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 判断间隔时间的类型，并计算间隔时间</span><br><span class="line">    foreach ($arg as $k &#x3D;&gt; $v) &#123;</span><br><span class="line">        if (false!&#x3D;&#x3D; stripos($polling_time,$k)) &#123;</span><br><span class="line">            $interval &#x3D; intval($polling_time)*$v;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	  &#x2F;&#x2F; 判断间隔时间</span><br><span class="line">    if(!is_int($interval))&#123;  </span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">	&#x2F;&#x2F; 从今年开始的秒数</span><br><span class="line">    $this_year_begin_second &#x3D; strtotime(date(&#39;Y-01-01 01:00:01&#39;, time()));</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 当前秒数 - 今年开始的秒数，得到今年到目前为止的秒数。</span><br><span class="line">    $polling_time &#x3D; time()-$this_year_begin_second;</span><br><span class="line">	</span><br><span class="line">    &#x2F;&#x2F; 从今年到目前为止的秒数，计算得到当前轮数</span><br><span class="line">    $len &#x3D; count($list); &#x2F;&#x2F; 总长度</span><br><span class="line">    $start_index &#x3D; intval($polling_time&#x2F;$interval);</span><br><span class="line">    $start_index &#x3D; $polling_number*$start_index%$len; &#x2F;&#x2F; 轮排数量 * 轮数 , 取余 总数量。</span><br><span class="line">	$res &#x3D; array();</span><br><span class="line">    &#x2F;&#x2F; 将轮数 指向到数组的索引，然后从这个索引开始接着往下循环遍历。</span><br><span class="line">    for ($i&#x3D;0; $i&lt;$len; ++$i) &#123;</span><br><span class="line">        $index&#x3D;$i+$start_index; &#x2F;&#x2F; 索引的变化是根据时间来变</span><br><span class="line">        if ($index&gt;&#x3D;$len) &#123;</span><br><span class="line">            $index&#x3D;$index-$len ;</span><br><span class="line">        &#125;</span><br><span class="line">        $res[]&#x3D;$list[$index]; &#x2F;&#x2F; 存入结果</span><br><span class="line">    &#125;</span><br><span class="line">    return $res[0];</span><br><span class="line">&#125;  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>轮询</tag>
-        <tag>数组</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>银联电子支付-chinapay</title>
-    <url>/2018/08/01/%E9%93%B6%E8%81%94%E7%94%B5%E5%AD%90%E6%94%AF%E4%BB%98-chinapay/</url>
-    <content><![CDATA[<p><strong>银联电子支付对接流程</strong></p>
-<a id="more"></a>
-
-<blockquote>
-<p> 申请好商户后查看银联邮件 </p>
-</blockquote>
-<p><img src="/assets/blogImg/yl1.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 根据邮件中的商户信息登录商户管理系统</p>
-</blockquote>
-<p>证书操作参考 邮件中的《企业门户控台证书申请操作指引.docx》</p>
-<p><img src="/assets/blogImg/yl2.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 登录商户管理系统后申请交易证书</p>
-</blockquote>
-<p><img src="/assets/blogImg/yl3.png" alt="ico原来的样子"></p>
-<p>交易证书申请成功之后，激活证书，根据证书文档 导出交易证书私钥</p>
-<blockquote>
-<p> 下载sdk及配置证书路径</p>
-</blockquote>
-<p><img src="/assets/blogImg/yl4.png" alt="ico原来的样子"></p>
-]]></content>
-      <tags>
-        <tag>Chinapay</tag>
-        <tag>银联电子</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>laravel下迁移公众号数据</title>
     <url>/2017/09/14/%E8%BF%81%E7%A7%BB%E5%85%AC%E4%BC%97%E5%8F%B7%E6%95%B0%E6%8D%AE/</url>
     <content><![CDATA[<p><strong>php laravel5.x下迁移公众号数据：</strong> </p>
@@ -3914,6 +3802,118 @@ class QuotesSpider(scrapy.Spider):
         <tag>php</tag>
         <tag>laravel5.x</tag>
         <tag>公众号</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>界面化管理部署DNMP</title>
+    <url>/2021/01/21/%E7%95%8C%E9%9D%A2%E5%8C%96%E7%AE%A1%E7%90%86%E9%83%A8%E7%BD%B2DNMP/</url>
+    <content><![CDATA[<p><strong>界面化管理部署DNMP</strong></p>
+<a id="more"></a>
+
+<p>github: <a href="https://github.com/shunhua/dnmp" target="_blank">[ shunhua/dnmp ]</a></p>
+<blockquote>
+<p>docker-compose up -d</p>
+</blockquote>
+<p>docker 容器启动后 Portainer默认端口：9000</p>
+<blockquote>
+<p>localhost:9000</p>
+</blockquote>
+<p>打开 Portainer, 首次需要创建账户。</p>
+<p>最终效果如下图 :</p>
+<p><img src="/assets/blogImg/p0.png" alt="ico原来的样子"></p>
+<p><img src="/assets/blogImg/p1.png" alt="ico原来的样子"></p>
+<p><img src="/assets/blogImg/p2.png" alt="ico原来的样子"></p>
+]]></content>
+      <tags>
+        <tag>DNMP</tag>
+        <tag>Portainer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>连续轮询数组中的元素[s/m/d]</title>
+    <url>/2017/12/27/%E8%BF%9E%E7%BB%AD%E8%BD%AE%E8%AF%A2%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0-s-m-d/</url>
+    <content><![CDATA[<p>##<strong>连续轮询数组中的元素[s/m/d]</strong></p>
+<a id="more"></a>
+
+<blockquote>
+<p>实现在任何时间段连续轮询出数组中的元素—— </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">   public $Randomnotify &#x3D; array(</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid1&#39;,&#39;key&#39;&#x3D;&gt;&#39;key1&#39;),</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid2&#39;,&#39;key&#39;&#x3D;&gt;&#39;key2&#39;),</span><br><span class="line">	array(&#39;appid&#39;&#x3D;&gt;&#39;appid3&#39;,&#39;key&#39;&#x3D;&gt;&#39;key3&#39;),</span><br><span class="line">	...</span><br><span class="line">);</span><br><span class="line">public function dataPollingInterval($list,$polling_time&#x3D;&#39;1m&#39;,$polling_number&#x3D;1) &#123;</span><br><span class="line">    &#x2F;&#x2F; 规划轮询间隔时间的参数:</span><br><span class="line">    $interval &#x3D; false;</span><br><span class="line">	&#x2F;&#x2F; 判断$polling_time 的类型是 秒、分、小时、天 中的哪1种。</span><br><span class="line">    $arg &#x3D; array( </span><br><span class="line">        &#39;s&#39;&#x3D;&gt;1,            &#x2F;&#x2F; 秒</span><br><span class="line">        &#39;m&#39;&#x3D;&gt;60,            &#x2F;&#x2F; 分&#x3D; 60 sec</span><br><span class="line">        &#39;h&#39; &#x3D;&gt;3600,        &#x2F;&#x2F; 时&#x3D; 3600 sec</span><br><span class="line">        &#39;d&#39; &#x3D;&gt; 86400,    &#x2F;&#x2F; 天&#x3D; 86400 sec</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 判断间隔时间的类型，并计算间隔时间</span><br><span class="line">    foreach ($arg as $k &#x3D;&gt; $v) &#123;</span><br><span class="line">        if (false!&#x3D;&#x3D; stripos($polling_time,$k)) &#123;</span><br><span class="line">            $interval &#x3D; intval($polling_time)*$v;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	  &#x2F;&#x2F; 判断间隔时间</span><br><span class="line">    if(!is_int($interval))&#123;  </span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">	&#x2F;&#x2F; 从今年开始的秒数</span><br><span class="line">    $this_year_begin_second &#x3D; strtotime(date(&#39;Y-01-01 01:00:01&#39;, time()));</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 当前秒数 - 今年开始的秒数，得到今年到目前为止的秒数。</span><br><span class="line">    $polling_time &#x3D; time()-$this_year_begin_second;</span><br><span class="line">	</span><br><span class="line">    &#x2F;&#x2F; 从今年到目前为止的秒数，计算得到当前轮数</span><br><span class="line">    $len &#x3D; count($list); &#x2F;&#x2F; 总长度</span><br><span class="line">    $start_index &#x3D; intval($polling_time&#x2F;$interval);</span><br><span class="line">    $start_index &#x3D; $polling_number*$start_index%$len; &#x2F;&#x2F; 轮排数量 * 轮数 , 取余 总数量。</span><br><span class="line">	$res &#x3D; array();</span><br><span class="line">    &#x2F;&#x2F; 将轮数 指向到数组的索引，然后从这个索引开始接着往下循环遍历。</span><br><span class="line">    for ($i&#x3D;0; $i&lt;$len; ++$i) &#123;</span><br><span class="line">        $index&#x3D;$i+$start_index; &#x2F;&#x2F; 索引的变化是根据时间来变</span><br><span class="line">        if ($index&gt;&#x3D;$len) &#123;</span><br><span class="line">            $index&#x3D;$index-$len ;</span><br><span class="line">        &#125;</span><br><span class="line">        $res[]&#x3D;$list[$index]; &#x2F;&#x2F; 存入结果</span><br><span class="line">    &#125;</span><br><span class="line">    return $res[0];</span><br><span class="line">&#125;  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>轮询</tag>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>银联电子支付-chinapay</title>
+    <url>/2018/08/01/%E9%93%B6%E8%81%94%E7%94%B5%E5%AD%90%E6%94%AF%E4%BB%98-chinapay/</url>
+    <content><![CDATA[<p><strong>银联电子支付对接流程</strong></p>
+<a id="more"></a>
+
+<blockquote>
+<p> 申请好商户后查看银联邮件 </p>
+</blockquote>
+<p><img src="/assets/blogImg/yl1.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 根据邮件中的商户信息登录商户管理系统</p>
+</blockquote>
+<p>证书操作参考 邮件中的《企业门户控台证书申请操作指引.docx》</p>
+<p><img src="/assets/blogImg/yl2.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 登录商户管理系统后申请交易证书</p>
+</blockquote>
+<p><img src="/assets/blogImg/yl3.png" alt="ico原来的样子"></p>
+<p>交易证书申请成功之后，激活证书，根据证书文档 导出交易证书私钥</p>
+<blockquote>
+<p> 下载sdk及配置证书路径</p>
+</blockquote>
+<p><img src="/assets/blogImg/yl4.png" alt="ico原来的样子"></p>
+]]></content>
+      <tags>
+        <tag>Chinapay</tag>
+        <tag>银联电子</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>有赞vantUI step1</title>
+    <url>/2018/04/02/%E6%9C%89%E8%B5%9EvantUI-step1/</url>
+    <content><![CDATA[<p><strong>有赞vantUI学习 step1</strong></p>
+<a id="more"></a>
+<p>1、安装淘宝镜像 </p>
+<blockquote>
+<p>npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></p>
+</blockquote>
+<p>2、安装vue-cli </p>
+<blockquote>
+<p>cnpm install –global vue-cli</p>
+</blockquote>
+<p>3、使用vue-cli安装项目[bsh] </p>
+<blockquote>
+<p>vue init youzan/vue-cli-template-vant bsh</p>
+</blockquote>
+<p>4、安装vantUI</p>
+<blockquote>
+<p>cnpm i vant -S</p>
+</blockquote>
+<p>5、引入组件 推荐使用安装 babel-plugin-import 插件</p>
+<blockquote>
+<p>npm i babel-plugin-import -D</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 在 .babelrc 或 babel-loader 中添加插件配置</span><br><span class="line">&#123;</span><br><span class="line">  &quot;plugins&quot;: [</span><br><span class="line">    [&quot;import&quot;, &#123; &quot;libraryName&quot;: &quot;vant&quot;, &quot;style&quot;: true &#125;]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>6、install dependencies 安装依赖</p>
+<blockquote>
+<p>npm install</p>
+</blockquote>
+<p>7、# serve with hot reload at localhost:8080</p>
+<blockquote>
+<p>npm run dev</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>vue</tag>
+        <tag>vant</tag>
       </tags>
   </entry>
 </search>
