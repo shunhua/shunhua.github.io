@@ -73,6 +73,35 @@
       </tags>
   </entry>
   <entry>
+    <title>Alipay 开放平台支付</title>
+    <url>/2018/10/26/Alipay-%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E6%94%AF%E4%BB%98/</url>
+    <content><![CDATA[<a id="more"></a>
+
+
+<p>参考文档 <a href="https://docs.open.alipay.com/291/" target="_blank">[ 开放平台文档中心 ]</a></p>
+<blockquote>
+<p>生成RSA密钥</p>
+</blockquote>
+<p>a. 应用公钥2048<br>b. 应用私钥2048</p>
+<blockquote>
+<p>上传应用公钥并获取支付宝公钥</p>
+</blockquote>
+<p>支付宝公钥应用于开发中</p>
+<blockquote>
+<p>使用应用私钥生成请求签名</p>
+</blockquote>
+<p>应用私钥应用于开发中</p>
+<blockquote>
+<p>使用支付宝公钥验签</p>
+</blockquote>
+<p>支付宝公钥应用于开发中</p>
+]]></content>
+      <tags>
+        <tag>Alipay</tag>
+        <tag>开放平台</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CentOS 7 Git服务器搭建及配置公钥</title>
     <url>/2018/04/08/CentOS-7-Git%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E5%85%AC%E9%92%A5/</url>
     <content><![CDATA[<a id="more"></a>
@@ -96,7 +125,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#64;&#x71;&#113;&#46;&#99;&#111;&#109;">&#x78;&#64;&#x71;&#113;&#46;&#99;&#111;&#109;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#64;&#113;&#113;&#x2e;&#99;&#x6f;&#x6d;">&#120;&#64;&#113;&#113;&#x2e;&#99;&#x6f;&#x6d;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -107,7 +136,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#x40;&#113;&#x71;&#46;&#99;&#x6f;&#x6d;">&#x62;&#x40;&#113;&#x71;&#46;&#99;&#x6f;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#64;&#113;&#x71;&#x2e;&#99;&#111;&#x6d;">&#x62;&#64;&#113;&#x71;&#x2e;&#99;&#111;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -139,35 +168,6 @@
       <tags>
         <tag>CentOS 7</tag>
         <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Alipay 开放平台支付</title>
-    <url>/2018/10/26/Alipay-%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E6%94%AF%E4%BB%98/</url>
-    <content><![CDATA[<a id="more"></a>
-
-
-<p>参考文档 <a href="https://docs.open.alipay.com/291/" target="_blank">[ 开放平台文档中心 ]</a></p>
-<blockquote>
-<p>生成RSA密钥</p>
-</blockquote>
-<p>a. 应用公钥2048<br>b. 应用私钥2048</p>
-<blockquote>
-<p>上传应用公钥并获取支付宝公钥</p>
-</blockquote>
-<p>支付宝公钥应用于开发中</p>
-<blockquote>
-<p>使用应用私钥生成请求签名</p>
-</blockquote>
-<p>应用私钥应用于开发中</p>
-<blockquote>
-<p>使用支付宝公钥验签</p>
-</blockquote>
-<p>支付宝公钥应用于开发中</p>
-]]></content>
-      <tags>
-        <tag>Alipay</tag>
-        <tag>开放平台</tag>
       </tags>
   </entry>
   <entry>
@@ -421,45 +421,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Docker下实践ELK(Elasticsearch、Logstash、Kibana)</title>
-    <url>/2021/12/22/Docker%E4%B8%8B%E5%AE%9E%E8%B7%B5ELK-Elasticsearch%E3%80%81Logstash%E3%80%81Kibana/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/elk.png" alt="elk"></p>
-<a id="more"></a>
-
-<p><strong>什么是 ELK</strong><br><a href="https://www.elastic.co/cn/what-is/elk-stack" target="_blank">[ 官方网址 ]</a> | <a href="https://github.com/deviantony/docker-elk" target="_blank">[ Github资源 ]</a><br><img src="/assets/blogImg/elk.svg" alt="elk"></p>
-<ul>
-<li>Elasticsearch</li>
-</ul>
-<blockquote>
-<p>Elasticsearch 是一个分布式的 RESTful 风格的 <code>搜索和数据分析引擎</code>，能够解决不断涌现出的各种用例。作为 Elastic Stack 的核心，它集中<code>存储您的数据</code>，帮助您发现意料之中以及意料之外的情况。</p>
-</blockquote>
-<ul>
-<li>Logstash</li>
-</ul>
-<blockquote>
-<p>Logstash 是开源的服务器端数据处理管道，能够同时 从多个来源 <code>采集数据、转换数据</code>，然后将数据发送到您最喜欢的<code>存储库</code> （存储库是 <code>Elasticsearch</code>）中。</p>
-</blockquote>
-<ul>
-<li>Kibana</li>
-</ul>
-<blockquote>
-<p>Kibana 让您能够<code>可视化 Elasticsearch</code> 中的数据并操作 Elastic Stack。</p>
-</blockquote>
-<p><img src="/assets/blogImg/elk-lu.svg" alt="elk-lu"><br><strong>整体架构流程图：</strong><br><a href="https://excalidraw.com/" target="_blank">[ 画图工具 ]</a></p>
-<ul>
-<li>filebeat: 负责将日志数据传输到 redis</li>
-<li>Redis：暂时进行缓存</li>
-<li>logstash: 收集缓存中的日志数据</li>
-<li>elasticsearch: 负责存储日志数据</li>
-<li>kibana: 负责显示日志的数据</li>
-</ul>
-<p><img src="/assets/blogImg/elk1.png" alt="elk"></p>
-]]></content>
-      <tags>
-        <tag>ELK</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Centos下安装PHP7</title>
     <url>/2018/03/21/Centos%E4%B8%8B%E5%AE%89%E8%A3%85PHP7/</url>
     <content><![CDATA[<a id="more"></a>
@@ -631,84 +592,6 @@
       </tags>
   </entry>
   <entry>
-    <title>LNMP一键安装包常用命令及配置文件路径</title>
-    <url>/2017/12/06/LNMP%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84/</url>
-    <content><![CDATA[<a id="more"></a>
-<p><strong>LNMP常用命令</strong></p>
-<blockquote>
-<p>状态管理LNMP状态管理:</p>
-</blockquote>
-<p>lnmp [start|stop|reload|restart|kill|status]</p>
-<blockquote>
-<p>Nginx状态管理:</p>
-</blockquote>
-<p>/etc/init.d/nginx [start|stop|reload|restart]</p>
-<blockquote>
-<p>PHP-FPM状态管理:</p>
-</blockquote>
-<p>/etc/init.d/php-fpm [start|stop|quit|restart|reload|logrotate]</p>
-<blockquote>
-<p>MySQL状态管理:</p>
-</blockquote>
-<p>/etc/init.d/mysql [start|stop|restart|reload|force-reload|status]</p>
-<blockquote>
-<p>Apache状态管理:</p>
-</blockquote>
-<p>/etc/init.d/httpd [start|stop|restart|graceful|graceful-stop|configtest|status]</p>
-<p><strong>配置文件路径</strong></p>
-<blockquote>
-<p>MySQL目录:</p>
-</blockquote>
-<p> /usr/local/mysql/</p>
-<blockquote>
-<p>MySQL配置文件:</p>
-</blockquote>
-<p>/etc/my.cnf</p>
-<hr>
-<blockquote>
-<p>PHP目录:</p>
-</blockquote>
-<p> /usr/local/php/</p>
-<blockquote>
-<p>PHP配置文件:</p>
-</blockquote>
-<p>/usr/local/php/etc/php.ini</p>
-<hr>
-<blockquote>
-<p>网站目录:</p>
-</blockquote>
-<p>/home/wwwroot/default/</p>
-<blockquote>
-<p>Nginx配置文件:</p>
-</blockquote>
-<p>/usr/local/nginx/conf/nginx.conf</p>
-<blockquote>
-<p>Nginx日志目录:</p>
-</blockquote>
-<p>/home/wwwlogs/</p>
-<blockquote>
-<p>Nginx虚拟主机配置文件:</p>
-</blockquote>
-<p>/usr/local/nginx/conf/vhost/域名.conf</p>
-<blockquote>
-<p>常用Linux命令:</p>
-</blockquote>
-<ul>
-<li>top</li>
-<li>df -m[k]</li>
-<li>find / -type f -size +1G</li>
-<li>[&gt; filename]</li>
-</ul>
-<p><strong>Notice</strong></p>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>lnmp</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Laragon 在 Windows 中搭建 Laravel 开发环境</title>
     <url>/2017/09/15/Laragon-%E5%9C%A8-Windows-%E4%B8%AD%E6%90%AD%E5%BB%BA-Laravel-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</url>
     <content><![CDATA[<a id="more"></a>
@@ -839,6 +722,84 @@
       </tags>
   </entry>
   <entry>
+    <title>LNMP一键安装包常用命令及配置文件路径</title>
+    <url>/2017/12/06/LNMP%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84/</url>
+    <content><![CDATA[<a id="more"></a>
+<p><strong>LNMP常用命令</strong></p>
+<blockquote>
+<p>状态管理LNMP状态管理:</p>
+</blockquote>
+<p>lnmp [start|stop|reload|restart|kill|status]</p>
+<blockquote>
+<p>Nginx状态管理:</p>
+</blockquote>
+<p>/etc/init.d/nginx [start|stop|reload|restart]</p>
+<blockquote>
+<p>PHP-FPM状态管理:</p>
+</blockquote>
+<p>/etc/init.d/php-fpm [start|stop|quit|restart|reload|logrotate]</p>
+<blockquote>
+<p>MySQL状态管理:</p>
+</blockquote>
+<p>/etc/init.d/mysql [start|stop|restart|reload|force-reload|status]</p>
+<blockquote>
+<p>Apache状态管理:</p>
+</blockquote>
+<p>/etc/init.d/httpd [start|stop|restart|graceful|graceful-stop|configtest|status]</p>
+<p><strong>配置文件路径</strong></p>
+<blockquote>
+<p>MySQL目录:</p>
+</blockquote>
+<p> /usr/local/mysql/</p>
+<blockquote>
+<p>MySQL配置文件:</p>
+</blockquote>
+<p>/etc/my.cnf</p>
+<hr>
+<blockquote>
+<p>PHP目录:</p>
+</blockquote>
+<p> /usr/local/php/</p>
+<blockquote>
+<p>PHP配置文件:</p>
+</blockquote>
+<p>/usr/local/php/etc/php.ini</p>
+<hr>
+<blockquote>
+<p>网站目录:</p>
+</blockquote>
+<p>/home/wwwroot/default/</p>
+<blockquote>
+<p>Nginx配置文件:</p>
+</blockquote>
+<p>/usr/local/nginx/conf/nginx.conf</p>
+<blockquote>
+<p>Nginx日志目录:</p>
+</blockquote>
+<p>/home/wwwlogs/</p>
+<blockquote>
+<p>Nginx虚拟主机配置文件:</p>
+</blockquote>
+<p>/usr/local/nginx/conf/vhost/域名.conf</p>
+<blockquote>
+<p>常用Linux命令:</p>
+</blockquote>
+<ul>
+<li>top</li>
+<li>df -m[k]</li>
+<li>find / -type f -size +1G</li>
+<li>[&gt; filename]</li>
+</ul>
+<p><strong>Notice</strong></p>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>lnmp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Laravel Redis 广播测试</title>
     <url>/2019/04/19/Laravel-Redis-%E5%B9%BF%E6%92%AD%E6%B5%8B%E8%AF%95/</url>
     <content><![CDATA[<a id="more"></a>
@@ -933,6 +894,45 @@
         <tag>laravel5.7</tag>
         <tag>Redis</tag>
         <tag>广播</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Docker下实践ELK(Elasticsearch、Logstash、Kibana)</title>
+    <url>/2021/12/22/Docker%E4%B8%8B%E5%AE%9E%E8%B7%B5ELK-Elasticsearch%E3%80%81Logstash%E3%80%81Kibana/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/elk.png" alt="elk"></p>
+<a id="more"></a>
+
+<p><strong>什么是 ELK</strong><br><a href="https://www.elastic.co/cn/what-is/elk-stack" target="_blank">[ 官方网址 ]</a> | <a href="https://github.com/deviantony/docker-elk" target="_blank">[ Github资源 ]</a><br><img src="/assets/blogImg/elk.svg" alt="elk"></p>
+<ul>
+<li>Elasticsearch</li>
+</ul>
+<blockquote>
+<p>Elasticsearch 是一个分布式的 RESTful 风格的 <code>搜索和数据分析引擎</code>，能够解决不断涌现出的各种用例。作为 Elastic Stack 的核心，它集中<code>存储您的数据</code>，帮助您发现意料之中以及意料之外的情况。</p>
+</blockquote>
+<ul>
+<li>Logstash</li>
+</ul>
+<blockquote>
+<p>Logstash 是开源的服务器端数据处理管道，能够同时 从多个来源 <code>采集数据、转换数据</code>，然后将数据发送到您最喜欢的<code>存储库</code> （存储库是 <code>Elasticsearch</code>）中。</p>
+</blockquote>
+<ul>
+<li>Kibana</li>
+</ul>
+<blockquote>
+<p>Kibana 让您能够<code>可视化 Elasticsearch</code> 中的数据并操作 Elastic Stack。</p>
+</blockquote>
+<p><img src="/assets/blogImg/elk-lu.svg" alt="elk-lu"><br><strong>整体架构流程图：</strong><br><a href="https://excalidraw.com/" target="_blank">[ 画图工具 ]</a></p>
+<ul>
+<li>filebeat: 负责将日志数据传输到 redis</li>
+<li>Redis：暂时进行缓存</li>
+<li>logstash: 收集缓存中的日志数据</li>
+<li>elasticsearch: 负责存储日志数据</li>
+<li>kibana: 负责显示日志的数据</li>
+</ul>
+<p><img src="/assets/blogImg/elk1.png" alt="elk"></p>
+]]></content>
+      <tags>
+        <tag>ELK</tag>
       </tags>
   </entry>
   <entry>
@@ -1158,41 +1158,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Linux定时任务采集聚合数据api文章</title>
-    <url>/2019/04/18/Linux%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E9%87%87%E9%9B%86%E8%81%9A%E5%90%88%E6%95%B0%E6%8D%AEapi%E6%96%87%E7%AB%A0/</url>
-    <content><![CDATA[<p><strong>Linux定时任务采集文章</strong> </p>
-<a id="more"></a>
-
-<p>一、<a href="https://learnku.com/docs/laravel/5.7/scheduling/1396" target="_blank">[ Artisan 命令调度-任务调度 ]</a></p>
-<p>二、crond服务</p>
-<p>crontab:</p>
-<blockquote>
-<p>crontab -l //列出crontab<br>crontab -e //编辑crontab<br>crontab -r //删除crontab</p>
-</blockquote>
-<p>服务操作：</p>
-<blockquote>
-<p>service crond start //启动服务<br>  service crond stop //关闭服务<br>  service crond restart //重启服务<br>  service crond reload //重新载入配置<br>  service crond status //查看状态</p>
-</blockquote>
-<p>三、创建crontab</p>
-<blockquote>
-<p>crontab -e </p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">* * * * * php &#x2F;home&#x2F;wwwroot&#x2F;wwyl.xxxx.xyz&#x2F;wwyl&#x2F;artisan schedule:run &gt;&gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
-
-<p>四、查看crontab状态并启动</p>
-<blockquote>
-<p>service crond status<br>service crond start </p>
-</blockquote>
-<p>五、查看结果</p>
-<p><img src="/assets/blogImg/crontab.png" alt="ico原来的样子"></p>
-]]></content>
-      <tags>
-        <tag>Laravel</tag>
-        <tag>Linux</tag>
-        <tag>crontab</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Live 阿里云直播</title>
     <url>/2019/07/04/Live-%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%B4%E6%92%AD/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1312,6 +1277,41 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Linux定时任务采集聚合数据api文章</title>
+    <url>/2019/04/18/Linux%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E9%87%87%E9%9B%86%E8%81%9A%E5%90%88%E6%95%B0%E6%8D%AEapi%E6%96%87%E7%AB%A0/</url>
+    <content><![CDATA[<p><strong>Linux定时任务采集文章</strong> </p>
+<a id="more"></a>
+
+<p>一、<a href="https://learnku.com/docs/laravel/5.7/scheduling/1396" target="_blank">[ Artisan 命令调度-任务调度 ]</a></p>
+<p>二、crond服务</p>
+<p>crontab:</p>
+<blockquote>
+<p>crontab -l //列出crontab<br>crontab -e //编辑crontab<br>crontab -r //删除crontab</p>
+</blockquote>
+<p>服务操作：</p>
+<blockquote>
+<p>service crond start //启动服务<br>  service crond stop //关闭服务<br>  service crond restart //重启服务<br>  service crond reload //重新载入配置<br>  service crond status //查看状态</p>
+</blockquote>
+<p>三、创建crontab</p>
+<blockquote>
+<p>crontab -e </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">* * * * * php &#x2F;home&#x2F;wwwroot&#x2F;wwyl.xxxx.xyz&#x2F;wwyl&#x2F;artisan schedule:run &gt;&gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>四、查看crontab状态并启动</p>
+<blockquote>
+<p>service crond status<br>service crond start </p>
+</blockquote>
+<p>五、查看结果</p>
+<p><img src="/assets/blogImg/crontab.png" alt="ico原来的样子"></p>
+]]></content>
+      <tags>
+        <tag>Laravel</tag>
+        <tag>Linux</tag>
+        <tag>crontab</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MySQL启动错误</title>
     <url>/2017/12/06/MySQL%E5%90%AF%E5%8A%A8%E9%94%99%E8%AF%AF/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1345,22 +1345,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Nginx 反向代理</title>
-    <url>/2019/09/19/Nginx-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><a href="https://baishunhua.com/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/" target="_blank">安装nginx</a></p>
-<blockquote>
-<p>高防服务器上 nginx.conf 配置模板</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server_name  www.xxx.com;</span><br><span class="line">...</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">    proxy_pass http:&#x2F;&#x2F;ip[原服务器ip];</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>nginx</tag>
-        <tag>反向代理</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MySQL出现1030-Got error 28 from storage engine错误</title>
     <url>/2018/11/22/MySQL%E5%87%BA%E7%8E%B01030-Got-error-28-from-storage-engine%E9%94%99%E8%AF%AF/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1380,6 +1364,22 @@ public $queue = &#39;listeners&#39;;</code></pre>
       <tags>
         <tag>lnmp</tag>
         <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nginx 反向代理</title>
+    <url>/2019/09/19/Nginx-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><a href="https://baishunhua.com/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/" target="_blank">安装nginx</a></p>
+<blockquote>
+<p>高防服务器上 nginx.conf 配置模板</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server_name  www.xxx.com;</span><br><span class="line">...</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">    proxy_pass http:&#x2F;&#x2F;ip[原服务器ip];</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>nginx</tag>
+        <tag>反向代理</tag>
       </tags>
   </entry>
   <entry>
@@ -1885,6 +1885,46 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>AntV 蚂蚁数据可视化G6|Graphin</title>
+    <url>/2021/12/01/antV-%E8%9A%82%E8%9A%81%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96G6-Graphin/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/antV-g6.png" alt="AntV"></p>
+<a id="more"></a>
+
+<p>中文官网： <a href="https://antv.gitee.io/zh" target="_blank">[ AntV中文官网 ]</a><br>Github地址： <a href="https://github.com/antvis/g6" target="_blank">[ AntV G6 ]</a><br>参考文档： <a href="https://g6.antv.vision/zh/docs/manual/introduction" target="_blank">[ G6官方文档 ]</a><br><strong>什么是 G6</strong><br>G6 是一个图可视化引擎。它提供了图的绘制、布局、分析、交互、动画等图可视化的基础能力。旨在让关系变得透明，简单。让用户获得关系数据的 Insight。<br><strong>安装 &amp; 引用</strong><br>使用命令行在项目目录下执行以下命令：</p>
+<blockquote>
+<p> npm install –save @antv/g6</p>
+</blockquote>
+<p>创建一个 G6 的关系图仅需要下面几个步骤：</p>
+<ul>
+<li>创建关系图的 HTML 容器；</li>
+<li>数据准备；</li>
+<li>创建关系图；</li>
+<li>配置数据源，渲染。</li>
+</ul>
+<p><strong><em>Step 1 创建容器</em></strong><br>需要在 HTML 中创建一个用于容纳 G6 绘制的图的容器，通常为 div  标签。G6 在绘制时会在该容器下追加 canvas 标签，然后将图绘制在其中。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;mountNode&quot;&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>Step 2 数据准备</em></strong><br>引入 G6 的数据源为 JSON 格式的对象。该对象中需要有节点（nodes）和边（edges）字段，分别用数组表示：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const data &#x3D; &#123;</span><br><span class="line">  &#x2F;&#x2F; 点集</span><br><span class="line">  nodes: [</span><br><span class="line">    &#123;</span><br><span class="line">      id: &#39;node1&#39;, &#x2F;&#x2F; String，该节点存在则必须，节点的唯一标识</span><br><span class="line">      x: 100, &#x2F;&#x2F; Number，可选，节点位置的 x 值</span><br><span class="line">      y: 200, &#x2F;&#x2F; Number，可选，节点位置的 y 值</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      id: &#39;node2&#39;, &#x2F;&#x2F; String，该节点存在则必须，节点的唯一标识</span><br><span class="line">      x: 300, &#x2F;&#x2F; Number，可选，节点位置的 x 值</span><br><span class="line">      y: 200, &#x2F;&#x2F; Number，可选，节点位置的 y 值</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">  &#x2F;&#x2F; 边集</span><br><span class="line">  edges: [</span><br><span class="line">    &#123;</span><br><span class="line">      source: &#39;node1&#39;, &#x2F;&#x2F; String，必须，起始点 id</span><br><span class="line">      target: &#39;node2&#39;, &#x2F;&#x2F; String，必须，目标点 id</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>注意</p>
+<ul>
+<li>nodes 数组中包含节点对象。每个节点对象中唯一的、必要的 id 以标识不同的节点，x、 y 指定该节点的位置；</li>
+<li>edges 数组中包含边对象。source 和 target 是每条边的必要属性，分别代表了该边的起始点 id 与 目标点 id。</li>
+<li>点和边的其他属性参见链接：内置节点 和 内置边。</li>
+</ul>
+<p><strong><em>Step 3 创建关系图</em></strong><br>创建关系图（实例化）时，至少需要为图设置容器、宽和高。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const graph &#x3D; new G6.Graph(&#123;</span><br><span class="line">  container: &#39;mountNode&#39;, &#x2F;&#x2F; String | HTMLElement，必须，在 Step 1 中创建的容器 id 或容器本身</span><br><span class="line">  width: 800, &#x2F;&#x2F; Number，必须，图的宽度</span><br><span class="line">  height: 500, &#x2F;&#x2F; Number，必须，图的高度</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>Step 4 配置数据源，渲染</em></strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">graph.data(data); &#x2F;&#x2F; 读取 Step 2 中的数据源到图上</span><br><span class="line">graph.render(); &#x2F;&#x2F; 渲染图</span><br></pre></td></tr></table></figure>
+
+<p>完整代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot; &#x2F;&gt;</span><br><span class="line">    &lt;title&gt;Tutorial Demo&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &#x2F;* 图的画布容器 *&#x2F;</span><br><span class="line">    &lt;div id&#x3D;&quot;mountNode&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">    &#x2F;* 引入 G6 *&#x2F;</span><br><span class="line">    &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;gw.alipayobjects.com&#x2F;os&#x2F;antv&#x2F;pkg&#x2F;_antv.g6-3.7.1&#x2F;dist&#x2F;g6.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      &#x2F;&#x2F; 定义数据源</span><br><span class="line">      const data &#x3D; &#123;</span><br><span class="line">        &#x2F;&#x2F; 点集</span><br><span class="line">        nodes: [</span><br><span class="line">          &#123;</span><br><span class="line">            id: &#39;node1&#39;,</span><br><span class="line">            x: 100,</span><br><span class="line">            y: 200,</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            id: &#39;node2&#39;,</span><br><span class="line">            x: 300,</span><br><span class="line">            y: 200,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">        &#x2F;&#x2F; 边集</span><br><span class="line">        edges: [</span><br><span class="line">          &#x2F;&#x2F; 表示一条从 node1 节点连接到 node2 节点的边</span><br><span class="line">          &#123;</span><br><span class="line">            source: &#39;node1&#39;,</span><br><span class="line">            target: &#39;node2&#39;,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F; 创建 G6 图实例</span><br><span class="line">      const graph &#x3D; new G6.Graph(&#123;</span><br><span class="line">        container: &#39;mountNode&#39;, &#x2F;&#x2F; 指定图画布的容器 id，与第 9 行的容器对应</span><br><span class="line">        &#x2F;&#x2F; 画布宽高</span><br><span class="line">        width: 800,</span><br><span class="line">        height: 500,</span><br><span class="line">      &#125;);</span><br><span class="line">      &#x2F;&#x2F; 读取数据</span><br><span class="line">      graph.data(data);</span><br><span class="line">      &#x2F;&#x2F; 渲染图</span><br><span class="line">      graph.render();</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>AntV</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Swift学习笔记NO.2</title>
     <url>/2017/09/25/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0NO-2/</url>
     <content><![CDATA[<p><strong>Swift学习笔记NO.2</strong> </p>
@@ -2046,43 +2086,20 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>AntV 蚂蚁数据可视化G6|Graphin</title>
-    <url>/2021/12/01/antV-%E8%9A%82%E8%9A%81%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96G6-Graphin/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/antV-g6.png" alt="AntV"></p>
+    <title>docker + redis 部署一主二从三哨兵</title>
+    <url>/2021/12/06/docker-redis-%E9%83%A8%E7%BD%B2%E4%B8%80%E4%B8%BB%E4%BA%8C%E4%BB%8E%E4%B8%89%E5%93%A8%E5%85%B5/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/redis.png" alt="redis"></p>
 <a id="more"></a>
 
-<p>中文官网： <a href="https://antv.gitee.io/zh" target="_blank">[ AntV中文官网 ]</a><br>Github地址： <a href="https://github.com/antvis/g6" target="_blank">[ AntV G6 ]</a><br>参考文档： <a href="https://g6.antv.vision/zh/docs/manual/introduction" target="_blank">[ G6官方文档 ]</a><br><strong>什么是 G6</strong><br>G6 是一个图可视化引擎。它提供了图的绘制、布局、分析、交互、动画等图可视化的基础能力。旨在让关系变得透明，简单。让用户获得关系数据的 Insight。<br><strong>安装 &amp; 引用</strong><br>使用命令行在项目目录下执行以下命令：</p>
-<blockquote>
-<p> npm install –save @antv/g6</p>
-</blockquote>
-<p>创建一个 G6 的关系图仅需要下面几个步骤：</p>
+<p><strong>概述</strong></p>
 <ul>
-<li>创建关系图的 HTML 容器；</li>
-<li>数据准备；</li>
-<li>创建关系图；</li>
-<li>配置数据源，渲染。</li>
+<li>在部署redis 的时候，如果redis宕机，缓存将不可用，redis提供了哨兵模式保证redis实现高可用。</li>
+<li>即一台主机两台从机，三台哨兵主机，如果主实例宕机，哨兵将一台从机升级为主机。实现高可用。<br><img src="/assets/blogImg/redis-1.png" alt="redis-1"></li>
 </ul>
-<p><strong><em>Step 1 创建容器</em></strong><br>需要在 HTML 中创建一个用于容纳 G6 绘制的图的容器，通常为 div  标签。G6 在绘制时会在该容器下追加 canvas 标签，然后将图绘制在其中。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;mountNode&quot;&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-
-<p><strong><em>Step 2 数据准备</em></strong><br>引入 G6 的数据源为 JSON 格式的对象。该对象中需要有节点（nodes）和边（edges）字段，分别用数组表示：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const data &#x3D; &#123;</span><br><span class="line">  &#x2F;&#x2F; 点集</span><br><span class="line">  nodes: [</span><br><span class="line">    &#123;</span><br><span class="line">      id: &#39;node1&#39;, &#x2F;&#x2F; String，该节点存在则必须，节点的唯一标识</span><br><span class="line">      x: 100, &#x2F;&#x2F; Number，可选，节点位置的 x 值</span><br><span class="line">      y: 200, &#x2F;&#x2F; Number，可选，节点位置的 y 值</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      id: &#39;node2&#39;, &#x2F;&#x2F; String，该节点存在则必须，节点的唯一标识</span><br><span class="line">      x: 300, &#x2F;&#x2F; Number，可选，节点位置的 x 值</span><br><span class="line">      y: 200, &#x2F;&#x2F; Number，可选，节点位置的 y 值</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">  &#x2F;&#x2F; 边集</span><br><span class="line">  edges: [</span><br><span class="line">    &#123;</span><br><span class="line">      source: &#39;node1&#39;, &#x2F;&#x2F; String，必须，起始点 id</span><br><span class="line">      target: &#39;node2&#39;, &#x2F;&#x2F; String，必须，目标点 id</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>注意</p>
-<ul>
-<li>nodes 数组中包含节点对象。每个节点对象中唯一的、必要的 id 以标识不同的节点，x、 y 指定该节点的位置；</li>
-<li>edges 数组中包含边对象。source 和 target 是每条边的必要属性，分别代表了该边的起始点 id 与 目标点 id。</li>
-<li>点和边的其他属性参见链接：内置节点 和 内置边。</li>
-</ul>
-<p><strong><em>Step 3 创建关系图</em></strong><br>创建关系图（实例化）时，至少需要为图设置容器、宽和高。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const graph &#x3D; new G6.Graph(&#123;</span><br><span class="line">  container: &#39;mountNode&#39;, &#x2F;&#x2F; String | HTMLElement，必须，在 Step 1 中创建的容器 id 或容器本身</span><br><span class="line">  width: 800, &#x2F;&#x2F; Number，必须，图的宽度</span><br><span class="line">  height: 500, &#x2F;&#x2F; Number，必须，图的高度</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p><strong><em>Step 4 配置数据源，渲染</em></strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">graph.data(data); &#x2F;&#x2F; 读取 Step 2 中的数据源到图上</span><br><span class="line">graph.render(); &#x2F;&#x2F; 渲染图</span><br></pre></td></tr></table></figure>
-
-<p>完整代码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot; &#x2F;&gt;</span><br><span class="line">    &lt;title&gt;Tutorial Demo&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &#x2F;* 图的画布容器 *&#x2F;</span><br><span class="line">    &lt;div id&#x3D;&quot;mountNode&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">    &#x2F;* 引入 G6 *&#x2F;</span><br><span class="line">    &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;gw.alipayobjects.com&#x2F;os&#x2F;antv&#x2F;pkg&#x2F;_antv.g6-3.7.1&#x2F;dist&#x2F;g6.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      &#x2F;&#x2F; 定义数据源</span><br><span class="line">      const data &#x3D; &#123;</span><br><span class="line">        &#x2F;&#x2F; 点集</span><br><span class="line">        nodes: [</span><br><span class="line">          &#123;</span><br><span class="line">            id: &#39;node1&#39;,</span><br><span class="line">            x: 100,</span><br><span class="line">            y: 200,</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            id: &#39;node2&#39;,</span><br><span class="line">            x: 300,</span><br><span class="line">            y: 200,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">        &#x2F;&#x2F; 边集</span><br><span class="line">        edges: [</span><br><span class="line">          &#x2F;&#x2F; 表示一条从 node1 节点连接到 node2 节点的边</span><br><span class="line">          &#123;</span><br><span class="line">            source: &#39;node1&#39;,</span><br><span class="line">            target: &#39;node2&#39;,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F; 创建 G6 图实例</span><br><span class="line">      const graph &#x3D; new G6.Graph(&#123;</span><br><span class="line">        container: &#39;mountNode&#39;, &#x2F;&#x2F; 指定图画布的容器 id，与第 9 行的容器对应</span><br><span class="line">        &#x2F;&#x2F; 画布宽高</span><br><span class="line">        width: 800,</span><br><span class="line">        height: 500,</span><br><span class="line">      &#125;);</span><br><span class="line">      &#x2F;&#x2F; 读取数据</span><br><span class="line">      graph.data(data);</span><br><span class="line">      &#x2F;&#x2F; 渲染图</span><br><span class="line">      graph.render();</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>]]></content>
+<p>参考文档 ⚔：<br><a href="https://blog.csdn.net/qq_41773902/article/details/105627708" target="_blank">[ 点我 ]</a> | <a href="https://www.jianshu.com/p/319d0980ff89#comments" target="_blank">[ 点我 ]</a> | <a href="https://www.pianshen.com/article/68951456452/" target="_blank">[ 点我 ]</a></p>
+]]></content>
       <tags>
-        <tag>AntV</tag>
+        <tag>redis</tag>
       </tags>
   </entry>
   <entry>
@@ -2181,23 +2198,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>docker + redis 部署一主二从三哨兵</title>
-    <url>/2021/12/06/docker-redis-%E9%83%A8%E7%BD%B2%E4%B8%80%E4%B8%BB%E4%BA%8C%E4%BB%8E%E4%B8%89%E5%93%A8%E5%85%B5/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/redis.png" alt="redis"></p>
-<a id="more"></a>
-
-<p><strong>概述</strong></p>
-<ul>
-<li>在部署redis 的时候，如果redis宕机，缓存将不可用，redis提供了哨兵模式保证redis实现高可用。</li>
-<li>即一台主机两台从机，三台哨兵主机，如果主实例宕机，哨兵将一台从机升级为主机。实现高可用。<br><img src="/assets/blogImg/redis-1.png" alt="redis-1"></li>
-</ul>
-<p>参考文档 ⚔：<br><a href="https://blog.csdn.net/qq_41773902/article/details/105627708" target="_blank">[ 点我 ]</a> | <a href="https://www.jianshu.com/p/319d0980ff89#comments" target="_blank">[ 点我 ]</a> | <a href="https://www.pianshen.com/article/68951456452/" target="_blank">[ 点我 ]</a></p>
-]]></content>
-      <tags>
-        <tag>redis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>gRPC 的介绍及使用</title>
     <url>/2021/12/07/gRPC-%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/grpc.png" alt="grpc"></p>
@@ -2255,7 +2255,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#103;&#x69;&#116;&#64;&#x67;&#105;&#116;&#x68;&#117;&#x62;&#x2e;&#x63;&#111;&#x6d;">&#103;&#x69;&#116;&#64;&#x67;&#105;&#116;&#x68;&#117;&#x62;&#x2e;&#x63;&#111;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#x67;&#x69;&#116;&#x40;&#x67;&#x69;&#116;&#104;&#117;&#98;&#x2e;&#99;&#111;&#x6d;">&#x67;&#x69;&#116;&#x40;&#x67;&#x69;&#116;&#104;&#117;&#98;&#x2e;&#99;&#111;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -2381,6 +2381,64 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>install program</title>
+    <url>/2017/11/02/install-program/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> 安装项目及配置svn</p>
+</blockquote>
+<ul>
+<li>lnmp vhost add</li>
+<li>mkdir -p /home/svn/repos</li>
+<li>svnadmin create /home/svn/repos/</li>
+<li>cd /home/svn/repos/conf</li>
+<li>vi passwd</li>
+<li>vim authz</li>
+<li>vim svnserve.conf</li>
+<li>cd ../hooks/</li>
+<li>cp post-commit.tmpl post-commit</li>
+<li>chmod +x post-commit</li>
+<li>vim post-commit</li>
+<li>cd /home/wwwroot/<a href="http://www.xxxx.cn/">www.xxxx.cn/</a></li>
+<li>svn co svn://127.0.0.1/repos ./</li>
+</ul>
+<blockquote>
+<p> 配置、修改</p>
+</blockquote>
+<ul>
+<li>vim /usr/local/nginx/conf/vhost/<a href="http://www.xxxx.cn.conf/">www.xxxx.cn.conf</a></li>
+<li>/etc/init.d/nginx restart</li>
+<li>vim /home/wwwroot/mnzr.xiazhiweizhi.cn/config/queue.php</li>
+<li>cd /etc/supervisord.d/</li>
+<li>cp laravel-worker-zr.ini laravel-worker-mnzr.ini</li>
+<li>chmod -R 777 bootstrap/cache/ storage/ public/upload/</li>
+<li>chown -R www:www ../mnzr.xiazhiweizhi.cn/</li>
+<li>supervisorctl status</li>
+<li>supervisorctl reread</li>
+<li>supervisorctl update</li>
+<li>supervisorctl restart laravel-worker-xxx:*</li>
+<li>composer require simplesoftwareio/simple-qrcode</li>
+<li>history |grep composer</li>
+<li>composer install</li>
+<li>php artisan storage:link</li>
+<li>php artisan passport:keys</li>
+</ul>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>centos7</tag>
+        <tag>laravel5</tag>
+        <tag>install</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>go-zero的安装及使用</title>
     <url>/2021/09/08/go-zero%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><strong>go-zero的安装及使用</strong> </p>
@@ -2499,64 +2557,6 @@ class QuotesSpider(scrapy.Spider):
         <tag>golang</tag>
         <tag>go-zero</tag>
         <tag>goctl</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>install program</title>
-    <url>/2017/11/02/install-program/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> 安装项目及配置svn</p>
-</blockquote>
-<ul>
-<li>lnmp vhost add</li>
-<li>mkdir -p /home/svn/repos</li>
-<li>svnadmin create /home/svn/repos/</li>
-<li>cd /home/svn/repos/conf</li>
-<li>vi passwd</li>
-<li>vim authz</li>
-<li>vim svnserve.conf</li>
-<li>cd ../hooks/</li>
-<li>cp post-commit.tmpl post-commit</li>
-<li>chmod +x post-commit</li>
-<li>vim post-commit</li>
-<li>cd /home/wwwroot/<a href="http://www.xxxx.cn/">www.xxxx.cn/</a></li>
-<li>svn co svn://127.0.0.1/repos ./</li>
-</ul>
-<blockquote>
-<p> 配置、修改</p>
-</blockquote>
-<ul>
-<li>vim /usr/local/nginx/conf/vhost/<a href="http://www.xxxx.cn.conf/">www.xxxx.cn.conf</a></li>
-<li>/etc/init.d/nginx restart</li>
-<li>vim /home/wwwroot/mnzr.xiazhiweizhi.cn/config/queue.php</li>
-<li>cd /etc/supervisord.d/</li>
-<li>cp laravel-worker-zr.ini laravel-worker-mnzr.ini</li>
-<li>chmod -R 777 bootstrap/cache/ storage/ public/upload/</li>
-<li>chown -R www:www ../mnzr.xiazhiweizhi.cn/</li>
-<li>supervisorctl status</li>
-<li>supervisorctl reread</li>
-<li>supervisorctl update</li>
-<li>supervisorctl restart laravel-worker-xxx:*</li>
-<li>composer require simplesoftwareio/simple-qrcode</li>
-<li>history |grep composer</li>
-<li>composer install</li>
-<li>php artisan storage:link</li>
-<li>php artisan passport:keys</li>
-</ul>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>centos7</tag>
-        <tag>laravel5</tag>
-        <tag>install</tag>
       </tags>
   </entry>
   <entry>
@@ -2915,6 +2915,27 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>lnmp tp pathinfo问题</title>
+    <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>/usr/local/php/etc/php.ini</p>
+<blockquote>
+<p> cgi.fix_pathinfo=1</p>
+</blockquote>
+<blockquote>
+<p> lnmp restart</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
+  </entry>
+  <entry>
     <title>lnmp集成环境下部署laravel5.x项目</title>
     <url>/2017/09/21/lnmp%E9%9B%86%E6%88%90%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2laravel5-x%E9%A1%B9%E7%9B%AE/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2974,27 +2995,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>lnmp tp pathinfo问题</title>
-    <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>/usr/local/php/etc/php.ini</p>
-<blockquote>
-<p> cgi.fix_pathinfo=1</p>
-</blockquote>
-<blockquote>
-<p> lnmp restart</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
-  </entry>
-  <entry>
     <title>mysql自定义重置数据表ID值</title>
     <url>/2018/10/30/mysql%E8%87%AA%E5%AE%9A%E4%B9%89%E9%87%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E8%A1%A8ID%E5%80%BC/</url>
     <content><![CDATA[<a id="more"></a>
@@ -3005,6 +3005,62 @@ class QuotesSpider(scrapy.Spider):
 ]]></content>
       <tags>
         <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql通过.ibd和.frm文件恢复数据</title>
+    <url>/2019/12/17/mysql%E9%80%9A%E8%BF%87-ibd%E5%92%8C-frm%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E6%95%B0%E6%8D%AE/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>数据库存储的数据实际上也是存储在文件里的,此类文件只能mysql能读取。</p>
+<p>Myisam 引擎:</p>
+<blockquote>
+<p>xxx.frm 表结构文件<br>xxx.MYD 数据文件<br>xxx.MYI 索引文件</p>
+</blockquote>
+<p>Innodb 引擎:</p>
+<blockquote>
+<p>xxx.ibd 数据和索引文件<br>xxx.frm 表结构文件</p>
+</blockquote>
+<p>此篇环境为Lnmp集成环境下的mysql<br>在/etc/my.conf   datadir = /usr/local/var/mysql/</p>
+<p>简写主要步骤:<br>1.将原先的.ibd文件与原先的.frm文件解除绑定</p>
+<blockquote>
+<p>alter table 表名 discard tablespace;</p>
+</blockquote>
+<p>2.停掉服务，新的.ibd文件覆盖旧的.ibd文件，再开启服务</p>
+<p>3.将新的.ibd文件与.frm文件发生联系</p>
+<blockquote>
+<p>alter table 表名 import tablespace;</p>
+</blockquote>
+<p>类似这种单个表操作,若表很多 可简单分批处理[.ibd、.frm同级目录执行]<br>安装 mysql-utilities</p>
+<blockquote>
+<p>yum -y install mysql-utilities</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    $files &#x3D; glob(&quot;*.ibd&quot;);</span><br><span class="line">    $discardTablespace &#x3D; &#39;&#39;;</span><br><span class="line">    $importTablespace &#x3D; &#39;&#39;;</span><br><span class="line">    $createTable &#x3D; &#39;&#39;;</span><br><span class="line">    foreach ($files as $key &#x3D;&gt; $value) &#123;</span><br><span class="line">        $discardTablespace .&#x3D; &quot;ALTER TABLE &#96;&#123;$value&#125;&#96; DISCARD TABLESPACE;\n&quot;;</span><br><span class="line">        $importTablespace .&#x3D; &quot;ALTER TABLE &#96;&#123;$value&#125;&#96; IMPORT TABLESPACE;\n&quot;;</span><br><span class="line">        &#x2F;&#x2F;恢复表建表语句</span><br><span class="line">        $value &#x3D; substr($value, 0, -3).&#39;frm&#39;;</span><br><span class="line">        $shell &#x3D; &#39;mysqlfrm --server&#x3D;root:数据库密码@localhost:3306 &#39;.$value.&#39; --port&#x3D;3309  --user&#x3D;root | tail -n +12&#39;;</span><br><span class="line">        $output &#x3D; shell_exec($shell);</span><br><span class="line">        $lineCount &#x3D;  substr_count($output, &quot;\n&quot;);</span><br><span class="line">        $arr &#x3D; explode(&quot;\n&quot;, $output);</span><br><span class="line">        $arrCount &#x3D; count($arr);</span><br><span class="line">        $arr &#x3D; array_slice($arr, 0, $arrCount-3);</span><br><span class="line">        $createTable .&#x3D; join(&quot;\n&quot;, $arr).&quot;;\n\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    file_put_contents(&#39;discard_tablespace.sql&#39;, $discardTablespace); &#x2F;&#x2F;用于删除表空间</span><br><span class="line">    file_put_contents(&#39;import_tablespace.sql&#39;, $importTablespace); &#x2F;&#x2F;用于导入新的表空间</span><br><span class="line">    file_put_contents(&#39;structure.sql&#39;, $createTable); &#x2F;&#x2F;用于建表结构</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>php index.php &amp;</p>
+</blockquote>
+<p>生成的文件中可能存在[表名+.ibd]的类表名，可手动修改。</p>
+<p>由于版本库的原因可能存在文件为空(全是分号)</p>
+<blockquote>
+<p>mysqlfrm –diagnostic ./ &gt;&gt; structure.sql</p>
+</blockquote>
+<p>执行完后 检查下sql文件中可能存在<UNKNOW>(varchar(1020))等字符问题 可手动修改完善</p>
+<blockquote>
+<p>source structure.sql</p>
+</blockquote>
+<p>此时执行完后 会生成表结构。</p>
+<p>执行discard_tablespace.sql 解除旧的绑定关系</p>
+<blockquote>
+<p>source discard_tablespace.sql</p>
+</blockquote>
+<p>新的.ibd文件覆盖旧的后 执行导入新的关系</p>
+<blockquote>
+<p>source import_tablespace.sql</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>mysql</tag>
+        <tag>Innodb</tag>
       </tags>
   </entry>
   <entry>
@@ -3085,62 +3141,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>nginx</tag>
         <tag>负载均衡</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mysql通过.ibd和.frm文件恢复数据</title>
-    <url>/2019/12/17/mysql%E9%80%9A%E8%BF%87-ibd%E5%92%8C-frm%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E6%95%B0%E6%8D%AE/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>数据库存储的数据实际上也是存储在文件里的,此类文件只能mysql能读取。</p>
-<p>Myisam 引擎:</p>
-<blockquote>
-<p>xxx.frm 表结构文件<br>xxx.MYD 数据文件<br>xxx.MYI 索引文件</p>
-</blockquote>
-<p>Innodb 引擎:</p>
-<blockquote>
-<p>xxx.ibd 数据和索引文件<br>xxx.frm 表结构文件</p>
-</blockquote>
-<p>此篇环境为Lnmp集成环境下的mysql<br>在/etc/my.conf   datadir = /usr/local/var/mysql/</p>
-<p>简写主要步骤:<br>1.将原先的.ibd文件与原先的.frm文件解除绑定</p>
-<blockquote>
-<p>alter table 表名 discard tablespace;</p>
-</blockquote>
-<p>2.停掉服务，新的.ibd文件覆盖旧的.ibd文件，再开启服务</p>
-<p>3.将新的.ibd文件与.frm文件发生联系</p>
-<blockquote>
-<p>alter table 表名 import tablespace;</p>
-</blockquote>
-<p>类似这种单个表操作,若表很多 可简单分批处理[.ibd、.frm同级目录执行]<br>安装 mysql-utilities</p>
-<blockquote>
-<p>yum -y install mysql-utilities</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    $files &#x3D; glob(&quot;*.ibd&quot;);</span><br><span class="line">    $discardTablespace &#x3D; &#39;&#39;;</span><br><span class="line">    $importTablespace &#x3D; &#39;&#39;;</span><br><span class="line">    $createTable &#x3D; &#39;&#39;;</span><br><span class="line">    foreach ($files as $key &#x3D;&gt; $value) &#123;</span><br><span class="line">        $discardTablespace .&#x3D; &quot;ALTER TABLE &#96;&#123;$value&#125;&#96; DISCARD TABLESPACE;\n&quot;;</span><br><span class="line">        $importTablespace .&#x3D; &quot;ALTER TABLE &#96;&#123;$value&#125;&#96; IMPORT TABLESPACE;\n&quot;;</span><br><span class="line">        &#x2F;&#x2F;恢复表建表语句</span><br><span class="line">        $value &#x3D; substr($value, 0, -3).&#39;frm&#39;;</span><br><span class="line">        $shell &#x3D; &#39;mysqlfrm --server&#x3D;root:数据库密码@localhost:3306 &#39;.$value.&#39; --port&#x3D;3309  --user&#x3D;root | tail -n +12&#39;;</span><br><span class="line">        $output &#x3D; shell_exec($shell);</span><br><span class="line">        $lineCount &#x3D;  substr_count($output, &quot;\n&quot;);</span><br><span class="line">        $arr &#x3D; explode(&quot;\n&quot;, $output);</span><br><span class="line">        $arrCount &#x3D; count($arr);</span><br><span class="line">        $arr &#x3D; array_slice($arr, 0, $arrCount-3);</span><br><span class="line">        $createTable .&#x3D; join(&quot;\n&quot;, $arr).&quot;;\n\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    file_put_contents(&#39;discard_tablespace.sql&#39;, $discardTablespace); &#x2F;&#x2F;用于删除表空间</span><br><span class="line">    file_put_contents(&#39;import_tablespace.sql&#39;, $importTablespace); &#x2F;&#x2F;用于导入新的表空间</span><br><span class="line">    file_put_contents(&#39;structure.sql&#39;, $createTable); &#x2F;&#x2F;用于建表结构</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>php index.php &amp;</p>
-</blockquote>
-<p>生成的文件中可能存在[表名+.ibd]的类表名，可手动修改。</p>
-<p>由于版本库的原因可能存在文件为空(全是分号)</p>
-<blockquote>
-<p>mysqlfrm –diagnostic ./ &gt;&gt; structure.sql</p>
-</blockquote>
-<p>执行完后 检查下sql文件中可能存在<UNKNOW>(varchar(1020))等字符问题 可手动修改完善</p>
-<blockquote>
-<p>source structure.sql</p>
-</blockquote>
-<p>此时执行完后 会生成表结构。</p>
-<p>执行discard_tablespace.sql 解除旧的绑定关系</p>
-<blockquote>
-<p>source discard_tablespace.sql</p>
-</blockquote>
-<p>新的.ibd文件覆盖旧的后 执行导入新的关系</p>
-<blockquote>
-<p>source import_tablespace.sql</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>mysql</tag>
-        <tag>Innodb</tag>
       </tags>
   </entry>
   <entry>
@@ -3251,37 +3251,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>socket.io的使用</title>
-    <url>/2018/03/28/socket-io%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><strong>socket.io的基础教程</strong> </p>
-<a id="more"></a>
-
-<p>一、安装nodejs [默认安装][<a href="https://nodejs.org/en/download/" target="_blank">下载nodejs</a>]<br>新建文件夹[socket],在目录下执行以下代码<br>nodejs中用npm初始化来创建package.json</p>
-<blockquote>
-<p> npm init</p>
-</blockquote>
-<p>二、使用npm下载 web框架express模块</p>
-<blockquote>
-<p>npm install --save <a href="mailto:&#x65;&#120;&#112;&#x72;&#x65;&#x73;&#115;&#x40;&#52;&#x2e;&#49;&#53;&#x2e;&#50;">&#x65;&#120;&#112;&#x72;&#x65;&#x73;&#115;&#x40;&#52;&#x2e;&#49;&#53;&#x2e;&#50;</a></p>
-</blockquote>
-<p>三、使用npm下载socket.io模块</p>
-<blockquote>
-<p>npm install --save socket.io</p>
-</blockquote>
-<p>四、新建index.js 代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var app &#x3D; require(&#39;express&#39;)();</span><br><span class="line">var http &#x3D; require(&#39;http&#39;).Server(app);</span><br><span class="line">var io &#x3D; require(&#39;socket.io&#39;)(http);</span><br><span class="line"></span><br><span class="line">app.get(&#39;&#x2F;&#39;, function(req, res)&#123;</span><br><span class="line">  res.sendFile(__dirname + &#39;&#x2F;index.html&#39;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">io.on(&#39;connection&#39;, function(socket)&#123;</span><br><span class="line">  socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">     io.emit(&#39;bsh&#39;, msg);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.listen(3000, function()&#123;</span><br><span class="line">  console.log(&#39;listening on *:3000&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>五、新建index.html 代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Socket.IO chat&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      * &#123; margin: 0; padding: 0; box-sizing: border-box; &#125;</span><br><span class="line">      body &#123; font: 13px Helvetica, Arial; &#125;</span><br><span class="line">      form &#123; background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; &#125;</span><br><span class="line">      form input &#123; border: 0; padding: 10px; width: 90%; margin-right: .5%; &#125;</span><br><span class="line">      form button &#123; width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; &#125;</span><br><span class="line">      #messages &#123; list-style-type: none; margin: 0; padding: 0; &#125;</span><br><span class="line">      #messages li &#123; padding: 5px 10px; &#125;</span><br><span class="line">      #messages li:nth-child(odd) &#123; background: #eee; &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.1.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  $(function () &#123;</span><br><span class="line">    var socket &#x3D; io();</span><br><span class="line">    $(&#39;form&#39;).submit(function()&#123;</span><br><span class="line">      socket.emit(&#39;bsh&#39;, $(&#39;#m&#39;).val());</span><br><span class="line">      $(&#39;#m&#39;).val(&#39;&#39;);</span><br><span class="line">      return false;</span><br><span class="line">    &#125;);</span><br><span class="line">    socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">      $(&#39;#messages&#39;).append($(&#39;&lt;li&gt;&#39;).text(msg));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;ul id&#x3D;&quot;messages&quot;&gt;&lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;form action&#x3D;&quot;&quot;&gt;</span><br><span class="line">      &lt;input id&#x3D;&quot;m&quot; autocomplete&#x3D;&quot;off&quot; &#x2F;&gt;&lt;button&gt;Send&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-
-<p>六、执行 node index.js<br>七、浏览器打开localhost:3000</p>
-]]></content>
-      <tags>
-        <tag>socket.io</tag>
-        <tag>nodejs</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>sublime text3 安装配置svn 及默认快捷键</title>
     <url>/2017/08/25/sublime-text3-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEsvn-%E5%8F%8A%E9%BB%98%E8%AE%A4%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
     <content><![CDATA[<p><strong>sublime text3 安装配置svn 及默认快捷键：</strong> </p>
@@ -3354,6 +3323,37 @@ class QuotesSpider(scrapy.Spider):
 ]]></content>
       <tags>
         <tag>vim</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>socket.io的使用</title>
+    <url>/2018/03/28/socket-io%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><strong>socket.io的基础教程</strong> </p>
+<a id="more"></a>
+
+<p>一、安装nodejs [默认安装][<a href="https://nodejs.org/en/download/" target="_blank">下载nodejs</a>]<br>新建文件夹[socket],在目录下执行以下代码<br>nodejs中用npm初始化来创建package.json</p>
+<blockquote>
+<p> npm init</p>
+</blockquote>
+<p>二、使用npm下载 web框架express模块</p>
+<blockquote>
+<p>npm install --save <a href="mailto:&#101;&#120;&#112;&#114;&#101;&#x73;&#x73;&#x40;&#52;&#x2e;&#49;&#53;&#x2e;&#50;">&#101;&#120;&#112;&#114;&#101;&#x73;&#x73;&#x40;&#52;&#x2e;&#49;&#53;&#x2e;&#50;</a></p>
+</blockquote>
+<p>三、使用npm下载socket.io模块</p>
+<blockquote>
+<p>npm install --save socket.io</p>
+</blockquote>
+<p>四、新建index.js 代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var app &#x3D; require(&#39;express&#39;)();</span><br><span class="line">var http &#x3D; require(&#39;http&#39;).Server(app);</span><br><span class="line">var io &#x3D; require(&#39;socket.io&#39;)(http);</span><br><span class="line"></span><br><span class="line">app.get(&#39;&#x2F;&#39;, function(req, res)&#123;</span><br><span class="line">  res.sendFile(__dirname + &#39;&#x2F;index.html&#39;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">io.on(&#39;connection&#39;, function(socket)&#123;</span><br><span class="line">  socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">     io.emit(&#39;bsh&#39;, msg);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.listen(3000, function()&#123;</span><br><span class="line">  console.log(&#39;listening on *:3000&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>五、新建index.html 代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Socket.IO chat&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      * &#123; margin: 0; padding: 0; box-sizing: border-box; &#125;</span><br><span class="line">      body &#123; font: 13px Helvetica, Arial; &#125;</span><br><span class="line">      form &#123; background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; &#125;</span><br><span class="line">      form input &#123; border: 0; padding: 10px; width: 90%; margin-right: .5%; &#125;</span><br><span class="line">      form button &#123; width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; &#125;</span><br><span class="line">      #messages &#123; list-style-type: none; margin: 0; padding: 0; &#125;</span><br><span class="line">      #messages li &#123; padding: 5px 10px; &#125;</span><br><span class="line">      #messages li:nth-child(odd) &#123; background: #eee; &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.1.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  $(function () &#123;</span><br><span class="line">    var socket &#x3D; io();</span><br><span class="line">    $(&#39;form&#39;).submit(function()&#123;</span><br><span class="line">      socket.emit(&#39;bsh&#39;, $(&#39;#m&#39;).val());</span><br><span class="line">      $(&#39;#m&#39;).val(&#39;&#39;);</span><br><span class="line">      return false;</span><br><span class="line">    &#125;);</span><br><span class="line">    socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">      $(&#39;#messages&#39;).append($(&#39;&lt;li&gt;&#39;).text(msg));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;ul id&#x3D;&quot;messages&quot;&gt;&lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;form action&#x3D;&quot;&quot;&gt;</span><br><span class="line">      &lt;input id&#x3D;&quot;m&quot; autocomplete&#x3D;&quot;off&quot; &#x2F;&gt;&lt;button&gt;Send&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>六、执行 node index.js<br>七、浏览器打开localhost:3000</p>
+]]></content>
+      <tags>
+        <tag>socket.io</tag>
+        <tag>nodejs</tag>
       </tags>
   </entry>
   <entry>
