@@ -1,137 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Alipay 开放平台支付</title>
-    <url>/2018/10/26/Alipay-%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E6%94%AF%E4%BB%98/</url>
-    <content><![CDATA[<a id="more"></a>
-
-
-<p>参考文档 <a href="https://docs.open.alipay.com/291/" target="_blank">[ 开放平台文档中心 ]</a></p>
-<blockquote>
-<p>生成RSA密钥</p>
-</blockquote>
-<p>a. 应用公钥2048<br>b. 应用私钥2048</p>
-<blockquote>
-<p>上传应用公钥并获取支付宝公钥</p>
-</blockquote>
-<p>支付宝公钥应用于开发中</p>
-<blockquote>
-<p>使用应用私钥生成请求签名</p>
-</blockquote>
-<p>应用私钥应用于开发中</p>
-<blockquote>
-<p>使用支付宝公钥验签</p>
-</blockquote>
-<p>支付宝公钥应用于开发中</p>
-]]></content>
-      <tags>
-        <tag>Alipay</tag>
-        <tag>开放平台</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CentOS 7 Git服务器搭建及配置公钥</title>
-    <url>/2018/04/08/CentOS-7-Git%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E5%85%AC%E9%92%A5/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>一、Git服务器搭建</strong></p>
-<p>a. 安装Git</p>
-<blockquote>
-<p>yum install -y git</p>
-</blockquote>
-<p>b. 添加新用户、为用户设置密码</p>
-<blockquote>
-<p>adduser git<br>passwd git</p>
-</blockquote>
-<p>c. 创建空的Git仓库</p>
-<blockquote>
-<p>cd /home/git<br>git init --bare test.git<br>chown -R git:git ../git</p>
-</blockquote>
-<p>d. 在服务器端打开RSA认证</p>
-<blockquote>
-<p>cd /home/git<br>mkdir .ssh<br>cd .ssh<br>touch authorized_keys </p>
-</blockquote>
-<p>e. 命令行创建SSH key</p>
-<blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#x40;&#113;&#113;&#x2e;&#x63;&#x6f;&#109;">&#x78;&#x40;&#113;&#113;&#x2e;&#x63;&#x6f;&#109;</a>“</p>
-</blockquote>
-<p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
-<p>f.把步骤5生成的公钥导入服务器</p>
-<blockquote>
-<p>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
-</blockquote>
-<p>简单操作：windows 打开 Git-Gui-&gt;Help-&gt;Show SSH Key 直接复制key到Linux authorized_keys文件中 </p>
-<p><strong>二、配置钩子</strong></p>
-<p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
-<blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#x40;&#x71;&#x71;&#46;&#99;&#x6f;&#x6d;">&#x62;&#x40;&#x71;&#x71;&#46;&#99;&#x6f;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
-</blockquote>
-<p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
-<blockquote>
-<p>git ALL=(ALL) NOPASSWD: ALL</p>
-</blockquote>
-<p>进入网站目录拉取<br>su git<br>sudo -u www git clone ssh://git@127.0.0.1/home/git/test.git </p>
-<p>c. 配置钩子[主要]</p>
-<blockquote>
-<p>cd /home/git/test.git/hooks/<br>vim post-receive</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">export LANG&#x3D;zh_CN.UTF-8</span><br><span class="line">cd &#x2F;home&#x2F;wwwroot&#x2F;www&#x2F;test&#x2F;</span><br><span class="line">unset GIT_DIR </span><br><span class="line">sudo -u www git pull origin master</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>chown git:git post-receive<br>chmod +x post-receive</p>
-</blockquote>
-<p>在本地clone拉取远程git仓库</p>
-<blockquote>
-<p>git clone ssh://git@127.0.0.1/home/git/test.git</p>
-</blockquote>
-<p><strong>git 回滚到任意版本操作</strong></p>
-<blockquote>
-<p>git reset –hard xxx[版本号]<br>git push -f origin master</p>
-</blockquote>
-<p><strong>git known_hosts</strong></p>
-<blockquote>
-<p>sudo -u www ssh-keygen -R 127.0.0.1<br>sudo -u www git pull origin master</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>CentOS 7</tag>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CentOS 7 安装 Nginx 1.11.x</title>
-    <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/</url>
-    <content><![CDATA[<p><strong>Centos下安装Nginx</strong> </p>
-<a id="more"></a>
-
-<p>一、准备工作 安装必备工具</p>
-<blockquote>
-<p>yum install -y gcc gcc-c++ autoconf automake<br>yum install -y zlib zlib-devel openssl openssl-devel pcre-devel</p>
-</blockquote>
-<p>不安装这些依赖库，后面编译的时候会报错，当然你的系统已经有这些包可以跳过。<br>pcre：用来作地址重写的功能。<br>zlib：nginx 的gzip模块,传输数据打包，省流量（但消耗资源）。<br>openssl：提供ssl加密协议。</p>
-<p>二、添加nginx用户</p>
-<blockquote>
-<p>/usr/sbin/groupadd -f www<br>/usr/sbin/useradd -g www www</p>
-</blockquote>
-<p>三、nginx文件准备及编译</p>
-<blockquote>
-<p>wget <a href="http://nginx.org/download/nginx-1.11.4.tar.gz">http://nginx.org/download/nginx-1.11.4.tar.gz</a><br>tar -zxvf nginx-1.11.4.tar.gz<br>cd nginx-1.11.4/<br>./configure –user=www –group=www<br>make &amp;&amp; make install</p>
-</blockquote>
-<p>四、开始firewall端口服务</p>
-<blockquote>
-<p>firewall-cmd  –permanent –zone=public –add-service=http<br>firewall-cmd  –reload</p>
-</blockquote>
-<p>常用命令</p>
-<blockquote>
-<p>/usr/local/nginx/sbin/nginx -s reload<br>/usr/local/nginx/sbin/nginx -s stop<br>/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Centos</tag>
-        <tag>Nginx</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>9段PHP实用功能的代码推荐</title>
     <url>/2018/02/24/9%E6%AE%B5PHP%E5%AE%9E%E7%94%A8%E5%8A%9F%E8%83%BD%E7%9A%84%E4%BB%A3%E7%A0%81%E6%8E%A8%E8%8D%90/</url>
     <content><![CDATA[<a id="more"></a>
@@ -201,6 +70,137 @@
 ]]></content>
       <tags>
         <tag>php</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Alipay 开放平台支付</title>
+    <url>/2018/10/26/Alipay-%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E6%94%AF%E4%BB%98/</url>
+    <content><![CDATA[<a id="more"></a>
+
+
+<p>参考文档 <a href="https://docs.open.alipay.com/291/" target="_blank">[ 开放平台文档中心 ]</a></p>
+<blockquote>
+<p>生成RSA密钥</p>
+</blockquote>
+<p>a. 应用公钥2048<br>b. 应用私钥2048</p>
+<blockquote>
+<p>上传应用公钥并获取支付宝公钥</p>
+</blockquote>
+<p>支付宝公钥应用于开发中</p>
+<blockquote>
+<p>使用应用私钥生成请求签名</p>
+</blockquote>
+<p>应用私钥应用于开发中</p>
+<blockquote>
+<p>使用支付宝公钥验签</p>
+</blockquote>
+<p>支付宝公钥应用于开发中</p>
+]]></content>
+      <tags>
+        <tag>Alipay</tag>
+        <tag>开放平台</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS 7 安装 Nginx 1.11.x</title>
+    <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/</url>
+    <content><![CDATA[<p><strong>Centos下安装Nginx</strong> </p>
+<a id="more"></a>
+
+<p>一、准备工作 安装必备工具</p>
+<blockquote>
+<p>yum install -y gcc gcc-c++ autoconf automake<br>yum install -y zlib zlib-devel openssl openssl-devel pcre-devel</p>
+</blockquote>
+<p>不安装这些依赖库，后面编译的时候会报错，当然你的系统已经有这些包可以跳过。<br>pcre：用来作地址重写的功能。<br>zlib：nginx 的gzip模块,传输数据打包，省流量（但消耗资源）。<br>openssl：提供ssl加密协议。</p>
+<p>二、添加nginx用户</p>
+<blockquote>
+<p>/usr/sbin/groupadd -f www<br>/usr/sbin/useradd -g www www</p>
+</blockquote>
+<p>三、nginx文件准备及编译</p>
+<blockquote>
+<p>wget <a href="http://nginx.org/download/nginx-1.11.4.tar.gz">http://nginx.org/download/nginx-1.11.4.tar.gz</a><br>tar -zxvf nginx-1.11.4.tar.gz<br>cd nginx-1.11.4/<br>./configure –user=www –group=www<br>make &amp;&amp; make install</p>
+</blockquote>
+<p>四、开始firewall端口服务</p>
+<blockquote>
+<p>firewall-cmd  –permanent –zone=public –add-service=http<br>firewall-cmd  –reload</p>
+</blockquote>
+<p>常用命令</p>
+<blockquote>
+<p>/usr/local/nginx/sbin/nginx -s reload<br>/usr/local/nginx/sbin/nginx -s stop<br>/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Centos</tag>
+        <tag>Nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS 7 Git服务器搭建及配置公钥</title>
+    <url>/2018/04/08/CentOS-7-Git%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E5%85%AC%E9%92%A5/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>一、Git服务器搭建</strong></p>
+<p>a. 安装Git</p>
+<blockquote>
+<p>yum install -y git</p>
+</blockquote>
+<p>b. 添加新用户、为用户设置密码</p>
+<blockquote>
+<p>adduser git<br>passwd git</p>
+</blockquote>
+<p>c. 创建空的Git仓库</p>
+<blockquote>
+<p>cd /home/git<br>git init --bare test.git<br>chown -R git:git ../git</p>
+</blockquote>
+<p>d. 在服务器端打开RSA认证</p>
+<blockquote>
+<p>cd /home/git<br>mkdir .ssh<br>cd .ssh<br>touch authorized_keys </p>
+</blockquote>
+<p>e. 命令行创建SSH key</p>
+<blockquote>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#64;&#x71;&#113;&#x2e;&#x63;&#x6f;&#x6d;">&#120;&#64;&#x71;&#113;&#x2e;&#x63;&#x6f;&#x6d;</a>“</p>
+</blockquote>
+<p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
+<p>f.把步骤5生成的公钥导入服务器</p>
+<blockquote>
+<p>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+</blockquote>
+<p>简单操作：windows 打开 Git-Gui-&gt;Help-&gt;Show SSH Key 直接复制key到Linux authorized_keys文件中 </p>
+<p><strong>二、配置钩子</strong></p>
+<p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
+<blockquote>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#x40;&#x71;&#x71;&#x2e;&#99;&#x6f;&#x6d;">&#x62;&#x40;&#x71;&#x71;&#x2e;&#99;&#x6f;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+</blockquote>
+<p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
+<blockquote>
+<p>git ALL=(ALL) NOPASSWD: ALL</p>
+</blockquote>
+<p>进入网站目录拉取<br>su git<br>sudo -u www git clone ssh://git@127.0.0.1/home/git/test.git </p>
+<p>c. 配置钩子[主要]</p>
+<blockquote>
+<p>cd /home/git/test.git/hooks/<br>vim post-receive</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">export LANG&#x3D;zh_CN.UTF-8</span><br><span class="line">cd &#x2F;home&#x2F;wwwroot&#x2F;www&#x2F;test&#x2F;</span><br><span class="line">unset GIT_DIR </span><br><span class="line">sudo -u www git pull origin master</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>chown git:git post-receive<br>chmod +x post-receive</p>
+</blockquote>
+<p>在本地clone拉取远程git仓库</p>
+<blockquote>
+<p>git clone ssh://git@127.0.0.1/home/git/test.git</p>
+</blockquote>
+<p><strong>git 回滚到任意版本操作</strong></p>
+<blockquote>
+<p>git reset –hard xxx[版本号]<br>git push -f origin master</p>
+</blockquote>
+<p><strong>git known_hosts</strong></p>
+<blockquote>
+<p>sudo -u www ssh-keygen -R 127.0.0.1<br>sudo -u www git pull origin master</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>CentOS 7</tag>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -709,136 +709,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Laragon 在 Windows 中搭建 Laravel 开发环境</title>
-    <url>/2017/09/15/Laragon-%E5%9C%A8-Windows-%E4%B8%AD%E6%90%AD%E5%BB%BA-Laravel-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>一、简介</strong></p>
-<blockquote>
-<p>之前coder陆续写了三篇介绍 Laravel 开发环境的教程：Homestead、Valet 和 LaraDock，我都是在 Mac 系统中安装使用的，相当流畅，没有任何梗，但是对于那些使用 Windows 的同学来说，Valet 就不说了，Homestead 和 LaraDock 虽说支持 Windows 系统，但是对小白来说，还是有一定复杂度的，难免有些磕磕跘跘，遇到这样那样的奇怪问题，可能大部分人会退而继续使用 Xampp、Wamp、phpStudy 之类集成工具，今天学院君要给大家推荐一款可能更加容易使用的 Windows 集成开发环境，更重要的是，它对 Laravel 非常友好，它的名字叫做 Laragon。Laragon 具备以下优秀的特性：</p>
-</blockquote>
-<ul>
-<li> 自动创建虚拟主机（Virtual Host，Valet 也有这样的功能）</li>
-<li> 邮件接收和发送</li>
-<li> 非常方便地切换 PHP、Apache、MySQL 的不同版本</li>
-<li> 轻松创建框架应用，如 Laravel、Symfony、WordPress、Joomla 等</li>
-<li> 基于自己的需求为不同的环境设置不同的配置</li>
-</ul>
-<blockquote>
-<p> 所以，从今天起，可以抛弃那些传统的集成开发环境了，Windows 上也可以搭建优雅的开发环境！</p>
-</blockquote>
-<p><strong>二、安装</strong></p>
-<blockquote>
-<p> 我们可以在这里下载 Laragon：<a href="https://sourceforge.net/projects/laragon/" target="_blank">[ laragon ]</a>  Windows下的软件安装就不需多言了吧，注意在这一步勾选下 Auto virtual hosts（我的虚拟机语言选择中文乱码，所以使用了英文界面，你们可以自己根据喜好进行设置）：</p>
-</blockquote>
-<p><img src="/assets/blogImg/laragon/1.jpg" alt="ico原来的样子"></p>
-<blockquote>
-<p> 然后下一步点击安装即可。下面是 Laragon 启动后的界面：</p>
-</blockquote>
-<p><img src="/assets/blogImg/laragon/2.jpg" alt="ico原来的样子"></p>
-<blockquote>
-<p> 要启动 Apache、MySQL 服务，需要点击 Start All 按钮：</p>
-</blockquote>
-<p><img src="/assets/blogImg/laragon/3.jpg" alt="ico原来的样子"></p>
-<blockquote>
-<p> 这样点击 Web 即可打开浏览器访问默认站点 <a href="http://localhost：">http://localhost：</a></p>
-</blockquote>
-<p><img src="/assets/blogImg/laragon/4.jpg" alt="ico原来的样子"></p>
-<blockquote>
-<p> 要访问数据库，可以点击 Database 按钮：</p>
-</blockquote>
-<p><img src="/assets/blogImg/laragon/5.jpg" alt="ico原来的样子"></p>
-<blockquote>
-<p> 默认数据库是 Laragon，用户名是 root，密码是空字符串，点击打开按钮，就可以访问这个默认的数据库：</p>
-</blockquote>
-<p><img src="/assets/blogImg/laragon/6.jpg" alt="ico原来的样子"></p>
-<blockquote>
-<p> 点击 Laragon 界面的 Terminal 按钮可以进入到一个类 Unix 的终端工具 Cmder 进行命令行操作：</p>
-</blockquote>
-<p><img src="/assets/blogImg/laragon/7.jpg" alt="ico原来的样子"></p>
-<blockquote>
-<p> 最后，Laragon 界面还有一个 Root 按钮，点击之后即可进入 Laragon 文档根目录，我的 Laragon 安装在 C 盘下，所以对应的文档根目录是 C:\laragon\www</p>
-</blockquote>
-<blockquote>
-<p> 此外，Laragon 界面右上角还有个齿轮按钮，点击可以对系统进行设置，比如我们可以设置语言为简体中文：：</p>
-</blockquote>
-<p><img src="/assets/blogImg/laragon/8.jpg" alt="ico原来的样子"></p>
-<blockquote>
-<p> 文件根目录：目录地址是可以修改的 若有自己的项目根目录，可以选择自己的根目录.然后再通过点击终端进去  进入根目录试用下命令模式 重新加载下<br>nginx、Apache 下次进入终端就是自己设置的默认根目录下了.</p>
-</blockquote>
-<p><strong>三、自动创建虚拟主机</strong></p>
-<blockquote>
-<p> 和 Valet 类似，当你在 Laragon 文档根目录下创建新的文件夹时，启动 Laragon 就会自动为你创建虚拟主机，默认主机域名是 <a href="http://folder_name.dev,在浏览器中访问这个域名就能看到/">http://folder_name.dev，在浏览器中访问这个域名就能看到</a> Web 页面了，是不是很方便？我们可以在命令行中使用 Laravel 安装器安装一个 blog 应用（不知道怎么操作？可以参考<a href="https://shunhua.github.io/2017/09/15/laravel5.5%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8-%E2%80%94%E2%80%94-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E7%AF%87/" target="_blank">[ 安装配置文档 ]</a> 中的安装部分）：</p>
-</blockquote>
-<p><img src="/assets/blogImg/laragon/9.jpg" alt="ico原来的样子"></p>
-<blockquote>
-<p> 那么在重新加载 Apache 服务器之后，就可以在浏览中通过 <a href="http://blog.dev/">http://blog.dev</a> 访问刚刚创建的应用了：</p>
-</blockquote>
-<p><img src="/assets/blogImg/laragon/10.jpg" alt="ico原来的样子"></p>
-<blockquote>
-<p> 是不是很nice？如果你想将域名后缀 .dev 改成其它如 .com 可以通过点击 Laragon 界面上的齿轮按钮对默认配置进行修改：</p>
-</blockquote>
-<p><img src="/assets/blogImg/laragon/11.jpg" alt="ico原来的样子"></p>
-<blockquote>
-<p> 将 .env 改成 .com 重新加载 Apache 服务即可通过 <a href="http://blog.com/">http://blog.com</a> 访问站点。</p>
-</blockquote>
-<p><strong>四、切换 PHP、Apache 和 MySQL 版本</strong></p>
-<blockquote>
-<p> 你可以通过点击 Laragon 界面上的菜单来切换不同软件的版本：</p>
-</blockquote>
-<p><img src="/assets/blogImg/laragon/12.jpg" alt="ico原来的样子"></p>
-<blockquote>
-<p> 现在默认安装的 Laragon 每个软件都只有一个版本，以 PHP 为例如果想要支持多个版本的切换和测试，需要到 <a href="http://windows.php.net/download/">http://windows.php.net/download/</a> 去下载不同版本（需要下载 Non Thread Safe 版本），然后将下载后的文件解压到 C:\laragon\bin\php （注意这里的目录以你的Laragon安装目录为准，比如我的就是安装在 C:\laragon）目录下：</p>
-</blockquote>
-<p><img src="/assets/blogImg/laragon/13.jpg" alt="ico原来的样子"></p>
-<blockquote>
-<p> 这样就可以进行版本切换了：</p>
-</blockquote>
-<p><img src="/assets/blogImg/laragon/14.jpg" alt="ico原来的样子"></p>
-<blockquote>
-<p> 切换 MySQL 和 Apache 的版本也是类似，这里不再赘述，一般这种场景也不多。</p>
-</blockquote>
-<p><strong>五、启用 Nginx 替代 Apache</strong></p>
-<blockquote>
-<p> 如果你想要使用 Nginx 作为 Web 服务器，也可以轻松实现，在配置里面取消勾选 Apache，改为勾选 Nginx 然后修改绑定端口为 80 即可：</p>
-</blockquote>
-<p><img src="/assets/blogImg/laragon/18.jpg" alt="ico原来的样子"></p>
-<blockquote>
-<p> 启用 Memcached 和 Redis 也只需要勾选上相应的配置项即可，非常方便。配置完成后，Laragon 会自动关闭 Apache 并启动 Nginx 服务器：</p>
-</blockquote>
-<p><img src="/assets/blogImg/laragon/19.jpg" alt="ico原来的样子"></p>
-<p>然后，在浏览器中访问 <a href="http://blog.dev,没有任何问题,平稳过渡,大功告成./">http://blog.dev，没有任何问题，平稳过渡，大功告成。</a></p>
-<p><strong>六、快速创建 Laravel 应用</strong></p>
-<blockquote>
-<p> 上面我们通过 Laravel 安装器创建了一个新的 Laravel 应用，其实已经很方便了，但是还有更方便的，我们通过点击”菜单-&gt;快速创建-&gt;Laravel”可以不用敲任何命令就可以安装一个 Laravel 应用：</p>
-</blockquote>
-<p><img src="/assets/blogImg/laragon/15.jpg" alt="ico原来的样子"></p>
-<blockquote>
-<p> 在弹出的窗口中输入应用的名称：</p>
-</blockquote>
-<p><img src="/assets/blogImg/laragon/16.jpg" alt="ico原来的样子"></p>
-<blockquote>
-<p> 点击Ok后就会弹出命令行窗口为我们创建应用：</p>
-</blockquote>
-<p><img src="/assets/blogImg/laragon/17.jpg" alt="ico原来的样子"></p>
-<blockquote>
-<p> Laragon 还有更多功能等着你去挖掘，比如也支持基于 Ngrok 进行站点分享，支持 Node、Putty、Yarn、文件传输等等，欢迎你在使用的过程中与我们分享。</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Laragon</tag>
-        <tag>Laravel</tag>
-        <tag>Windows</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Laravel Redis 广播测试</title>
     <url>/2019/04/19/Laravel-Redis-%E5%B9%BF%E6%92%AD%E6%B5%8B%E8%AF%95/</url>
     <content><![CDATA[<a id="more"></a>
@@ -987,6 +857,136 @@
       </tags>
   </entry>
   <entry>
+    <title>Laragon 在 Windows 中搭建 Laravel 开发环境</title>
+    <url>/2017/09/15/Laragon-%E5%9C%A8-Windows-%E4%B8%AD%E6%90%AD%E5%BB%BA-Laravel-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>一、简介</strong></p>
+<blockquote>
+<p>之前coder陆续写了三篇介绍 Laravel 开发环境的教程：Homestead、Valet 和 LaraDock，我都是在 Mac 系统中安装使用的，相当流畅，没有任何梗，但是对于那些使用 Windows 的同学来说，Valet 就不说了，Homestead 和 LaraDock 虽说支持 Windows 系统，但是对小白来说，还是有一定复杂度的，难免有些磕磕跘跘，遇到这样那样的奇怪问题，可能大部分人会退而继续使用 Xampp、Wamp、phpStudy 之类集成工具，今天学院君要给大家推荐一款可能更加容易使用的 Windows 集成开发环境，更重要的是，它对 Laravel 非常友好，它的名字叫做 Laragon。Laragon 具备以下优秀的特性：</p>
+</blockquote>
+<ul>
+<li> 自动创建虚拟主机（Virtual Host，Valet 也有这样的功能）</li>
+<li> 邮件接收和发送</li>
+<li> 非常方便地切换 PHP、Apache、MySQL 的不同版本</li>
+<li> 轻松创建框架应用，如 Laravel、Symfony、WordPress、Joomla 等</li>
+<li> 基于自己的需求为不同的环境设置不同的配置</li>
+</ul>
+<blockquote>
+<p> 所以，从今天起，可以抛弃那些传统的集成开发环境了，Windows 上也可以搭建优雅的开发环境！</p>
+</blockquote>
+<p><strong>二、安装</strong></p>
+<blockquote>
+<p> 我们可以在这里下载 Laragon：<a href="https://sourceforge.net/projects/laragon/" target="_blank">[ laragon ]</a>  Windows下的软件安装就不需多言了吧，注意在这一步勾选下 Auto virtual hosts（我的虚拟机语言选择中文乱码，所以使用了英文界面，你们可以自己根据喜好进行设置）：</p>
+</blockquote>
+<p><img src="/assets/blogImg/laragon/1.jpg" alt="ico原来的样子"></p>
+<blockquote>
+<p> 然后下一步点击安装即可。下面是 Laragon 启动后的界面：</p>
+</blockquote>
+<p><img src="/assets/blogImg/laragon/2.jpg" alt="ico原来的样子"></p>
+<blockquote>
+<p> 要启动 Apache、MySQL 服务，需要点击 Start All 按钮：</p>
+</blockquote>
+<p><img src="/assets/blogImg/laragon/3.jpg" alt="ico原来的样子"></p>
+<blockquote>
+<p> 这样点击 Web 即可打开浏览器访问默认站点 <a href="http://localhost：">http://localhost：</a></p>
+</blockquote>
+<p><img src="/assets/blogImg/laragon/4.jpg" alt="ico原来的样子"></p>
+<blockquote>
+<p> 要访问数据库，可以点击 Database 按钮：</p>
+</blockquote>
+<p><img src="/assets/blogImg/laragon/5.jpg" alt="ico原来的样子"></p>
+<blockquote>
+<p> 默认数据库是 Laragon，用户名是 root，密码是空字符串，点击打开按钮，就可以访问这个默认的数据库：</p>
+</blockquote>
+<p><img src="/assets/blogImg/laragon/6.jpg" alt="ico原来的样子"></p>
+<blockquote>
+<p> 点击 Laragon 界面的 Terminal 按钮可以进入到一个类 Unix 的终端工具 Cmder 进行命令行操作：</p>
+</blockquote>
+<p><img src="/assets/blogImg/laragon/7.jpg" alt="ico原来的样子"></p>
+<blockquote>
+<p> 最后，Laragon 界面还有一个 Root 按钮，点击之后即可进入 Laragon 文档根目录，我的 Laragon 安装在 C 盘下，所以对应的文档根目录是 C:\laragon\www</p>
+</blockquote>
+<blockquote>
+<p> 此外，Laragon 界面右上角还有个齿轮按钮，点击可以对系统进行设置，比如我们可以设置语言为简体中文：：</p>
+</blockquote>
+<p><img src="/assets/blogImg/laragon/8.jpg" alt="ico原来的样子"></p>
+<blockquote>
+<p> 文件根目录：目录地址是可以修改的 若有自己的项目根目录，可以选择自己的根目录.然后再通过点击终端进去  进入根目录试用下命令模式 重新加载下<br>nginx、Apache 下次进入终端就是自己设置的默认根目录下了.</p>
+</blockquote>
+<p><strong>三、自动创建虚拟主机</strong></p>
+<blockquote>
+<p> 和 Valet 类似，当你在 Laragon 文档根目录下创建新的文件夹时，启动 Laragon 就会自动为你创建虚拟主机，默认主机域名是 <a href="http://folder_name.dev,在浏览器中访问这个域名就能看到/">http://folder_name.dev，在浏览器中访问这个域名就能看到</a> Web 页面了，是不是很方便？我们可以在命令行中使用 Laravel 安装器安装一个 blog 应用（不知道怎么操作？可以参考<a href="https://shunhua.github.io/2017/09/15/laravel5.5%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8-%E2%80%94%E2%80%94-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E7%AF%87/" target="_blank">[ 安装配置文档 ]</a> 中的安装部分）：</p>
+</blockquote>
+<p><img src="/assets/blogImg/laragon/9.jpg" alt="ico原来的样子"></p>
+<blockquote>
+<p> 那么在重新加载 Apache 服务器之后，就可以在浏览中通过 <a href="http://blog.dev/">http://blog.dev</a> 访问刚刚创建的应用了：</p>
+</blockquote>
+<p><img src="/assets/blogImg/laragon/10.jpg" alt="ico原来的样子"></p>
+<blockquote>
+<p> 是不是很nice？如果你想将域名后缀 .dev 改成其它如 .com 可以通过点击 Laragon 界面上的齿轮按钮对默认配置进行修改：</p>
+</blockquote>
+<p><img src="/assets/blogImg/laragon/11.jpg" alt="ico原来的样子"></p>
+<blockquote>
+<p> 将 .env 改成 .com 重新加载 Apache 服务即可通过 <a href="http://blog.com/">http://blog.com</a> 访问站点。</p>
+</blockquote>
+<p><strong>四、切换 PHP、Apache 和 MySQL 版本</strong></p>
+<blockquote>
+<p> 你可以通过点击 Laragon 界面上的菜单来切换不同软件的版本：</p>
+</blockquote>
+<p><img src="/assets/blogImg/laragon/12.jpg" alt="ico原来的样子"></p>
+<blockquote>
+<p> 现在默认安装的 Laragon 每个软件都只有一个版本，以 PHP 为例如果想要支持多个版本的切换和测试，需要到 <a href="http://windows.php.net/download/">http://windows.php.net/download/</a> 去下载不同版本（需要下载 Non Thread Safe 版本），然后将下载后的文件解压到 C:\laragon\bin\php （注意这里的目录以你的Laragon安装目录为准，比如我的就是安装在 C:\laragon）目录下：</p>
+</blockquote>
+<p><img src="/assets/blogImg/laragon/13.jpg" alt="ico原来的样子"></p>
+<blockquote>
+<p> 这样就可以进行版本切换了：</p>
+</blockquote>
+<p><img src="/assets/blogImg/laragon/14.jpg" alt="ico原来的样子"></p>
+<blockquote>
+<p> 切换 MySQL 和 Apache 的版本也是类似，这里不再赘述，一般这种场景也不多。</p>
+</blockquote>
+<p><strong>五、启用 Nginx 替代 Apache</strong></p>
+<blockquote>
+<p> 如果你想要使用 Nginx 作为 Web 服务器，也可以轻松实现，在配置里面取消勾选 Apache，改为勾选 Nginx 然后修改绑定端口为 80 即可：</p>
+</blockquote>
+<p><img src="/assets/blogImg/laragon/18.jpg" alt="ico原来的样子"></p>
+<blockquote>
+<p> 启用 Memcached 和 Redis 也只需要勾选上相应的配置项即可，非常方便。配置完成后，Laragon 会自动关闭 Apache 并启动 Nginx 服务器：</p>
+</blockquote>
+<p><img src="/assets/blogImg/laragon/19.jpg" alt="ico原来的样子"></p>
+<p>然后，在浏览器中访问 <a href="http://blog.dev,没有任何问题,平稳过渡,大功告成./">http://blog.dev，没有任何问题，平稳过渡，大功告成。</a></p>
+<p><strong>六、快速创建 Laravel 应用</strong></p>
+<blockquote>
+<p> 上面我们通过 Laravel 安装器创建了一个新的 Laravel 应用，其实已经很方便了，但是还有更方便的，我们通过点击”菜单-&gt;快速创建-&gt;Laravel”可以不用敲任何命令就可以安装一个 Laravel 应用：</p>
+</blockquote>
+<p><img src="/assets/blogImg/laragon/15.jpg" alt="ico原来的样子"></p>
+<blockquote>
+<p> 在弹出的窗口中输入应用的名称：</p>
+</blockquote>
+<p><img src="/assets/blogImg/laragon/16.jpg" alt="ico原来的样子"></p>
+<blockquote>
+<p> 点击Ok后就会弹出命令行窗口为我们创建应用：</p>
+</blockquote>
+<p><img src="/assets/blogImg/laragon/17.jpg" alt="ico原来的样子"></p>
+<blockquote>
+<p> Laragon 还有更多功能等着你去挖掘，比如也支持基于 Ngrok 进行站点分享，支持 Node、Putty、Yarn、文件传输等等，欢迎你在使用的过程中与我们分享。</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Laragon</tag>
+        <tag>Laravel</tag>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Laravel 事件系统</title>
     <url>/2019/04/22/Laravel-%E4%BA%8B%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1085,57 +1085,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Linux安装配置守护进程</title>
-    <url>/2018/03/09/Linux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> centos 下安装Supervisor</p>
-</blockquote>
-<p>yum install supervisor</p>
-<blockquote>
-<p> 配置Supervisor</p>
-</blockquote>
-<p>cd /etc/supervisord.d/<br>vim laravel-worker.ini<br>systemctl start supervisord</p>
-]]></content>
-      <tags>
-        <tag>linux</tag>
-        <tag>Supervisor</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Live 阿里云直播</title>
-    <url>/2019/07/04/Live-%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%B4%E6%92%AD/</url>
-    <content><![CDATA[<a id="more"></a>
-<p> <a href="https://help.aliyun.com/document_detail/86866.html?spm=a2c4g.11186623.6.573.72df68123ova0d" target="_blank">[阿里云文档]</a> 具体流程依据文档<br> 需要：备案域名 / 直播云服务器</p>
-<blockquote>
-<p>开通阿里云直播控制台</p>
-</blockquote>
-<p><img src="/assets/aliyun/1.png" alt="ico原来的样子"><br><img src="/assets/aliyun/2.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>直播控制台-概览配置 推流/播流 域名</p>
-</blockquote>
-<p>生成之后解析对应域名的 CNAME 到推流/播流域名上<br><img src="/assets/aliyun/3.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>PC端 OBS/VLC 测试</p>
-</blockquote>
-<p>地址生成器–&gt;生成的 推流/播流 地址相应在 OBS/VLC 上使用即可看到同步直播</p>
-<p><img src="/assets/aliyun/4.png" alt="ico原来的样子"><br><img src="/assets/aliyun/5.png" alt="ico原来的样子"><br><img src="/assets/aliyun/6.png" alt="ico原来的样子"><br><img src="/assets/aliyun/7.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>观看直播 [后续…]</p>
-</blockquote>
-<p> 前面的直播推流配置完成之后，我们需要让用户或者观众看到直播<br> 正常用户观看直播的流程是：登录直播网站 -&gt; 点开直播房间 -&gt; 服务器获取播放地址 -&gt; 用户观看直播<br> 1.创建一个测试直播的控制器</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">namespace App\Http\Controllers;</span><br><span class="line"></span><br><span class="line">use xxx;&#x2F;&#x2F;sdk包</span><br><span class="line"></span><br><span class="line">class LiveController extends Controller</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    public function index()</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; 通过sdk获取直播地址</span><br><span class="line">        $liveurl &#x3D; \xxx\xxx\xxx(&#39;xxx&#39;, &#39;app&#39;, &#39;stream&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>2.页面展示</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 引入 CDN --&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.bootcss.com&#x2F;flv.js&#x2F;1.3.2&#x2F;flv.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;!-- dom --&gt;</span><br><span class="line">&lt;video id&#x3D;&quot;videoElement&quot;&gt;&lt;&#x2F;video&gt;</span><br><span class="line">&lt;!-- js --&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    if (flvjs.isSupported()) &#123;</span><br><span class="line">        var videoElement &#x3D; document.getElementById(&#39;videoElement&#39;);</span><br><span class="line">        var flvPlayer &#x3D; flvjs.createPlayer(&#123;</span><br><span class="line">            type: &#39;flv&#39;,</span><br><span class="line">            url: &#39;&#123;&#123; $liveurl &#125;&#125;&#39;</span><br><span class="line">        &#125;);</span><br><span class="line">        flvPlayer.attachMediaElement(videoElement);</span><br><span class="line">        flvPlayer.load();</span><br><span class="line">        flvPlayer.play();</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><strong>Notice</strong><br>后续通过sdk整合到项目开发中…</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
     <title>Linux下安装node.js</title>
     <url>/2018/03/21/Linux%E4%B8%8B%E5%AE%89%E8%A3%85node-js/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1188,6 +1137,92 @@ public $queue = &#39;listeners&#39;;</code></pre>
         <tag>Linux</tag>
         <tag>node.js</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Linux安装配置守护进程</title>
+    <url>/2018/03/09/Linux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> centos 下安装Supervisor</p>
+</blockquote>
+<p>yum install supervisor</p>
+<blockquote>
+<p> 配置Supervisor</p>
+</blockquote>
+<p>cd /etc/supervisord.d/<br>vim laravel-worker.ini<br>systemctl start supervisord</p>
+]]></content>
+      <tags>
+        <tag>linux</tag>
+        <tag>Supervisor</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux定时任务采集聚合数据api文章</title>
+    <url>/2019/04/18/Linux%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E9%87%87%E9%9B%86%E8%81%9A%E5%90%88%E6%95%B0%E6%8D%AEapi%E6%96%87%E7%AB%A0/</url>
+    <content><![CDATA[<p><strong>Linux定时任务采集文章</strong> </p>
+<a id="more"></a>
+
+<p>一、<a href="https://learnku.com/docs/laravel/5.7/scheduling/1396" target="_blank">[ Artisan 命令调度-任务调度 ]</a></p>
+<p>二、crond服务</p>
+<p>crontab:</p>
+<blockquote>
+<p>crontab -l //列出crontab<br>crontab -e //编辑crontab<br>crontab -r //删除crontab</p>
+</blockquote>
+<p>服务操作：</p>
+<blockquote>
+<p>service crond start //启动服务<br>  service crond stop //关闭服务<br>  service crond restart //重启服务<br>  service crond reload //重新载入配置<br>  service crond status //查看状态</p>
+</blockquote>
+<p>三、创建crontab</p>
+<blockquote>
+<p>crontab -e </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">* * * * * php &#x2F;home&#x2F;wwwroot&#x2F;wwyl.xxxx.xyz&#x2F;wwyl&#x2F;artisan schedule:run &gt;&gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>四、查看crontab状态并启动</p>
+<blockquote>
+<p>service crond status<br>service crond start </p>
+</blockquote>
+<p>五、查看结果</p>
+<p><img src="/assets/blogImg/crontab.png" alt="ico原来的样子"></p>
+]]></content>
+      <tags>
+        <tag>Laravel</tag>
+        <tag>Linux</tag>
+        <tag>crontab</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Live 阿里云直播</title>
+    <url>/2019/07/04/Live-%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%B4%E6%92%AD/</url>
+    <content><![CDATA[<a id="more"></a>
+<p> <a href="https://help.aliyun.com/document_detail/86866.html?spm=a2c4g.11186623.6.573.72df68123ova0d" target="_blank">[阿里云文档]</a> 具体流程依据文档<br> 需要：备案域名 / 直播云服务器</p>
+<blockquote>
+<p>开通阿里云直播控制台</p>
+</blockquote>
+<p><img src="/assets/aliyun/1.png" alt="ico原来的样子"><br><img src="/assets/aliyun/2.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>直播控制台-概览配置 推流/播流 域名</p>
+</blockquote>
+<p>生成之后解析对应域名的 CNAME 到推流/播流域名上<br><img src="/assets/aliyun/3.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>PC端 OBS/VLC 测试</p>
+</blockquote>
+<p>地址生成器–&gt;生成的 推流/播流 地址相应在 OBS/VLC 上使用即可看到同步直播</p>
+<p><img src="/assets/aliyun/4.png" alt="ico原来的样子"><br><img src="/assets/aliyun/5.png" alt="ico原来的样子"><br><img src="/assets/aliyun/6.png" alt="ico原来的样子"><br><img src="/assets/aliyun/7.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>观看直播 [后续…]</p>
+</blockquote>
+<p> 前面的直播推流配置完成之后，我们需要让用户或者观众看到直播<br> 正常用户观看直播的流程是：登录直播网站 -&gt; 点开直播房间 -&gt; 服务器获取播放地址 -&gt; 用户观看直播<br> 1.创建一个测试直播的控制器</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">namespace App\Http\Controllers;</span><br><span class="line"></span><br><span class="line">use xxx;&#x2F;&#x2F;sdk包</span><br><span class="line"></span><br><span class="line">class LiveController extends Controller</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    public function index()</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; 通过sdk获取直播地址</span><br><span class="line">        $liveurl &#x3D; \xxx\xxx\xxx(&#39;xxx&#39;, &#39;app&#39;, &#39;stream&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.页面展示</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 引入 CDN --&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.bootcss.com&#x2F;flv.js&#x2F;1.3.2&#x2F;flv.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;!-- dom --&gt;</span><br><span class="line">&lt;video id&#x3D;&quot;videoElement&quot;&gt;&lt;&#x2F;video&gt;</span><br><span class="line">&lt;!-- js --&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    if (flvjs.isSupported()) &#123;</span><br><span class="line">        var videoElement &#x3D; document.getElementById(&#39;videoElement&#39;);</span><br><span class="line">        var flvPlayer &#x3D; flvjs.createPlayer(&#123;</span><br><span class="line">            type: &#39;flv&#39;,</span><br><span class="line">            url: &#39;&#123;&#123; $liveurl &#125;&#125;&#39;</span><br><span class="line">        &#125;);</span><br><span class="line">        flvPlayer.attachMediaElement(videoElement);</span><br><span class="line">        flvPlayer.load();</span><br><span class="line">        flvPlayer.play();</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><strong>Notice</strong><br>后续通过sdk整合到项目开发中…</li>
+</ul>
+]]></content>
   </entry>
   <entry>
     <title>Markdown 基本语法</title>
@@ -1277,57 +1312,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Linux定时任务采集聚合数据api文章</title>
-    <url>/2019/04/18/Linux%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E9%87%87%E9%9B%86%E8%81%9A%E5%90%88%E6%95%B0%E6%8D%AEapi%E6%96%87%E7%AB%A0/</url>
-    <content><![CDATA[<p><strong>Linux定时任务采集文章</strong> </p>
-<a id="more"></a>
-
-<p>一、<a href="https://learnku.com/docs/laravel/5.7/scheduling/1396" target="_blank">[ Artisan 命令调度-任务调度 ]</a></p>
-<p>二、crond服务</p>
-<p>crontab:</p>
-<blockquote>
-<p>crontab -l //列出crontab<br>crontab -e //编辑crontab<br>crontab -r //删除crontab</p>
-</blockquote>
-<p>服务操作：</p>
-<blockquote>
-<p>service crond start //启动服务<br>  service crond stop //关闭服务<br>  service crond restart //重启服务<br>  service crond reload //重新载入配置<br>  service crond status //查看状态</p>
-</blockquote>
-<p>三、创建crontab</p>
-<blockquote>
-<p>crontab -e </p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">* * * * * php &#x2F;home&#x2F;wwwroot&#x2F;wwyl.xxxx.xyz&#x2F;wwyl&#x2F;artisan schedule:run &gt;&gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
-
-<p>四、查看crontab状态并启动</p>
-<blockquote>
-<p>service crond status<br>service crond start </p>
-</blockquote>
-<p>五、查看结果</p>
-<p><img src="/assets/blogImg/crontab.png" alt="ico原来的样子"></p>
-]]></content>
-      <tags>
-        <tag>Laravel</tag>
-        <tag>Linux</tag>
-        <tag>crontab</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nginx 反向代理</title>
-    <url>/2019/09/19/Nginx-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><a href="https://baishunhua.com/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/" target="_blank">安装nginx</a></p>
-<blockquote>
-<p>高防服务器上 nginx.conf 配置模板</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server_name  www.xxx.com;</span><br><span class="line">...</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">    proxy_pass http:&#x2F;&#x2F;ip[原服务器ip];</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>nginx</tag>
-        <tag>反向代理</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MySQL出现1030-Got error 28 from storage engine错误</title>
     <url>/2018/11/22/MySQL%E5%87%BA%E7%8E%B01030-Got-error-28-from-storage-engine%E9%94%99%E8%AF%AF/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1347,6 +1331,22 @@ public $queue = &#39;listeners&#39;;</code></pre>
       <tags>
         <tag>lnmp</tag>
         <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nginx 反向代理</title>
+    <url>/2019/09/19/Nginx-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><a href="https://baishunhua.com/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/" target="_blank">安装nginx</a></p>
+<blockquote>
+<p>高防服务器上 nginx.conf 配置模板</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server_name  www.xxx.com;</span><br><span class="line">...</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">    proxy_pass http:&#x2F;&#x2F;ip[原服务器ip];</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>nginx</tag>
+        <tag>反向代理</tag>
       </tags>
   </entry>
   <entry>
@@ -1885,46 +1885,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>AntV 蚂蚁数据可视化G6|Graphin</title>
-    <url>/2021/12/01/antV-%E8%9A%82%E8%9A%81%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96G6-Graphin/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/antV-g6.png" alt="AntV"></p>
-<a id="more"></a>
-
-<p>中文官网： <a href="https://antv.gitee.io/zh" target="_blank">[ AntV中文官网 ]</a><br>Github地址： <a href="https://github.com/antvis/g6" target="_blank">[ AntV G6 ]</a><br>参考文档： <a href="https://g6.antv.vision/zh/docs/manual/introduction" target="_blank">[ G6官方文档 ]</a><br><strong>什么是 G6</strong><br>G6 是一个图可视化引擎。它提供了图的绘制、布局、分析、交互、动画等图可视化的基础能力。旨在让关系变得透明，简单。让用户获得关系数据的 Insight。<br><strong>安装 &amp; 引用</strong><br>使用命令行在项目目录下执行以下命令：</p>
-<blockquote>
-<p> npm install –save @antv/g6</p>
-</blockquote>
-<p>创建一个 G6 的关系图仅需要下面几个步骤：</p>
-<ul>
-<li>创建关系图的 HTML 容器；</li>
-<li>数据准备；</li>
-<li>创建关系图；</li>
-<li>配置数据源，渲染。</li>
-</ul>
-<p><strong><em>Step 1 创建容器</em></strong><br>需要在 HTML 中创建一个用于容纳 G6 绘制的图的容器，通常为 div  标签。G6 在绘制时会在该容器下追加 canvas 标签，然后将图绘制在其中。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;mountNode&quot;&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-
-<p><strong><em>Step 2 数据准备</em></strong><br>引入 G6 的数据源为 JSON 格式的对象。该对象中需要有节点（nodes）和边（edges）字段，分别用数组表示：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const data &#x3D; &#123;</span><br><span class="line">  &#x2F;&#x2F; 点集</span><br><span class="line">  nodes: [</span><br><span class="line">    &#123;</span><br><span class="line">      id: &#39;node1&#39;, &#x2F;&#x2F; String，该节点存在则必须，节点的唯一标识</span><br><span class="line">      x: 100, &#x2F;&#x2F; Number，可选，节点位置的 x 值</span><br><span class="line">      y: 200, &#x2F;&#x2F; Number，可选，节点位置的 y 值</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      id: &#39;node2&#39;, &#x2F;&#x2F; String，该节点存在则必须，节点的唯一标识</span><br><span class="line">      x: 300, &#x2F;&#x2F; Number，可选，节点位置的 x 值</span><br><span class="line">      y: 200, &#x2F;&#x2F; Number，可选，节点位置的 y 值</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">  &#x2F;&#x2F; 边集</span><br><span class="line">  edges: [</span><br><span class="line">    &#123;</span><br><span class="line">      source: &#39;node1&#39;, &#x2F;&#x2F; String，必须，起始点 id</span><br><span class="line">      target: &#39;node2&#39;, &#x2F;&#x2F; String，必须，目标点 id</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>注意</p>
-<ul>
-<li>nodes 数组中包含节点对象。每个节点对象中唯一的、必要的 id 以标识不同的节点，x、 y 指定该节点的位置；</li>
-<li>edges 数组中包含边对象。source 和 target 是每条边的必要属性，分别代表了该边的起始点 id 与 目标点 id。</li>
-<li>点和边的其他属性参见链接：内置节点 和 内置边。</li>
-</ul>
-<p><strong><em>Step 3 创建关系图</em></strong><br>创建关系图（实例化）时，至少需要为图设置容器、宽和高。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const graph &#x3D; new G6.Graph(&#123;</span><br><span class="line">  container: &#39;mountNode&#39;, &#x2F;&#x2F; String | HTMLElement，必须，在 Step 1 中创建的容器 id 或容器本身</span><br><span class="line">  width: 800, &#x2F;&#x2F; Number，必须，图的宽度</span><br><span class="line">  height: 500, &#x2F;&#x2F; Number，必须，图的高度</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p><strong><em>Step 4 配置数据源，渲染</em></strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">graph.data(data); &#x2F;&#x2F; 读取 Step 2 中的数据源到图上</span><br><span class="line">graph.render(); &#x2F;&#x2F; 渲染图</span><br></pre></td></tr></table></figure>
-
-<p>完整代码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot; &#x2F;&gt;</span><br><span class="line">    &lt;title&gt;Tutorial Demo&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &#x2F;* 图的画布容器 *&#x2F;</span><br><span class="line">    &lt;div id&#x3D;&quot;mountNode&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">    &#x2F;* 引入 G6 *&#x2F;</span><br><span class="line">    &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;gw.alipayobjects.com&#x2F;os&#x2F;antv&#x2F;pkg&#x2F;_antv.g6-3.7.1&#x2F;dist&#x2F;g6.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      &#x2F;&#x2F; 定义数据源</span><br><span class="line">      const data &#x3D; &#123;</span><br><span class="line">        &#x2F;&#x2F; 点集</span><br><span class="line">        nodes: [</span><br><span class="line">          &#123;</span><br><span class="line">            id: &#39;node1&#39;,</span><br><span class="line">            x: 100,</span><br><span class="line">            y: 200,</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            id: &#39;node2&#39;,</span><br><span class="line">            x: 300,</span><br><span class="line">            y: 200,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">        &#x2F;&#x2F; 边集</span><br><span class="line">        edges: [</span><br><span class="line">          &#x2F;&#x2F; 表示一条从 node1 节点连接到 node2 节点的边</span><br><span class="line">          &#123;</span><br><span class="line">            source: &#39;node1&#39;,</span><br><span class="line">            target: &#39;node2&#39;,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F; 创建 G6 图实例</span><br><span class="line">      const graph &#x3D; new G6.Graph(&#123;</span><br><span class="line">        container: &#39;mountNode&#39;, &#x2F;&#x2F; 指定图画布的容器 id，与第 9 行的容器对应</span><br><span class="line">        &#x2F;&#x2F; 画布宽高</span><br><span class="line">        width: 800,</span><br><span class="line">        height: 500,</span><br><span class="line">      &#125;);</span><br><span class="line">      &#x2F;&#x2F; 读取数据</span><br><span class="line">      graph.data(data);</span><br><span class="line">      &#x2F;&#x2F; 渲染图</span><br><span class="line">      graph.render();</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>AntV</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Swift学习笔记NO.2</title>
     <url>/2017/09/25/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0NO-2/</url>
     <content><![CDATA[<p><strong>Swift学习笔记NO.2</strong> </p>
@@ -2086,6 +2046,141 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>AntV 蚂蚁数据可视化G6|Graphin</title>
+    <url>/2021/12/01/antV-%E8%9A%82%E8%9A%81%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96G6-Graphin/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/antV-g6.png" alt="AntV"></p>
+<a id="more"></a>
+
+<p>中文官网： <a href="https://antv.gitee.io/zh" target="_blank">[ AntV中文官网 ]</a><br>Github地址： <a href="https://github.com/antvis/g6" target="_blank">[ AntV G6 ]</a><br>参考文档： <a href="https://g6.antv.vision/zh/docs/manual/introduction" target="_blank">[ G6官方文档 ]</a><br><strong>什么是 G6</strong><br>G6 是一个图可视化引擎。它提供了图的绘制、布局、分析、交互、动画等图可视化的基础能力。旨在让关系变得透明，简单。让用户获得关系数据的 Insight。<br><strong>安装 &amp; 引用</strong><br>使用命令行在项目目录下执行以下命令：</p>
+<blockquote>
+<p> npm install –save @antv/g6</p>
+</blockquote>
+<p>创建一个 G6 的关系图仅需要下面几个步骤：</p>
+<ul>
+<li>创建关系图的 HTML 容器；</li>
+<li>数据准备；</li>
+<li>创建关系图；</li>
+<li>配置数据源，渲染。</li>
+</ul>
+<p><strong><em>Step 1 创建容器</em></strong><br>需要在 HTML 中创建一个用于容纳 G6 绘制的图的容器，通常为 div  标签。G6 在绘制时会在该容器下追加 canvas 标签，然后将图绘制在其中。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;mountNode&quot;&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>Step 2 数据准备</em></strong><br>引入 G6 的数据源为 JSON 格式的对象。该对象中需要有节点（nodes）和边（edges）字段，分别用数组表示：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const data &#x3D; &#123;</span><br><span class="line">  &#x2F;&#x2F; 点集</span><br><span class="line">  nodes: [</span><br><span class="line">    &#123;</span><br><span class="line">      id: &#39;node1&#39;, &#x2F;&#x2F; String，该节点存在则必须，节点的唯一标识</span><br><span class="line">      x: 100, &#x2F;&#x2F; Number，可选，节点位置的 x 值</span><br><span class="line">      y: 200, &#x2F;&#x2F; Number，可选，节点位置的 y 值</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      id: &#39;node2&#39;, &#x2F;&#x2F; String，该节点存在则必须，节点的唯一标识</span><br><span class="line">      x: 300, &#x2F;&#x2F; Number，可选，节点位置的 x 值</span><br><span class="line">      y: 200, &#x2F;&#x2F; Number，可选，节点位置的 y 值</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">  &#x2F;&#x2F; 边集</span><br><span class="line">  edges: [</span><br><span class="line">    &#123;</span><br><span class="line">      source: &#39;node1&#39;, &#x2F;&#x2F; String，必须，起始点 id</span><br><span class="line">      target: &#39;node2&#39;, &#x2F;&#x2F; String，必须，目标点 id</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>注意</p>
+<ul>
+<li>nodes 数组中包含节点对象。每个节点对象中唯一的、必要的 id 以标识不同的节点，x、 y 指定该节点的位置；</li>
+<li>edges 数组中包含边对象。source 和 target 是每条边的必要属性，分别代表了该边的起始点 id 与 目标点 id。</li>
+<li>点和边的其他属性参见链接：内置节点 和 内置边。</li>
+</ul>
+<p><strong><em>Step 3 创建关系图</em></strong><br>创建关系图（实例化）时，至少需要为图设置容器、宽和高。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const graph &#x3D; new G6.Graph(&#123;</span><br><span class="line">  container: &#39;mountNode&#39;, &#x2F;&#x2F; String | HTMLElement，必须，在 Step 1 中创建的容器 id 或容器本身</span><br><span class="line">  width: 800, &#x2F;&#x2F; Number，必须，图的宽度</span><br><span class="line">  height: 500, &#x2F;&#x2F; Number，必须，图的高度</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>Step 4 配置数据源，渲染</em></strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">graph.data(data); &#x2F;&#x2F; 读取 Step 2 中的数据源到图上</span><br><span class="line">graph.render(); &#x2F;&#x2F; 渲染图</span><br></pre></td></tr></table></figure>
+
+<p>完整代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot; &#x2F;&gt;</span><br><span class="line">    &lt;title&gt;Tutorial Demo&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &#x2F;* 图的画布容器 *&#x2F;</span><br><span class="line">    &lt;div id&#x3D;&quot;mountNode&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">    &#x2F;* 引入 G6 *&#x2F;</span><br><span class="line">    &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;gw.alipayobjects.com&#x2F;os&#x2F;antv&#x2F;pkg&#x2F;_antv.g6-3.7.1&#x2F;dist&#x2F;g6.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      &#x2F;&#x2F; 定义数据源</span><br><span class="line">      const data &#x3D; &#123;</span><br><span class="line">        &#x2F;&#x2F; 点集</span><br><span class="line">        nodes: [</span><br><span class="line">          &#123;</span><br><span class="line">            id: &#39;node1&#39;,</span><br><span class="line">            x: 100,</span><br><span class="line">            y: 200,</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            id: &#39;node2&#39;,</span><br><span class="line">            x: 300,</span><br><span class="line">            y: 200,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">        &#x2F;&#x2F; 边集</span><br><span class="line">        edges: [</span><br><span class="line">          &#x2F;&#x2F; 表示一条从 node1 节点连接到 node2 节点的边</span><br><span class="line">          &#123;</span><br><span class="line">            source: &#39;node1&#39;,</span><br><span class="line">            target: &#39;node2&#39;,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F; 创建 G6 图实例</span><br><span class="line">      const graph &#x3D; new G6.Graph(&#123;</span><br><span class="line">        container: &#39;mountNode&#39;, &#x2F;&#x2F; 指定图画布的容器 id，与第 9 行的容器对应</span><br><span class="line">        &#x2F;&#x2F; 画布宽高</span><br><span class="line">        width: 800,</span><br><span class="line">        height: 500,</span><br><span class="line">      &#125;);</span><br><span class="line">      &#x2F;&#x2F; 读取数据</span><br><span class="line">      graph.data(data);</span><br><span class="line">      &#x2F;&#x2F; 渲染图</span><br><span class="line">      graph.render();</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>AntV</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>centos7下lnmp 添加、删除虚拟主机</title>
+    <url>/2017/09/15/centos7%E4%B8%8Blnmp-%E6%B7%BB%E5%8A%A0%E3%80%81%E5%88%A0%E9%99%A4%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>添加网站(虚拟主机</strong></p>
+<blockquote>
+<p> 执行：lnmp vhost add 出现如下界面：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-1.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 这里要输入要添加网站的域名，我们已添加<a href="http://www.vpser.net域名为例,如上图提示后输入域名/">www.vpser.net域名为例，如上图提示后输入域名</a> <a href="http://www.vpser.net/">www.vpser.net</a> 回车后提示：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-2.png" alt="ico原来的样子"></p>
+<p>这里询问是否添加更多域名，直接再输入要绑定的域名，这里我们将 vpser.net 也绑上，多个域名空格隔开，如不需要绑其他域名就直接回车。：</p>
+<blockquote>
+<p> 下面需要设置网站的目录：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-3.png" alt="ico原来的样子"></p>
+<p>网站目录不存在的话会创建目录。也可以输入已经存在的目录或要设置的目录（注意如要输入必须是全路径即以/开头的完整路径！！！）。不输入直接回车的话，采用默认目录：/home/wwwroot/域名</p>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-4.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 伪静态可以使URL更加简洁也利于SEO，如程序支持并且需要设置伪静态的话，如启用输入 y ，不启用输入 n 回车(注意LNMPA或LAMP模式没有该选择项！)</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-5.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 默认已经有了discuz、discuzx、discuzx2(Discuz X二级目录)、wordpress、wp2(WordPress二级目录)、typecho、typecho2(Typecho二级目录)、sablog、emlog、dabr、phpwind、、dedecms、drupal、ecshop、shopex等常用的Nginx伪静态配置文件，可以直接输入名称进行使用，如果是二级目录则需要对应配置文件里的二级目录的名称。</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-6.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 这一步是设置日志，如启用日志输入 y ，不启用输入 n 回车</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-7.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 如果启用需要再输入要设置的日志的名称，默认日志目录为：/home/wwwlogs/ 默认文件名为：域名.log 回车确认后，会询问是否添加数据库和数据库用户。</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-8.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 如果需要添加数据库输入 y ，不添加数据库输入 n 回车。</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-9.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 如果要添加，需要先验证MySQL的root密码(注：输入密码将不显示)<br>提示Enter database name: 后输入要创建的数据库名称，要创建的数据库用户名会和数据库同名，回车确认。</p>
+</blockquote>
+<p>提示Please enter password for mysql user 数据库名: 后输入要设置的密码，回车确认。</p>
+<p>如果安装了FTP服务器会询问是否添加FTP账号</p>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-10.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 如果需要添加输入 y ，不添加输入 n 回车</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-11.png" alt="ico原来的样子"></p>
+<p>提示Enter ftp account name: 后输入要创建的FTP账号名称，回车确认。<br>提示Enter password for ftp account FTP账号: 后输入要设置的密码，回车确认。</p>
+<blockquote>
+<p> 接下来是1.4新增的添加SSL功能</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-12.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 如果需要添加输入 y ，不添加输入 n 回车。<br>选择了添加SSL会提示</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-13.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 添加成功会提示添加的域名、目录、伪静态、日志、数据库、FTP等相关信息，如下图：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-info.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> LNMPA或LAMP可以直接使用网站根目录下放.htaccess 来设置伪静态规则(具体规则可以去程序官网网站找google百度)，但是在LNMP下，需要使用Nginx伪静态规则。<br>伪静态可以随时添加或删除，如果添加完虚拟主机后忘记或没有添加伪静态，可以通过修改配置文件来添加伪静态。<br>虚拟主机配置文件在：/usr/local/nginx/conf/vhost/域名.conf<br>伪静态规则文件需要放在/usr/local/nginx/conf/ 下面。<br>编辑虚拟主机配置文件，可以使用vi、nano或winscp，后2个工具对新手来说简单些。<br>例如前面我们添加的虚拟主机，打开后前半部分配置会显示如下：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp-rewrite-modify.png" alt="ico原来的样子"></p>
+<hr>
+<blockquote>
+<p> 列出网站(虚拟主机) 执行：lnmp vhost list</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp-1.2-vhost-list.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 删除网站(虚拟主机) 执行：lnmp vhost del</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/lnmp-1.2-vhost-del.png" alt="ico原来的样子"></p>
+<p>删除网站会先列出当前已有虚拟主机，按提示输入要删除的虚拟主机域名 回车确认。</p>
+<blockquote>
+<p> LNMP默认网站配置文件：/usr/local/nginx/conf/nginx.conf</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>lnmp</tag>
+        <tag>linux</tag>
+        <tag>centos7.3</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker + redis 部署一主二从三哨兵</title>
     <url>/2021/12/06/docker-redis-%E9%83%A8%E7%BD%B2%E4%B8%80%E4%B8%BB%E4%BA%8C%E4%BB%8E%E4%B8%89%E5%93%A8%E5%85%B5/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/redis.png" alt="redis"></p>
@@ -2100,43 +2195,6 @@ class QuotesSpider(scrapy.Spider):
 ]]></content>
       <tags>
         <tag>redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>gin-vue-admin的安装及使用</title>
-    <url>/2021/10/14/gin-vue-admin%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/diary-5.jpg" alt="gin-vue-admin"></p>
-<a id="more"></a>
-
-<p>官网地址： <a href="https://www.gin-vue-admin.com/" target="_blank">[ gin-vue-admin官网 ]</a><br>gitHub： <a href="https://github.com/flipped-aurora/gin-vue-admin" target="_blank">[ gin-vue-admin ]</a></p>
-<ul>
-<li><p>克隆项目</p>
-<blockquote>
-<p>git clone <a href="mailto:&#103;&#105;&#116;&#x40;&#x67;&#x69;&#116;&#x68;&#117;&#98;&#x2e;&#99;&#111;&#109;">&#103;&#105;&#116;&#x40;&#x67;&#x69;&#116;&#x68;&#117;&#98;&#x2e;&#99;&#111;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
-</blockquote>
-</li>
-<li><p>进入项目gin目录</p>
-<blockquote>
-<p>cd gin-vue-admin/server<br>go run main.go</p>
-</blockquote>
-</li>
-<li><p>进入项目vue目录</p>
-<blockquote>
-<p>cd gin-vue-admin/web<br>npm i<br>npm run serve</p>
-</blockquote>
-</li>
-<li><p>打开web网站 开始初始化</p>
-</li>
-<li><p>代码生成器</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>golang</tag>
-        <tag>gin-vue-admin</tag>
-        <tag>vue</tag>
-        <tag>element-ui</tag>
-        <tag>gin</tag>
       </tags>
   </entry>
   <entry>
@@ -2185,6 +2243,43 @@ class QuotesSpider(scrapy.Spider):
 ]]></content>
       <tags>
         <tag>gRPC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>gin-vue-admin的安装及使用</title>
+    <url>/2021/10/14/gin-vue-admin%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/diary-5.jpg" alt="gin-vue-admin"></p>
+<a id="more"></a>
+
+<p>官网地址： <a href="https://www.gin-vue-admin.com/" target="_blank">[ gin-vue-admin官网 ]</a><br>gitHub： <a href="https://github.com/flipped-aurora/gin-vue-admin" target="_blank">[ gin-vue-admin ]</a></p>
+<ul>
+<li><p>克隆项目</p>
+<blockquote>
+<p>git clone <a href="mailto:&#103;&#x69;&#116;&#64;&#x67;&#x69;&#x74;&#x68;&#117;&#x62;&#x2e;&#x63;&#111;&#109;">&#103;&#x69;&#116;&#64;&#x67;&#x69;&#x74;&#x68;&#117;&#x62;&#x2e;&#x63;&#111;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
+</blockquote>
+</li>
+<li><p>进入项目gin目录</p>
+<blockquote>
+<p>cd gin-vue-admin/server<br>go run main.go</p>
+</blockquote>
+</li>
+<li><p>进入项目vue目录</p>
+<blockquote>
+<p>cd gin-vue-admin/web<br>npm i<br>npm run serve</p>
+</blockquote>
+</li>
+<li><p>打开web网站 开始初始化</p>
+</li>
+<li><p>代码生成器</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>golang</tag>
+        <tag>gin-vue-admin</tag>
+        <tag>vue</tag>
+        <tag>element-ui</tag>
+        <tag>gin</tag>
       </tags>
   </entry>
   <entry>
@@ -2407,101 +2502,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>centos7下lnmp 添加、删除虚拟主机</title>
-    <url>/2017/09/15/centos7%E4%B8%8Blnmp-%E6%B7%BB%E5%8A%A0%E3%80%81%E5%88%A0%E9%99%A4%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>添加网站(虚拟主机</strong></p>
-<blockquote>
-<p> 执行：lnmp vhost add 出现如下界面：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-1.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 这里要输入要添加网站的域名，我们已添加<a href="http://www.vpser.net域名为例,如上图提示后输入域名/">www.vpser.net域名为例，如上图提示后输入域名</a> <a href="http://www.vpser.net/">www.vpser.net</a> 回车后提示：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-2.png" alt="ico原来的样子"></p>
-<p>这里询问是否添加更多域名，直接再输入要绑定的域名，这里我们将 vpser.net 也绑上，多个域名空格隔开，如不需要绑其他域名就直接回车。：</p>
-<blockquote>
-<p> 下面需要设置网站的目录：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-3.png" alt="ico原来的样子"></p>
-<p>网站目录不存在的话会创建目录。也可以输入已经存在的目录或要设置的目录（注意如要输入必须是全路径即以/开头的完整路径！！！）。不输入直接回车的话，采用默认目录：/home/wwwroot/域名</p>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-4.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 伪静态可以使URL更加简洁也利于SEO，如程序支持并且需要设置伪静态的话，如启用输入 y ，不启用输入 n 回车(注意LNMPA或LAMP模式没有该选择项！)</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-5.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 默认已经有了discuz、discuzx、discuzx2(Discuz X二级目录)、wordpress、wp2(WordPress二级目录)、typecho、typecho2(Typecho二级目录)、sablog、emlog、dabr、phpwind、、dedecms、drupal、ecshop、shopex等常用的Nginx伪静态配置文件，可以直接输入名称进行使用，如果是二级目录则需要对应配置文件里的二级目录的名称。</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-6.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 这一步是设置日志，如启用日志输入 y ，不启用输入 n 回车</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-7.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 如果启用需要再输入要设置的日志的名称，默认日志目录为：/home/wwwlogs/ 默认文件名为：域名.log 回车确认后，会询问是否添加数据库和数据库用户。</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-8.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 如果需要添加数据库输入 y ，不添加数据库输入 n 回车。</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-9.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 如果要添加，需要先验证MySQL的root密码(注：输入密码将不显示)<br>提示Enter database name: 后输入要创建的数据库名称，要创建的数据库用户名会和数据库同名，回车确认。</p>
-</blockquote>
-<p>提示Please enter password for mysql user 数据库名: 后输入要设置的密码，回车确认。</p>
-<p>如果安装了FTP服务器会询问是否添加FTP账号</p>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-10.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 如果需要添加输入 y ，不添加输入 n 回车</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-11.png" alt="ico原来的样子"></p>
-<p>提示Enter ftp account name: 后输入要创建的FTP账号名称，回车确认。<br>提示Enter password for ftp account FTP账号: 后输入要设置的密码，回车确认。</p>
-<blockquote>
-<p> 接下来是1.4新增的添加SSL功能</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-12.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 如果需要添加输入 y ，不添加输入 n 回车。<br>选择了添加SSL会提示</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-add-13.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 添加成功会提示添加的域名、目录、伪静态、日志、数据库、FTP等相关信息，如下图：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp1.4-vhost-info.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> LNMPA或LAMP可以直接使用网站根目录下放.htaccess 来设置伪静态规则(具体规则可以去程序官网网站找google百度)，但是在LNMP下，需要使用Nginx伪静态规则。<br>伪静态可以随时添加或删除，如果添加完虚拟主机后忘记或没有添加伪静态，可以通过修改配置文件来添加伪静态。<br>虚拟主机配置文件在：/usr/local/nginx/conf/vhost/域名.conf<br>伪静态规则文件需要放在/usr/local/nginx/conf/ 下面。<br>编辑虚拟主机配置文件，可以使用vi、nano或winscp，后2个工具对新手来说简单些。<br>例如前面我们添加的虚拟主机，打开后前半部分配置会显示如下：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp-rewrite-modify.png" alt="ico原来的样子"></p>
-<hr>
-<blockquote>
-<p> 列出网站(虚拟主机) 执行：lnmp vhost list</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp-1.2-vhost-list.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 删除网站(虚拟主机) 执行：lnmp vhost del</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/lnmp-1.2-vhost-del.png" alt="ico原来的样子"></p>
-<p>删除网站会先列出当前已有虚拟主机，按提示输入要删除的虚拟主机域名 回车确认。</p>
-<blockquote>
-<p> LNMP默认网站配置文件：/usr/local/nginx/conf/nginx.conf</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>linux</tag>
-        <tag>centos7.3</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>install program</title>
     <url>/2017/11/02/install-program/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2560,6 +2560,29 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>laravel-admin 实现字段排序</title>
+    <url>/2017/09/21/laravel-admin-%E5%AE%9E%E7%8E%B0%E5%AD%97%E6%AE%B5%E6%8E%92%E5%BA%8F/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> 排序代码</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">protected function grid()</span><br><span class="line">&#123;</span><br><span class="line">    return Admin::grid(Member::class, function (Grid $grid) &#123;</span><br><span class="line"></span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;id&#39;, &#39;desc&#39;);</span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;balance&#39;, &#39;desc&#39;);</span><br><span class="line"></span><br><span class="line">        $grid-&gt;id(&#39;ID&#39;)-&gt;sortable();</span><br><span class="line"></span><br><span class="line">        $grid-&gt;balance(&#39;余额&#39;)-&gt;sortable();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>laravel-admin</tag>
+        <tag>字段排序</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>laravel 修改器</title>
     <url>/2017/09/14/laravel-%E4%BF%AE%E6%94%B9%E5%99%A8/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2587,29 +2610,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>laravel5.x</tag>
         <tag>修改器</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>laravel-admin 实现字段排序</title>
-    <url>/2017/09/21/laravel-admin-%E5%AE%9E%E7%8E%B0%E5%AD%97%E6%AE%B5%E6%8E%92%E5%BA%8F/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> 排序代码</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">protected function grid()</span><br><span class="line">&#123;</span><br><span class="line">    return Admin::grid(Member::class, function (Grid $grid) &#123;</span><br><span class="line"></span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;id&#39;, &#39;desc&#39;);</span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;balance&#39;, &#39;desc&#39;);</span><br><span class="line"></span><br><span class="line">        $grid-&gt;id(&#39;ID&#39;)-&gt;sortable();</span><br><span class="line"></span><br><span class="line">        $grid-&gt;balance(&#39;余额&#39;)-&gt;sortable();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>laravel-admin</tag>
-        <tag>字段排序</tag>
       </tags>
   </entry>
   <entry>
@@ -2646,44 +2646,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>laravel5.3</tag>
         <tag>queue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>laravel 微信公众号项目修改兼容web端</title>
-    <url>/2017/08/30/laravel-%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E9%A1%B9%E7%9B%AE%E4%BF%AE%E6%94%B9%E5%85%BC%E5%AE%B9web%E7%AB%AF/</url>
-    <content><![CDATA[<blockquote>
-<p>1、新增中间件及注册中间件</p>
-</blockquote>
-<a id="more"></a>
-
-
-<blockquote>
-<blockquote>
-<p>使用php artisan 命令<br>命令：php artisan make:middleware BeforeCheckMiddleware</p>
-</blockquote>
-</blockquote>
-<p><img src="/assets/blogImg/webImg/1.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>2、新新增中间件及注册中间件（一）</p>
-</blockquote>
-<p><img src="/assets/blogImg/webImg/2.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>3、新增中间件及注册中间件（二）</p>
-</blockquote>
-<p><img src="/assets/blogImg/webImg/3.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>4、配置config/wechat.php (可无)</p>
-</blockquote>
-<p><img src="/assets/blogImg/webImg/4.PNG" alt="ico原来的样子"></p>
-<blockquote>
-<p>5、其他修改及改动文件汇总</p>
-</blockquote>
-<p><img src="/assets/blogImg/webImg/5.png" alt="ico原来的样子"></p>
-<p><strong>ok,微信端现在访问已经兼容web端,enjoy it!!!</strong></p>
-]]></content>
-      <tags>
-        <tag>laravel</tag>
-        <tag>web-wechat</tag>
       </tags>
   </entry>
   <entry>
@@ -2749,6 +2711,70 @@ class QuotesSpider(scrapy.Spider):
 ]]></content>
       <tags>
         <tag>laravel5.5</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux centos7.3 lnmp一键安装包集成</title>
+    <url>/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E9%9B%86%E6%88%90/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>一、下载并安装LNMP一键安装包</strong></p>
+<p>安装LNMP稳定版</p>
+<blockquote>
+<p> wget -c <a href="http://soft.vpser.net/lnmp/lnmp1.4.tar.gz">http://soft.vpser.net/lnmp/lnmp1.4.tar.gz</a> &amp;&amp; tar zxf lnmp1.4.tar.gz &amp;&amp; cd lnmp1.4 &amp;&amp; ./install.sh lnmp：</p>
+</blockquote>
+<p>默认安装lnmp可不写，如需要安装LNMPA或LAMP，将./install.sh 后面的参数替换为lnmpa或lamp即可。如需更改网站和数据库目录先修改安装包目录下的 lnmp.conf 文件。</p>
+<blockquote>
+<p> 运行上述LNMP安装命令后，会出现如下提示：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/1.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 输入对应MySQL或MariaDB版本前面的序号，回车进入下一步.：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/2.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 需要设置MySQL的root密码（不输入直接回车将会设置为root）如果输入有错误需要删除时，可以按住Ctrl再按Backspace键进行删除(个别情况下是只需要Backspace键)。输入后回车进入下一步，如下图所示：：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/3.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 询问是否需要启用MySQL InnoDB，InnoDB引擎默认为开启，一般建议开启，直接回车或输入 y ，如果确定确实不需要该引擎可以输入 n，输入完成，回车进入下一步。注意：选择PHP7等高版本时需要自行确认是否与自己的程序兼容。</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/4.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 输入要选择的PHP版本的序号，回车进入下一步，选择是否安装内存优化：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/5.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 再选择Apache版本</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/6.png" alt="ico原来的样子"></p>
+<p>按提示输入对应版本前面的数字序号，回车。</p>
+<p>提示”Press any key to install…or Press Ctrl+c to cancel”后，按回车键确认开始安装。<br>LNMP脚本就会自动安装编译Nginx、MySQL、PHP、phpMyAdmin、Zend Optimizer这几个软件。</p>
+<p>安装时间可能会几十分钟到几个小时不等，主要是机器的配置网速等原因会造成影响。</p>
+<blockquote>
+<p> 安装完成  如果显示Nginx: OK，MySQL: OK，PHP: OK</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/7.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 并且Nginx、MySQL、PHP都是running，80和3306端口都存在，并提示安装使用的时间及Install lnmp V1.4 completed! enjoy it.的话，说明已经安装成功</p>
+</blockquote>
+<p>安装失败</p>
+<blockquote>
+<p> 安装失败</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/8.png" alt="ico原来的样子"></p>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>lnmp</tag>
+        <tag>linux</tag>
+        <tag>centos7.3</tag>
       </tags>
   </entry>
   <entry>
@@ -2824,70 +2850,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>linux centos7.3 lnmp一键安装包集成</title>
-    <url>/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E9%9B%86%E6%88%90/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>一、下载并安装LNMP一键安装包</strong></p>
-<p>安装LNMP稳定版</p>
-<blockquote>
-<p> wget -c <a href="http://soft.vpser.net/lnmp/lnmp1.4.tar.gz">http://soft.vpser.net/lnmp/lnmp1.4.tar.gz</a> &amp;&amp; tar zxf lnmp1.4.tar.gz &amp;&amp; cd lnmp1.4 &amp;&amp; ./install.sh lnmp：</p>
-</blockquote>
-<p>默认安装lnmp可不写，如需要安装LNMPA或LAMP，将./install.sh 后面的参数替换为lnmpa或lamp即可。如需更改网站和数据库目录先修改安装包目录下的 lnmp.conf 文件。</p>
-<blockquote>
-<p> 运行上述LNMP安装命令后，会出现如下提示：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/1.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 输入对应MySQL或MariaDB版本前面的序号，回车进入下一步.：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/2.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 需要设置MySQL的root密码（不输入直接回车将会设置为root）如果输入有错误需要删除时，可以按住Ctrl再按Backspace键进行删除(个别情况下是只需要Backspace键)。输入后回车进入下一步，如下图所示：：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/3.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 询问是否需要启用MySQL InnoDB，InnoDB引擎默认为开启，一般建议开启，直接回车或输入 y ，如果确定确实不需要该引擎可以输入 n，输入完成，回车进入下一步。注意：选择PHP7等高版本时需要自行确认是否与自己的程序兼容。</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/4.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 输入要选择的PHP版本的序号，回车进入下一步，选择是否安装内存优化：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/5.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 再选择Apache版本</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/6.png" alt="ico原来的样子"></p>
-<p>按提示输入对应版本前面的数字序号，回车。</p>
-<p>提示”Press any key to install…or Press Ctrl+c to cancel”后，按回车键确认开始安装。<br>LNMP脚本就会自动安装编译Nginx、MySQL、PHP、phpMyAdmin、Zend Optimizer这几个软件。</p>
-<p>安装时间可能会几十分钟到几个小时不等，主要是机器的配置网速等原因会造成影响。</p>
-<blockquote>
-<p> 安装完成  如果显示Nginx: OK，MySQL: OK，PHP: OK</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/7.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 并且Nginx、MySQL、PHP都是running，80和3306端口都存在，并提示安装使用的时间及Install lnmp V1.4 completed! enjoy it.的话，说明已经安装成功</p>
-</blockquote>
-<p>安装失败</p>
-<blockquote>
-<p> 安装失败</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/8.png" alt="ico原来的样子"></p>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>linux</tag>
-        <tag>centos7.3</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>linux下安装redis及认证密码</title>
     <url>/2018/03/06/linux%E4%B8%8B%E5%AE%89%E8%A3%85redis%E5%8F%8A%E8%AE%A4%E8%AF%81%E5%AF%86%E7%A0%81/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2934,6 +2896,57 @@ class QuotesSpider(scrapy.Spider):
 <p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
 </blockquote>
 ]]></content>
+  </entry>
+  <entry>
+    <title>laravel 微信公众号项目修改兼容web端</title>
+    <url>/2017/08/30/laravel-%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E9%A1%B9%E7%9B%AE%E4%BF%AE%E6%94%B9%E5%85%BC%E5%AE%B9web%E7%AB%AF/</url>
+    <content><![CDATA[<blockquote>
+<p>1、新增中间件及注册中间件</p>
+</blockquote>
+<a id="more"></a>
+
+
+<blockquote>
+<blockquote>
+<p>使用php artisan 命令<br>命令：php artisan make:middleware BeforeCheckMiddleware</p>
+</blockquote>
+</blockquote>
+<p><img src="/assets/blogImg/webImg/1.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>2、新新增中间件及注册中间件（一）</p>
+</blockquote>
+<p><img src="/assets/blogImg/webImg/2.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>3、新增中间件及注册中间件（二）</p>
+</blockquote>
+<p><img src="/assets/blogImg/webImg/3.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>4、配置config/wechat.php (可无)</p>
+</blockquote>
+<p><img src="/assets/blogImg/webImg/4.PNG" alt="ico原来的样子"></p>
+<blockquote>
+<p>5、其他修改及改动文件汇总</p>
+</blockquote>
+<p><img src="/assets/blogImg/webImg/5.png" alt="ico原来的样子"></p>
+<p><strong>ok,微信端现在访问已经兼容web端,enjoy it!!!</strong></p>
+]]></content>
+      <tags>
+        <tag>laravel</tag>
+        <tag>web-wechat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql自定义重置数据表ID值</title>
+    <url>/2018/10/30/mysql%E8%87%AA%E5%AE%9A%E4%B9%89%E9%87%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E8%A1%A8ID%E5%80%BC/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> alter table 表名 AUTO_INCREMENT=自定义ID;</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
   </entry>
   <entry>
     <title>lnmp集成环境下部署laravel5.x项目</title>
@@ -2992,19 +3005,6 @@ class QuotesSpider(scrapy.Spider):
         <tag>lnmp</tag>
         <tag>centos7.3</tag>
         <tag>laravel</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mysql自定义重置数据表ID值</title>
-    <url>/2018/10/30/mysql%E8%87%AA%E5%AE%9A%E4%B9%89%E9%87%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E8%A1%A8ID%E5%80%BC/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> alter table 表名 AUTO_INCREMENT=自定义ID;</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -3262,7 +3262,7 @@ class QuotesSpider(scrapy.Spider):
 </blockquote>
 <p>二、使用npm下载 web框架express模块</p>
 <blockquote>
-<p>npm install --save <a href="mailto:&#x65;&#120;&#x70;&#114;&#101;&#x73;&#x73;&#x40;&#x34;&#x2e;&#x31;&#x35;&#x2e;&#x32;">&#x65;&#120;&#x70;&#114;&#101;&#x73;&#x73;&#x40;&#x34;&#x2e;&#x31;&#x35;&#x2e;&#x32;</a></p>
+<p>npm install --save <a href="mailto:&#x65;&#x78;&#112;&#114;&#101;&#x73;&#x73;&#64;&#x34;&#46;&#x31;&#x35;&#46;&#50;">&#x65;&#x78;&#112;&#114;&#101;&#x73;&#x73;&#64;&#x34;&#46;&#x31;&#x35;&#46;&#50;</a></p>
 </blockquote>
 <p>三、使用npm下载socket.io模块</p>
 <blockquote>
