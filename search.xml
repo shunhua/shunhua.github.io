@@ -73,6 +73,35 @@
       </tags>
   </entry>
   <entry>
+    <title>Alipay 开放平台支付</title>
+    <url>/2018/10/26/Alipay-%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E6%94%AF%E4%BB%98/</url>
+    <content><![CDATA[<a id="more"></a>
+
+
+<p>参考文档 <a href="https://docs.open.alipay.com/291/" target="_blank">[ 开放平台文档中心 ]</a></p>
+<blockquote>
+<p>生成RSA密钥</p>
+</blockquote>
+<p>a. 应用公钥2048<br>b. 应用私钥2048</p>
+<blockquote>
+<p>上传应用公钥并获取支付宝公钥</p>
+</blockquote>
+<p>支付宝公钥应用于开发中</p>
+<blockquote>
+<p>使用应用私钥生成请求签名</p>
+</blockquote>
+<p>应用私钥应用于开发中</p>
+<blockquote>
+<p>使用支付宝公钥验签</p>
+</blockquote>
+<p>支付宝公钥应用于开发中</p>
+]]></content>
+      <tags>
+        <tag>Alipay</tag>
+        <tag>开放平台</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CentOS 7 Git服务器搭建及配置公钥</title>
     <url>/2018/04/08/CentOS-7-Git%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E5%85%AC%E9%92%A5/</url>
     <content><![CDATA[<a id="more"></a>
@@ -96,7 +125,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#x40;&#113;&#x71;&#x2e;&#x63;&#111;&#109;">&#x78;&#x40;&#113;&#x71;&#x2e;&#x63;&#111;&#109;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#x40;&#x71;&#113;&#x2e;&#x63;&#111;&#109;">&#x78;&#x40;&#x71;&#113;&#x2e;&#x63;&#111;&#109;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -107,7 +136,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#64;&#x71;&#113;&#46;&#x63;&#x6f;&#109;">&#x62;&#64;&#x71;&#113;&#46;&#x63;&#x6f;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#98;&#x40;&#x71;&#x71;&#46;&#x63;&#x6f;&#x6d;">&#98;&#x40;&#x71;&#x71;&#46;&#x63;&#x6f;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -142,35 +171,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Alipay 开放平台支付</title>
-    <url>/2018/10/26/Alipay-%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E6%94%AF%E4%BB%98/</url>
-    <content><![CDATA[<a id="more"></a>
-
-
-<p>参考文档 <a href="https://docs.open.alipay.com/291/" target="_blank">[ 开放平台文档中心 ]</a></p>
-<blockquote>
-<p>生成RSA密钥</p>
-</blockquote>
-<p>a. 应用公钥2048<br>b. 应用私钥2048</p>
-<blockquote>
-<p>上传应用公钥并获取支付宝公钥</p>
-</blockquote>
-<p>支付宝公钥应用于开发中</p>
-<blockquote>
-<p>使用应用私钥生成请求签名</p>
-</blockquote>
-<p>应用私钥应用于开发中</p>
-<blockquote>
-<p>使用支付宝公钥验签</p>
-</blockquote>
-<p>支付宝公钥应用于开发中</p>
-]]></content>
-      <tags>
-        <tag>Alipay</tag>
-        <tag>开放平台</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CentOS 7 安装 Nginx 1.11.x</title>
     <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/</url>
     <content><![CDATA[<p><strong>Centos下安装Nginx</strong> </p>
@@ -201,53 +201,6 @@
       <tags>
         <tag>Centos</tag>
         <tag>Nginx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CentOS 7 安装MySQL5.7</title>
-    <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85MySQL5-7/</url>
-    <content><![CDATA[<p><strong>Centos下安装MySQL</strong> </p>
-<a id="more"></a>
-<p>官方mysql.com 支持我们使用yum的方式安装mysql 5.7最新版。所以大家根本无需手工编译安装（除非你需要）。CentOS7的yum源中默认好像是没有mysql的。为了解决这个问题，我们要先下载mysql的repo源。<br>一、下载mysql的repo源</p>
-<blockquote>
-<p>wget <a href="http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm">http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm</a></p>
-</blockquote>
-<p>二、 安装mysql57-community-release-el7-9.noarch.rpm包</p>
-<blockquote>
-<p>rpm -ivh mysql57-community-release-el7-9.noarch.rpm</p>
-</blockquote>
-<p>三、 安装mysql （下载需要一段时间)</p>
-<blockquote>
-<p>yum install mysql-community-server</p>
-</blockquote>
-<p>四、启动mysql</p>
-<blockquote>
-<p>systemctl start mysqld<br>systemctl enable mysqld.service</p>
-</blockquote>
-<p>五、第一次启动后，mysql5.7 会生成一个随机root密码 （MySQL 5.7.6以上）</p>
-<blockquote>
-<p>grep ‘temporary passwor’ /var/log/mysqld.log</p>
-</blockquote>
-<p>修改root密码</p>
-<blockquote>
-<p>ALTER USER USER() IDENTIFIED BY ‘123456’;</p>
-</blockquote>
-<p>外网访问</p>
-<blockquote>
-<p>mysql -u root -p  # 首次登录会修改密码<br>GRANT ALL PRIVILEGES ON <em>.</em> TO ‘root’@’%’ IDENTIFIED BY ‘your_root_password’ WITH GRANT OPTION;</p>
-</blockquote>
-<p>删除mysql</p>
-<blockquote>
-<p>rpm -qa|grep mysql；<br>yum remove packages</p>
-</blockquote>
-<p>端口查看</p>
-<blockquote>
-<p>ps -aux | grep mysql<br>netstat -apn | grep 3306<br>netstat -apn</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Centos</tag>
-        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
@@ -325,6 +278,53 @@
       <tags>
         <tag>CentOS 7</tag>
         <tag>svn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS 7 安装MySQL5.7</title>
+    <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85MySQL5-7/</url>
+    <content><![CDATA[<p><strong>Centos下安装MySQL</strong> </p>
+<a id="more"></a>
+<p>官方mysql.com 支持我们使用yum的方式安装mysql 5.7最新版。所以大家根本无需手工编译安装（除非你需要）。CentOS7的yum源中默认好像是没有mysql的。为了解决这个问题，我们要先下载mysql的repo源。<br>一、下载mysql的repo源</p>
+<blockquote>
+<p>wget <a href="http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm">http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm</a></p>
+</blockquote>
+<p>二、 安装mysql57-community-release-el7-9.noarch.rpm包</p>
+<blockquote>
+<p>rpm -ivh mysql57-community-release-el7-9.noarch.rpm</p>
+</blockquote>
+<p>三、 安装mysql （下载需要一段时间)</p>
+<blockquote>
+<p>yum install mysql-community-server</p>
+</blockquote>
+<p>四、启动mysql</p>
+<blockquote>
+<p>systemctl start mysqld<br>systemctl enable mysqld.service</p>
+</blockquote>
+<p>五、第一次启动后，mysql5.7 会生成一个随机root密码 （MySQL 5.7.6以上）</p>
+<blockquote>
+<p>grep ‘temporary passwor’ /var/log/mysqld.log</p>
+</blockquote>
+<p>修改root密码</p>
+<blockquote>
+<p>ALTER USER USER() IDENTIFIED BY ‘123456’;</p>
+</blockquote>
+<p>外网访问</p>
+<blockquote>
+<p>mysql -u root -p  # 首次登录会修改密码<br>GRANT ALL PRIVILEGES ON <em>.</em> TO ‘root’@’%’ IDENTIFIED BY ‘your_root_password’ WITH GRANT OPTION;</p>
+</blockquote>
+<p>删除mysql</p>
+<blockquote>
+<p>rpm -qa|grep mysql；<br>yum remove packages</p>
+</blockquote>
+<p>端口查看</p>
+<blockquote>
+<p>ps -aux | grep mysql<br>netstat -apn | grep 3306<br>netstat -apn</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Centos</tag>
+        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
@@ -1041,6 +1041,50 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Laravel 和 Vue 的项目搭建</title>
+    <url>/2018/11/02/Laravel-%E5%92%8C-Vue-%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>一、Laravel创建项目</strong> </p>
+<blockquote>
+<p>composer create-project –prefer-dist laravel/laravel laravel-vue</p>
+</blockquote>
+<p><strong>二、扩展包</strong> </p>
+<blockquote>
+<p>npm install<br>npm install vue-router iview</p>
+</blockquote>
+<p><strong>三、前端结构搭建</strong><br>vue前端的文件结构在 /recources/js 目录[laravel5.7]，vue能够渲染主要是两个操作</p>
+<ul>
+<li>vue 挂载到页面的节点中</li>
+<li>vue-router 处理路由，渲染对应的组件</li>
+</ul>
+<p>code流程  </p>
+<ol>
+<li><p>创建 web 路由<br>在 /routes/web.php 中新建一个访问我们挂载着vue页面的路由。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Route::get(&#39;&#x2F;&#39;, function () &#123;</span><br><span class="line">    return view(&#39;welcome&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑welcome.blade.php<br>在 resource/views 新建 welcome.blade.php,代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0, maximum-scale&#x3D;1.0, minimum-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;csrf-token&quot; content&#x3D;&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</span><br><span class="line">  &lt;title&gt;&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;&#123;&#123; mix(&#39;css&#x2F;app.css&#39;) &#125;&#125;&quot;&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body ontouchstart&gt;</span><br><span class="line">  &lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#123;&#123; mix(&#39;js&#x2F;app.js&#39;) &#125;&#125;&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改 /recources/js/app.js</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">require(&#39;.&#x2F;bootstrap&#39;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 导入扩展包</span><br><span class="line">window.Vue &#x3D; require(&#39;vue&#39;);</span><br><span class="line"></span><br><span class="line">import App from &#39;.&#x2F;components&#x2F;app.vue&#39;</span><br><span class="line">import VueRouter from &#39;vue-router&#39;;</span><br><span class="line">import iView from &#39;iview&#39;;</span><br><span class="line">import &#39;iview&#x2F;dist&#x2F;styles&#x2F;iview.css&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 导入vue</span><br><span class="line">Vue.use(iView);</span><br><span class="line">Vue.use(VueRouter);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 路由配置</span><br><span class="line">const RouterConfig &#x3D; &#123;</span><br><span class="line">    routes: [</span><br><span class="line">        &#x2F;&#x2F; ExampleComponent laravel默认的示例组件</span><br><span class="line">        &#123; path: &#39;&#x2F;&#39;, component: require(&#39;.&#x2F;components&#x2F;ExampleComponent.vue&#39;) &#125;,</span><br><span class="line">        &#123; path: &#39;&#x2F;bsh&#39;, component: require(&#39;.&#x2F;components&#x2F;bsh.vue&#39;) &#125;,</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br><span class="line">const router &#x3D; new VueRouter(RouterConfig);</span><br><span class="line"></span><br><span class="line">const app &#x3D; new Vue(&#123;</span><br><span class="line">    el: &#39;#app&#39;,</span><br><span class="line">    router: router,</span><br><span class="line">    render: h &#x3D;&gt; h(App)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>建立 Layout<br>在 /recources/js/components/ 新建 app.vue, 将 iview 的 layout 代码搬过来：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;style scoped&gt;</span><br><span class="line">  .layout-con&#123;</span><br><span class="line">    height: 100%;</span><br><span class="line">    width: 100%;</span><br><span class="line">  &#125;</span><br><span class="line">  .menu-item span&#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    width: 69px;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    vertical-align: bottom;</span><br><span class="line">    transition: width .2s ease .2s;</span><br><span class="line">  &#125;</span><br><span class="line">  .menu-item i&#123;</span><br><span class="line">    transform: translateX(0px);</span><br><span class="line">    transition: font-size .2s ease, transform .2s ease;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">    font-size: 16px;</span><br><span class="line">  &#125;</span><br><span class="line">  .collapsed-menu span&#123;</span><br><span class="line">    width: 0px;</span><br><span class="line">    transition: width .2s ease;</span><br><span class="line">  &#125;</span><br><span class="line">  .collapsed-menu i&#123;</span><br><span class="line">    transform: translateX(5px);</span><br><span class="line">    transition: font-size .2s ease .2s, transform .2s ease .2s;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">    font-size: 22px;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;layout&quot;&gt;</span><br><span class="line">    &lt;Layout :style&#x3D;&quot;&#123;minHeight: &#39;100vh&#39;&#125;&quot;&gt;</span><br><span class="line">      &lt;Sider collapsible :collapsed-width&#x3D;&quot;78&quot; v-model&#x3D;&quot;isCollapsed&quot;&gt;</span><br><span class="line">        &lt;Menu active-name&#x3D;&quot;1-2&quot; theme&#x3D;&quot;dark&quot; width&#x3D;&quot;auto&quot; :class&#x3D;&quot;menuitemClasses&quot;&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-1&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;ios-navigate&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 1&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-2&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;search&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 2&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-3&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;settings&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 3&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">        &lt;&#x2F;Menu&gt;</span><br><span class="line">      &lt;&#x2F;Sider&gt;</span><br><span class="line">      &lt;Layout&gt;</span><br><span class="line">        &lt;Header :style&#x3D;&quot;&#123;background: &#39;#fff&#39;, boxShadow: &#39;0 2px 3px 2px rgba(0,0,0,.1)&#39;&#125;&quot;&gt;&lt;&#x2F;Header&gt;</span><br><span class="line">        &lt;Content :style&#x3D;&quot;&#123;padding: &#39;0 16px 16px&#39;&#125;&quot;&gt;</span><br><span class="line">          &lt;Breadcrumb :style&#x3D;&quot;&#123;margin: &#39;16px 0&#39;&#125;&quot;&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Home&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Components&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Layout&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">          &lt;&#x2F;Breadcrumb&gt;</span><br><span class="line">          &lt;Card&gt;</span><br><span class="line">            &lt;div style&#x3D;&quot;height: 600px&quot;&gt;&lt;router-view&gt;&lt;&#x2F;router-view&gt;&lt;&#x2F;div&gt;</span><br><span class="line">          &lt;&#x2F;Card&gt;</span><br><span class="line">        &lt;&#x2F;Content&gt;</span><br><span class="line">      &lt;&#x2F;Layout&gt;</span><br><span class="line">    &lt;&#x2F;Layout&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">    data () &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        isCollapsed: false</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line">      menuitemClasses: function () &#123;</span><br><span class="line">        return [</span><br><span class="line">          &#39;menu-item&#39;,</span><br><span class="line">          this.isCollapsed ? &#39;collapsed-menu&#39; : &#39;&#39;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>添加组件<br>路由访问的组件会渲染到 app.vue中的[router-view]<br>然后修改组件 /recources/js/components/bsh.vue 的内容：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;Tabs&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;macOS&quot; icon&#x3D;&quot;social-apple&quot;&gt;标签一的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;Windows&quot; icon&#x3D;&quot;social-windows&quot;&gt;标签二的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;Linux&quot; icon&#x3D;&quot;social-tux&quot;&gt;标签三的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">    &lt;&#x2F;Tabs&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>编译运行<br>常用的编译命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 本地环境编译</span><br><span class="line">npm run dev</span><br><span class="line"></span><br><span class="line"># 本地环境编译 + 监控文件修改</span><br><span class="line">npm run watch</span><br><span class="line"></span><br><span class="line"># 生产环境编译</span><br><span class="line">npm run prod</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>Laravel</tag>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux下安装node.js</title>
     <url>/2018/03/21/Linux%E4%B8%8B%E5%AE%89%E8%A3%85node-js/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1092,50 +1136,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       <tags>
         <tag>Linux</tag>
         <tag>node.js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Laravel 和 Vue 的项目搭建</title>
-    <url>/2018/11/02/Laravel-%E5%92%8C-Vue-%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>一、Laravel创建项目</strong> </p>
-<blockquote>
-<p>composer create-project –prefer-dist laravel/laravel laravel-vue</p>
-</blockquote>
-<p><strong>二、扩展包</strong> </p>
-<blockquote>
-<p>npm install<br>npm install vue-router iview</p>
-</blockquote>
-<p><strong>三、前端结构搭建</strong><br>vue前端的文件结构在 /recources/js 目录[laravel5.7]，vue能够渲染主要是两个操作</p>
-<ul>
-<li>vue 挂载到页面的节点中</li>
-<li>vue-router 处理路由，渲染对应的组件</li>
-</ul>
-<p>code流程  </p>
-<ol>
-<li><p>创建 web 路由<br>在 /routes/web.php 中新建一个访问我们挂载着vue页面的路由。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Route::get(&#39;&#x2F;&#39;, function () &#123;</span><br><span class="line">    return view(&#39;welcome&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编辑welcome.blade.php<br>在 resource/views 新建 welcome.blade.php,代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0, maximum-scale&#x3D;1.0, minimum-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;csrf-token&quot; content&#x3D;&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</span><br><span class="line">  &lt;title&gt;&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;&#123;&#123; mix(&#39;css&#x2F;app.css&#39;) &#125;&#125;&quot;&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body ontouchstart&gt;</span><br><span class="line">  &lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#123;&#123; mix(&#39;js&#x2F;app.js&#39;) &#125;&#125;&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改 /recources/js/app.js</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">require(&#39;.&#x2F;bootstrap&#39;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 导入扩展包</span><br><span class="line">window.Vue &#x3D; require(&#39;vue&#39;);</span><br><span class="line"></span><br><span class="line">import App from &#39;.&#x2F;components&#x2F;app.vue&#39;</span><br><span class="line">import VueRouter from &#39;vue-router&#39;;</span><br><span class="line">import iView from &#39;iview&#39;;</span><br><span class="line">import &#39;iview&#x2F;dist&#x2F;styles&#x2F;iview.css&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 导入vue</span><br><span class="line">Vue.use(iView);</span><br><span class="line">Vue.use(VueRouter);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 路由配置</span><br><span class="line">const RouterConfig &#x3D; &#123;</span><br><span class="line">    routes: [</span><br><span class="line">        &#x2F;&#x2F; ExampleComponent laravel默认的示例组件</span><br><span class="line">        &#123; path: &#39;&#x2F;&#39;, component: require(&#39;.&#x2F;components&#x2F;ExampleComponent.vue&#39;) &#125;,</span><br><span class="line">        &#123; path: &#39;&#x2F;bsh&#39;, component: require(&#39;.&#x2F;components&#x2F;bsh.vue&#39;) &#125;,</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br><span class="line">const router &#x3D; new VueRouter(RouterConfig);</span><br><span class="line"></span><br><span class="line">const app &#x3D; new Vue(&#123;</span><br><span class="line">    el: &#39;#app&#39;,</span><br><span class="line">    router: router,</span><br><span class="line">    render: h &#x3D;&gt; h(App)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>建立 Layout<br>在 /recources/js/components/ 新建 app.vue, 将 iview 的 layout 代码搬过来：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;style scoped&gt;</span><br><span class="line">  .layout-con&#123;</span><br><span class="line">    height: 100%;</span><br><span class="line">    width: 100%;</span><br><span class="line">  &#125;</span><br><span class="line">  .menu-item span&#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    width: 69px;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    vertical-align: bottom;</span><br><span class="line">    transition: width .2s ease .2s;</span><br><span class="line">  &#125;</span><br><span class="line">  .menu-item i&#123;</span><br><span class="line">    transform: translateX(0px);</span><br><span class="line">    transition: font-size .2s ease, transform .2s ease;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">    font-size: 16px;</span><br><span class="line">  &#125;</span><br><span class="line">  .collapsed-menu span&#123;</span><br><span class="line">    width: 0px;</span><br><span class="line">    transition: width .2s ease;</span><br><span class="line">  &#125;</span><br><span class="line">  .collapsed-menu i&#123;</span><br><span class="line">    transform: translateX(5px);</span><br><span class="line">    transition: font-size .2s ease .2s, transform .2s ease .2s;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">    font-size: 22px;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;layout&quot;&gt;</span><br><span class="line">    &lt;Layout :style&#x3D;&quot;&#123;minHeight: &#39;100vh&#39;&#125;&quot;&gt;</span><br><span class="line">      &lt;Sider collapsible :collapsed-width&#x3D;&quot;78&quot; v-model&#x3D;&quot;isCollapsed&quot;&gt;</span><br><span class="line">        &lt;Menu active-name&#x3D;&quot;1-2&quot; theme&#x3D;&quot;dark&quot; width&#x3D;&quot;auto&quot; :class&#x3D;&quot;menuitemClasses&quot;&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-1&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;ios-navigate&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 1&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-2&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;search&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 2&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-3&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;settings&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 3&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">        &lt;&#x2F;Menu&gt;</span><br><span class="line">      &lt;&#x2F;Sider&gt;</span><br><span class="line">      &lt;Layout&gt;</span><br><span class="line">        &lt;Header :style&#x3D;&quot;&#123;background: &#39;#fff&#39;, boxShadow: &#39;0 2px 3px 2px rgba(0,0,0,.1)&#39;&#125;&quot;&gt;&lt;&#x2F;Header&gt;</span><br><span class="line">        &lt;Content :style&#x3D;&quot;&#123;padding: &#39;0 16px 16px&#39;&#125;&quot;&gt;</span><br><span class="line">          &lt;Breadcrumb :style&#x3D;&quot;&#123;margin: &#39;16px 0&#39;&#125;&quot;&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Home&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Components&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Layout&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">          &lt;&#x2F;Breadcrumb&gt;</span><br><span class="line">          &lt;Card&gt;</span><br><span class="line">            &lt;div style&#x3D;&quot;height: 600px&quot;&gt;&lt;router-view&gt;&lt;&#x2F;router-view&gt;&lt;&#x2F;div&gt;</span><br><span class="line">          &lt;&#x2F;Card&gt;</span><br><span class="line">        &lt;&#x2F;Content&gt;</span><br><span class="line">      &lt;&#x2F;Layout&gt;</span><br><span class="line">    &lt;&#x2F;Layout&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">    data () &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        isCollapsed: false</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line">      menuitemClasses: function () &#123;</span><br><span class="line">        return [</span><br><span class="line">          &#39;menu-item&#39;,</span><br><span class="line">          this.isCollapsed ? &#39;collapsed-menu&#39; : &#39;&#39;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>添加组件<br>路由访问的组件会渲染到 app.vue中的[router-view]<br>然后修改组件 /recources/js/components/bsh.vue 的内容：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;Tabs&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;macOS&quot; icon&#x3D;&quot;social-apple&quot;&gt;标签一的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;Windows&quot; icon&#x3D;&quot;social-windows&quot;&gt;标签二的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;Linux&quot; icon&#x3D;&quot;social-tux&quot;&gt;标签三的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">    &lt;&#x2F;Tabs&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>编译运行<br>常用的编译命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 本地环境编译</span><br><span class="line">npm run dev</span><br><span class="line"></span><br><span class="line"># 本地环境编译 + 监控文件修改</span><br><span class="line">npm run watch</span><br><span class="line"></span><br><span class="line"># 生产环境编译</span><br><span class="line">npm run prod</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>Laravel</tag>
-        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -1191,6 +1191,38 @@ public $queue = &#39;listeners&#39;;</code></pre>
         <tag>Linux</tag>
         <tag>crontab</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Live 阿里云直播</title>
+    <url>/2019/07/04/Live-%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%B4%E6%92%AD/</url>
+    <content><![CDATA[<a id="more"></a>
+<p> <a href="https://help.aliyun.com/document_detail/86866.html?spm=a2c4g.11186623.6.573.72df68123ova0d" target="_blank">[阿里云文档]</a> 具体流程依据文档<br> 需要：备案域名 / 直播云服务器</p>
+<blockquote>
+<p>开通阿里云直播控制台</p>
+</blockquote>
+<p><img src="/assets/aliyun/1.png" alt="ico原来的样子"><br><img src="/assets/aliyun/2.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>直播控制台-概览配置 推流/播流 域名</p>
+</blockquote>
+<p>生成之后解析对应域名的 CNAME 到推流/播流域名上<br><img src="/assets/aliyun/3.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>PC端 OBS/VLC 测试</p>
+</blockquote>
+<p>地址生成器–&gt;生成的 推流/播流 地址相应在 OBS/VLC 上使用即可看到同步直播</p>
+<p><img src="/assets/aliyun/4.png" alt="ico原来的样子"><br><img src="/assets/aliyun/5.png" alt="ico原来的样子"><br><img src="/assets/aliyun/6.png" alt="ico原来的样子"><br><img src="/assets/aliyun/7.png" alt="ico原来的样子"></p>
+<blockquote>
+<p>观看直播 [后续…]</p>
+</blockquote>
+<p> 前面的直播推流配置完成之后，我们需要让用户或者观众看到直播<br> 正常用户观看直播的流程是：登录直播网站 -&gt; 点开直播房间 -&gt; 服务器获取播放地址 -&gt; 用户观看直播<br> 1.创建一个测试直播的控制器</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">namespace App\Http\Controllers;</span><br><span class="line"></span><br><span class="line">use xxx;&#x2F;&#x2F;sdk包</span><br><span class="line"></span><br><span class="line">class LiveController extends Controller</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    public function index()</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; 通过sdk获取直播地址</span><br><span class="line">        $liveurl &#x3D; \xxx\xxx\xxx(&#39;xxx&#39;, &#39;app&#39;, &#39;stream&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.页面展示</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 引入 CDN --&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.bootcss.com&#x2F;flv.js&#x2F;1.3.2&#x2F;flv.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;!-- dom --&gt;</span><br><span class="line">&lt;video id&#x3D;&quot;videoElement&quot;&gt;&lt;&#x2F;video&gt;</span><br><span class="line">&lt;!-- js --&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    if (flvjs.isSupported()) &#123;</span><br><span class="line">        var videoElement &#x3D; document.getElementById(&#39;videoElement&#39;);</span><br><span class="line">        var flvPlayer &#x3D; flvjs.createPlayer(&#123;</span><br><span class="line">            type: &#39;flv&#39;,</span><br><span class="line">            url: &#39;&#123;&#123; $liveurl &#125;&#125;&#39;</span><br><span class="line">        &#125;);</span><br><span class="line">        flvPlayer.attachMediaElement(videoElement);</span><br><span class="line">        flvPlayer.load();</span><br><span class="line">        flvPlayer.play();</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><strong>Notice</strong><br>后续通过sdk整合到项目开发中…</li>
+</ul>
+]]></content>
   </entry>
   <entry>
     <title>Markdown 基本语法</title>
@@ -1300,38 +1332,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
         <tag>lnmp</tag>
         <tag>mysql</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Live 阿里云直播</title>
-    <url>/2019/07/04/Live-%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%B4%E6%92%AD/</url>
-    <content><![CDATA[<a id="more"></a>
-<p> <a href="https://help.aliyun.com/document_detail/86866.html?spm=a2c4g.11186623.6.573.72df68123ova0d" target="_blank">[阿里云文档]</a> 具体流程依据文档<br> 需要：备案域名 / 直播云服务器</p>
-<blockquote>
-<p>开通阿里云直播控制台</p>
-</blockquote>
-<p><img src="/assets/aliyun/1.png" alt="ico原来的样子"><br><img src="/assets/aliyun/2.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>直播控制台-概览配置 推流/播流 域名</p>
-</blockquote>
-<p>生成之后解析对应域名的 CNAME 到推流/播流域名上<br><img src="/assets/aliyun/3.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>PC端 OBS/VLC 测试</p>
-</blockquote>
-<p>地址生成器–&gt;生成的 推流/播流 地址相应在 OBS/VLC 上使用即可看到同步直播</p>
-<p><img src="/assets/aliyun/4.png" alt="ico原来的样子"><br><img src="/assets/aliyun/5.png" alt="ico原来的样子"><br><img src="/assets/aliyun/6.png" alt="ico原来的样子"><br><img src="/assets/aliyun/7.png" alt="ico原来的样子"></p>
-<blockquote>
-<p>观看直播 [后续…]</p>
-</blockquote>
-<p> 前面的直播推流配置完成之后，我们需要让用户或者观众看到直播<br> 正常用户观看直播的流程是：登录直播网站 -&gt; 点开直播房间 -&gt; 服务器获取播放地址 -&gt; 用户观看直播<br> 1.创建一个测试直播的控制器</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">namespace App\Http\Controllers;</span><br><span class="line"></span><br><span class="line">use xxx;&#x2F;&#x2F;sdk包</span><br><span class="line"></span><br><span class="line">class LiveController extends Controller</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    public function index()</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; 通过sdk获取直播地址</span><br><span class="line">        $liveurl &#x3D; \xxx\xxx\xxx(&#39;xxx&#39;, &#39;app&#39;, &#39;stream&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>2.页面展示</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 引入 CDN --&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.bootcss.com&#x2F;flv.js&#x2F;1.3.2&#x2F;flv.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;!-- dom --&gt;</span><br><span class="line">&lt;video id&#x3D;&quot;videoElement&quot;&gt;&lt;&#x2F;video&gt;</span><br><span class="line">&lt;!-- js --&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    if (flvjs.isSupported()) &#123;</span><br><span class="line">        var videoElement &#x3D; document.getElementById(&#39;videoElement&#39;);</span><br><span class="line">        var flvPlayer &#x3D; flvjs.createPlayer(&#123;</span><br><span class="line">            type: &#39;flv&#39;,</span><br><span class="line">            url: &#39;&#123;&#123; $liveurl &#125;&#125;&#39;</span><br><span class="line">        &#125;);</span><br><span class="line">        flvPlayer.attachMediaElement(videoElement);</span><br><span class="line">        flvPlayer.load();</span><br><span class="line">        flvPlayer.play();</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><strong>Notice</strong><br>后续通过sdk整合到项目开发中…</li>
-</ul>
-]]></content>
   </entry>
   <entry>
     <title>MySQL启动错误</title>
@@ -2255,7 +2255,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#x67;&#x69;&#116;&#x40;&#x67;&#105;&#116;&#x68;&#117;&#98;&#x2e;&#99;&#x6f;&#x6d;">&#x67;&#x69;&#116;&#x40;&#x67;&#105;&#116;&#x68;&#117;&#98;&#x2e;&#99;&#x6f;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#103;&#x69;&#x74;&#x40;&#x67;&#x69;&#x74;&#104;&#x75;&#98;&#x2e;&#x63;&#x6f;&#109;">&#103;&#x69;&#x74;&#x40;&#x67;&#x69;&#x74;&#104;&#x75;&#98;&#x2e;&#x63;&#x6f;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -2752,6 +2752,70 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>linux centos7.3 lnmp一键安装包集成</title>
+    <url>/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E9%9B%86%E6%88%90/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>一、下载并安装LNMP一键安装包</strong></p>
+<p>安装LNMP稳定版</p>
+<blockquote>
+<p> wget -c <a href="http://soft.vpser.net/lnmp/lnmp1.4.tar.gz">http://soft.vpser.net/lnmp/lnmp1.4.tar.gz</a> &amp;&amp; tar zxf lnmp1.4.tar.gz &amp;&amp; cd lnmp1.4 &amp;&amp; ./install.sh lnmp：</p>
+</blockquote>
+<p>默认安装lnmp可不写，如需要安装LNMPA或LAMP，将./install.sh 后面的参数替换为lnmpa或lamp即可。如需更改网站和数据库目录先修改安装包目录下的 lnmp.conf 文件。</p>
+<blockquote>
+<p> 运行上述LNMP安装命令后，会出现如下提示：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/1.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 输入对应MySQL或MariaDB版本前面的序号，回车进入下一步.：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/2.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 需要设置MySQL的root密码（不输入直接回车将会设置为root）如果输入有错误需要删除时，可以按住Ctrl再按Backspace键进行删除(个别情况下是只需要Backspace键)。输入后回车进入下一步，如下图所示：：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/3.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 询问是否需要启用MySQL InnoDB，InnoDB引擎默认为开启，一般建议开启，直接回车或输入 y ，如果确定确实不需要该引擎可以输入 n，输入完成，回车进入下一步。注意：选择PHP7等高版本时需要自行确认是否与自己的程序兼容。</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/4.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 输入要选择的PHP版本的序号，回车进入下一步，选择是否安装内存优化：</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/5.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 再选择Apache版本</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/6.png" alt="ico原来的样子"></p>
+<p>按提示输入对应版本前面的数字序号，回车。</p>
+<p>提示”Press any key to install…or Press Ctrl+c to cancel”后，按回车键确认开始安装。<br>LNMP脚本就会自动安装编译Nginx、MySQL、PHP、phpMyAdmin、Zend Optimizer这几个软件。</p>
+<p>安装时间可能会几十分钟到几个小时不等，主要是机器的配置网速等原因会造成影响。</p>
+<blockquote>
+<p> 安装完成  如果显示Nginx: OK，MySQL: OK，PHP: OK</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/7.png" alt="ico原来的样子"></p>
+<blockquote>
+<p> 并且Nginx、MySQL、PHP都是running，80和3306端口都存在，并提示安装使用的时间及Install lnmp V1.4 completed! enjoy it.的话，说明已经安装成功</p>
+</blockquote>
+<p>安装失败</p>
+<blockquote>
+<p> 安装失败</p>
+</blockquote>
+<p><img src="/assets/blogImg/lnmp/8.png" alt="ico原来的样子"></p>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>lnmp</tag>
+        <tag>linux</tag>
+        <tag>centos7.3</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>linux 常用小技巧</title>
     <url>/2022/01/12/linux-%E5%B8%B8%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/linux.png" alt="linux"></p>
@@ -2851,70 +2915,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>linux centos7.3 lnmp一键安装包集成</title>
-    <url>/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E9%9B%86%E6%88%90/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>一、下载并安装LNMP一键安装包</strong></p>
-<p>安装LNMP稳定版</p>
-<blockquote>
-<p> wget -c <a href="http://soft.vpser.net/lnmp/lnmp1.4.tar.gz">http://soft.vpser.net/lnmp/lnmp1.4.tar.gz</a> &amp;&amp; tar zxf lnmp1.4.tar.gz &amp;&amp; cd lnmp1.4 &amp;&amp; ./install.sh lnmp：</p>
-</blockquote>
-<p>默认安装lnmp可不写，如需要安装LNMPA或LAMP，将./install.sh 后面的参数替换为lnmpa或lamp即可。如需更改网站和数据库目录先修改安装包目录下的 lnmp.conf 文件。</p>
-<blockquote>
-<p> 运行上述LNMP安装命令后，会出现如下提示：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/1.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 输入对应MySQL或MariaDB版本前面的序号，回车进入下一步.：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/2.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 需要设置MySQL的root密码（不输入直接回车将会设置为root）如果输入有错误需要删除时，可以按住Ctrl再按Backspace键进行删除(个别情况下是只需要Backspace键)。输入后回车进入下一步，如下图所示：：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/3.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 询问是否需要启用MySQL InnoDB，InnoDB引擎默认为开启，一般建议开启，直接回车或输入 y ，如果确定确实不需要该引擎可以输入 n，输入完成，回车进入下一步。注意：选择PHP7等高版本时需要自行确认是否与自己的程序兼容。</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/4.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 输入要选择的PHP版本的序号，回车进入下一步，选择是否安装内存优化：</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/5.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 再选择Apache版本</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/6.png" alt="ico原来的样子"></p>
-<p>按提示输入对应版本前面的数字序号，回车。</p>
-<p>提示”Press any key to install…or Press Ctrl+c to cancel”后，按回车键确认开始安装。<br>LNMP脚本就会自动安装编译Nginx、MySQL、PHP、phpMyAdmin、Zend Optimizer这几个软件。</p>
-<p>安装时间可能会几十分钟到几个小时不等，主要是机器的配置网速等原因会造成影响。</p>
-<blockquote>
-<p> 安装完成  如果显示Nginx: OK，MySQL: OK，PHP: OK</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/7.png" alt="ico原来的样子"></p>
-<blockquote>
-<p> 并且Nginx、MySQL、PHP都是running，80和3306端口都存在，并提示安装使用的时间及Install lnmp V1.4 completed! enjoy it.的话，说明已经安装成功</p>
-</blockquote>
-<p>安装失败</p>
-<blockquote>
-<p> 安装失败</p>
-</blockquote>
-<p><img src="/assets/blogImg/lnmp/8.png" alt="ico原来的样子"></p>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>lnmp</tag>
-        <tag>linux</tag>
-        <tag>centos7.3</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>lnmp tp pathinfo问题</title>
     <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2934,19 +2934,6 @@ class QuotesSpider(scrapy.Spider):
 <p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
 </blockquote>
 ]]></content>
-  </entry>
-  <entry>
-    <title>mysql自定义重置数据表ID值</title>
-    <url>/2018/10/30/mysql%E8%87%AA%E5%AE%9A%E4%B9%89%E9%87%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E8%A1%A8ID%E5%80%BC/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> alter table 表名 AUTO_INCREMENT=自定义ID;</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
   </entry>
   <entry>
     <title>lnmp集成环境下部署laravel5.x项目</title>
@@ -3005,6 +2992,19 @@ class QuotesSpider(scrapy.Spider):
         <tag>lnmp</tag>
         <tag>centos7.3</tag>
         <tag>laravel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql自定义重置数据表ID值</title>
+    <url>/2018/10/30/mysql%E8%87%AA%E5%AE%9A%E4%B9%89%E9%87%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E8%A1%A8ID%E5%80%BC/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> alter table 表名 AUTO_INCREMENT=自定义ID;</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -3262,7 +3262,7 @@ class QuotesSpider(scrapy.Spider):
 </blockquote>
 <p>二、使用npm下载 web框架express模块</p>
 <blockquote>
-<p>npm install --save <a href="mailto:&#x65;&#x78;&#x70;&#x72;&#101;&#x73;&#x73;&#x40;&#52;&#x2e;&#x31;&#x35;&#x2e;&#50;">&#x65;&#x78;&#x70;&#x72;&#101;&#x73;&#x73;&#x40;&#52;&#x2e;&#x31;&#x35;&#x2e;&#50;</a></p>
+<p>npm install --save <a href="mailto:&#x65;&#120;&#112;&#x72;&#x65;&#x73;&#x73;&#64;&#52;&#46;&#49;&#53;&#46;&#x32;">&#x65;&#120;&#112;&#x72;&#x65;&#x73;&#x73;&#64;&#52;&#46;&#49;&#53;&#46;&#x32;</a></p>
 </blockquote>
 <p>三、使用npm下载socket.io模块</p>
 <blockquote>
@@ -3357,55 +3357,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>vue-element-admin的安装&amp;使用</title>
-    <url>/2021/09/28/vue-element-admin%E7%9A%84%E5%AE%89%E8%A3%85-%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><strong>vue-element-admin的安装&amp;使用：</strong> </p>
-<a id="more"></a>
-
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><ul>
-<li><p>克隆项目</p>
-<blockquote>
-<p>git clone <a href="https://github.com/PanJiaChen/vue-element-admin.git">https://github.com/PanJiaChen/vue-element-admin.git</a></p>
-</blockquote>
-</li>
-<li><p>进入项目目录</p>
-<blockquote>
-<p>cd vue-element-admin</p>
-</blockquote>
-</li>
-<li><p>安装依赖</p>
-<blockquote>
-<p>npm install</p>
-</blockquote>
-</li>
-<li><p>建议不要用 cnpm 安装 会有各种诡异的bug 可以通过如下操作解决 npm 下载速度慢的问题</p>
-<blockquote>
-<p>npm install –registry=<a href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></p>
-</blockquote>
-</li>
-<li><p>本地开发 启动项目</p>
-<blockquote>
-<p>npm run dev</p>
-</blockquote>
-</li>
-</ul>
-<h1 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">├── build                      # 构建相关</span><br><span class="line">├── mock                       # 项目mock 模拟数据</span><br><span class="line">├── plop-templates             # 基本模板</span><br><span class="line">├── public                     # 静态资源</span><br><span class="line">│   │── favicon.ico            # favicon图标</span><br><span class="line">│   └── index.html             # html模板</span><br><span class="line">├── src                        # 源代码</span><br><span class="line">│   ├── api                    # 所有请求</span><br><span class="line">│   ├── assets                 # 主题 字体等静态资源</span><br><span class="line">│   ├── components             # 全局公用组件</span><br><span class="line">│   ├── directive              # 全局指令</span><br><span class="line">│   ├── filters                # 全局 filter</span><br><span class="line">│   ├── icons                  # 项目所有 svg icons</span><br><span class="line">│   ├── lang                   # 国际化 language</span><br><span class="line">│   ├── layout                 # 全局 layout</span><br><span class="line">│   ├── router                 # 路由</span><br><span class="line">│   ├── store                  # 全局 store管理</span><br><span class="line">│   ├── styles                 # 全局样式</span><br><span class="line">│   ├── utils                  # 全局公用方法</span><br><span class="line">│   ├── vendor                 # 公用vendor</span><br><span class="line">│   ├── views                  # views 所有页面</span><br><span class="line">│   ├── App.vue                # 入口页面</span><br><span class="line">│   ├── main.js                # 入口文件 加载组件 初始化等</span><br><span class="line">│   └── permission.js          # 权限管理</span><br><span class="line">├── tests                      # 测试</span><br><span class="line">├── .env.xxx                   # 环境变量配置</span><br><span class="line">├── .eslintrc.js               # eslint 配置项</span><br><span class="line">├── .babelrc                   # babel-loader 配置</span><br><span class="line">├── .travis.yml                # 自动化CI配置</span><br><span class="line">├── vue.config.js              # vue-cli 配置</span><br><span class="line">├── postcss.config.js          # postcss 配置</span><br><span class="line">└── package.json               # package.json</span><br></pre></td></tr></table></figure>
-
-<h1 id="简语"><a href="#简语" class="headerlink" title="简语"></a>简语</h1><p>首字母+字母个数+尾字母</p>
-<blockquote>
-<p>I18n 是 internationalization (国际化 多用于切换语言)</p>
-</blockquote>
-<blockquote>
-<p>K8s 是 Kubernetes</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>vue</tag>
-        <tag>element-ui</tag>
-        <tag>vue-element-admin</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用Tailwind CSS新建一个项目</title>
     <url>/2021/11/18/%E4%BD%BF%E7%94%A8Tailwind-CSS%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/tailwindcss.png" alt="tailwindcss"></p>
@@ -3455,6 +3406,55 @@ class QuotesSpider(scrapy.Spider):
 ]]></content>
       <tags>
         <tag>Tailwind-CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue-element-admin的安装&amp;使用</title>
+    <url>/2021/09/28/vue-element-admin%E7%9A%84%E5%AE%89%E8%A3%85-%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><strong>vue-element-admin的安装&amp;使用：</strong> </p>
+<a id="more"></a>
+
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><ul>
+<li><p>克隆项目</p>
+<blockquote>
+<p>git clone <a href="https://github.com/PanJiaChen/vue-element-admin.git">https://github.com/PanJiaChen/vue-element-admin.git</a></p>
+</blockquote>
+</li>
+<li><p>进入项目目录</p>
+<blockquote>
+<p>cd vue-element-admin</p>
+</blockquote>
+</li>
+<li><p>安装依赖</p>
+<blockquote>
+<p>npm install</p>
+</blockquote>
+</li>
+<li><p>建议不要用 cnpm 安装 会有各种诡异的bug 可以通过如下操作解决 npm 下载速度慢的问题</p>
+<blockquote>
+<p>npm install –registry=<a href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></p>
+</blockquote>
+</li>
+<li><p>本地开发 启动项目</p>
+<blockquote>
+<p>npm run dev</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">├── build                      # 构建相关</span><br><span class="line">├── mock                       # 项目mock 模拟数据</span><br><span class="line">├── plop-templates             # 基本模板</span><br><span class="line">├── public                     # 静态资源</span><br><span class="line">│   │── favicon.ico            # favicon图标</span><br><span class="line">│   └── index.html             # html模板</span><br><span class="line">├── src                        # 源代码</span><br><span class="line">│   ├── api                    # 所有请求</span><br><span class="line">│   ├── assets                 # 主题 字体等静态资源</span><br><span class="line">│   ├── components             # 全局公用组件</span><br><span class="line">│   ├── directive              # 全局指令</span><br><span class="line">│   ├── filters                # 全局 filter</span><br><span class="line">│   ├── icons                  # 项目所有 svg icons</span><br><span class="line">│   ├── lang                   # 国际化 language</span><br><span class="line">│   ├── layout                 # 全局 layout</span><br><span class="line">│   ├── router                 # 路由</span><br><span class="line">│   ├── store                  # 全局 store管理</span><br><span class="line">│   ├── styles                 # 全局样式</span><br><span class="line">│   ├── utils                  # 全局公用方法</span><br><span class="line">│   ├── vendor                 # 公用vendor</span><br><span class="line">│   ├── views                  # views 所有页面</span><br><span class="line">│   ├── App.vue                # 入口页面</span><br><span class="line">│   ├── main.js                # 入口文件 加载组件 初始化等</span><br><span class="line">│   └── permission.js          # 权限管理</span><br><span class="line">├── tests                      # 测试</span><br><span class="line">├── .env.xxx                   # 环境变量配置</span><br><span class="line">├── .eslintrc.js               # eslint 配置项</span><br><span class="line">├── .babelrc                   # babel-loader 配置</span><br><span class="line">├── .travis.yml                # 自动化CI配置</span><br><span class="line">├── vue.config.js              # vue-cli 配置</span><br><span class="line">├── postcss.config.js          # postcss 配置</span><br><span class="line">└── package.json               # package.json</span><br></pre></td></tr></table></figure>
+
+<h1 id="简语"><a href="#简语" class="headerlink" title="简语"></a>简语</h1><p>首字母+字母个数+尾字母</p>
+<blockquote>
+<p>I18n 是 internationalization (国际化 多用于切换语言)</p>
+</blockquote>
+<blockquote>
+<p>K8s 是 Kubernetes</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>vue</tag>
+        <tag>element-ui</tag>
+        <tag>vue-element-admin</tag>
       </tags>
   </entry>
   <entry>
