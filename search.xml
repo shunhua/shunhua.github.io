@@ -125,7 +125,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#x40;&#x71;&#x71;&#46;&#99;&#x6f;&#x6d;">&#x78;&#x40;&#x71;&#x71;&#46;&#99;&#x6f;&#x6d;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#64;&#113;&#113;&#46;&#x63;&#x6f;&#109;">&#120;&#64;&#113;&#113;&#46;&#x63;&#x6f;&#109;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -136,7 +136,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#98;&#x40;&#x71;&#x71;&#46;&#99;&#111;&#109;">&#98;&#x40;&#x71;&#x71;&#46;&#99;&#111;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#x40;&#113;&#113;&#x2e;&#x63;&#x6f;&#109;">&#x62;&#x40;&#113;&#113;&#x2e;&#x63;&#x6f;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -839,57 +839,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Laravel yansongda/laravel-pay</title>
-    <url>/2018/09/29/Laravel-yansongda-laravel-pay/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p>运行环境:</p>
-</blockquote>
-<ul>
-<li>php &gt;= 7.0</li>
-<li>composer</li>
-<li>laravel || lumen &gt;= 5.1</li>
-</ul>
-<p><strong>一、安装</strong></p>
-<blockquote>
-<p>composer require yansongda/laravel-pay</p>
-</blockquote>
-<p>添加service provider（如果laravel&lt;5.5 或者 lumen）[5.5以上忽略]</p>
-<p>laravel &lt; 5.5</p>
-<blockquote>
-<p>Yansongda\LaravelPay\PayServiceProvider::class,</p>
-</blockquote>
-<p>lumen</p>
-<blockquote>
-<p>$app-&gt;register(Yansongda\LaravelPay\PayServiceProvider::class);</p>
-</blockquote>
-<p>添加 alias（如果laravel&lt;5.5 或者 lumen）[5.5以上忽略]</p>
-<blockquote>
-<p>‘Pay’ =&gt; Yansongda\LaravelPay\Facades\Pay::class,</p>
-</blockquote>
-<p>配置文件</p>
-<blockquote>
-<p>php artisan vendor:publish –provider=”Yansongda\LaravelPay\PayServiceProvider” –tag=laravel-pay</p>
-</blockquote>
-<p><strong>二、使用[支付宝]</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">use Yansongda\Pay\Pay;</span><br><span class="line"></span><br><span class="line">$config &#x3D; [</span><br><span class="line">    &#39;app_id&#39; &#x3D;&gt; &#39;2016082000295641&#39;,</span><br><span class="line">    &#39;notify_url&#39; &#x3D;&gt; &#39;http:&#x2F;&#x2F;yansongda.cn&#x2F;notify.php&#39;,</span><br><span class="line">    &#39;return_url&#39; &#x3D;&gt; &#39;http:&#x2F;&#x2F;yansongda.cn&#x2F;return.php&#39;,</span><br><span class="line">    &#39;ali_public_key&#39; &#x3D;&gt; &#39;MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuWJKrQ6SWvS6niI+4vEVZiYfjkCfLQfoFI2nCp9ZLDS42QtiL4Ccyx8scgc3nhVwmVRte8f57TFvGhvJD0upT4O5O&#x2F;lRxmTjechXAorirVdAODpOu0mFfQV9y&#x2F;T9o9hHnU+VmO5spoVb3umqpq6D&#x2F;Pt8p25Yk852&#x2F;w01VTIczrXC4QlrbOEe3sr1E9auoC7rgYjjCO6lZUIDjX&#x2F;oBmNXZxhRDrYx4Yf5X7y8FRBFvygIE2FgxV4Yw+SL3QAa2m5MLcbusJpxOml9YVQfP8iSurx41PvvXUMo49JG3BDVernaCYXQCoUJv9fJwbnfZd7J5YByC+5KM4sblJTq7bXZWQIDAQAB&#39;,</span><br><span class="line">    &#39;private_key&#39; &#x3D;&gt; &#39;MIIEpAIBAAKCAQEAs6+F2leOgOrvj9jTeDhb5q46GewOjqLBlGSs&#x2F;bVL4Z3fMr3p+Q1Tux&#x2F;6uogeVi&#x2F;eHd84xvQdfpZ87A1SfoWnEGH5z15yorccxSOwWUI+q8gz51IWqjgZxhWKe31BxNZ+prnQpyeMBtE25fXp5nQZ&#x2F;pftgePyUUvUZRcAUisswntobDQKbwx28VCXw5XB2A+lvYEvxmMv&#x2F;QexYjwKK4M54j435TuC3UctZbnuynSPpOmCu45ZhEYXd4YMsGMdZE5&#x2F;077ZU1aU7wx&#x2F;gk07PiHImEOCDkzqsFo0Buc&#x2F;knGcdOiUDvm2hn2y1XvwjyFOThsqCsQYi4JmwZdRa8kvOf57nwIDAQABAoIBAQCw5QCqln4VTrTvcW+msB1ReX57nJgsNfDLbV2dG8mLYQemBa9833DqDK6iynTLNq69y88ylose33o2TVtEccGp8Dqluv6yUAED14G6LexS43KtrXPgugAtsXE253ZDGUNwUggnN1i0MW2RcMqHdQ9ORDWvJUCeZj&#x2F;AEafgPN8AyiLrZeL07jJz&#x2F;uaRfAuNqkImCVIarKUX3HBCjl9TpuoMjcMhz&#x2F;MsOmQ0agtCatO1eoH1sqv5Odvxb1i59c8Hvq&#x2F;mGEXyRuoiDo05SE6IyXYXr84&#x2F;Nf2xvVNHNQA6kTckj8shSi+HGM4mO1Y4Pbb7XcnxNkT0Inn6oJMSiy56P+CpAoGBAO1O+5FE1ZuVGuLb48cY+0lHCD+nhSBd66B5FrxgPYCkFOQWR7pWyfNDBlmO3SSooQ8TQXA25blrkDxzOAEGX57EPiipXr&#x2F;hy5e+WNoukpy09rsO1TMsvC+v0FXLvZ+TIAkqfnYBgaT56ku7yZ8aFGMwdCPL7WJYAwUIcZX8wZ3dAoGBAMHWplAqhe4bfkGOEEpfs6VvEQxCqYMYVyR65K0rI1LiDZn6Ij8fdVtwMjGKFSZZTspmsqnbbuCE&#x2F;VTyDzF4NpAxdm3cBtZACv1Lpu2Om+aTzhK2PI6WTDVTKAJBYegXaahBCqVbSxieR62IWtmOMjggTtAKWZ1P5LQcRwdkaB2rAoGAWnAPT318Kp7YcDx8whOzMGnxqtCc24jvk2iSUZgb2Dqv+3zCOTF6JUsV0Guxu5bISoZ8GdfSFKf5gBAo97sGFeuUBMsHYPkcLehM1FmLZk1Q+ljcx3P1A&#x2F;ds3kWXLolTXCrlpvNMBSN5NwOKAyhdPK&#x2F;qkvnUrfX8sJ5XK2H4J8ECgYAGIZ0HIiE0Y+g9eJnpUFelXvsCEUW9YNK4065SD&#x2F;BBGedmPHRC3OLgbo8X5A9BNEf6vP7fwpIiRfKhcjqqzOuk6fueA&#x2F;yvYD04v+Da2MzzoS8+hkcqF3T3pta4I4tORRdRfCUzD80zTSZlRc&#x2F;h286Y2eTETd+By1onnFFe2X01mwKBgQDaxo4PBcLL2OyVT5DoXiIdTCJ8KNZL9+kV1aiBuOWxnRgkDjPngslzNa1bK+klGgJNYDbQqohKNn1HeFX3mYNfCUpuSnD2Yag53Dd&#x2F;1DLO+NxzwvTu4D6DCUnMMMBVaF42ig31Bs0jI3JQZVqeeFzSET8fkoFopJf3G6UXlrIEAQ&#x3D;&#x3D;&#39;,</span><br><span class="line">    &#39;http&#39; &#x3D;&gt; [ &#x2F;&#x2F; optional</span><br><span class="line">        &#39;timeout&#39; &#x3D;&gt; 5.0,</span><br><span class="line">        &#39;connect_timeout&#39; &#x3D;&gt; 5.0,</span><br><span class="line">        &#x2F;&#x2F; 更多配置项请参考 [Guzzle](https:&#x2F;&#x2F;guzzle-cn.readthedocs.io&#x2F;zh_CN&#x2F;latest&#x2F;request-options.html)</span><br><span class="line">    ]</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 支付</span><br><span class="line">$order &#x3D; [</span><br><span class="line">    &#39;out_trade_no&#39; &#x3D;&gt; time(),</span><br><span class="line">    &#39;total_amount&#39; &#x3D;&gt; &#39;1&#39;,</span><br><span class="line">    &#39;subject&#39; &#x3D;&gt; &#39;test&#39;,</span><br><span class="line">];</span><br><span class="line">$alipay &#x3D; Pay::alipay($config)-&gt;web($order);</span><br><span class="line"></span><br><span class="line">return $alipay-&gt;send();&#x2F;&#x2F; laravel 框架中请直接 &#96;return $alipay&#96;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 退款</span><br><span class="line">$order &#x3D; [</span><br><span class="line">    &#39;out_trade_no&#39; &#x3D;&gt; &#39;1514027114&#39;,</span><br><span class="line">    &#39;refund_amount&#39; &#x3D;&gt; &#39;0.01&#39;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;refund($order); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 查询</span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;find(&#39;out_trade_no_123456&#39;); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 取消</span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;cancel(&#39;out_trade_no_123456&#39;); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 关闭</span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;close(&#39;out_trade_no_123456&#39;); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 验证服务器数据</span><br><span class="line">$alipay &#x3D; Pay::alipay($config)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 是的，验签就这么简单！</span><br><span class="line">$data &#x3D; $alipay-&gt;verify(); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$data-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line">$alipay-&gt;success()-&gt;send(); &#x2F;&#x2F; 向支付宝服务器确认接收到的数据。laravel 框架中请直接 &#96;return $alipay-&gt;success()&#96;</span><br></pre></td></tr></table></figure>
-
-
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>若前端框架使用vue、react等 此时后端返回的是form表单需要简单处理下，如下:</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const div &#x3D; document.createElement(&#39;div&#39;) &#x2F;&#x2F; 创建div</span><br><span class="line">div.innerHTML &#x3D; res.data &#x2F;&#x2F; 将返回的form 放入div</span><br><span class="line">document.body.appendChild(div)</span><br><span class="line">document.forms[&#39;alipaysubmit&#39;].submit()</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>laravel5.6</tag>
-        <tag>laravel-pay</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Laravel Redis 广播测试</title>
     <url>/2019/04/19/Laravel-Redis-%E5%B9%BF%E6%92%AD%E6%B5%8B%E8%AF%95/</url>
     <content><![CDATA[<a id="more"></a>
@@ -984,6 +933,57 @@
         <tag>laravel5.7</tag>
         <tag>Redis</tag>
         <tag>广播</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Laravel yansongda/laravel-pay</title>
+    <url>/2018/09/29/Laravel-yansongda-laravel-pay/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p>运行环境:</p>
+</blockquote>
+<ul>
+<li>php &gt;= 7.0</li>
+<li>composer</li>
+<li>laravel || lumen &gt;= 5.1</li>
+</ul>
+<p><strong>一、安装</strong></p>
+<blockquote>
+<p>composer require yansongda/laravel-pay</p>
+</blockquote>
+<p>添加service provider（如果laravel&lt;5.5 或者 lumen）[5.5以上忽略]</p>
+<p>laravel &lt; 5.5</p>
+<blockquote>
+<p>Yansongda\LaravelPay\PayServiceProvider::class,</p>
+</blockquote>
+<p>lumen</p>
+<blockquote>
+<p>$app-&gt;register(Yansongda\LaravelPay\PayServiceProvider::class);</p>
+</blockquote>
+<p>添加 alias（如果laravel&lt;5.5 或者 lumen）[5.5以上忽略]</p>
+<blockquote>
+<p>‘Pay’ =&gt; Yansongda\LaravelPay\Facades\Pay::class,</p>
+</blockquote>
+<p>配置文件</p>
+<blockquote>
+<p>php artisan vendor:publish –provider=”Yansongda\LaravelPay\PayServiceProvider” –tag=laravel-pay</p>
+</blockquote>
+<p><strong>二、使用[支付宝]</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">use Yansongda\Pay\Pay;</span><br><span class="line"></span><br><span class="line">$config &#x3D; [</span><br><span class="line">    &#39;app_id&#39; &#x3D;&gt; &#39;2016082000295641&#39;,</span><br><span class="line">    &#39;notify_url&#39; &#x3D;&gt; &#39;http:&#x2F;&#x2F;yansongda.cn&#x2F;notify.php&#39;,</span><br><span class="line">    &#39;return_url&#39; &#x3D;&gt; &#39;http:&#x2F;&#x2F;yansongda.cn&#x2F;return.php&#39;,</span><br><span class="line">    &#39;ali_public_key&#39; &#x3D;&gt; &#39;MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuWJKrQ6SWvS6niI+4vEVZiYfjkCfLQfoFI2nCp9ZLDS42QtiL4Ccyx8scgc3nhVwmVRte8f57TFvGhvJD0upT4O5O&#x2F;lRxmTjechXAorirVdAODpOu0mFfQV9y&#x2F;T9o9hHnU+VmO5spoVb3umqpq6D&#x2F;Pt8p25Yk852&#x2F;w01VTIczrXC4QlrbOEe3sr1E9auoC7rgYjjCO6lZUIDjX&#x2F;oBmNXZxhRDrYx4Yf5X7y8FRBFvygIE2FgxV4Yw+SL3QAa2m5MLcbusJpxOml9YVQfP8iSurx41PvvXUMo49JG3BDVernaCYXQCoUJv9fJwbnfZd7J5YByC+5KM4sblJTq7bXZWQIDAQAB&#39;,</span><br><span class="line">    &#39;private_key&#39; &#x3D;&gt; &#39;MIIEpAIBAAKCAQEAs6+F2leOgOrvj9jTeDhb5q46GewOjqLBlGSs&#x2F;bVL4Z3fMr3p+Q1Tux&#x2F;6uogeVi&#x2F;eHd84xvQdfpZ87A1SfoWnEGH5z15yorccxSOwWUI+q8gz51IWqjgZxhWKe31BxNZ+prnQpyeMBtE25fXp5nQZ&#x2F;pftgePyUUvUZRcAUisswntobDQKbwx28VCXw5XB2A+lvYEvxmMv&#x2F;QexYjwKK4M54j435TuC3UctZbnuynSPpOmCu45ZhEYXd4YMsGMdZE5&#x2F;077ZU1aU7wx&#x2F;gk07PiHImEOCDkzqsFo0Buc&#x2F;knGcdOiUDvm2hn2y1XvwjyFOThsqCsQYi4JmwZdRa8kvOf57nwIDAQABAoIBAQCw5QCqln4VTrTvcW+msB1ReX57nJgsNfDLbV2dG8mLYQemBa9833DqDK6iynTLNq69y88ylose33o2TVtEccGp8Dqluv6yUAED14G6LexS43KtrXPgugAtsXE253ZDGUNwUggnN1i0MW2RcMqHdQ9ORDWvJUCeZj&#x2F;AEafgPN8AyiLrZeL07jJz&#x2F;uaRfAuNqkImCVIarKUX3HBCjl9TpuoMjcMhz&#x2F;MsOmQ0agtCatO1eoH1sqv5Odvxb1i59c8Hvq&#x2F;mGEXyRuoiDo05SE6IyXYXr84&#x2F;Nf2xvVNHNQA6kTckj8shSi+HGM4mO1Y4Pbb7XcnxNkT0Inn6oJMSiy56P+CpAoGBAO1O+5FE1ZuVGuLb48cY+0lHCD+nhSBd66B5FrxgPYCkFOQWR7pWyfNDBlmO3SSooQ8TQXA25blrkDxzOAEGX57EPiipXr&#x2F;hy5e+WNoukpy09rsO1TMsvC+v0FXLvZ+TIAkqfnYBgaT56ku7yZ8aFGMwdCPL7WJYAwUIcZX8wZ3dAoGBAMHWplAqhe4bfkGOEEpfs6VvEQxCqYMYVyR65K0rI1LiDZn6Ij8fdVtwMjGKFSZZTspmsqnbbuCE&#x2F;VTyDzF4NpAxdm3cBtZACv1Lpu2Om+aTzhK2PI6WTDVTKAJBYegXaahBCqVbSxieR62IWtmOMjggTtAKWZ1P5LQcRwdkaB2rAoGAWnAPT318Kp7YcDx8whOzMGnxqtCc24jvk2iSUZgb2Dqv+3zCOTF6JUsV0Guxu5bISoZ8GdfSFKf5gBAo97sGFeuUBMsHYPkcLehM1FmLZk1Q+ljcx3P1A&#x2F;ds3kWXLolTXCrlpvNMBSN5NwOKAyhdPK&#x2F;qkvnUrfX8sJ5XK2H4J8ECgYAGIZ0HIiE0Y+g9eJnpUFelXvsCEUW9YNK4065SD&#x2F;BBGedmPHRC3OLgbo8X5A9BNEf6vP7fwpIiRfKhcjqqzOuk6fueA&#x2F;yvYD04v+Da2MzzoS8+hkcqF3T3pta4I4tORRdRfCUzD80zTSZlRc&#x2F;h286Y2eTETd+By1onnFFe2X01mwKBgQDaxo4PBcLL2OyVT5DoXiIdTCJ8KNZL9+kV1aiBuOWxnRgkDjPngslzNa1bK+klGgJNYDbQqohKNn1HeFX3mYNfCUpuSnD2Yag53Dd&#x2F;1DLO+NxzwvTu4D6DCUnMMMBVaF42ig31Bs0jI3JQZVqeeFzSET8fkoFopJf3G6UXlrIEAQ&#x3D;&#x3D;&#39;,</span><br><span class="line">    &#39;http&#39; &#x3D;&gt; [ &#x2F;&#x2F; optional</span><br><span class="line">        &#39;timeout&#39; &#x3D;&gt; 5.0,</span><br><span class="line">        &#39;connect_timeout&#39; &#x3D;&gt; 5.0,</span><br><span class="line">        &#x2F;&#x2F; 更多配置项请参考 [Guzzle](https:&#x2F;&#x2F;guzzle-cn.readthedocs.io&#x2F;zh_CN&#x2F;latest&#x2F;request-options.html)</span><br><span class="line">    ]</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 支付</span><br><span class="line">$order &#x3D; [</span><br><span class="line">    &#39;out_trade_no&#39; &#x3D;&gt; time(),</span><br><span class="line">    &#39;total_amount&#39; &#x3D;&gt; &#39;1&#39;,</span><br><span class="line">    &#39;subject&#39; &#x3D;&gt; &#39;test&#39;,</span><br><span class="line">];</span><br><span class="line">$alipay &#x3D; Pay::alipay($config)-&gt;web($order);</span><br><span class="line"></span><br><span class="line">return $alipay-&gt;send();&#x2F;&#x2F; laravel 框架中请直接 &#96;return $alipay&#96;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 退款</span><br><span class="line">$order &#x3D; [</span><br><span class="line">    &#39;out_trade_no&#39; &#x3D;&gt; &#39;1514027114&#39;,</span><br><span class="line">    &#39;refund_amount&#39; &#x3D;&gt; &#39;0.01&#39;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;refund($order); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 查询</span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;find(&#39;out_trade_no_123456&#39;); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 取消</span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;cancel(&#39;out_trade_no_123456&#39;); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 关闭</span><br><span class="line">$result &#x3D; Pay::alipay($config)-&gt;close(&#39;out_trade_no_123456&#39;); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$result-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 验证服务器数据</span><br><span class="line">$alipay &#x3D; Pay::alipay($config)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 是的，验签就这么简单！</span><br><span class="line">$data &#x3D; $alipay-&gt;verify(); &#x2F;&#x2F; 返回 &#96;Yansongda\Supports\Collection&#96; 实例，可以通过 &#96;$data-&gt;xxx&#96; 访问服务器返回的数据。</span><br><span class="line"></span><br><span class="line">$alipay-&gt;success()-&gt;send(); &#x2F;&#x2F; 向支付宝服务器确认接收到的数据。laravel 框架中请直接 &#96;return $alipay-&gt;success()&#96;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>若前端框架使用vue、react等 此时后端返回的是form表单需要简单处理下，如下:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const div &#x3D; document.createElement(&#39;div&#39;) &#x2F;&#x2F; 创建div</span><br><span class="line">div.innerHTML &#x3D; res.data &#x2F;&#x2F; 将返回的form 放入div</span><br><span class="line">document.body.appendChild(div)</span><br><span class="line">document.forms[&#39;alipaysubmit&#39;].submit()</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>laravel5.6</tag>
+        <tag>laravel-pay</tag>
       </tags>
   </entry>
   <entry>
@@ -2198,6 +2198,54 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>gRPC 的介绍及使用</title>
+    <url>/2021/12/07/gRPC-%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/grpc.png" alt="grpc"></p>
+<a id="more"></a>
+
+
+<p>我们将介绍 <code>Go</code> 语言中最流行的 RPC 框架：<code>gRPC (google RPC)</code>。</p>
+<p><strong>gRPC 简介</strong></p>
+<p>RPC 代指远程过程调用 <code>(Remote Procedure Call)</code> 就是允许程序调用另一个地址空间（通常是共享网络的另一台机器上）的过程或函数，且不需要显式编码这个远程调用的细节 通俗来说就是调用其他进程内的方法，并且获得对应的返回值。</p>
+<p><code>gRPC</code> 是一个现代的、高性能、开源的和语言无关的通用RPC框架，基于 <code>HTTP2</code> 协议设计，序列化使用PB(Protocol Buffer)，<code>PB</code> 是一种语言无关的高性能序列化框架，基于 <code>HTTP2+PB</code> 保证了的高性能。</p>
+<p>整个 <code>gRPC</code> 调用基本上会包括以下 3 点：</p>
+<ul>
+<li>通讯协议 (HTTP2)</li>
+<li>寻址</li>
+<li>数据序列化 (Protobuf) proto3声明文件-&gt;protoc</li>
+</ul>
+<p><strong>安装相关依赖</strong><br>1.下载安装 <a href="https://golang.google.cn/dl/" target="_blank">[ go ]</a></p>
+<blockquote>
+<p>go version</p>
+</blockquote>
+<p>2.下载安装 <a href="https://github.com/protocolbuffers/protobuf/releases" target="_blank">[ protoc ]</a><br>在 gRPC 开发中，需要与 Protobuf 配合，在编写了.proto 文件后，我们会需要到一个编译器，就是 protoc。</p>
+<blockquote>
+<p>protoc –version</p>
+</blockquote>
+<p>3.安装相关依赖包</p>
+<ul>
+<li><p>安装 <code>golang</code> 的 <code>proto</code> 工具包</p>
+<blockquote>
+<p>go get -u github.com/golang/protobuf/proto</p>
+</blockquote>
+</li>
+<li><p>安装 <code>goalng</code> 的 <code>proto</code> 编译支持</p>
+<blockquote>
+<p>go get -u github.com/golang/protobuf/protoc-gen-go</p>
+</blockquote>
+</li>
+<li><p>安装 <code>gRPC</code> 包</p>
+<blockquote>
+<p>go get -u google.golang.org/grpc</p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>gRPC</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>gin-vue-admin的安装及使用</title>
     <url>/2021/10/14/gin-vue-admin%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/diary-5.jpg" alt="gin-vue-admin"></p>
@@ -2207,7 +2255,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#103;&#x69;&#116;&#x40;&#x67;&#x69;&#116;&#x68;&#x75;&#98;&#x2e;&#x63;&#x6f;&#109;">&#103;&#x69;&#116;&#x40;&#x67;&#x69;&#116;&#x68;&#x75;&#98;&#x2e;&#x63;&#x6f;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#103;&#x69;&#116;&#64;&#x67;&#105;&#116;&#x68;&#x75;&#x62;&#46;&#x63;&#111;&#x6d;">&#103;&#x69;&#116;&#64;&#x67;&#105;&#116;&#x68;&#x75;&#x62;&#46;&#x63;&#111;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -2451,54 +2499,6 @@ class QuotesSpider(scrapy.Spider):
         <tag>golang</tag>
         <tag>go-zero</tag>
         <tag>goctl</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>gRPC 的介绍及使用</title>
-    <url>/2021/12/07/gRPC-%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/grpc.png" alt="grpc"></p>
-<a id="more"></a>
-
-
-<p>我们将介绍 <code>Go</code> 语言中最流行的 RPC 框架：<code>gRPC (google RPC)</code>。</p>
-<p><strong>gRPC 简介</strong></p>
-<p>RPC 代指远程过程调用 <code>(Remote Procedure Call)</code> 就是允许程序调用另一个地址空间（通常是共享网络的另一台机器上）的过程或函数，且不需要显式编码这个远程调用的细节 通俗来说就是调用其他进程内的方法，并且获得对应的返回值。</p>
-<p><code>gRPC</code> 是一个现代的、高性能、开源的和语言无关的通用RPC框架，基于 <code>HTTP2</code> 协议设计，序列化使用PB(Protocol Buffer)，<code>PB</code> 是一种语言无关的高性能序列化框架，基于 <code>HTTP2+PB</code> 保证了的高性能。</p>
-<p>整个 <code>gRPC</code> 调用基本上会包括以下 3 点：</p>
-<ul>
-<li>通讯协议 (HTTP2)</li>
-<li>寻址</li>
-<li>数据序列化 (Protobuf) proto3声明文件-&gt;protoc</li>
-</ul>
-<p><strong>安装相关依赖</strong><br>1.下载安装 <a href="https://golang.google.cn/dl/" target="_blank">[ go ]</a></p>
-<blockquote>
-<p>go version</p>
-</blockquote>
-<p>2.下载安装 <a href="https://github.com/protocolbuffers/protobuf/releases" target="_blank">[ protoc ]</a><br>在 gRPC 开发中，需要与 Protobuf 配合，在编写了.proto 文件后，我们会需要到一个编译器，就是 protoc。</p>
-<blockquote>
-<p>protoc –version</p>
-</blockquote>
-<p>3.安装相关依赖包</p>
-<ul>
-<li><p>安装 <code>golang</code> 的 <code>proto</code> 工具包</p>
-<blockquote>
-<p>go get -u github.com/golang/protobuf/proto</p>
-</blockquote>
-</li>
-<li><p>安装 <code>goalng</code> 的 <code>proto</code> 编译支持</p>
-<blockquote>
-<p>go get -u github.com/golang/protobuf/protoc-gen-go</p>
-</blockquote>
-</li>
-<li><p>安装 <code>gRPC</code> 包</p>
-<blockquote>
-<p>go get -u google.golang.org/grpc</p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>gRPC</tag>
       </tags>
   </entry>
   <entry>
@@ -3144,6 +3144,41 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>php 递归拼接一条线会员</title>
+    <url>/2017/09/14/php-%E9%80%92%E5%BD%92%E6%8B%BC%E6%8E%A5%E4%B8%80%E6%9D%A1%E7%BA%BF%E4%BC%9A%E5%91%98/</url>
+    <content><![CDATA[<p><strong>php 递归拼接一条线会员：</strong> </p>
+<a id="more"></a>
+
+<ul>
+<li><strong>PHP使用递归&amp;参数引用</strong></li>
+</ul>
+<blockquote>
+<p> public static function parentIdLine($adminid,&amp;$parentAdmin_strs=’’)<br> {</p>
+<pre><code>       $parent_id = self::find($adminid)-&gt;parent_id;
+       // 构造上级限制
+       $parentids = array(0,1); //主要是限制管理员不拿提成          
+       if (!in_array($parent_id, $parentids) ) &#123;
+          $parentAdmin_strs .= $parent_id.&#39;,&#39;;
+          self::parentIdLine($parent_id,$parentAdmin_strs); 
+       &#125; 
+
+     return $parentAdmin_strs;</code></pre>
+<p>}</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.<br>   ok,  enjoy it !!!</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>php</tag>
+        <tag>递归</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>redis lua的使用</title>
     <url>/2022/01/13/redis-lua%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/lua.png" alt="lua"></p>
@@ -3216,41 +3251,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>php 递归拼接一条线会员</title>
-    <url>/2017/09/14/php-%E9%80%92%E5%BD%92%E6%8B%BC%E6%8E%A5%E4%B8%80%E6%9D%A1%E7%BA%BF%E4%BC%9A%E5%91%98/</url>
-    <content><![CDATA[<p><strong>php 递归拼接一条线会员：</strong> </p>
-<a id="more"></a>
-
-<ul>
-<li><strong>PHP使用递归&amp;参数引用</strong></li>
-</ul>
-<blockquote>
-<p> public static function parentIdLine($adminid,&amp;$parentAdmin_strs=’’)<br> {</p>
-<pre><code>       $parent_id = self::find($adminid)-&gt;parent_id;
-       // 构造上级限制
-       $parentids = array(0,1); //主要是限制管理员不拿提成          
-       if (!in_array($parent_id, $parentids) ) &#123;
-          $parentAdmin_strs .= $parent_id.&#39;,&#39;;
-          self::parentIdLine($parent_id,$parentAdmin_strs); 
-       &#125; 
-
-     return $parentAdmin_strs;</code></pre>
-<p>}</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.<br>   ok,  enjoy it !!!</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>php</tag>
-        <tag>递归</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>socket.io的使用</title>
     <url>/2018/03/28/socket-io%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><strong>socket.io的基础教程</strong> </p>
@@ -3262,7 +3262,7 @@ class QuotesSpider(scrapy.Spider):
 </blockquote>
 <p>二、使用npm下载 web框架express模块</p>
 <blockquote>
-<p>npm install --save <a href="mailto:&#x65;&#x78;&#x70;&#x72;&#x65;&#115;&#x73;&#64;&#52;&#x2e;&#49;&#x35;&#46;&#x32;">&#x65;&#x78;&#x70;&#x72;&#x65;&#115;&#x73;&#64;&#52;&#x2e;&#49;&#x35;&#46;&#x32;</a></p>
+<p>npm install --save <a href="mailto:&#101;&#x78;&#x70;&#x72;&#x65;&#115;&#115;&#64;&#52;&#x2e;&#x31;&#53;&#46;&#50;">&#101;&#x78;&#x70;&#x72;&#x65;&#115;&#115;&#64;&#52;&#x2e;&#x31;&#53;&#46;&#50;</a></p>
 </blockquote>
 <p>三、使用npm下载socket.io模块</p>
 <blockquote>
@@ -3510,37 +3510,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>发布Laravel扩展包mqtt</title>
-    <url>/2021/02/01/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85mqtt/</url>
-    <content><![CDATA[<p><strong>发布Laravel扩展包mqtt</strong> </p>
-<a id="more"></a>
-
-<p>一、编写扩展包</p>
-<blockquote>
-<p><a href="http://baishunhua.com/2018/12/04/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85larapay/" target="_blank">[ 参考文章 ]</a></p>
-</blockquote>
-<p>二、Github地址</p>
-<blockquote>
-<p><a href="https://github.com/shunhua/mqtt" target="_blank">[ mqtt ]</a></p>
-</blockquote>
-<p>三、Packagist地址</p>
-<blockquote>
-<p><a href="https://packagist.org/packages/shunhua/laravel-mqtt" target="_blank">[ Packagist ]</a></p>
-</blockquote>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p> 目前 tags 为 v1.0</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>laravel</tag>
-        <tag>composer</tag>
-        <tag>mqtt</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>实现在Safari一键复制</title>
     <url>/2018/10/27/%E5%AE%9E%E7%8E%B0%E5%9C%A8Safari%E4%B8%80%E9%94%AE%E5%A4%8D%E5%88%B6/</url>
     <content><![CDATA[<p><strong>实现在Safari一键复制</strong></p>
@@ -3570,6 +3539,37 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>Safari</tag>
         <tag>Copy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>发布Laravel扩展包mqtt</title>
+    <url>/2021/02/01/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85mqtt/</url>
+    <content><![CDATA[<p><strong>发布Laravel扩展包mqtt</strong> </p>
+<a id="more"></a>
+
+<p>一、编写扩展包</p>
+<blockquote>
+<p><a href="http://baishunhua.com/2018/12/04/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85larapay/" target="_blank">[ 参考文章 ]</a></p>
+</blockquote>
+<p>二、Github地址</p>
+<blockquote>
+<p><a href="https://github.com/shunhua/mqtt" target="_blank">[ mqtt ]</a></p>
+</blockquote>
+<p>三、Packagist地址</p>
+<blockquote>
+<p><a href="https://packagist.org/packages/shunhua/laravel-mqtt" target="_blank">[ Packagist ]</a></p>
+</blockquote>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p> 目前 tags 为 v1.0</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>laravel</tag>
+        <tag>composer</tag>
+        <tag>mqtt</tag>
       </tags>
   </entry>
   <entry>
