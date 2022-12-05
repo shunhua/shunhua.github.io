@@ -125,7 +125,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#64;&#x71;&#113;&#46;&#x63;&#x6f;&#109;">&#120;&#64;&#x71;&#113;&#46;&#x63;&#x6f;&#109;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#64;&#x71;&#113;&#46;&#99;&#x6f;&#x6d;">&#x78;&#64;&#x71;&#113;&#46;&#99;&#x6f;&#x6d;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -136,7 +136,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#64;&#x71;&#x71;&#x2e;&#99;&#x6f;&#x6d;">&#x62;&#64;&#x71;&#x71;&#x2e;&#99;&#x6f;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#x40;&#113;&#113;&#x2e;&#x63;&#111;&#x6d;">&#x62;&#x40;&#113;&#113;&#x2e;&#x63;&#111;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -251,79 +251,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Centos7下基于laradock部署laravel5.x</title>
-    <url>/2018/04/09/Centos7%E4%B8%8B%E5%9F%BA%E4%BA%8Elaradock%E9%83%A8%E7%BD%B2laravel5-x/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>一、安装docker</strong></p>
-<p>Go to：<a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/" target="_blank">[ .rpm安装路径 ]</a> <a href="https://docs.docker.com/engine/installation/linux/docker-ce/centos/#install-using-the-repository" target="_blank">[ 官方参考 ]</a><br><img src="/assets/blogImg/laradock/1.png" alt="ico原来的样子"></p>
-<p>打开路径地址，本文默认安装选择最新版，<br><img src="/assets/blogImg/laradock/2.png" alt="ico原来的样子"><br>下载rpm安装包</p>
-<blockquote>
-<p> wget <a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm">https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm</a></p>
-</blockquote>
-<p>安装 Docker CE,执行命令</p>
-<blockquote>
-<p> $ sudo yum install docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm<br>或者 yum install /path/to/package.rpm  </p>
-</blockquote>
-<p>启动docker –hello[docker run hello-world]</p>
-<blockquote>
-<p> systemctl start docker<br>systemctl enable docker 开机启动</p>
-</blockquote>
-<p><strong>二、CentOS 7配置中国镜像</strong></p>
-<p><a href="https://yq.aliyun.com/articles/29941" target="_blank">[ 参考配置原文 ]</a> docker –registry-mirror=<a href="https://registry.docker-cn.com/">https://registry.docker-cn.com</a> daemon [提示找不到registry]</p>
-<ul>
-<li>CentOS的配置方式略微复杂，需要先将默认的配置文件复制出来</li>
-<li>/lib/systemd/system/docker.service -&gt; /etc/systemd/system/docker.service</li>
-<li>然后再将加速器地址添加到配置文件的启动命令</li>
-<li>重启Docker就可以了。</li>
-</ul>
-<blockquote>
-<ul>
-<li>sudo cp -n /lib/systemd/system/docker.service /etc/systemd/system/docker.service</li>
-<li>sudo sed -i “s|ExecStart=/usr/bin/docker daemon|ExecStart=/usr/bin/docker daemon –registry-mirror=<a href="https://registry.docker-cn.com|g&quot;/">https://registry.docker-cn.com|g&quot;</a> /etc/systemd/system/docker.service</li>
-<li>sudo sed -i “s|ExecStart=/usr/bin/dockerd|ExecStart=/usr/bin/dockerd –registry-mirror=<a href="https://registry.docker-cn.com|g&quot;/">https://registry.docker-cn.com|g&quot;</a> /etc/systemd/system/docker.service</li>
-<li>sudo systemctl daemon-reload</li>
-<li>sudo systemctl restart docker  </li>
-</ul>
-</blockquote>
-<p>docker 安装完成！！！</p>
-<p><strong>三、拉取 Laradock</strong></p>
-<ul>
-<li>目录路径[/home/]</li>
-<li>git clone <a href="https://github.com/Laradock/laradock.git">https://github.com/Laradock/laradock.git</a>  </li>
-<li>cp env-example .env </li>
-<li>docker-compose up -d nginx mysql phpmyadmin</li>
-<li>访问phpmyadmin[<a href="http://ip:8080/]%E9%BB%98%E8%AE%A4%E5%80%BC%E4%B8%BA">http://ip:8080/]默认值为</a>  服务器[mysql] 账号[root] 密码[root]</li>
-<li>获取laradock[/home/laradock]后 在同级下创建项目目录[/home/www]</li>
-<li>修改[/home/laradock/.env]APPLICATION=../www/</li>
-<li>[/home/laradock]下使用root用户docker-compose exec workspace bash</li>
-<li>[/home/laradock]下使用laradock用户  docker-compose exec –user=laradock workspace bash</li>
-<li>配置中国镜像 composer config -g repo.packagist composer <a href="https://packagist.phpcomposer.com/">https://packagist.phpcomposer.com</a></li>
-<li>创建laravel composer create-project laravel/laravel my-app</li>
-</ul>
-<blockquote>
-<p> 安装SVN 配置钩子文件到 [/home/www]  </p>
-</blockquote>
-<p><a href="https://lisonghe.com/detail/19" target="_blank">[ svn安装文档参考 ]</a> </p>
-<blockquote>
-<p> 安装SVN成功后,服务器开启端口权限，上传代码,修改数据库配置，导入数据库</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>laradock</tag>
-        <tag>centos7</tag>
-        <tag>laravel5</tag>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CentOS 7 搭建SVN服务器</title>
     <url>/2017/09/14/CentOS-7-%E6%90%AD%E5%BB%BASVN%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
     <content><![CDATA[<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CentOS 7 搭建SVN服务器</strong> </p>
@@ -398,6 +325,79 @@
       <tags>
         <tag>CentOS 7</tag>
         <tag>svn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Centos7下基于laradock部署laravel5.x</title>
+    <url>/2018/04/09/Centos7%E4%B8%8B%E5%9F%BA%E4%BA%8Elaradock%E9%83%A8%E7%BD%B2laravel5-x/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>一、安装docker</strong></p>
+<p>Go to：<a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/" target="_blank">[ .rpm安装路径 ]</a> <a href="https://docs.docker.com/engine/installation/linux/docker-ce/centos/#install-using-the-repository" target="_blank">[ 官方参考 ]</a><br><img src="/assets/blogImg/laradock/1.png" alt="ico原来的样子"></p>
+<p>打开路径地址，本文默认安装选择最新版，<br><img src="/assets/blogImg/laradock/2.png" alt="ico原来的样子"><br>下载rpm安装包</p>
+<blockquote>
+<p> wget <a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm">https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm</a></p>
+</blockquote>
+<p>安装 Docker CE,执行命令</p>
+<blockquote>
+<p> $ sudo yum install docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm<br>或者 yum install /path/to/package.rpm  </p>
+</blockquote>
+<p>启动docker –hello[docker run hello-world]</p>
+<blockquote>
+<p> systemctl start docker<br>systemctl enable docker 开机启动</p>
+</blockquote>
+<p><strong>二、CentOS 7配置中国镜像</strong></p>
+<p><a href="https://yq.aliyun.com/articles/29941" target="_blank">[ 参考配置原文 ]</a> docker –registry-mirror=<a href="https://registry.docker-cn.com/">https://registry.docker-cn.com</a> daemon [提示找不到registry]</p>
+<ul>
+<li>CentOS的配置方式略微复杂，需要先将默认的配置文件复制出来</li>
+<li>/lib/systemd/system/docker.service -&gt; /etc/systemd/system/docker.service</li>
+<li>然后再将加速器地址添加到配置文件的启动命令</li>
+<li>重启Docker就可以了。</li>
+</ul>
+<blockquote>
+<ul>
+<li>sudo cp -n /lib/systemd/system/docker.service /etc/systemd/system/docker.service</li>
+<li>sudo sed -i “s|ExecStart=/usr/bin/docker daemon|ExecStart=/usr/bin/docker daemon –registry-mirror=<a href="https://registry.docker-cn.com|g&quot;/">https://registry.docker-cn.com|g&quot;</a> /etc/systemd/system/docker.service</li>
+<li>sudo sed -i “s|ExecStart=/usr/bin/dockerd|ExecStart=/usr/bin/dockerd –registry-mirror=<a href="https://registry.docker-cn.com|g&quot;/">https://registry.docker-cn.com|g&quot;</a> /etc/systemd/system/docker.service</li>
+<li>sudo systemctl daemon-reload</li>
+<li>sudo systemctl restart docker  </li>
+</ul>
+</blockquote>
+<p>docker 安装完成！！！</p>
+<p><strong>三、拉取 Laradock</strong></p>
+<ul>
+<li>目录路径[/home/]</li>
+<li>git clone <a href="https://github.com/Laradock/laradock.git">https://github.com/Laradock/laradock.git</a>  </li>
+<li>cp env-example .env </li>
+<li>docker-compose up -d nginx mysql phpmyadmin</li>
+<li>访问phpmyadmin[<a href="http://ip:8080/]%E9%BB%98%E8%AE%A4%E5%80%BC%E4%B8%BA">http://ip:8080/]默认值为</a>  服务器[mysql] 账号[root] 密码[root]</li>
+<li>获取laradock[/home/laradock]后 在同级下创建项目目录[/home/www]</li>
+<li>修改[/home/laradock/.env]APPLICATION=../www/</li>
+<li>[/home/laradock]下使用root用户docker-compose exec workspace bash</li>
+<li>[/home/laradock]下使用laradock用户  docker-compose exec –user=laradock workspace bash</li>
+<li>配置中国镜像 composer config -g repo.packagist composer <a href="https://packagist.phpcomposer.com/">https://packagist.phpcomposer.com</a></li>
+<li>创建laravel composer create-project laravel/laravel my-app</li>
+</ul>
+<blockquote>
+<p> 安装SVN 配置钩子文件到 [/home/www]  </p>
+</blockquote>
+<p><a href="https://lisonghe.com/detail/19" target="_blank">[ svn安装文档参考 ]</a> </p>
+<blockquote>
+<p> 安装SVN成功后,服务器开启端口权限，上传代码,修改数据库配置，导入数据库</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>laradock</tag>
+        <tag>centos7</tag>
+        <tag>laravel5</tag>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -1041,6 +1041,50 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Laravel 和 Vue 的项目搭建</title>
+    <url>/2018/11/02/Laravel-%E5%92%8C-Vue-%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>一、Laravel创建项目</strong> </p>
+<blockquote>
+<p>composer create-project –prefer-dist laravel/laravel laravel-vue</p>
+</blockquote>
+<p><strong>二、扩展包</strong> </p>
+<blockquote>
+<p>npm install<br>npm install vue-router iview</p>
+</blockquote>
+<p><strong>三、前端结构搭建</strong><br>vue前端的文件结构在 /recources/js 目录[laravel5.7]，vue能够渲染主要是两个操作</p>
+<ul>
+<li>vue 挂载到页面的节点中</li>
+<li>vue-router 处理路由，渲染对应的组件</li>
+</ul>
+<p>code流程  </p>
+<ol>
+<li><p>创建 web 路由<br>在 /routes/web.php 中新建一个访问我们挂载着vue页面的路由。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Route::get(&#39;&#x2F;&#39;, function () &#123;</span><br><span class="line">    return view(&#39;welcome&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑welcome.blade.php<br>在 resource/views 新建 welcome.blade.php,代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0, maximum-scale&#x3D;1.0, minimum-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;csrf-token&quot; content&#x3D;&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</span><br><span class="line">  &lt;title&gt;&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;&#123;&#123; mix(&#39;css&#x2F;app.css&#39;) &#125;&#125;&quot;&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body ontouchstart&gt;</span><br><span class="line">  &lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#123;&#123; mix(&#39;js&#x2F;app.js&#39;) &#125;&#125;&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改 /recources/js/app.js</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">require(&#39;.&#x2F;bootstrap&#39;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 导入扩展包</span><br><span class="line">window.Vue &#x3D; require(&#39;vue&#39;);</span><br><span class="line"></span><br><span class="line">import App from &#39;.&#x2F;components&#x2F;app.vue&#39;</span><br><span class="line">import VueRouter from &#39;vue-router&#39;;</span><br><span class="line">import iView from &#39;iview&#39;;</span><br><span class="line">import &#39;iview&#x2F;dist&#x2F;styles&#x2F;iview.css&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 导入vue</span><br><span class="line">Vue.use(iView);</span><br><span class="line">Vue.use(VueRouter);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 路由配置</span><br><span class="line">const RouterConfig &#x3D; &#123;</span><br><span class="line">    routes: [</span><br><span class="line">        &#x2F;&#x2F; ExampleComponent laravel默认的示例组件</span><br><span class="line">        &#123; path: &#39;&#x2F;&#39;, component: require(&#39;.&#x2F;components&#x2F;ExampleComponent.vue&#39;) &#125;,</span><br><span class="line">        &#123; path: &#39;&#x2F;bsh&#39;, component: require(&#39;.&#x2F;components&#x2F;bsh.vue&#39;) &#125;,</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br><span class="line">const router &#x3D; new VueRouter(RouterConfig);</span><br><span class="line"></span><br><span class="line">const app &#x3D; new Vue(&#123;</span><br><span class="line">    el: &#39;#app&#39;,</span><br><span class="line">    router: router,</span><br><span class="line">    render: h &#x3D;&gt; h(App)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>建立 Layout<br>在 /recources/js/components/ 新建 app.vue, 将 iview 的 layout 代码搬过来：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;style scoped&gt;</span><br><span class="line">  .layout-con&#123;</span><br><span class="line">    height: 100%;</span><br><span class="line">    width: 100%;</span><br><span class="line">  &#125;</span><br><span class="line">  .menu-item span&#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    width: 69px;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    vertical-align: bottom;</span><br><span class="line">    transition: width .2s ease .2s;</span><br><span class="line">  &#125;</span><br><span class="line">  .menu-item i&#123;</span><br><span class="line">    transform: translateX(0px);</span><br><span class="line">    transition: font-size .2s ease, transform .2s ease;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">    font-size: 16px;</span><br><span class="line">  &#125;</span><br><span class="line">  .collapsed-menu span&#123;</span><br><span class="line">    width: 0px;</span><br><span class="line">    transition: width .2s ease;</span><br><span class="line">  &#125;</span><br><span class="line">  .collapsed-menu i&#123;</span><br><span class="line">    transform: translateX(5px);</span><br><span class="line">    transition: font-size .2s ease .2s, transform .2s ease .2s;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">    font-size: 22px;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;layout&quot;&gt;</span><br><span class="line">    &lt;Layout :style&#x3D;&quot;&#123;minHeight: &#39;100vh&#39;&#125;&quot;&gt;</span><br><span class="line">      &lt;Sider collapsible :collapsed-width&#x3D;&quot;78&quot; v-model&#x3D;&quot;isCollapsed&quot;&gt;</span><br><span class="line">        &lt;Menu active-name&#x3D;&quot;1-2&quot; theme&#x3D;&quot;dark&quot; width&#x3D;&quot;auto&quot; :class&#x3D;&quot;menuitemClasses&quot;&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-1&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;ios-navigate&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 1&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-2&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;search&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 2&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-3&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;settings&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 3&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">        &lt;&#x2F;Menu&gt;</span><br><span class="line">      &lt;&#x2F;Sider&gt;</span><br><span class="line">      &lt;Layout&gt;</span><br><span class="line">        &lt;Header :style&#x3D;&quot;&#123;background: &#39;#fff&#39;, boxShadow: &#39;0 2px 3px 2px rgba(0,0,0,.1)&#39;&#125;&quot;&gt;&lt;&#x2F;Header&gt;</span><br><span class="line">        &lt;Content :style&#x3D;&quot;&#123;padding: &#39;0 16px 16px&#39;&#125;&quot;&gt;</span><br><span class="line">          &lt;Breadcrumb :style&#x3D;&quot;&#123;margin: &#39;16px 0&#39;&#125;&quot;&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Home&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Components&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Layout&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">          &lt;&#x2F;Breadcrumb&gt;</span><br><span class="line">          &lt;Card&gt;</span><br><span class="line">            &lt;div style&#x3D;&quot;height: 600px&quot;&gt;&lt;router-view&gt;&lt;&#x2F;router-view&gt;&lt;&#x2F;div&gt;</span><br><span class="line">          &lt;&#x2F;Card&gt;</span><br><span class="line">        &lt;&#x2F;Content&gt;</span><br><span class="line">      &lt;&#x2F;Layout&gt;</span><br><span class="line">    &lt;&#x2F;Layout&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">    data () &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        isCollapsed: false</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line">      menuitemClasses: function () &#123;</span><br><span class="line">        return [</span><br><span class="line">          &#39;menu-item&#39;,</span><br><span class="line">          this.isCollapsed ? &#39;collapsed-menu&#39; : &#39;&#39;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>添加组件<br>路由访问的组件会渲染到 app.vue中的[router-view]<br>然后修改组件 /recources/js/components/bsh.vue 的内容：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;Tabs&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;macOS&quot; icon&#x3D;&quot;social-apple&quot;&gt;标签一的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;Windows&quot; icon&#x3D;&quot;social-windows&quot;&gt;标签二的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;Linux&quot; icon&#x3D;&quot;social-tux&quot;&gt;标签三的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">    &lt;&#x2F;Tabs&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>编译运行<br>常用的编译命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 本地环境编译</span><br><span class="line">npm run dev</span><br><span class="line"></span><br><span class="line"># 本地环境编译 + 监控文件修改</span><br><span class="line">npm run watch</span><br><span class="line"></span><br><span class="line"># 生产环境编译</span><br><span class="line">npm run prod</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>Laravel</tag>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux下安装node.js</title>
     <url>/2018/03/21/Linux%E4%B8%8B%E5%AE%89%E8%A3%85node-js/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1111,50 +1155,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       <tags>
         <tag>linux</tag>
         <tag>Supervisor</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Laravel 和 Vue 的项目搭建</title>
-    <url>/2018/11/02/Laravel-%E5%92%8C-Vue-%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>一、Laravel创建项目</strong> </p>
-<blockquote>
-<p>composer create-project –prefer-dist laravel/laravel laravel-vue</p>
-</blockquote>
-<p><strong>二、扩展包</strong> </p>
-<blockquote>
-<p>npm install<br>npm install vue-router iview</p>
-</blockquote>
-<p><strong>三、前端结构搭建</strong><br>vue前端的文件结构在 /recources/js 目录[laravel5.7]，vue能够渲染主要是两个操作</p>
-<ul>
-<li>vue 挂载到页面的节点中</li>
-<li>vue-router 处理路由，渲染对应的组件</li>
-</ul>
-<p>code流程  </p>
-<ol>
-<li><p>创建 web 路由<br>在 /routes/web.php 中新建一个访问我们挂载着vue页面的路由。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Route::get(&#39;&#x2F;&#39;, function () &#123;</span><br><span class="line">    return view(&#39;welcome&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编辑welcome.blade.php<br>在 resource/views 新建 welcome.blade.php,代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0, maximum-scale&#x3D;1.0, minimum-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">  &lt;meta name&#x3D;&quot;csrf-token&quot; content&#x3D;&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</span><br><span class="line">  &lt;title&gt;&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;&#123;&#123; mix(&#39;css&#x2F;app.css&#39;) &#125;&#125;&quot;&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body ontouchstart&gt;</span><br><span class="line">  &lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#123;&#123; mix(&#39;js&#x2F;app.js&#39;) &#125;&#125;&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改 /recources/js/app.js</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">require(&#39;.&#x2F;bootstrap&#39;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 导入扩展包</span><br><span class="line">window.Vue &#x3D; require(&#39;vue&#39;);</span><br><span class="line"></span><br><span class="line">import App from &#39;.&#x2F;components&#x2F;app.vue&#39;</span><br><span class="line">import VueRouter from &#39;vue-router&#39;;</span><br><span class="line">import iView from &#39;iview&#39;;</span><br><span class="line">import &#39;iview&#x2F;dist&#x2F;styles&#x2F;iview.css&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 导入vue</span><br><span class="line">Vue.use(iView);</span><br><span class="line">Vue.use(VueRouter);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 路由配置</span><br><span class="line">const RouterConfig &#x3D; &#123;</span><br><span class="line">    routes: [</span><br><span class="line">        &#x2F;&#x2F; ExampleComponent laravel默认的示例组件</span><br><span class="line">        &#123; path: &#39;&#x2F;&#39;, component: require(&#39;.&#x2F;components&#x2F;ExampleComponent.vue&#39;) &#125;,</span><br><span class="line">        &#123; path: &#39;&#x2F;bsh&#39;, component: require(&#39;.&#x2F;components&#x2F;bsh.vue&#39;) &#125;,</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br><span class="line">const router &#x3D; new VueRouter(RouterConfig);</span><br><span class="line"></span><br><span class="line">const app &#x3D; new Vue(&#123;</span><br><span class="line">    el: &#39;#app&#39;,</span><br><span class="line">    router: router,</span><br><span class="line">    render: h &#x3D;&gt; h(App)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>建立 Layout<br>在 /recources/js/components/ 新建 app.vue, 将 iview 的 layout 代码搬过来：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;style scoped&gt;</span><br><span class="line">  .layout-con&#123;</span><br><span class="line">    height: 100%;</span><br><span class="line">    width: 100%;</span><br><span class="line">  &#125;</span><br><span class="line">  .menu-item span&#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    width: 69px;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    vertical-align: bottom;</span><br><span class="line">    transition: width .2s ease .2s;</span><br><span class="line">  &#125;</span><br><span class="line">  .menu-item i&#123;</span><br><span class="line">    transform: translateX(0px);</span><br><span class="line">    transition: font-size .2s ease, transform .2s ease;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">    font-size: 16px;</span><br><span class="line">  &#125;</span><br><span class="line">  .collapsed-menu span&#123;</span><br><span class="line">    width: 0px;</span><br><span class="line">    transition: width .2s ease;</span><br><span class="line">  &#125;</span><br><span class="line">  .collapsed-menu i&#123;</span><br><span class="line">    transform: translateX(5px);</span><br><span class="line">    transition: font-size .2s ease .2s, transform .2s ease .2s;</span><br><span class="line">    vertical-align: middle;</span><br><span class="line">    font-size: 22px;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;layout&quot;&gt;</span><br><span class="line">    &lt;Layout :style&#x3D;&quot;&#123;minHeight: &#39;100vh&#39;&#125;&quot;&gt;</span><br><span class="line">      &lt;Sider collapsible :collapsed-width&#x3D;&quot;78&quot; v-model&#x3D;&quot;isCollapsed&quot;&gt;</span><br><span class="line">        &lt;Menu active-name&#x3D;&quot;1-2&quot; theme&#x3D;&quot;dark&quot; width&#x3D;&quot;auto&quot; :class&#x3D;&quot;menuitemClasses&quot;&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-1&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;ios-navigate&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 1&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-2&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;search&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 2&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">          &lt;MenuItem name&#x3D;&quot;1-3&quot;&gt;</span><br><span class="line">            &lt;Icon type&#x3D;&quot;settings&quot;&gt;&lt;&#x2F;Icon&gt;</span><br><span class="line">            &lt;span&gt;Option 3&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;MenuItem&gt;</span><br><span class="line">        &lt;&#x2F;Menu&gt;</span><br><span class="line">      &lt;&#x2F;Sider&gt;</span><br><span class="line">      &lt;Layout&gt;</span><br><span class="line">        &lt;Header :style&#x3D;&quot;&#123;background: &#39;#fff&#39;, boxShadow: &#39;0 2px 3px 2px rgba(0,0,0,.1)&#39;&#125;&quot;&gt;&lt;&#x2F;Header&gt;</span><br><span class="line">        &lt;Content :style&#x3D;&quot;&#123;padding: &#39;0 16px 16px&#39;&#125;&quot;&gt;</span><br><span class="line">          &lt;Breadcrumb :style&#x3D;&quot;&#123;margin: &#39;16px 0&#39;&#125;&quot;&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Home&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Components&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">            &lt;BreadcrumbItem&gt;Layout&lt;&#x2F;BreadcrumbItem&gt;</span><br><span class="line">          &lt;&#x2F;Breadcrumb&gt;</span><br><span class="line">          &lt;Card&gt;</span><br><span class="line">            &lt;div style&#x3D;&quot;height: 600px&quot;&gt;&lt;router-view&gt;&lt;&#x2F;router-view&gt;&lt;&#x2F;div&gt;</span><br><span class="line">          &lt;&#x2F;Card&gt;</span><br><span class="line">        &lt;&#x2F;Content&gt;</span><br><span class="line">      &lt;&#x2F;Layout&gt;</span><br><span class="line">    &lt;&#x2F;Layout&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">    data () &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        isCollapsed: false</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line">      menuitemClasses: function () &#123;</span><br><span class="line">        return [</span><br><span class="line">          &#39;menu-item&#39;,</span><br><span class="line">          this.isCollapsed ? &#39;collapsed-menu&#39; : &#39;&#39;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>添加组件<br>路由访问的组件会渲染到 app.vue中的[router-view]<br>然后修改组件 /recources/js/components/bsh.vue 的内容：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;Tabs&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;macOS&quot; icon&#x3D;&quot;social-apple&quot;&gt;标签一的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;Windows&quot; icon&#x3D;&quot;social-windows&quot;&gt;标签二的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">        &lt;TabPane label&#x3D;&quot;Linux&quot; icon&#x3D;&quot;social-tux&quot;&gt;标签三的内容&lt;&#x2F;TabPane&gt;</span><br><span class="line">    &lt;&#x2F;Tabs&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>编译运行<br>常用的编译命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 本地环境编译</span><br><span class="line">npm run dev</span><br><span class="line"></span><br><span class="line"># 本地环境编译 + 监控文件修改</span><br><span class="line">npm run watch</span><br><span class="line"></span><br><span class="line"># 生产环境编译</span><br><span class="line">npm run prod</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>Laravel</tag>
-        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -1687,85 +1687,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Python scrapy入门教程</title>
-    <url>/2017/09/26/Python-scrapy%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<p><strong>Python scrapy入门教程</strong> </p>
-<a id="more"></a>
-
-<p><strong>Python 安装</strong></p>
-<p>Python下载地址：<a href="https://www.python.org/downloads/windows/" target="_blank">[ Python-Downloads ]</a> </p>
-<p>如果您已经熟悉 Python 包的安装，您可以从 PyPI 安装 Scrapy 及其依赖：</p>
-<blockquote>
-<p> pip install Scrapy</p>
-</blockquote>
-<p>win32api问题解决<br>安装pywin32地址：<a href="http://sourceforge.net/projects/pywin32/" target="_blank">[ 安装pywin32 ]</a> </p>
-<blockquote>
-<p> No module named win32api问题解决</p>
-</blockquote>
-<p>请确保下载与系统（win32或amd64）匹配的版本</p>
-<blockquote>
-<p> 引导完成以下任务</p>
-</blockquote>
-<ul>
-<li>创建一个新的 Scrapy 项目</li>
-<li>编写 爬虫 以抓取网站并提取数据</li>
-<li>使用命令行导出已爬取的数据</li>
-<li>将爬虫更改为递归跟进链接</li>
-<li>使用爬虫参数</li>
-</ul>
-<p>在开始爬取之前，您必须设置一个新的Scrapy项目。进入您要存储代码的目录，并运行如下命令：</p>
-<blockquote>
-<p> scrapy startproject tutorial</p>
-</blockquote>
-<p>这将创建一个具有以下内容的 tutorial 目录：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tutorial&#x2F;</span><br><span class="line">    scrapy.cfg            # 部署配置文件</span><br><span class="line"></span><br><span class="line">    tutorial&#x2F;             # 项目的 Python 模块，您将从这里加入您的代码</span><br><span class="line">        __init__.py</span><br><span class="line"></span><br><span class="line">        items.py          # 项目的 item 定义文件</span><br><span class="line"></span><br><span class="line">        pipelines.py      # 项目的 pipelines 文件</span><br><span class="line"></span><br><span class="line">        settings.py       # 项目的 settings 文件</span><br><span class="line"></span><br><span class="line">        spiders&#x2F;          # 放置spider代码的目录.</span><br><span class="line">            __init__.py</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p> 我们的第一个爬虫</p>
-</blockquote>
-<p>爬虫是您定义的类，Scrapy用它从网站（或一组网站）中抓取信息。它们必须子类化 scrapy.Spider 并定义初始请求，可选地如何跟踪页面中的链接，以及如何解析下载的页面内容以提取数据。</p>
-<p>这是我们第一个爬虫的代码。将其保存在项目中的 tutorial / spiders 目录下名为 shunhua_spider.py 的文件中：</p>
-<pre><code>import scrapy
-
-class QuotesSpider(scrapy.Spider):
-    name = &quot;shunhua&quot;
-
-    def start_requests(self):
-        urls = [
-            &#39;https://shunhua.github.io/&#39;,
-            &#39;https://shunhua.github.io/page/2/&#39;,
-        ]
-        for url in urls:
-            yield scrapy.Request(url=url, callback=self.parse)
-
-    def parse(self, response):
-        page = response.url.split(&quot;/&quot;)[-2]
-        filename = &#39;shunhua-%s.html&#39; % page
-        with open(filename, &#39;wb&#39;) as f:
-            f.write(response.body)
-        self.log(&#39;Saved file %s&#39; % filename)
-</code></pre>
-<blockquote>
-<p> 如何运行我们的爬虫 </p>
-</blockquote>
-<p>要让我们的蜘蛛工作，进入项目的根目录并运行： </p>
-<blockquote>
-<p> scrapy crawl shunhua </p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Python</tag>
-        <tag>scrapy</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SELinux 状态</title>
     <url>/2017/08/11/SELinux-%E7%8A%B6%E6%80%81/</url>
     <content><![CDATA[<p>##<strong>查看SELinux状态：</strong></p>
@@ -2046,6 +1967,85 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>Python scrapy入门教程</title>
+    <url>/2017/09/26/Python-scrapy%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<p><strong>Python scrapy入门教程</strong> </p>
+<a id="more"></a>
+
+<p><strong>Python 安装</strong></p>
+<p>Python下载地址：<a href="https://www.python.org/downloads/windows/" target="_blank">[ Python-Downloads ]</a> </p>
+<p>如果您已经熟悉 Python 包的安装，您可以从 PyPI 安装 Scrapy 及其依赖：</p>
+<blockquote>
+<p> pip install Scrapy</p>
+</blockquote>
+<p>win32api问题解决<br>安装pywin32地址：<a href="http://sourceforge.net/projects/pywin32/" target="_blank">[ 安装pywin32 ]</a> </p>
+<blockquote>
+<p> No module named win32api问题解决</p>
+</blockquote>
+<p>请确保下载与系统（win32或amd64）匹配的版本</p>
+<blockquote>
+<p> 引导完成以下任务</p>
+</blockquote>
+<ul>
+<li>创建一个新的 Scrapy 项目</li>
+<li>编写 爬虫 以抓取网站并提取数据</li>
+<li>使用命令行导出已爬取的数据</li>
+<li>将爬虫更改为递归跟进链接</li>
+<li>使用爬虫参数</li>
+</ul>
+<p>在开始爬取之前，您必须设置一个新的Scrapy项目。进入您要存储代码的目录，并运行如下命令：</p>
+<blockquote>
+<p> scrapy startproject tutorial</p>
+</blockquote>
+<p>这将创建一个具有以下内容的 tutorial 目录：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tutorial&#x2F;</span><br><span class="line">    scrapy.cfg            # 部署配置文件</span><br><span class="line"></span><br><span class="line">    tutorial&#x2F;             # 项目的 Python 模块，您将从这里加入您的代码</span><br><span class="line">        __init__.py</span><br><span class="line"></span><br><span class="line">        items.py          # 项目的 item 定义文件</span><br><span class="line"></span><br><span class="line">        pipelines.py      # 项目的 pipelines 文件</span><br><span class="line"></span><br><span class="line">        settings.py       # 项目的 settings 文件</span><br><span class="line"></span><br><span class="line">        spiders&#x2F;          # 放置spider代码的目录.</span><br><span class="line">            __init__.py</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 我们的第一个爬虫</p>
+</blockquote>
+<p>爬虫是您定义的类，Scrapy用它从网站（或一组网站）中抓取信息。它们必须子类化 scrapy.Spider 并定义初始请求，可选地如何跟踪页面中的链接，以及如何解析下载的页面内容以提取数据。</p>
+<p>这是我们第一个爬虫的代码。将其保存在项目中的 tutorial / spiders 目录下名为 shunhua_spider.py 的文件中：</p>
+<pre><code>import scrapy
+
+class QuotesSpider(scrapy.Spider):
+    name = &quot;shunhua&quot;
+
+    def start_requests(self):
+        urls = [
+            &#39;https://shunhua.github.io/&#39;,
+            &#39;https://shunhua.github.io/page/2/&#39;,
+        ]
+        for url in urls:
+            yield scrapy.Request(url=url, callback=self.parse)
+
+    def parse(self, response):
+        page = response.url.split(&quot;/&quot;)[-2]
+        filename = &#39;shunhua-%s.html&#39; % page
+        with open(filename, &#39;wb&#39;) as f:
+            f.write(response.body)
+        self.log(&#39;Saved file %s&#39; % filename)
+</code></pre>
+<blockquote>
+<p> 如何运行我们的爬虫 </p>
+</blockquote>
+<p>要让我们的蜘蛛工作，进入项目的根目录并运行： </p>
+<blockquote>
+<p> scrapy crawl shunhua </p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Python</tag>
+        <tag>scrapy</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AntV 蚂蚁数据可视化G6|Graphin</title>
     <url>/2021/12/01/antV-%E8%9A%82%E8%9A%81%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96G6-Graphin/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/antV-g6.png" alt="AntV"></p>
@@ -2255,7 +2255,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#x67;&#105;&#116;&#x40;&#103;&#105;&#x74;&#x68;&#117;&#98;&#46;&#99;&#x6f;&#109;">&#x67;&#105;&#116;&#x40;&#103;&#105;&#x74;&#x68;&#117;&#98;&#46;&#99;&#x6f;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#x67;&#105;&#x74;&#x40;&#x67;&#105;&#x74;&#x68;&#117;&#98;&#x2e;&#99;&#x6f;&#109;">&#x67;&#105;&#x74;&#x40;&#x67;&#105;&#x74;&#x68;&#117;&#98;&#x2e;&#99;&#x6f;&#109;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -2560,6 +2560,29 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>laravel-admin 实现字段排序</title>
+    <url>/2017/09/21/laravel-admin-%E5%AE%9E%E7%8E%B0%E5%AD%97%E6%AE%B5%E6%8E%92%E5%BA%8F/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> 排序代码</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">protected function grid()</span><br><span class="line">&#123;</span><br><span class="line">    return Admin::grid(Member::class, function (Grid $grid) &#123;</span><br><span class="line"></span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;id&#39;, &#39;desc&#39;);</span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;balance&#39;, &#39;desc&#39;);</span><br><span class="line"></span><br><span class="line">        $grid-&gt;id(&#39;ID&#39;)-&gt;sortable();</span><br><span class="line"></span><br><span class="line">        $grid-&gt;balance(&#39;余额&#39;)-&gt;sortable();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>laravel-admin</tag>
+        <tag>字段排序</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>laravel 修改器</title>
     <url>/2017/09/14/laravel-%E4%BF%AE%E6%94%B9%E5%99%A8/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2587,29 +2610,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>laravel5.x</tag>
         <tag>修改器</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>laravel-admin 实现字段排序</title>
-    <url>/2017/09/21/laravel-admin-%E5%AE%9E%E7%8E%B0%E5%AD%97%E6%AE%B5%E6%8E%92%E5%BA%8F/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> 排序代码</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">protected function grid()</span><br><span class="line">&#123;</span><br><span class="line">    return Admin::grid(Member::class, function (Grid $grid) &#123;</span><br><span class="line"></span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;id&#39;, &#39;desc&#39;);</span><br><span class="line">        $grid-&gt;model()-&gt;orderBy(&#39;balance&#39;, &#39;desc&#39;);</span><br><span class="line"></span><br><span class="line">        $grid-&gt;id(&#39;ID&#39;)-&gt;sortable();</span><br><span class="line"></span><br><span class="line">        $grid-&gt;balance(&#39;余额&#39;)-&gt;sortable();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! ~~</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>laravel-admin</tag>
-        <tag>字段排序</tag>
       </tags>
   </entry>
   <entry>
@@ -3262,7 +3262,7 @@ class QuotesSpider(scrapy.Spider):
 </blockquote>
 <p>二、使用npm下载 web框架express模块</p>
 <blockquote>
-<p>npm install --save <a href="mailto:&#101;&#x78;&#x70;&#114;&#101;&#x73;&#115;&#x40;&#52;&#x2e;&#49;&#53;&#x2e;&#x32;">&#101;&#x78;&#x70;&#114;&#101;&#x73;&#115;&#x40;&#52;&#x2e;&#49;&#53;&#x2e;&#x32;</a></p>
+<p>npm install --save <a href="mailto:&#x65;&#120;&#112;&#x72;&#101;&#115;&#x73;&#x40;&#52;&#46;&#49;&#x35;&#x2e;&#x32;">&#x65;&#120;&#112;&#x72;&#101;&#115;&#x73;&#x40;&#52;&#46;&#49;&#x35;&#x2e;&#x32;</a></p>
 </blockquote>
 <p>三、使用npm下载socket.io模块</p>
 <blockquote>
