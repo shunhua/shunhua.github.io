@@ -73,35 +73,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Alipay 开放平台支付</title>
-    <url>/2018/10/26/Alipay-%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E6%94%AF%E4%BB%98/</url>
-    <content><![CDATA[<a id="more"></a>
-
-
-<p>参考文档 <a href="https://docs.open.alipay.com/291/" target="_blank">[ 开放平台文档中心 ]</a></p>
-<blockquote>
-<p>生成RSA密钥</p>
-</blockquote>
-<p>a. 应用公钥2048<br>b. 应用私钥2048</p>
-<blockquote>
-<p>上传应用公钥并获取支付宝公钥</p>
-</blockquote>
-<p>支付宝公钥应用于开发中</p>
-<blockquote>
-<p>使用应用私钥生成请求签名</p>
-</blockquote>
-<p>应用私钥应用于开发中</p>
-<blockquote>
-<p>使用支付宝公钥验签</p>
-</blockquote>
-<p>支付宝公钥应用于开发中</p>
-]]></content>
-      <tags>
-        <tag>Alipay</tag>
-        <tag>开放平台</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CentOS 7 Git服务器搭建及配置公钥</title>
     <url>/2018/04/08/CentOS-7-Git%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E5%85%AC%E9%92%A5/</url>
     <content><![CDATA[<a id="more"></a>
@@ -125,7 +96,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#x40;&#113;&#113;&#46;&#99;&#111;&#109;">&#x78;&#x40;&#113;&#113;&#46;&#99;&#111;&#109;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#64;&#x71;&#113;&#x2e;&#99;&#x6f;&#109;">&#x78;&#64;&#x71;&#113;&#x2e;&#99;&#x6f;&#109;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -136,7 +107,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#64;&#113;&#113;&#x2e;&#x63;&#x6f;&#109;">&#x62;&#64;&#113;&#113;&#x2e;&#x63;&#x6f;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#x40;&#113;&#113;&#46;&#x63;&#x6f;&#109;">&#x62;&#x40;&#113;&#113;&#46;&#x63;&#x6f;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -168,6 +139,35 @@
       <tags>
         <tag>CentOS 7</tag>
         <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Alipay 开放平台支付</title>
+    <url>/2018/10/26/Alipay-%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E6%94%AF%E4%BB%98/</url>
+    <content><![CDATA[<a id="more"></a>
+
+
+<p>参考文档 <a href="https://docs.open.alipay.com/291/" target="_blank">[ 开放平台文档中心 ]</a></p>
+<blockquote>
+<p>生成RSA密钥</p>
+</blockquote>
+<p>a. 应用公钥2048<br>b. 应用私钥2048</p>
+<blockquote>
+<p>上传应用公钥并获取支付宝公钥</p>
+</blockquote>
+<p>支付宝公钥应用于开发中</p>
+<blockquote>
+<p>使用应用私钥生成请求签名</p>
+</blockquote>
+<p>应用私钥应用于开发中</p>
+<blockquote>
+<p>使用支付宝公钥验签</p>
+</blockquote>
+<p>支付宝公钥应用于开发中</p>
+]]></content>
+      <tags>
+        <tag>Alipay</tag>
+        <tag>开放平台</tag>
       </tags>
   </entry>
   <entry>
@@ -709,6 +709,103 @@
       </tags>
   </entry>
   <entry>
+    <title>Laravel Redis 广播测试</title>
+    <url>/2019/04/19/Laravel-Redis-%E5%B9%BF%E6%92%AD%E6%B5%8B%E8%AF%95/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p> 附上 <a href="https://github.com/shunhua/laravel-echo" target="_blank">[Github]</a> 地址 </p>
+<p> 一、项目搭建<br> a.安装laravel</p>
+<blockquote>
+<p>composer create-project –prefer-dist laravel/laravel echo</p>
+</blockquote>
+<p> b.配置mysql 数据库</p>
+<blockquote>
+<p>php artisan migrate</p>
+</blockquote>
+<p>  c.快速认证</p>
+<blockquote>
+<p>php artisan make:auth</p>
+</blockquote>
+<p> 本文仅使用了 redis 的广播驱动 测试环境 win10<br> 二、安装redis 并启动</p>
+<blockquote>
+<p>redis-server.exe</p>
+</blockquote>
+<p><img src="/assets/blogImg/guangbo/redis.png" alt="ico原来的样子"><br>测试redis 连接成功<br><img src="/assets/blogImg/guangbo/redis1.png" alt="ico原来的样子"></p>
+<p>a.配置文件 .env 中配置以下代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">BROADCAST_DRIVER&#x3D;redis</span><br></pre></td></tr></table></figure>
+<p>b.广播服务提供者  config/app.php 配置文件中 providers 数组中打开注释</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">App\Providers\BroadcastServiceProvider::class,</span><br></pre></td></tr></table></figure>
+<p>c.CSRF 令牌[后续视图中添加]</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;csrf-token&quot; content&#x3D;&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>d.安装 Predis 库</p>
+<blockquote>
+<p>composer require predis/predis</p>
+</blockquote>
+<p>三、安装 Laravel Echo</p>
+<p>a.通过 npm 包管理器安装 Echo</p>
+<blockquote>
+<p>npm install<br>   npm install -g laravel-echo-server</p>
+</blockquote>
+<p>b.初始化 laravel-echo-server</p>
+<blockquote>
+<p>laravel-echo-server init</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 是否在开发模式下运行此服务器（y&#x2F;n） 输入y</span><br><span class="line">? Do you want to run this server in development mode? (y&#x2F;N) </span><br><span class="line">&#x2F;&#x2F; 设置服务器的端口 默认 6001 输入 6001就可以了 或者你想要的</span><br><span class="line">? Which port would you like to serve from? (6001)</span><br><span class="line">&#x2F;&#x2F; 想用的数据库  选择 redis</span><br><span class="line">? Which database would you like to use to store presence channel members? (Use arrow keys)</span><br><span class="line">❯ redis </span><br><span class="line">  sqlite </span><br><span class="line">&#x2F;&#x2F;   这里输入 你的laravel  项目的访问域名</span><br><span class="line">? Enter the host of your Laravel authentication server. (http:&#x2F;&#x2F;localhost) </span><br><span class="line">&#x2F;&#x2F; 选择 网络协议 http</span><br><span class="line">? Will you be serving on http or https? (Use arrow keys)</span><br><span class="line">❯ http </span><br><span class="line">  https </span><br><span class="line">&#x2F;&#x2F; 您想为HTTP API生成客户端ID&#x2F;密钥吗 N</span><br><span class="line">? Do you want to generate a client ID&#x2F;Key for HTTP API? (y&#x2F;N) </span><br><span class="line">&#x2F;&#x2F; 要设置对API的跨域访问吗？（y&#x2F;n）N</span><br><span class="line">Configuration file saved. Run laravel-echo-server start to run server.</span><br></pre></td></tr></table></figure>
+<p>设置完成后 项目根目录 下 会生成 laravel-echo-server.json 文件 这里面就是刚才的配置<br><img src="/assets/blogImg/guangbo/echo.png" alt="ico原来的样子"><br>执行命令启动 服务 出现如下 则启动成功</p>
+<blockquote>
+<p>laravel-echo-server start</p>
+</blockquote>
+<p><img src="/assets/blogImg/guangbo/echo1.png" alt="ico原来的样子"></p>
+<p>四、频道<br>频道Channel、PrivateChannel 或 PresenceChannel 的实例。Channel 实例表示任何用户都可以订阅的公开频道，而 PrivateChannels 和 PresenceChannels 则表示需要 频道授权 的私有频道：<br>a.创建事件</p>
+<blockquote>
+<p>php artisan make:event PublicMessageEvent </p>
+</blockquote>
+<p>文件生成目录 app/Events</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public $message;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Create a new event instance.</span><br><span class="line"> *</span><br><span class="line"> * @param User $user</span><br><span class="line"> * @param string $message</span><br><span class="line"> *&#x2F;</span><br><span class="line">public function __construct(string $message)</span><br><span class="line">&#123;</span><br><span class="line">    $this-&gt;message &#x3D; $message;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Get the channels the event should broadcast on.</span><br><span class="line"> *</span><br><span class="line"> * @return \Illuminate\Broadcasting\Channel|array</span><br><span class="line"> *&#x2F;</span><br><span class="line">public function broadcastOn()</span><br><span class="line">&#123;</span><br><span class="line">    return new Channel(&#39;push&#39;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Laravel 默认会使用事件的类名作为广播名称来广播事件，自定义：</span><br><span class="line">public function broadcastAs()</span><br><span class="line">&#123;</span><br><span class="line">    return &#39;push.message&#39;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;想更细粒度地控制广播数据:</span><br><span class="line">public function broadcastWith()</span><br><span class="line">&#123;</span><br><span class="line">    return [&#39;message&#39; &#x3D;&gt; $this-&gt;message,&#39;status&#39; &#x3D;&gt; &#39;okok&#39;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; laravel-echo-server 1.5 版本的 需要添加 否则Laravel echo channel listen 不监听事件</span><br><span class="line">public function handle()</span><br><span class="line">&#123;</span><br><span class="line">    broadcast(new push());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>b.添加路由</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">use App\Events\PublicMessageEvent;</span><br><span class="line"> Route::get(&#39;&#x2F;echo&#39;, function () &#123;</span><br><span class="line">    return view(&#39;echo&#39;);</span><br><span class="line"> &#125;);</span><br><span class="line"></span><br><span class="line">Route::get(&#39;&#x2F;push&#x2F;&#123;message&#125;&#39;, function ($message) &#123;</span><br><span class="line">    broadcast(new PublicMessageEvent($message));</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>五、前端视图<br>a.安装 laravel-echo</p>
+<blockquote>
+<p>npm install laravel-echo</p>
+</blockquote>
+<p>编辑 resource/js/bootstrap.js 添加如下代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Echo from &quot;laravel-echo&quot;</span><br><span class="line"></span><br><span class="line">window.Echo &#x3D; new Echo(&#123;</span><br><span class="line">    broadcaster: &#39;socket.io&#39;,</span><br><span class="line">    host: window.location.hostname + &#39;:6001&#39;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>编辑 resource/js/app.js 添加如下代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Echo.channel(&#39;push&#39;)</span><br><span class="line">    .listen(&#39;.push.message&#39;, (e) &#x3D;&gt; &#123;</span><br><span class="line">        alert(e.message)</span><br><span class="line">        console.log(e);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>创建 echo.blade.php head 中加上</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;csrf-token&quot; content&#x3D;&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;&#x2F;&#x2F;&#123;&#123; Request::getHost() &#125;&#125;:6001&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;&#x2F;js&#x2F;app.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<p>编译 js 文件 </p>
+<blockquote>
+<p>npm run watch</p>
+</blockquote>
+<p>浏览器访问 项目域名 /echo<br>浏览器访问 项目域名 /push/这是一个测试广播[what can i say]<br>echo 页面 会自动弹出<br><img src="/assets/blogImg/guangbo/echo2.png" alt="ico原来的样子"><br><img src="/assets/blogImg/guangbo/echo4.png" alt="ico原来的样子"><br><img src="/assets/blogImg/guangbo/echo5.png" alt="ico原来的样子"><br>到这 广播 发布到公共频道就完成了</p>
+<hr>
+<p>私有频道 PrivateChannel</p>
+<blockquote>
+<p>php artisan make:event PrivateMessageEvent</p>
+</blockquote>
+<p>PrivateMessageEvent 中 写入 以下内容</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public $message;</span><br><span class="line">   public $user;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * Create a new event instance.</span><br><span class="line">    *</span><br><span class="line">    * @param User $user</span><br><span class="line">    * @param string $message</span><br><span class="line">    *&#x2F;</span><br><span class="line">   public function __construct(User $user, string $message)</span><br><span class="line">   &#123;</span><br><span class="line">       $this-&gt;user &#x3D; $user;</span><br><span class="line">       $this-&gt;message &#x3D; $message;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * Get the channels the event should broadcast on.</span><br><span class="line">    *</span><br><span class="line">    * @return \Illuminate\Broadcasting\Channel|array</span><br><span class="line">    *&#x2F;</span><br><span class="line">   public function broadcastOn()</span><br><span class="line">   &#123;</span><br><span class="line">       return new PrivateChannel(&#39;privatePush.&#39; . $this-&gt;user-&gt;id);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;&#x2F;想更细粒度地控制广播数据:</span><br><span class="line">   public function broadcastWith()</span><br><span class="line">   &#123;</span><br><span class="line">       return [&#39;message&#39; &#x3D;&gt; $this-&gt;message,&#39;status&#39; &#x3D;&gt; &#39;okok&#39;];</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>添加发布广播到私有频道 触发路由 routes/web 测试时记得新增下用户</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Route::get(&#39;&#x2F;privatePush&#x2F;&#123;message&#125;&#x2F;&#123;id&#125;&#39;, function ($message, $id) &#123;</span><br><span class="line">    $user &#x3D; \App\User::find($id);</span><br><span class="line">    if (empty($user)) return &#39;无此用户&#39;;</span><br><span class="line">    broadcast(new PrivateMessageEvent($user, $message));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>echo.blade.php 中加入</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    @if(!empty(Auth::user()))</span><br><span class="line">        window.id &#x3D; &quot;&#123;&#123;Auth::user()-&gt;id&#125;&#125;&quot;</span><br><span class="line">    @endif</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<p>app.js</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Echo.private(&#39;privatePush.&#39; + window.id)</span><br><span class="line">    .listen(&#39;PrivateMessageEvent&#39;, (e) &#x3D;&gt; &#123;</span><br><span class="line">        alert(&#39;qweqwe&#39;)</span><br><span class="line">        console.log(e);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><strong>Notice</strong><br>安静,安静一下 Enjoy it ~</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>laravel5.7</tag>
+        <tag>Redis</tag>
+        <tag>广播</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Laragon 在 Windows 中搭建 Laravel 开发环境</title>
     <url>/2017/09/15/Laragon-%E5%9C%A8-Windows-%E4%B8%AD%E6%90%AD%E5%BB%BA-Laravel-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</url>
     <content><![CDATA[<a id="more"></a>
@@ -836,103 +933,6 @@
         <tag>Laragon</tag>
         <tag>Laravel</tag>
         <tag>Windows</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Laravel Redis 广播测试</title>
-    <url>/2019/04/19/Laravel-Redis-%E5%B9%BF%E6%92%AD%E6%B5%8B%E8%AF%95/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p> 附上 <a href="https://github.com/shunhua/laravel-echo" target="_blank">[Github]</a> 地址 </p>
-<p> 一、项目搭建<br> a.安装laravel</p>
-<blockquote>
-<p>composer create-project –prefer-dist laravel/laravel echo</p>
-</blockquote>
-<p> b.配置mysql 数据库</p>
-<blockquote>
-<p>php artisan migrate</p>
-</blockquote>
-<p>  c.快速认证</p>
-<blockquote>
-<p>php artisan make:auth</p>
-</blockquote>
-<p> 本文仅使用了 redis 的广播驱动 测试环境 win10<br> 二、安装redis 并启动</p>
-<blockquote>
-<p>redis-server.exe</p>
-</blockquote>
-<p><img src="/assets/blogImg/guangbo/redis.png" alt="ico原来的样子"><br>测试redis 连接成功<br><img src="/assets/blogImg/guangbo/redis1.png" alt="ico原来的样子"></p>
-<p>a.配置文件 .env 中配置以下代码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">BROADCAST_DRIVER&#x3D;redis</span><br></pre></td></tr></table></figure>
-<p>b.广播服务提供者  config/app.php 配置文件中 providers 数组中打开注释</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">App\Providers\BroadcastServiceProvider::class,</span><br></pre></td></tr></table></figure>
-<p>c.CSRF 令牌[后续视图中添加]</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;csrf-token&quot; content&#x3D;&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</span><br></pre></td></tr></table></figure>
-<p>d.安装 Predis 库</p>
-<blockquote>
-<p>composer require predis/predis</p>
-</blockquote>
-<p>三、安装 Laravel Echo</p>
-<p>a.通过 npm 包管理器安装 Echo</p>
-<blockquote>
-<p>npm install<br>   npm install -g laravel-echo-server</p>
-</blockquote>
-<p>b.初始化 laravel-echo-server</p>
-<blockquote>
-<p>laravel-echo-server init</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 是否在开发模式下运行此服务器（y&#x2F;n） 输入y</span><br><span class="line">? Do you want to run this server in development mode? (y&#x2F;N) </span><br><span class="line">&#x2F;&#x2F; 设置服务器的端口 默认 6001 输入 6001就可以了 或者你想要的</span><br><span class="line">? Which port would you like to serve from? (6001)</span><br><span class="line">&#x2F;&#x2F; 想用的数据库  选择 redis</span><br><span class="line">? Which database would you like to use to store presence channel members? (Use arrow keys)</span><br><span class="line">❯ redis </span><br><span class="line">  sqlite </span><br><span class="line">&#x2F;&#x2F;   这里输入 你的laravel  项目的访问域名</span><br><span class="line">? Enter the host of your Laravel authentication server. (http:&#x2F;&#x2F;localhost) </span><br><span class="line">&#x2F;&#x2F; 选择 网络协议 http</span><br><span class="line">? Will you be serving on http or https? (Use arrow keys)</span><br><span class="line">❯ http </span><br><span class="line">  https </span><br><span class="line">&#x2F;&#x2F; 您想为HTTP API生成客户端ID&#x2F;密钥吗 N</span><br><span class="line">? Do you want to generate a client ID&#x2F;Key for HTTP API? (y&#x2F;N) </span><br><span class="line">&#x2F;&#x2F; 要设置对API的跨域访问吗？（y&#x2F;n）N</span><br><span class="line">Configuration file saved. Run laravel-echo-server start to run server.</span><br></pre></td></tr></table></figure>
-<p>设置完成后 项目根目录 下 会生成 laravel-echo-server.json 文件 这里面就是刚才的配置<br><img src="/assets/blogImg/guangbo/echo.png" alt="ico原来的样子"><br>执行命令启动 服务 出现如下 则启动成功</p>
-<blockquote>
-<p>laravel-echo-server start</p>
-</blockquote>
-<p><img src="/assets/blogImg/guangbo/echo1.png" alt="ico原来的样子"></p>
-<p>四、频道<br>频道Channel、PrivateChannel 或 PresenceChannel 的实例。Channel 实例表示任何用户都可以订阅的公开频道，而 PrivateChannels 和 PresenceChannels 则表示需要 频道授权 的私有频道：<br>a.创建事件</p>
-<blockquote>
-<p>php artisan make:event PublicMessageEvent </p>
-</blockquote>
-<p>文件生成目录 app/Events</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public $message;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Create a new event instance.</span><br><span class="line"> *</span><br><span class="line"> * @param User $user</span><br><span class="line"> * @param string $message</span><br><span class="line"> *&#x2F;</span><br><span class="line">public function __construct(string $message)</span><br><span class="line">&#123;</span><br><span class="line">    $this-&gt;message &#x3D; $message;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Get the channels the event should broadcast on.</span><br><span class="line"> *</span><br><span class="line"> * @return \Illuminate\Broadcasting\Channel|array</span><br><span class="line"> *&#x2F;</span><br><span class="line">public function broadcastOn()</span><br><span class="line">&#123;</span><br><span class="line">    return new Channel(&#39;push&#39;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Laravel 默认会使用事件的类名作为广播名称来广播事件，自定义：</span><br><span class="line">public function broadcastAs()</span><br><span class="line">&#123;</span><br><span class="line">    return &#39;push.message&#39;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;想更细粒度地控制广播数据:</span><br><span class="line">public function broadcastWith()</span><br><span class="line">&#123;</span><br><span class="line">    return [&#39;message&#39; &#x3D;&gt; $this-&gt;message,&#39;status&#39; &#x3D;&gt; &#39;okok&#39;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; laravel-echo-server 1.5 版本的 需要添加 否则Laravel echo channel listen 不监听事件</span><br><span class="line">public function handle()</span><br><span class="line">&#123;</span><br><span class="line">    broadcast(new push());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>b.添加路由</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">use App\Events\PublicMessageEvent;</span><br><span class="line"> Route::get(&#39;&#x2F;echo&#39;, function () &#123;</span><br><span class="line">    return view(&#39;echo&#39;);</span><br><span class="line"> &#125;);</span><br><span class="line"></span><br><span class="line">Route::get(&#39;&#x2F;push&#x2F;&#123;message&#125;&#39;, function ($message) &#123;</span><br><span class="line">    broadcast(new PublicMessageEvent($message));</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>五、前端视图<br>a.安装 laravel-echo</p>
-<blockquote>
-<p>npm install laravel-echo</p>
-</blockquote>
-<p>编辑 resource/js/bootstrap.js 添加如下代码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Echo from &quot;laravel-echo&quot;</span><br><span class="line"></span><br><span class="line">window.Echo &#x3D; new Echo(&#123;</span><br><span class="line">    broadcaster: &#39;socket.io&#39;,</span><br><span class="line">    host: window.location.hostname + &#39;:6001&#39;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>编辑 resource/js/app.js 添加如下代码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Echo.channel(&#39;push&#39;)</span><br><span class="line">    .listen(&#39;.push.message&#39;, (e) &#x3D;&gt; &#123;</span><br><span class="line">        alert(e.message)</span><br><span class="line">        console.log(e);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-<p>创建 echo.blade.php head 中加上</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;csrf-token&quot; content&#x3D;&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;&#x2F;&#x2F;&#123;&#123; Request::getHost() &#125;&#125;:6001&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;&#x2F;js&#x2F;app.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-<p>编译 js 文件 </p>
-<blockquote>
-<p>npm run watch</p>
-</blockquote>
-<p>浏览器访问 项目域名 /echo<br>浏览器访问 项目域名 /push/这是一个测试广播[what can i say]<br>echo 页面 会自动弹出<br><img src="/assets/blogImg/guangbo/echo2.png" alt="ico原来的样子"><br><img src="/assets/blogImg/guangbo/echo4.png" alt="ico原来的样子"><br><img src="/assets/blogImg/guangbo/echo5.png" alt="ico原来的样子"><br>到这 广播 发布到公共频道就完成了</p>
-<hr>
-<p>私有频道 PrivateChannel</p>
-<blockquote>
-<p>php artisan make:event PrivateMessageEvent</p>
-</blockquote>
-<p>PrivateMessageEvent 中 写入 以下内容</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public $message;</span><br><span class="line">   public $user;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * Create a new event instance.</span><br><span class="line">    *</span><br><span class="line">    * @param User $user</span><br><span class="line">    * @param string $message</span><br><span class="line">    *&#x2F;</span><br><span class="line">   public function __construct(User $user, string $message)</span><br><span class="line">   &#123;</span><br><span class="line">       $this-&gt;user &#x3D; $user;</span><br><span class="line">       $this-&gt;message &#x3D; $message;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;**</span><br><span class="line">    * Get the channels the event should broadcast on.</span><br><span class="line">    *</span><br><span class="line">    * @return \Illuminate\Broadcasting\Channel|array</span><br><span class="line">    *&#x2F;</span><br><span class="line">   public function broadcastOn()</span><br><span class="line">   &#123;</span><br><span class="line">       return new PrivateChannel(&#39;privatePush.&#39; . $this-&gt;user-&gt;id);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;&#x2F;想更细粒度地控制广播数据:</span><br><span class="line">   public function broadcastWith()</span><br><span class="line">   &#123;</span><br><span class="line">       return [&#39;message&#39; &#x3D;&gt; $this-&gt;message,&#39;status&#39; &#x3D;&gt; &#39;okok&#39;];</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p>添加发布广播到私有频道 触发路由 routes/web 测试时记得新增下用户</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Route::get(&#39;&#x2F;privatePush&#x2F;&#123;message&#125;&#x2F;&#123;id&#125;&#39;, function ($message, $id) &#123;</span><br><span class="line">    $user &#x3D; \App\User::find($id);</span><br><span class="line">    if (empty($user)) return &#39;无此用户&#39;;</span><br><span class="line">    broadcast(new PrivateMessageEvent($user, $message));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>echo.blade.php 中加入</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    @if(!empty(Auth::user()))</span><br><span class="line">        window.id &#x3D; &quot;&#123;&#123;Auth::user()-&gt;id&#125;&#125;&quot;</span><br><span class="line">    @endif</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-<p>app.js</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Echo.private(&#39;privatePush.&#39; + window.id)</span><br><span class="line">    .listen(&#39;PrivateMessageEvent&#39;, (e) &#x3D;&gt; &#123;</span><br><span class="line">        alert(&#39;qweqwe&#39;)</span><br><span class="line">        console.log(e);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><strong>Notice</strong><br>安静,安静一下 Enjoy it ~</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>laravel5.7</tag>
-        <tag>Redis</tag>
-        <tag>广播</tag>
       </tags>
   </entry>
   <entry>
@@ -1413,6 +1413,50 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>PHP Socket 基础教程</title>
+    <url>/2018/03/12/PHP-Socket-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><strong>案例：socket通信演示</strong></p>
+<blockquote>
+<p> 服务器端：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">&#x2F;&#x2F;确保在连接客户端时不会超时</span><br><span class="line">set_time_limit(0);</span><br><span class="line"></span><br><span class="line">$ip &#x3D; &#39;127.0.0.1&#39;;</span><br><span class="line">$port &#x3D; 1935;</span><br><span class="line"></span><br><span class="line">&#x2F;*</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket通信整个过程</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket_create</span><br><span class="line"> *    @socket_bind</span><br><span class="line"> *    @socket_listen</span><br><span class="line"> *    @socket_accept</span><br><span class="line"> *    @socket_read</span><br><span class="line"> *    @socket_write</span><br><span class="line"> *    @socket_close</span><br><span class="line"> +--------------------------------</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;*----------------    以下操作都是手册上的    -------------------*&#x2F;</span><br><span class="line">if(($sock &#x3D; socket_create(AF_INET,SOCK_STREAM,SOL_TCP)) &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_create() 失败的原因是:&quot;.socket_strerror($sock).&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(($ret &#x3D; socket_bind($sock,$ip,$port)) &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_bind() 失败的原因是:&quot;.socket_strerror($ret).&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(($ret &#x3D; socket_listen($sock,4)) &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_listen() 失败的原因是:&quot;.socket_strerror($ret).&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$count &#x3D; 0;</span><br><span class="line"></span><br><span class="line">do &#123;</span><br><span class="line">    if (($msgsock &#x3D; socket_accept($sock)) &lt; 0) &#123;</span><br><span class="line">        echo &quot;socket_accept() failed: reason: &quot; . socket_strerror($msgsock) . &quot;\n&quot;;</span><br><span class="line">        break;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        </span><br><span class="line">        &#x2F;&#x2F;发到客户端</span><br><span class="line">        $msg &#x3D;&quot;测试成功！\n&quot;;</span><br><span class="line">        socket_write($msgsock, $msg, strlen($msg));</span><br><span class="line">        </span><br><span class="line">        echo &quot;测试成功了啊\n&quot;;</span><br><span class="line">        $buf &#x3D; socket_read($msgsock,8192);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        $talkback &#x3D; &quot;收到的信息:$buf\n&quot;;</span><br><span class="line">        echo $talkback;</span><br><span class="line">        </span><br><span class="line">        if(++$count &gt;&#x3D; 5)&#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;;</span><br><span class="line">        </span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;echo $buf;</span><br><span class="line">    socket_close($msgsock);</span><br><span class="line"></span><br><span class="line">&#125; while (true);</span><br><span class="line"></span><br><span class="line">socket_close($sock);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p> 客户端：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(E_ALL);</span><br><span class="line">set_time_limit(0);</span><br><span class="line">echo &quot;&lt;h2&gt;TCP&#x2F;IP Connection&lt;&#x2F;h2&gt;\n&quot;;</span><br><span class="line"></span><br><span class="line">$port &#x3D; 1935;</span><br><span class="line">$ip &#x3D; &quot;127.0.0.1&quot;;</span><br><span class="line"></span><br><span class="line">&#x2F;*</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket连接整个过程</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket_create</span><br><span class="line"> *    @socket_connect</span><br><span class="line"> *    @socket_write</span><br><span class="line"> *    @socket_read</span><br><span class="line"> *    @socket_close</span><br><span class="line"> +--------------------------------</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">$socket &#x3D; socket_create(AF_INET, SOCK_STREAM, SOL_TCP);</span><br><span class="line">if ($socket &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_create() failed: reason: &quot; . socket_strerror($socket) . &quot;\n&quot;;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    echo &quot;OK.\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo &quot;试图连接 &#39;$ip&#39; 端口 &#39;$port&#39;...\n&quot;;</span><br><span class="line">$result &#x3D; socket_connect($socket, $ip, $port);</span><br><span class="line">if ($result &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_connect() failed.\nReason: ($result) &quot; . socket_strerror($result) . &quot;\n&quot;;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    echo &quot;连接OK\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$in &#x3D; &quot;Ho\r\n&quot;;</span><br><span class="line">$in .&#x3D; &quot;first blood\r\n&quot;;</span><br><span class="line">$out &#x3D; &#39;&#39;;</span><br><span class="line"></span><br><span class="line">if(!socket_write($socket, $in, strlen($in))) &#123;</span><br><span class="line">    echo &quot;socket_write() failed: reason: &quot; . socket_strerror($socket) . &quot;\n&quot;;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    echo &quot;发送到服务器信息成功！\n&quot;;</span><br><span class="line">    echo &quot;发送的内容为:&lt;font color&#x3D;&#39;red&#39;&gt;$in&lt;&#x2F;font&gt; &lt;br&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">while($out &#x3D; socket_read($socket, 8192)) &#123;</span><br><span class="line">    echo &quot;接收服务器回传信息成功！\n&quot;;</span><br><span class="line">    echo &quot;接受的内容为:&quot;,$out;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">echo &quot;关闭SOCKET...\n&quot;;</span><br><span class="line">socket_close($socket);</span><br><span class="line">echo &quot;关闭OK\n&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>案例：代码详解</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 设置一些基本的变量</span><br><span class="line">$host &#x3D; &quot;192.168.1.99&quot;;</span><br><span class="line">$port &#x3D; 1234;</span><br><span class="line">&#x2F;&#x2F; 设置超时时间</span><br><span class="line">set_time_limit(0);</span><br><span class="line">&#x2F;&#x2F; 创建一个Socket</span><br><span class="line">$socket &#x3D; socket_create(AF_INET, SOCK_STREAM, 0) or die(&quot;Could not createsocket\n&quot;);</span><br><span class="line">&#x2F;&#x2F;绑定Socket到端口</span><br><span class="line">$result &#x3D; socket_bind($socket, $host, $port) or die(&quot;Could not bind tosocket\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 开始监听链接</span><br><span class="line">$result &#x3D; socket_listen($socket, 3) or die(&quot;Could not set up socketlistener\n&quot;);</span><br><span class="line">&#x2F;&#x2F; accept incoming connections</span><br><span class="line">&#x2F;&#x2F; 另一个Socket来处理通信</span><br><span class="line">$spawn &#x3D; socket_accept($socket) or die(&quot;Could not accept incomingconnection\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 获得客户端的输入</span><br><span class="line">$input &#x3D; socket_read($spawn, 1024) or die(&quot;Could not read input\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 清空输入字符串</span><br><span class="line">$input &#x3D; trim($input);</span><br><span class="line">&#x2F;&#x2F;处理客户端输入并返回结果</span><br><span class="line">$output &#x3D; strrev($input) . &quot;\n&quot;;</span><br><span class="line">socket_write($spawn, $output, strlen ($output)) or die(&quot;Could not write</span><br><span class="line">output\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 关闭sockets</span><br><span class="line">socket_close($spawn);</span><br><span class="line">socket_close($socket);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>1.第一步是建立两个变量来保存Socket运行的服务器的IP地址和端口.你可以设置为你自己的服务器和端口(这个端口可以是1到65535之间的数字),前提是这个端口未被使用.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 设置两个变量</span><br><span class="line">$host  &#x3D;  &quot;192.168.1.99&quot; ;</span><br><span class="line">$port  &#x3D;  1234 ; </span><br></pre></td></tr></table></figure>
+<p>2.在服务器端可以使用set_time_out()函数来确保PHP在等待客户端连接时不会超时</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 超时时间</span><br><span class="line">set_time_limit ( 0 ); 4 ; </span><br></pre></td></tr></table></figure>
+<p>3.在前面的基础上,现在该使用socket_creat()函数创建一个Socket了—这个函数返回一个Socket句柄,这个句柄将用在以后所有的函数中.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 创建Socket</span><br><span class="line">$socket  &#x3D;  socket_create ( AF_INET ,  SOCK_STREAM ,  0 ) or die( &quot;Could not create</span><br><span class="line">socket\n&quot; ); </span><br><span class="line">&#x2F;&#x2F;第一个参数”AF_INET”用来指定域名;</span><br><span class="line">&#x2F;&#x2F;第二个参数”SOCK_STREM”告诉函数将创建一个什么类型的Socket(在这个例子中是TCP类型)</span><br><span class="line">因此,如果你想创建一个UDP Socket的话,你可以使用如下的代码:</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 创建 socket</span><br><span class="line">$socket  &#x3D;  socket_create ( AF_INET ,  SOCK_DGRAM ,  0 ) or die( &quot;Could not create</span><br><span class="line">socket\n&quot; ); </span><br></pre></td></tr></table></figure>
+<p>4.一旦创建了一个Socket句柄,下一步就是指定或者绑定它到指定的地址和端口.这可以通过socket_bind()函数来完成.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 绑定 socket to 指定地址和端口</span><br><span class="line">$result  &#x3D;  socket_bind ( $socket ,  $host ,  $port ) or die( &quot;Could not bind to</span><br><span class="line">socket\n&quot; ); </span><br></pre></td></tr></table></figure>
+<p>5.当Socket被创建好并绑定到一个端口后,就可以开始监听外部的连接了.PHP允许你由socket_listen()函数来开始一个监听,同时你可以指定一个数字(在这个例子中就是第二个参数:3)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 开始监听连接</span><br><span class="line">$result  &#x3D;  socket_listen ( $socket ,  3 ) or die( &quot;Could not set up socket</span><br><span class="line">listener\n&quot; ); </span><br></pre></td></tr></table></figure>
+<p>6.到现在,你的服务器除了等待来自客户端的连接请求外基本上什么也没有做.一旦一个客户端的连接被收到,socket_accept()函数便开始起作用了,它接收连接请求并调用另一个子Socket来处理客户端–服务器间的信息.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;接受请求链接</span><br><span class="line">&#x2F;&#x2F; 调用子socket 处理信息</span><br><span class="line">$spawn  &#x3D;  socket_accept ( $socket ) or die( &quot;Could not accept incoming</span><br><span class="line">connection\n&quot; );</span><br><span class="line">&#x2F;&#x2F;这个子socket现在就可以被随后的客户端–服务器通信所用了. </span><br></pre></td></tr></table></figure>
+<p>7.当一个连接被建立后,服务器就会等待客户端发送一些输入信息,这写信息可以由socket_read()函数来获得,并把它赋值给PHP的$input变量.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 读取客户端输入</span><br><span class="line">$input  &#x3D;  socket_read ( $spawn ,  1024 ) or die( &quot;Could not read input\n&quot; ); </span><br><span class="line">&#x2F;&#x2F;socker_read的第而个参数用以指定读入的字节数,你可以通过它来限制从客户端获取数据的大小.</span><br><span class="line">&#x2F;&#x2F;注意:socket_read函数会一直读取壳户端数据,直到遇见\n,\t或者\0字符.PHP脚本把这写字符看做是输入的结束符.</span><br></pre></td></tr></table></figure>
+<p>8.现在服务器必须处理这些由客户端发来是数据(在这个例子中的处理仅仅包含数据的输入和回传到客户端).这部分可以由socket_write()函数来完成(使得由通信socket发回一个数据流到客户端成为可能)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 处理客户端输入并返回数据</span><br><span class="line">$output  &#x3D;  strrev ( $input ) .  &quot;\n&quot; ;</span><br><span class="line">socket_write ( $spawn ,  $output ,  strlen  ( $output )) or die( &quot;Could not write</span><br><span class="line">output\n&quot; ); </span><br></pre></td></tr></table></figure>
+<p>9.一旦输出被返回到客户端,父/子socket都应通过socket_close()函数来终止</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 关闭 sockets</span><br><span class="line">socket_close ( $spawn );</span><br><span class="line">socket_close ( $socket ); </span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>php</tag>
+        <tag>socket</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PHP 5.3、5.4、5.5、5.6、7 中的新特性</title>
     <url>/2017/09/26/PHP-5-3%E3%80%815-4%E3%80%815-5%E3%80%815-6%E3%80%817-%E4%B8%AD%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7/</url>
     <content><![CDATA[<p><strong>PHP 5.3、5.4、5.5、5.6、7 中的新特性</strong></p>
@@ -1640,50 +1684,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
       <tags>
         <tag>PHP5.3+</tag>
         <tag>新特性</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PHP Socket 基础教程</title>
-    <url>/2018/03/12/PHP-Socket-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><strong>案例：socket通信演示</strong></p>
-<blockquote>
-<p> 服务器端：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">&#x2F;&#x2F;确保在连接客户端时不会超时</span><br><span class="line">set_time_limit(0);</span><br><span class="line"></span><br><span class="line">$ip &#x3D; &#39;127.0.0.1&#39;;</span><br><span class="line">$port &#x3D; 1935;</span><br><span class="line"></span><br><span class="line">&#x2F;*</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket通信整个过程</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket_create</span><br><span class="line"> *    @socket_bind</span><br><span class="line"> *    @socket_listen</span><br><span class="line"> *    @socket_accept</span><br><span class="line"> *    @socket_read</span><br><span class="line"> *    @socket_write</span><br><span class="line"> *    @socket_close</span><br><span class="line"> +--------------------------------</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;*----------------    以下操作都是手册上的    -------------------*&#x2F;</span><br><span class="line">if(($sock &#x3D; socket_create(AF_INET,SOCK_STREAM,SOL_TCP)) &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_create() 失败的原因是:&quot;.socket_strerror($sock).&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(($ret &#x3D; socket_bind($sock,$ip,$port)) &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_bind() 失败的原因是:&quot;.socket_strerror($ret).&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(($ret &#x3D; socket_listen($sock,4)) &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_listen() 失败的原因是:&quot;.socket_strerror($ret).&quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$count &#x3D; 0;</span><br><span class="line"></span><br><span class="line">do &#123;</span><br><span class="line">    if (($msgsock &#x3D; socket_accept($sock)) &lt; 0) &#123;</span><br><span class="line">        echo &quot;socket_accept() failed: reason: &quot; . socket_strerror($msgsock) . &quot;\n&quot;;</span><br><span class="line">        break;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        </span><br><span class="line">        &#x2F;&#x2F;发到客户端</span><br><span class="line">        $msg &#x3D;&quot;测试成功！\n&quot;;</span><br><span class="line">        socket_write($msgsock, $msg, strlen($msg));</span><br><span class="line">        </span><br><span class="line">        echo &quot;测试成功了啊\n&quot;;</span><br><span class="line">        $buf &#x3D; socket_read($msgsock,8192);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        $talkback &#x3D; &quot;收到的信息:$buf\n&quot;;</span><br><span class="line">        echo $talkback;</span><br><span class="line">        </span><br><span class="line">        if(++$count &gt;&#x3D; 5)&#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;;</span><br><span class="line">        </span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;echo $buf;</span><br><span class="line">    socket_close($msgsock);</span><br><span class="line"></span><br><span class="line">&#125; while (true);</span><br><span class="line"></span><br><span class="line">socket_close($sock);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-
-
-<blockquote>
-<p> 客户端：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(E_ALL);</span><br><span class="line">set_time_limit(0);</span><br><span class="line">echo &quot;&lt;h2&gt;TCP&#x2F;IP Connection&lt;&#x2F;h2&gt;\n&quot;;</span><br><span class="line"></span><br><span class="line">$port &#x3D; 1935;</span><br><span class="line">$ip &#x3D; &quot;127.0.0.1&quot;;</span><br><span class="line"></span><br><span class="line">&#x2F;*</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket连接整个过程</span><br><span class="line"> +-------------------------------</span><br><span class="line"> *    @socket_create</span><br><span class="line"> *    @socket_connect</span><br><span class="line"> *    @socket_write</span><br><span class="line"> *    @socket_read</span><br><span class="line"> *    @socket_close</span><br><span class="line"> +--------------------------------</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">$socket &#x3D; socket_create(AF_INET, SOCK_STREAM, SOL_TCP);</span><br><span class="line">if ($socket &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_create() failed: reason: &quot; . socket_strerror($socket) . &quot;\n&quot;;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    echo &quot;OK.\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo &quot;试图连接 &#39;$ip&#39; 端口 &#39;$port&#39;...\n&quot;;</span><br><span class="line">$result &#x3D; socket_connect($socket, $ip, $port);</span><br><span class="line">if ($result &lt; 0) &#123;</span><br><span class="line">    echo &quot;socket_connect() failed.\nReason: ($result) &quot; . socket_strerror($result) . &quot;\n&quot;;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    echo &quot;连接OK\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$in &#x3D; &quot;Ho\r\n&quot;;</span><br><span class="line">$in .&#x3D; &quot;first blood\r\n&quot;;</span><br><span class="line">$out &#x3D; &#39;&#39;;</span><br><span class="line"></span><br><span class="line">if(!socket_write($socket, $in, strlen($in))) &#123;</span><br><span class="line">    echo &quot;socket_write() failed: reason: &quot; . socket_strerror($socket) . &quot;\n&quot;;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    echo &quot;发送到服务器信息成功！\n&quot;;</span><br><span class="line">    echo &quot;发送的内容为:&lt;font color&#x3D;&#39;red&#39;&gt;$in&lt;&#x2F;font&gt; &lt;br&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">while($out &#x3D; socket_read($socket, 8192)) &#123;</span><br><span class="line">    echo &quot;接收服务器回传信息成功！\n&quot;;</span><br><span class="line">    echo &quot;接受的内容为:&quot;,$out;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">echo &quot;关闭SOCKET...\n&quot;;</span><br><span class="line">socket_close($socket);</span><br><span class="line">echo &quot;关闭OK\n&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-
-<p><strong>案例：代码详解</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 设置一些基本的变量</span><br><span class="line">$host &#x3D; &quot;192.168.1.99&quot;;</span><br><span class="line">$port &#x3D; 1234;</span><br><span class="line">&#x2F;&#x2F; 设置超时时间</span><br><span class="line">set_time_limit(0);</span><br><span class="line">&#x2F;&#x2F; 创建一个Socket</span><br><span class="line">$socket &#x3D; socket_create(AF_INET, SOCK_STREAM, 0) or die(&quot;Could not createsocket\n&quot;);</span><br><span class="line">&#x2F;&#x2F;绑定Socket到端口</span><br><span class="line">$result &#x3D; socket_bind($socket, $host, $port) or die(&quot;Could not bind tosocket\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 开始监听链接</span><br><span class="line">$result &#x3D; socket_listen($socket, 3) or die(&quot;Could not set up socketlistener\n&quot;);</span><br><span class="line">&#x2F;&#x2F; accept incoming connections</span><br><span class="line">&#x2F;&#x2F; 另一个Socket来处理通信</span><br><span class="line">$spawn &#x3D; socket_accept($socket) or die(&quot;Could not accept incomingconnection\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 获得客户端的输入</span><br><span class="line">$input &#x3D; socket_read($spawn, 1024) or die(&quot;Could not read input\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 清空输入字符串</span><br><span class="line">$input &#x3D; trim($input);</span><br><span class="line">&#x2F;&#x2F;处理客户端输入并返回结果</span><br><span class="line">$output &#x3D; strrev($input) . &quot;\n&quot;;</span><br><span class="line">socket_write($spawn, $output, strlen ($output)) or die(&quot;Could not write</span><br><span class="line">output\n&quot;);</span><br><span class="line">&#x2F;&#x2F; 关闭sockets</span><br><span class="line">socket_close($spawn);</span><br><span class="line">socket_close($socket);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>1.第一步是建立两个变量来保存Socket运行的服务器的IP地址和端口.你可以设置为你自己的服务器和端口(这个端口可以是1到65535之间的数字),前提是这个端口未被使用.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 设置两个变量</span><br><span class="line">$host  &#x3D;  &quot;192.168.1.99&quot; ;</span><br><span class="line">$port  &#x3D;  1234 ; </span><br></pre></td></tr></table></figure>
-<p>2.在服务器端可以使用set_time_out()函数来确保PHP在等待客户端连接时不会超时</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 超时时间</span><br><span class="line">set_time_limit ( 0 ); 4 ; </span><br></pre></td></tr></table></figure>
-<p>3.在前面的基础上,现在该使用socket_creat()函数创建一个Socket了—这个函数返回一个Socket句柄,这个句柄将用在以后所有的函数中.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 创建Socket</span><br><span class="line">$socket  &#x3D;  socket_create ( AF_INET ,  SOCK_STREAM ,  0 ) or die( &quot;Could not create</span><br><span class="line">socket\n&quot; ); </span><br><span class="line">&#x2F;&#x2F;第一个参数”AF_INET”用来指定域名;</span><br><span class="line">&#x2F;&#x2F;第二个参数”SOCK_STREM”告诉函数将创建一个什么类型的Socket(在这个例子中是TCP类型)</span><br><span class="line">因此,如果你想创建一个UDP Socket的话,你可以使用如下的代码:</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 创建 socket</span><br><span class="line">$socket  &#x3D;  socket_create ( AF_INET ,  SOCK_DGRAM ,  0 ) or die( &quot;Could not create</span><br><span class="line">socket\n&quot; ); </span><br></pre></td></tr></table></figure>
-<p>4.一旦创建了一个Socket句柄,下一步就是指定或者绑定它到指定的地址和端口.这可以通过socket_bind()函数来完成.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 绑定 socket to 指定地址和端口</span><br><span class="line">$result  &#x3D;  socket_bind ( $socket ,  $host ,  $port ) or die( &quot;Could not bind to</span><br><span class="line">socket\n&quot; ); </span><br></pre></td></tr></table></figure>
-<p>5.当Socket被创建好并绑定到一个端口后,就可以开始监听外部的连接了.PHP允许你由socket_listen()函数来开始一个监听,同时你可以指定一个数字(在这个例子中就是第二个参数:3)</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 开始监听连接</span><br><span class="line">$result  &#x3D;  socket_listen ( $socket ,  3 ) or die( &quot;Could not set up socket</span><br><span class="line">listener\n&quot; ); </span><br></pre></td></tr></table></figure>
-<p>6.到现在,你的服务器除了等待来自客户端的连接请求外基本上什么也没有做.一旦一个客户端的连接被收到,socket_accept()函数便开始起作用了,它接收连接请求并调用另一个子Socket来处理客户端–服务器间的信息.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;接受请求链接</span><br><span class="line">&#x2F;&#x2F; 调用子socket 处理信息</span><br><span class="line">$spawn  &#x3D;  socket_accept ( $socket ) or die( &quot;Could not accept incoming</span><br><span class="line">connection\n&quot; );</span><br><span class="line">&#x2F;&#x2F;这个子socket现在就可以被随后的客户端–服务器通信所用了. </span><br></pre></td></tr></table></figure>
-<p>7.当一个连接被建立后,服务器就会等待客户端发送一些输入信息,这写信息可以由socket_read()函数来获得,并把它赋值给PHP的$input变量.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 读取客户端输入</span><br><span class="line">$input  &#x3D;  socket_read ( $spawn ,  1024 ) or die( &quot;Could not read input\n&quot; ); </span><br><span class="line">&#x2F;&#x2F;socker_read的第而个参数用以指定读入的字节数,你可以通过它来限制从客户端获取数据的大小.</span><br><span class="line">&#x2F;&#x2F;注意:socket_read函数会一直读取壳户端数据,直到遇见\n,\t或者\0字符.PHP脚本把这写字符看做是输入的结束符.</span><br></pre></td></tr></table></figure>
-<p>8.现在服务器必须处理这些由客户端发来是数据(在这个例子中的处理仅仅包含数据的输入和回传到客户端).这部分可以由socket_write()函数来完成(使得由通信socket发回一个数据流到客户端成为可能)</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 处理客户端输入并返回数据</span><br><span class="line">$output  &#x3D;  strrev ( $input ) .  &quot;\n&quot; ;</span><br><span class="line">socket_write ( $spawn ,  $output ,  strlen  ( $output )) or die( &quot;Could not write</span><br><span class="line">output\n&quot; ); </span><br></pre></td></tr></table></figure>
-<p>9.一旦输出被返回到客户端,父/子socket都应通过socket_close()函数来终止</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 关闭 sockets</span><br><span class="line">socket_close ( $spawn );</span><br><span class="line">socket_close ( $socket ); </span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>php</tag>
-        <tag>socket</tag>
       </tags>
   </entry>
   <entry>
@@ -2046,6 +2046,63 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>AntV 蚂蚁数据可视化G6|Graphin</title>
+    <url>/2021/12/01/antV-%E8%9A%82%E8%9A%81%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96G6-Graphin/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/antV-g6.png" alt="AntV"></p>
+<a id="more"></a>
+
+<p>中文官网： <a href="https://antv.gitee.io/zh" target="_blank">[ AntV中文官网 ]</a><br>Github地址： <a href="https://github.com/antvis/g6" target="_blank">[ AntV G6 ]</a><br>参考文档： <a href="https://g6.antv.vision/zh/docs/manual/introduction" target="_blank">[ G6官方文档 ]</a><br><strong>什么是 G6</strong><br>G6 是一个图可视化引擎。它提供了图的绘制、布局、分析、交互、动画等图可视化的基础能力。旨在让关系变得透明，简单。让用户获得关系数据的 Insight。<br><strong>安装 &amp; 引用</strong><br>使用命令行在项目目录下执行以下命令：</p>
+<blockquote>
+<p> npm install –save @antv/g6</p>
+</blockquote>
+<p>创建一个 G6 的关系图仅需要下面几个步骤：</p>
+<ul>
+<li>创建关系图的 HTML 容器；</li>
+<li>数据准备；</li>
+<li>创建关系图；</li>
+<li>配置数据源，渲染。</li>
+</ul>
+<p><strong><em>Step 1 创建容器</em></strong><br>需要在 HTML 中创建一个用于容纳 G6 绘制的图的容器，通常为 div  标签。G6 在绘制时会在该容器下追加 canvas 标签，然后将图绘制在其中。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;mountNode&quot;&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>Step 2 数据准备</em></strong><br>引入 G6 的数据源为 JSON 格式的对象。该对象中需要有节点（nodes）和边（edges）字段，分别用数组表示：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const data &#x3D; &#123;</span><br><span class="line">  &#x2F;&#x2F; 点集</span><br><span class="line">  nodes: [</span><br><span class="line">    &#123;</span><br><span class="line">      id: &#39;node1&#39;, &#x2F;&#x2F; String，该节点存在则必须，节点的唯一标识</span><br><span class="line">      x: 100, &#x2F;&#x2F; Number，可选，节点位置的 x 值</span><br><span class="line">      y: 200, &#x2F;&#x2F; Number，可选，节点位置的 y 值</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      id: &#39;node2&#39;, &#x2F;&#x2F; String，该节点存在则必须，节点的唯一标识</span><br><span class="line">      x: 300, &#x2F;&#x2F; Number，可选，节点位置的 x 值</span><br><span class="line">      y: 200, &#x2F;&#x2F; Number，可选，节点位置的 y 值</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">  &#x2F;&#x2F; 边集</span><br><span class="line">  edges: [</span><br><span class="line">    &#123;</span><br><span class="line">      source: &#39;node1&#39;, &#x2F;&#x2F; String，必须，起始点 id</span><br><span class="line">      target: &#39;node2&#39;, &#x2F;&#x2F; String，必须，目标点 id</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>注意</p>
+<ul>
+<li>nodes 数组中包含节点对象。每个节点对象中唯一的、必要的 id 以标识不同的节点，x、 y 指定该节点的位置；</li>
+<li>edges 数组中包含边对象。source 和 target 是每条边的必要属性，分别代表了该边的起始点 id 与 目标点 id。</li>
+<li>点和边的其他属性参见链接：内置节点 和 内置边。</li>
+</ul>
+<p><strong><em>Step 3 创建关系图</em></strong><br>创建关系图（实例化）时，至少需要为图设置容器、宽和高。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const graph &#x3D; new G6.Graph(&#123;</span><br><span class="line">  container: &#39;mountNode&#39;, &#x2F;&#x2F; String | HTMLElement，必须，在 Step 1 中创建的容器 id 或容器本身</span><br><span class="line">  width: 800, &#x2F;&#x2F; Number，必须，图的宽度</span><br><span class="line">  height: 500, &#x2F;&#x2F; Number，必须，图的高度</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>Step 4 配置数据源，渲染</em></strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">graph.data(data); &#x2F;&#x2F; 读取 Step 2 中的数据源到图上</span><br><span class="line">graph.render(); &#x2F;&#x2F; 渲染图</span><br></pre></td></tr></table></figure>
+
+<p>完整代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot; &#x2F;&gt;</span><br><span class="line">    &lt;title&gt;Tutorial Demo&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &#x2F;* 图的画布容器 *&#x2F;</span><br><span class="line">    &lt;div id&#x3D;&quot;mountNode&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">    &#x2F;* 引入 G6 *&#x2F;</span><br><span class="line">    &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;gw.alipayobjects.com&#x2F;os&#x2F;antv&#x2F;pkg&#x2F;_antv.g6-3.7.1&#x2F;dist&#x2F;g6.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      &#x2F;&#x2F; 定义数据源</span><br><span class="line">      const data &#x3D; &#123;</span><br><span class="line">        &#x2F;&#x2F; 点集</span><br><span class="line">        nodes: [</span><br><span class="line">          &#123;</span><br><span class="line">            id: &#39;node1&#39;,</span><br><span class="line">            x: 100,</span><br><span class="line">            y: 200,</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            id: &#39;node2&#39;,</span><br><span class="line">            x: 300,</span><br><span class="line">            y: 200,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">        &#x2F;&#x2F; 边集</span><br><span class="line">        edges: [</span><br><span class="line">          &#x2F;&#x2F; 表示一条从 node1 节点连接到 node2 节点的边</span><br><span class="line">          &#123;</span><br><span class="line">            source: &#39;node1&#39;,</span><br><span class="line">            target: &#39;node2&#39;,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F; 创建 G6 图实例</span><br><span class="line">      const graph &#x3D; new G6.Graph(&#123;</span><br><span class="line">        container: &#39;mountNode&#39;, &#x2F;&#x2F; 指定图画布的容器 id，与第 9 行的容器对应</span><br><span class="line">        &#x2F;&#x2F; 画布宽高</span><br><span class="line">        width: 800,</span><br><span class="line">        height: 500,</span><br><span class="line">      &#125;);</span><br><span class="line">      &#x2F;&#x2F; 读取数据</span><br><span class="line">      graph.data(data);</span><br><span class="line">      &#x2F;&#x2F; 渲染图</span><br><span class="line">      graph.render();</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>AntV</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker + redis 部署一主二从三哨兵</title>
+    <url>/2021/12/06/docker-redis-%E9%83%A8%E7%BD%B2%E4%B8%80%E4%B8%BB%E4%BA%8C%E4%BB%8E%E4%B8%89%E5%93%A8%E5%85%B5/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/redis.png" alt="redis"></p>
+<a id="more"></a>
+
+<p><strong>概述</strong></p>
+<ul>
+<li>在部署redis 的时候，如果redis宕机，缓存将不可用，redis提供了哨兵模式保证redis实现高可用。</li>
+<li>即一台主机两台从机，三台哨兵主机，如果主实例宕机，哨兵将一台从机升级为主机。实现高可用。<br><img src="/assets/blogImg/redis-1.png" alt="redis-1"></li>
+</ul>
+<p>参考文档 ⚔：<br><a href="https://blog.csdn.net/qq_41773902/article/details/105627708" target="_blank">[ 点我 ]</a> | <a href="https://www.jianshu.com/p/319d0980ff89#comments" target="_blank">[ 点我 ]</a> | <a href="https://www.pianshen.com/article/68951456452/" target="_blank">[ 点我 ]</a></p>
+]]></content>
+      <tags>
+        <tag>redis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>centos7下lnmp 添加、删除虚拟主机</title>
     <url>/2017/09/15/centos7%E4%B8%8Blnmp-%E6%B7%BB%E5%8A%A0%E3%80%81%E5%88%A0%E9%99%A4%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2141,111 +2198,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>AntV 蚂蚁数据可视化G6|Graphin</title>
-    <url>/2021/12/01/antV-%E8%9A%82%E8%9A%81%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96G6-Graphin/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/antV-g6.png" alt="AntV"></p>
-<a id="more"></a>
-
-<p>中文官网： <a href="https://antv.gitee.io/zh" target="_blank">[ AntV中文官网 ]</a><br>Github地址： <a href="https://github.com/antvis/g6" target="_blank">[ AntV G6 ]</a><br>参考文档： <a href="https://g6.antv.vision/zh/docs/manual/introduction" target="_blank">[ G6官方文档 ]</a><br><strong>什么是 G6</strong><br>G6 是一个图可视化引擎。它提供了图的绘制、布局、分析、交互、动画等图可视化的基础能力。旨在让关系变得透明，简单。让用户获得关系数据的 Insight。<br><strong>安装 &amp; 引用</strong><br>使用命令行在项目目录下执行以下命令：</p>
-<blockquote>
-<p> npm install –save @antv/g6</p>
-</blockquote>
-<p>创建一个 G6 的关系图仅需要下面几个步骤：</p>
-<ul>
-<li>创建关系图的 HTML 容器；</li>
-<li>数据准备；</li>
-<li>创建关系图；</li>
-<li>配置数据源，渲染。</li>
-</ul>
-<p><strong><em>Step 1 创建容器</em></strong><br>需要在 HTML 中创建一个用于容纳 G6 绘制的图的容器，通常为 div  标签。G6 在绘制时会在该容器下追加 canvas 标签，然后将图绘制在其中。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;mountNode&quot;&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-
-<p><strong><em>Step 2 数据准备</em></strong><br>引入 G6 的数据源为 JSON 格式的对象。该对象中需要有节点（nodes）和边（edges）字段，分别用数组表示：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const data &#x3D; &#123;</span><br><span class="line">  &#x2F;&#x2F; 点集</span><br><span class="line">  nodes: [</span><br><span class="line">    &#123;</span><br><span class="line">      id: &#39;node1&#39;, &#x2F;&#x2F; String，该节点存在则必须，节点的唯一标识</span><br><span class="line">      x: 100, &#x2F;&#x2F; Number，可选，节点位置的 x 值</span><br><span class="line">      y: 200, &#x2F;&#x2F; Number，可选，节点位置的 y 值</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      id: &#39;node2&#39;, &#x2F;&#x2F; String，该节点存在则必须，节点的唯一标识</span><br><span class="line">      x: 300, &#x2F;&#x2F; Number，可选，节点位置的 x 值</span><br><span class="line">      y: 200, &#x2F;&#x2F; Number，可选，节点位置的 y 值</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">  &#x2F;&#x2F; 边集</span><br><span class="line">  edges: [</span><br><span class="line">    &#123;</span><br><span class="line">      source: &#39;node1&#39;, &#x2F;&#x2F; String，必须，起始点 id</span><br><span class="line">      target: &#39;node2&#39;, &#x2F;&#x2F; String，必须，目标点 id</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>注意</p>
-<ul>
-<li>nodes 数组中包含节点对象。每个节点对象中唯一的、必要的 id 以标识不同的节点，x、 y 指定该节点的位置；</li>
-<li>edges 数组中包含边对象。source 和 target 是每条边的必要属性，分别代表了该边的起始点 id 与 目标点 id。</li>
-<li>点和边的其他属性参见链接：内置节点 和 内置边。</li>
-</ul>
-<p><strong><em>Step 3 创建关系图</em></strong><br>创建关系图（实例化）时，至少需要为图设置容器、宽和高。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const graph &#x3D; new G6.Graph(&#123;</span><br><span class="line">  container: &#39;mountNode&#39;, &#x2F;&#x2F; String | HTMLElement，必须，在 Step 1 中创建的容器 id 或容器本身</span><br><span class="line">  width: 800, &#x2F;&#x2F; Number，必须，图的宽度</span><br><span class="line">  height: 500, &#x2F;&#x2F; Number，必须，图的高度</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p><strong><em>Step 4 配置数据源，渲染</em></strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">graph.data(data); &#x2F;&#x2F; 读取 Step 2 中的数据源到图上</span><br><span class="line">graph.render(); &#x2F;&#x2F; 渲染图</span><br></pre></td></tr></table></figure>
-
-<p>完整代码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot; &#x2F;&gt;</span><br><span class="line">    &lt;title&gt;Tutorial Demo&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &#x2F;* 图的画布容器 *&#x2F;</span><br><span class="line">    &lt;div id&#x3D;&quot;mountNode&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">    &#x2F;* 引入 G6 *&#x2F;</span><br><span class="line">    &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;gw.alipayobjects.com&#x2F;os&#x2F;antv&#x2F;pkg&#x2F;_antv.g6-3.7.1&#x2F;dist&#x2F;g6.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      &#x2F;&#x2F; 定义数据源</span><br><span class="line">      const data &#x3D; &#123;</span><br><span class="line">        &#x2F;&#x2F; 点集</span><br><span class="line">        nodes: [</span><br><span class="line">          &#123;</span><br><span class="line">            id: &#39;node1&#39;,</span><br><span class="line">            x: 100,</span><br><span class="line">            y: 200,</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            id: &#39;node2&#39;,</span><br><span class="line">            x: 300,</span><br><span class="line">            y: 200,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">        &#x2F;&#x2F; 边集</span><br><span class="line">        edges: [</span><br><span class="line">          &#x2F;&#x2F; 表示一条从 node1 节点连接到 node2 节点的边</span><br><span class="line">          &#123;</span><br><span class="line">            source: &#39;node1&#39;,</span><br><span class="line">            target: &#39;node2&#39;,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F; 创建 G6 图实例</span><br><span class="line">      const graph &#x3D; new G6.Graph(&#123;</span><br><span class="line">        container: &#39;mountNode&#39;, &#x2F;&#x2F; 指定图画布的容器 id，与第 9 行的容器对应</span><br><span class="line">        &#x2F;&#x2F; 画布宽高</span><br><span class="line">        width: 800,</span><br><span class="line">        height: 500,</span><br><span class="line">      &#125;);</span><br><span class="line">      &#x2F;&#x2F; 读取数据</span><br><span class="line">      graph.data(data);</span><br><span class="line">      &#x2F;&#x2F; 渲染图</span><br><span class="line">      graph.render();</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>AntV</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker + redis 部署一主二从三哨兵</title>
-    <url>/2021/12/06/docker-redis-%E9%83%A8%E7%BD%B2%E4%B8%80%E4%B8%BB%E4%BA%8C%E4%BB%8E%E4%B8%89%E5%93%A8%E5%85%B5/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/redis.png" alt="redis"></p>
-<a id="more"></a>
-
-<p><strong>概述</strong></p>
-<ul>
-<li>在部署redis 的时候，如果redis宕机，缓存将不可用，redis提供了哨兵模式保证redis实现高可用。</li>
-<li>即一台主机两台从机，三台哨兵主机，如果主实例宕机，哨兵将一台从机升级为主机。实现高可用。<br><img src="/assets/blogImg/redis-1.png" alt="redis-1"></li>
-</ul>
-<p>参考文档 ⚔：<br><a href="https://blog.csdn.net/qq_41773902/article/details/105627708" target="_blank">[ 点我 ]</a> | <a href="https://www.jianshu.com/p/319d0980ff89#comments" target="_blank">[ 点我 ]</a> | <a href="https://www.pianshen.com/article/68951456452/" target="_blank">[ 点我 ]</a></p>
-]]></content>
-      <tags>
-        <tag>redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>gRPC 的介绍及使用</title>
-    <url>/2021/12/07/gRPC-%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/grpc.png" alt="grpc"></p>
-<a id="more"></a>
-
-
-<p>我们将介绍 <code>Go</code> 语言中最流行的 RPC 框架：<code>gRPC (google RPC)</code>。</p>
-<p><strong>gRPC 简介</strong></p>
-<p>RPC 代指远程过程调用 <code>(Remote Procedure Call)</code> 就是允许程序调用另一个地址空间（通常是共享网络的另一台机器上）的过程或函数，且不需要显式编码这个远程调用的细节 通俗来说就是调用其他进程内的方法，并且获得对应的返回值。</p>
-<p><code>gRPC</code> 是一个现代的、高性能、开源的和语言无关的通用RPC框架，基于 <code>HTTP2</code> 协议设计，序列化使用PB(Protocol Buffer)，<code>PB</code> 是一种语言无关的高性能序列化框架，基于 <code>HTTP2+PB</code> 保证了的高性能。</p>
-<p>整个 <code>gRPC</code> 调用基本上会包括以下 3 点：</p>
-<ul>
-<li>通讯协议 (HTTP2)</li>
-<li>寻址</li>
-<li>数据序列化 (Protobuf) proto3声明文件-&gt;protoc</li>
-</ul>
-<p><strong>安装相关依赖</strong><br>1.下载安装 <a href="https://golang.google.cn/dl/" target="_blank">[ go ]</a></p>
-<blockquote>
-<p>go version</p>
-</blockquote>
-<p>2.下载安装 <a href="https://github.com/protocolbuffers/protobuf/releases" target="_blank">[ protoc ]</a><br>在 gRPC 开发中，需要与 Protobuf 配合，在编写了.proto 文件后，我们会需要到一个编译器，就是 protoc。</p>
-<blockquote>
-<p>protoc –version</p>
-</blockquote>
-<p>3.安装相关依赖包</p>
-<ul>
-<li><p>安装 <code>golang</code> 的 <code>proto</code> 工具包</p>
-<blockquote>
-<p>go get -u github.com/golang/protobuf/proto</p>
-</blockquote>
-</li>
-<li><p>安装 <code>goalng</code> 的 <code>proto</code> 编译支持</p>
-<blockquote>
-<p>go get -u github.com/golang/protobuf/protoc-gen-go</p>
-</blockquote>
-</li>
-<li><p>安装 <code>gRPC</code> 包</p>
-<blockquote>
-<p>go get -u google.golang.org/grpc</p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>gRPC</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>gin-vue-admin的安装及使用</title>
     <url>/2021/10/14/gin-vue-admin%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/diary-5.jpg" alt="gin-vue-admin"></p>
@@ -2255,7 +2207,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#103;&#105;&#116;&#x40;&#103;&#105;&#x74;&#x68;&#x75;&#x62;&#46;&#99;&#111;&#x6d;">&#103;&#105;&#116;&#x40;&#103;&#105;&#x74;&#x68;&#x75;&#x62;&#46;&#99;&#111;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#x67;&#105;&#116;&#64;&#x67;&#105;&#x74;&#x68;&#x75;&#98;&#x2e;&#x63;&#x6f;&#x6d;">&#x67;&#105;&#116;&#64;&#x67;&#105;&#x74;&#x68;&#x75;&#98;&#x2e;&#x63;&#x6f;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -2752,6 +2704,54 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>gRPC 的介绍及使用</title>
+    <url>/2021/12/07/gRPC-%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/grpc.png" alt="grpc"></p>
+<a id="more"></a>
+
+
+<p>我们将介绍 <code>Go</code> 语言中最流行的 RPC 框架：<code>gRPC (google RPC)</code>。</p>
+<p><strong>gRPC 简介</strong></p>
+<p>RPC 代指远程过程调用 <code>(Remote Procedure Call)</code> 就是允许程序调用另一个地址空间（通常是共享网络的另一台机器上）的过程或函数，且不需要显式编码这个远程调用的细节 通俗来说就是调用其他进程内的方法，并且获得对应的返回值。</p>
+<p><code>gRPC</code> 是一个现代的、高性能、开源的和语言无关的通用RPC框架，基于 <code>HTTP2</code> 协议设计，序列化使用PB(Protocol Buffer)，<code>PB</code> 是一种语言无关的高性能序列化框架，基于 <code>HTTP2+PB</code> 保证了的高性能。</p>
+<p>整个 <code>gRPC</code> 调用基本上会包括以下 3 点：</p>
+<ul>
+<li>通讯协议 (HTTP2)</li>
+<li>寻址</li>
+<li>数据序列化 (Protobuf) proto3声明文件-&gt;protoc</li>
+</ul>
+<p><strong>安装相关依赖</strong><br>1.下载安装 <a href="https://golang.google.cn/dl/" target="_blank">[ go ]</a></p>
+<blockquote>
+<p>go version</p>
+</blockquote>
+<p>2.下载安装 <a href="https://github.com/protocolbuffers/protobuf/releases" target="_blank">[ protoc ]</a><br>在 gRPC 开发中，需要与 Protobuf 配合，在编写了.proto 文件后，我们会需要到一个编译器，就是 protoc。</p>
+<blockquote>
+<p>protoc –version</p>
+</blockquote>
+<p>3.安装相关依赖包</p>
+<ul>
+<li><p>安装 <code>golang</code> 的 <code>proto</code> 工具包</p>
+<blockquote>
+<p>go get -u github.com/golang/protobuf/proto</p>
+</blockquote>
+</li>
+<li><p>安装 <code>goalng</code> 的 <code>proto</code> 编译支持</p>
+<blockquote>
+<p>go get -u github.com/golang/protobuf/protoc-gen-go</p>
+</blockquote>
+</li>
+<li><p>安装 <code>gRPC</code> 包</p>
+<blockquote>
+<p>go get -u google.golang.org/grpc</p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>gRPC</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>linux centos7.3 lnmp一键安装包集成</title>
     <url>/2017/09/15/linux-centos7-3-lnmp%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85%E9%9B%86%E6%88%90/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2936,19 +2936,6 @@ class QuotesSpider(scrapy.Spider):
 ]]></content>
   </entry>
   <entry>
-    <title>mysql自定义重置数据表ID值</title>
-    <url>/2018/10/30/mysql%E8%87%AA%E5%AE%9A%E4%B9%89%E9%87%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E8%A1%A8ID%E5%80%BC/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<blockquote>
-<p> alter table 表名 AUTO_INCREMENT=自定义ID;</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>lnmp集成环境下部署laravel5.x项目</title>
     <url>/2017/09/21/lnmp%E9%9B%86%E6%88%90%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2laravel5-x%E9%A1%B9%E7%9B%AE/</url>
     <content><![CDATA[<a id="more"></a>
@@ -3005,6 +2992,19 @@ class QuotesSpider(scrapy.Spider):
         <tag>lnmp</tag>
         <tag>centos7.3</tag>
         <tag>laravel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql自定义重置数据表ID值</title>
+    <url>/2018/10/30/mysql%E8%87%AA%E5%AE%9A%E4%B9%89%E9%87%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E8%A1%A8ID%E5%80%BC/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<blockquote>
+<p> alter table 表名 AUTO_INCREMENT=自定义ID;</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -3262,7 +3262,7 @@ class QuotesSpider(scrapy.Spider):
 </blockquote>
 <p>二、使用npm下载 web框架express模块</p>
 <blockquote>
-<p>npm install --save <a href="mailto:&#x65;&#120;&#112;&#x72;&#101;&#115;&#115;&#x40;&#52;&#46;&#49;&#x35;&#46;&#50;">&#x65;&#120;&#112;&#x72;&#101;&#115;&#115;&#x40;&#52;&#46;&#49;&#x35;&#46;&#50;</a></p>
+<p>npm install --save <a href="mailto:&#x65;&#x78;&#x70;&#x72;&#x65;&#x73;&#x73;&#64;&#x34;&#x2e;&#49;&#x35;&#46;&#x32;">&#x65;&#x78;&#x70;&#x72;&#x65;&#x73;&#x73;&#64;&#x34;&#x2e;&#49;&#x35;&#46;&#x32;</a></p>
 </blockquote>
 <p>三、使用npm下载socket.io模块</p>
 <blockquote>
