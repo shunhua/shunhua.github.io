@@ -73,35 +73,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Alipay 开放平台支付</title>
-    <url>/2018/10/26/Alipay-%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E6%94%AF%E4%BB%98/</url>
-    <content><![CDATA[<a id="more"></a>
-
-
-<p>参考文档 <a href="https://docs.open.alipay.com/291/" target="_blank">[ 开放平台文档中心 ]</a></p>
-<blockquote>
-<p>生成RSA密钥</p>
-</blockquote>
-<p>a. 应用公钥2048<br>b. 应用私钥2048</p>
-<blockquote>
-<p>上传应用公钥并获取支付宝公钥</p>
-</blockquote>
-<p>支付宝公钥应用于开发中</p>
-<blockquote>
-<p>使用应用私钥生成请求签名</p>
-</blockquote>
-<p>应用私钥应用于开发中</p>
-<blockquote>
-<p>使用支付宝公钥验签</p>
-</blockquote>
-<p>支付宝公钥应用于开发中</p>
-]]></content>
-      <tags>
-        <tag>Alipay</tag>
-        <tag>开放平台</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CentOS 7 Git服务器搭建及配置公钥</title>
     <url>/2018/04/08/CentOS-7-Git%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E5%85%AC%E9%92%A5/</url>
     <content><![CDATA[<a id="more"></a>
@@ -125,7 +96,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#64;&#113;&#113;&#x2e;&#x63;&#x6f;&#x6d;">&#120;&#64;&#113;&#113;&#x2e;&#x63;&#x6f;&#x6d;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#x40;&#113;&#113;&#x2e;&#99;&#111;&#x6d;">&#120;&#x40;&#113;&#113;&#x2e;&#99;&#111;&#x6d;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -136,7 +107,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#98;&#x40;&#x71;&#113;&#46;&#x63;&#x6f;&#x6d;">&#98;&#x40;&#x71;&#113;&#46;&#x63;&#x6f;&#x6d;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#98;&#64;&#113;&#113;&#x2e;&#x63;&#111;&#109;">&#98;&#64;&#113;&#113;&#x2e;&#x63;&#111;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -168,6 +139,35 @@
       <tags>
         <tag>CentOS 7</tag>
         <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Alipay 开放平台支付</title>
+    <url>/2018/10/26/Alipay-%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E6%94%AF%E4%BB%98/</url>
+    <content><![CDATA[<a id="more"></a>
+
+
+<p>参考文档 <a href="https://docs.open.alipay.com/291/" target="_blank">[ 开放平台文档中心 ]</a></p>
+<blockquote>
+<p>生成RSA密钥</p>
+</blockquote>
+<p>a. 应用公钥2048<br>b. 应用私钥2048</p>
+<blockquote>
+<p>上传应用公钥并获取支付宝公钥</p>
+</blockquote>
+<p>支付宝公钥应用于开发中</p>
+<blockquote>
+<p>使用应用私钥生成请求签名</p>
+</blockquote>
+<p>应用私钥应用于开发中</p>
+<blockquote>
+<p>使用支付宝公钥验签</p>
+</blockquote>
+<p>支付宝公钥应用于开发中</p>
+]]></content>
+      <tags>
+        <tag>Alipay</tag>
+        <tag>开放平台</tag>
       </tags>
   </entry>
   <entry>
@@ -1367,6 +1367,22 @@ public $queue = &#39;listeners&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Nginx 反向代理</title>
+    <url>/2019/09/19/Nginx-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p><a href="https://baishunhua.com/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/" target="_blank">安装nginx</a></p>
+<blockquote>
+<p>高防服务器上 nginx.conf 配置模板</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server_name  www.xxx.com;</span><br><span class="line">...</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">    proxy_pass http:&#x2F;&#x2F;ip[原服务器ip];</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>nginx</tag>
+        <tag>反向代理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Nginx分发-指定文件名称</title>
     <url>/2020/12/07/Nginx%E5%88%86%E5%8F%91-%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E5%90%8D%E7%A7%B0/</url>
     <content><![CDATA[<p><strong>Nginx分发-指定文件名称</strong></p>
@@ -1394,22 +1410,6 @@ public $queue = &#39;listeners&#39;;</code></pre>
 ]]></content>
       <tags>
         <tag>nginx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nginx 反向代理</title>
-    <url>/2019/09/19/Nginx-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p><a href="https://baishunhua.com/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/" target="_blank">安装nginx</a></p>
-<blockquote>
-<p>高防服务器上 nginx.conf 配置模板</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server_name  www.xxx.com;</span><br><span class="line">...</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">    proxy_pass http:&#x2F;&#x2F;ip[原服务器ip];</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>nginx</tag>
-        <tag>反向代理</tag>
       </tags>
   </entry>
   <entry>
@@ -2255,7 +2255,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#x67;&#105;&#116;&#64;&#x67;&#105;&#116;&#104;&#x75;&#x62;&#x2e;&#99;&#x6f;&#x6d;">&#x67;&#105;&#116;&#64;&#x67;&#105;&#116;&#104;&#x75;&#x62;&#x2e;&#99;&#x6f;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#103;&#105;&#116;&#x40;&#x67;&#105;&#x74;&#x68;&#117;&#x62;&#46;&#x63;&#x6f;&#x6d;">&#103;&#105;&#116;&#x40;&#x67;&#105;&#x74;&#x68;&#117;&#x62;&#46;&#x63;&#x6f;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -2888,6 +2888,27 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>lnmp tp pathinfo问题</title>
+    <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>/usr/local/php/etc/php.ini</p>
+<blockquote>
+<p> cgi.fix_pathinfo=1</p>
+</blockquote>
+<blockquote>
+<p> lnmp restart</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
+  </entry>
+  <entry>
     <title>linux下安装redis及认证密码</title>
     <url>/2018/03/06/linux%E4%B8%8B%E5%AE%89%E8%A3%85redis%E5%8F%8A%E8%AE%A4%E8%AF%81%E5%AF%86%E7%A0%81/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2913,27 +2934,6 @@ class QuotesSpider(scrapy.Spider):
         <tag>lnmp</tag>
         <tag>redis</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>lnmp tp pathinfo问题</title>
-    <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>/usr/local/php/etc/php.ini</p>
-<blockquote>
-<p> cgi.fix_pathinfo=1</p>
-</blockquote>
-<blockquote>
-<p> lnmp restart</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
   </entry>
   <entry>
     <title>lnmp集成环境下部署laravel5.x项目</title>
@@ -3251,6 +3251,37 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>socket.io的使用</title>
+    <url>/2018/03/28/socket-io%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><strong>socket.io的基础教程</strong> </p>
+<a id="more"></a>
+
+<p>一、安装nodejs [默认安装][<a href="https://nodejs.org/en/download/" target="_blank">下载nodejs</a>]<br>新建文件夹[socket],在目录下执行以下代码<br>nodejs中用npm初始化来创建package.json</p>
+<blockquote>
+<p> npm init</p>
+</blockquote>
+<p>二、使用npm下载 web框架express模块</p>
+<blockquote>
+<p>npm install --save <a href="mailto:&#101;&#120;&#x70;&#114;&#101;&#115;&#x73;&#64;&#x34;&#46;&#x31;&#x35;&#x2e;&#50;">&#101;&#120;&#x70;&#114;&#101;&#115;&#x73;&#64;&#x34;&#46;&#x31;&#x35;&#x2e;&#50;</a></p>
+</blockquote>
+<p>三、使用npm下载socket.io模块</p>
+<blockquote>
+<p>npm install --save socket.io</p>
+</blockquote>
+<p>四、新建index.js 代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var app &#x3D; require(&#39;express&#39;)();</span><br><span class="line">var http &#x3D; require(&#39;http&#39;).Server(app);</span><br><span class="line">var io &#x3D; require(&#39;socket.io&#39;)(http);</span><br><span class="line"></span><br><span class="line">app.get(&#39;&#x2F;&#39;, function(req, res)&#123;</span><br><span class="line">  res.sendFile(__dirname + &#39;&#x2F;index.html&#39;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">io.on(&#39;connection&#39;, function(socket)&#123;</span><br><span class="line">  socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">     io.emit(&#39;bsh&#39;, msg);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.listen(3000, function()&#123;</span><br><span class="line">  console.log(&#39;listening on *:3000&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>五、新建index.html 代码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Socket.IO chat&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      * &#123; margin: 0; padding: 0; box-sizing: border-box; &#125;</span><br><span class="line">      body &#123; font: 13px Helvetica, Arial; &#125;</span><br><span class="line">      form &#123; background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; &#125;</span><br><span class="line">      form input &#123; border: 0; padding: 10px; width: 90%; margin-right: .5%; &#125;</span><br><span class="line">      form button &#123; width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; &#125;</span><br><span class="line">      #messages &#123; list-style-type: none; margin: 0; padding: 0; &#125;</span><br><span class="line">      #messages li &#123; padding: 5px 10px; &#125;</span><br><span class="line">      #messages li:nth-child(odd) &#123; background: #eee; &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.1.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  $(function () &#123;</span><br><span class="line">    var socket &#x3D; io();</span><br><span class="line">    $(&#39;form&#39;).submit(function()&#123;</span><br><span class="line">      socket.emit(&#39;bsh&#39;, $(&#39;#m&#39;).val());</span><br><span class="line">      $(&#39;#m&#39;).val(&#39;&#39;);</span><br><span class="line">      return false;</span><br><span class="line">    &#125;);</span><br><span class="line">    socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">      $(&#39;#messages&#39;).append($(&#39;&lt;li&gt;&#39;).text(msg));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;ul id&#x3D;&quot;messages&quot;&gt;&lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;form action&#x3D;&quot;&quot;&gt;</span><br><span class="line">      &lt;input id&#x3D;&quot;m&quot; autocomplete&#x3D;&quot;off&quot; &#x2F;&gt;&lt;button&gt;Send&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>六、执行 node index.js<br>七、浏览器打开localhost:3000</p>
+]]></content>
+      <tags>
+        <tag>socket.io</tag>
+        <tag>nodejs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sublime text3 安装配置svn 及默认快捷键</title>
     <url>/2017/08/25/sublime-text3-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEsvn-%E5%8F%8A%E9%BB%98%E8%AE%A4%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
     <content><![CDATA[<p><strong>sublime text3 安装配置svn 及默认快捷键：</strong> </p>
@@ -3290,37 +3321,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>svn</tag>
         <tag>sublime text3</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>socket.io的使用</title>
-    <url>/2018/03/28/socket-io%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><strong>socket.io的基础教程</strong> </p>
-<a id="more"></a>
-
-<p>一、安装nodejs [默认安装][<a href="https://nodejs.org/en/download/" target="_blank">下载nodejs</a>]<br>新建文件夹[socket],在目录下执行以下代码<br>nodejs中用npm初始化来创建package.json</p>
-<blockquote>
-<p> npm init</p>
-</blockquote>
-<p>二、使用npm下载 web框架express模块</p>
-<blockquote>
-<p>npm install --save <a href="mailto:&#101;&#x78;&#x70;&#114;&#x65;&#115;&#115;&#64;&#52;&#x2e;&#49;&#x35;&#46;&#x32;">&#101;&#x78;&#x70;&#114;&#x65;&#115;&#115;&#64;&#52;&#x2e;&#49;&#x35;&#46;&#x32;</a></p>
-</blockquote>
-<p>三、使用npm下载socket.io模块</p>
-<blockquote>
-<p>npm install --save socket.io</p>
-</blockquote>
-<p>四、新建index.js 代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var app &#x3D; require(&#39;express&#39;)();</span><br><span class="line">var http &#x3D; require(&#39;http&#39;).Server(app);</span><br><span class="line">var io &#x3D; require(&#39;socket.io&#39;)(http);</span><br><span class="line"></span><br><span class="line">app.get(&#39;&#x2F;&#39;, function(req, res)&#123;</span><br><span class="line">  res.sendFile(__dirname + &#39;&#x2F;index.html&#39;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">io.on(&#39;connection&#39;, function(socket)&#123;</span><br><span class="line">  socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">     io.emit(&#39;bsh&#39;, msg);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.listen(3000, function()&#123;</span><br><span class="line">  console.log(&#39;listening on *:3000&#39;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>五、新建index.html 代码如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Socket.IO chat&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      * &#123; margin: 0; padding: 0; box-sizing: border-box; &#125;</span><br><span class="line">      body &#123; font: 13px Helvetica, Arial; &#125;</span><br><span class="line">      form &#123; background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; &#125;</span><br><span class="line">      form input &#123; border: 0; padding: 10px; width: 90%; margin-right: .5%; &#125;</span><br><span class="line">      form button &#123; width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; &#125;</span><br><span class="line">      #messages &#123; list-style-type: none; margin: 0; padding: 0; &#125;</span><br><span class="line">      #messages li &#123; padding: 5px 10px; &#125;</span><br><span class="line">      #messages li:nth-child(odd) &#123; background: #eee; &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;code.jquery.com&#x2F;jquery-1.11.1.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  $(function () &#123;</span><br><span class="line">    var socket &#x3D; io();</span><br><span class="line">    $(&#39;form&#39;).submit(function()&#123;</span><br><span class="line">      socket.emit(&#39;bsh&#39;, $(&#39;#m&#39;).val());</span><br><span class="line">      $(&#39;#m&#39;).val(&#39;&#39;);</span><br><span class="line">      return false;</span><br><span class="line">    &#125;);</span><br><span class="line">    socket.on(&#39;bsh&#39;, function(msg)&#123;</span><br><span class="line">      $(&#39;#messages&#39;).append($(&#39;&lt;li&gt;&#39;).text(msg));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">    &lt;ul id&#x3D;&quot;messages&quot;&gt;&lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;form action&#x3D;&quot;&quot;&gt;</span><br><span class="line">      &lt;input id&#x3D;&quot;m&quot; autocomplete&#x3D;&quot;off&quot; &#x2F;&gt;&lt;button&gt;Send&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-
-<p>六、执行 node index.js<br>七、浏览器打开localhost:3000</p>
-]]></content>
-      <tags>
-        <tag>socket.io</tag>
-        <tag>nodejs</tag>
       </tags>
   </entry>
   <entry>
@@ -3406,23 +3406,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>使用git 与github友好交流</title>
-    <url>/2017/08/11/%E4%BD%BF%E7%94%A8git-%E4%B8%8Egithub%E5%8F%8B%E5%A5%BD%E4%BA%A4%E6%B5%81/</url>
-    <content><![CDATA[<p>##<strong>本文主要介绍window 端Git 与github友好交流</strong></p>
-<blockquote>
-<p>1、安装window版（32/64）git。 window端安装过程无脑略过—— </p>
-</blockquote>
-<a id="more"></a>
-
-
-<p>2、本文默认github已注册并添加过 ssh key<br>3、github上新建仓库<br>git add / add *<br>git commit -m<br>git remote add origin <a href="http://xxxx.github.io/">http://xxxx.github.io</a><br>git push -u origin master<br>git pull<br>git rm -r xxx<br>git commit -m ‘’<br>git push -u origin master<br>git  –version</p>
-]]></content>
-      <tags>
-        <tag>git</tag>
-        <tag>github</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用Tailwind CSS新建一个项目</title>
     <url>/2021/11/18/%E4%BD%BF%E7%94%A8Tailwind-CSS%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/tailwindcss.png" alt="tailwindcss"></p>
@@ -3475,34 +3458,20 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>发布Laravel扩展包mqtt</title>
-    <url>/2021/02/01/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85mqtt/</url>
-    <content><![CDATA[<p><strong>发布Laravel扩展包mqtt</strong> </p>
+    <title>使用git 与github友好交流</title>
+    <url>/2017/08/11/%E4%BD%BF%E7%94%A8git-%E4%B8%8Egithub%E5%8F%8B%E5%A5%BD%E4%BA%A4%E6%B5%81/</url>
+    <content><![CDATA[<p>##<strong>本文主要介绍window 端Git 与github友好交流</strong></p>
+<blockquote>
+<p>1、安装window版（32/64）git。 window端安装过程无脑略过—— </p>
+</blockquote>
 <a id="more"></a>
 
-<p>一、编写扩展包</p>
-<blockquote>
-<p><a href="http://baishunhua.com/2018/12/04/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85larapay/" target="_blank">[ 参考文章 ]</a></p>
-</blockquote>
-<p>二、Github地址</p>
-<blockquote>
-<p><a href="https://github.com/shunhua/mqtt" target="_blank">[ mqtt ]</a></p>
-</blockquote>
-<p>三、Packagist地址</p>
-<blockquote>
-<p><a href="https://packagist.org/packages/shunhua/laravel-mqtt" target="_blank">[ Packagist ]</a></p>
-</blockquote>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p> 目前 tags 为 v1.0</p>
-</blockquote>
+
+<p>2、本文默认github已注册并添加过 ssh key<br>3、github上新建仓库<br>git add / add *<br>git commit -m<br>git remote add origin <a href="http://xxxx.github.io/">http://xxxx.github.io</a><br>git push -u origin master<br>git pull<br>git rm -r xxx<br>git commit -m ‘’<br>git push -u origin master<br>git  –version</p>
 ]]></content>
       <tags>
-        <tag>laravel</tag>
-        <tag>composer</tag>
-        <tag>mqtt</tag>
+        <tag>git</tag>
+        <tag>github</tag>
       </tags>
   </entry>
   <entry>
@@ -3538,6 +3507,37 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>laravel</tag>
         <tag>composer - 扩展包</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>发布Laravel扩展包mqtt</title>
+    <url>/2021/02/01/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85mqtt/</url>
+    <content><![CDATA[<p><strong>发布Laravel扩展包mqtt</strong> </p>
+<a id="more"></a>
+
+<p>一、编写扩展包</p>
+<blockquote>
+<p><a href="http://baishunhua.com/2018/12/04/%E5%8F%91%E5%B8%83Laravel%E6%89%A9%E5%B1%95%E5%8C%85larapay/" target="_blank">[ 参考文章 ]</a></p>
+</blockquote>
+<p>二、Github地址</p>
+<blockquote>
+<p><a href="https://github.com/shunhua/mqtt" target="_blank">[ mqtt ]</a></p>
+</blockquote>
+<p>三、Packagist地址</p>
+<blockquote>
+<p><a href="https://packagist.org/packages/shunhua/laravel-mqtt" target="_blank">[ Packagist ]</a></p>
+</blockquote>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p> 目前 tags 为 v1.0</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>laravel</tag>
+        <tag>composer</tag>
+        <tag>mqtt</tag>
       </tags>
   </entry>
   <entry>
