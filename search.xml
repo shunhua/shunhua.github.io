@@ -102,39 +102,6 @@
       </tags>
   </entry>
   <entry>
-    <title>CentOS 7 安装 Nginx 1.11.x</title>
-    <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/</url>
-    <content><![CDATA[<p><strong>Centos下安装Nginx</strong> </p>
-<a id="more"></a>
-
-<p>一、准备工作 安装必备工具</p>
-<blockquote>
-<p>yum install -y gcc gcc-c++ autoconf automake<br>yum install -y zlib zlib-devel openssl openssl-devel pcre-devel</p>
-</blockquote>
-<p>不安装这些依赖库，后面编译的时候会报错，当然你的系统已经有这些包可以跳过。<br>pcre：用来作地址重写的功能。<br>zlib：nginx 的gzip模块,传输数据打包，省流量（但消耗资源）。<br>openssl：提供ssl加密协议。</p>
-<p>二、添加nginx用户</p>
-<blockquote>
-<p>/usr/sbin/groupadd -f www<br>/usr/sbin/useradd -g www www</p>
-</blockquote>
-<p>三、nginx文件准备及编译</p>
-<blockquote>
-<p>wget <a href="http://nginx.org/download/nginx-1.11.4.tar.gz">http://nginx.org/download/nginx-1.11.4.tar.gz</a><br>tar -zxvf nginx-1.11.4.tar.gz<br>cd nginx-1.11.4/<br>./configure –user=www –group=www<br>make &amp;&amp; make install</p>
-</blockquote>
-<p>四、开始firewall端口服务</p>
-<blockquote>
-<p>firewall-cmd  –permanent –zone=public –add-service=http<br>firewall-cmd  –reload</p>
-</blockquote>
-<p>常用命令</p>
-<blockquote>
-<p>/usr/local/nginx/sbin/nginx -s reload<br>/usr/local/nginx/sbin/nginx -s stop<br>/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Centos</tag>
-        <tag>Nginx</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CentOS 7 Git服务器搭建及配置公钥</title>
     <url>/2018/04/08/CentOS-7-Git%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%85%8D%E7%BD%AE%E5%85%AC%E9%92%A5/</url>
     <content><![CDATA[<a id="more"></a>
@@ -158,7 +125,7 @@
 </blockquote>
 <p>e. 命令行创建SSH key</p>
 <blockquote>
-<p>ssh-keygen -t rsa -C “<a href="mailto:&#120;&#x40;&#113;&#113;&#x2e;&#x63;&#111;&#x6d;">&#120;&#x40;&#113;&#113;&#x2e;&#x63;&#111;&#x6d;</a>“</p>
+<p>ssh-keygen -t rsa -C “<a href="mailto:&#x78;&#x40;&#113;&#113;&#46;&#99;&#111;&#109;">&#x78;&#x40;&#113;&#113;&#46;&#99;&#111;&#109;</a>“</p>
 </blockquote>
 <p>Linux  家目录/.ssh/:id_rsa、id_rsa.pub。<br>windows C:\Users\Administrator.ssh\</p>
 <p>f.把步骤5生成的公钥导入服务器</p>
@@ -169,7 +136,7 @@
 <p><strong>二、配置钩子</strong></p>
 <p>a. 设置clone帐号的SSH key<br>我用的lnmp的环境 用户为 www</p>
 <blockquote>
-<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#x40;&#x71;&#113;&#46;&#99;&#111;&#109;">&#x62;&#x40;&#x71;&#113;&#46;&#99;&#111;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<p>sudo -u www ssh-keygen -t rsa -C “<a href="mailto:&#x62;&#x40;&#113;&#113;&#x2e;&#x63;&#x6f;&#109;">&#x62;&#x40;&#113;&#113;&#x2e;&#x63;&#x6f;&#109;</a>“<br>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
 </blockquote>
 <p>b. 设置Git用户使用www用户clone<br>设置了 /etc/sudoers 添加：</p>
 <blockquote>
@@ -248,6 +215,39 @@
       <tags>
         <tag>Centos</tag>
         <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS 7 安装 Nginx 1.11.x</title>
+    <url>/2018/03/21/CentOS-7-%E5%AE%89%E8%A3%85-Nginx-1-11-x/</url>
+    <content><![CDATA[<p><strong>Centos下安装Nginx</strong> </p>
+<a id="more"></a>
+
+<p>一、准备工作 安装必备工具</p>
+<blockquote>
+<p>yum install -y gcc gcc-c++ autoconf automake<br>yum install -y zlib zlib-devel openssl openssl-devel pcre-devel</p>
+</blockquote>
+<p>不安装这些依赖库，后面编译的时候会报错，当然你的系统已经有这些包可以跳过。<br>pcre：用来作地址重写的功能。<br>zlib：nginx 的gzip模块,传输数据打包，省流量（但消耗资源）。<br>openssl：提供ssl加密协议。</p>
+<p>二、添加nginx用户</p>
+<blockquote>
+<p>/usr/sbin/groupadd -f www<br>/usr/sbin/useradd -g www www</p>
+</blockquote>
+<p>三、nginx文件准备及编译</p>
+<blockquote>
+<p>wget <a href="http://nginx.org/download/nginx-1.11.4.tar.gz">http://nginx.org/download/nginx-1.11.4.tar.gz</a><br>tar -zxvf nginx-1.11.4.tar.gz<br>cd nginx-1.11.4/<br>./configure –user=www –group=www<br>make &amp;&amp; make install</p>
+</blockquote>
+<p>四、开始firewall端口服务</p>
+<blockquote>
+<p>firewall-cmd  –permanent –zone=public –add-service=http<br>firewall-cmd  –reload</p>
+</blockquote>
+<p>常用命令</p>
+<blockquote>
+<p>/usr/local/nginx/sbin/nginx -s reload<br>/usr/local/nginx/sbin/nginx -s stop<br>/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Centos</tag>
+        <tag>Nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -421,6 +421,93 @@
       </tags>
   </entry>
   <entry>
+    <title>Centos下安装PHP7</title>
+    <url>/2018/03/21/Centos%E4%B8%8B%E5%AE%89%E8%A3%85PHP7/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>一、安装yum仓库</p>
+<blockquote>
+<p>yum install epel-release<br>rpm -Uvh <a href="https://mirror.webtatic.com/yum/el7/webtatic-release.rpm">https://mirror.webtatic.com/yum/el7/webtatic-release.rpm</a></p>
+</blockquote>
+<p>二、安装php7</p>
+<blockquote>
+<p>yum install php70w<br>php -v</p>
+</blockquote>
+<p>三、安装php扩展</p>
+<blockquote>
+<p>yum search php70<br>yum install php70w-xml php70w-soap php70w-xmlrpc<br>yum install php70w-mbstring php70w-json php70w-gd php70w-mcrypt<br>yum install php70w-fpm php70w-mysql php70w-pdo php70w-opcache</p>
+</blockquote>
+<p>nginx 配置 php</p>
+<p>1、启动fpm</p>
+<blockquote>
+<p>systemctl start php-fpm<br>systemctl enable php-fpm # 开机启动</p>
+</blockquote>
+<p>2、配置nginx</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">location ~ \.php$ &#123;</span><br><span class="line">    root html;        </span><br><span class="line">    fastcgi_pass   127.0.0.1:9000;     # 也可以用 socket 进行连接</span><br><span class="line">    fastcgi_index  index.php;</span><br><span class="line">    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;</span><br><span class="line">    include        fastcgi_params;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、重启nginx</p>
+<blockquote>
+<p>systemctl restart nginx</p>
+</blockquote>
+<p>##php 错误日志##<br>nginx是一个web服务器，因此nginx的access日志只有对访问页面的记录，不会有php 的 error log信息。<br>nginx把对php的请求发给php-fpm fastcgi进程来处理，默认的php-fpm只会输出php-fpm的错误信息，在php-fpm的errors log里也看不到php的errorlog<br>原因是php-fpm的配置文件php-fpm.conf中默认是关闭worker进程的错误输出，直接把他们重定向到/dev/null,所以我们在nginx的error log 和php-fpm的errorlog都看不到php的错误日志。</p>
+<p>1、修改php-fpm.conf中配置</p>
+<blockquote>
+<p>catch_workers_output = yes<br>error_log = log/error_log</p>
+</blockquote>
+<p>2、修改php.ini中配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">log_errors &#x3D; On</span><br><span class="line">error_log &#x3D; &quot;&#x2F;var&#x2F;log&#x2F;php&#x2F;error_log&quot;  # 填写日志路径</span><br><span class="line">error_reporting &#x3D; E_ALL&amp;~E_NOTICE</span><br></pre></td></tr></table></figure>
+<p>3、重启php-fpm<br>注意：<br>a、php-fpm.conf 中的php_admin_value[error_log] 参数 会覆盖php.ini中的 error_log 参数<br>所以确保你在phpinfo()中看到的最终error_log文件具有可写权限并且没有设置php_admin_value[error_log] 参数，否则错误日志会输出到php-fpm的错误日志里</p>
+<p>b、找不到php.ini位置，使用php的phpinfo()结果查看<br>c、如何修改PHP错误日志不输出到页面或屏幕上</p>
+<p>修改php.ini</p>
+<blockquote>
+<p>不显示错误信息(不输出到页面或屏幕上)<br>display_errors = off<br>记录错误信息(保存到日志文件中)<br>log_errors = on<br>捕获所有错误信息<br>error_reporting = E_ALL<br>设置日志文件名<br>error_log =   </p>
+</blockquote>
+<p>程序中修改以上配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ini_set(&quot;display_errors&quot;, 0)</span><br><span class="line">ini_set(&quot;error_reporting&quot;, E_ALL);  </span><br><span class="line">ini_set(&quot;error_log&quot;, &quot;&lt;日志文件名&gt;&quot;)</span><br><span class="line">ini_set(&quot;log_errors&quot;, 1);</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>Centos</tag>
+        <tag>PHP7</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Docker下实践ELK(Elasticsearch、Logstash、Kibana)</title>
+    <url>/2021/12/22/Docker%E4%B8%8B%E5%AE%9E%E8%B7%B5ELK-Elasticsearch%E3%80%81Logstash%E3%80%81Kibana/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/elk.png" alt="elk"></p>
+<a id="more"></a>
+
+<p><strong>什么是 ELK</strong><br><a href="https://www.elastic.co/cn/what-is/elk-stack" target="_blank">[ 官方网址 ]</a> | <a href="https://github.com/deviantony/docker-elk" target="_blank">[ Github资源 ]</a><br><img src="/assets/blogImg/elk.svg" alt="elk"></p>
+<ul>
+<li>Elasticsearch</li>
+</ul>
+<blockquote>
+<p>Elasticsearch 是一个分布式的 RESTful 风格的 <code>搜索和数据分析引擎</code>，能够解决不断涌现出的各种用例。作为 Elastic Stack 的核心，它集中<code>存储您的数据</code>，帮助您发现意料之中以及意料之外的情况。</p>
+</blockquote>
+<ul>
+<li>Logstash</li>
+</ul>
+<blockquote>
+<p>Logstash 是开源的服务器端数据处理管道，能够同时 从多个来源 <code>采集数据、转换数据</code>，然后将数据发送到您最喜欢的<code>存储库</code> （存储库是 <code>Elasticsearch</code>）中。</p>
+</blockquote>
+<ul>
+<li>Kibana</li>
+</ul>
+<blockquote>
+<p>Kibana 让您能够<code>可视化 Elasticsearch</code> 中的数据并操作 Elastic Stack。</p>
+</blockquote>
+<p><img src="/assets/blogImg/elk-lu.svg" alt="elk-lu"><br><strong>整体架构流程图：</strong><br><a href="https://excalidraw.com/" target="_blank">[ 画图工具 ]</a></p>
+<ul>
+<li>filebeat: 负责将日志数据传输到 redis</li>
+<li>Redis：暂时进行缓存</li>
+<li>logstash: 收集缓存中的日志数据</li>
+<li>elasticsearch: 负责存储日志数据</li>
+<li>kibana: 负责显示日志的数据</li>
+</ul>
+<p><img src="/assets/blogImg/elk1.png" alt="elk"></p>
+]]></content>
+      <tags>
+        <tag>ELK</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Etcd一文</title>
     <url>/2021/11/04/Etcd%E4%B8%80%E6%96%87/</url>
     <content><![CDATA[<p><img src="/assets/blogImg/etcd.png" alt="Etcd"></p>
@@ -483,45 +570,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Docker下实践ELK(Elasticsearch、Logstash、Kibana)</title>
-    <url>/2021/12/22/Docker%E4%B8%8B%E5%AE%9E%E8%B7%B5ELK-Elasticsearch%E3%80%81Logstash%E3%80%81Kibana/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/elk.png" alt="elk"></p>
-<a id="more"></a>
-
-<p><strong>什么是 ELK</strong><br><a href="https://www.elastic.co/cn/what-is/elk-stack" target="_blank">[ 官方网址 ]</a> | <a href="https://github.com/deviantony/docker-elk" target="_blank">[ Github资源 ]</a><br><img src="/assets/blogImg/elk.svg" alt="elk"></p>
-<ul>
-<li>Elasticsearch</li>
-</ul>
-<blockquote>
-<p>Elasticsearch 是一个分布式的 RESTful 风格的 <code>搜索和数据分析引擎</code>，能够解决不断涌现出的各种用例。作为 Elastic Stack 的核心，它集中<code>存储您的数据</code>，帮助您发现意料之中以及意料之外的情况。</p>
-</blockquote>
-<ul>
-<li>Logstash</li>
-</ul>
-<blockquote>
-<p>Logstash 是开源的服务器端数据处理管道，能够同时 从多个来源 <code>采集数据、转换数据</code>，然后将数据发送到您最喜欢的<code>存储库</code> （存储库是 <code>Elasticsearch</code>）中。</p>
-</blockquote>
-<ul>
-<li>Kibana</li>
-</ul>
-<blockquote>
-<p>Kibana 让您能够<code>可视化 Elasticsearch</code> 中的数据并操作 Elastic Stack。</p>
-</blockquote>
-<p><img src="/assets/blogImg/elk-lu.svg" alt="elk-lu"><br><strong>整体架构流程图：</strong><br><a href="https://excalidraw.com/" target="_blank">[ 画图工具 ]</a></p>
-<ul>
-<li>filebeat: 负责将日志数据传输到 redis</li>
-<li>Redis：暂时进行缓存</li>
-<li>logstash: 收集缓存中的日志数据</li>
-<li>elasticsearch: 负责存储日志数据</li>
-<li>kibana: 负责显示日志的数据</li>
-</ul>
-<p><img src="/assets/blogImg/elk1.png" alt="elk"></p>
-]]></content>
-      <tags>
-        <tag>ELK</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Go 语言基础</title>
     <url>/2017/11/08/Go-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<a id="more"></a>
@@ -580,54 +628,6 @@
 ]]></content>
       <tags>
         <tag>golang</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Centos下安装PHP7</title>
-    <url>/2018/03/21/Centos%E4%B8%8B%E5%AE%89%E8%A3%85PHP7/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>一、安装yum仓库</p>
-<blockquote>
-<p>yum install epel-release<br>rpm -Uvh <a href="https://mirror.webtatic.com/yum/el7/webtatic-release.rpm">https://mirror.webtatic.com/yum/el7/webtatic-release.rpm</a></p>
-</blockquote>
-<p>二、安装php7</p>
-<blockquote>
-<p>yum install php70w<br>php -v</p>
-</blockquote>
-<p>三、安装php扩展</p>
-<blockquote>
-<p>yum search php70<br>yum install php70w-xml php70w-soap php70w-xmlrpc<br>yum install php70w-mbstring php70w-json php70w-gd php70w-mcrypt<br>yum install php70w-fpm php70w-mysql php70w-pdo php70w-opcache</p>
-</blockquote>
-<p>nginx 配置 php</p>
-<p>1、启动fpm</p>
-<blockquote>
-<p>systemctl start php-fpm<br>systemctl enable php-fpm # 开机启动</p>
-</blockquote>
-<p>2、配置nginx</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">location ~ \.php$ &#123;</span><br><span class="line">    root html;        </span><br><span class="line">    fastcgi_pass   127.0.0.1:9000;     # 也可以用 socket 进行连接</span><br><span class="line">    fastcgi_index  index.php;</span><br><span class="line">    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;</span><br><span class="line">    include        fastcgi_params;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>3、重启nginx</p>
-<blockquote>
-<p>systemctl restart nginx</p>
-</blockquote>
-<p>##php 错误日志##<br>nginx是一个web服务器，因此nginx的access日志只有对访问页面的记录，不会有php 的 error log信息。<br>nginx把对php的请求发给php-fpm fastcgi进程来处理，默认的php-fpm只会输出php-fpm的错误信息，在php-fpm的errors log里也看不到php的errorlog<br>原因是php-fpm的配置文件php-fpm.conf中默认是关闭worker进程的错误输出，直接把他们重定向到/dev/null,所以我们在nginx的error log 和php-fpm的errorlog都看不到php的错误日志。</p>
-<p>1、修改php-fpm.conf中配置</p>
-<blockquote>
-<p>catch_workers_output = yes<br>error_log = log/error_log</p>
-</blockquote>
-<p>2、修改php.ini中配置</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">log_errors &#x3D; On</span><br><span class="line">error_log &#x3D; &quot;&#x2F;var&#x2F;log&#x2F;php&#x2F;error_log&quot;  # 填写日志路径</span><br><span class="line">error_reporting &#x3D; E_ALL&amp;~E_NOTICE</span><br></pre></td></tr></table></figure>
-<p>3、重启php-fpm<br>注意：<br>a、php-fpm.conf 中的php_admin_value[error_log] 参数 会覆盖php.ini中的 error_log 参数<br>所以确保你在phpinfo()中看到的最终error_log文件具有可写权限并且没有设置php_admin_value[error_log] 参数，否则错误日志会输出到php-fpm的错误日志里</p>
-<p>b、找不到php.ini位置，使用php的phpinfo()结果查看<br>c、如何修改PHP错误日志不输出到页面或屏幕上</p>
-<p>修改php.ini</p>
-<blockquote>
-<p>不显示错误信息(不输出到页面或屏幕上)<br>display_errors = off<br>记录错误信息(保存到日志文件中)<br>log_errors = on<br>捕获所有错误信息<br>error_reporting = E_ALL<br>设置日志文件名<br>error_log =   </p>
-</blockquote>
-<p>程序中修改以上配置</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ini_set(&quot;display_errors&quot;, 0)</span><br><span class="line">ini_set(&quot;error_reporting&quot;, E_ALL);  </span><br><span class="line">ini_set(&quot;error_log&quot;, &quot;&lt;日志文件名&gt;&quot;)</span><br><span class="line">ini_set(&quot;log_errors&quot;, 1);</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>Centos</tag>
-        <tag>PHP7</tag>
       </tags>
   </entry>
   <entry>
@@ -1885,46 +1885,6 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
-    <title>AntV 蚂蚁数据可视化G6|Graphin</title>
-    <url>/2021/12/01/antV-%E8%9A%82%E8%9A%81%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96G6-Graphin/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/antV-g6.png" alt="AntV"></p>
-<a id="more"></a>
-
-<p>中文官网： <a href="https://antv.gitee.io/zh" target="_blank">[ AntV中文官网 ]</a><br>Github地址： <a href="https://github.com/antvis/g6" target="_blank">[ AntV G6 ]</a><br>参考文档： <a href="https://g6.antv.vision/zh/docs/manual/introduction" target="_blank">[ G6官方文档 ]</a><br><strong>什么是 G6</strong><br>G6 是一个图可视化引擎。它提供了图的绘制、布局、分析、交互、动画等图可视化的基础能力。旨在让关系变得透明，简单。让用户获得关系数据的 Insight。<br><strong>安装 &amp; 引用</strong><br>使用命令行在项目目录下执行以下命令：</p>
-<blockquote>
-<p> npm install –save @antv/g6</p>
-</blockquote>
-<p>创建一个 G6 的关系图仅需要下面几个步骤：</p>
-<ul>
-<li>创建关系图的 HTML 容器；</li>
-<li>数据准备；</li>
-<li>创建关系图；</li>
-<li>配置数据源，渲染。</li>
-</ul>
-<p><strong><em>Step 1 创建容器</em></strong><br>需要在 HTML 中创建一个用于容纳 G6 绘制的图的容器，通常为 div  标签。G6 在绘制时会在该容器下追加 canvas 标签，然后将图绘制在其中。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;mountNode&quot;&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-
-<p><strong><em>Step 2 数据准备</em></strong><br>引入 G6 的数据源为 JSON 格式的对象。该对象中需要有节点（nodes）和边（edges）字段，分别用数组表示：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const data &#x3D; &#123;</span><br><span class="line">  &#x2F;&#x2F; 点集</span><br><span class="line">  nodes: [</span><br><span class="line">    &#123;</span><br><span class="line">      id: &#39;node1&#39;, &#x2F;&#x2F; String，该节点存在则必须，节点的唯一标识</span><br><span class="line">      x: 100, &#x2F;&#x2F; Number，可选，节点位置的 x 值</span><br><span class="line">      y: 200, &#x2F;&#x2F; Number，可选，节点位置的 y 值</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      id: &#39;node2&#39;, &#x2F;&#x2F; String，该节点存在则必须，节点的唯一标识</span><br><span class="line">      x: 300, &#x2F;&#x2F; Number，可选，节点位置的 x 值</span><br><span class="line">      y: 200, &#x2F;&#x2F; Number，可选，节点位置的 y 值</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">  &#x2F;&#x2F; 边集</span><br><span class="line">  edges: [</span><br><span class="line">    &#123;</span><br><span class="line">      source: &#39;node1&#39;, &#x2F;&#x2F; String，必须，起始点 id</span><br><span class="line">      target: &#39;node2&#39;, &#x2F;&#x2F; String，必须，目标点 id</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>注意</p>
-<ul>
-<li>nodes 数组中包含节点对象。每个节点对象中唯一的、必要的 id 以标识不同的节点，x、 y 指定该节点的位置；</li>
-<li>edges 数组中包含边对象。source 和 target 是每条边的必要属性，分别代表了该边的起始点 id 与 目标点 id。</li>
-<li>点和边的其他属性参见链接：内置节点 和 内置边。</li>
-</ul>
-<p><strong><em>Step 3 创建关系图</em></strong><br>创建关系图（实例化）时，至少需要为图设置容器、宽和高。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const graph &#x3D; new G6.Graph(&#123;</span><br><span class="line">  container: &#39;mountNode&#39;, &#x2F;&#x2F; String | HTMLElement，必须，在 Step 1 中创建的容器 id 或容器本身</span><br><span class="line">  width: 800, &#x2F;&#x2F; Number，必须，图的宽度</span><br><span class="line">  height: 500, &#x2F;&#x2F; Number，必须，图的高度</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p><strong><em>Step 4 配置数据源，渲染</em></strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">graph.data(data); &#x2F;&#x2F; 读取 Step 2 中的数据源到图上</span><br><span class="line">graph.render(); &#x2F;&#x2F; 渲染图</span><br></pre></td></tr></table></figure>
-
-<p>完整代码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot; &#x2F;&gt;</span><br><span class="line">    &lt;title&gt;Tutorial Demo&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &#x2F;* 图的画布容器 *&#x2F;</span><br><span class="line">    &lt;div id&#x3D;&quot;mountNode&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">    &#x2F;* 引入 G6 *&#x2F;</span><br><span class="line">    &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;gw.alipayobjects.com&#x2F;os&#x2F;antv&#x2F;pkg&#x2F;_antv.g6-3.7.1&#x2F;dist&#x2F;g6.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      &#x2F;&#x2F; 定义数据源</span><br><span class="line">      const data &#x3D; &#123;</span><br><span class="line">        &#x2F;&#x2F; 点集</span><br><span class="line">        nodes: [</span><br><span class="line">          &#123;</span><br><span class="line">            id: &#39;node1&#39;,</span><br><span class="line">            x: 100,</span><br><span class="line">            y: 200,</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            id: &#39;node2&#39;,</span><br><span class="line">            x: 300,</span><br><span class="line">            y: 200,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">        &#x2F;&#x2F; 边集</span><br><span class="line">        edges: [</span><br><span class="line">          &#x2F;&#x2F; 表示一条从 node1 节点连接到 node2 节点的边</span><br><span class="line">          &#123;</span><br><span class="line">            source: &#39;node1&#39;,</span><br><span class="line">            target: &#39;node2&#39;,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F; 创建 G6 图实例</span><br><span class="line">      const graph &#x3D; new G6.Graph(&#123;</span><br><span class="line">        container: &#39;mountNode&#39;, &#x2F;&#x2F; 指定图画布的容器 id，与第 9 行的容器对应</span><br><span class="line">        &#x2F;&#x2F; 画布宽高</span><br><span class="line">        width: 800,</span><br><span class="line">        height: 500,</span><br><span class="line">      &#125;);</span><br><span class="line">      &#x2F;&#x2F; 读取数据</span><br><span class="line">      graph.data(data);</span><br><span class="line">      &#x2F;&#x2F; 渲染图</span><br><span class="line">      graph.render();</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>AntV</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Swift学习笔记NO.2</title>
     <url>/2017/09/25/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0NO-2/</url>
     <content><![CDATA[<p><strong>Swift学习笔记NO.2</strong> </p>
@@ -2083,6 +2043,46 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>Swift</tag>
         <tag>基础语法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AntV 蚂蚁数据可视化G6|Graphin</title>
+    <url>/2021/12/01/antV-%E8%9A%82%E8%9A%81%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96G6-Graphin/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/antV-g6.png" alt="AntV"></p>
+<a id="more"></a>
+
+<p>中文官网： <a href="https://antv.gitee.io/zh" target="_blank">[ AntV中文官网 ]</a><br>Github地址： <a href="https://github.com/antvis/g6" target="_blank">[ AntV G6 ]</a><br>参考文档： <a href="https://g6.antv.vision/zh/docs/manual/introduction" target="_blank">[ G6官方文档 ]</a><br><strong>什么是 G6</strong><br>G6 是一个图可视化引擎。它提供了图的绘制、布局、分析、交互、动画等图可视化的基础能力。旨在让关系变得透明，简单。让用户获得关系数据的 Insight。<br><strong>安装 &amp; 引用</strong><br>使用命令行在项目目录下执行以下命令：</p>
+<blockquote>
+<p> npm install –save @antv/g6</p>
+</blockquote>
+<p>创建一个 G6 的关系图仅需要下面几个步骤：</p>
+<ul>
+<li>创建关系图的 HTML 容器；</li>
+<li>数据准备；</li>
+<li>创建关系图；</li>
+<li>配置数据源，渲染。</li>
+</ul>
+<p><strong><em>Step 1 创建容器</em></strong><br>需要在 HTML 中创建一个用于容纳 G6 绘制的图的容器，通常为 div  标签。G6 在绘制时会在该容器下追加 canvas 标签，然后将图绘制在其中。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;mountNode&quot;&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>Step 2 数据准备</em></strong><br>引入 G6 的数据源为 JSON 格式的对象。该对象中需要有节点（nodes）和边（edges）字段，分别用数组表示：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const data &#x3D; &#123;</span><br><span class="line">  &#x2F;&#x2F; 点集</span><br><span class="line">  nodes: [</span><br><span class="line">    &#123;</span><br><span class="line">      id: &#39;node1&#39;, &#x2F;&#x2F; String，该节点存在则必须，节点的唯一标识</span><br><span class="line">      x: 100, &#x2F;&#x2F; Number，可选，节点位置的 x 值</span><br><span class="line">      y: 200, &#x2F;&#x2F; Number，可选，节点位置的 y 值</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      id: &#39;node2&#39;, &#x2F;&#x2F; String，该节点存在则必须，节点的唯一标识</span><br><span class="line">      x: 300, &#x2F;&#x2F; Number，可选，节点位置的 x 值</span><br><span class="line">      y: 200, &#x2F;&#x2F; Number，可选，节点位置的 y 值</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">  &#x2F;&#x2F; 边集</span><br><span class="line">  edges: [</span><br><span class="line">    &#123;</span><br><span class="line">      source: &#39;node1&#39;, &#x2F;&#x2F; String，必须，起始点 id</span><br><span class="line">      target: &#39;node2&#39;, &#x2F;&#x2F; String，必须，目标点 id</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>注意</p>
+<ul>
+<li>nodes 数组中包含节点对象。每个节点对象中唯一的、必要的 id 以标识不同的节点，x、 y 指定该节点的位置；</li>
+<li>edges 数组中包含边对象。source 和 target 是每条边的必要属性，分别代表了该边的起始点 id 与 目标点 id。</li>
+<li>点和边的其他属性参见链接：内置节点 和 内置边。</li>
+</ul>
+<p><strong><em>Step 3 创建关系图</em></strong><br>创建关系图（实例化）时，至少需要为图设置容器、宽和高。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const graph &#x3D; new G6.Graph(&#123;</span><br><span class="line">  container: &#39;mountNode&#39;, &#x2F;&#x2F; String | HTMLElement，必须，在 Step 1 中创建的容器 id 或容器本身</span><br><span class="line">  width: 800, &#x2F;&#x2F; Number，必须，图的宽度</span><br><span class="line">  height: 500, &#x2F;&#x2F; Number，必须，图的高度</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>Step 4 配置数据源，渲染</em></strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">graph.data(data); &#x2F;&#x2F; 读取 Step 2 中的数据源到图上</span><br><span class="line">graph.render(); &#x2F;&#x2F; 渲染图</span><br></pre></td></tr></table></figure>
+
+<p>完整代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot; &#x2F;&gt;</span><br><span class="line">    &lt;title&gt;Tutorial Demo&lt;&#x2F;title&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &#x2F;* 图的画布容器 *&#x2F;</span><br><span class="line">    &lt;div id&#x3D;&quot;mountNode&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">    &#x2F;* 引入 G6 *&#x2F;</span><br><span class="line">    &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;gw.alipayobjects.com&#x2F;os&#x2F;antv&#x2F;pkg&#x2F;_antv.g6-3.7.1&#x2F;dist&#x2F;g6.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      &#x2F;&#x2F; 定义数据源</span><br><span class="line">      const data &#x3D; &#123;</span><br><span class="line">        &#x2F;&#x2F; 点集</span><br><span class="line">        nodes: [</span><br><span class="line">          &#123;</span><br><span class="line">            id: &#39;node1&#39;,</span><br><span class="line">            x: 100,</span><br><span class="line">            y: 200,</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            id: &#39;node2&#39;,</span><br><span class="line">            x: 300,</span><br><span class="line">            y: 200,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">        &#x2F;&#x2F; 边集</span><br><span class="line">        edges: [</span><br><span class="line">          &#x2F;&#x2F; 表示一条从 node1 节点连接到 node2 节点的边</span><br><span class="line">          &#123;</span><br><span class="line">            source: &#39;node1&#39;,</span><br><span class="line">            target: &#39;node2&#39;,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F; 创建 G6 图实例</span><br><span class="line">      const graph &#x3D; new G6.Graph(&#123;</span><br><span class="line">        container: &#39;mountNode&#39;, &#x2F;&#x2F; 指定图画布的容器 id，与第 9 行的容器对应</span><br><span class="line">        &#x2F;&#x2F; 画布宽高</span><br><span class="line">        width: 800,</span><br><span class="line">        height: 500,</span><br><span class="line">      &#125;);</span><br><span class="line">      &#x2F;&#x2F; 读取数据</span><br><span class="line">      graph.data(data);</span><br><span class="line">      &#x2F;&#x2F; 渲染图</span><br><span class="line">      graph.render();</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>AntV</tag>
       </tags>
   </entry>
   <entry>
@@ -2255,7 +2255,7 @@ class QuotesSpider(scrapy.Spider):
 <ul>
 <li><p>克隆项目</p>
 <blockquote>
-<p>git clone <a href="mailto:&#103;&#105;&#x74;&#64;&#x67;&#105;&#x74;&#104;&#x75;&#x62;&#46;&#99;&#111;&#x6d;">&#103;&#105;&#x74;&#64;&#x67;&#105;&#x74;&#104;&#x75;&#x62;&#46;&#99;&#111;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
+<p>git clone <a href="mailto:&#x67;&#105;&#x74;&#64;&#103;&#105;&#116;&#104;&#117;&#98;&#46;&#99;&#x6f;&#x6d;">&#x67;&#105;&#x74;&#64;&#103;&#105;&#116;&#104;&#117;&#98;&#46;&#99;&#x6f;&#x6d;</a>:flipped-aurora/gin-vue-admin.git</p>
 </blockquote>
 </li>
 <li><p>进入项目gin目录</p>
@@ -2915,6 +2915,27 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>lnmp tp pathinfo问题</title>
+    <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>/usr/local/php/etc/php.ini</p>
+<blockquote>
+<p> cgi.fix_pathinfo=1</p>
+</blockquote>
+<blockquote>
+<p> lnmp restart</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>Notice</strong></li>
+</ul>
+<blockquote>
+<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
+</blockquote>
+]]></content>
+  </entry>
+  <entry>
     <title>lnmp集成环境下部署laravel5.x项目</title>
     <url>/2017/09/21/lnmp%E9%9B%86%E6%88%90%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2laravel5-x%E9%A1%B9%E7%9B%AE/</url>
     <content><![CDATA[<a id="more"></a>
@@ -2972,27 +2993,6 @@ class QuotesSpider(scrapy.Spider):
         <tag>centos7.3</tag>
         <tag>laravel</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>lnmp tp pathinfo问题</title>
-    <url>/2018/07/23/lnmp-tp-pathinfo%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>/usr/local/php/etc/php.ini</p>
-<blockquote>
-<p> cgi.fix_pathinfo=1</p>
-</blockquote>
-<blockquote>
-<p> lnmp restart</p>
-</blockquote>
-<hr>
-<ul>
-<li><strong>Notice</strong></li>
-</ul>
-<blockquote>
-<p>   如若需要，请戳 <a href="https://shunhua.github.io/about/" target="_blank">[ About ]</a> 下联系我 欢迎联系.ok,enjoy it ! </p>
-</blockquote>
-]]></content>
   </entry>
   <entry>
     <title>mysql自定义重置数据表ID值</title>
@@ -3262,7 +3262,7 @@ class QuotesSpider(scrapy.Spider):
 </blockquote>
 <p>二、使用npm下载 web框架express模块</p>
 <blockquote>
-<p>npm install --save <a href="mailto:&#101;&#120;&#112;&#x72;&#101;&#115;&#x73;&#64;&#x34;&#x2e;&#x31;&#x35;&#46;&#x32;">&#101;&#120;&#112;&#x72;&#101;&#115;&#x73;&#64;&#x34;&#x2e;&#x31;&#x35;&#46;&#x32;</a></p>
+<p>npm install --save <a href="mailto:&#101;&#120;&#112;&#114;&#x65;&#x73;&#115;&#x40;&#x34;&#x2e;&#x31;&#53;&#46;&#50;">&#101;&#120;&#112;&#114;&#x65;&#x73;&#115;&#x40;&#x34;&#x2e;&#x31;&#53;&#46;&#50;</a></p>
 </blockquote>
 <p>三、使用npm下载socket.io模块</p>
 <blockquote>
@@ -3670,6 +3670,56 @@ class QuotesSpider(scrapy.Spider):
       </tags>
   </entry>
   <entry>
+    <title>搭建一套规范的 Vue3.x 项目工程环境</title>
+    <url>/2021/11/04/%E6%90%AD%E5%BB%BA%E4%B8%80%E5%A5%97%E8%A7%84%E8%8C%83%E7%9A%84-Vue3-x-%E9%A1%B9%E7%9B%AE%E5%B7%A5%E7%A8%8B%E7%8E%AF%E5%A2%83/</url>
+    <content><![CDATA[<p><img src="/assets/blogImg/rabbit.jpg" alt="Vue3.x"></p>
+<a id="more"></a>
+<p>一、使用 Vite 快速初始化项目雏形</p>
+<blockquote>
+<p>npm init @vitejs/app</p>
+</blockquote>
+<ul>
+<li>输入项目名称</li>
+<li>选择模板 vue-ts</li>
+<li>npm install</li>
+<li>npm run dev</li>
+</ul>
+<p>修改 Vite 配置文件 vite.config.ts</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import &#123; defineConfig &#125; from &#39;vite&#39;</span><br><span class="line">import vue from &#39;@vitejs&#x2F;plugin-vue&#39;</span><br><span class="line">&#x2F;&#x2F; 如果编辑器提示 path 模块找不到，则可以安装一下 @types&#x2F;node -&gt; npm i @types&#x2F;node -D</span><br><span class="line">import &#123; resolve &#125; from &#39;path&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; https:&#x2F;&#x2F;vitejs.dev&#x2F;config&#x2F;</span><br><span class="line">export default defineConfig(&#123;</span><br><span class="line">  plugins: [vue()],</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    alias: &#123;</span><br><span class="line">      &#39;@&#39;: resolve(__dirname, &#39;src&#39;) &#x2F;&#x2F; 设置 &#96;@&#96; 指向 &#96;src&#96; 目录</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  base: &#39;.&#x2F;&#39;, &#x2F;&#x2F; 设置打包路径</span><br><span class="line">  server: &#123;</span><br><span class="line">    port: 4000, &#x2F;&#x2F; 设置服务启动端口号</span><br><span class="line">    open: true, &#x2F;&#x2F; 设置服务启动时是否自动打开浏览器</span><br><span class="line">    cors: true &#x2F;&#x2F; 允许跨域</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 设置代理，根据我们项目实际情况配置</span><br><span class="line">    &#x2F;&#x2F; proxy: &#123;</span><br><span class="line">    &#x2F;&#x2F;   &#39;&#x2F;api&#39;: &#123;</span><br><span class="line">    &#x2F;&#x2F;     target: &#39;http:&#x2F;&#x2F;xxx.xxx.xxx.xxx:8000&#39;,</span><br><span class="line">    &#x2F;&#x2F;     changeOrigin: true,</span><br><span class="line">    &#x2F;&#x2F;     secure: false,</span><br><span class="line">    &#x2F;&#x2F;     rewrite: (path) &#x3D;&gt; path.replace(&#39;&#x2F;api&#x2F;&#39;, &#39;&#x2F;&#39;)</span><br><span class="line">    &#x2F;&#x2F;   &#125;</span><br><span class="line">    &#x2F;&#x2F; &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>规范目录结构</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">├── publish&#x2F;</span><br><span class="line">└── src&#x2F;</span><br><span class="line">    ├── assets&#x2F;                    &#x2F;&#x2F; 静态资源目录</span><br><span class="line">    ├── common&#x2F;                    &#x2F;&#x2F; 通用类库目录</span><br><span class="line">    ├── components&#x2F;                &#x2F;&#x2F; 公共组件目录</span><br><span class="line">    ├── router&#x2F;                    &#x2F;&#x2F; 路由配置目录</span><br><span class="line">    ├── store&#x2F;                     &#x2F;&#x2F; 状态管理目录</span><br><span class="line">    ├── style&#x2F;                     &#x2F;&#x2F; 通用 CSS 目录</span><br><span class="line">    ├── utils&#x2F;                     &#x2F;&#x2F; 工具函数目录</span><br><span class="line">    ├── views&#x2F;                     &#x2F;&#x2F; 页面组件目录</span><br><span class="line">    ├── App.vue</span><br><span class="line">    ├── main.ts</span><br><span class="line">    ├── shims-vue.d.ts</span><br><span class="line">├── tests&#x2F;                         &#x2F;&#x2F; 单元测试目录</span><br><span class="line">├── index.html</span><br><span class="line">├── tsconfig.json                  &#x2F;&#x2F; TypeScript 配置文件</span><br><span class="line">├── vite.config.ts                 &#x2F;&#x2F; Vite 配置文件</span><br><span class="line">└── package.json</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>二、集成路由工具 Vue Router</p>
+<blockquote>
+<p>npm i vue-router@4</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> └── src&#x2F;</span><br><span class="line">     ├── router&#x2F;</span><br><span class="line">         ├── index.ts  &#x2F;&#x2F; 路由配置文件</span><br><span class="line">&lt;!-- src&#x2F;router&#x2F;index.ts --&gt;</span><br><span class="line">import &#123;</span><br><span class="line">  createRouter,</span><br><span class="line">  createWebHashHistory,</span><br><span class="line">  RouteRecordRaw</span><br><span class="line">&#125; from &#39;vue-router&#39;</span><br><span class="line">import Home from &#39;@&#x2F;views&#x2F;home.vue&#39;</span><br><span class="line">import Vuex from &#39;@&#x2F;views&#x2F;vuex.vue&#39;</span><br><span class="line"></span><br><span class="line">const routes: Array&lt;RouteRecordRaw&gt; &#x3D; [</span><br><span class="line">  &#123;</span><br><span class="line">    path: &#39;&#x2F;&#39;,</span><br><span class="line">    name: &#39;Home&#39;,</span><br><span class="line">    component: Home</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: &#39;&#x2F;vuex&#39;,</span><br><span class="line">    name: &#39;Vuex&#39;,</span><br><span class="line">    component: Vuex</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: &#39;&#x2F;axios&#39;,</span><br><span class="line">    name: &#39;Axios&#39;,</span><br><span class="line">    component: () &#x3D;&gt; import(&#39;@&#x2F;views&#x2F;axios.vue&#39;) &#x2F;&#x2F; 懒加载组件</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">const router &#x3D; createRouter(&#123;</span><br><span class="line">  history: createWebHashHistory(),</span><br><span class="line">  routes</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">export default router</span><br><span class="line"></span><br><span class="line">&lt;!-- main.ts --&gt;</span><br><span class="line">import &#123; createApp &#125; from &#39;vue&#39;</span><br><span class="line">import App from &#39;.&#x2F;App.vue&#39;</span><br><span class="line"></span><br><span class="line">import router from &#39;.&#x2F;router&#x2F;index&#39;</span><br><span class="line"></span><br><span class="line">createApp(App).use(router).mount(&#39;#app&#39;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>三、集成状态管理工具 Vuex</p>
+<blockquote>
+<p>npm i vuex@next</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">└── src&#x2F;</span><br><span class="line">    ├── store&#x2F;</span><br><span class="line">        ├── index.ts  &#x2F;&#x2F; store 配置文件</span><br><span class="line">&lt;!-- src&#x2F;store&#x2F;index.ts --&gt;</span><br><span class="line">import &#123; createStore &#125; from &#39;vuex&#39;</span><br><span class="line"></span><br><span class="line">const defaultState &#x3D; &#123;</span><br><span class="line">  count: 0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Create a new store instance.</span><br><span class="line">export default createStore(&#123;</span><br><span class="line">  state() &#123;</span><br><span class="line">    return defaultState</span><br><span class="line">  &#125;,</span><br><span class="line">  mutations: &#123;</span><br><span class="line">    increment(state: typeof defaultState) &#123;</span><br><span class="line">      state.count++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  actions: &#123;</span><br><span class="line">    increment(context) &#123;</span><br><span class="line">      context.commit(&#39;increment&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  getters: &#123;</span><br><span class="line">    double(state: typeof defaultState) &#123;</span><br><span class="line">      return 2 * state.count</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;!-- main.ts --&gt;</span><br><span class="line">import &#123; createApp &#125; from &#39;vue&#39;</span><br><span class="line">import App from &#39;.&#x2F;App.vue&#39;</span><br><span class="line"></span><br><span class="line">import store from &#39;.&#x2F;store&#x2F;index&#39;</span><br><span class="line"></span><br><span class="line">createApp(App).use(store).mount(&#39;#app&#39;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>四、集成 HTTP 工具 Axios</p>
+<blockquote>
+<p>npm i axios</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">└── src&#x2F;</span><br><span class="line">    ├── utils&#x2F;</span><br><span class="line">        ├── axios.ts  &#x2F;&#x2F; Axios 配置文件</span><br><span class="line">&lt;!-- src&#x2F;utils&#x2F;axios.ts --&gt;</span><br><span class="line">import Axios from &#39;axios&#39;</span><br><span class="line">import &#123; ElMessage &#125; from &#39;element-plus&#39;</span><br><span class="line"></span><br><span class="line">const baseURL &#x3D; &#39;https:&#x2F;&#x2F;xx.xx.com&#39;</span><br><span class="line"></span><br><span class="line">const axios &#x3D; Axios.create(&#123;</span><br><span class="line">  baseURL,</span><br><span class="line">  timeout: 20000 &#x2F;&#x2F; 请求超时 20s</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 前置拦截器（发起请求之前的拦截）</span><br><span class="line">axios.interceptors.request.use(</span><br><span class="line">  (response) &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 根据你的项目实际情况来对 config 做处理</span><br><span class="line">     * 这里对 config 不做任何处理，直接返回</span><br><span class="line">     *&#x2F;</span><br><span class="line">    return response</span><br><span class="line">  &#125;,</span><br><span class="line">  (error) &#x3D;&gt; &#123;</span><br><span class="line">    return Promise.reject(error)</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 后置拦截器（获取到响应时的拦截）</span><br><span class="line">axios.interceptors.response.use(</span><br><span class="line">  (response) &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 根据你的项目实际情况来对 response 和 error 做处理</span><br><span class="line">     * 这里对 response 和 error 不做任何处理，直接返回</span><br><span class="line">     *&#x2F;</span><br><span class="line">    return response</span><br><span class="line">  &#125;,</span><br><span class="line">  (error) &#x3D;&gt; &#123;</span><br><span class="line">    if (error.response &amp;&amp; error.response.data) &#123;</span><br><span class="line">      const code &#x3D; error.response.status</span><br><span class="line">      const msg &#x3D; error.response.data.message</span><br><span class="line">      ElMessage.error(&#96;Code: $&#123;code&#125;, Message: $&#123;msg&#125;&#96;)</span><br><span class="line">      console.error(&#96;[Axios Error]&#96;, error.response)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      ElMessage.error(&#96;$&#123;error&#125;&#96;)</span><br><span class="line">    &#125;</span><br><span class="line">    return Promise.reject(error)</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">export default axios</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>使用 axios</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">  import &#123; defineComponent &#125; from &#39;vue&#39;</span><br><span class="line">  import axios from &#39;..&#x2F;utils&#x2F;axios&#39;</span><br><span class="line"></span><br><span class="line">  export default defineComponent(&#123;</span><br><span class="line">    setup() &#123;</span><br><span class="line">      axios</span><br><span class="line">        .get(&#39;&#x2F;users&#x2F;XPoet&#39;)</span><br><span class="line">        .then((res) &#x3D;&gt; &#123;</span><br><span class="line">          console.log(&#39;res: &#39;, res)</span><br><span class="line">        &#125;)</span><br><span class="line">        .catch((err) &#x3D;&gt; &#123;</span><br><span class="line">          console.log(&#39;err: &#39;, err)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>至此，一个基于 TypeScript + Vite + Vue3 + Vue Router + Vuex + Axios + Stylus/Sass/Less 的前端项目开发环境搭建完毕。</p>
+]]></content>
+      <tags>
+        <tag>Vue3</tag>
+        <tag>Vite</tag>
+        <tag>TypeScript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>有赞vantUI step1</title>
     <url>/2018/04/02/%E6%9C%89%E8%B5%9EvantUI-step1/</url>
     <content><![CDATA[<p><strong>有赞vantUI学习 step1</strong></p>
@@ -3733,56 +3783,6 @@ class QuotesSpider(scrapy.Spider):
       <tags>
         <tag>DNMP</tag>
         <tag>Portainer</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>搭建一套规范的 Vue3.x 项目工程环境</title>
-    <url>/2021/11/04/%E6%90%AD%E5%BB%BA%E4%B8%80%E5%A5%97%E8%A7%84%E8%8C%83%E7%9A%84-Vue3-x-%E9%A1%B9%E7%9B%AE%E5%B7%A5%E7%A8%8B%E7%8E%AF%E5%A2%83/</url>
-    <content><![CDATA[<p><img src="/assets/blogImg/rabbit.jpg" alt="Vue3.x"></p>
-<a id="more"></a>
-<p>一、使用 Vite 快速初始化项目雏形</p>
-<blockquote>
-<p>npm init @vitejs/app</p>
-</blockquote>
-<ul>
-<li>输入项目名称</li>
-<li>选择模板 vue-ts</li>
-<li>npm install</li>
-<li>npm run dev</li>
-</ul>
-<p>修改 Vite 配置文件 vite.config.ts</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import &#123; defineConfig &#125; from &#39;vite&#39;</span><br><span class="line">import vue from &#39;@vitejs&#x2F;plugin-vue&#39;</span><br><span class="line">&#x2F;&#x2F; 如果编辑器提示 path 模块找不到，则可以安装一下 @types&#x2F;node -&gt; npm i @types&#x2F;node -D</span><br><span class="line">import &#123; resolve &#125; from &#39;path&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; https:&#x2F;&#x2F;vitejs.dev&#x2F;config&#x2F;</span><br><span class="line">export default defineConfig(&#123;</span><br><span class="line">  plugins: [vue()],</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    alias: &#123;</span><br><span class="line">      &#39;@&#39;: resolve(__dirname, &#39;src&#39;) &#x2F;&#x2F; 设置 &#96;@&#96; 指向 &#96;src&#96; 目录</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  base: &#39;.&#x2F;&#39;, &#x2F;&#x2F; 设置打包路径</span><br><span class="line">  server: &#123;</span><br><span class="line">    port: 4000, &#x2F;&#x2F; 设置服务启动端口号</span><br><span class="line">    open: true, &#x2F;&#x2F; 设置服务启动时是否自动打开浏览器</span><br><span class="line">    cors: true &#x2F;&#x2F; 允许跨域</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 设置代理，根据我们项目实际情况配置</span><br><span class="line">    &#x2F;&#x2F; proxy: &#123;</span><br><span class="line">    &#x2F;&#x2F;   &#39;&#x2F;api&#39;: &#123;</span><br><span class="line">    &#x2F;&#x2F;     target: &#39;http:&#x2F;&#x2F;xxx.xxx.xxx.xxx:8000&#39;,</span><br><span class="line">    &#x2F;&#x2F;     changeOrigin: true,</span><br><span class="line">    &#x2F;&#x2F;     secure: false,</span><br><span class="line">    &#x2F;&#x2F;     rewrite: (path) &#x3D;&gt; path.replace(&#39;&#x2F;api&#x2F;&#39;, &#39;&#x2F;&#39;)</span><br><span class="line">    &#x2F;&#x2F;   &#125;</span><br><span class="line">    &#x2F;&#x2F; &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>规范目录结构</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">├── publish&#x2F;</span><br><span class="line">└── src&#x2F;</span><br><span class="line">    ├── assets&#x2F;                    &#x2F;&#x2F; 静态资源目录</span><br><span class="line">    ├── common&#x2F;                    &#x2F;&#x2F; 通用类库目录</span><br><span class="line">    ├── components&#x2F;                &#x2F;&#x2F; 公共组件目录</span><br><span class="line">    ├── router&#x2F;                    &#x2F;&#x2F; 路由配置目录</span><br><span class="line">    ├── store&#x2F;                     &#x2F;&#x2F; 状态管理目录</span><br><span class="line">    ├── style&#x2F;                     &#x2F;&#x2F; 通用 CSS 目录</span><br><span class="line">    ├── utils&#x2F;                     &#x2F;&#x2F; 工具函数目录</span><br><span class="line">    ├── views&#x2F;                     &#x2F;&#x2F; 页面组件目录</span><br><span class="line">    ├── App.vue</span><br><span class="line">    ├── main.ts</span><br><span class="line">    ├── shims-vue.d.ts</span><br><span class="line">├── tests&#x2F;                         &#x2F;&#x2F; 单元测试目录</span><br><span class="line">├── index.html</span><br><span class="line">├── tsconfig.json                  &#x2F;&#x2F; TypeScript 配置文件</span><br><span class="line">├── vite.config.ts                 &#x2F;&#x2F; Vite 配置文件</span><br><span class="line">└── package.json</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>二、集成路由工具 Vue Router</p>
-<blockquote>
-<p>npm i vue-router@4</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> └── src&#x2F;</span><br><span class="line">     ├── router&#x2F;</span><br><span class="line">         ├── index.ts  &#x2F;&#x2F; 路由配置文件</span><br><span class="line">&lt;!-- src&#x2F;router&#x2F;index.ts --&gt;</span><br><span class="line">import &#123;</span><br><span class="line">  createRouter,</span><br><span class="line">  createWebHashHistory,</span><br><span class="line">  RouteRecordRaw</span><br><span class="line">&#125; from &#39;vue-router&#39;</span><br><span class="line">import Home from &#39;@&#x2F;views&#x2F;home.vue&#39;</span><br><span class="line">import Vuex from &#39;@&#x2F;views&#x2F;vuex.vue&#39;</span><br><span class="line"></span><br><span class="line">const routes: Array&lt;RouteRecordRaw&gt; &#x3D; [</span><br><span class="line">  &#123;</span><br><span class="line">    path: &#39;&#x2F;&#39;,</span><br><span class="line">    name: &#39;Home&#39;,</span><br><span class="line">    component: Home</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: &#39;&#x2F;vuex&#39;,</span><br><span class="line">    name: &#39;Vuex&#39;,</span><br><span class="line">    component: Vuex</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: &#39;&#x2F;axios&#39;,</span><br><span class="line">    name: &#39;Axios&#39;,</span><br><span class="line">    component: () &#x3D;&gt; import(&#39;@&#x2F;views&#x2F;axios.vue&#39;) &#x2F;&#x2F; 懒加载组件</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">const router &#x3D; createRouter(&#123;</span><br><span class="line">  history: createWebHashHistory(),</span><br><span class="line">  routes</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">export default router</span><br><span class="line"></span><br><span class="line">&lt;!-- main.ts --&gt;</span><br><span class="line">import &#123; createApp &#125; from &#39;vue&#39;</span><br><span class="line">import App from &#39;.&#x2F;App.vue&#39;</span><br><span class="line"></span><br><span class="line">import router from &#39;.&#x2F;router&#x2F;index&#39;</span><br><span class="line"></span><br><span class="line">createApp(App).use(router).mount(&#39;#app&#39;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>三、集成状态管理工具 Vuex</p>
-<blockquote>
-<p>npm i vuex@next</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">└── src&#x2F;</span><br><span class="line">    ├── store&#x2F;</span><br><span class="line">        ├── index.ts  &#x2F;&#x2F; store 配置文件</span><br><span class="line">&lt;!-- src&#x2F;store&#x2F;index.ts --&gt;</span><br><span class="line">import &#123; createStore &#125; from &#39;vuex&#39;</span><br><span class="line"></span><br><span class="line">const defaultState &#x3D; &#123;</span><br><span class="line">  count: 0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Create a new store instance.</span><br><span class="line">export default createStore(&#123;</span><br><span class="line">  state() &#123;</span><br><span class="line">    return defaultState</span><br><span class="line">  &#125;,</span><br><span class="line">  mutations: &#123;</span><br><span class="line">    increment(state: typeof defaultState) &#123;</span><br><span class="line">      state.count++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  actions: &#123;</span><br><span class="line">    increment(context) &#123;</span><br><span class="line">      context.commit(&#39;increment&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  getters: &#123;</span><br><span class="line">    double(state: typeof defaultState) &#123;</span><br><span class="line">      return 2 * state.count</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;!-- main.ts --&gt;</span><br><span class="line">import &#123; createApp &#125; from &#39;vue&#39;</span><br><span class="line">import App from &#39;.&#x2F;App.vue&#39;</span><br><span class="line"></span><br><span class="line">import store from &#39;.&#x2F;store&#x2F;index&#39;</span><br><span class="line"></span><br><span class="line">createApp(App).use(store).mount(&#39;#app&#39;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>四、集成 HTTP 工具 Axios</p>
-<blockquote>
-<p>npm i axios</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">└── src&#x2F;</span><br><span class="line">    ├── utils&#x2F;</span><br><span class="line">        ├── axios.ts  &#x2F;&#x2F; Axios 配置文件</span><br><span class="line">&lt;!-- src&#x2F;utils&#x2F;axios.ts --&gt;</span><br><span class="line">import Axios from &#39;axios&#39;</span><br><span class="line">import &#123; ElMessage &#125; from &#39;element-plus&#39;</span><br><span class="line"></span><br><span class="line">const baseURL &#x3D; &#39;https:&#x2F;&#x2F;xx.xx.com&#39;</span><br><span class="line"></span><br><span class="line">const axios &#x3D; Axios.create(&#123;</span><br><span class="line">  baseURL,</span><br><span class="line">  timeout: 20000 &#x2F;&#x2F; 请求超时 20s</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 前置拦截器（发起请求之前的拦截）</span><br><span class="line">axios.interceptors.request.use(</span><br><span class="line">  (response) &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 根据你的项目实际情况来对 config 做处理</span><br><span class="line">     * 这里对 config 不做任何处理，直接返回</span><br><span class="line">     *&#x2F;</span><br><span class="line">    return response</span><br><span class="line">  &#125;,</span><br><span class="line">  (error) &#x3D;&gt; &#123;</span><br><span class="line">    return Promise.reject(error)</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 后置拦截器（获取到响应时的拦截）</span><br><span class="line">axios.interceptors.response.use(</span><br><span class="line">  (response) &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 根据你的项目实际情况来对 response 和 error 做处理</span><br><span class="line">     * 这里对 response 和 error 不做任何处理，直接返回</span><br><span class="line">     *&#x2F;</span><br><span class="line">    return response</span><br><span class="line">  &#125;,</span><br><span class="line">  (error) &#x3D;&gt; &#123;</span><br><span class="line">    if (error.response &amp;&amp; error.response.data) &#123;</span><br><span class="line">      const code &#x3D; error.response.status</span><br><span class="line">      const msg &#x3D; error.response.data.message</span><br><span class="line">      ElMessage.error(&#96;Code: $&#123;code&#125;, Message: $&#123;msg&#125;&#96;)</span><br><span class="line">      console.error(&#96;[Axios Error]&#96;, error.response)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      ElMessage.error(&#96;$&#123;error&#125;&#96;)</span><br><span class="line">    &#125;</span><br><span class="line">    return Promise.reject(error)</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">export default axios</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>使用 axios</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">  import &#123; defineComponent &#125; from &#39;vue&#39;</span><br><span class="line">  import axios from &#39;..&#x2F;utils&#x2F;axios&#39;</span><br><span class="line"></span><br><span class="line">  export default defineComponent(&#123;</span><br><span class="line">    setup() &#123;</span><br><span class="line">      axios</span><br><span class="line">        .get(&#39;&#x2F;users&#x2F;XPoet&#39;)</span><br><span class="line">        .then((res) &#x3D;&gt; &#123;</span><br><span class="line">          console.log(&#39;res: &#39;, res)</span><br><span class="line">        &#125;)</span><br><span class="line">        .catch((err) &#x3D;&gt; &#123;</span><br><span class="line">          console.log(&#39;err: &#39;, err)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>至此，一个基于 TypeScript + Vite + Vue3 + Vue Router + Vuex + Axios + Stylus/Sass/Less 的前端项目开发环境搭建完毕。</p>
-]]></content>
-      <tags>
-        <tag>Vue3</tag>
-        <tag>Vite</tag>
-        <tag>TypeScript</tag>
       </tags>
   </entry>
   <entry>
